@@ -11969,3 +11969,3492 @@ class A(x: Int) {
     }
 }
 ```
+
+<br>
+
+Insert examples lines [12006, 14021]
+
+<br>
+
+>*next metodu eleman yoksa NoSuchElementException nesnesi fırlatır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.array.kotlin.randomIntArray
+import kotlin.random.Random
+
+fun main()
+{
+    val a = Random.randomIntArray(10, 1, 100)
+    val iter = a.iterator()
+
+    try {
+        while (true)
+            print("${iter.next()} ")
+    }
+    catch (ex: NoSuchElementException) {
+        println()
+    }
+
+    for (value in a)
+        print("${value} ")
+
+    println()
+}
+```
+
+<br>
+
+>*RandomIntGenerator sınıfı*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.generator.random.RandomIntGenerator
+
+fun main()
+{
+    val rig = RandomIntGenerator(10, 0, 100)
+
+    for (value in rig)
+        print("%02d ".format(value))
+
+    println("\n---------------------------------------------------------------------------")
+
+    for (value in rig)
+        print("%02d ".format(value))
+}
+```
+
+<br>
+
+
+	FILE        : RandomIntGenerator.kt
+	AUTHOR      : Android-Mar-2023 Group
+	LAST UPDATE : 14.06.2023
+
+	Iterable RandomIntGenerator class
+
+	Copyleft (c) 1993 by C and System Programmers Association
+	All Rights Free
+
+```kotlin
+package org.csystem.generator.random
+
+import kotlin.random.Random
+
+class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private val mBound: Int, private val mRandom : Random = Random) : Iterable<Int> {
+    private var mIndex = -1
+
+    init {
+        if (mCount <= 0 || mMin >= mBound)
+            throw IllegalArgumentException("Invalid arguments")
+    }
+
+    override fun iterator(): Iterator<Int>
+    {
+        mIndex = -1
+
+        return object : Iterator<Int> {
+            override fun hasNext() = mIndex + 1 < mCount
+
+            override fun next(): Int {
+                if (!hasNext())
+                    throw NoSuchElementException("No such element!...")
+
+                ++mIndex
+
+                return mRandom.nextInt(mMin, mBound)
+            }
+        }
+    }
+}
+```
+
+<br>
+
+
+	FILE        : RandomIntGenerator.kt
+	AUTHOR      : Android-Mar-2023 Group
+	LAST UPDATE : 14.06.2023
+
+	Iterable RandomIntGenerator class
+
+	Copyleft (c) 1993 by C and System Programmers Association
+	All Rights Free
+
+```kotlin
+package org.csystem.generator.random
+
+import kotlin.random.Random
+
+class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private val mBound: Int, private val mRandom : Random = Random) : Iterable<Int> {
+    init {
+        if (mCount <= 0 || mMin >= mBound)
+            throw IllegalArgumentException("Invalid arguments")
+    }
+
+    override fun iterator(): Iterator<Int>
+    {
+        var count = -1
+
+        return object : Iterator<Int> {
+            override fun hasNext() = count + 1 < mCount
+
+            override fun next(): Int {
+                if (!hasNext())
+                    throw NoSuchElementException("No such element!...")
+
+                ++count
+
+                return mRandom.nextInt(mMin, mBound)
+            }
+        }
+    }
+}
+```
+
+<br>
+
+
+	FILE        : RandomIntGenerator.kt
+	AUTHOR      : Android-Mar-2023 Group
+	LAST UPDATE : 14.06.2023
+
+	Iterable RandomIntGenerator class
+
+	Copyleft (c) 1993 by C and System Programmers Association
+	All Rights Free
+
+```kotlin
+package org.csystem.generator.random
+
+import kotlin.random.Random
+
+class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private val mBound: Int, private val mRandom : Random = Random) : Iterable<Int> {
+    init {
+        if (mCount <= 0 || mMin >= mBound)
+            throw IllegalArgumentException("Invalid arguments")
+    }
+
+    override fun iterator() = object : Iterator<Int> {
+        private var mIndex = -1
+
+        override fun hasNext() = mIndex + 1 < mCount
+
+        override fun next(): Int {
+            if (!hasNext())
+                throw NoSuchElementException("No such element!...")
+
+            ++mIndex
+
+            return mRandom.nextInt(mMin, mBound)
+        }
+    }
+}
+```
+
+<br>
+
+>*Iterable arayüzüne eklenti olarak yazılmış bir grup fonksiyon vardır. Bu fonksiyonlar genel olarak callback alırlar. Bu fonksiyonlar genel olarak iki gruba ayrılabilir:* 
+>
+>1. *__<u>Intermediate operation functions:</u>__ Veriler üzerinde çağrılacak callback'leri belirlemekte kullanılır. Bu fonksiyonlar aldıkları callback'i doğrudan çalıştırmazlar. Bir terminal operation function devam eden zincirin sonunda çağrıldığında bu callback'ler de çağrılır. Yani aslında bir ara fonksiyonun aldığı calllback'in çağrılabilmesi için bir terminal operation function çağrılması gerekir.*
+>
+>2. *__<u>Terminal operation functions:</u>__ Bir zincir (pipeline) içerisinde ya bir işlem yapan ya da tüm belirlenen ara işlemlere göre bir değer döndüren metotlardır. Bir pipeline içerisinde istenildiği kadar intermediate function çağrısı olabilir ancak bir tane terminal function çağrısı yapılabilir*
+
+<br>
+
+>*forEach ve filter eklenti fonksiyonları*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.generator.random.RandomIntGenerator
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.numeric.isPrime
+
+fun main()
+{
+    val randomIntGenerator = RandomIntGenerator(readInt("Bir sayı giriniz:"), 0, 100)
+
+    randomIntGenerator.forEach {print("$it ")}
+
+    println()
+
+    randomIntGenerator.filter { it % 2 == 0 }.forEach {print("$it ")}
+
+    println()
+
+    randomIntGenerator.filter { it.isPrime() }.forEach {print("$it ")}
+
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği ve write fonksiyonunu inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.generator.random.RandomIntGenerator
+import org.csystem.util.console.kotlin.readInt
+
+import org.csystem.util.iterable.kotlin.write
+import org.csystem.util.numeric.isPrime
+
+fun main()
+{
+    val randomIntGenerator = RandomIntGenerator(readInt("Bir sayı giriniz:"), 0, 100)
+
+    write(randomIntGenerator)
+    write(randomIntGenerator.filter { it % 2 == 0 })
+    write(randomIntGenerator.filter { it.isPrime() })
+}
+```
+
+<br>
+
+>*Iterable arayüzüne eklenti olarak bulunan metotların bir çoğu String sınıfında da eklenti olarak bulunmaktadır. String sınıfı bu anlamda __"iterable"__ değildir ancak __"iterable"__ olarak kullanılabilmektedir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readString
+
+fun main()
+{
+    val s = readString("Bir yazı giriniz:")
+
+    s.filter { it.isUpperCase() }.forEach(::println)
+}
+```
+
+<br>
+
+>*Anımsanacağı gibi String sınıfı da for döngü deyimi ile dolaşılabilir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readString
+
+fun main()
+{
+    val s = readString("Bir yazı giriniz:")
+
+    for (c in s)
+        print("$c ")
+
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsIterable
+import org.csystem.util.console.kotlin.readBigDecimal
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsIterable("products-withheader.csv")
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
+
+        //products.forEach(::println)
+        println("Filtered Products:")
+        products.filter { it.stock > 0 && minPrice < it.price  && it.price < maxPrice }
+            .forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+<br>
+
+>*Yukarıdaki örnek için filter fonksiyonları ayrı ayrı da çağrılabilir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsIterable
+import org.csystem.util.console.kotlin.readBigDecimal
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsIterable("products-withheader.csv")
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
+
+        //products.forEach(::println)
+        println("Filtered Products:")
+        products.filter { it.stock > 0}.filter{ minPrice < it.price }.filter {it.price < maxPrice }.forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+<br>
+
+>*Kotlin'de standart collection sınıflar genel olarak immutable ve mutable olmak üzere iki gruba ayrılır. Bu ayrım arayüzler düzeyinde yapılır. Genel olarak __"mutable collection"__'lar MutableXXX biçiminde isimlendirilmiştir. Bu durumda içerisinde Mutable geçmeyen arayüzler Immutable olur. Sınıflar için bu isimlendirmede istisnalar bulunmaktadır*
+
+<br>
+
+>*Collection arayüzünü destekleyen sınıfların MutableCollection veya Collection parametreli ctor'ları bulunur*
+
+```kotlin
+package org.csystem.app
+
+import java.util.*
+
+fun main()
+{
+    val mutableList = mutableListOf(10, 20, 30)
+    val linkedList = LinkedList(mutableList)
+
+    linkedList.forEach{print("$it ")}
+
+    println()
+}
+```
+
+<br>
+
+>*Aralarında öncelik sonralık ilişkisi bulunan collection sınıflara genel olarak liste tarzı collection sınıflar denir ve bu collection sınıflar `List<E>` veya `MutableList<E>` arayüzünü desteklerler. Aslında `MutableList<E>` arayüzü Kotlin'de `List<E>` arayüzünden türetilmiştir. Buradaki `List<E>` arayüzü ile JavaSE'deki `List<E>` arayüzü aynı değildir. JavaSE'deki `List<E>` arayüzü Kotlin'deki `MutableList<E>` arayüzüne karşılık gelir. Collection sınıflar için immutable ve mutable collection arayüzleri için genel olarak durum böyledir*
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val mutableList = mutableListOf("ankara", "istanbul", "İzmir")
+    val mutableArrayList: MutableList<Int> = ArrayList()
+
+    println(mutableList.javaClass.name)
+    println(mutableArrayList.javaClass.name)
+
+    mutableList.forEach(::println)
+    mutableArrayList.forEach(::println)
+}
+```
+
+<br>
+
+>*Mutable liste tarzı collection sınıfların MutableList arayüzünden gelen Collection parametreli addAll metotları bulunur*
+
+```kotlin
+package org.csystem.app
+
+import java.util.*
+
+fun main()
+{
+    val linkedList = LinkedList<Int>()
+
+    linkedList.addAll(mutableListOf(10, 20, 30))
+    linkedList.forEach{print("$it ")}
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.iterable.kotlin.write
+
+fun main()
+{
+    val intList = ArrayList<Int>()
+
+    while (true) {
+        val value = readInt("Bir sayı giriniz:")
+
+        if (value == 0)
+            break
+
+        intList.add(value)
+    }
+
+    write(intList)
+
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadNamesFromFileAsList
+import org.csystem.util.console.kotlin.readString
+
+fun main()
+{
+    try {
+        val str = readString("Bir yazı giriniz:")
+        loadNamesFromFileAsList("names.csv").filter {it.contains(str)}.forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadNamesFromFileAsList
+import org.csystem.util.console.kotlin.readString
+
+fun main()
+{
+    try {
+        val str = readString("Bir yazı giriniz:")
+
+        loadNamesFromFileAsList("names.csv")
+            .filter{it.contains(str)}
+            .map { it.length }
+            .forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadNamesFromFileAsList
+import org.csystem.util.console.kotlin.readString
+import org.csystem.util.iterable.kotlin.write
+
+fun main()
+{
+    try {
+        val str = readString("Bir yazı giriniz:")
+
+        val lengths = loadNamesFromFileAsList("names.csv")
+            .filter{it.contains(str)}
+            .map { it.length }
+            .toList()
+
+        write(lengths)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadNamesFromFileAsList
+import org.csystem.util.console.kotlin.readString
+
+fun main() {
+    try {
+        val text = readString("Bir yazı giriniz:")
+        val allNames = loadNamesFromFileAsList("names.csv")
+        val names = allNames
+            .filter { it.contains(text, true) }
+            .map { it.lowercase() }
+            .toList()
+
+        allNames.filter { it.contains(text, ignoreCase = true) }.forEach(::println)
+        println("--------------------------------------------------------------------")
+        names.forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır Örnekte lambda fonksiyon içerisinde parametre kullanılmadığında bazı static kod analizi araçları uyarı verebilir. Bu uyarının kalkması için Lambda fonksiyon içerisindeki parametre alttire karakteri ile pas geçilecek şekilde belirtilebilir. Bu uyarı dikkate alınmasa da bir sorun oluşturmaz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+
+    IntArray(count) {it}.forEach { _ -> print("${Random.nextInt(100)} ") }
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+
+    IntRange(1, count).map { Random.nextInt(100) }.toIntArray().forEach { print("$it ") }
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+
+    (1..count).map { Random.nextInt(100) }.toIntArray().forEach { print("$it ") }
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+
+    (0 until count).map { Random.nextInt(100) }.toIntArray().forEach { print("$it ") }
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte count tane rasgele sayı IntRange kullanılarak ekrana bastırılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+
+    (1..count).forEach{ _ -> print("${Random.nextInt(200)}")}
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte take ve count eklenti fonksiyonları kullanılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadNamesFromFileAsList
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readString
+
+fun main()
+{
+    try {
+        val text = readString("Bir yazı giriniz:")
+        val count = readInt("Sorgudan ilk kaç tanesi elde edilsin:")
+        val allNames = loadNamesFromFileAsList("names.csv")
+        val names = allNames.filter { it.contains(text, ignoreCase = true) }
+            .take(count)
+            .map { it.lowercase() }
+            .toList()
+
+        names.forEach(::println)
+        println("Tüm koşula uygun veriler toplam ${allNames.count { it.contains(text, ignoreCase = true) }} tanedir")
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadNamesFromFileAsList
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readString
+
+fun main()
+{
+    try {
+        val text = readString("Bir yazı giriniz:")
+        val count = readInt("Sorgudan ilk kaç tanesi atılsın:")
+        val allNames = loadNamesFromFileAsList("names.csv")
+        val names = allNames.filter { it.contains(text, ignoreCase = true) }
+            .drop(count)
+            .map { it.lowercase() }
+            .toList()
+
+        names.forEach(::println)
+        println("Tüm koşula uygun veriler toplam ${allNames.count { it.contains(text, ignoreCase = true) }} tanedir")
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadNamesFromFileAsList
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readString
+
+fun main()
+{
+    try {
+        val text = readString("Bir yazı giriniz:")
+        val count = readInt("Sorgudan son kaç tanesi atılsın:")
+        val allNames = loadNamesFromFileAsList("names.csv")
+        val names = allNames.filter { it.contains(text, ignoreCase = true) }
+            .dropLast(count)
+            .map { it.lowercase() }
+            .toList()
+
+        names.forEach(::println)
+        println("Tüm koşula uygun veriler toplam ${allNames.count { it.contains(text, ignoreCase = true) }} tanedir")
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte generateSequence fonksiyonu ile count tane rasgele sayı üretilmiştir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+
+    generateSequence { Random.nextInt(1, 100) }
+        .take(count)
+        .forEach {print("$it ")}
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte 2'den başlayarak her adımda 3 katının bir fazlası olacak şekilde artırarak count tane sayı elde edilmiştir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+
+    generateSequence(2) {3 * it + 1}.take(count).forEach {print("$it ")}
+    println()
+}
+```
+
+<br>
+
+>*generateSequence fonksiyonu*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main() {
+    val start = readInt("Başlangıç değerini giriniz:")
+    val end = readInt("Bitiş değerini giriniz:")
+    val step = readInt("Adım değerini giriniz:")
+
+    generateSequence(start) { it + step }.takeWhile { it < end }.forEach{print("$it ")}
+    println()
+}
+```
+
+<br>
+
+>*Yukarıdaki işlem aşağıdaki gibi de yapılabilir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main() {
+    val start = readInt("Başlangıç değerini giriniz:")
+    val end = readInt("Bitiş değerini giriniz:")
+    val step = readInt("Adım değerini giriniz:")
+
+    (start until end step step).forEach{print("$it ")}
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte [-2 * PI, 2 * PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.math.PI
+import kotlin.math.sin
+
+fun main()
+{
+    val start = -2 * PI
+    val end = 2 * PI
+    val incValue = 0.1
+
+    generateSequence(start) { it + incValue }.takeWhile { it <= end }.map { sin(it) }.forEach(::println)
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte [-2 * PI, 2 * PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.math.PI
+import kotlin.math.sin
+
+fun main()
+{
+    generateSequence(-2 * PI) { it + 0.1 }.takeWhile { it <= 2 * PI }.map { sin(it) }.forEach(::println)
+}
+```
+
+<br>
+
+>*generateSequence fonksiyonu*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+
+    generateSequence ({ Random.nextInt(1, 30)}) {3 * it + 1}
+        .take(count)
+        .forEach{print("$it ")}
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte printCollatz fonksiyonunun generateSequence ile yazıldığına dikkat ediniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main() = generateSequence { readInt("Bir sayı giriniz:") }.takeWhile {it > 0}.forEach { printCollatz(it) }
+
+fun printCollatz(value: Int)
+{
+    var a = value
+
+    generateSequence(a) { a = if (a % 2 == 0) a / 2 else  3 * a + 1; a }
+        .takeWhile{a > 1}
+        .forEach{print("$it ")}
+    println(1)
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main() = generateSequence { readInt("Bir sayı giriniz:") }.takeWhile {it > 0}.forEach { printCollatz(it) }
+
+fun printCollatz(value: Int)
+{
+    var a = value
+
+    generateSequence(a) { a = when { a % 2 == 0 -> a / 2 else ->  3 * a + 1}; a }
+        .takeWhile{a > 1}
+        .forEach{print("$it ")}
+    println(1)
+}
+```
+
+<br>
+
+>*Aşağıdaki hepsi birbirinden farklı count tane sayı üretilmiştir. Şüphesiz count sayısının aralıktaki toplam sayıyı aşmaması gerekir. Aşması durumunda artık üretim yapılamaz ve sonsuz döngü oluşur*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    while (true) {
+        val count = readInt("Bir sayı giriniz:")
+
+        if (count == 0)
+            break
+
+        generateSequence { Random.nextInt(1, 100) }
+            .distinct()
+            .take(count)
+            .forEach {print("$it ")}
+
+        println()
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte artık tekrarlamayan sayı kalma olasılığı yoktur*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    while (true) {
+        val count = readInt("Bir sayı giriniz:")
+
+        if (count == 0)
+            break
+
+        generateSequence { Random.nextLong(Long.MIN_VALUE, Long.MAX_VALUE) }
+            .distinct()
+            .take(count)
+            .forEach {print("$it ")}
+
+        println()
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.generator.random.lottery.numeric.numericLotteryNumbers
+import org.csystem.util.array.kotlin.write
+import org.csystem.util.console.kotlin.readInt
+
+fun main() = numericLotteryNumbers(readInt("Kaç tane kupon oynamak istersiniz?")).forEach{ it.write(2) }
+
+package org.csystem.generator.random.lottery.numeric
+
+import kotlin.random.Random
+
+fun numericLotteryNumbers(count: Int, random: Random = Random) : Array<IntArray>
+{
+    return generateSequence { numericLotteryNumbers(random) }.take(count).toList().toTypedArray()
+}
+
+fun numericLotteryNumbers(random: Random = Random): IntArray
+{
+    return generateSequence { random.nextInt(1, 50) }.distinct().take(6).sorted().toList().toIntArray()
+}
+```
+
+<br>
+
+>*`Collection<T>/MutableCollection<T>` arayüzünden `Set<T>/MutableSet<T>` arayüzü türetilmiştir. `Set<T> ve MutableSet<T>` arayüzleri matematik'teki küme kavramını temsil eden arayüzlerdir. Yani, elemanların eklenme sırasının önemi yoktur ve bir elemandan birden fazla aynı küme collection'ında olamaz*
+
+<br>
+
+>*Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.iterable.kotlin.write
+
+fun main()
+{
+    val mutableSet = mutableSetOf(89, 1, 2, 3, 1, 3, 4, 5)
+
+    println(mutableSet.javaClass.name)
+    println(mutableSet.add(45))
+    println(mutableSet.add(45))
+    mutableSet.add(450)
+    write(mutableSet)
+}
+```
+
+<br>
+
+>*Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.iterable.kotlin.write
+
+fun main()
+{
+    val mutableSet = mutableSetOf(89, 1, 2, 3, 1, 3, 4, 5)
+
+    println(mutableSet.javaClass.name)
+    println(mutableSet.add(45))
+    println(mutableSet.add(45))
+    mutableSet.add(450)
+    write(mutableSet)
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.random.Random
+
+fun main()
+{
+    val a = IntArray(Random.nextInt(100)) { Random.nextInt(10, 20) }
+
+    a.forEach { print("$it ") }
+    println()
+
+    val hasSet = a.toHashSet()
+    hasSet.forEach{print("$it ") }
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.random.Random
+
+fun main()
+{
+    val a = IntArray(Random.nextInt(100)) { Random.nextInt(10, 20) }
+
+    a.forEach { print("$it ") }
+    println()
+
+    val set = a.toSet()
+    set.forEach{print("$it ") }
+    println()
+}
+```
+
+<br>
+
+>*Set tarzı collection'larda, __"hash"__ kullananlar eşitlik kontrolü için equals ve hashCode metotlarının geri dönüş değerine bakarlar. Bu durumda programcı bir tür durumlar için bu metotları gerekirse override etmelidir.*
+>
+>**_Anahtar Notlar:_** Hash code üretmek ayrı bir kavramdır ve bir çok durumda üretmenin farklı yöntemleri vardır. Aşağıdaki örnekte ürünün id değeri Int olduğundan ve aynı id'ye sahip birden fazla ürünün __"set"__ içerisinde bulunmaması gerektiği varsayımıyla düşünülmüştür
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsIterable
+import org.csystem.test.data.loadProductsFromFileAsSet
+
+fun main()
+{
+    try {
+        val allProducts = loadProductsFromFileAsIterable("products.csv")
+        val products = loadProductsFromFileAsSet("products.csv")
+
+        println(products.javaClass.name)
+
+        products.forEach(::println)
+        println("Count:${products.count()}")
+        println("All products Count:${allProducts.count()}")
+    }
+    catch (ex: Throwable) {
+        ex.printStackTrace()
+    }
+}
+```
+
+<br>
+
+>*TreeSet sınıfı elemanları sıralı biçimde tutar*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsTreeSet
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsTreeSet("products.csv")
+
+        products.forEach(::println)
+        println("Count: ${products.count()}")
+    }
+    catch (ex: Throwable) {
+        ex.printStackTrace()
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte ürünler isimlerine göre ascending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsTreeSet
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsTreeSet("products.csv") {p1, p2 -> p1.name.compareTo(p2.name)}
+
+        products.forEach(::println)
+        println("Count: ${products.count()}")
+    }
+    catch (ex: Throwable) {
+        ex.printStackTrace()
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte ürünler isimlerine göre descending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsTreeSet
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsTreeSet("products.csv") {p1, p2 -> p2.name.compareTo(p1.name)}
+
+        products.forEach(::println)
+        println("Count: ${products.count()}")
+    }
+    catch (ex: Throwable) {
+        ex.printStackTrace()
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import java.util.*
+import kotlin.random.Random
+
+fun main()
+{
+
+    var count = readInt("Kaç tane kupon oynamak istersiniz?")
+
+    while (count-- > 0) {
+        val numbers = getNumericLotteryNumbers()
+
+        numbers.forEach { print("%02d ".format(it)) }
+        println()
+    }
+}
+
+fun getNumericLotteryNumbers(random: Random = Random) : IntArray
+{
+    val treeSet = TreeSet<Int>()
+
+    while (treeSet.size != 6)
+        treeSet.add(random.nextInt(1, 50))
+
+    return treeSet.toIntArray()
+}
+```
+
+<br>
+
+>*`Map<K, V>/MutableMap<K, V>` arayüzü anahtara karşılık gelen değerlere ilişkin collection sınıflarının taban arayüzüdür. `Map<K, V>/MutableMap<K, V>` arayüzü hiç bir arayüzden türetilmemiştir. Bu arayüzü implemente eden sınıflar için anahtar türü `Set<K>` olarak tutulur. En çok kullanılan `HashMap<K, V>` ve `TreeMap<K, V>` sınıfları K türünü sırasıyla `HashSet<T>` ve `TreeSet<T>` olarak tutarlar*
+
+<br>
+
+>*map tarzı colection'lar*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val cityMap = mutableMapOf<Int, String?>()
+
+    println(cityMap.javaClass.name)
+
+    cityMap.put(34, "istanbul")
+    cityMap.put(6, "ankara")
+
+    if (cityMap.containsKey(78))
+        println(cityMap.get(78))
+    else
+        println("Aranan il bulunamadı")
+}
+```
+
+<br>
+
+>*map tarzı colection'lar*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val cityMap = mutableMapOf<Int, String?>()
+
+    println(cityMap.javaClass.name)
+
+    cityMap[34] = "istanbul"
+    cityMap[6] = "ankara"
+
+    if (cityMap.containsKey(78))
+        println(cityMap[78])
+    else
+        println("Aranan il bulunamadı")
+}
+```
+
+<br>
+
+>* map tarzı colection'lar*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadNamesFromFileAsMap
+
+fun main()
+{
+    try {
+        val namesMap = loadNamesFromFileAsMap("nameswithkeys.csv")
+
+        println("Size: ${namesMap.size}")
+
+        namesMap.keys.sortedBy { it }.forEach {print("$it -> "); namesMap[it]?.forEach { print("$it ") }; println()}
+
+        println("Size: ${namesMap.size}")
+    }
+    catch (ex: Throwable) {
+        ex.printStackTrace()
+    }
+}
+```
+
+<br>
+
+>*__map tarzı colection'lar:__ Örnekte TreeMap kullanıldığından anahtar değerlerinin sıralanması gerekmez*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadNamesFromFileAsTreeMap
+
+fun main()
+{
+    try {
+        val namesMap = loadNamesFromFileAsTreeMap("nameswithkeys.csv")
+
+        println("Size: ${namesMap.size}")
+
+        namesMap.keys.forEach {print("$it -> "); namesMap[it]?.forEach { print("$it ") }; println()}
+
+        println("Size: ${namesMap.size}")
+    }
+    catch (ex: Throwable) {
+        ex.printStackTrace()
+    }
+}
+```
+
+<br>
+
+>*inline fonksiyon çağrıları byte code'a çağrı biçiminde değil doğrudan kodlarıyla birlikte yazılır. inline fonksiyonlar eğer fonksiyon parametreli ise (high order function) dışarıdan almış olduğu callback fonksiyon da inline yapılmış olur*
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    10.doWork {println(it)}
+    "ankara".doWork{println(it.length)}
+    3.4.doWork(::display)
+}
+
+fun <T> display(t: T) = println(t)
+
+inline fun <T> T.doWork(callback: (T) -> Unit) = callback(this)
+```
+
+<br>
+
+>*inline high order fonksiyonların callback olarak aldıkları fonksiyonların inline olmaması isteniyorsa parametre noinline olarak bildirilmelidir. Bu durumda ilgili callback fonksiyon inline olmaz, fonksiyon çağrısı byet code'a eklenir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    "ankara".doWork({it.uppercase()}) {println(it); println(it.lowercase())}
+}
+
+inline fun <T> T.doWork(block: (T) -> T, noinline callback: (T) -> Unit) = callback(block(this))
+```
+
+<br>
+
+>*sealed bir sınıf default olarak abstract bildirilir. Dolayısıyla bu sınıf türünden nesne yaratılamaz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.tuple.SealedValue
+
+fun main()
+{
+    val sv = SealedValue(20) //error
+}
+
+package org.csystem.tuple
+
+sealed class SealedValue<out T>(val value: T) {
+    //...
+}
+```
+
+<br>
+
+>*sealed bir sınıftan türemiş bir sınıf aynı pakette bildirilmelidir. Bu durumda sealed olarak soyutlanmış bir sınıftan doğrudan (direct) türetilmiş tüm sınıflar da aynı pakette olmalıdır*
+
+```kotlin
+package org.csystem.test
+
+import org.csystem.tuple.SealedValue
+
+class MySealedValue(var a: Int) : SealedValue<Int>(a) { //error
+    //...
+}
+
+package org.csystem.tuple
+
+sealed class SealedValue<out T>(val value: T) {
+    //...
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte MySealedValue sealed olmadığından ondan türemiş sınıflar aynı pakette olmak zorunda değildir*
+
+```kotlin
+package org.csystem.test
+
+import org.csystem.tuple.MySealedValue
+
+class YourSealedValue : MySealedValue() {
+    //..
+}
+
+package org.csystem.tuple
+
+open class MySealedValue : SealedValue<Int>(0){
+    //...
+}
+
+package org.csystem.tuple
+
+sealed class SealedValue<out T>(val value: T) {
+    //...
+}
+```
+
+<br>
+
+>*const val değişkenler:*
+>- *Değeri derleme zamanında hesaplanan değişkenlerdir (constant folding)*
+>- *const val değişkenlere sabit ifadesi verilmeldir. Aksi durumda error oluşur*
+>- *Yerel olarak bildirilemez*
+>- *Sınıfların veri elemanları olamazlar*
+>- *Global olarak bildirilebilirler*
+>- *object'lerin veri elemanı olabilir*
+>- *Fonksiyon parametre değişkenleri val olarak bildirilemeyeceğinden const val de yapılamazlar*
+
+```kotlin
+package org.csystem.app
+
+val e = 2.71
+const val PI = 3.14
+const val E = e //error
+const val PI_SQUARE = PI * PI
+
+fun main()
+{
+    const val E = 2.71 //error
+}
+
+fun foo(const val a: Int = 23) //error
+{
+    //...
+}
+
+class Sample {
+    const val E = 2.71 //error
+}
+
+object Mample {
+    const val E = 2.71
+}
+```
+
+<br>
+
+>**SAM (Single Abstract Method) interface:**   
+>
+>*Bu arayüzlerin bir ve yalnız bir tane abstract metotları olmalıdır. Aksi durumda error oluşur. Bu arayüzler `fun` olarak bildirilirler. Bu kavram Java'daki __"functional interface"__ ile uyumlu olması açısından eklenmiştir. Programcı özel bir durum yoksa Kotlin'de SAM arayüzleri yerine fonksiyon türlerini kullanmalıdır. Örnek durumu göstermek için yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    MySample.doWorkSAM(10) {it % 2 == 0}
+    MySample.doWork(10) {it % 2 == 0}
+}
+
+fun interface IIntPredicate {
+    fun test(a: Int) : Boolean
+}
+
+class MySample {
+    companion object {
+        fun doWorkSAM(a: Int, pred: IIntPredicate)
+        {
+            println("doWork(a: Int, pred: IIntPredicate)")
+            if (pred.test(a))
+                println(a)
+        }
+
+        fun doWork(a: Int, pred: (Int) -> Boolean)
+        {
+            println("doWork(a: Int, pred: (Int) -> Boolean)")
+            if (pred(a))
+                println(a)
+        }
+    }
+}
+```
+
+<br>
+
+>*Kotlin 1.4'den itibaren virgülle ayrılan her liste tarzı ifadenin sonunda kullanılan virgül geçerlidir (trailing comma)*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    foo(b = 3, c = 1, a = 10,) //Since 1.4
+    val a = intArrayOf(10, 30, 20,) //Since 1.4
+    println("ankara",) //Since 1.4
+}
+
+enum class Color {
+    RED, GREEN, BLUE,  BLACK, WHITE,  //Since 1.4
+}
+
+fun foo(a: Int, b: Int, c: Int = 10,) //Since 1.4
+{
+    println("a=$a")
+    println("b=$b")
+    println("c=$c")
+}
+```
+
+<br>
+
+>*Java 8 ile beraber tarih-zaman işlemlerine ilişkin pek çok sınıf standart kütüphaneye eklenmiştir. Kotlin'de tarih zaman işlemleri için bu sınıflar kullanılmaktadır*
+
+<br>
+
+>*`LocalDate` sınıfının of metotları*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+
+fun main()
+{
+    val date = LocalDate.of(2023, 6, 21)
+
+    println("${date.dayOfMonth}/${date.monthValue}/${date.year}")
+    println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")
+}
+```
+
+<br>
+
+>*LocalDate sınıfının Month enum class parametreli of metodu*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+import java.time.Month
+
+fun main()
+{
+    val date = LocalDate.of(2023, Month.JUNE, 21)
+
+    println("${date.dayOfMonth}/${date.monthValue}/${date.year}")
+    println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")
+}
+```
+
+<br>
+
+>*LocalDate sınıfı (ve tüm diğer Java 8 tarih-zaman sınıfları) geçerlilik kontrolü yapar. Bu sınıflar geçerli olmayan bilgiler için DateTimeException nesnesi fırlatır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readString
+import java.time.DateTimeException
+import java.time.LocalDate
+import java.time.Month
+
+fun main()
+{
+    while (true) {
+        try {
+            val day = readInt("Gün bilgisini giriniz:")
+
+            if (day == 0)
+                break
+
+            val month = Month.valueOf(readString("Ay bilgisini giriniz:JANUARY, FEBRUARY, MARCH, ..., DECEMBER:").uppercase())
+            val year = readInt("Yıl bilgisini giriniz:")
+            val date = LocalDate.of(year, month, day)
+
+            println("${date.dayOfMonth}/${date.monthValue}/${date.year}")
+            println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")
+        }
+        catch (ignore: DateTimeException) {
+            println("Geçersiz tarih!...")
+        }
+        catch (ignore: IllegalArgumentException) {
+            println("Geçersiz ay bilgisi!...")
+        }
+    }
+
+    println("Tekrar yapıyor musunuz?")
+}
+```
+
+<br>
+
+>*LocalDate sınıfının now isimli static metodu sistemin tarih bilgisini elde etmekte kullanılır*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+
+fun main()
+{
+    val date = LocalDate.now()
+
+    println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")
+}
+```
+
+<br>
+
+>*LocalDate sınıfının isAfter ve isBefore metotları ve equals metodu*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+import java.time.Month
+
+fun main()
+{
+    val today = LocalDate.now()
+    val date = LocalDate.of(2023, Month.SEPTEMBER, 10)
+
+    println(date.isAfter(today))
+    println(today.isBefore(date))
+    println(today == date)
+}
+```
+
+<br>
+
+>*ChronoUnit enum sınıfı ile tarih-zaman ölçümleri yapılabilir*
+
+```kotlin
+package org.csystem.app;
+
+import java.time.LocalDate
+import java.time.Month
+import java.time.temporal.ChronoUnit
+
+fun main()
+{
+    val today = LocalDate.now()
+    val date = LocalDate.of(1999, Month.AUGUST, 17)
+
+    println(ChronoUnit.DAYS.between(date, today))
+    println(ChronoUnit.YEARS.between(date, today))
+    println(ChronoUnit.MONTHS.between(date, today))
+    println(ChronoUnit.WEEKS.between(date, today))
+}
+```
+
+<br>
+
+>**_Sınıf Çalışması:_** LocalDate sınıfını kullanarak iki tarih arasındaki toplam yılı Double türden çıkartma operatörü ile hesaplayan kodları yazınız
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+import java.time.Month
+import java.time.temporal.ChronoUnit
+
+operator fun LocalDate.minus(localDate: LocalDate) = ChronoUnit.DAYS.between(localDate, this) / 365.0
+
+fun main()
+{
+    val birthDate = LocalDate.of(1976, Month.SEPTEMBER, 10)
+    val today = LocalDate.now()
+
+    val age = today - birthDate
+
+    println("Age:$age")
+}
+```
+
+<br>
+
+>*LocalDate sıfınının plusXXX metotları*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+
+fun main()
+{
+    val today = LocalDate.now()
+    val date = today.plusWeeks(20).plusDays(3)
+
+    println(today)
+    println(date)
+}
+```
+
+<br>
+
+>*Tarih-zaman sınıflarının withXXX metotları*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+import java.time.Month
+import java.time.temporal.ChronoUnit
+
+fun main()
+{
+    val now = LocalDate.now()
+    val birthDate = LocalDate.of(1976, Month.SEPTEMBER, 10)
+    val birthDay = birthDate.withYear(now.year)
+
+    val age = ChronoUnit.DAYS.between(birthDate, now) / 365.0
+
+    println("%.20f".format(age))
+    println(birthDay)
+}
+```
+
+<br>
+
+>*LocalTime sınıfının atDate metodu*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+import java.time.LocalTime
+
+fun main()
+{
+    val currentTime = LocalTime.now()
+    val today = LocalDate.now()
+    val now = currentTime.atDate(today)
+
+    println(now)
+}
+```
+
+<br>
+
+>*LocalDate sınıfının atTime metodu*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.Month
+
+
+fun main()
+{
+    val date = LocalDate.of(2020, Month.APRIL, 12)
+    val datetime = date.atTime(LocalTime.now())
+
+    println(datetime)
+}
+```
+
+<br>
+
+>*LocalDateTime sınıfının toLocalDate ve toLocalTime sınıfları*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDateTime
+
+fun main()
+{
+    val now = LocalDateTime.now()
+    val date = now.toLocalDate()
+    val time = now.toLocalTime()
+
+    println(now)
+    println(date)
+    println(time)
+}
+```
+
+<br>
+
+>*DateTimeFormatter sınıfı ile tarih ve/veya zaman bilgilerinin formatlanması*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+
+fun main()
+{
+    val now = LocalDateTime.now()
+    val today = LocalDate.now()
+    val currentTime = LocalTime.now()
+
+    println(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss a").format(now))
+    println(DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss").format(now))
+    println(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(today))
+    println(DateTimeFormatter.ofPattern("kk:mm:ss").format(currentTime))
+}
+```
+
+<br>
+
+>*LocalDate, LocalTime ve LocalDateTime sınıflarının parse metotları*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
+fun main()
+{
+    val today = LocalDate.now()
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+    val todayStr = formatter.format(today)
+
+    println(today)
+    println(LocalDate.parse(todayStr, formatter))
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte birden fazla formatter ile işlem yapan örnek bir fonksiyon yazılmıştır. Detaylar gözardı edilmiştir. Bir kütüphane içerisine daha detaylısı eklenecektir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readString
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
+
+fun tryParse(str: String) : LocalDate?
+{
+    val formatters = arrayOf(DateTimeFormatter.ofPattern("dd-MM-yyyy"), DateTimeFormatter.ofPattern("dd/MM/yyyy"),
+        DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+
+    for (formatter in formatters) {
+        try {
+            return LocalDate.parse(str, formatter)
+        }
+        catch (ignore: DateTimeParseException) {
+
+        }
+    }
+    return null
+}
+
+fun main()
+{
+    while (true) {
+        val str = readString("Tarih bilgisini giriniz:21/06/2023 veya 21-06-2023 veya 2023-06-21:")
+
+        if (str == "elma")
+            break
+
+        val result = tryParse(str)
+        println(if (result != null) DateTimeFormatter.ISO_DATE.format(result) else "Geçersiz tarih!...")
+    }
+}
+```
+
+<br>
+
+>*Yukarıda kullanılan sınıflar ve fonksiyonların son halleri aşağıda yol ifadesi verilen proje içerisinden incelenebilir:
+   `~/src/SampleCodes/SampleKotlin*`
+
+<br>
+
+<pre>
+    Eclipse                     : Workspace
+                                        Project
+                                        Project
+                                        ...
+    Visual Studio               : Solution
+                                        Project
+                                        Project
+                                        ...
+    IntelliJ/Android Studio     : Project
+                                        Module
+                                        Module
+                                        ...
+</pre>
+
+<br>
+
+>*JVM'de ve ART'de Bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:*
+>
+>1. *__<u>Strongly reachable:</u>__ Bir nesneyi en az bir referans gösteriyorsa bu şekilde erişilebiliyordur. Bu durumda nesne garbage collector (gc) tarafından yok edilemez.*
+>
+>2. *__<u>Softly reachable:</u>__ __"Strongly reachable"__ olmayan fakat adresi SoftReference isimli sınıf nesne veye nesneleri içerisinde tutulan bir nesne __"soft reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler bellek ihtiyacı olduğu durumlarda yok edilirler. Aslında teknik olarak SoftReference nesnesi içerisinde tutulan adreslere ilişkin nesneler SoftReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler.*
+>
+>3. *__<u>Weakly reachable:</u>__ __"Strongly reachable"__ ve __"softly reachable"__ olomayan fakat adresi WeakReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"weakly reachble"__ erişimlidir. Bu şekilde erişime sahip nesneler __"garbage collected"__ olmaya adaydırlar. Aslında teknik olarak WeakReference nesnesi içerisinde tutulan adreslere ilişkin nesneler WeakReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler. GC, bir nesne yalnızca WeakReference ile gösteriliyorsa o nesneyi WeakReference'dan kopartır.*
+>
+>4. *__<u>Phantom reachable:</u>__ __"Strongly reachable"__, __"softly reachable"__ ve __"weakly reachable"__ olmayan fakat adresi, PhantomReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"phantom reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler kabaca söylemek gerekirse bir kuyruğa atılır hemen yok edilmeyebilir. Yüksek seviyede pratik bir kullanımı yoktur.*
+>
+>5. *__<u>Unreachable:</u>__ Yukarıdaki erişmlerin hiç birinin olmadığı artık __"garbage collected/eligible"__ duruma gelmiş nesnedir.*
+>
+>
+>**_Anahtar Notlar:_** JVM'de genel olarak, klasik referanslara (yani referans dendiğinde) __"hard reference"__, SoftReference ile tutulan referansa __"soft reference"__, WeakReference ile tutulan referanslara __"weak reference"__ ve PhantomReference ile tutulan referansları __"phantom reference"__ da denilmektedir.
+>
+>*Yukarıdaki anlatılanların özellikle aşağı seviyede detayları vardır. Burada ele alınmayacaktır. Özellikle Android uygulamalarında __"memory leak__" oluşumunu engellemek için WeakReference sınıfı çeşitli durumlarda çözüm olarak kullanılabilir. Bunlar kursumuzda projeler içerisinde çeşitli durumlarda kullanılmıştır*
+
+<br>
+
+>*Bir kütüphaneyi (.aar veya .jar olarak) Android uygulamasında kullanmak için yöntemler genel olarak şunlardır:*
+>1. *Eğer uygulama ve kütüphane aynı proje içerisinde olarak. Buna modül kullanımı da denir*
+>2. *Proje lokalinde doğrudan kütüphane dosyası kullanılabilir*
+>3. *Kütüphane belirli bir uzak (remote) repository'de ise oradan kullanılabilier. Biz burada maven repository kullanacağız*
+
+<br>
+
+>*Birarada çalışan kodları betimlemek için pek çok terim kullanılmaktadır. Bunların arasında bağlam (context) bakımından bazı farklılıklar bulunmaktadır. Öncelikle bu terimlerin ve kavramların anlamlarını açıklayalım:*
+>
+>*__Concurrent Computing/Programming (Birden fazla akış ile çalışma):__ Bu terim aslında en genel olanlardandır. Birden fazla akışın kullanılarak bir işin gerçekleştirilmesini anlatır. Örneğin, çok thread’li uygulamalar tipik olarak __“concurrent programming”__ kavramı içerisinde değerlendirilebilir. Benzer biçimde parallel programlama da, dağıtık 	programlamlama da bir __“concurrent programming”__ faaliyetidir.*
+>
+>*__Distributed Computing/Programming (Dağıtık Programlama):__ Bu terim ve anlattığı kavram işlerin birden fazla bilgisayara dağıtılarak birlikte gerçekleştirilmesi anlamına gelir. Terimin odaklandığı nokta söz konusu işlerin aynı makinede değil de bir ağdaki makinelerde koordineli olarak yürütülmesi sürecidir. Bugün dağıtık uygulamalar çok yaygınlaşmıştır. Şüphesiz dağıtık uygulamalar birtakım protokolleri kullanarak processler arası haberleşme yöntemleriyle koordinasyonu sağlamaktadır. Tipik olarak IP protocol ailesi tercih edilmektedir. Ancak dağıtık uygulamalar için daha yüksek seviyeli bir takım ortamlar (framework) ve kütüphaneler vardır. (Örneğin .NET’de WCF, Java’da remoting vs.) Dağıtık uygulamalar ayrı bir kategori olduğundan burada ele alınmayacaktır.*
+>
+>*__Multithreaded Computing/Programming (Çok thread'li programlama):__ Bu terim aynı makinede işlerin birlikte birden 	fazla thread oluştururarak gerçekleştirilmesi anlamına gelir. Şüphesiz bu terim de aslında bir __“concurrent programming”__ şemsiyesi altında düşünülebilir.*
+>
+>*__Parallel Computing/Programming:__ Bu terim bir işi aynı makinede thread’lere ayırarak ve onları farklı CPU ya da 	çekirdeklere atayarak aynı anda çalıştırma gayretini anlatmaktadır. Dolayısıyla burada toplamda hızlı bir işlemin 	yapılması hedeflenir. Şüphesiz tek CPU ya da tek çekirdekli sistemlerde parallel programlama yapılamaz. Öncelikle 	parallel programlama için söz konusu sistemde birden fazla CPU ve/veya çekirdek bulunması gerekir. Hatta parallel 	programlama faaliyetinde bir süredir grafik kartlarındaki işlemcilerden de faydalanılabilmektedir.*
+
+<br>
+
+
+>*Program terimi uygulamanın genel olarak çalışabilir veya çalıştırılabilir dosyasına verilen isimdir. İşletim sistemi düzeyinde çalışan programa __"process"__ denir. Modern sistemlerde process'ler biraz ondan biraz bundan tekniğiyle çalıştırır. Process'lerin (aslında thread'lerin) işletim sistemi tarafından CPU ya da çekirdekler üzerinde çalıştırılmasına __"çizelgeleme (scheduling)"__ denilmektedir. Thread aslında process'lerin ayrı akışlarını belirtir.*
+>
+>*Tipik olarak işletim sistemi bir thread'i bir CPU ya da çekirdeğe atar (assign). O thread brlirli bir süre çalıştırılır. Sonra işletim sistemi o thread'i durdurur (bloke eder). CPU ya da çekirdeğe diğer thread'i atar. Bir thread'in CPU ya da çekirdeğe atandığında parçalı çalışma süresine __"quantum time"__ denir. Bu sürenin çok uzun olması interactiviteyi azaltır (convoy effect). Bu sürenin çok kısa olması da birim zamanda yapılan işi (throughput) azaltır. Thread'ler arası geçiş (context switch) de maliyetli bir işlemdir.*
+>
+>*Çok thread'li işletim sistemlerinde process çalışmaya bir thread ile başlar. Buna __"main/primary thread"__ denir. Diğer thread'ler işletim sisteminin sistem fonksiyonları (örneğin Windows API fonksiyonları, Unix/Linux sistemlerinde POSIX fonksiyonları) kullanılarak yaratılır. Java'da (dolayısıyla Kotlin'de) thread işlemleri işletim sisteminden bağımsız olarak yapılabilir. JavaSE'de thread işlemleri genel olarak şu kategorilere ayrılarak yapılabilir:*
+>    1. *Thread sınıfından türetme yaparak*
+>    2. *Runnable arayüzünü implemente ederrek*
+>    3. *Executor'lar kullanarak*
+>
+><br>
+>
+>**_Anahtar Notlar:_** Java'nın ilerleyen sürümlerinde Virtual Thread'ler de eklenmiştir. Burada belirli ölçüde ele alınacaktır.
+>
+>*Android dünyasında thread'ler ile çalışmanın başka yöntemleri de vardır.*
+>
+>*Neden thread kullanalım? Bu sorunun cevabı domain'e göre değişiklik gösterebilse de genel olarakl şu maddelerle özetlenebilir:*
+>   - *Thread'ler arka plan olayları izlemek için idealdir. Örneğin programcı hem bir işi yapıp hem de ekranın sağ üst köşesinde o anki saniyeler mertebesinde göstermek isteyebilir. Bu durumda pencerenin işlemleri devam ederken aynı zamanda başka bir thread de sistemden o anki tarih-zaman bilgisini alarak pencerenin sağ üst köşesinde gösterebilir. Bu durumda pencerenin ana akışı devam ederken tarih-zamana ilişkin işlemde asenkron olarak yapılmış olur. Bu anlamda thread'ler Graphical User Interface (GUI) uygulamalarında genel olarak gerekmektedir.*
+>
+>   - *Thread'ler bir programı hızlandırmak için kullanılabilir. Programcı çok thread kullanarak daha fazla CPU zamanı elde edebilir*
+>
+>   - *Thread'ler blokeli IO işlemlerinde yoğun olarak kullanılmaktadır. Yani bir IO iişlemi başlatıldığında belli bir süre bloke oluşabilir. Bu durumda diğer işlemlerin de yapılabilmesi için bloke akışın diğer akışlardan ayrılması yani başka bir thread'de yapılması gerekir*
+>
+>   - *Thread'ler paralel programlamada (parallel computig/programming) mecburen kullanılmaktadır*
+
+<br>
+
+>*JavaSE'de thread işlemlerine yönelik en temel sınıf Thread sınıfıdır. Thread sınıfının start metodu ile thread başlatılır (yaratılır). Programcı Thread sınıfından türetme yaparak run sanal metodunu override eder. run metodu yaratılan thread'e ilişkin akıştır*
+>
+>**_Anahtar Notlar:_** Java'da thread'lern ketegori olarak ikiye ayrılır: Daemon threadler, Non-daemon threadler. Bir thread default olarak bu özellikleri yaratıldığı thread'den alır. main thread non-daemon bir thread'dir. Bu sebeple aşağıdaki örnekte main metodunun bitmiş olmasına karşılık yaratılan thread'ler devam etmektedir
+>
+>**_Anahtar Notlar:_** Bir thread'i temsil eden Thread nesnesine ilişkin referans o thread içerisinde Thread sınıfının currentThread static metodu ile elde edilebilir. Thread sınıfının, thread'e özgü pek çok bilgisine yönelik metotları vardır. Örneğin getName metodu (Kotlin'de name property elemanı) thread'in ismine geri döner. Her thread'in bir ismi vardır. Programcı bir isim vermese bile otomatik olarak isim verilir. main thread'in ismi genel olarak main'dir. Thread sınıfının isDaemon metodu (Kotlin'de isDaemon property elemanı) thread'in deamon olup olmadığı bilgisini döndürür. Ayrıca bu metodun bir de mutator'ı vardır. İleride ele alınacaktır
+>
+>**_Anahtar Notlar:_** Thread sınıfının sleep static metodu aldığı milisaniye değeri kadar thread'i bloke eder. Bu metot InterruptedException fırlatabilir. Bu exception checked bir exception'dır. Tabii ki Kotlin'de bunun bir önemi yoktur. sleep metodunun fırlattığı bu exception ileride ele alınacaktır.
+>
+>*Aşağıdaki basit örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val t = MyThread(readInt("Bir sayı giriniz:"))
+
+    t.start()
+    println("main ends!...")
+}
+
+class MyThread(private val mCount: Int, private val mRandom: Random = Random) : Thread() {
+    override fun run()
+    {
+        for (i in 0..<mCount)  {
+            val value = mRandom.nextInt(0, 100)
+
+            print("%02d ".format(value))
+            sleep(mRandom.nextLong(500, 2000))
+        }
+
+        println()
+    }
+}
+```
+
+<br>
+
+>*Bir thread başka bir yarattığında hangi thread'in önce çizelmeye gireceği o anki duruma bağlıdır. Yani hangisinin önce çizelgelemeye gireceği belirsizdir. (Hatta ayrı CPU ya da çekirdekte olurlarsa gerçekten aynı anda da çizelgelemeye girebilirler). Thread'lerin stack alanları birbirinden ayrıdır. Ancak heap alanı ortaktır. Dolayısıyla aynı nesne üzerinde birden fazla thread'in işlem yapması durumunda bir takım problemler söz konusu olabilmektedir. Bu problemlere tipik olan senkronizsyon problemleri denir. İleride bir takım senkronizasyon problemleri ve çözümleri uygulamalar içerisinde ele alınacaktır. Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readLong
+import org.csystem.util.console.kotlin.readString
+import org.csystem.util.string.kotlin.getRandomTextEN
+import java.io.*
+import java.nio.charset.StandardCharsets
+import kotlin.random.Random
+
+fun main()
+{
+    val basePath = readString("Input base path:")
+    val count = readInt("Input files count:")
+    val dataCount = readLong("Input count per each:")
+
+    (1..count).forEach {TextGeneratorThread(dataCount, File("$basePath-${it}.txt").absolutePath).apply { start() }}
+}
+
+class TextGeneratorThread(private val mCount: Long, private val mPath: String, private val mMin: Int = 5, private val mBound: Int = 11, private val mRandom: Random = Random) : Thread() {
+
+    private fun generateCallback(fos: FileOutputStream)
+    {
+        BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
+            (0..<mCount).forEach { _ -> bw.write("${mRandom.getRandomTextEN(mRandom.nextInt(mMin, mBound))}\r\n") }
+        }
+    }
+
+    override fun run()
+    {
+        try {
+            FileOutputStream(mPath).use {generateCallback(it)}
+        }
+        catch (ex: IOException) {
+            println("IO Problem:${ex.message}")
+        }
+    }
+}
+```
+
+<br>
+
+>*JavaSE'de Runnable arayüzünü implemente ederek de thread oluşturulabilir. Bu durumda Thread sınıfının Runnable parametreli ctor'ları kullanılır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readLong
+import org.csystem.util.console.kotlin.readString
+import org.csystem.util.string.kotlin.getRandomTextEN
+import java.io.*
+import java.nio.charset.StandardCharsets
+import kotlin.random.Random
+
+fun main()
+{
+    val basePath = readString("Input base path:")
+    val count = readInt("Input files count:")
+    val dataCount = readLong("Input count per each:")
+
+    File(basePath).parentFile.mkdirs()
+
+    (1..count).forEach {TextGeneratorThread(dataCount, File("$basePath-${it}.txt").absolutePath)
+        .apply { Thread(this).apply { start() } }}
+}
+
+class TextGeneratorThread(private val mCount: Long, private val mPath: String, private val mMin: Int = 5,
+                          private val mBound: Int = 11, private val mRandom: Random = Random) : Runnable {
+
+    private fun generateCallback(fos: FileOutputStream)
+    {
+        BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
+            (0..<mCount).forEach { _ -> bw.write("${mRandom.getRandomTextEN(mRandom.nextInt(mMin, mBound))}\r\n") }
+        }
+    }
+
+    override fun run()
+    {
+        try {
+            FileOutputStream(mPath).use {generateCallback(it)}
+        }
+        catch (ex: IOException) {
+            println("IO Problem:${ex.message}")
+        }
+    }
+}
+```
+
+<br>
+
+>*Runnable Java'da functional interface olduğundan Kotlin'de de lambda fonksiyonlar ile kullanılabilir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readLong
+import org.csystem.util.console.kotlin.readString
+import org.csystem.util.string.kotlin.getRandomTextEN
+import java.io.*
+import java.nio.charset.StandardCharsets
+import kotlin.random.Random
+
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
+{
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
+        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
+    }
+}
+
+
+fun main()
+{
+    val basePath = readString("Input base path:")
+    val count = readInt("Input files count:")
+    val dataCount = readLong("Input count per each:")
+
+    File(basePath).parentFile.mkdirs()
+
+    (1..count).forEach {Thread{ generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) }
+        .apply { start() }}
+}
+
+fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
+{
+    try {
+        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
+    }
+    catch (ex: IOException) {
+        println("IO Problem:${ex.message}")
+    }
+}
+```
+<br>
+
+>*Kotlin'de yukarıdaki işlemler için thread isimli bir fonksiyon eklenmiştir. Kotlin'de yukarıdaki işlemler için özel bir durum yoksa bu fonksiyonun kullanılması tavsiye edilir. Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readLong
+import org.csystem.util.console.kotlin.readString
+import org.csystem.util.string.kotlin.getRandomTextEN
+import java.io.*
+import java.nio.charset.StandardCharsets
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
+{
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
+        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
+    }
+}
+
+fun main()
+{
+    val basePath = readString("Input base path:")
+    val count = readInt("Input files count:")
+    val dataCount = readLong("Input count per each:")
+
+    File(basePath).parentFile.mkdirs()
+
+    (1..count).forEach {thread{generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11)}}
+}
+
+fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
+{
+    try {
+        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
+    }
+    catch (ex: IOException) {
+        println("IO Problem:${ex.message}")
+    }
+}
+```
+
+<br>
+
+>*Java'da zamanlayıcı işlemleri için periyodik olarak arka planda bir iş yapmak için kullanılan temel sınıflardan biri Timer sınıfıdır. Timer sınıfı periyodik işlem için arka planda bir thread yaratır. Timer sınıfının scheduleXXX metotları TimerTask abstract sınıfı türünden aldıkları referansa ilişkin nesnenin run metodunu polymorfik olarak her periyotta çağrırırlar. schedule metotlarının farkları ve bazı detayları burada ele alınmayacaktır. Timer sınıfı Android uygulamalarında da timer olarak kullanılabilir. Bir timer nesnesi ile bir schedule yapılabilir. Bir timer cancel isimli metodu ile sonlandırılabilir. Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Timer
+import java.util.TimerTask
+
+private fun createTimerTask(formatter: DateTimeFormatter) : TimerTask
+{
+    return object: TimerTask() {
+        override fun run()
+        {
+            print("%s\r".format(formatter.format(LocalDateTime.now())))
+        }
+    }
+}
+
+fun main()
+{
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
+    val timer = Timer()
+
+    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)
+}
+```
+
+<br>
+
+>*Thread sınıfının sleep static metodu parametresi ile aldığı milisaniye değeri boyunca thread'i bloke eder. Yukarıdaki örnek sleep metodu ile aşağıdaki gibi de yapılabilir. Şüphesiz timer kullanımı daha iyidir*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+fun main()
+{
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
+
+    while (true) {
+        print("%s\r".format(formatter.format(LocalDateTime.now())))
+        Thread.sleep(1000)
+    }
+}
+```
+
+<br>
+
+>*Bir thread non-daemon veya daemon olarak yaratılabilir. Bu özellik default olarak o thread'i yaratan thread'den alınır. Yani thread'i yaratan thread, non-daemon ise thread non-daemon olur. main/primary thread non-daemon'dır. Non-daemon thread'lere foreground thread, daemon thread'lere ise background thread de denilmektedir. Bir thread'in daemon olup olmadığı bilgisi isDaemon metodu ile (Kotlin'de isDaemon property elemanı ile) elde edilebilir. Ayrıca thread'in daemon özelliği setDaemon metodu ile (Kotlin'de yine isDaemon property elemanı ile) yaratılmadan önce belirlenebilir. Bir thread'in daemon özelliği thread start edildikten sonra değiştirilmeye çalışılırsa exception oluşur.*
+>
+>*<u>Non-daemon ve daemon thread'leri anlamak için en basit cümle şudur:</u> "Bir process içerisinde son non-daemon thread de sonlandığında tüm deemon thread'ler sonlanır". Programcı bu basit cümleyi düşünerek bir thread'in daemon veya non-daemon olup olmayacağına domain'e göre karar verir*
+
+<br>
+
+>*Aşağıdaki örnekte main thread içerisinde yaratılan thread non-daemon'dır*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun main()
+{
+    val self = Thread.currentThread();
+
+    thread(block = ::runDemoThread, name = "My thread")
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+}
+
+fun runDemoThread()
+{
+    val self = Thread.currentThread();
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+
+    for (i in 1..10) {
+        print("${Random.nextInt(0, 100)} ")
+        Thread.sleep(Random.nextLong(500, 2001))
+    }
+
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte main thread içerisinde yaratılan thread daemın'dır. Örnekte main thread sonlandığında, process içerisinde hiç non-daemon thread kalmadığından diğer daemon thread de sonlandırılır. Bu durumda process sonlanmış olur*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun main()
+{
+    val self = Thread.currentThread();
+
+    thread(block = ::runDemoThread, name = "My thread", isDaemon = true)
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+    Thread.sleep(2000)
+}
+
+
+fun runDemoThread()
+{
+    val self = Thread.currentThread();
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+
+    for (i in 1..10) {
+        print("${Random.nextInt(0, 100)} ")
+        Thread.sleep(Random.nextLong(500, 2001))
+    }
+
+    println()
+}
+```
+
+<br>
+
+>*Timer sınıfının ilgili ctor'u ile Timer'ın da daemon özelliği belirlenebilir. Şüphesi bu işlemin schedule edilmeden yapılması gerekir. Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Timer
+import java.util.TimerTask
+
+private fun createTimerTask(formatter: DateTimeFormatter) : TimerTask
+{
+    return object: TimerTask() {
+        override fun run()
+        {
+            print("%s\r".format(formatter.format(LocalDateTime.now())))
+        }
+    }
+}
+
+fun main()
+{
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
+    val timer = Timer(true)
+
+    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)
+}
+```
+
+<br>
+
+>*Thread'in daemon özelliğinin thread yaratıldıktan sonra değiştirilmesi durumunda exception oluşur*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun main()
+{
+    val self = Thread.currentThread()
+
+    thread(block = ::runDemoThread, name = "My thread")
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+}
+
+fun runDemoThread()
+{
+    val self = Thread.currentThread()
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+
+    self.isDaemon = !self.isDaemon
+
+    for (i in 1..10) {
+        print("${Random.nextInt(0, 100)} ")
+        Thread.sleep(Random.nextLong(500, 2001))
+    }
+
+    println()
+}
+```
+
+<br>
+
+>*Bir thread başka bir thread'i bekleyebilir. Bunun için thread sınıfının join metodu kullanılır. join metodunun parametresiz overload'u thread'in sonlanması bekler. Thread sonlandığında join çağrısı da bitmiş olur. join metodunun parametreşli overload'lar en fazla ne kadar bekleyeceği süreyi alır. Bu süre içerisinde thread sonlanırsa join'de çağrısı da soınlanır. Bu süre içerisinde beklenen thread sonlanmazsa join yine sonlanır*
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun main()
+{
+    val self = Thread.currentThread()
+    val t = thread(block = ::runDemoThread, name = "My thread")
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+    t.join()
+    println("main thread ends!...")
+}
+
+fun runDemoThread()
+{
+    val self = Thread.currentThread();
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+
+    for (i in 1..10) {
+        print("${Random.nextInt(0, 100)} ")
+        Thread.sleep(Random.nextLong(500, 2001))
+    }
+
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun main()
+{
+    val self = Thread.currentThread()
+
+    val ms = Random.nextLong(5000, 25000)
+
+    println("Maximum wait value in millisecond:$ms")
+    val t = thread(block = ::runDemoThread, name = "My thread")
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+
+    t.join(ms)
+    println("main thread ends!...")
+}
+
+fun runDemoThread()
+{
+    val self = Thread.currentThread();
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+
+    for (i in 1..10) {
+        print("${Random.nextInt(0, 100)} ")
+        Thread.sleep(Random.nextLong(500, 2001))
+    }
+
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun main()
+{
+    val self = Thread.currentThread()
+
+    val ms = Random.nextLong(5000, 25000)
+
+    println("Maximum wait value in millisecond:$ms")
+    val t = thread(block = ::runDemoThread, name = "My thread", isDaemon = true)
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+
+    t.join()
+    println("main thread ends!...")
+}
+
+fun runDemoThread()
+{
+    val self = Thread.currentThread();
+
+    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
+
+    for (i in 1..10) {
+        print("${Random.nextInt(0, 100)} ")
+        Thread.sleep(Random.nextLong(500, 2001))
+    }
+
+    println()
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readLong
+import org.csystem.util.console.kotlin.readString
+import org.csystem.util.string.kotlin.getRandomTextEN
+import java.io.*
+import java.nio.charset.StandardCharsets
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
+{
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
+        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
+    }
+}
+
+fun main()
+{
+    val basePath = readString("Input base path:")
+    val count = readInt("Input files count:")
+    val dataCount = readLong("Input count per each:")
+
+    File(basePath).parentFile.mkdirs()
+    Array(count) {thread(start = false){generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11)}}
+        .onEach { it.start() }.onEach { it.join() }
+
+    println("All files generated successfully")
+}
+
+fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
+{
+    try {
+        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
+    }
+    catch (ex: IOException) {
+        println("IO Problem:${ex.message}")
+    }
+}
+```
+
+<br>
+
+>*Bir timer'ı durdurmak için cancel fonksiyonu kullanılır. cancel fonksiyonu timer fonksiyonunu o an sonlandırmaz. Fonksiyon hangi durumda olursa olsun çalışmasına devam eder. Timer durdurulur*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readString
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Timer
+import java.util.TimerTask
+
+private fun createTimerTask(formatter: DateTimeFormatter) : TimerTask
+{
+    return object: TimerTask() {
+        override fun run()
+        {
+            print("%s\r".format(formatter.format(LocalDateTime.now())))
+        }
+    }
+}
+
+fun main()
+{
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
+    val timer = Timer()
+
+    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)
+    readString("Çıkmak için enter tuşuna basınız\n");
+    timer.cancel()
+}
+```
+
+<br>
+
+>**_Sınıf Çalışması:_** Klavyeden 'b' girildiğinde saat:dakika:saniye biçiminde bir sayaç başlatan ve 'd' girildiğinde sayacı durduran uygulamayı yazınız. Program 'ç' girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılamayacaktır. Sayaç çalışıyorken b'ye tekrar basılırsa herhangi bir şey yapılmayacaktır
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readChar
+import java.util.*
+import kotlin.system.exitProcess
+
+private fun createTimerTask() : TimerTask
+{
+    var seconds = 0L
+
+    return object: TimerTask() {
+        override fun run()
+        {
+            printDuration(seconds++)
+        }
+    }
+}
+
+private fun printDuration(seconds: Long)
+{
+    val hour = seconds / 60 / 60
+    val minute = seconds / 60 % 60
+    val second = seconds % 60
+
+    print("%02d:%02d:%02d\r".format(hour, minute, second))
+}
+
+private fun readCharProc()
+{
+    while (true) {
+        val ch = readChar()
+
+        clearScreen()
+
+        if (ch == 'b')
+            break
+
+        if (ch == 'd')
+            exitProcess(0);
+    }
+}
+
+fun clearScreen()
+{
+    for (i in 1..26)
+        println()
+}
+
+private fun runApp()
+{
+    var flag = false
+
+    while (true) {
+        readCharProc()
+
+        if (flag)
+            continue
+
+        val timer = Timer()
+
+        println("Press d to stop chronometer!...")
+        timer.scheduleAtFixedRate(createTimerTask(), 0, 1000)
+        flag = true
+    }
+}
+
+fun main() = runApp()
+```
+
+<br>
+
+>*__Thread'lerin sonlandırılması:__ Bir thread aşağıdaki durumlardan biri gerçekleştiğinde sonlanır:*
+>- *Thread akışına ilişkin fonksiyonun sonlanması durumunda. Şüphesiz en normal durum budur.*
+>
+>- *Thread daemon bir thread ise, thread'in ait olduğıu process içerisindeki non-daemon thread'ler sonlandığında*
+>
+>- *Process sonlandırıldığında. Bu durum,dışarıdan yapılabileceği gibi process içerisinde herhangi bir akışta System.exit veya Kotlin'de exitProcess fonksiyonları çağrıldığında process sonlandığı için tüm thread'ler de sonlanır*
+>
+>- *Thread içerisinde bir exception oluşursa ve yakalanamazsa ilgili thread sonlanır*
+>
+><br>
+>
+>*Dikkat edilirse bir thread'i doğrudan sonlandırmaya ilişkin bir fonksiyon yoktur. Aslında Thread sınıfının stop isimli bir fonksiyonu başlangıçta bu iş tasarlanmıştı. Ancak bir thread'i doğrudan sonlandırmanın kritik işlemlerde çeşitli problemlere yol açabileceği dolayısıyla bu metot deprecated yapıldı. Hatta bir çok sistemde çalışmamaktadır. Peki programcı bir thread'i başka bir thread içerisinden sonlandırmayı nasıl yapacaktır? Bu durumda ilk akla gelen bir flag değerinin diğer thread'den değpiştirilerek ilgili thread'in bu flag değerine göre sonlandırılmasını sağlamak biçiminde olabilir. Bu yöntemin üç tane tipik problemi olabilir: 1. flag değerinin değiştirilmesi birden fazla makine komutu ile yapıldığında değiştirildiği anda hemen diğer akış tarafından görülemeyebilir. Bu durumda bu işlemin atomic bir biçimde yapılması gerekir*
+>
+>2. *Thread örneğin join yada sleep gibi thread'i bloke eden bir fonksiyon içerisindeyse bu durumda bloke olduğıu sürece flag değerinin değiştiğini anlayamaz*
+>
+>3. *Derleyiciler genel olarak optimizasyonlarını uygulamanın multi threaded olabileceğine yönelik yapmazlar. Sanki uygulama single threaded bir uygulamaymış gibi yaparlar. Bu durumda bir değişkenin değerinin değişmediği ama kullanılşdığı bir akış için değerinin daha hızlı erişilebildiğinden register'larda saklayabilirler. Bu durumda o değişkenin değeri başka bir thread'de değiştirildiğinde diğer akışta değişiklik farkedilemez. Aslında bu problem yalnızca thread sonlandırmada çıkmaz. Aslında thread sonlandırma zaten programcının tuttuğu diğeriyle genel olarak yapılmadığından, sonlandırma senaryolarında böylesi bir durum oluşmaz.*
+>
+><br>
+>
+>*Aslında bir thread'in interrupt flag denilen bir flag değeri vardır ve bu flag değeri thread başlatığında mantıksal false değerinde yani reset durumundadır. Thread sınıfının interrupt metodu interrupt flag değerini set eder yani mantıksal true değerine çeker. Bu işlem atomic bir biçimde yapılır. Yani bu set/reset işlemi bitene kadar o flag değerine yönelik araya hiç bir işlem giremez. sleep, join gibi Thread'i bloke eden fonksiyonlar bloke durumdayken interrupt flag değeri set edilirse InterruptedException fırlatırlar ve interrupt flag değerini reset ederler. Ayrıca Thread sınıfının static interrupted ve non-static isInterrupted isimli iki fonksiyonu ile interrup flag değerinin set edilip edilmediği test edilebilir. Bu iki metodun static ve non-static olmaları dışında farkı ileride ele alınacaktır.*
+
+<br>
+
+>**_Anahtar Notlar:_** Üçüncü madde için flag değeri sınıfın veri elemanı olarak kullanılıyorsa Java'da volatile anahtar sözcüğü ile, Kotlin'de property elemanı Volatile annotation'ı ile işeretlenirse flag değeri thread de görülebilir. volatile bir veri elemanı derleyiciye sen bunu optimizasyon amaçlı registerda bekletme her zaman ve her akışsa memory'den kullan isteğidir. Derleyici bazı durumlarda yine de optimizasyon yapabilir. Ancak aşağıdaki gibi bir durumda derleyici volatile olması derleyiciye optimizasyon yaptırmayacaktır. Bu problem __"volatile"__ kullanmadan da çözülebilir. Örneği Volatie annotagtion'ını kaldırarak da çalıştırıp sonuçları gözlemleyiniz. Örnek durumu göstermek için yazılmıştır
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+class MyThread {
+    @Volatile
+    private var mFlag = true
+
+    private fun threadCallback()
+    {
+        var sum = 0
+
+        while (mFlag)
+            sum += Random.nextInt()
+
+        //...
+    }
+
+    fun run()
+    {
+        val t = thread(block = ::threadCallback)
+
+        t.join(1000)
+        mFlag = false
+    }
+}
+
+fun main()
+{
+    MyThread().apply {run()}
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte thread sleep ile bloke durumdayken interrupt flag değeri set edilmiş ve InterruptedException fırlatılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun threadCallback()
+{
+    var sum = 0L
+
+    try {
+        while (true) {
+            val value = Random.nextInt()
+            println(value)
+            sum += value
+            Thread.sleep(100)
+        }
+    }
+    catch (_: InterruptedException) {
+        println("Sum = $sum")
+    }
+}
+
+fun main()
+{
+    thread(block = ::threadCallback).apply { join(3000); interrupt()}
+}
+```
+
+<br>
+
+>*sleep (aynı zamanda join) fonksiyonu interrupt flag değerini set edilmişse reset duruma getirir. Örnek durumu göstermek için aşağıdaki gibi yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun threadCallback()
+{
+    var sum = 0L
+
+    try {
+        while (true) {
+            val value = Random.nextInt()
+            println(value)
+            sum += value
+            Thread.sleep(100)
+        }
+    }
+    catch (_: InterruptedException) {
+        println("Sum first = $sum")
+    }
+
+    try {
+        while (true) {
+            Thread.sleep(100)
+            val value = Random.nextInt()
+            println(value)
+            sum += value
+        }
+    }
+    catch (_: InterruptedException) {
+        println("Sum last = $sum")
+    }
+}
+
+fun main()
+{
+    thread(block = ::threadCallback).apply { join(3000); interrupt(); join(1000); interrupt()}
+}
+```
+
+<br>
+
+>*Aşağıdaki örnekte interrupt flag değerinin set veye reset olma durumuna duyarlı herhangi bir fonksiyon çağrılmadığından thread sonlanmaz. Fonksiyonda try expression statement kullanılmasa durum aynıdır*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun threadCallback()
+{
+    var sum = 0L
+
+    try {
+        while (true) {
+            val value = Random.nextInt()
+            println(value)
+            sum += value
+        }
+    }
+    catch (_: InterruptedException) {
+        println("Sum = $sum")
+    }
+}
+
+fun main()
+{
+    thread(block = ::threadCallback).apply { join(3000); interrupt();}
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun threadCallback()
+{
+    var sum = 0L
+
+    while (!Thread.interrupted()) {
+        val value = Random.nextInt()
+        println(value)
+        sum += value
+    }
+
+    println("Sum = $sum")
+}
+
+fun main()
+{
+    thread(block = ::threadCallback).apply { join(3000); interrupt();}
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun threadCallback()
+{
+    val self = Thread.currentThread()
+    var sum = 0L
+
+    while (!self.isInterrupted) {
+        val value = Random.nextInt()
+        println(value)
+        sum += value
+    }
+
+    println("Sum = $sum")
+}
+
+fun main()
+{
+    thread(block = ::threadCallback).apply { join(3000); interrupt();}
+}
+```
+
+<br>
+
+>*isInterrupted metodu interrupt flag değerini set durumundan reset duruma çekmez. Aşağıdaki demo örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun threadCallback()
+{
+    val self = Thread.currentThread()
+    var sum = 0L
+
+    while (!self.isInterrupted) {
+        val value = Random.nextInt()
+        println(value)
+        sum += value
+    }
+
+    println("Sum first = $sum")
+
+    while (!self.isInterrupted) {
+        val value = Random.nextInt()
+        println(value)
+        sum += value
+    }
+
+    println("Sum last = $sum")
+}
+
+fun main()
+{
+    thread(block = ::threadCallback).apply { join(3000); interrupt(); join(1000); interrupt()}
+}
+```
+
+>*interrupted metodu interrupt flag değerini set durumundan reset duruma çeker. Aşağıdaki demo örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.concurrent.thread
+import kotlin.random.Random
+
+fun threadCallback()
+{
+    val self = Thread.currentThread()
+    var sum = 0L
+
+    while (!Thread.interrupted()) {
+        val value = Random.nextInt()
+        println(value)
+        sum += value
+    }
+
+    println("Sum first = $sum")
+
+    while (!self.isInterrupted) {
+        val value = Random.nextInt()
+        println(value)
+        sum += value
+    }
+
+    println("Sum last = $sum")
+}
+
+fun main()
+{
+    thread(block = ::threadCallback).apply { join(3000); interrupt(); join(1000); interrupt()}
+}
+```
+
+<br>
+
+>*Thread yaratılması işletim düzeyinde bir takım alt seviye işlemlerin yapılmasına yol açmaktadır. Bazı uygulamalarda çok fazla thread'in aynı zamanda yaratılması gerekebilmektedir. Örneğin multi-client bir server herhangi bir client'ın işlemi devam ederken başka bir client gelmesi durumunda da hizmet verebilmesi için her client'ın bağlantısından sonra o client için bir thread açmalıdır. İşte böyle bir durumda çok fazla client'ın bağlantı yapmaya çalışması, thread yaratılırken aşağı seviyeli işlemler dolayısıyla belirli bir yavaşlığa sebep olabilir. Bu gibi örnekler ileride yapılacaktır. İşte bu durumlarda işlemlerin hızlı bir biçimde yapılabilmesi için işletim sistemlerinin desteklediği bazı yöntemler bulunmaktadır. Bu yöntemler işletim sistemlerine değişiklik gösterebilmektedir. İşte Java 5 ile bu gibi durumlara yönelik işlemleri yapan sınıflar ve metotlar içereen __"executors"__ eklenmiştir. Executors ile tipik olarak thread havuzları (thread pool) oluşturulabilmektedir. Thread havuzları önceden yaratılmış thread'ler gerektiğinde start edilebilmektedir. Yani yukarıda anlatılan thread yaratma maliyeti daha işin başında yapılmaktadır. Bu durumda aşağı seviyeli (süphesi yüksek seviyeli de) thread yaratma maliyeti minimalize edilmiş olur. Şüphesiz executors bu işlemi en nihayetinde işletim sisteminin sağladığı yöntemler ile yapmaktadır. Ancak şüphesi bu Java/Android programcısını ilgilendirmemektedir. Java programcısı açısından çoğu durumda klasik thread yerine executors kullanımı tercih edilmelidir. O zaman Thread sınıfına neden ihtiyaç vardır? Şüphesiz basit bazı thread işlemleri yani yukarıdaki gibi thread yaratmanın maliyetinin önemli olmadığı durumlarda özellikle Kotlin ile kullanımı çok basit olduğundan klasik thread tercih edilebilir. Ayrıca Thread sınıfının çeşitli metotları thread havuzlarında da kullanılabilmektedir. Şüphesiz thread havuzlarından alında thread'ler de Java anlamında birer Thread'dir. Kısaca programcı açısından thread havuzları da arka planda Thead sınıfını kullanıyor olarak düşünülebilir. Executors çok geniş bir kütüphanedir ve pek çok işleme yönelik metotları ve sınıfları vardır. Burada yalnızca thread havuzlarının fixed ve cached olanları ele alınacaktır. Bir thread havuzu da ayrı bir thread'dir.*
+>
+>**_Anahtar Notlar:_** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (13 Kasım 2023) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar __"Kotlin Coroutines"__ ile kullanılabilmektedir. Kotlin Coroutines ileride ele alınacatır.
+
+<br>
+
+>*Executors ile thread havuzu oluşturmnak için Executors sınıfının çeşitli metotları kullanılabilmektedir. Burada ele alacağımız metotları şunlardır:*
+>
+>*__<u>newSingleThreadExecutor:</u>__ Bu metot ile havuzda tek bir thread yaratılmış olur ve gerektiğinde kullanılabilir. Bu durumda yalnızca bir tane thread start edilebilir. İkinci bir thread'in start edilmesi durumunda diğer thread'in bitmesi beklenir. Yani havuzda aynı anda çalıştırılacak thread sayısı bir tanedir.*
+>
+>*__<u>newFixedThreadPool:</u>__ Bu metot ile n tane thread yaratılmış olur. Burada n tane thread running durumundayken n + 1 ve yukarındaki thread'ler start (execute/submit) edildiğinde havuzdaki diğer threadlerin birmesini beklerler.Yani havuzda aynı anda çalıştırılacak thread sayısı n tanedir. Bu metodun bu n sayısını parametre olarak alan overload'u vardır.*
+>
+>*__<u>newCachedThreadPool:</u>__ Bu metot ile teorik olarak istenildiği kadar thread havuzdan kullanılabilmektedir. Bu işlemi etkin bir şekilde yapacağını garanti eder. Şüphesiz, aynı anda çalışan thread sayısının işletim sistemi düzeyinde bir limiti vardır.*
+>
+>*Bu metotlar ExecutorService arayüz referansına geri dönerler. Bu üç metodun da kullanımına programcı senaryosuna göre karar verir. Eğer tek bir thread sürekli kullanılacaksa bu durumda newFixedThreadPool(1) çağrısı yerine newSingleThreadExecutor() çağrısı yapılması tavsiye edilir. Genel olarak thread havuzu ile işlemler bittiğinde thread havuzuna ilişkin thread'in de sonlandırılması gerekir. Bu da ExecutorService arayüzünün shutdown metodu ile yapılabilir. shutdown metodu da asenkron olarak çalışır yani metot thread havuzu sonlanmadan sonlanır.. Çağrıldığında eğer running durumda thread'ler varsa thread havuzu bu thread'ler bitinceye kadar yok edilmez. Ancak yeni bir thread start edilemez. ExecutorService ile bir thread start etmek için tipik olarak iki tane metot kullanılır: execute, submit. Bu metotlar adıkları callback'ler ile thread start ederler. execute metodunun geri dönüş değeri yoktur. sumbit metodunun geri dönüş değeri `Future<T>` arayüzü türündendir. Bu arayüz submit edilen threaad'i temsil eder. `Future<T>` arayüzünün get metotları ile thread beklenebilir hatta submit metodunubn `Callable<T>` parmetreli overload'u kullanılarak thread'deb sonuç elde edilebilir. `Future<T>` arayüzünün cancel isimli metodu ile thread cancel edilebilir. cancel metodu istenirse interrupt flag değerini set edebilir. `Future<T>` kullanımı örneklerle ele alınacaktır.*
+
+<br>
+
+>*Aşağıdaki örnkte fixed thread pool kullanılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readLong
+import org.csystem.util.console.kotlin.readString
+import org.csystem.util.string.kotlin.getRandomTextEN
+import java.io.*
+import java.nio.charset.StandardCharsets
+import java.util.concurrent.Executors
+import kotlin.random.Random
+
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
+{
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
+        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
+    }
+}
+
+fun main()
+{
+    val basePath = readString("Input base path:")
+    val count = readInt("Input files count:")
+    val dataCount = readLong("Input count per each:")
+    val threadPool = Executors.newFixedThreadPool(count)
+
+    File(basePath).parentFile.mkdirs()
+
+    (1..count).forEach { threadPool.execute{ generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) }}
+
+    threadPool.shutdown()
+}
+
+fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
+{
+    try {
+        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
+    }
+    catch (ex: IOException) {
+        println("IO Problem:${ex.message}")
+    }
+}
+```
+
+<br>
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.console.kotlin.readLong
+import org.csystem.util.console.kotlin.readString
+import org.csystem.util.string.kotlin.getRandomTextEN
+import java.io.*
+import java.nio.charset.StandardCharsets
+import java.util.concurrent.Executors
+import java.util.concurrent.Future
+import kotlin.random.Random
+
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
+{
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
+        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
+    }
+}
+
+fun main()
+{
+    val basePath = readString("Input base path:")
+    val count = readInt("Input files count:")
+    val dataCount = readLong("Input count per each:")
+    val threadPool = Executors.newFixedThreadPool(count)
+
+    File(basePath).parentFile.mkdirs()
+
+    Array<Future<*>>(count) {threadPool.submit{ generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) }}
+        .onEach { it.get() }
+
+    println("All files created successfully")
+    threadPool.shutdown()
+}
+
+fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
+{
+    try {
+        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
+    }
+    catch (ex: IOException) {
+        println("IO Problem:${ex.message}")
+    }
+}
+```
+
+<br>
+
+>*Executors ile scheduler da oluşturulabilmektedir. Bunun için tipik olarak newScheduledThreadBool metodu kullanılmaktadır. Scheduler ile bir timer veya timout oluşturulabilmektedir. Bu metot ExecutorService arayüzünden türetilmiş ScheduledExecutorService arayüz referansına geri döner. Bu arayüz referansına ilişkin metotlar çağrılarak timer veya timeout oluşturulabilir. Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+
+fun main()
+{
+    val pool = Executors.newScheduledThreadPool(1)
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
+
+    pool.scheduleAtFixedRate({print("%s\r".format(formatter.format(LocalDateTime.now())))}, 0L, 1, TimeUnit.SECONDS);
+}
+```
+
+<br>
+
+>*scheduleXXX metotları `SheduledFuture<T>` interface referansına geri dönerler. Bu durumda ilgili scheduler yönetilebilir. Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
+
+fun main()
+{
+    val pool = Executors.newScheduledThreadPool(1)
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
+
+    val future = pool.scheduleAtFixedRate({print("%s\r".format(formatter.format(LocalDateTime.now())))}, 0L, 1, TimeUnit.SECONDS)
+
+    try {
+        future.get(3, TimeUnit.SECONDS)
+    }
+    catch (_: TimeoutException) {
+        future.cancel(false)
+    }
+
+    pool.shutdown()
+}
+```
+
+<br>
+
+>*scheduleXXX metotları çağrıldıktan sonra shutdown metodunun çağrılmasın durumunda, scheuler'da sonlanır. submit veya execute kullanıldığında shutdown işleminin ilgili thread'lerin sonlanmasını beklediğini anımsayınız*
+
+```kotlin
+package org.csystem.app
+
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
+
+fun main()
+{
+    val pool = Executors.newScheduledThreadPool(1)
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
+
+    val future = pool.scheduleAtFixedRate({print("%s\r".format(formatter.format(LocalDateTime.now())))}, 0L, 1, TimeUnit.SECONDS)
+
+    try {
+        future.get(3, TimeUnit.SECONDS)
+    }
+    catch (_: TimeoutException) {
+        future.cancel(false)
+    }
+
+    pool.shutdown()
+}
+```
+
+<br>
+
+>**_Anahtar Notlar:_** Thread'ler ve asenkron çalışma ilgili burada anlatılanlar dışında da pek çok detay vardır. Bazıları örnekler içerisinde ele alınacaktır
+
+<br>
+
+### Kotlin Coroutines:
+
+>*GlobalScope object'inin launch fonksiyonu ile bir couroutine yaratılabilir. coroutine'ler __"daemon thread"__ olarak çalışır. launch fonksiyonu Job türünden bir referansa geri döner. Job sınıfının join metodu ile ilgili job beklenebilir. Ancak join metodu __"suspend"__ olarak bildirilmiş bir fonksiyon içerisinde çağrılabilir. suspend fonksiyonların detayları ileride ele alınacaktır. Aşağıdaki demo örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+suspend fun main()
+{
+    val count = readInt("Input count:")
+
+    val job = GlobalScope.launch {
+        for (i in 0..<count) {
+            print("%d ".format(Random.nextInt(100)))
+            delay(Random.nextLong(300, 600))
+        }
+
+        println()
+    }
+
+    println("main")
+    job.join()
+}
+```
+
+<br>
+
+>*Aşağıdaki örnek klişeleşmiş ilk courutine örneklerindendir*
+
+```kotlin
+package org.csystem.app
+
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
+suspend fun main()
+{
+    val job = GlobalScope.launch {
+        delay(1000)
+        println("World")
+    }
+
+    print("Hello ")
+    job.join()
+}
+```
+
+<br>
+
+>*runBlocking fonksiyonuna verilen fonksiyon sonlanana kadar (aslında içerisindeki coroutine sonlanana kadar) akış bloke olur. runBlocking fonksiyonu bir couroutine yaratır. Aşağıdaki demo örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Input count:")
+
+    GlobalScope.launch {
+        for (i in 1..count) {
+            print("%d ".format(Random.nextInt(100)))
+            delay(Random.nextLong(300, 700))
+        }
+
+        println("\nrandom generator coroutine ends!...")
+    }
+
+    runBlocking {
+        println("main")
+        delay(10000)
+    }
+
+    println("main ends")
+}
+```
+
+<br>
+
+>*runBlociking fonksiyonu ile coroutine yaratılması aşağıdaki gibi de yapılabilir. Demo örnekte launch fonksiyonu ile yaratılan coroutine main thread'de yaratılmamıştır. runBlocking fonksiyonunun yarattığı coroutine içerisinde yaratılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main() = runBlocking {
+    val count = readInt("Input count:")
+
+    GlobalScope.launch {
+        for (i in 1..count) {
+            print("%d ".format(Random.nextInt(100)))
+            delay(Random.nextLong(300, 700))
+        }
+
+        println("\nrandom generator coroutine ends!...")
+    }
+
+    println("main")
+    delay(10000)
+    println("main ends")
+}
+```
+
+<br>
+
+>*Aşağıdaki demo örnekte bir couroutine içerisinde başka bir coroutine yaratılmış ve runBlocking ile yaratılan coroutine doJob içerisinde yaratılan coroutine'i beklemektedir. Bu durumda derleyici ve __"Virtual Machine"__ optimize ederek coroutine sayısını dolayısıyla yaratılan thread sayısını azaltabilir*
+
+```kotlin
+package org.csystem.app
+
+import kotlinx.coroutines.*
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+suspend fun main() = run().apply { println("run çağrıldı") }.join()
+
+fun doJob() = runBlocking {
+    var total = 0
+    val count = readInt("Input a number:")
+
+    val job = GlobalScope.launch {
+        for (i in 1..count) {
+            val value = Random.nextInt(100)
+            print("$value ")
+            total += value
+            delay(Random.nextLong(1, 1000))
+        }
+        println()
+    }
+
+    job.join()
+    println("Total:$total")
+}
+
+fun run() = GlobalScope.launch {
+    doJob()
+}
+```
+
+<br>
+
+>*Aşağıdaki demo örnekte runBlocking scope içerisinde coroutine yaratılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+suspend fun main() = run().apply { println("run çağrıldı") }.join()
+
+fun doJob() = runBlocking {
+    var total = 0
+    val count = readInt("Input a number:")
+
+    val job = launch { //runBlocking scope: runBlocking fonksiyonunun callback fonksiyonuna ilişkin scope
+        for (i in 1..count) {
+            val value = Random.nextInt(100)
+            print("$value ")
+            total += value
+            delay(Random.nextLong(1, 1000))
+        }
+        println()
+    }
+
+    job.join()
+    println("Total:$total")
+}
+
+fun run() = GlobalScope.launch {
+    doJob()
+}
+```
+
+<br>
+
+>*Programcı isterse coroutine scope yaratabilir. Aşağıdaki örnekte coroutineScope fonksiyonunun __"callback"__ fonksiyonu launch ile yaratılan coroutine akışı bitene kadar sonlanmaz. suspend fonksiyonlar içerisinde coroutine'e ilişkin fonksiyonlar da çağrılabilir. Aslında suspend fonksiyonlar __"duraklayabile (suspend)"__ ve __"devam edebilen (resume)"__ fonksiyonlardır. Aşağıdaki örnekte couroutineScope ile bir sonuç da elde edilmektedir*
+
+```kotlin
+package org.csystem.app
+
+import kotlinx.coroutines.*
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+suspend fun main() = run().apply { println("run çağrıldı") }.join()
+
+suspend fun calculateTotal(count: Int) = coroutineScope {
+    var result = 0
+
+    launch {
+        for (i in 1..count) {
+            val value = Random.nextInt(100)
+            print("$value ")
+            result += value
+            delay(Random.nextLong(1, 1000))
+        }
+        println()
+
+    }.join()
+    result
+}
+
+fun doJob() = runBlocking {
+    val count = readInt("Input a number:")
+
+    //...
+
+    println("Total:${calculateTotal(count)}")
+}
+
+fun run() = GlobalScope.launch {
+    doJob()
+}
+```
+
+<br>
+
+>*Yukarıdaki örnek async fonksiyonu ile await kullanarak da yapılabilir*
+
+```kotlin
+package org.csystem.app
+
+import kotlinx.coroutines.*
+import org.csystem.kotlin.util.console.readInt
+import kotlin.random.Random
+
+suspend fun main() = run().apply { println("run çağrıldı") }.join()
+
+suspend fun calculateTotal(count: Int) = coroutineScope {
+    var result = 0
+    val deferred = async { //runBlocking scope: runBlocking fonksiyonunun callback fonksiyonuna ilişkin scope
+        for (i in 1..count) {
+            val value = Random.nextInt(100)
+            print("$value ")
+            result += value
+            delay(Random.nextLong(1, 1000))
+        }
+        println()
+    }
+
+    deferred.await()
+    result
+}
+
+fun doJob() = runBlocking {
+    val count = readInt("Input a number:")
+
+    //...
+
+    println("Total:${calculateTotal(count)}")
+}
+
+fun run() = GlobalScope.launch {
+    doJob()
+}
+```
+
+<br>
+
+>*Yukarıdaki demo örnek async fonksiyonu ile await kullanılarak da yapılabilir. async fonksiyonu tipik `Deferred<y>` türünden bir interface referansına geri döner. Bu arayüzün await metodu ilgili coroutine beklenebilir. await metodu async fonksiyonuna verilen callback fonksiyonun değerine geri döner. Yani bu anlamda klasik `Future<T>` arayüzüne benzetilebilir*
+
+```kotlin
+package org.csystem.app
+
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main() = doJob()
+
+suspend fun printTotal(count: Int) = coroutineScope {
+    val deferred = async {
+        var result = 0
+        for (i in 1..count) {
+            val value = Random.nextInt(100)
+            print("$value ")
+            result += value
+            delay(Random.nextLong(1, 1000))
+        }
+        println()
+        result
+    }
+
+    println("Total:${deferred.await()}:")
+}
+
+fun doJob() = runBlocking {
+    printTotal(readInt("Input a number:"))
+}
+```
