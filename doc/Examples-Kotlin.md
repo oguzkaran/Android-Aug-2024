@@ -4,7 +4,10 @@
 ### Eğitmen: Oğuz KARAN
 
 **_Anahtar Notlar:_** Burada ağırlıklı olarak KotlinJVM üzerinde durulacaktır.
->*Hello, World programı<br>Kotlin 1.3 versiyonundan itibaren main fonksiyonunun parametresi olmak zorunda değildir*
+
+>*Hello, World programı*
+>
+>*`Kotlin 1.3` versiyonundan itibaren main fonksiyonunun parametresi olmak zorunda değildir.*
 
 ```kotlin
 package org.csystem.app
@@ -14,9 +17,9 @@ fun main() {
 }
 ```
 
->*Anahtar Notlar: Kotlin'de bir fonksiyon fun anahtar sözcüğü ile bildirilir. Kotlin'de bir fonksiyonun geri dönüş değeri fonksiyon isminden önce yazılmaz. Bir fonksiyonun geri dönüş değeri yoksa herhangi bir geri dönüş değeri bilgisi yazılmayabilir.*
+**_Anahtar Notlar:_** Kotlin'de bir fonksiyon fun anahtar sözcüğü ile bildirilir. Kotlin'de bir fonksiyonun geri dönüş değeri fonksiyon isminden önce yazılmaz. Bir fonksiyonun geri dönüş değeri yoksa herhangi bir geri dönüş değeri bilgisi yazılmayabilir.
 
->*Bir fonksiyonu çağıran fonksiyon (caller) ile çağrılan fonksiyon (callee) aynı pakette ise paket ismi kullanılmayabilir. Yani aynı ".kt" uzantılı dosyada bulunan veya farklı dosyada fakat aynı paket altında bulunan fonksiyonlar doğrudan çağrılabilir*
+>*Bir fonksiyonu çağıran fonksiyon (caller) ile çağrılan fonksiyon (callee) aynı pakette ise paket ismi kullanılmayabilir. Yani aynı `.kt` uzantılı dosyada bulunan veya farklı dosyada fakat aynı paket altında bulunan fonksiyonlar doğrudan çağrılabilir.*
 
 ```kotlin
 package org.csystem.app
@@ -37,7 +40,7 @@ fun bar() {
 }
 ```
 
->*Bir fonksiyonun geri dönüş değeri fonksiyon bildiriminde gövde yazılmadan önce, :'den sonra yazılmalıdır. Unit C, C++, Java ve C#'daki void anahtar sözcüğüne karşılık getirilebilir. Kotlin 1.1 versiyonundan sonra geri dönüş değeri olmayan fonksiyonlar için Unit yazılması zorunlu değildir*
+>*Bir fonksiyonun geri dönüş değeri fonksiyon bildiriminde gövde yazılmadan önce, :'den sonra yazılmalıdır. Unit C, C++, Java ve C#'daki void anahtar sözcüğüne karşılık getirilebilir. `Kotlin 1.1` versiyonundan sonra geri dönüş değeri olmayan fonksiyonlar için Unit yazılması zorunlu değildir*
 
 ```kotlin
 package org.csystem.app
@@ -58,21 +61,26 @@ fun bar() : Unit {
 }
 ```
 
-**Kotlin'de Temel Türler**
+#### Kotlin'de Temel Türler ####
 
-| Tür ismi | Uzunluk (byte) | Sınır Değerler |
-|----------|----------------|-|
-| Short    | 2              |[-32768, +32767]|
-| Int      | 4              |[-2147483648, +2147483647]|
-| Long     | 8              |[-9223372036854775808, +9223372036854775807]|
-| Byte     | 1              |[-128, +127]|
-| Float    | 4              |[±3.6 * 10-38, ±3.6 * 10+38]|
-| Double   | 8              |[±1.6 * 10-308, ±1.6 * 10+308]|
-| Char     | 2              |[0, 65535]|
-| Boolean  | 1              |true, false|
+>| Tür ismi | Uzunluk (byte) | Sınır Değerler |
+>|----------|----------------|-|
+>| Short    | 2              |[-32768, +32767]|
+>| Int      | 4              |[-2147483648, +2147483647]|
+>| Long     | 8              |[-9223372036854775808, +9223372036854775807]|
+>| Byte     | 1              |[-128, +127]|
+>| Float    | 4              |[±3.6 * 10-38, ±3.6 * 10+38]|
+>| Double   | 8              |[±1.6 * 10-308, ±1.6 * 10+308]|
+>| Char     | 2              |[0, 65535]|
+>| Boolean  | 1              |true, false|
 
-**_Anahtar Notlar:_** Kotlin'de temel türler (primitive/built-in/pre-defined types) sınıf ile temsil edilmiştir <br>
-**_Anahtar Notlar:_** Kotlin'de "işaretsiz (unsigned)" tamsayı türleri de bulunur. Bunlar ileride ele alınacaktır
+<br>
+
+**_Anahtar Notlar:_** Kotlin'de temel türler (primitive/built-in/pre-defined types) sınıf ile temsil edilmiştir.
+
+**_Anahtar Notlar:_** Kotlin'de "işaretsiz (unsigned)" tamsayı türleri de bulunur. Bunlar ileride ele alınacaktır.
+
+<br>
 
 >*Yerel değişken bildirimi var veya val anahtar sözcüğü ile yapılabilir. Bir değişkenin türü değişken isminden sonra `:` ile birlikte yazılır. Değişken bildirim noktasında değer verilmesi durumunda (initialization) tür yazılmayabilir.<br>Bu durumda tür atanan ifadenin türü olarak derleyici tarafından tespit edilir (type inference/deduction)*
 
@@ -118,6 +126,7 @@ fun main() {
     PI = 3.15; //error
 }
 ```
+
 **_Anahtar Notlar:_** Kotlin'de faaliyet alanı (scope) boyunca bir kez değer verilen bir değişkenin val olarak bildirilmesi
 iyi bir tekniktir
 
@@ -203,18 +212,18 @@ fun main() {
 >*Yukarıdaki örnekte blok olarak kullanılmak isteniyorsa run fonksiyonu aşağıdaki gibi çağrılabilir. run fonksiyonu ve aşağıdaki gibi fonksiyon çağırma detayları ileride ele alınacaktır. Örnekteki kodun Java karşılığı:*
 
 ```java
-    package org.csystem.app;
-    
-    class App {
-        public static void main(String[] args)
+package org.csystem.app;
+
+class App {
+    public static void main(String[] args)
+    {
         {
-            {
-                int a = 10;
-        
-                System.out.println(a);
-            }
+            int a = 10;
+    
+            System.out.println(a);
         }
     }
+}
 ```
 
 ```kotlin
@@ -351,7 +360,7 @@ fun main() {
 }
 ```
 
->*Sınıf Çalışması: Klavyeden girilen iki tamsayının toplamını, çarpımını ve farkını ekrana yazdıran programı yazınız*
+>**_Sınıf Çalışması:_** Klavyeden girilen iki tamsayının toplamını, çarpımını ve farkını ekrana yazdıran programı yazınız.
 
 ```kotlin
 package org.csystem.app
@@ -384,7 +393,7 @@ fun main() {
 }
 ```
 
-#### Sabitler ####
+### Sabitler
 
 >*Sayı nokta içermiyorsa ve hiçbir sonek almamışsa Int veya Long türlerinden ilk olarak hangisinin sınırları içerisindeyse o türdendir. Sayı Long türü sınırları dışındaysa error oluşur*
 
@@ -532,7 +541,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de ters bölü u kullanımı*
+>*Kotlin'de* `\u` *(ters bölü u) kullanımı*
 
 ```kotlin
 package org.csystem.app
@@ -544,7 +553,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de desteklenene "escape sequence" karakterler. Kotlin'de bazı programlama dillerinde desteklenen escape sequence karakterler desteklenmez. Örneğin `\0` ile gösterilen null karakter Kotlin'de geçersizdir. Ancak kullanılmak istenirseaşağıdaki gibi `\u0000` biçiminde yazılabilir*
+>*Kotlin'de desteklenene "escape sequence" karakterler. Kotlin'de bazı programlama dillerinde desteklenen escape sequence karakterler desteklenmez. Örneğin* `\0` *ile gösterilen null karakter Kotlin'de geçersizdir. Ancak kullanılmak istenirseaşağıdaki gibi* `\u0000` *biçiminde yazılabilir*
 
 ```kotlin
 package org.csystem.app
@@ -577,15 +586,13 @@ fun main() {
 }
 ```
 
->*Anahtar Notlar: Şüphesiz bir anahtar sözcüğün doğrudan değişken ismi olarak kullanımı pratikte çok anlamlı değildir. IntelliJ gibi bazı IDE'lerin Java ile yazılmış bir kodu Kotlin ile yazılmış bir kod dönüştüren translator eklentileri vardır. Bu translator'lar dönüşümde Java'da değişken ismi olarak yapılmış ancak Kotlin'de anahtar sözcük olan isimleri backtic karakteri sarmalayarak Kotlin kod üretirler*
+**_Anahtar Notlar:_** Şüphesiz bir anahtar sözcüğün doğrudan değişken ismi olarak kullanımı pratikte çok anlamlı değildir. IntelliJ gibi bazı IDE'lerin Java ile yazılmış bir kodu Kotlin ile yazılmış bir kod dönüştüren translator eklentileri vardır. Bu translator'lar dönüşümde Java'da değişken ismi olarak yapılmış ancak Kotlin'de anahtar sözcük olan isimleri backtic karakteri sarmalayarak Kotlin kod üretirler.
 
-Kotlin'de aşağıdaki iki durum dışında değişken isimlendirme kuralları Java ile aynıdır.
-1. backtic kullanımı
-2. Kotlin'de alttire karakteri tek başına değişken ismi olarak kullanılamaz.
-
-Anımsanacağı gibi Java 9 öncesinde
-alttire karakteri tek başına değişken ismi olarak kullanılabilmekteydi
-
+>*Kotlin'de aşağıdaki iki durum dışında değişken isimlendirme kuralları Java ile aynıdır.*
+>1. backtic kullanımı
+>2. Kotlin'de alttire karakteri tek başına değişken ismi olarak kullanılamaz
+>
+>*Anımsanacağı gibi Java 9 öncesinde alttire karakteri tek başına değişken ismi olarak kullanılabilmekteydi.*\
 >*İki tane iki tırnak karakteri arasında ters bölü tek başına kullanıldığında escape sequence karakter bekler*
 
 ```kotlin
@@ -870,7 +877,7 @@ fun add(a: Int, b: Int): Int {
 fun bar(a: Int = add(10, 20)) = println("a = $a")
 ```
 
->*Aşağıdaki örneği inceleyiniz. ** ile belirtilen çağrıda "tam uyum (best match)" dolayısıyla parametresiz foo çağrılır. Aşağıdaki Int parametreli fonksiyon için parametresiz foo varken default argüman anlamlı mıdır? Şüphesiz bu soru örnek özelinde düşünülmeldir*
+>*Aşağıdaki örneği inceleyiniz. `**` ile belirtilen çağrıda "tam uyum (best match)" dolayısıyla parametresiz foo çağrılır. Aşağıdaki Int parametreli fonksiyon için parametresiz foo varken default argüman anlamlı mıdır? Şüphesiz bu soru örnek özelinde düşünülmeldir*
 
 ```kotlin
 package org.csystem.app
@@ -885,7 +892,7 @@ fun foo(a: Int = 0) = println("a = $a")
 fun foo() = println("foo")
 ```
 
-**_Anahtar Notlar:_** Kotlin'e 1.2 versiyonundan itibaren matematiksel işlemler yapan ayrı bir grup fonksiyon eklenmiştir.
+**_Anahtar Notlar:_** Kotlin'e `1.2` versiyonundan itibaren matematiksel işlemler yapan ayrı bir grup fonksiyon eklenmiştir.
 Programcı bu fonksiyonları kullanmalıdır. Kotlin math kütüphanesi ileride kullanılacaktır<br>
 **_Anahtar Notlar:_** Aslında Kotlin JVM programcısı, yapacağı işleme yönelik fonksiyonlar Kotlin'de standart olarak varsa
 onu kullanmalıdır. Yoksa zaten JavaSE'yi kullanacaktır
@@ -924,7 +931,7 @@ fun foo() {
 }
 ```
 
-#### Yerel fonksiyonlar ####
+>*Yerel fonksiyonlar*
 
 ```kotlin
 package org.csystem.app
@@ -1061,7 +1068,7 @@ fun foo(a: Int) {
 }
 ```
 
-#### Yerel fonksiyonlar ####
+>*Yerel fonksiyonlar*
 
 ```kotlin
 package org.csystem.app
@@ -1082,9 +1089,13 @@ fun display(min: Int, max:Int) {
 }
 ```
 
->*Kotlin'de her operatörün karşılık geldiği bir fonksiyon bulunmaktadır. Bu şekilde tasarım ilgili fonksiyonun olduğu türlere ilişkin değerlerin o operatörle kullanılabilmesi anlamına gelir. Yani örneğin Complex isimli bir sınıfın operator fun plus(z: Complex) parametreli bir fonksiyonu uygun şekilde yazılmışsa z1 ve z2 Complex türden referansları için<br>
-`z1 + z2 -> z1.plus(z2)`<br>
-biçiminde kullanılabilir.<br>Temel türlerin de uygun operatör fonksiyonları yazılıdığından işlemler yapılabilir*
+>*Kotlin'de her operatörün karşılık geldiği bir fonksiyon bulunmaktadır. Bu şekilde tasarım ilgili fonksiyonun olduğu türlere ilişkin değerlerin o operatörle kullanılabilmesi anlamına gelir. Yani örneğin Complex isimli bir sınıfın operator fun plus(z: Complex) parametreli bir fonksiyonu uygun şekilde yazılmışsa `z1` ve `z2` Complex türden referansları için:*
+>
+>`z1 + z2 -> z1.plus(z2)`
+>
+>*biçiminde kullanılabilir. Temel türlerin de uygun operatör fonksiyonları yazılıdığından işlemler yapılabilir*
+
+<br>
 
 >*Aritmetik `+` operatörü ve plus fonksiyonu*
 
@@ -1143,7 +1154,7 @@ fun main()
 }
 ```
 
->*Aritmetik / operatörü ve div fonksiyonu*
+>*Aritmetik `/` operatörü ve div fonksiyonu*
 
 ```kotlin
 package org.csystem.app
@@ -1196,7 +1207,7 @@ fun main()
 }
 ```
 
->*Anahtar Notlar: `%` operatörüne karşılık gelen fonksiyon Kotlin'in ilk sürümlerinde "mod" isimli bir fonksiyondu. Daha sonra mod fonksiyonu "rem" fonksiyonu olarak değiştirildi. Ancak Kotlin 1.5 ile birlikte bir çok eklenen matematiksel (extension olarak yazılan) fonksiyon ile birlikte Matematikteki mod işlemine karşılık "mod" isimli fonksiyon da eklendi. Bu anlamda mod fonksiyonu operatör fonksiyonu değildir*
+**_Anahtar Notlar:_** `%` operatörüne karşılık gelen fonksiyon Kotlin'in ilk sürümlerinde "mod" isimli bir fonksiyondu. Daha sonra mod fonksiyonu "rem" fonksiyonu olarak değiştirildi. Ancak `Kotlin 1.5` ile birlikte bir çok eklenen matematiksel (extension olarak yazılan) fonksiyon ile birlikte Matematikteki mod işlemine karşılık "mod" isimli fonksiyon da eklendi. Bu anlamda mod fonksiyonu operatör fonksiyonu değildir
 
 >*mod fonksiyonu*
 
@@ -1215,7 +1226,7 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı 3 basamaklı Int türden bir sayının basamakları toplamını döndüren sum3Digits fonksiyonu ve test kodunu yazınız. Fonksiyon basamak sayısı kontrolü yapmayacaktır*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı 3 basamaklı Int türden bir sayının basamakları toplamını döndüren sum3Digits fonksiyonu ve test kodunu yazınız. Fonksiyon basamak sayısı kontrolü yapmayacaktır.
 
 ```kotlin
 package org.csystem.app
@@ -1240,7 +1251,7 @@ fun sum3Digits(value: Int) : Int
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı 3 basamaklı Int türden bir sayının basamakları toplamını döndüren sum3Digits fonksiyonu ve test kodunu yazınız. Fonksiyon basamak sayısı kontrolü yapmayacaktır*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı 3 basamaklı Int türden bir sayının basamakları toplamını döndüren sum3Digits fonksiyonu ve test kodunu yazınız. Fonksiyon basamak sayısı kontrolü yapmayacaktır.
 
 ```kotlin
 package org.csystem.app
@@ -1265,7 +1276,7 @@ fun sum3Digits(value: Int) : Int
 }
 ```
 
->*İşaret `-` operatörü ve unaryMinus fonksiyonu*
+>*İşaret* `-` *operatörü ve unaryMinus fonksiyonu*
 
 ```kotlin
 package org.csystem.app
@@ -1284,7 +1295,7 @@ fun main()
 }
 ```
 
->*İşaret `+` operatörü ve unaryPlus fonksiyonu*
+>*İşaret* `+` *operatörü ve unaryPlus fonksiyonu*
 
 ```kotlin
 package org.csystem.app
@@ -1303,7 +1314,7 @@ fun main()
 }
 ```
 
->*`++` operatörünün kullanımı nasıl olursa olsun değişkeni bir artırır*
+>`++` *operatörünün kullanımı nasıl olursa olsun değişkeni bir artırır*
 
 ```kotlin
 package org.csystem.app
@@ -1317,7 +1328,7 @@ fun main()
 }
 ```
 
->*`++` operatörünün kullanımı nasıl olursa olsun değişkeni bir artırır*
+>`++` *operatörünün kullanımı nasıl olursa olsun değişkeni bir artırır*
 
 ```kotlin
 package org.csystem.app
@@ -1331,7 +1342,7 @@ fun main()
 }
 ```
 
->*`++` operatörünün prefix kullanımı*
+>`++` *operatörünün prefix kullanımı*
 
 ```kotlin
 package org.csystem.app
@@ -1346,7 +1357,7 @@ fun main()
 }
 ```
 
->*`++` operatörünün postfix kullanımı*
+>`++` *operatörünün postfix kullanımı*
 
 ```kotlin
 package org.csystem.app
@@ -1361,7 +1372,7 @@ fun main()
 }
 ```
 
->*`++` operatörünün fonksiyon karşılığı. inc fonksiyonu artırılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan inc fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner*
+>`++` *operatörünün fonksiyon karşılığı. inc fonksiyonu artırılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan inc fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner*
 
 ```kotlin
 package org.csystem.app
@@ -1376,7 +1387,7 @@ fun main()
 }
 ```
 
->*`++` operatörünün fonksiyon karşılığı*
+>`++` *operatörünün fonksiyon karşılığı*
 
 ```kotlin
 package org.csystem.app
@@ -1390,7 +1401,7 @@ fun main()
 }
 ```
 
->*`--` operatörünün fonksiyon karşılığı. dec fonksiyonu azaltılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan dec fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner*
+>`--` *operatörünün fonksiyon karşılığı. dec fonksiyonu azaltılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan dec fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner*
 
 ```kotlin
 package org.csystem.app
@@ -1405,7 +1416,7 @@ fun main()
 }
 ```
 
->*`--` operatörünün fonksiyon karşılığı*
+>`--` *operatörünün fonksiyon karşılığı*
 
 ```kotlin
 package org.csystem.app
@@ -1419,7 +1430,7 @@ fun main()
 }
 ```
 
->`*==` ve `!=` operatörleri. Bu operatörlerin fonksiyon karşılıkları ileride ele alınacaktır*
+>`*==` ve `!=` *operatörleri. Bu operatörlerin fonksiyon karşılıkları ileride ele alınacaktır*
 
 ```kotlin
 package org.csystem.app
@@ -1439,7 +1450,7 @@ fun main()
 }
 ```
 
->`*>`, `<=`, `<`, `>=` operatörlerinin fonksiyon karşılıkları*
+>`*>`, `<=`, `<`, `>=` *operatörlerinin fonksiyon karşılıkları*
 
 ```kotlin
 package org.csystem.app
@@ -1543,7 +1554,7 @@ fun bar() : Boolean
 }
 ```
 
->*`&&` ve `||` operatörleri klasik öncelik kuralına uymazlar. Bu operatörlerin aynı ifadede olması durumunda her zaman işlem soldan başlar, ancak öncelik kuralına uyulsa çıkacak sonucun aynısına ulaşılır. Yani bu operatörlerin temel amacı doğru sonuca en kısa yoldan ulaşmaktır. Şüphesiz bu kısa devre davranışı ile sağlanır*
+>`&&` ve `||` *operatörleri klasik öncelik kuralına uymazlar. Bu operatörlerin aynı ifadede olması durumunda her zaman işlem soldan başlar, ancak öncelik kuralına uyulsa çıkacak sonucun aynısına ulaşılır. Yani bu operatörlerin temel amacı doğru sonuca en kısa yoldan ulaşmaktır. Şüphesiz bu kısa devre davranışı ile sağlanır*
 
 ```kotlin
 package org.csystem.app
@@ -1727,7 +1738,7 @@ fun main()
 }
 ```
 
->*Kotlin'de bir bir sonraki satıra geçmek ve noktalı virgül (;) sonlandırıcı (terminator) olarak kullanılabilir. Bir sonraki satıra geçmek sonlandırıcı olarak kullanılıyorsa noktalı virgül konması önerilmez*
+>*Kotlin'de bir bir sonraki satıra geçmek ve noktalı virgül* `;` *sonlandırıcı (terminator) olarak kullanılabilir. Bir sonraki satıra geçmek sonlandırıcı olarak kullanılıyorsa noktalı virgül konması önerilmez*
 
 ```kotlin
 package org.csystem.app
@@ -1742,7 +1753,7 @@ fun main()
 }
 ```
 
->*if ifadesel deyiminin (expression statement), deyim olarak kullanımı*
+>`if` *ifadesel deyiminin (expression statement), deyim olarak kullanımı*
 
 ```kotlin
 package org.csystem.app
@@ -1759,7 +1770,7 @@ fun main()
 }
 ```
 
->*if ifadesinin koşul operatörü yerine kullanımı*
+>`if` *ifadesinin koşul operatörü yerine kullanımı*
 
 **_Anahtar Notlar:_** Kotlin'de koşul operatörü (conditional operator) yoktur.
 
@@ -1775,7 +1786,9 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.<br>Açıklama: Programda Math sınıfının sqrt metodu kullanılacaktır*
+>**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+>
+>**_Açıklama:_** Programda Math sınıfının sqrt metodu kullanılacaktır.
 
 ```kotlin
 package org.csystem.app
@@ -1817,7 +1830,7 @@ fun findRoots(a: Double, b: Double, c: Double) : String
 }
 ```
 
->*Aşağıdaki örnekte else içteki if deyimine ilişkindir (dangling else)*
+>*Aşağıdaki örnekte else içteki* `if` *deyimine ilişkindir (dangling else)*
 
 ```kotlin
 package org.csystem.app
@@ -1854,7 +1867,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki durumda dangling else yoktur*
+>*Aşağıdaki durumda dangling* `else` *yoktur*
 
 ```kotlin
 package org.csystem.app
@@ -1874,7 +1887,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte if ifadesel deyimi ifade biçiminde koşul operatörü gibi kullanılmıştır. Kotlin'de koşul opratörü yoktur*
+>*Aşağıdaki örnekte* `if` *ifadesel deyimi ifade biçiminde koşul operatörü gibi kullanılmıştır. Kotlin'de koşul opratörü yoktur*
 
 ```kotlin
 package org.csystem.app
@@ -1894,11 +1907,14 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
 >*Kotlin programlama dilinde döngüler 2(iki) gruba ayrılır:*
+>1. `while` döngü deyimleri
+>- Kontrolün başta yapıldığı while döngü deyimi (while döngüsü)
+>- Kontrolün sonda yapıldığı while döngü deyimi (do-while döngüsü)
+>2. `for` döngü deyimi
+>
+><br>
 
-1. while döngü deyimleri
-- Kontrolün başta yapıldığı while döngü deyimi (while döngüsü)
-- Kontrolün sonda yapıldığı while döngü deyimi (do-while döngüsü)
-2. for döngü deyimi
+<br>
 
 **_Anahtar Notlar:_** Buradaki for döngü deyimi Java'daki klasik for döngüsü değildir. Java'daki for-each döngü deyiminin
 daha yetenekli bir biçimi olarak düşünülebilir. Kotlin'de klasik for döngüsü yoktur. Ancak klasik for döngüsünün
@@ -1925,7 +1941,7 @@ fun main()
 }
 ```
 
->*while döngü deyiminin parantezi içerisinde atama yapılması geçersizdir. Anımsanacağı gibi atama operatörü bir ifade oluşturmaz. Dolayısıyla değer üretmez*
+>`while` *döngü deyiminin parantezi içerisinde atama yapılması geçersizdir. Anımsanacağı gibi atama operatörü bir ifade oluşturmaz. Dolayısıyla değer üretmez*
 
 ```kotlin
 package org.csystem.app
@@ -1942,7 +1958,7 @@ fun main()
 }
 ```
 
->*while döngü deyimi ile n-kez dönen döngü kalıbı*
+>`while` *döngü deyimi ile n-kez dönen döngü kalıbı*
 
 ```kotlin
 package org.csystem.app
@@ -1960,7 +1976,7 @@ fun main()
 }
 ```
 
->*while döngü deyimi ile n-kez dönen döngü kalıbı (dizi uyumlu)*
+>`while` *döngü deyimi ile n-kez dönen döngü kalıbı (dizi uyumlu)*
 
 ```kotlin
 package org.csystem.app
@@ -1980,7 +1996,7 @@ fun main()
 }
 ```
 
->*while döngü deyimi ile n-kez dönen döngü kalıbı (dizi uyumlu)*
+>`while` *döngü deyimi ile n-kez dönen döngü kalıbı (dizi uyumlu)*
 
 ```kotlin
 package org.csystem.app
@@ -2000,7 +2016,7 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması Klavyeden sıfır girilene kadar alınan sayıların toplamını bulan programı yazınız. Örnekte break deyimini kullanabilirsiniz*
+>**_Sınıf Çalışması:_** Klavyeden sıfır girilene kadar alınan sayıların toplamını bulan programı yazınız. Örnekte break deyimini kullanabilirsiniz.
 
 **_Anahtar Notlar:_** Kotlin'de break deyiminin etiketsiz kullanımı Java ile aynıdır
 
@@ -2027,7 +2043,7 @@ fun runApplication()
 }
 ```
 
->*do-while döngü deyimi*
+>`do-while` *döngü deyimi*
 
 ```kotlin
 package org.csystem.app
@@ -2047,7 +2063,7 @@ fun main()
 }
 ```
 
->*do-while döngü deyiminde Java ve C#'dan farklı olarak do-while döngü deyimi içerisinde bildirilmiş olan bir değişkenin while parantezi içerisinde kullanımı geçerlidir*
+>`do-while` *döngü deyiminde Java ve C#'dan farklı olarak* `do-while` *döngü deyimi içerisinde bildirilmiş olan bir değişkenin while parantezi içerisinde kullanımı geçerlidir*
 
 ```kotlin
 package org.csystem.app
@@ -2064,7 +2080,7 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı Int türden bir sayının basamak sayısını döndüren countDigits isimli fonksiyonu döngü kullanarak yazınız yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının basamak sayısını döndüren countDigits isimli fonksiyonu döngü kullanarak yazınız yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
 package org.csystem.app
@@ -2100,7 +2116,7 @@ fun countDigits(value: Int) : Int
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı Int türden bir sayının basamakları toplamını döndüren sumDigits fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının basamakları toplamını döndüren sumDigits fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
 package org.csystem.app
@@ -2136,7 +2152,9 @@ fun sumDigits(value: Int) : Int
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı Int türden bir sayının tersini döndüren reversed isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.<br>**_Algoritma:_** 123 -> 3 -> 3 * 10 + 2 = 32 -> 32 * 10 + 1 = 321*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının tersini döndüren reversed isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
+>
+>**_Algoritma:_** 123 -> 3 -> 3 * 10 + 2 = 32 -> 32 * 10 + 1 = 321
 
 ```kotlin
 package org.csystem.app
@@ -2172,7 +2190,7 @@ fun reversed(value: Int) : Int
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı Int türden bir sayının palindrom olup olmadığını test eden isPalindrome fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının palindrom olup olmadığını test eden isPalindrome fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
 package org.csystem.app
@@ -2212,7 +2230,7 @@ fun reversed(value: Int) : Int
 
 >*Aşağıdaki örnekte, Java'daki for döngü deyiminin karşılığı olan deyim yazılmıştır:*
 
-**_Anahtar Notlar:_** `..` ile belirtilen operatör "range" sınıfları türünden referans üretir. Bu sınıflar Iterable arayüzünü desteklediği için for döngüsü ile dolaşılabilir. Iterable arayüzü ileride ele alınacaktır. Aslında Kotlin'deki for döngü deyimi Java'nın "for-each/enhanced for loop"'udur
+**_Anahtar Notlar:_** `..` ile belirtilen operatör "range" sınıfları türünden referans üretir. Bu sınıflar Iterable arayüzünü desteklediği için for döngüsü ile dolaşılabilir. Iterable arayüzü ileride ele alınacaktır. Aslında Kotlin'deki for döngü deyimi Java'nın "for-each/enhanced for loop"'udur.
 
 ```kotlin
 package org.csystem.app
@@ -2294,7 +2312,9 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı a ve b Int türden değerleri için a nın b-inci kuvvetini döndüren pow fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz<br>Açıklama: Math sınıfının pow metodu veya Kotlin kütüphanesindeki pow fonksiyonu kullanılmayacaktır*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı a ve b Int türden değerleri için a nın b-inci kuvvetini döndüren pow fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
+>
+>**_Açıklama:_** Math sınıfının pow metodu veya Kotlin kütüphanesindeki pow fonksiyonu kullanılmayacaktır.
 
 ```kotlin
 package org.csystem.app
@@ -2331,7 +2351,9 @@ fun pow(a: Int, b: Int) : Int
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı a ve b Int türden değerleri için a nın b-inci kuvvetini döndüren pow fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz<br>Açıklama: Math sınıfının pow metodu veya Kotlin kütüphanesindeki pow fonksiyonu kullanılmayacaktır*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı a ve b Int türden değerleri için a nın b-inci kuvvetini döndüren pow fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
+>
+>**_Açıklama:_** Math sınıfının pow metodu veya Kotlin kütüphanesindeki pow fonksiyonu kullanılmayacaktır.
 
 ```kotlin
 package org.csystem.app
@@ -2367,7 +2389,9 @@ fun pow(a: Int, b: Int) : Int
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı bir sayının basamaklarının basamak sayıncı kuvvetleri toplamının kendisine eşit olup olmadığını test eden isArmstrong isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz. Fonksiyon negatif değerler için false değerini döndürecektir<br>Açıklama: Kuvvet alma işlemi için bir önceki örnekte yazılan pow fonksiyonu kullanılacaktır*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir sayının basamaklarının basamak sayıncı kuvvetleri toplamının kendisine eşit olup olmadığını test eden isArmstrong isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz. Fonksiyon negatif değerler için false değerini döndürecektir.
+>
+>**_Açıklama:_** Kuvvet alma işlemi için bir önceki örnekte yazılan pow fonksiyonu kullanılacaktır.
 
 ```kotlin
 package org.csystem.app
@@ -2423,7 +2447,9 @@ fun pow(a: Int, b: Int) : Int
 }
 ```
 
->*Sınıf Çalışması: Klavyeden sıfır girilene kadar alınan sayılardan pozitif ve negatif olanlarının ayrı ayrı toplamını ve kaçar tane olduklarını bulan programı yazınız<br>**_Not:_** Örnek Kotlin'de şu ana kadar görülen konular kullanılarak yazılmıştır*
+>**_Sınıf Çalışması:_** Klavyeden sıfır girilene kadar alınan sayılardan pozitif ve negatif olanlarının ayrı ayrı toplamını ve kaçar tane olduklarını bulan programı yazınız.
+>
+>**_Not:_** Örnek Kotlin'de şu ana kadar görülen konular kullanılarak yazılmıştır.
 
 ```kotlin
 package org.csystem.app
@@ -2494,7 +2520,9 @@ fun isPrime(value: Int) : Boolean
 }
 ```
 
->*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu<br>(Hızlı versiyon)<br>**_Kural:_** Bir sayının asal olması için karekökünden daha küçük olan asal sayıların hiçbirisine bölünememesi gerekir*
+>*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu<br>(Hızlı versiyon)*
+>
+>**_Kural:_** Bir sayının asal olması için karekökünden daha küçük olan asal sayıların hiçbirisine bölünememesi gerekir*
 
 ```kotlin
 package org.csystem.app
@@ -2618,7 +2646,7 @@ fun isPrime(a: Long) : Boolean
     4498306523077899307
     4434895834573449257
 
->*downTo infix fonksiyonu ile for döngüsü içerisinde ters sırada dönen bir döngü yazılabilir*
+>`downTo` *infix fonksiyonu ile for döngüsü içerisinde ters sırada dönen bir döngü yazılabilir*
 
 ```kotlin
 package org.csystem.app
@@ -2638,7 +2666,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte downTo ve step fonksiyonları birlikte kullanılmıştır*
+>*Aşağıdaki örnekte* `downTo` ve `step` *fonksiyonları birlikte kullanılmıştır*
 
 ```kotlin
 package org.csystem.app
@@ -2658,7 +2686,7 @@ fun main()
 }
 ```
 
->*until infix fonksiyonu ile [a, b) aralığında döngü deyimi oluşturulabilir*
+>`until` *infix fonksiyonu ile* `[a, b)` *aralığında döngü deyimi oluşturulabilir*
 
 ```kotlin
 package org.csystem.app
@@ -2677,7 +2705,7 @@ fun main()
 }
 ```
 
->*until infix fonksiyonu ile step fonksiyonunun kullanımı*
+>`until` *infix fonksiyonu ile step fonksiyonunun kullanımı*
 
 ```kotlin
 package org.csystem.app
@@ -2713,7 +2741,7 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı Int türden bir n sayısı için n-inci asal sayıyı döndüren getPrime isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz. Fonksiyon n'nin pozitif olmayan değerleri için kontrol yapmayacaktır*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir n sayısı için n-inci asal sayıyı döndüren getPrime isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz. Fonksiyon n'nin pozitif olmayan değerleri için kontrol yapmayacaktır.
 
 ```kotlin
 package org.csystem.app
@@ -2780,18 +2808,20 @@ fun isPrime(value: Long) : Boolean
 }
 ```
 
->*Etiketli break (labeled break) kullanımı. Dikkat `break@<etiket ismi>` deyimi boşluk içeremez.<br>Etiket bildirimi sonunda `@` atomu yazılmalıdır. Aşağıdaki içiçe döngünün Java'da yazılmış bir biçimi şu şekildedir*
+>*Etiketli break (labeled break) kullanımı. Dikkat* `break@<etiket ismi>` *deyimi boşluk içeremez.
+>
+>*Etiket bildirimi sonunda* `@` *atomu yazılmalıdır. Aşağıdaki içiçe döngünün Java'da yazılmış bir biçimi şu şekildedir*
 
 ```java
-      EXIT_LOOP:
-      for (int i = 10; i <= 20; ++i) {
-      for (int k = 2; k <= 34; ++k) {
-      System.out.printf("(%d, %d)%n", i, k);
+EXIT_LOOP:
+for (int i = 10; i <= 20; ++i) {
+    for (int k = 2; k <= 34; ++k) {
+        System.out.printf("(%d, %d)%n", i, k);
 
-            if ((i + k) % 11 == 0)
-                break EXIT_LOOP;
-        }
+        if ((i + k) % 11 == 0)
+            break EXIT_LOOP;
     }
+}
 ```
 
 >*Örnek konuyu anlatmak için yazılmıştır*
@@ -2814,7 +2844,9 @@ fun main()
 }
 ```
 
->*Etiketli break (labeled break) kullanımı<br>Örnek konuyu anlatmak için yazılmıştır*
+>*Etiketli break (labeled break) kullanımı*
+>
+>*Örnek konuyu anlatmak için yazılmıştır*
 
 ```kotlin
 package org.csystem.app
@@ -2841,7 +2873,7 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Klavyeden alınan a ve b Int türden değerleri için [a, b] aralığında tek ve çift sayıları ayrı ayrı toplayan programı yazınız. Örnekte isEven fonksiyonun "capture" yaptığına dikkat ediniz*
+>**_Sınıf Çalışması:_** Klavyeden alınan a ve b Int türden değerleri için [a, b] aralığında tek ve çift sayıları ayrı ayrı toplayan programı yazınız. Örnekte isEven fonksiyonun "capture" yaptığına dikkat ediniz.
 
 ```kotlin
 package org.csystem.app
@@ -2878,7 +2910,7 @@ fun findTotals(a: Int, b: Int)
 }
 ```
 
->*Kotlin'de switch deyimi yoktur. Ancak benzer şekilde kullanılabilecek when ifadesi (ifadesel deyimi) vardır. Java 14 ile birlikte switch'in ifade olarak kullanımı da Java'ya eklenmiştir (switch expression). Bu anlamda switch de artık ifadesel deyim olarak kullanılabilir. switch expression, when expression'a oldukça benzemektedir*
+>*Kotlin'de switch deyimi yoktur. Ancak benzer şekilde kullanılabilecek* `when` *ifadesi (ifadesel deyimi) vardır.* `Java 14` *ile birlikte switch'in ifade olarak kullanımı da Java'ya eklenmiştir (switch expression). Bu anlamda switch de artık ifadesel deyim olarak kullanılabilir. switch expression, when expression'a oldukça benzemektedir*
 
 >*when ifadesinin switch deyimine benzer kullanımı. when ifadesinde aşağı düşme (fall through) özelliği yoktur. Aşağıdaki when ifadesinin switch deyimi karşılığı şu şekildedir:*
 
@@ -2932,7 +2964,7 @@ fun main()
 }
 ```
 
->*when ifadesinin parantezsiz kullanımı. Bu kullanımda koşulların -> atomundan önce yazıldığına dikkat ediniz. Java'da switch bu şekilde kullanılamaz*
+>`when` *ifadesinin parantezsiz kullanımı. Bu kullanımda koşulların -> atomundan önce yazıldığına dikkat ediniz. Java'da switch bu şekilde kullanılamaz*
 
 ```kotlin
 package org.csystem.app
@@ -2950,7 +2982,7 @@ fun main()
 }
 ```
 
->*when ifadesinin ürettiği değerin kullanılması*
+>`when` *ifadesinin ürettiği değerin kullanılması*
 
 ```kotlin
 package org.csystem.app
@@ -2970,7 +3002,7 @@ fun main()
 }
 ```
 
->*when ifadesinin ürettiği değerin kullanılması*
+>`when` *ifadesinin ürettiği değerin kullanılması*
 
 ```kotlin
 package org.csystem.app
@@ -2988,11 +3020,10 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.*
-
-Açıklamalar:
-
-- if expression yerine when expression kullanılacaktır
+> **_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+>
+> **_Açıklamalar:_**
+> `if` expression yerine `when` expression kullanılacaktır
 
 ```kotlin
 package org.csystem.app
@@ -3040,7 +3071,7 @@ fun findRoots(a: Double, b: Double, c: Double) : String
 }
 ```
 
->*when ifadesinin in ve !in (not in) operatörleri ile kullanımı. in ve !in operatörleri ileride ele alınacaktır*
+>`when` *ifadesinin* `in` ve `!in` *(not in) operatörleri ile kullanımı.* `in` ve `!in` *operatörleri ileride ele alınacaktır*
 
 ```kotlin
 package org.csystem.app
@@ -3058,25 +3089,24 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin haftanın hangi gününe geldiğini döndüren getDayOfWeek global fonksiyonunu aşağıdaki açıklamalara uygun olarak yazınız.*
-
-Açıklama:
-
-- Aşağıdaki test kodu ile fonksiyonlarınız için genel bir test yapınız
-- Programda tarih zamana ilişkin sınıflar kullanılmayacaktır.
-- getDayOfWeek fonksiyonu 1.1.1900 tarihinden sonraki tarihler için çalışacaktır.
-- Fonksiyonlar geçersiz bir tarih için -1 değerini döndürecektir
-- Haftanın günü bilgisi, 1.1.1900 ile verilen tarih arasındaki toplam gün sayısı hesaplanıp 7 değerine
+>**_Sınıf Çalışması:_** Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin haftanın hangi gününe geldiğini döndüren getDayOfWeek global fonksiyonunu aşağıdaki açıklamalara uygun olarak yazınız.
+>
+>**_Açıklama:_**
+>- Aşağıdaki test kodu ile fonksiyonlarınız için genel bir test yapınız
+>- Programda tarih zamana ilişkin sınıflar kullanılmayacaktır.
+>- getDayOfWeek fonksiyonu 1.1.1900 tarihinden sonraki tarihler için çalışacaktır.
+>- Fonksiyonlar geçersiz bir tarih için -1 değerini döndürecektir
+>- Haftanın günü bilgisi, 1.1.1900 ile verilen tarih arasındaki toplam gün sayısı hesaplanıp 7 değerine
 göre modu alınarak bulunabilir. Bu değere göre sıfır pazar, 1 pazartesi, ..., 6 değeri de Cumartesi
 gününe karşılık gelir
-- Programda dizi kullanılmayacaktır
-- Aşağıdaki fonksiyonların kesinlikle yazılması koşuluyla istediğiniz fonksiyonu ekleyebilirsiniz.
-- Yazılmış fonksiyonlar içerisinde değişiklik yapabilirsiniz. Ancak test etmeniz gerektiğini unutmayınız
-- Çözüm şu ana kadar gördüğümüz konular kullanılarak yapılacaktır
-- String referansına geri dönen fonksiyonlarda String sınıfını kullanmanız gerekmez. String literal oluştururak
+>- Programda dizi kullanılmayacaktır
+>- Aşağıdaki fonksiyonların kesinlikle yazılması koşuluyla istediğiniz fonksiyonu ekleyebilirsiniz.
+>- Yazılmış fonksiyonlar içerisinde değişiklik yapabilirsiniz. Ancak test etmeniz gerektiğini unutmayınız
+>- Çözüm şu ana kadar gördüğümüz konular kullanılarak yapılacaktır
+>- String referansına geri dönen fonksiyonlarda String sınıfını kullanmanız gerekmez. String literal oluştururak
 yapınız
-
-(İleride daha iyisi yazılacaktır)
+>
+>(İleride daha iyisi yazılacaktır)
 
 ```kotlin
 package org.csystem.app
@@ -3256,8 +3286,7 @@ fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0
     değişkenleri için
     a = b
 
-    işleminde b'nin türüne kaynak tür (source type), a'nın türüne hedef tür (target type) denir. Bu ifadede bir doğrundan atama (dönüşüm) (implicit conversion) vardır. Kotlin'de de "implicit ve explicit conversion"
-    kuralları belirlidir. Ancak Kotlin'de genel olarak farklı türler birbirine doğrudan atanamaz
+>*işleminde b'nin türüne kaynak tür (source type), a'nın türüne hedef tür (target type) denir. Bu ifadede bir doğrundan atama (dönüşüm) (implicit conversion) vardır. Kotlin'de de "implicit ve explicit conversion" kuralları belirlidir. Ancak Kotlin'de genel olarak farklı türler birbirine doğrudan atanamaz.*
 
 >*Kotlin'de genel olarak farklı türler birbirine doğrudan (implicit) atanamaz*
 
@@ -3273,7 +3302,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte istisna bir durum vardır. Int türden  bir sabit Long türüne doğrudan atanabilir veya ilkdeğer olarak verilebilir*
+>*Aşağıdaki örnekte istisna bir durum vardır. Int türden  bir sabit Long türüne doğrudan atanabilir veya ilkdeğer olarak verilebilir.*
 
 ```kotlin
 package org.csystem.app
@@ -3286,7 +3315,7 @@ fun main()
 }
 ```
 
->*Kotlin'de Java' da olduğu gibi Byte ve Short türden sabit yoktur ancak sınırlar içerisinde kalması koşuluyla Int türden bir sabit Byte veya Short türüne doğrudan atanabilir*
+>*Kotlin'de Java' da olduğu gibi Byte ve Short türden sabit yoktur ancak sınırlar içerisinde kalması koşuluyla Int türden bir sabit Byte veya Short türüne doğrudan atanabilir.*
 
 ```kotlin
 package org.csystem.app
@@ -3302,7 +3331,7 @@ fun main()
 }
 ```
 
->*Yukarıdaki istisna durum Java'da char türü için de vardır. Ancak Kotlin'de Char türü için bu durum geçersizdir*
+>*Yukarıdaki istisna durum Java'da char türü için de vardır. Ancak Kotlin'de Char türü için bu durum geçersizdir.*
 
 ```kotlin
 package org.csystem.app
@@ -3315,7 +3344,7 @@ fun main()
 }
 ```
 
->*Temel türlere ilişkin sınıfların toXXX metotları ile birbirlerine dönüşümleri sağlanabilir. Ancak Kotlin 1.4 ile bazı metotlarda değişiklikler olmuştur. Bu durum ileride ele alınacaktır*
+>*Temel türlere ilişkin sınıfların toXXX metotları ile birbirlerine dönüşümleri sağlanabilir. Ancak Kotlin 1.4 ile bazı metotlarda değişiklikler olmuştur. Bu durum ileride ele alınacaktır.*
 
 ```kotlin
 package org.csystem.app
@@ -3380,7 +3409,7 @@ fun main()
 }
 ```
 
->**_Anahtar Notlar:_** Double ve Float sınıflarının toChar metotları Kotlin 1.5 ile birlikte deprecated olmuşlardır. Bu dönüşümün yapılması istendiğinde önce toInt metodu çağrılıp, sonra toChar metodu çağrılabilir
+**_Anahtar Notlar:_** Double ve Float sınıflarının toChar metotları `Kotlin 1.5` ile birlikte deprecated olmuşlardır. Bu dönüşümün yapılması istendiğinde önce toInt metodu çağrılıp, sonra toChar metodu çağrılabilir.
 
 >*İki Char toplama işlemine sokulamaz. Yani Char türünün Char türden parametreli toplama (plus) operatör fonksiyonu yoktur*
 
@@ -3466,7 +3495,7 @@ fun main()
 }
 ```
 
->*Byte sınıfının toChar metodu Kotlin 1.5 ile birlikte deprecated durumdadır. Bu metot yerine Int türüne dönüştürülüp toChar metodu çağrılmalıdır:<br>`a.toInt().toChar()`<br>Char sınıfının toInt metodu da deprecated olmuştur. Bunun Char türünün code property elemanı ile karaktere karşılık gelen sıra numarası Int türden elde edilebilir<br>Aşağıdaki örnekte çeşitli değerler girerek sonuçları gözlemleyiniz*
+>*Byte sınıfının toChar metodu* `Kotlin 1.5` *ile birlikte deprecated durumdadır. Bu metot yerine Int türüne dönüştürülüp toChar metodu çağrılmalıdır:*<br>`a.toInt().toChar()`<br>*Char sınıfının toInt metodu da deprecated olmuştur. Bunun Char türünün code property elemanı ile karaktere karşılık gelen sıra numarası Int türden elde edilebilir<br>Aşağıdaki örnekte çeşitli değerler girerek sonuçları gözlemleyiniz*
 
 ```kotlin
 package org.csystem.app
@@ -3489,17 +3518,19 @@ fun main()
 }
 ```
 
-**_Anahtar Notlar:_** Gerçek sayı türlerinden Short ve Byte türlerine dönüştüren toShort ve toByte fonksiyonları kaldırılmıştır. Ayrıca gerçek sayı türlerinin toChar fonksiyonları da deprecated olmuştur. Bu anlamda bu 3 tür için toInt fonksiyonu çağrılarak Int türüne dönüştürme yapıp sonradan ilgili türlere dönüştürecek fonksiyonların çağrılması gerekir. Bu anlamda gerçek sayı türlerinden tamsayı türlerine dönüşüm ya Int türüne ya da Long türüne yapılabilmektedir
+**_Anahtar Notlar:_** Gerçek sayı türlerinden Short ve Byte türlerine dönüştüren toShort ve toByte fonksiyonları kaldırılmıştır. Ayrıca gerçek sayı türlerinin toChar fonksiyonları da deprecated olmuştur. Bu anlamda bu 3 tür için toInt fonksiyonu çağrılarak Int türüne dönüştürme yapıp sonradan ilgili türlere dönüştürecek fonksiyonların çağrılması gerekir. Bu anlamda gerçek sayı türlerinden tamsayı türlerine dönüşüm ya Int türüne ya da Long türüne yapılabilmektedir.
 
 >*Gerçek sayı türünden tamsayı türüne dönüşüm aşağıdaki gibi gerçekleşir:*
-
-1. Sayının noktadan sonraki kısmı atılır.
-2. Elde edilen sayı hedef türün sınırları içerisindeyse doğrudan atanır. Elde edilen sayı hedef türün sınırları içerisinde değilse
-
-- Hedef tür Int türü ise sayının pozitif ve negatif olması durumuna göre Int türünün en büyük veya en küçük değeri
+>
+>1. Sayının noktadan sonraki kısmı atılır.
+>2. Elde edilen sayı hedef türün sınırları içerisindeyse doğrudan atanır. Elde edilen sayı hedef türün sınırları içerisinde değilse
+>
+>- Hedef tür Int türü ise sayının pozitif ve negatif olması durumuna göre Int türünün en büyük veya en küçük değeri
     alınır ve atanır
-- Hedef tür Long türü ise sayının pozitif veya negatif olma durumuna göre Long türünün en büyük ya da en küçük değer alınır.
-ve atanır
+>- Hedef tür Long türü ise sayının pozitif veya negatif olma durumuna göre Long türünün en büyük ya da en küçük değer alınır.
+ve atanır.
+
+<br>
 
 ```kotlin
 package org.csystem.app
@@ -3610,7 +3641,7 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Klavyeden sıfır girilene kadar alınan Int türden sayıların ortalamasını bulup ekrana yazdıran programı yazınız*
+>**_Sınıf Çalışması:_** Klavyeden sıfır girilene kadar alınan Int türden sayıların ortalamasını bulup ekrana yazdıran programı yazınız.
 
 ```kotlin
 package org.csystem.app
@@ -3637,7 +3668,7 @@ fun runAverageApplication()
 }
 ```
 
-### Sınıf bildirimi ###
+>*Sınıf bildirimi*
 
 ```kotlin
 class SerialPort
@@ -3664,9 +3695,9 @@ fun main()
 class DeviceInfo
 ```
 
-**_Anahtar Notlar:_** Kotlin'de sınıfın bir elemanına (member) herhangi bir erişim belirleyici anahtar sözcük yazmamak (no-modifier) "public" anlamına gelir. Biz yazmamayı tercih edeceğiz
+**_Anahtar Notlar:_** Kotlin'de sınıfın bir elemanına (member) herhangi bir erişim belirleyici anahtar sözcük yazmamak (no-modifier) `public` anlamına gelir. Biz yazmamayı tercih edeceğiz.
 
-**_Anahtar Notlar:_** Anımsanacağı gibi Java'da no-modifier bir eleman aynı paketteki diğer sınıflar için "public", farklı paketteki sınıflar için "private" anlamındadır*
+**_Anahtar Notlar:_** Anımsanacağı gibi Java'da no-modifier bir eleman aynı paketteki diğer sınıflar için `public`, farklı paketteki sınıflar için `private` anlamındadır.
 
 >*Kotlin'de new operatörü yoktur. Nesne yaratılması aşağıdaki gibi yapılabilir*
 
@@ -4034,31 +4065,33 @@ class Sample(val a: Int = 10) {
 }
 ```
 
->*Aşağıdaki iskelet kodu inceleyiniz:<br>Aşağıdaki Time sınıfının yaklaşık Java karşılığı:*
+>*Aşağıdaki iskelet kodu inceleyiniz:*
+>
+>*Aşağıdaki Time sınıfının yaklaşık Java karşılığı:*
 
 ```java
-    package org.csystem.app;
+package org.csystem.app;
 
-    class Time {
-        private int m_hour, m_minute, m_second, m_millisecond;
+class Time {
+    private int m_hour, m_minute, m_second, m_millisecond;
 
+    //...
+
+    public Time(int h, int m)
+    {
+        this(h, m, 0);
+    }
+
+    public Time(int h, int m, int s)
+    {
+        this(h, m, s, 0);
+    }
+
+    public Time(int h, int m, int s, int ms)
+    {
         //...
-
-        public Time(int h, int m)
-        {
-            this(h, m, 0);
-        }
-
-        public Time(int h, int m, int s)
-        {
-            this(h, m, s, 0);
-        }
-
-        public Time(int h, int m, int s, int ms)
-        {
-            //...
-        }
-    }*
+    }
+}
 ```
 
 ```kotlin
@@ -4077,31 +4110,33 @@ class Time(var hour: Int, var min: Int, var sec: Int, var msec: Int) {
 
 >*Örnek, default argüman kullanılarak daha Kotlin mantığıyla yazılabilir*
 
+<br>
+
 >*Aşağıdaki Time sınıfının yaklaşık Java karşılığı:*
 
 ```java
-    package org.csystem.app;
+package org.csystem.app;
 
-    class Time {
-        private int m_hour, m_minute, m_second, m_millisecond;
+class Time {
+    private int m_hour, m_minute, m_second, m_millisecond;
 
-        //...
+    //...
 
-        public Time(int h, int m)
-        {
-            this(h, m, 0);
-        }
-
-        public Time(int h, int m, int s)
-        {
-            this(h, m, s, 0);
-        }
-
-        public Time(int h, int m, int s, int ms)
-        {
-            //...
-        }
+    public Time(int h, int m)
+    {
+        this(h, m, 0);
     }
+
+    public Time(int h, int m, int s)
+    {
+        this(h, m, s, 0);
+    }
+
+    public Time(int h, int m, int s, int ms)
+    {
+        //...
+    }
+}
 ```
 
 ```kotlin
@@ -4174,7 +4209,7 @@ class Sample(var a: Int = 0) {
 }
 ```
 
-#### Point sınıfı ####
+>*Point sınıfı*
 
 ```kotlin
 package org.csystem.app
@@ -4338,38 +4373,40 @@ class Sample {
 }
 ```
 
->*Bir property elemanının set bölümü ona atama yapıldığında çalışır. get bölümü ise değeri kullanılmak istendiğinde çalışır. Bir property elemanı için genel olarak arka planda yaratılan bir veri elemanı (backing field) bulunmaktadır. Property elemanı içerisinde, ilişkin olduğu veri elemanına erişmek için field bağlamsal anahtar sözcüğü (contextual keyword) kullanılabilir.<br>Aşağıdaki örneğin Java karşılığı yaklaşık olarak aşağıdaki gibidir:*
+>*Bir property elemanının set bölümü ona atama yapıldığında çalışır. get bölümü ise değeri kullanılmak istendiğinde çalışır. Bir property elemanı için genel olarak arka planda yaratılan bir veri elemanı (backing field) bulunmaktadır. Property elemanı içerisinde, ilişkin olduğu veri elemanına erişmek için field bağlamsal anahtar sözcüğü (contextual keyword) kullanılabilir.*
+>
+>*Aşağıdaki örneğin Java karşılığı yaklaşık olarak aşağıdaki gibidir:*
 
 ```java
 package org.csystem.app;
 
-    class App {
-        public static void main(String [] args)
-        {
-            Sample s = new Sample();
+class App {
+    public static void main(String [] args)
+    {
+        Sample s = new Sample();
 
-            s.setX(10);
+        s.setX(10);
 
-            System.out.println(s.getX() * 2);
-            System.out.println(s.getX());
-        }
+        System.out.println(s.getX() * 2);
+        System.out.println(s.getX());
+    }
+}
+
+class Sample {
+    private int field;
+
+    public int getX()
+    {
+        System.out.println("getX");
+        return field;
     }
 
-    class Sample {
-        private int field;
-
-        public int getX()
-        {
-            System.out.println("getX");
-            return field;
-        }
-
-        public void setX(int value)
-        {
-            System.out.println("set");
-            field = value;
-        }
+    public void setX(int value)
+    {
+        System.out.println("set");
+        field = value;
     }
+}
 ```
 
 ```kotlin
@@ -4463,7 +4500,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki örnekte Sample sınıfının val olarak bildirilmiş property elemanına ilkdeğer (initialization) verilmediği için tüm ctor'larda değer verilmek zorundadır. Sample sınıfında default ctor içerisinde `:this` ctor sentaksı kullanıldığından, dolaylı olarak değer verilmiş olur. Mample sınıfında ise val olarak bildirilmiş x property elemanı için ilkdeğer verildiğinden ctor'lar içerisinde değer verilemez. Test sınıfında ise init bloğu içerisinde val olarak bildirilmiş x property elemanına değer verildiğinden artık ctor'lar içerisinde (aslında hiçbir yerde) değer verilemez*
+>*Aşağıdaki örnekte Sample sınıfının val olarak bildirilmiş property elemanına ilkdeğer (initialization) verilmediği için tüm ctor'larda değer verilmek zorundadır. Sample sınıfında default ctor içerisinde* `:this` *ctor sentaksı kullanıldığından, dolaylı olarak değer verilmiş olur. Mample sınıfında ise val olarak bildirilmiş x property elemanı için ilkdeğer verildiğinden ctor'lar içerisinde değer verilemez. Test sınıfında ise init bloğu içerisinde val olarak bildirilmiş x property elemanına değer verildiğinden artık ctor'lar içerisinde (aslında hiçbir yerde) değer verilemez*
 
 ```kotlin
 package org.csystem.app
@@ -4596,42 +4633,46 @@ class Circle(radius: Double = 0.0) {
 }
 ```
 
->*Circle sınıfı ve test kodu<br>(Daha profesyonel versiyon)<br>Aşağıdaki örnekte area ve circumference property elemanları için backing field yaratılmaz<br>Not: Circle sınıfı ileride göreceğimiz konular ile daha profesyonel yazılacaktır.<br>Aşağıdaki Circle sınıfının yaklaşık Java karşılığı şu şekildedir:*
+>*Circle sınıfı ve test kodu\
+(Daha profesyonel versiyon)\
+Aşağıdaki örnekte area ve circumference property elemanları için backing field yaratılmaz\
+**_Not:_** Circle sınıfı ileride göreceğimiz konular ile daha profesyonel yazılacaktır.\
+Aşağıdaki Circle sınıfının yaklaşık Java karşılığı şu şekildedir:*
 
 ```java
-    package org.csystem.math.geometry;
+package org.csystem.math.geometry;
 
-    public class Circle {
-        private double m_r;
+public class Circle {
+    private double m_r;
 
-        public Circle()
-        {}
+    public Circle()
+    {}
 
-        public Circle(double r)
-        {
-            setRadius(r);
-        }
-
-        public double getRadius()
-        {
-            return m_r;
-        }
-
-        public void setRadius(double r)
-        {
-            m_r = abs(r);
-        }
-
-        public double getArea()
-        {
-            return PI * m_r * m_r;
-        }
-
-        public double getCircumference()
-        {
-            return 2 * PI * m_r;
-        }
+    public Circle(double r)
+    {
+        setRadius(r);
     }
+
+    public double getRadius()
+    {
+        return m_r;
+    }
+
+    public void setRadius(double r)
+    {
+        m_r = abs(r);
+    }
+
+    public double getArea()
+    {
+        return PI * m_r * m_r;
+    }
+
+    public double getCircumference()
+    {
+        return 2 * PI * m_r;
+    }
+}
 ```
 
 ```kotlin
@@ -4682,7 +4723,9 @@ class Circle(r: Double = 0.0) {
 }
 ```
 
->*Sınıf Çalışması: Bir karmaşık sayıyı temsil eden Complex isimli immutable sınıfı yazınız. Sınıf karmaşık sayının `0 + 0i` sayısına uzaklığı olan Norm bilgisini de verecektir<br>|a + bi| = sqrt(a * a + b * b)*
+>**_Sınıf Çalışması:_** Bir karmaşık sayıyı temsil eden Complex isimli immutable sınıfı yazınız. Sınıf karmaşık sayının `0 + 0i` sayısına uzaklığı olan Norm bilgisini de verecektir.<br></br>
+>`|a + bi| = sqrt(a * a + b * b)`
+><br></br>
 
 ```kotlin
 package org.csystem.app
@@ -4778,7 +4821,7 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Bir paranın yazı gelme olasığını yaklaşık olarak hesaplayan basit bir simülasyon programını yazınız*
+>**_Sınıf Çalışması:_** Bir paranın yazı gelme olasığını yaklaşık olarak hesaplayan basit bir simülasyon programını yazınız.
 
 ```kotlin
 package org.csystem.app
@@ -4813,7 +4856,7 @@ fun coinProbability(count: Int) : Double
 }
 ```
 
->*Sınıf Çalışması: Bir paranın yazı gelme olasığını yaklaşık olarak hesaplayan basit bir simülasyon programını yazınız*
+>**_Sınıf Çalışması:_** Bir paranın yazı gelme olasığını yaklaşık olarak hesaplayan basit bir simülasyon programını yazınız.
 
 ```kotlin
 package org.csystem.app
@@ -4849,7 +4892,7 @@ fun coinProbability(count: Int) : Double
 }
 ```
 
->*Sınıf Çalışması: İki zar atma deneyinde çift (ikisinin aynı olması) gelme olasılığını yaklaşık olarak hesaplayan basit simülasyon programını yazınız*
+>**_Sınıf Çalışması:_** İki zar atma deneyinde çift (ikisinin aynı olması) gelme olasılığını yaklaşık olarak hesaplayan basit simülasyon programını yazınız.
 
 ```kotlin
 package org.csystem.app
@@ -4967,7 +5010,7 @@ fun main()
 }
 ```
 
-**_Anahtar Notlar:_** java.util paketindeki Random sınıfıyla kotlin.random paketindeki Random object'inin içsel algoritmaları aynı olmak zorunda değildir
+**_Anahtar Notlar:_** `java.util` paketindeki Random sınıfıyla kotlin.random paketindeki Random object'inin içsel algoritmaları aynı olmak zorunda değildir.
 
 ```kotlin
 package org.csystem.app
@@ -4993,7 +5036,12 @@ fun main()
 }
 ```
 
->*Kotlin'de `==` ve `!=` operatörleri ile karşılaştırma sırasında ileride daha detaylı olarak ele alacağımız equals metodu override edilmişse bu metot çağrılır ve geri dönüş değerine göre işlem yapar. Yani bu durumda referans karşılaştırması yapmaz. equals metodu override edilmemişse referans karşılaştırması yapar.<br>data sınıflarının equals metodu içerisinde  property elemanlarını `==` işlemine sokacak şekilde otomatik olarak override edildiğinden örnekte `==` operatörü true değer üretir. Yani artık referans karşılaştırması yapmaz.data sınıfları ileride detaylı  olarak ele alınacaktır<br>Aşağıdaki örneği sınıf bildiriminde data anahtar sözcüğünü kaldırarak test ediniz ve sonucu gözlemleyiniz*
+>*Kotlin'de* `==` ve `!=` *operatörleri ile karşılaştırma sırasında ileride daha detaylı olarak ele alacağımız equals metodu override edilmişse bu metot çağrılır ve geri dönüş değerine göre işlem yapar. Yani bu durumda referans karşılaştırması yapmaz. equals metodu override edilmemişse referans karşılaştırması yapar.*
+>
+>*data sınıflarının equals metodu içerisinde property elemanlarını* `==` 
+*işlemine sokacak şekilde otomatik olarak override edildiğinden örnekte* `==` *operatörü true değer üretir. Yani artık referans karşılaştırması yapmaz.data sınıfları ileride detaylı olarak ele alınacaktır.*
+>
+>*Aşağıdaki örneği sınıf bildiriminde data anahtar sözcüğünü kaldırarak test ediniz ve sonucu gözlemleyiniz.*
 
 ```kotlin
 package org.csystem.app;
@@ -5010,9 +5058,10 @@ data class Sample(var value: Int)
 ```
 
 >*Kotlin'de referans karşılaştırmasının kesin olarak yapılabilmesi için iki tane ek eşitlik karşılaştırma operatörleri bulunmaktadır:*
-    
-`===`, `!==`<br>Bu durumda programcı kesinlikle referans karşılaştırması yapmak istiyorsa
-bu operatörleri tercih etmelidir
+>   
+>`===`, `!==`
+>
+>*Bu durumda programcı kesinlikle referans karşılaştırması yapmak istiyorsa bu operatörleri tercih etmelidir.*
 
 ```kotlin
 package org.csystem.app;
@@ -5029,7 +5078,7 @@ fun main()
 data class Sample(var value: Int)
 ```
 
->*Her ne kadar temel türler (yani temel türlere ilişkin sınıflar) için de `===`, `!==` operatörleri kullanılabilse de anlamsız bir durum oluştuğundan bu operatörlerin temel türler için kullanımı deprecated olmuştur*
+>*Her ne kadar temel türler (yani temel türlere ilişkin sınıflar) için de* `===`, `!==` *operatörleri kullanılabilse de anlamsız bir durum oluştuğundan bu operatörlerin temel türler için kullanımı deprecated olmuştur*
 
 ```kotlin
 package org.csystem.app;
@@ -5144,7 +5193,7 @@ fun main()
 }
 ```
 
->*İki yazının aynı olup olmadığı `==` veya `!=` operatörleri ile test edilebilir*
+>*İki yazının aynı olup olmadığı* `==` veya `!=` *operatörleri ile test edilebilir*
 
 ```kotlin
 package org.csystem.app
@@ -5178,7 +5227,7 @@ fun main()
 }
 ```
 
->*String sınıfının toUpperCase metodu Kotlin 1.5 ile birlikte deprecated olmuştur. Bu fonksiyon yerine upperCase fonksiyonu kullanılmalıdır*
+>*String sınıfının toUpperCase metodu* `Kotlin 1.5` *ile birlikte deprecated olmuştur. Bu fonksiyon yerine upperCase fonksiyonu kullanılmalıdır*
 
 ```kotlin
 package org.csystem.app;
@@ -5194,7 +5243,7 @@ fun main()
 }
 ```
 
->*String sınıfının toLowerCase metodu Kotlin 1.5 ile birlikte deprecated olmuştur. Bu fonksiyon yerine lowerCase fonksiyonu kullanılmalıdır*
+>*String sınıfının toLowerCase metodu* `Kotlin 1.5` *ile birlikte deprecated olmuştur. Bu fonksiyon yerine lowerCase fonksiyonu kullanılmalıdır*
 
 ```kotlin
 package org.csystem.app;
@@ -5241,7 +5290,7 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı iki yazıdan birincisi içerisinde ikincisinden kaç tane olduğunu döndüren countString isimli fonksiyonu ignoreCase parametresi de içerecek şekilde yazınız*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı iki yazıdan birincisi içerisinde ikincisinden kaç tane olduğunu döndüren countString isimli fonksiyonu ignoreCase parametresi de içerecek şekilde yazınız.
 
 ```kotlin
 package org.csystem.app;
@@ -5285,7 +5334,11 @@ fun countString(s1: String, s2: String, ignoreCase: Boolean = false) : Int
 }
 ```
 
->*isBlank ve isEmpty fonksiyonları. isBlank fonksiyonu yazının tamamı boşluk (whitespace) karakterlerinden oluşuyorsa true döndürür. isEmpty fonksiyonu yerine s == "" karşılaştırması kullanılabilir*
+>`isBlank` ve `isEmpty` *fonksiyonları. isBlank fonksiyonu yazının tamamı boşluk (whitespace) karakterlerinden oluşuyorsa true döndürür.* `isEmpty` *fonksiyonu yerine:* 
+>
+>`s == ""` 
+>
+>*karşılaştırması kullanılabilir*
 
 ```kotlin
 package org.csystem.app
@@ -5335,7 +5388,7 @@ fun main()
 }
 ```
 
->*String sınıfının tüm karakterleri for döngüsü ile elde edilebilir. Yani String sınıfı "iterable"'dır. Iterable kavramı ileride ele alınacaktır*
+>*String sınıfının tüm karakterleri* `for` *döngüsü ile elde edilebilir. Yani String sınıfı "iterable"'dır. Iterable kavramı ileride ele alınacaktır*
 
 ```kotlin
 package org.csystem.app
@@ -5387,7 +5440,7 @@ fun getRandomTextEN(count: Int, random: Random = Random) : String
 }
 ```
 
->*Anahtar Notlar: Yazılarla işlem yapan, mutable olan ve String sınıfına yardımcı iki tane temel sınıf bulunmaktadır:<br>`StringBuilder, StringBuffer`.<br>Bu sınıflar genel olarak aynıdır. Aralarındaki farklar ileride ele alınacaktır. Farkların sözkonusu olduğu koldar dışında StringBuilder sınıfı kullanılmalıdır. Bu sınıflar içerisinde Char türden dizi tutulduğundan yazı üzerinde değişiklik yapılabilmektedir. Bu sınıflar genel olarak String sınıfının immutable olmasının dezavantajlı olduğu durumlarda kullanılır. StringBuffer sınıfının farkı ileride ele alınacaktır*
+**_Anahtar Notlar:_** Yazılarla işlem yapan, mutable olan ve String sınıfına yardımcı iki tane temel sınıf bulunmaktadır:<br>`StringBuilder, StringBuffer`<br>Bu sınıflar genel olarak aynıdır. Aralarındaki farklar ileride ele alınacaktır. Farkların sözkonusu olduğu koldar dışında `StringBuilder` sınıfı kullanılmalıdır. Bu sınıflar içerisinde Char türden dizi tutulduğundan yazı üzerinde değişiklik yapılabilmektedir. Bu sınıflar genel olarak String sınıfının immutable olmasının dezavantajlı olduğu durumlarda kullanılır. `StringBuffer` sınıfının farkı ileride ele alınacaktır
 
 >*Aşağıdaki örnekte StringBuilder kullanılarak nesne yaratma maliyeti görece ortadan kaldırılmıştır*
 
@@ -5479,7 +5532,7 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
 package org.csystem.app
@@ -5512,7 +5565,7 @@ fun changeCase(s: String) : String
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
 package org.csystem.app
@@ -5545,7 +5598,7 @@ fun changeCase(s: String) : String
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harfleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harfleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
 package org.csystem.app
@@ -5581,7 +5634,7 @@ fun changeCase(s: String) : String
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
 package org.csystem.app
@@ -5602,6 +5655,7 @@ fun runChangeCaseTest()
         println("($str)")
     }
 }
+
 fun changeCase(s: String) : String
 {
     val sb = StringBuilder(s.length)
@@ -5632,7 +5686,9 @@ fun main()
 }
 ```
 
->*Sınıf Çalışması: Parametresi ile aldığı bir yazının baş harfini büyük geri kalan harflerini küçük yapan capitalize isimli fonksiyonu yazınız ve test ediniz<br>Örnek: profesyonel Bir Android Programcısı olmak için çok çalışmak gerekir -> Profesyonel bir android programcısı olmak için çok çalışmak gerekir*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının baş harfini büyük geri kalan harflerini küçük yapan capitalize isimli fonksiyonu yazınız ve test ediniz.
+>
+>**_Örnek:_** profesyonel Bir Android Programcısı olmak için çok çalışmak gerekir -> Profesyonel bir android programcısı olmak için çok çalışmak gerekir.
 
 ```kotlin
 package org.csystem.app
@@ -6025,10 +6081,13 @@ fun foo()
 }
 ```
 
->***Sınıf Çalışması:** Parametresi ile aldığı bir yazının pangram olup olmadığını test eden isPangramT ve isPangramEN fonksiyonlarını yazınız ve aşağıdaki kod ile test ediniz*\
-***Açıklama:** Fonksiyonlar özel isim ve cümle anlamı kontrolü yapmayacaktır*\
-***Türkçe pangram**      : Pijamalı hasta yağız şoföre çabucak güvendi*\
-***İngilizce pangram**   : The quick brown fox jumps over the lazy dog*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının pangram olup olmadığını test eden isPangramT ve isPangramEN fonksiyonlarını yazınız ve aşağıdaki kod ile test ediniz.
+>
+>**_Açıklama:_** Fonksiyonlar özel isim ve cümle anlamı kontrolü yapmayacaktır.
+>
+>**_Türkçe pangram:_** Pijamalı hasta yağız şoföre çabucak güvendi
+>
+>**_İngilizce pangram:_** The quick brown fox jumps over the lazy dog
 
 ```kotlin
 package org.csystem.util.string.kotlin.test
@@ -6071,10 +6130,13 @@ fun runIsPangramENTest()
 }
 ```
 
->***Sınıf Çalışması:** Parametresi ile aldığı bir yazının pangram olup olmadığını test eden isPangramTR ve isPangramEN fonksiyonlarını yazınız ve aşağıdaki kod ile test ediniz*\
->***Açıklama:** Fonksiyonlar özel isim ve cümle anlamı kontrolü yapmayacaktır* \
->***Türkçe pangram      :** Pijamalı hasta yağız şoföre çabucak güvendi* \
->***İngilizce pangram   :** The quick brown fox jumps over the lazy dog*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının pangram olup olmadığını test eden isPangramTR ve isPangramEN fonksiyonlarını yazınız ve aşağıdaki kod ile test ediniz
+>
+>**_Açıklama:_** Fonksiyonlar özel isim ve cümle anlamı kontrolü yapmayacaktır.
+>
+>**_Türkçe pangram:_** Pijamalı hasta yağız şoföre çabucak güvendi
+>
+>**_İngilizce pangram:_** The quick brown fox jumps over the lazy dog
 
 ```kotlin
 package org.csystem.util.string.kotlin.test
@@ -6117,17 +6179,24 @@ fun runIsPangramENTest()
 }
 ```
 
->***Sınıf Çalışması**:Parametresi ile aldığı bir yazının içerisindeki ilk en uzun palindromu döndüren getFirstLongestPalindrome ve son en uzun parlindromu döndüren getLastLongestPalindrome fonksiyonlarını ve aynı fonksiyonların en kısa palindromları döndüren getFirstShortestPalindrome ve getLastShortestPalindrome fonksiyonlarını yazınız. En kısa palindrom en az iki karakterden oluşmalıdır.*\
->***Palindrome:** İçerisinde bulunan yalnızca alfabetik karakterler tersten okunduğunda aynısı olaran yazılardır:*\
->***Örnek:***\
-Ey Edip Adana'da pide ye\
-Anastas mum satsana\
-Ali Papila\
-***İpucu:** Parametresi ile alığı biri yazının paklindrome olup olmadığını test eden örneğin isPalindrome isimli bir fonksiyon yazabilirsiniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının içerisindeki ilk en uzun palindromu döndüren getFirstLongestPalindrome ve son en uzun parlindromu döndüren getLastLongestPalindrome fonksiyonlarını ve aynı fonksiyonların en kısa palindromları döndüren getFirstShortestPalindrome ve getLastShortestPalindrome fonksiyonlarını yazınız. En kısa palindrom en az iki karakterden oluşmalıdır.
+>
+>**_Palindrome:_** İçerisinde bulunan yalnızca alfabetik karakterler tersten okunduğunda aynısı olaran yazılardır:
+>
+>**_Örnek:_**\
+>Ey Edip Adana'da pide ye\
+>Anastas mum satsana\
+>Ali Papila
+>
+>**_İpucu:_** Parametresi ile alığı biri yazının paklindrome olup olmadığını test eden örneğin isPalindrome isimli bir fonksiyon yazabilirsiniz.
 
->***Sınıf Çalışması:** Parametresi ile aldığı bir yazının isogram olup olmadığını test eden isIsogramTR ve isIsogramEN fonksiyonlarını stringUtil.kt içerisinde yazınız ve aşağıdaki kod ile test ediniz*\
-> ***Isogram:** Yazı içerisinde ilgili alfabenin her karakterinden yalnızca bir tane bulunan yazılara denir*\
-> ***Not:** İleride daha iyisi yazılacaktır*
+<br>
+
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının isogram olup olmadığını test eden isIsogramTR ve isIsogramEN fonksiyonlarını `stringUtil.kt` içerisinde yazınız ve aşağıdaki kod ile test ediniz.
+>
+>**_Isogram:_** Yazı içerisinde ilgili alfabenin her karakterinden yalnızca bir tane bulunan yazılara denir.
+>
+>**_Not:_** (İleride daha iyisi yazılacaktır)
 
 ```kotlin
 package org.csystem.util.string.kotlin.test
@@ -6167,7 +6236,7 @@ fun runIsIsogramENTest()
 }
 ```
 
-***Anahtar Notlar:*** Kotlin dosyaları için tipik IDE programlar (IntelliJ Idea, Android Studio, Eclipse vb.) Java dosyalarında olduğu gibi hangi paket içerisinde bulunuyorsa o dizinde bulunur zorunluluğunu uygulamaz. Ancak Kotlin JVM kullanan programcılar genelde Java'daki gibi dosyaları konumlandırırlar
+**_Anahtar Notlar:_** Kotlin dosyaları için tipik IDE programlar (IntelliJ Idea, Android Studio, Eclipse vb.) Java dosyalarında olduğu gibi hangi paket içerisinde bulunuyorsa o dizinde bulunur zorunluluğunu uygulamaz. Ancak Kotlin JVM kullanan programcılar genelde Java'daki gibi dosyaları konumlandırırlar.
 
 >*arrayOf generic fonksiyonu ile bir dizi ilk değer verme sentaksı biçiminde kullanılabilir. Diziler Kotlin'de de dolaşılabilir (iterable) olduğundan for döngü deyimi kullanılabilir*
 
@@ -6247,7 +6316,8 @@ fun main()
 }
 ```
 
->*Dizilerin indices property elemanı `[0, size)` aralığında bir IntRange referansına döner:*\
+>*Dizilerin indices property elemanı* `[0, size)` *aralığında bir IntRange referansına döner:*
+>
 >*Eşdeğer bir döngü:*
 
 ```kotlin
@@ -6272,7 +6342,7 @@ fun main()
 }
 ```
 
->***Sınıf Çalışması:** Parametresi ile aldığı Int türden bir dizinin elemanlarını stdout'a yazdıran write isimli fonksiyonu ve aldığı Int türden count, min ve bound ile random isimli Random türden parametreleri count elemanlı elemanları `[min, bound)` aralığında rasgele değerlerle doldurulmuş bir dizi referansına geri dönen randomIntArray isimli fonksiyonu arrayUtil.kt içerisinde yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir dizinin elemanlarını stdout'a yazdıran write isimli fonksiyonu ve aldığı Int türden count, min ve bound ile random isimli Random türden parametreleri count elemanlı elemanları `[min, bound)` aralığında rasgele değerlerle doldurulmuş bir dizi referansına geri dönen randomIntArray isimli fonksiyonu arrayUtil.kt içerisinde yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
 package org.csystem.util.array.kotlin.test
@@ -6359,8 +6429,9 @@ fun main()
 }
 ```
 
->***Sınıf Çalışması:** Parametresi ile aldığı Long türden bir sayının basamaklarından oluşan diziyi döndüren digits fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz*\
-> ***Not:** Sayı negatif olsa bile basamak değerleri pozitif olacaktır*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Long türden bir sayının basamaklarından oluşan diziyi döndüren digits fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
+>
+>**_Not:_** Sayı negatif olsa bile basamak değerleri pozitif olacaktır.
 
 ```kotlin
 package org.csystem.util.numeric.test
@@ -6386,8 +6457,9 @@ fun runDigitsLongTest()
 }
 ```
 
->***Sınıf Çalışması:** Parametresi ile aldığı Int türden bir sayının basamaklarından oluşan diziyi döndüren digits fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz*\
->***Not:** Sayı negatif olsa bile basamak değerleri pozitif olacaktır*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının basamaklarından oluşan diziyi döndüren digits fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
+>
+>**_Not:_** Sayı negatif olsa bile basamak değerleri pozitif olacaktır.
 
 ```kotlin
 package org.csystem.util.numeric.test
@@ -6413,11 +6485,13 @@ fun runDigitsIntTest()
 }
 ```
 
->***Sınıf Çalışması:** Parametresi ile aldığı 1, 2 veya 3 basamaklı bir sayının Türkçe yazı karşılığını döndüren numToStr3DigitsTR fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı 1, 2 veya 3 basamaklı bir sayının Türkçe yazı karşılığını döndüren numToStr3DigitsTR fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
 >
->***Açıklamalar:***
+>**_Açıklamalar:_**
 >- Fonksiyon basamak sayısı kontrolü yapmayacaktır
 >- Bu fonksiyonun daha geneli yazıldığında private olarak bildirilecektir. Şimdilik bunu görmezden geliniz
+
+<br>
 
 ```kotlin
 package org.csystem.util.numeric.test
@@ -6441,10 +6515,10 @@ fun runNumToStrTest()
 }
 ```
 
->***Sınıf Çalışması:** Parametresi ile aldığı Long türden bir sayıyı 3'erli basamaklara ayırarak bir diziye yerleştiren ve dizinin referansını döndüren digitsInThrees fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Long türden bir sayıyı 3'erli basamaklara ayırarak bir diziye yerleştiren ve dizinin referansını döndüren digitsInThrees fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
 >
-> ***Açıklama:** Negatif sayılar için de dizinin elemanları pozitif olacaktır*\
-> 
+>**_Açıklama:_** Negatif sayılar için de dizinin elemanları pozitif olacaktır.
+
 ```
 1234567 -> 1 234 567
 1       -> 1
@@ -6454,9 +6528,10 @@ fun runNumToStrTest()
 1000000 -> 1 0 0
 ```
 
->***Sınıf Çalışması:** Parametresi ile aldığı Int türden bir sayıyı 3'erli basamaklara ayırarak bir diziye yerleştiren ve dizinin referansını döndüren digitsInThrees fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz*
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayıyı 3'erli basamaklara ayırarak bir diziye yerleştiren ve dizinin referansını döndüren digitsInThrees fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
 >
->***Açıklama:** Negatif sayılar için de dizinin elemanları pozitif olacaktır*
+>**_Açıklama:_** Negatif sayılar için de dizinin elemanları pozitif olacaktır.
+
 ```
 1234567 -> 1 234 567
 1       -> 1
@@ -6466,22 +6541,21 @@ fun runNumToStrTest()
 1000000 -> 1 0 0
 ```
 
->***Sınıf Çalışması:** Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin haftanın hangi gününe geldiğini döndüren getDayOfWeek global fonksiyonunu aşağıdaki açıklamalara uygun olarak yazınız.*
-
->***Açıklama:***\
--Aşağıdaki test kodu ile fonksiyonlarınız için genel bir test yapınız\
--Programda tarih zamana ilişkin sınıflar kullanılmayacaktır.\
--getDayOfWeek fonksiyonu 1.1.1900 tarihinden sonraki tarihler için çalışacaktır.\
--Fonksiyonlar geçersiz bir tarih için -1 değerini döndürecektir\
--Haftanın günü bilgisi, 1.1.1900 ile verilen tarih arasındaki toplam gün sayısı hesaplanıp 7 değerine
-göre modu alınarak bulunabilir. Bu değere göre sıfır pazar, 1 pazartesi, ..., 6 değeri de Cumartesi gününe karşılık gelir\
--Programda dizi kullanılmayacaktır\
--Aşağıdaki fonksiyonların kesinlikle yazılması koşuluyla istediğiniz fonksiyonu ekleyebilirsiniz.\
--Yazılmış fonksiyonlar içerisinde değişiklik yapabilirsiniz. Ancak test etmeniz gerektiğini unutmayınız\
--Çözüm şu ana kadar gördüğümüz konular kullanılarak yapılacaktır\
--String referansına geri dönen fonksiyonlarda String sınıfını kullanmanız gerekmez. String literal oluştururakyapınız\
-
-(İleride daha iyisi yazılacaktır)
+>**_Sınıf Çalışması:_** Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin haftanın hangi gününe geldiğini döndüren getDayOfWeek global fonksiyonunu aşağıdaki açıklamalara uygun olarak yazınız.
+>
+>**_Açıklama:_**
+>- Aşağıdaki test kodu ile fonksiyonlarınız için genel bir test yapınız.
+>- Programda tarih zamana ilişkin sınıflar kullanılmayacaktır.
+>- getDayOfWeek fonksiyonu 1.1.1900 tarihinden sonraki tarihler için çalışacaktır.
+>- Fonksiyonlar geçersiz bir tarih için -1 değerini döndürecektir.
+>- Haftanın günü bilgisi, 1.1.1900 ile verilen tarih arasındaki toplam gün sayısı hesaplanıp 7 değerine göre modu alınarak bulunabilir. Bu değere göre sıfır pazar, 1 pazartesi, ..., 6 değeri de Cumartesi gününe karşılık gelir.
+>- Programda dizi kullanılmayacaktır.
+>- Aşağıdaki fonksiyonların kesinlikle yazılması koşuluyla istediğiniz fonksiyonu ekleyebilirsiniz.
+>- Yazılmış fonksiyonlar içerisinde değişiklik yapabilirsiniz. Ancak test etmeniz gerektiğini unutmayınız.
+>- Çözüm şu ana kadar gördüğümüz konular kullanılarak yapılacaktır.
+>- String referansına geri dönen fonksiyonlarda String sınıfını kullanmanız gerekmez. String literal oluştururakyapınız.
+>
+>(İleride daha iyisi yazılacaktır)
 
 ```kotlin
 package org.csystem.app
@@ -6652,26 +6726,26 @@ fun isValidDate(day: Int, month: Int, year: Int) = day in 1..31 && month in 1..1
 fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0
 ```
 
-**Kotlin'de erişim belirleyiciler iki kategoriye ayrılırlar:**
-
-**Global düzeyde erişim belirleyiciler:**
-- Hiçbir şey yazmamak default erişimdir. public'dir
-- public: Bir global elemanın dosyası dışından da erişilebilmesi demektir
-- internal: Module düzeyinde erişimdir. İleride ele alınacak
-- private: Yalnızca kendi dosyası içerisinde erişilebilirdir
-
-**Sınıf elemanlarının erişim belirleyicileri:**
-- Hiçbir şey yazmamak default erişimdir. public'dir
-- public: Sınıf dışından da erişilebilirdir
-- internal: Modül düzeyinde erişimdir
-- protected: Yalnızca türemiş sınıflar erişebilir
-- private: Yalnızca kendi sınıfı içerisinde erişilebilir elemanlardır
-
+>**Kotlin'de erişim belirleyiciler iki kategoriye ayrılırlar:**
+>
+>**Global düzeyde erişim belirleyiciler:**
+>- Hiçbir şey yazmamak default erişimdir. public'dir
+>- public: Bir global elemanın dosyası dışından da erişilebilmesi demektir
+>- internal: Module düzeyinde erişimdir. İleride ele alınacak
+>- private: Yalnızca kendi dosyası içerisinde erişilebilirdir
+>
+>**Sınıf elemanlarının erişim belirleyicileri:**
+>- Hiçbir şey yazmamak default erişimdir. public'dir
+>- public: Sınıf dışından da erişilebilirdir
+>- internal: Modül düzeyinde erişimdir
+>- protected: Yalnızca türemiş sınıflar erişebilir
+>- private: Yalnızca kendi sınıfı içerisinde erişilebilir elemanlardır
+>
 >*Kotlin'de Java'da ki gibi pakete özgü (package private) erişim belirleyiciler yoktur. Kotlin'de bu durum modül (module) düzetinde ele alınmıştır. Module kavramı ileride ele alınacaktır*
-
+>
 >*Kotlin'deki enum türü Java'dakine çok benzer.*
 
-***Anahtar Notlar:*** enum kullanımı Android programlamada bazı durumlarda performası olumsuz yönde etkileyebilir. Bu tip durumlar ileride ela alınacaktır
+**_Anahtar Notlar:_** enum kullanımı Android programlamada bazı durumlarda performası olumsuz yönde etkileyebilir. Bu tip durumlar ileride ela alınacaktır.
 
 >*enum türleri enum ve class anahtar sözcükleri ile bildirilir. enum sabitleri (enum constants) ait oldukları enum türünden referanslardır. Şüphesiz bu referanslar da aynı enum türünden yaratılmış olan nesnelerin adreslerini tutarlar*
 
@@ -6907,7 +6981,7 @@ enum class DeviceRepository {
 }
 ```
 
-***Anahtar Notlar:*** Kotlin'de sınıfların private property elemanlarını Java'daki gibi `m_` ile değil, `m` öneki ile başlatacağız
+**_Anahtar Notlar:_** Kotlin'de sınıfların private property elemanlarını Java'daki gibi `m_` ile değil, `m` öneki ile başlatacağız.
 
 #### Nesne yönelimli programlamanın temel ilkeleri:
 
@@ -6923,9 +6997,9 @@ Sınıflararası ilişkiler aslında nesneler arasındaki ilişkiler olarak dü�
 
 Nesne yönelimli programlama tekniği kullanılarak geliştirilecek bir projenin kodlama aşamasına gelindiğinde önce sınıflar ve aralarındaki ilişkiler belirlenir. Sonra kodlamaya geçilir. İlişkiler belirlenirken sınıfların ve nesnelerin konuya (domain) ilişkin durumları düşünülür.
 
-***Anahtar Notlar:*** Bir projenin müşteri ile görüşülmesinden (ihtiyaçların belirlenmesi) teslimine (deployment) kadar geçen sürecin çeşitli şemalarla anlatılmasını sağlayan UML (Unified Modeling Language) denilen bir araç bazı durumlarda kullanılabilmektedir. Bu aracın önemli ve geliştiricileri ilgilendiren şemalarından birisi "sınıf şemaları (class diagrams)"'dır. Bu, kodlamaya yönelik ve kodlamaya başlamadan önce yapılan bir şemadır. Bu şemada sınıfların detayları ve aralarındaki ilişkiler çizilir. UML her zaman ve her detayıyla kullanılmalı mıdır? Bunun için verilebilecek cevap nettir: Hayır. Gerekiğinde ve gerektiği kadarı kullanılmalıdır.
+**_Anahtar Notlar:_** Bir projenin müşteri ile görüşülmesinden (ihtiyaçların belirlenmesi) teslimine (deployment) kadar geçen sürecin çeşitli şemalarla anlatılmasını sağlayan UML (Unified Modeling Language) denilen bir araç bazı durumlarda kullanılabilmektedir. Bu aracın önemli ve geliştiricileri ilgilendiren şemalarından birisi "sınıf şemaları (class diagrams)"'dır. Bu, kodlamaya yönelik ve kodlamaya başlamadan önce yapılan bir şemadır. Bu şemada sınıfların detayları ve aralarındaki ilişkiler çizilir. UML her zaman ve her detayıyla kullanılmalı mıdır? Bunun için verilebilecek cevap nettir: Hayır. Gerekiğinde ve gerektiği kadarı kullanılmalıdır.
 
-***Anahtar Notlar:*** Kavram ya da kavramlar modellenirken genel durumlar düşünülür. İstisna niteliğinde olabilecek durumlar modelleme yapılırken - genel olarak - göz önünde bulundurulmaz. Aksi durumda hiçbir şey modellenemez. Örneğin, araba ile motoru arasındaki ilişki için şu durumlar söyleniyor olsun:
+**_Anahtar Notlar:_** Kavram ya da kavramlar modellenirken genel durumlar düşünülür. İstisna niteliğinde olabilecek durumlar modelleme yapılırken - genel olarak - göz önünde bulundurulmaz. Aksi durumda hiçbir şey modellenemez. Örneğin, araba ile motoru arasındaki ilişki için şu durumlar söyleniyor olsun:
 1. Araba nesnesine ait olan motor nesnesi başka bir araba nesnesi veya başka bir nesne tarafından kullanılamaz
 2. Araba nesnesine ait motor nesnesinin ömrü hemen hemen araba ile başlayıp, araba ile son bulur.
 Burada örneğin ikinci madde bazı durumlarda gerçekleşmeyebilir. Ama bu ilişkinin genel durumunu bozmaz.
@@ -6942,9 +7016,11 @@ Bir kodun derlenebilmesi için başka bir bildirimin var ve erişilebilir olmas�
 3. ***Çağrışım (Association):*** A nesnesinin B nesnesini ihtiyacı olduğunda kullanması, saklamaması ilişkisidir. Yani bütünsel bir kullanım yoktur. Bu kullanıma "parçalı (partial) kullanım" da denir.
 4. ***Türetme/Kalıtım (Inheritance) (is a):*** Biyoloji'den programlamaya aktarılmıştır. Biyoloji'de kalıtım ebeveynin (parent) özelliklerinin çocuğuna (child) aktarılmasıdır. Programlamaya ilişkin detayları ileride ele alınacaktır.
 
-***Anahtar Notlar:*** Yukarıdaki ilişkilerden "inheritance" dışında kalan ilişkiler için Kotlin'de doğrudan sentaks ve semantik kurallar yoktur. Dilin genel sentaks ve semantic kuralları ile ilişkinin kuralları doğrultusunda gerçekleştirilebilir (implementation). Ancak "inheritnace" için Kotlin'de ayrı sentaks ve semantik kurallar ayrıdır.
+**_Anahtar Notlar:_** Yukarıdaki ilişkilerden "inheritance" dışında kalan ilişkiler için Kotlin'de doğrudan sentaks ve semantik kurallar yoktur. Dilin genel sentaks ve semantic kuralları ile ilişkinin kuralları doğrultusunda gerçekleştirilebilir (implementation). Ancak "inheritnace" için Kotlin'de ayrı sentaks ve semantik kurallar ayrıdır.
 
-***Anahtar Notlar:*** Bazı sınıfların implementasyonları gereği yukarıdaki ilişkilerden hiçbirisi olmayabilir. Ya da bazı özel durumlar dolayısıyla da yukarıdaki ilişkilerden biri olmayabilir. Ama ortada yine bir bağımlılık (dependency) söz konusudur. Bu da yine genel durumu bozmaz. Böylesi durumlar ileride ele alıncaktır
+**_Anahtar Notlar:_** Bazı sınıfların implementasyonları gereği yukarıdaki ilişkilerden hiçbirisi olmayabilir. Ya da bazı özel durumlar dolayısıyla da yukarıdaki ilişkilerden biri olmayabilir. Ama ortada yine bir bağımlılık (dependency) söz konusudur. Bu da yine genel durumu bozmaz. Böylesi durumlar ileride ele alıncaktır
+
+<br>
 
 >*A ile B arasındaki composition (has a) ilişkisi*
 
@@ -7043,7 +7119,7 @@ class B {
 
 >*Car, Engine, Plane, Driver ve Pilot sınıfları arasındaki ilişkiler*
 
-***Anahtar Notlar:*** Kotlin'de referans dizileri Array generic sınıfının bir açılımı olarak bildirilir. Bu konu ileride ele alınacaktır. Örnekte yalnızca sınıflararası ilişkilere odaklanınız
+**_Anahtar Notlar:_** Kotlin'de referans dizileri Array generic sınıfının bir açılımı olarak bildirilir. Bu konu ileride ele alınacaktır. Örnekte yalnızca sınıflararası ilişkilere odaklanınız.
 
 ```kotlin
 package org.csystem.app
@@ -7270,21 +7346,21 @@ class Person(var name: String, var no: Int)
 ```
 
 >*Türetme/Kalıtım (Inheritance) kavramı programlamada bir sınıfı kodlarına dokunmadan ve/veya kodlarını kopyalamadan genişletmek (extension) için kullanılır. Burada genişletme var olan özelliklere ekleme olarak düşünülebilir. Bu ilişkide B sınıfı A sınıfından türetilmişse "B is an A" cümlesi geçerli olur.*
-
+>
 >*B sınıfı A sınıfından türetilmiş olsun. B sınıfına A sınıfının bir türemiş sınıfı (derived class) denir. A sınıfına da B sınıfının taban sınıfı (base class) denir. Bu iki terim nesne yönelimli programlama tekniğine ilişkin genel terimlerdir. Kotlin'de ve Java'da "base class" yerine "super class", "derived class" yerine de "sub class" terimleri daha çok kullanılır.*
 
-***Anahtar Notlar:*** Nesne yönelimli programlamda "base class" yerine Biyoloji'den gelen terim olan "parent class", "derived class" yerine de yine Biyoloji'den gelen "child class" terimleri de kullanılır.
+**_Anahtar Notlar:_** Nesne yönelimli programlamda "base class" yerine Biyoloji'den gelen terim olan "parent class", "derived class" yerine de yine Biyoloji'den gelen "child class" terimleri de kullanılır.
 
 >*Bir dizi türetme söz konusu olabilir. Örneğin C sınıfı B sınıfından, B sınıfı da A sınıfından türetilmiş olsun. Bu durumda C'nin taban sınıfı (super class) dendiğinde doğrudan taban sınıf (direct super class) olan B sınıfı anlaşılır. Bu hiyerarşide A sınıfı C'nin dolaylı taban sınıfıdır (indirect super class.) Örneğimizde "C nin taban sınıfları B ve A'dır" cümlesi teknik olarak doğru değildir. Doğrusu "C'nin taban sınıfı B'dir, dolaylı taban sınıflarından biri A'dır" cümlesidir.*
-
+>
 >*Kotlin'de ve Java'da bir sınıf birden fazla (doğrudan) taban sınıfa sahip olamaz. Yani çoklu türetme (multiple inheritance) yoktur. Bir sınıf yalnızca tek bir sınıftan türetilebilir.*
 
-***Anahtar Notlar:*** Kotlin'de ve Java'da çoklu türetmenin gerektiği yerlerde kısmi (partial) olarak desteklenmesini sağlayan "interface" denilen bir tür bulunmaktadır. Çoklu türetmenin pratikteki gerekliliği "interface"'ler ile karşılanabilmektedir. "interface" konusu ileride ele alınacaktır.
+**_Anahtar Notlar:_** Kotlin'de ve Java'da çoklu türetmenin gerektiği yerlerde kısmi (partial) olarak desteklenmesini sağlayan "interface" denilen bir tür bulunmaktadır. Çoklu türetmenin pratikteki gerekliliği "interface"'ler ile karşılanabilmektedir. "interface" konusu ileride ele alınacaktır.
 
 >*Türetme kavramı programlamada "bir sınıfın kodlarına dokunmadan o sınıfı genişletmek" anlamına gelir. Bu da OCP'nin "open for extension closed for modification" mottosuna uygun olduğunu gösterir*
-
+>
 >*Anımsanacağı gibi Java'da bir sınıf final anahtar sözcüğü ile bildirilmemişse türetmeye açıktır. Yani bu durumda Java'da bir sınıf default olarak türetmeye açıktır denebilir. Ancak Kotlin'de bir sınıf default olarak türetmeya açık değildir. Bir sınıfın türtilebilir olması yani türetmeye açık olması için open anahtar sözcüğü ile bildirilmesi gerekir*
-
+>
 >*Türetme işlemi : atomu ile yapılır*
 
 ```kotlin
@@ -7325,13 +7401,13 @@ open class A {
 }
 ```
 
->*Anımsanacağı gibi Java'da (dolayısıyla Kotlin JVM'de) bir nesnenin yaratılması adımları şunlardır:*\
-    *1. Bellekte yer ayrılır*\
-    *2. non-static olan ve final olmayan veri elemanlarına default değerler atanır.*\
-    *3. ctor çağrılır*
-
+>*Anımsanacağı gibi Java'da (dolayısıyla Kotlin JVM'de) bir nesnenin yaratılması adımları şunlardır:*
+>1. Bellekte yer ayrılır
+>2. non-static olan ve final olmayan veri elemanlarına default değerler atanır
+>3. ctor çağrılır
+>
 >*Bir nesnenin yartılmasının tamamlanması yani adresinin elde edilmesi bu 3 adımın düzgün bir biçimde tamamlanmasıyla olur. Bu adımlar herhangi birinde problem olursa nesne yaratılmamış olur. Örneğin ctor'da bir exception oluştuğunda nesne yaratılması adımları düzgün bir biçimde tamamlanmadığı için nesne yaratılmış olmaz*
-
+>
 >*Türemiş sınıf içerisinde taban sınıfın ctor'unun çağrılması durumu. Aşağıdaki örnekte taban sınıfın default ctor'u kullanılarak türetme yapıldığından B'nin mutlaka primary olarak default ctor'u olmalıdır*
 
 ```kotlin
@@ -7683,8 +7759,9 @@ class B {
 }
 ```
 
->*Aralarında türetme ilişkisi olmayan sınıflar türünden iki referans as operatörü ile birbirine doğrudan atanabilir. \
->Aşağıdaki kodda exception oluşur. as operatörü ileride detaylı olarak incelenecektir*
+>*Aralarında türetme ilişkisi olmayan sınıflar türünden iki referans as operatörü ile birbirine doğrudan atanabilir.*
+>
+>*Aşağıdaki kodda exception oluşur. as operatörü ileride detaylı olarak incelenecektir*
 
 ```kotlin
 package org.csystem.app
@@ -7847,8 +7924,11 @@ Referansın static türü bildirildiği türdür. Derleme zamanına (compile tim
 
 >*Referansın dinamik türü ise referansın gösterdiği nesnenin bellekte yaratıldığı gerçek türüdür*
 
-***Anahtar Notlar:*** Java'da bir referansın dinamik tür bilgisi "fully qualified" olarak şu şekilde elde edilebilir: `<referans>.getClass().getName()`
-Bunun Kotlin karşılığı: `<referans>.javaClass.name` biçimindedir 
+**_Anahtar Notlar:_** Java'da bir referansın dinamik tür bilgisi "fully qualified" olarak şu şekilde elde edilebilir:\
+`<referans>.getClass().getName()`<p>
+Bunun Kotlin karşılığı:\
+`<referans>.javaClass.name`<p>
+biçimindedir.
 
 >*Bir referansın dinamik türü o referansın çalışma zamanı sırasında bellekte gösterdiği gerçek nesnenin türüdür*
 
@@ -8032,19 +8112,20 @@ fun main()
 }
 ```
 
->*Anımsanacağı gibi bir referansın dinamik türünün bir türü kapsayıp kapsamadığı instanceof operatörü ile test edilebilir. Bu operatör "downcasting" işleminin güvenli bir biçimde yapılabilmesi için kullanılır. Kotlin'de bu işlem `is` ve `!is` operatörü ile yapılabilir. `is` operatörü instance of operatörüne karşılık gelir. `!is` operatörü de Java'da aşağıdaki bir kontrolün karşılığı olarak düşünülebilir:*
+>*Anımsanacağı gibi bir referansın dinamik türünün bir türü kapsayıp kapsamadığı instanceof operatörü ile test edilebilir. Bu operatör "downcasting" işleminin güvenli bir biçimde yapılabilmesi için kullanılır. Kotlin'de bu işlem* `is` ve `!is` *operatörü ile yapılabilir.* `is` *operatörü instance of operatörüne karşılık gelir.* `!is` *operatörü de Java'da aşağıdaki bir kontrolün karşılığı olarak düşünülebilir:*
 
-```
+```java
 if (!(a instanceof T))
-            ...
-     Kotlin'deki karşılığı:
-        if (a !is T)
-            ...
 ```
 
->*Bu operatörün kullanımına ilişkin bazı  detaylar ileride ele alınacaktır*
+*Kotlin'deki karşılığı:*
+```kotlin
+if (a !is T)
+```
 
->*is operatörü*
+*Bu operatörün kullanımına ilişkin bazı  detaylar ileride ele alınacaktır*
+
+>`is` *operatörü*
 
 ```kotlin
 package org.csystem.app
@@ -8109,7 +8190,7 @@ class E : C() {
 }
 ```
 
->*!is operatörü*
+>`!is` *operatörü*
 
 ```kotlin
 package org.csystem.app
@@ -8241,7 +8322,7 @@ class E : C() {
 
 >*Any türünden bir dizide heterojen türler tutulabilir. is operatörü ile de dinamik tür kontrolü yapılabilir*
 
-***Anahtar Notlar:*** Kotlin'de referans dizileri Array isimli generic bir sınıf ile yaratılabilir. Bu konu ileride ele alınacaktır.
+**_Anahtar Notlar:_** Kotlin'de referans dizileri Array isimli generic bir sınıf ile yaratılabilir. Bu konu ileride ele alınacaktır.
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -8351,22 +8432,22 @@ fun createRandomAnyArray(count: Int, random: Random = Random) : Array<Any>
 ### Polymorphism (çok biçimlilik):
 
 >*Biyolojiden programlamaya aktarılmıştır. Biyoloji'de "polymorphism", farklı doku ya da organların evrim süreci içerisinde temel hedefleri aynı kalması koşuluyla o hedefe nasıl ulaşılacağının değişebilmesidir.*
-
+>
 >*Aslında polymorphism ikiye ayrılır: run time polymorphism, compile time polymorphism. Bu bölümde anlatılan ve Biyoloji'den gelen "runtime polymophism"'dir. Polymorphism dendiğinde "runtime polymorphism" anlaşılır. Compile time polymorphism Kotlin'de "generic"'ler ile gerçekleştirilir. Bu konu ileride ele alınacaktır*
-
+>
 >*Çok biçimliliğin programlama açısından 3(üç) tane tanımından bahsedilebilir:*
 >1. *Biyolojik Tanım: Taban sınıfın bir fonksiyonunun türemiş sınıfta yeniden gerçekleştirilmesi (implementation)
 >2. *Yazılım Mühendisliği Tanımı: Türden bağımsız kod yazmak*
 >3. *Aşağı Seviyeli Tanım: Önceden yazılmış kodların sonradan yazılmış kodları çağırabilmesi*
-
+>
 >*Çok biçimlilik sanal metotlar (virtual method) kullanılarak gerçekleştirilir. Kotlin'de bir metodun sanal olması için "open" anahtar sözcüğü ile bildirilmesi gerekir. Ayrıca türemiş sınıfta override edilen metot için de override anahtar sözcüğü kullanılmalıdır. open ile bildirilmiş sanal bir metodun türemiş sınıfta override edilmesi zorunlu değildir*
 
-***Anahtar Notlar:*** Java'da non-static olan, final olmayan veya abstract olarak bildirilmiş bir metot sanaldır. Kotlin'de ise bir metodun sanal olması programcı tarafından bildirilmelidir. private metotlar sanal olamazlar
+**_Anahtar Notlar:_** Java'da non-static olan, final olmayan veya abstract olarak bildirilmiş bir metot sanaldır. Kotlin'de ise bir metodun sanal olması programcı tarafından bildirilmelidir. private metotlar sanal olamazlar.
 
-***Anahtar Notlar:*** Global fonksiyonlar sanal olamazlar
+**_Anahtar Notlar:_** Global fonksiyonlar sanal olamazlar
 
 >*Derleyici sanal bir metot çağrısı gördüğünde şu şekilde bir kod üretir: Derleme zamanında referansın dinamik türüne bak, dinamik türe ilişkin sınıfta sanal metot override edilmişse onu çağır. Edilmemişse sırasıyla taban sınıfına ve dolaylı sınıflarına da bak ilk bulduğun metodu çağır*
-
+>
 >*Aşağıdaki örneği çalıştırıp sonucu gözlemleyiniz*
 
 ```kotlin
@@ -8509,7 +8590,7 @@ open class C : B() {
 
 ```
 
-***Anahtar Notlar:*** print ve println metotlarının `Any?` parametreli overload'ları toString metodunu çağırırlar ve elde edilen yazıyı stdout'a basarlar
+**_Anahtar Notlar:_** print ve println metotlarının `Any?` parametreli overload'ları toString metodunu çağırırlar ve elde edilen yazıyı stdout'a basarlar.
 
 >*Any sınıfının toString metodu nesneye yönelik tekil bir yazıya döner. Bu yazının nasıl elde edildiğinin programcı açısından önemi yoktur*
 
@@ -8580,7 +8661,7 @@ fun main()
 }
 ```
 
->*Any sınıfının equals metodu bir sınıf türünden nesnelerin eşitlik karşılaştırması için kullanılır. Bu durumda bu metot sınıfa özgü olarak override edilir. Bu metot aynı zamanda o sınıf referansların `==` ve `!=` operatörleri ile kullanıldıklarında da çağrılır.\
+>*Any sınıfının equals metodu bir sınıf türünden nesnelerin eşitlik karşılaştırması için kullanılır. Bu durumda bu metot sınıfa özgü olarak override edilir. Bu metot aynı zamanda o sınıf referansların `==` ve `!=` operatörleri ile kullanıldıklarında da çağrılır.
 >
 >Proje içerisindeki sınıfları ve equals metotlarını inceleyiniz*
 
@@ -8599,12 +8680,12 @@ fun main()
 }
 ```
 
-***Anahtar Notlar:*** Temel türlere ilişkin sınıfların (Short, Int, Long, Byte, Float, Double, Boolean, Char) toString ve equals metotları da override edilmiştir. toString metotları ilgili değerin yazı karşılığına geri döner.
+**_Anahtar Notlar:_** Temel türlere ilişkin sınıfların (Short, Int, Long, Byte, Float, Double, Boolean, Char) toString ve equals metotları da override edilmiştir. toString metotları ilgili değerin yazı karşılığına geri döner.
 
 >*Bazı sınıflar bir kavramın soyut halini temsil ederler. Tek başlarına nesne olmalarının anlamı yoktur. Ondan türeyen sınıfların anlamı vardır. Bu tarz sınıflar abstract olarak bildirilirler. Bu anlamda bu sınıfların bazı metotlarının kodlarının da yani gövdesinin olması anlamsızdır. Bu durumda metot abstract olarak bildirilir. abstract metotların gövdeleri olmaz ve sanal metotlardır. Bu durumda abstract sınıf bir sınıf gören programcı o sınıfın abstract metotlarının olabileceğini ve somut (concrete) bir sınıf türetmek için o abstract metotları da override etmesi gerektiğini anlar. Ya da abstract bir sınıftan türetilmiş abstract olmayan (concrete) bir sınıf gördüğünde taban sınıfının tüm abstract metotlarını override ettiğini anlar*
 
->***abstract sınıflar ve metotlar**\
-abstract sınıf türünden nesne programcı tarafından yaratılamaz. En az bir tane abstract metodu olan bir sınıf abstract olarak bildirilmelidir. abstract metotlar sanaldır*
+>**abstract sınıflar ve metotlar**\
+>*abstract sınıf türünden nesne programcı tarafından yaratılamaz. En az bir tane abstract metodu olan bir sınıf abstract olarak bildirilmelidir. abstract metotlar sanaldır*
 
 ```kotlin
 package org.csystem.app
@@ -8835,7 +8916,7 @@ abstract class A {
 }
 ```
 
-***Anahtar Notlar:*** Yukarıdaki örneklerden de anlaşılacağı gibi taban sınıftaki property elemanı read-write anlamında yükseltilebilir, ancak düşürülemez
+**_Anahtar Notlar:_** Yukarıdaki örneklerden de anlaşılacağı gibi taban sınıftaki property elemanı read-write anlamında yükseltilebilir, ancak düşürülemez
 
 >**Data classes (Veri Sınıfları):** \
 >Bir sınıf data anahtar sözcüğü ile bildirildiğinde o sınıfın primary ctor elemanı olmak zorundadır. Bu ctor elemanında belirtilen parametreler ya val ya da var olarak bildirilmelidir. Yani data sınıflarının primary ctor elemanlarında property'ler bildirilmelidir. data sınıfları içerisinde bir takım metotlar otomatik olarak override edilmektedir. Örneğin toString metodu her bir property elemanı için toString metodunu çağırarak yazıyı oluşturur*
@@ -9032,7 +9113,7 @@ fun createPerson(name: String, id:Int) = Person(id, name, "veli","mecidiyeköy")
 ```
 
 
->*Parçalama işleminde alınması istenmeyen ara parçalar için `_` karakteri kullanılabilir*
+>*Parçalama işleminde alınması istenmeyen ara parçalar için* `_` *karakteri kullanılabilir*
 
 ```kotlin
 package org.csystem.app
@@ -9049,8 +9130,9 @@ data class Person(val id:Int, var name:String, var surname:String, var address: 
 fun createPerson(name: String, id:Int) = Person(id, name, "veli","mecidiyeköy")
 ```
 
->***Sınıf Çalışması:** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız*\
-*Aşağıdaki örneği inceleyiniz:*
+>**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+
+>*Aşağıdaki örneği inceleyiniz:*
 
 ```kotlin
 package org.csystem.app.math.equation.quadratic
@@ -9106,8 +9188,7 @@ fun solveQuadraticEquation(a: Double, b: Double, c: Double) : QuadraticEquationR
 }
 ```
 
-
->***Sınıf Çalışması:** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.*
+>**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
 
 >*Programcı data sınıfları için primary ctor'da bildirmediği property elemanları için de componentN fonksiyonlarını yazabilir. Bu fonksiyonlar aslında operatör fonksiyonu olduğundan operator anahtar sözcüğü ile bildirilmelidir. Aksi durumda fonksiyon operatör fonksiyonu olmaz. Bu durumda parçalama yapılamaz*
 
@@ -9276,7 +9357,7 @@ fun main()
 class Person
 ```
 
->*Kotlin'de T bir tür olmak üzere `T?` nullable type olarak adlandırılır*
+>*Kotlin'de T bir tür olmak üzere* `T?` *nullable type olarak adlandırılır*
 
 ```kotlin
 package org.csystem.app
@@ -9315,7 +9396,7 @@ fun main()
 }
 ```
 
->*Kotlin'de nullable bir referans ile `?.` operatörü kullanılarak elemanlara erişilebilir*
+>*Kotlin'de nullable bir referans ile* `?.` *operatörü kullanılarak elemanlara erişilebilir*
 
 ```kotlin
 package org.csystem.app
@@ -9328,7 +9409,7 @@ fun main()
 }
 ```
 
->*`?.` operatörünün kullanımında  hiç bir zaman NullPointerException (NPE) fırlatılmasına yol açmaz.* 
+>`?.` *operatörünün kullanımında  hiç bir zaman NullPointerException (NPE) fırlatılmasına yol açmaz.* 
 >
 >*Aşağıdaki örneği inceleyiniz:*
 
@@ -9374,7 +9455,7 @@ fun main()
 fun randomText(random: Random = Random) = if (random.nextBoolean()) getRandomTextEN(10) else null
 ```
 
->*Aşağıdaki örnekte if deyiminin doğru kısmında a'nın null olamayacağını derleyici anlamış smart cast yapılmıştır*
+>*Aşağıdaki örnekte* `if` *deyiminin doğru kısmında a'nın null olamayacağını derleyici anlamış smart cast yapılmıştır*
 
 ```kotlin
 package org.csystem.app
@@ -9453,7 +9534,7 @@ class B : A() {
 }
 ```
 
-> *`!!` operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir*
+> `!!` *operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir*
 
 ```kotlin
 package org.csystem.app
@@ -9467,7 +9548,7 @@ fun main()
 }
 ```
 
->*`!!` operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz*
+>`!!` *operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz*
 
 ```kotlin
 package org.csystem.app
@@ -9504,7 +9585,7 @@ class B : A() {
 }
 ```
 
->*kotlin.io paketi içerisinde bulunan readLine fonksiyonu String? türüne geri döner*
+>`kotlin.io` *paketi içerisinde bulunan readLine fonksiyonu String? türüne geri döner*
 
 ```kotlin
 package org.csystem.app
@@ -9518,7 +9599,7 @@ fun main()
 }
 ```
 
->*`!!` operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz*
+>`!!` *operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz*
 
 ```kotlin
 package org.csystem.app
@@ -9846,9 +9927,9 @@ class Operation(val a: Int) {
 }
 ```
 
->***Anahtar Notlar:*** *Her iki parametreli fonksiyon infix fonksiyon olarak yazılmalı mıdır? Bu tamamen fonksiyona bağlıdır. Gereksiz yere infix fonksiyon yazmak veya infix olması iyi bir tasarım olan fonksiyonu infix yapmamak kötü teknik olarak düşünülebilir*
+**_Anahtar Notlar:_** Her iki parametreli fonksiyon infix fonksiyon olarak yazılmalı mıdır? Bu tamamen fonksiyona bağlıdır. Gereksiz yere infix fonksiyon yazmak veya infix olması iyi bir tasarım olan fonksiyonu infix yapmamak kötü teknik olarak düşünülebilir.
 
->***Operatör Fonksiyonları:** Anımsanacağı gibi Kotlin'de hemen hemen tüm operatörler bir fonksiyona karşılık gelir. Temel türlere ilişkin çeşitli operatör fonksiyonlar tanımlanmıştır. Programcı bildirdiği bir sınıf için de anlamlı olan operatörlere ilişkin fonksiyonları yazabilir. Örneğin Strşng sınıfının + operatörüne ilişkin plus fonksiyonları ile "string concat" yapılabilmektedir. Yine benzer şekilde equals fonksiyonu override edildiği için Strinbg'lerin özdeşlik karşılaştırması == ve != operatörleri ile yapılabilmektedir. Hatta bu anlamda Java'da yazılmış olan ve equals metodunu override eden sınıflar türünden nesnelerin mantıksal eşitlik karşılıkları == ve != operatörleri ile yapılabilmektedir.*
+>**_Operatör Fonksiyonları:_** Anımsanacağı gibi Kotlin'de hemen hemen tüm operatörler bir fonksiyona karşılık gelir. Temel türlere ilişkin çeşitli operatör fonksiyonlar tanımlanmıştır. Programcı bildirdiği bir sınıf için de anlamlı olan operatörlere ilişkin fonksiyonları yazabilir. Örneğin String sınıfının `+` operatörüne ilişkin plus fonksiyonları ile "string concat" yapılabilmektedir. Yine benzer şekilde equals fonksiyonu override edildiği için Strinbg'lerin özdeşlik karşılaştırması `==` ve `!=` operatörleri ile yapılabilmektedir. Hatta bu anlamda Java'da yazılmış olan ve equals metodunu override eden sınıflar türünden nesnelerin mantıksal eşitlik karşılıkları `==` ve `!=` operatörleri ile yapılabilmektedir.
 
 >*Programcı yazdığı sınıfa operatör fonksiyonlarını anlamsız olacak şekilde eklememelidir. Örneğin bir tarih işlemi yapan sınıf yazıldığında iki tarihin toplanması anlamsızdır ancak birbirinden çıkartılması anlamlıdır. Bu durumda programcı bu sınıf için minus operatör fonksiyonuu yazar ancak plus operatör fonksiyonunu yazmaz*
 
@@ -10012,7 +10093,7 @@ fun main()
 }
 ```
 
->*`++` (inc) ve `--`(dec) operatör fonksiyonları yazılırken nesne için artırma/azaltma yapılmamalıdır. Artırılmış/azaltılmış yeni bir nesnenin referansına dönülmelidir. Derleyici uygun kodları üreterek bu operatörlerin prefix ve postfix olarak doğru kullanılmalarını sağlar*
+>`++` (inc) ve `--`(dec) *operatör fonksiyonları yazılırken nesne için artırma/azaltma yapılmamalıdır. Artırılmış/azaltılmış yeni bir nesnenin referansına dönülmelidir. Derleyici uygun kodları üreterek bu operatörlerin prefix ve postfix olarak doğru kullanılmalarını sağlar*
 
 ```kotlin
 package org.csystem.app
@@ -10086,7 +10167,7 @@ fun main()
 }
 ```
 
->*Anımsanacağı gibi data sınıflarının equals operatör fonksiyonu primary ctor'da bildirilmiş karşılıklı property elemanları için `==` operatörü ile karşılaştırma yapacak şekilde override edilmiştir*
+>*Anımsanacağı gibi data sınıflarının equals operatör fonksiyonu primary ctor'da bildirilmiş karşılıklı property elemanları için* `==` *operatörü ile karşılaştırma yapacak şekilde override edilmiştir*
 
 ```kotlin
 package org.csystem.app
@@ -10164,8 +10245,6 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-
-
 import org.csystem.math.MutableComplex
 import org.csystem.math.random.nextMutableComplex
 import kotlin.random.Random
@@ -10181,7 +10260,7 @@ fun main()
 }
 ```
 
->*Sınıfın get ve/veya set operatör fonksiyonları overload edildiğinde o sınıf türünden bir referans `[]` operatörü ile de kullanılabilir. Bu tarz kullanıma ilişkin fonksiyonlara bazı kaynaklar "indexer" da denmektedir. Bu terim Kotlin'e özgü değildir*
+>*Sınıfın get ve/veya set operatör fonksiyonları overload edildiğinde o sınıf türünden bir referans* `[]` *operatörü ile de kullanılabilir. Bu tarz kullanıma ilişkin fonksiyonlara bazı kaynaklar "indexer" da denmektedir. Bu terim Kotlin'e özgü değildir*
 
 ```kotlin
 package org.csystem.app
@@ -10426,7 +10505,7 @@ interface IY {
 }
 ```
 
-> *"super<tür ismi>" sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir*
+> `super<tür ismi>` *sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir*
 
 ```kotlin
 package org.csystem.app
@@ -10469,7 +10548,7 @@ interface IY {
 }
 ```
 
->super<tür ismi> sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir
+>`super<tür ismi>` *sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir*
 
 ```kotlin
 package org.csystem.app
@@ -10520,9 +10599,9 @@ interface IY {
 }
 ```
 
-> *Aşağıdaki örnekte `**` ile belirtilen çağrıda açısal parantez kullanılmalıdır. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmaktadır.* 
+>*Aşağıdaki örnekte* `**` *ile belirtilen çağrıda açısal parantez kullanılmalıdır. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmaktadır.* 
 
- ***Anahtar Notlar:*** Java'da super referansı nesnenin taban sınıf kımının adresi anlamına gelir, desteklediği imterface'ler ile bir bağlantısı yoktur. Ancak Kotlin'de super aynı zamanda desteklediği interface'ler için de kullanılır. Zaten bu sebeple açısal parantez kullanımı da dile eklenmiştir
+ **_Anahtar Notlar:_** Java'da super referansı nesnenin taban sınıf kımının adresi anlamına gelir, desteklediği imterface'ler ile bir bağlantısı yoktur. Ancak Kotlin'de super aynı zamanda desteklediği interface'ler için de kullanılır. Zaten bu sebeple açısal parantez kullanımı da dile eklenmiştir.
 
 ```kotlin
 package org.csystem.app
@@ -10571,7 +10650,7 @@ interface IY {
 }
 ```
 
->*Aşağıdaki örnekte `**` ile belirtilen çağrıda açısal parantez kullanılmasına gerek yoktur. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmamaktadır. Ancak sentaks olarak açısal parantez kullanımı da geçerlidir*
+>*Aşağıdaki örnekte* `**` *ile belirtilen çağrıda açısal parantez kullanılmasına gerek yoktur. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmamaktadır. Ancak sentaks olarak açısal parantez kullanımı da geçerlidir*
 
 ```kotlin
 package org.csystem.app
@@ -10612,7 +10691,7 @@ interface IY {
 }
 ```
 
->*Aşağıdaki örnekte `**` ile belirtilen çağrıda açısal parantez kullanılmalıdır. IX içerisindeki bar metodunun private olması bu durumu etkilemez*
+>*Aşağıdaki örnekte* `**` *ile belirtilen çağrıda açısal parantez kullanılmalıdır. IX içerisindeki bar metodunun private olması bu durumu etkilemez*
 
 ```kotlin
 package org.csystem.app
@@ -10658,7 +10737,7 @@ interface IY {
 }
 ```
 
-***Anahtar Notlar:*** interface'lerin default metotları yani gövdesi olan metotları olabilir. Bu metotlar sanaldır ancak abstract değildir. Bu durum Java ve Kotlin için de geçerlidir
+**_Anahtar Notlar:_** interface'lerin default metotları yani gövdesi olan metotları olabilir. Bu metotlar sanaldır ancak abstract değildir. Bu durum Java ve Kotlin için de geçerlidir.
 
 >*Kullanılabilmesi için mantıksal olarak açılması (open) gereken ve kullanım sonunda mantıksal olarak kapatılması gereken bir kaynağın (resource) bir sınıf tarafından kullanılnası durumunda bu sınıf bir convention olarak Closeable arayüzünü destekler. Başka bir deyişle Closeable arayüzünü destekleyen bir sınıf için böylesi bir kullanum söz konusudur algılanır. Closeable arayüzünün close isimli bir metodu bulunur. Yani kaynağı kullanan sınıfta bu arayüzün close metodunu kaynağın kullanımını serbest bırakacak şekilde override edilir. Bunu kullanan programcı da close çağırması gerektiğini bilir ve çağırır. Kotlin'de Closeable arayüzünü destekleyen sınıfların use isimli extension fonksiyonları vardır. Bu fonksiyon başka bir fonksiyonu callback olarak alır. Callback kavramı ileride detaylandırılacağından ilgili konuya gelene kadar use kullamını bir kalıp biçiminde düşüneceğiz. use fonksiyonu çağrısı bitikten sonra o sınıf için close fonksiyonu otomatik olarak çağrılır. Bu durumda programcının ayrıca close çağırması gerekmez*
 
@@ -10828,7 +10907,6 @@ fun main()
 }
 
 class Sample<T>(var x: T)
-
 ```
 
 >*Aşağıdaki örnekte açılım (instantiation) yapılmadığı halde generic tür tespit edilebildiğinden (type inference/deduction) sorun oluşmaz*
@@ -11375,12 +11453,12 @@ data class Value<out T>(val value: T) : Serializable {
 
 
 >*Kotlin' de içiçe tür (nested types) bildirimi yapılabilmektedir. İçiçe sınıf bildirimi genel olarak 4(dört) şekilde yapılabilir:*
-- Local classes
-- Nested classes
-- Inner classes
-- Anonymous classes
-
->Kotlin'de yerel sınıflar bildirilebilir. Yerel fonksiyonların varlığından dolayı Kotlin'de yerel sınıfların kullanımına neredeyse gerek olmamaktadır
+>- Local classes
+>- Nested classes
+>- Inner classes
+>- Anonymous classes
+>
+>*Kotlin'de yerel sınıflar bildirilebilir. Yerel fonksiyonların varlığından dolayı Kotlin'de yerel sınıfların kullanımına neredeyse gerek olmamaktadır.*
 
 ```kotlin
 package org.csystem.app
@@ -11431,7 +11509,6 @@ class A {
 
     //...
 }
-
 ```
 
 >*Nested sınıf içerisinde kapsayan sınıf türünün private elemanlarına erişilebilir*
@@ -11504,7 +11581,6 @@ class A {
         }
     }
 }
-
 ```
 
 >*Inner sınıf içerisinde kapsayan sınıf türünün private elemanlarına erişilebilir. Erişilen private elemanlar inner class nesnesinin yaratılmasında kullanılan kapsayan sınıf nesnesinin elemanlarıdır*
@@ -11666,11 +11742,11 @@ fun main()
 
 ```kotlin
 class org.csystem.app.AppKt$main$a$1 (private var a: Int) : IX {
-            override fun foo()
-            {
-                println("a = $a")
-            }
-        }
+    override fun foo()
+    {
+        println("a = $a")
+    }
+}
 ```
 
 ```kotlin
@@ -11745,7 +11821,6 @@ fun main()
     ++a
     ix.foo()
     ix.foo()
-
 }
 
 interface IX {
@@ -11864,7 +11939,6 @@ object Singleton : A() {
         println("bar")
     }
 }
-
 ```
 
 >*Aşağıdaki örnekte nesne yaratılmamıştır. Fonksiyon çağırma operatör fonksiyonu çağrılmıştır. Dikkat edilirse s'nin türü Unit'dir*
@@ -11942,7 +12016,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki örnekte `**` ile belirtilen ifade için invoke metodu çağrılır*
+>*Aşağıdaki örnekte* `**` *ile belirtilen ifade için invoke metodu çağrılır*
 
 ```kotlin
 package org.csystem.app
@@ -11954,7 +12028,6 @@ fun main()
 
     println(x)
 }
-
 
 class A(x: Int) {
     init {
@@ -11970,9 +12043,1995 @@ class A(x: Int) {
 }
 ```
 
-<br>
+>*Aşağıdaki örnekte* `**` *ile belirtilen ifade için yeni bir nesne yaratılmış olur*
 
-Insert examples lines [12006, 14021]
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val A = A(10)
+    val x = A(20) //**
+
+    println(x)
+}
+
+class A(x: Int) {
+    init {
+        println("A.ctor, int")
+    }
+}
+```
+
+>*object bildirimleri bir sınıf içerisinde companion yapılabilir. Bu durumda object içerisindeki metotlara kapsayan sınıf ismi ile de erişilebilir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    Sample.foo() // Sample.Mample.foo()
+}
+
+class Sample {
+    companion object Mample {
+        fun foo()
+        {
+            println("foo")
+        }
+    }
+}
+```
+
+>*companion object bildirimlerinde object'e isim verilmeyebilir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    Sample.foo();
+
+    val s = Sample()
+
+    s.bar()
+}
+
+class Sample {
+    fun bar()
+    {
+        println("bar")
+    }
+
+    companion object {
+        fun foo()
+        {
+            println("foo")
+        }
+    }
+}
+```
+
+>*companion object'e bir isim verilmediğinde o object'ib ismi Companion olarak verilmiş olur. Bu durumda sınıf dışından bu isme yani aslında o tek olan companşon object referansına Companion ismi ile erişilebilir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    var singleton = Sample.Companion
+    //...
+}
+
+class Sample {
+    companion object {
+        fun foo()
+        {
+            println("foo")
+        }
+    }
+}
+```
+
+>*companion object içeren bir sınıf ismi doğrudan kullanıldığında Companion object referansı elde edilmiş olur*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val singleton: Sample.Companion = Sample
+
+    singleton.foo()
+    //...
+}
+
+class Sample {
+    companion object {
+        fun foo()
+        {
+            println("foo")
+        }
+    }
+}
+```
+
+>*Bir sınıf içerisinde tek bir companion object olabilir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    var singleton: Sample.Companion = Sample
+    //...
+}
+class Sample {
+    companion object {
+        fun foo()
+        {
+            println("foo")
+        }
+    }
+
+    companion object Mample { //error
+        fun foo()
+        {
+            println("foo")
+        }
+    }
+}
+```
+
+>*Bir sınıf içerisinde tek bir companion object fakat istenildiği kadar başka object'ler olabilir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    Sample.foo()
+    Sample.Mample.foo()
+    Sample.Test.foo()
+}
+
+class Sample {
+    companion object {
+        fun foo()
+        {
+            println("Companion.foo")
+        }
+    }
+
+    object Mample {
+        fun foo()
+        {
+            println("Mample.foo")
+        }
+    }
+
+    object Test {
+        fun foo()
+        {
+            println("Test.foo")
+        }
+    }
+}
+```
+
+>*Aşağıdaki örnekte Console isimli sınıf Java bakış açısıyla mantıksal static olarak bildirilmiştir. Anımsanacağı gibi tüm elemanları static olarak bildirilen sınıflara mantıksal static sınıflar ya da "utility" sınıflar denir ve utility sınıfların ctor'ları private yapılır. Örnek Java düşüncesiyle yazılmıştır. Kotlin açısından iyi yazılmamıştır*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val a = ConsoleUtil.readInt("Birinci sayıyı giriniz:")
+    val b = Console.readInt("İkinci sayıyı giriniz:")
+
+    println("$a * $b = ${a * b}")
+}
+
+object ConsoleUtil {
+    fun readInt(message: String, errorMessage: String = "", end: String = "") : Int
+    {
+        while (true) {
+            try {
+                return Console.readString(message, end).toInt()
+            }
+            catch (ex: Throwable) {
+                print(errorMessage + end)
+            }
+        }
+    }
+}
+
+class Console private constructor() {
+    companion object {
+        fun readString(message: String, end: String = "") : String
+        {
+            print(message + end)
+
+            return readLine()!!
+        }
+
+        fun readInt(message: String, errorMessage: String = "", end: String = "") : Int
+        {
+            while (true) {
+                try {
+                    return readString(message, end).toInt()
+                }
+                catch (ex: Throwable) {
+                    print(errorMessage + end)
+                }
+            }
+        }
+
+        fun readLong(message: String, errorMessage: String = "", end: String = "") : Long
+        {
+            while (true) {
+                try {
+                    return readString(message, end).toLong()
+                }
+                catch (ex: Throwable) {
+                    print(errorMessage + end)
+                }
+            }
+        }
+
+        fun readDouble(message: String, errorMessage: String = "", end: String = "") : Double
+        {
+            while (true) {
+                try {
+                    return readString(message, end).toDouble()
+                }
+                catch (ex: Throwable) {
+                    print(errorMessage + end)
+                }
+            }
+        }
+    }
+}
+```
+
+>*Yukarıdaki örnek Kotlin bakış açısıyla aşağıdaki gibi daha iyi yazılabilir. Her iki durumda da unutlmamalıdır ki object'in ve companion object'in metotları static metotlar değildir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val a = Console.readInt("Birinci sayıyı giriniz:")
+    val b = Console.readInt("İkinci sayıyı giriniz:")
+
+    println("$a * $b = ${a * b}")
+}
+
+object Console {
+    fun readString(message: String, end: String = "") : String
+    {
+        print(message + end)
+
+        return readLine()!!
+    }
+
+    fun readInt(message: String, errorMessage: String = "", end: String = "") : Int
+    {
+        while (true) {
+            try {
+                return readString(message, end).toInt()
+            }
+            catch (ex: Throwable) {
+                print(errorMessage + end)
+            }
+        }
+    }
+
+    fun readLong(message: String, errorMessage: String = "", end: String = "") : Long
+    {
+        while (true) {
+            try {
+                return readString(message, end).toLong()
+            }
+            catch (ex: Throwable) {
+                print(errorMessage + end)
+            }
+        }
+    }
+
+    fun readDouble(message: String, errorMessage: String = "", end: String = "") : Double
+    {
+        while (true) {
+            try {
+                return readString(message, end).toDouble()
+            }
+            catch (ex: Throwable) {
+                print(errorMessage + end)
+            }
+        }
+    }
+}
+```
+
+>*Kotlin'de bir türe eş isim (alias) verilebilmektedir. Bu işlem typealias anahtar sözcüğü ile yapılır. Genel olarak isimleri daha basit hale getirmek ve/veya isim çakışmalarını engellemek amaçlı kullanılmaktadır. Kotlin'de JavaSE ile aynı isimdeki bazı sınıflar kolay kullanım açısından typealias yapılmıştır*
+
+>*type aliases*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.string.kotlin.getRandomTextEN
+import kotlin.random.Random
+
+typealias StringArrayList = ArrayList<String>
+
+fun main()
+{
+    val sList = StringArrayList() //ArrayList<String>()
+
+    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!...")
+    for (i in 1..n)
+        sList.add(Random.getRandomTextEN(n))
+
+    for (s in sList)
+        println(s)
+}
+```
+
+>*type aliases*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+typealias IntArrayList = ArrayList<Int>
+
+fun main()
+{
+    val iList = IntArrayList()
+
+    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!...")
+    for (i in 1..n)
+        iList.add(Random.nextInt(100))
+
+    for (i in iList)
+        print("$i ")
+
+    println()
+}
+```
+
+>*type aliases*
+
+```kotlin
+package org.csystem.app
+
+typealias int = Int
+typealias double = Double
+
+fun main()
+{
+    val a: int = 10
+
+    foo(3.4)
+
+    println(a)
+}
+
+fun foo(a: double)
+{
+    //...
+}
+```
+
+>*type alias yapıldığında iki tür birden de kullanılabilir*
+
+```kotlin
+package org.csystem.app
+
+typealias int = Int
+
+fun main()
+{
+    val a: int  = 10
+    val b: Int = 20
+
+    println(a)
+    println(b)
+}
+```
+
+>*Aşağıdaki ilginç örnek geçerlidir*
+
+```kotlin
+package org.csystem.app
+
+typealias Int = String
+
+fun main()
+{
+    val b: Int = "ankara"
+
+    foo("zonguldak")
+
+    println(b)
+}
+
+
+fun foo(a: Int)
+{
+    println(a)
+}
+```
+
+>*Aşağıdaki ilginç örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+typealias int = Int
+typealias Int = String
+
+fun main()
+{
+    var a: Int = "ankara"
+    var b: int = 10 //error
+}
+```
+
+>*typealias olarak bildirilmiş isimler yine import bildirimleri ile kullanılabilmektedir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.list.IntPairList
+import kotlin.random.Random
+
+fun main()
+{
+    val points = IntPairList()
+    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!!!")
+
+    for (i in 1..n)
+        points.add(Pair(Random.nextInt(-100, 101), Random.nextInt(-100, 101)))
+
+    for ((x, y) in points)
+        println("($x, $y)")
+}
+```
+
+```kotlin
+package org.csystem.util.list
+
+typealias IntPairList = ArrayList<Pair<Int, Int>>
+typealias IntTripleList = ArrayList<Triple<Int, Int, Int>>
+typealias DoublePairList = ArrayList<Pair<Double, Double>>
+typealias DoubleTripleList = ArrayList<Triple<Double, Int, Double>>
+```
+
+>*Aşağıdaki örneği inceleyiniz. Örnek typealias kullanımını göstermek için yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.matrix.createMatrix
+import kotlin.random.Random
+
+fun main()
+{
+    val matrix = createMatrix(3, 4)
+
+    for (i in matrix.indices)
+        for (j in matrix[i].indices)
+            matrix[i][j] = Random.nextInt(100)
+
+    for (a in matrix) {
+        for (value in a)
+            print("%02d ".format(value))
+
+        println()
+    }
+}
+```
+
+```kotlin
+package org.csystem.util.matrix
+
+typealias Matrix = Array<IntArray>
+
+fun createMatrix(m: Int, n: Int) = Matrix(m) {IntArray(n)}
+```
+
+>*Aşağı seviyede fonksiyonların da adresleri vardır. Aslında bir fonksiyon çağrısı o fonksiyonun kodlarının bulunduğu adrese gidip çalıştırılmasıdır. Bazı programlama dillerinde fonksiyonların adreslerini tutan türler bulunur. Bu türlere genel olarak "function type" denir.*
+>
+>**_Function tür bildirimi:_**
+>
+>`([parametre listesi]) -> <Geri dönüş değeri türü>`
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f1: (Int, String) -> String
+    val f2: (Int) -> Int
+    val f3 : (Int) -> Unit
+    var f4 : () -> Unit
+    val f5 : (Int, Int) -> Int
+    //...
+}
+```
+
+>*Kotlin'de bir fonksiyonun ismi fonksiyonun yapısına (yani parametri yappı ve geri dönüş değeri) uygun bir function türüne atanabilir. Fonksiyon türü bir referans türüdür. Fonksiyon türünden bir referans ile fonksiyon çağırma operatörü kullanıldığında, referansı (adresi) tutulan fonksiyon çağrılmış olur. Bu anlamda bakıldığında aslında fonksiyon ismi o fonklsiyonun adresi (referansı) gibi düşünülebilir.*
+>
+>*Bir fonksiyon türüne global bir fonksiyon ismi method reference operatörü* `::` *ile değer olarak verilebilir. Aşağıdaki örnek durumu göstermek için yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.random.Random
+
+fun main()
+{
+    val f1: (Int, String) -> String = ::toStr
+    val f2: (Int) -> Int = ::square
+    val f3 : (Int) -> Unit = ::display
+    val f4 : () -> Unit = ::printRandomIntValue
+    val f5 : (Int, Int) -> Int = ::add
+
+    println(f1(10, "Value"))
+    println(f2(10))
+    f3(20)
+    f4()
+    println(f5(10, 20))
+}
+
+fun toStr(a: Int, msg: String) = "$msg:$a"
+fun square(a: Int) = a * a
+
+fun display(a: Int) = println("a = $a")
+fun printRandomIntValue() = println(Random.nextInt())
+fun add(a: Int, b: Int) = a + b
+```
+
+>*Bir fonksiyon türüne bir sınıfın üye fonksiyonu (metot) da atanabilir. Bu durumda referans ve* `::` *ile metot ismi verilerek atama yapılır. Aşağıdaki örnek durumu göstermek için yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+typealias IntBinaryOperator = (Int, Int) -> Int
+
+fun main()
+{
+    val op = BinaryOperation(10)
+    val f1: IntBinaryOperator = op::add
+    val f2: IntBinaryOperator = Operation::add
+
+    println(f1(20, 30))
+    println(f2(10, 35))
+}
+
+data class BinaryOperation(val value: Int) {
+    fun add(a: Int, b: Int) = value + a + b
+}
+
+object Operation {
+    fun add(a: Int, b: Int) = a + b
+}
+```
+
+>*Kotlin'de fonksiyonlar ismine Lambda function ya da function literal bir sentaks ile de bildirilebilir. Lambda function bir fonksiyon türündendir. Yazılışına göre tür derleyici tarafından tespit edilir ve istenirse uygun bir function türünden referansa atanabilir. Lambda fonksiyonlarda son yazılan ifadenin değerine geri dönülmiş olur. Ya da başka bir deyişle geri dönüş değeri olan bir fonksiyon türü için lambda fonksiyon yazıldığında son yazılan ifade adeta return deyimi ile yazılmış olur*
+>
+>*Aşağıdaki örnekte bir function literal yazılmış ve fonksiyon çağırma operatörü uygulanmıştır. Bu durumda derleyici Kotlin anlamında aşağıdaki gibi bir fonksiyon yazar:<br>fun _xyz(a: Int, b: Int) : Int = a + b<br>
+Fonksiyon çağrısını da şu şekilde yapar:<br>
+_xyz(10, 20)*
+>
+>*Bu işlemin Java karşılığı yaklaşık şu şekildedir:*
+
+```java
+class _xyz {
+    public int abc(int a, int b)
+    {
+        return a + b;
+    }
+}
+
+var x = new _xyz();
+
+x.abc(10, 20);
+```
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    println({a: Int, b: Int -> a + b}(10, 20))
+}
+```
+
+>*Parametresiz bir lambda fonksiyonu/fonksiyon sabiti lambda function/function literal bildirimi*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f = {-> println("Merhaba")}
+
+    f()
+}
+```
+
+>*Parametresiz bir lambda fonksiyonu bildirimi*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f = {println("Merhaba")}
+
+    f()
+}
+```
+
+>*Parametresiz bir lambda fonksiyonu bildirimi. Örnekte referansın türü de bildirilmiştir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f: () -> Unit = {println("Merhaba")}
+
+    f()
+}
+```
+
+>*Parametreli bir fonksiyon türü için parametre değişkenleri fonksiyon sabiti içerisinde bildirilebilir. Eğer lambda fonksiyonun atandağı değişkenin türü belirli ise parametre değişkenlerine türler yazılmayabilir.*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f: (Int) -> Unit = {a -> println(a)}
+
+    f(10)
+}
+```
+
+>*Aşağıdaki örnekte f'nin türü yazılmadığından a parametre değişkeninin türü yazılmalıdır*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f = {a: Int -> println(a)}
+
+    f(10)
+}
+```
+
+>*Parametreli bir fonksiyon türü için parametre değişkenleri fonksiyon sabiti içerisinde türü ile bildirilebilir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val foo = {a: Int -> println(a)}
+
+    foo(10)
+}
+
+```
+
+>*Aşağıdaki örnekte add değişkeninin türü belirtilmelidir. Çünkü derleyici Lambda fonksiyon içerisinde a ve b değişkenleri için tür tespiti (type inference/deduction) yapamaz*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val add: (Int, Int) -> Int  = {a, b -> a + b }
+
+    println(add(10, 20))
+}
+```
+
+>*Aşağıdaki örnekte Lambda fonksiyonun parametre değişkenlerinin türleri belirtilmelidir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val add = {a: Int, b: Int -> a + b }
+
+    println(add(10, 20))
+}
+```
+
+>*Tek parametreli Lambda fonksiyonlarda "it" built-in olarak parametre ismi olarak kullanılabilir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f: (Int) -> Int = {it * it}
+
+    println(f(10))
+}
+```
+
+>*Tek parametreli Lambda fonksiyonlarda "it" built-in olarak parametre ismi olarak kullanılabilir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f : (String) -> String = {it.uppercase()}
+
+    println(f("ankara"))
+}
+```
+
+>*Lambda fonksiyonlar*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f : (String, String) -> String = {s1, s2  -> "$s1 $s2"}
+
+    println(f("ankara", "istanbul"))
+}
+```
+
+>*Lambda fonksiyonlar*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f : (String) -> String = {
+        println("Yazı:$it")
+        it.uppercase()
+    }
+
+    println(f("ankara"))
+}
+```
+
+>*Lambda fonksiyonlar*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f : (String) -> String = {s ->
+        println("Yazı:$s")
+        s.toUpperCase()
+    }
+
+    println(f("ankara"))
+}
+```
+
+>*Bazı fonksiyonlar içeride yapacakları işlemlerin detaylarını dışarıdan alırlar. Bu kavrama callable ya da callback denilmektedir. Java dünyasında bu kevram abstract sınıflar ya da interface'ler ile ilgili metotlarının override edilmesiyle gerçekleştirilir. Yani metodun ilgili parametresi genel olarak bir interface ya da abstract class türden olur ve bu metodu çağıran programcı ilgili referansa o referansa ilişkin sınıfsa türetilmiş interface ise implemente edilmiş bir sınıfa nesnenin adresini (referansını) verir ve metot da ilgili sanal metodu çağırarak aslında nasıl yapacağını bilmeden yazılmış olur. Bu tarz metotlara (fonksiyonlara) programlama dillerinde genel olarak "High Order Function (HOF)" denir. Kotlin'de HOF'lar genel olarak function türleri ile yazılır. Şüphesiz interface kullanılarak da yazılabilir. Kotlin'de bir fonksiyonun son parametresi function türündense ve bu parametreye bir lambda function geçilecekse bu durumda bu lambda function fonksiyon çağırma operatöründen sonra yazılabilir. Ayrıca fonksiyon tek parametreli ise ve fonksiyonun o tek parametresi de bir function türünden ise hiç fonksiyon çağırma operatörü kullanmadan doğrudan lambda function yazılabilir.*
+>
+>*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>
+>*Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.array.kotlin.randomIntArray
+import org.csystem.util.array.kotlin.write
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.numeric.isPrime
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+    val a = Random.randomIntArray(count, 0, 100)
+
+    a.write(2)
+
+    val primes = IntArray(a.size)
+
+    val n = a.copyIf(primes, {it.toLong().isPrime()})
+
+    primes.write(n, 2)
+}
+
+fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
+{
+    var idx = 0
+
+    for (value in this)
+        if (predicate(value))
+            dest[idx++] = value
+
+    return idx
+}
+```
+
+>*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>
+>*Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir. Örnekte son parametre olan function türünden parametreye geçilen lambda function fonksiyon çağırma operaytöründen sonra yazılmıştır. Bu tarz durumlarda bu çağırma biçimi tavsiye edilir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.array.kotlin.randomIntArray
+import org.csystem.util.array.kotlin.write
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.numeric.isPrime
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+    val a = Random.randomIntArray(count, 0, 100)
+
+    a.write(2)
+
+    val primes = IntArray(a.size)
+
+    val n = a.copyIf(primes) { it.toLong().isPrime() }
+
+    primes.write(n, 2)
+}
+
+fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
+{
+    var idx = 0
+
+    for (value in this)
+        if (predicate(value))
+            dest[idx++] = value
+
+    return idx
+}
+```
+
+>*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>
+>*Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.array.kotlin.randomIntArray
+import org.csystem.util.array.kotlin.write
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.numeric.isPrime
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+    val a = Random.randomIntArray(count, 0, 100)
+
+    a.write(2)
+
+    val primes = IntArray(a.size)
+    val f: (Int) -> Boolean = {it.toLong().isPrime()}
+
+    val n = a.copyIf(primes, f)
+
+    primes.write(n, 2)
+}
+
+fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
+{
+    var idx = 0
+
+    for (value in this)
+        if (predicate(value))
+            dest[idx++] = value
+
+    return idx
+}
+```
+
+>*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.array.kotlin.randomIntArray
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.numeric.isPrime
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+    val a = Random.randomIntArray(count, 0, 100)
+
+    a.forEach { print("%02d ".format(it)) }
+
+    val primes = IntArray(a.size)
+
+    val n = a.copyIf(primes) {it.toLong().isPrime()}
+
+    println()
+
+    primes.forEach { print("%02d ".format(it)) }
+    println();
+}
+
+fun IntArray.forEach(block: (Int) -> Unit)
+{
+    for (value in this)
+        block(value)
+}
+
+
+fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
+{
+var idx = 0
+
+    for (value in this)
+        if (predicate(value))
+            dest[idx++] = value
+
+    return idx
+}
+```
+
+>*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.array.kotlin.randomIntArray
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+    val a = Random.randomIntArray(count, 0, 100)
+
+    a.forEach { print("%02d ".format(it)) }
+    println()
+
+    val squares = a.transform { it * it }
+
+    squares.forEach { print("$it ") }
+    println()
+}
+
+fun IntArray.transform(block: (Int) -> Int) : IntArray
+{
+    val result = IntArray(this.size)
+
+    for (i in this.indices)
+        result[i] = block(this[i])
+
+    return result
+}
+
+fun IntArray.forEach(block: (Int) -> Unit)
+{
+    for (value in this)
+        block(value)
+}
+```
+
+>*Aşağıdaki kodda bir fonksiyon sabiti bildirilmiş ve fonksiyon çağırma operatör fonksiyonu uygulanmıştır*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    { println("Merhaba") }()
+}
+
+```
+
+>*Dizilerin fonksiyon türden parametreli ctor'ları ile her bir eleman için dizi yaratılırken ne yapılacağı belirlenebilir Generic olan Array sınıfının fonksiyon türden parametresi olmayan ctor'u yoktur. Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.array.kotlin.write
+import org.csystem.util.string.kotlin.randomTextEN
+import kotlin.random.Random
+
+fun main()
+{
+    val a = IntArray(10) {it + 1}
+    val s = Array(10) {Random.randomTextEN(it + 1)}
+
+    a.write()
+    s.write()
+}
+```
+
+>*Lambda fonksiyonlar*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val flags = BooleanArray(50) {true}
+
+    for (f in flags)
+        println(f)
+}
+```
+
+>*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+
+>*Lambda fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir (capture)*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.array.kotlin.randomIntArray
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+    val a = Random.randomIntArray(count, 0, 100)
+
+    a.forEach { print("%02d ".format(it)) }
+    println()
+
+    val factor = readInt("Çarpılacak sayıyı giriniz:")
+    val b = a.transform { it * factor}
+
+    b.forEach { print("$it ") }
+    println()
+}
+
+fun IntArray.transform(block: (Int) -> Int) : IntArray
+{
+    val result = IntArray(this.size)
+
+    for (i in this.indices)
+        result[i] = block(this[i])
+
+    return result
+}
+
+fun IntArray.forEach(block: (Int) -> Unit)
+{
+    for (value in this)
+        block(value)
+}
+```
+
+>*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+
+>*Lambda fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir ve değerleri değiştirilebilir*
+
+**_Anahtar Notlar:_** Java'da bir yakalanan yerel bir değişken veya bir parametre değişkeni faaliyet alanı boyunca değiştirilemez (effectively final)
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.array.kotlin.randomIntArray
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+    val a = Random.randomIntArray(count, 0, 100)
+
+    a.forEach { print("%02d ".format(it)) }
+    println()
+
+    var factor = readInt("Çarpılacak sayıyı giriniz:")
+    val b = a.transform { it * factor++}
+
+    b.forEach { print("$it ") }
+    println()
+}
+
+fun IntArray.transform(block: (Int) -> Int) : IntArray
+{
+    val result = IntArray(this.size)
+
+    for (i in this.indices)
+        result[i] = block(this[i])
+
+    return result
+}
+
+fun IntArray.forEach(block: (Int) -> Unit)
+{
+    for (value in this)
+        block(value)
+}
+```
+
+>*Aşağıdaki örnekte bir fonksiyonun parametresi olan fonksiyonun da parametresi fonksiyon türündendir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    foo {it(10, 20)}
+}
+
+fun foo(callback : ((Int, Int) -> Int) -> Int)
+{
+    println(callback{x, y -> x + y})
+}
+```
+
+>*Aşağıdaki fonksiyonu inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+fun foo(callback : ((Int, Int) -> Int, (Double) -> Double) -> (Int, Int) -> String)
+{
+    //...
+}
+```
+
+>*Lambda fonksiyonlarda kullanılmayacak parametreler alttire karakteri ile atlanabilir*
+
+```kotlin
+package org.csystem.app
+
+fun main()
+{
+    val f: (Int, Int, String) -> String = {_, _, s -> ":$s:"}
+
+    println(f(6, 312, "ankara"))
+}
+```
+
+>*Dizilerin fonksiyon parametresi alan fonksiyonları vardır. Bunların bazıları extension olarak yazılmıştır. Bu fonksiyonlardan bazıları burada anlatılacaktır, bazıları ise zamanla özellikle Android uygulamaları içerisinde kullanılırken ele alınacaktır*
+
+>*Dizilerin forEach fonksiyonu dizinin her bir elemanına callback olarak aldığı fonksiyonu uygular Dizilerin any fonksiyonu callback olarak aldığı predicate fonksiyona göre koşula uyan en az bir tane eleman varsa true değerine döner. all fonksiyonu callback olarak aldığı predicate fonksiyona göre tüm elemanlar koşula uyuyor ise true değerine döner. none fonksiyonu callback olarak aldığı predicate fonksiyona göre hiç bir eleman koşula uymuyor ise true değerine geri döner*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.random.Random
+
+fun main()
+{
+    val a = IntArray(10) { Random.nextInt(-10, 10)}
+
+    a.forEach {print("$it ")}
+    println()
+    println(a.any {it % 2 == 0})
+    println(a.all {it > 0})
+    println(a.none {it <= 0})
+}
+```
+
+>*Dizilerin filter fonksiyonu*
+
+```kotlin
+package org.csystem.app
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.string.kotlin.randomTextEN
+import kotlin.random.Random
+
+fun main()
+{
+    val count = readInt("Bir sayı giriniz:")
+    val threshold = readInt("Eşik değerini giriniz:")
+    val cities = Array(count) {Random.randomTextEN(Random.nextInt(5, 10))}
+
+    cities.forEach{print("$it ")}
+
+    println("\n------------------------------------------------------------------------")
+
+    cities.filter{it.length > threshold}.forEach{print("$it ")}
+}
+```
+
+>*Aşağıda örneklerde ilgili dosyadan okuma yapan fonskiyonların kodları şu aşamada önemsizdir. Proje içerisinde ilgili dosyalar ilgilşi formatlarda olduğu durumda örnekler çalıştırılabilir. Burada odaklanılması gereken bu dosyalardaki veriler veya bu dosyaları okuyan fonksiyonların nasıl yazıldığı değildir. Burada dizilere ilişkin fonksiyonların kullanımına odaklanılması gerekir*
+>
+>*Aşağıdaki örnekte stokta bulunmayan ürün varsa listelenmiştir*
+
+```
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsArray
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsArray("products.csv")
+
+        if (products.any {it.stock <= 0}) {
+            println("Stokta olmayan ürünler:")
+            products.filter {it.stock <= 0}.forEach(::println)
+        }
+        else
+            println("Her ürün stokta var")
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+>*Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsArray
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsArray("products.csv")
+
+        if (products.any {it.stock <= 0}) {
+            println("Stokta olmayan ürünler:")
+            products.filter {it.stock <= 0}.map {it.name}.forEach(::println)
+        }
+        else
+            println("Her ürün stokta var")
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+>*Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsArray
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsArray("products.csv")
+
+        if (products.all{it.stock > 0})
+            println("Her ürün stokta var")
+        else
+        {
+            println("Stokta olmayan ürünler:")
+            products.filter {it.stock <= 0}.map { it.name }.forEach(::println)
+        }
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+>*Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsArray
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsArray("products.csv")
+
+        if (products.none{it.stock <= 0})
+            println("Her ürün stokta var")
+        else {
+            println("Stokta olmayan ürünler:")
+            products.filter {it.stock <= 0}.map { it.name }.forEach(::println)
+        }
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+>*Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir. Örnekte JavaSE'de bulunan BigDecimal sınıfı Java bakış açısıyla kullanılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsArray
+import org.csystem.util.console.kotlin.readBigDecimal
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsArray("products.csv")
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
+
+        products.filter { it.stock > 0 && minPrice.compareTo(it.price) < 0  && it.price.compareTo(maxPrice) < 0 }
+            .forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+>*Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir. BigDecimal sınıfı Comparable arayüzünü desteklediği ve dolayısıyla compareTo metodunu override ettiği için Kotlin'de <, >, <=, >= operatörleri ile de kullanılabilir. Artık kod Kotlin bakış açısıyla yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsArray
+import org.csystem.util.console.kotlin.readBigDecimal
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsArray("products.csv")
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
+
+        products.filter { it.stock > 0 && minPrice < it.price  && it.price < maxPrice }
+            .forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+>*Aşağıdaki örnekte filter fonksiyonu her koşul için ayrı çağrılmıştır. Kodun yukarıdaki koda göre ekstra bir maliyeti yoktur. Hatta bazı durumlarda birden fazla kez çağrılması okunabilirliği/algılanabilirliği artırır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsArray
+import org.csystem.util.console.kotlin.readBigDecimal
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsArray("products.csv")
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
+
+        products.filter {it.stock > 0}.filter {minPrice < it.price}.filter {it.price < maxPrice}
+            .forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+>*Aşağıdaki örnekte koşullara uyan verilerden oluşan yeni bir dizi elde edilmiştir. Şüphesiz sadece forEach kullanılacaksa bu durumda yeni dizi elde edilmeden devam edilmesi daha etkindir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsArray
+import org.csystem.util.console.kotlin.readBigDecimal
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsArray("products.csv")
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
+
+        val result = products
+            .filter {it.stock > 0}
+            .filter {minPrice < it.price}
+            .filter {it.price < maxPrice}
+            .toTypedArray()
+
+        //...
+
+        result.forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+>*Aşağıdaki örnekte koşullara uyan ürünlerin isimlerinden oluşan yeni dizi (Array<Product> dizisinden Array<String>) elde edilmiştir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.test.data.loadProductsFromFileAsArray
+import org.csystem.util.console.kotlin.readBigDecimal
+
+fun main()
+{
+    try {
+        val products = loadProductsFromFileAsArray("products.csv")
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
+
+        val result = products
+            .filter {it.stock > 0}
+            .filter {minPrice < it.price}
+            .filter {it.price < maxPrice}
+            .map {it.name}
+            .toTypedArray()
+
+        //...
+
+        result.forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
+}
+```
+
+>*Scoping functions:*
+>
+>*LET us ALSO RUN WITH APPLY*
+>
+>*apply eklenti fonksiyonu: apply eklenti fonksiyonunun callback'ine this geçirilir "apply the following assignments or calls to the object" apply fonksiyonu çağrıldığı referansa geri döner.*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+class Sample {
+    var a: Int = 0
+    fun foo()
+    {
+        println("foo")
+    }
+
+    fun bar()
+    {
+        println("bar")
+    }
+
+    fun tar() : Int
+    {
+        println("tar")
+        return  10;
+    }
+
+    override fun toString() = "Sample"
+}
+
+fun main()
+{
+    var x: Int
+
+    val s = Sample().apply {
+        a = readInt("Bir sayı giriniz:")
+        this.foo()
+        bar()
+        println("Merhaba")
+        x = tar()
+    }
+
+    println("s.a = ${s.a}")
+    println("x = $x")
+    println(s)
+}
+```
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+class Sample {
+    var a: Int = 0
+    fun foo()
+    {
+        println("foo")
+    }
+
+    fun bar()
+    {
+        println("bar")
+    }
+
+    fun tar() : Int
+    {
+        println("tar")
+        return  10;
+    }
+
+    override fun toString() = "Sample"
+}
+
+fun Sample.applySampleCallback()
+{
+    a = readInt("Bir sayı giriniz:")
+    this.foo()
+    this.bar()
+    println("Merhaba")
+}
+
+fun main()
+{
+    var x: Int
+
+    val s = Sample().apply{this.applySampleCallback(); x = tar()}
+
+    println("s.a = ${s.a}")
+    println("x = $x")
+    println(s)
+}
+```
+
+>*let eklenti fonksiyonu bir türün başka bir türe dönüştürülmesi için kullanılabilir. let fonksiyonunun callback'ine this geçirilmez*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readString
+
+fun main()
+{
+    while (true) {
+    val s = readString("Bir yazı giriniz:")
+
+        if ("elma" == s)
+            break
+
+        val newS = s.let { "text: $it" }
+
+        println(newS)
+    }
+}
+```
+
+>*let fonksiyonunun bir kullanımı*
+
+```kotlin
+package org.csystem.app
+
+data class Person(val citizenID: String, var name: String, var address: String)
+data class PersonViewModel(var name: String, var address: String)
+
+fun main()
+{
+    val p = Person("1234", "Lokman", "Mecidiyeköy")
+
+    val pvm = p.let {
+        val name = p.name.uppercase()
+
+        //...
+        PersonViewModel(name, p.address)
+    }
+
+    println(pvm)
+}
+```
+
+>*let fonksiyonunun bir kullanımı*
+
+```kotlin
+package org.csystem.app
+
+data class Person (val citizenID: String, var name: String, var address: String)
+data class PersonViewModel (var name: String, var address: String)
+
+fun personToPersonViewModel(p: Person) = PersonViewModel(p.name.uppercase(), p.address)
+
+fun main()
+{
+    val p = Person("1234", "Lokman", "Mecidiyeköy")
+    val pvm = p.let(::personToPersonViewModel)
+
+    println(pvm)
+}
+```
+
+>*let fonksiyonunun bir kullanımı*
+
+```kotlin
+package org.csystem.app
+
+data class Person (val citizenID: String, var name: String, var address: String)
+data class PersonViewModel (var name: String, var address: String)
+
+fun personToPersonViewModel(p: Person) = PersonViewModel(p.name.uppercase(), p.address)
+
+fun main()
+{
+    val p = Person("1234", "Lokman", "Mecidiyeköy")
+    val pvm = p.let {personToPersonViewModel(p)}
+
+    println(pvm)
+}
+```
+
+>*with global fonksiyonu. Bu fonksiyon en son çalıştırılan ifadenin ürettiği değere geri döner "with this object do the following"*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.random.Random
+
+class Sample {
+    fun foo()
+    {
+        println("foo")
+    }
+
+    fun bar()
+    {
+        println("bar")
+    }
+
+    fun tar() : Int
+    {
+        println("tar")
+        return 10;
+    }
+}
+
+fun main()
+{
+    val s = Sample()
+
+    val x = with(s) {
+        val a = Random.nextInt(100)
+
+        println("a = $a")
+        foo()
+        bar()
+        tar()
+    }
+
+    println("x = $x")
+}
+```
+
+>*also eklenti fonksiyonu. Bu fonksiyon da çağrıldığı referansa geri döner. Bu fonksiyonun callback olarak aldığı fonksiyonun parametresi ilgili türdendir. apply fonksiyonunda ise parametresizdir. also fonksiyonun calback'ine this geçirilmez "also do the followings for that object"*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.numeric.countDigits
+
+fun main()
+{
+    val a: Int = readInt("Bir sayı giriniz:")
+
+    //...
+
+    val str = a
+        .also { println("Number of digits:${it.countDigits()}") }
+        .toString()
+
+    println(str)
+}
+```
+
+>*Yukarıdaki örnek let ile de yapılabilirdi. Ancak okunabilirlik açısından also daha uygundur*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import org.csystem.util.numeric.countDigits
+
+fun main()
+{
+    val a: Int = readInt("Bir sayı giriniz:")
+
+    //...
+
+    val str = a.let { println("Number of digits:${it.countDigits()}"); "$it" }
+
+    println(str)
+}
+```
+
+>*run eklenti fonksiyonu ile bir türe ilişkin bir takım işlemler yapılabilir. run fonksiyonu en son yapılan işlemin değerini döndürür. run fonksiyonunun callback'ine this geçirilir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main()
+{
+    val a = readInt("Bir sayı giriniz:")
+
+    val result: Int = a.run {
+        val x = readInt("Çarpanı giriniz:")
+
+        this * x
+    }
+
+    println(result)
+}
+```
+
+>*run global fonksiyonu*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main()
+{
+    val a: Int = readInt("Bir sayı giriniz:")
+
+    val result: Int = run {
+        val x = readInt("Çarpanı giriniz:")
+
+        a * x
+    }
+
+    println(result)
+}
+```
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+data class MyNumber(val value:Int) {
+    operator fun invoke(): Int
+    {
+        val x = readInt("Çarpanı giriniz:")
+
+        return value * x
+    }
+}
+
+fun main()
+{
+    val a: Int = readInt("Bir sayı giriniz:")
+
+    val myNumber = MyNumber(a)
+
+    var result: Int = run(myNumber::invoke)
+
+    println(result)
+
+    result = myNumber()
+
+    println(result)
+}
+```
+
+**_Anahtar Notlar:_** Kotlin'in şu anki versiyonunda (1.8.21) foksiyon çağırma operatör fonksiyonu yani invoke fonksiyonu yazılmış sınıflar türünden değişkenler ile fonksiyon çağırma operatörü kullanılabilir ancak isim fonksiyon olarak referans edilemez. IDE'nin mesajına göre bunun ileride ekleneceği öngörülmektedir.
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+data class MyNumber(val value:Int) {
+    operator fun invoke(): Int
+    {
+    val x = readInt("Çarpanı giriniz:")
+
+        return value * x
+    }
+}
+
+fun main()
+{
+    val a: Int = readInt("Bir sayı giriniz:")
+
+    val myNumber = MyNumber(a)
+
+    var result: Int = run(myNumber::invoke)
+
+    result = run(::myNumber) //error: Unsupported [References to variables aren't supported yet]
+
+    println(result)
+
+    result = myNumber()
+
+    println(result)
+}
+```
+
+>*Aşağıdaki örnekte bir lambda fonksiyon tanımlanmıştır. Çağrılmamıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.kotlin.util.console.readInt
+
+fun main()
+{
+    {
+        val a = readInt("Bir sayı giriniz:")
+
+        println(a * a)
+    }
+}
+```
+
+>*Yukardaki örnekteki lambda fonksiyon aşağıdaki gibi çağrılabilir. Kod örnek amaçlı yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.readInt
+
+fun main()
+{
+    {
+        val a = readInt("Bir sayı giriniz:")
+        println(a * a)
+    }()
+}
+```
+
+>*Yukardaki örnek aşağıdaki gibi de yapılabilir*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.readInt
+
+fun main()
+{
+    run {
+        val a = readInt("Bir sayı giriniz:")
+        println(a * a)
+    }
+}
+```
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main()
+{
+    println({ a: Int, b: Int -> a + b }(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz")))
+}
+```
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main()
+{
+    val result = { a: Int, b: Int -> a + b }(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz"))
+    //...
+    println(result)
+}
+```
+
+>*Aşağıdaki örneği inceleyiniz. Kod sentaksı göstermek için yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val result = { a: Int, b: Int, block: () -> Int -> a + b + block() } (readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz"))  {val value = Random.nextInt(100); println(value); value}
+    //...
+
+    println(result)
+}
+```
+
+>*Aşağıdaki örneği inceleyiniz. Kod sentaksı göstermek için yazılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+import kotlin.random.Random
+
+fun main()
+{
+    val foo = { a: Int, b: Int, block: () -> Int -> a + b + block() }
+    val result = foo(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz"))  {val value = Random.nextInt(100); println(value); value}
+    //...
+
+    println(result)
+}
+```
+
+>*Bir veri yapısının, veri yapısının verileri nasıl tuttuğundan bağımsız olarak dolaşılmasına (iterate) olanak sağlayan araçlara programlamada genel olarak iterator denir. Kotlin'de for döngü deyimiyle dolaşılabilir bir sınıfın Iterable<T> arayüzünü desteklemesi gerekir. Bu arayüzün iterator metodu Iterator<T> arayüz referansına geri döner. bu arayüzün hasNext abstract metodu ile bir sonraki verinin varlığına ilişkin Boolean türden değer elde edilir. next metodu bir sonraki elemanın değerine geri döner, her next çağrısında bir sonraki elemandan önceki elemana konumlanılır. next metodu hasNext false olduğunda yani artık eleman kalmadığınd çağrılırsa NoSuchElementException fırlatılır. Aşağıdaki iterator metodunun çağrılması ve döngü işlemi for döngü deyimiyle doğrudan yapılabilir*
+
+```
+for (value in a)
+    print("$value ")
+```
+
+>*Aşağıdaki örnekte bir dizi itrator ile açık açık dolaşılmıştır*
+
+```kotlin
+package org.csystem.app
+
+import kotlin.random.Random
+
+fun main()
+{
+    val a = IntArray(10) { Random.nextInt(100) }
+
+    val iter = a.iterator()
+
+    while (iter.hasNext())
+        print("${iter.next()} ")
+
+    println()
+}
+```
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.console.kotlin.readInt
+
+fun main()
+{
+    val a = readInt("Birinci sayıyı giriniz:")
+    val b = readInt("İkinci sayıyı giriniz:")
+
+    val r = a..b
+    val iter = r.iterator()
+
+    while (iter.hasNext())
+        print("${iter.next()} ")
+
+    println()
+
+    for (v in r)
+        print("$v ")
+
+    println()
+}
+```
 
 <br>
 
@@ -13049,8 +15108,8 @@ fun main()
 <br>
 
 >*Set tarzı collection'larda, __"hash"__ kullananlar eşitlik kontrolü için equals ve hashCode metotlarının geri dönüş değerine bakarlar. Bu durumda programcı bir tür durumlar için bu metotları gerekirse override etmelidir.*
->
->**_Anahtar Notlar:_** Hash code üretmek ayrı bir kavramdır ve bir çok durumda üretmenin farklı yöntemleri vardır. Aşağıdaki örnekte ürünün id değeri Int olduğundan ve aynı id'ye sahip birden fazla ürünün __"set"__ içerisinde bulunmaması gerektiği varsayımıyla düşünülmüştür
+
+**_Anahtar Notlar:_** Hash code üretmek ayrı bir kavramdır ve bir çok durumda üretmenin farklı yöntemleri vardır. Aşağıdaki örnekte ürünün id değeri Int olduğundan ve aynı id'ye sahip birden fazla ürünün __"set"__ içerisinde bulunmaması gerektiği varsayımıyla düşünülmüştür.
 
 ```kotlin
 package org.csystem.app
@@ -13632,9 +15691,7 @@ fun main()
 }
 ```
 
-<br>
-
->**_Sınıf Çalışması:_** LocalDate sınıfını kullanarak iki tarih arasındaki toplam yılı Double türden çıkartma operatörü ile hesaplayan kodları yazınız
+>**_Sınıf Çalışması:_** LocalDate sınıfını kullanarak iki tarih arasındaki toplam yılı Double türden çıkartma operatörü ile hesaplayan kodları yazınız.
 
 ```kotlin
 package org.csystem.app
@@ -13884,10 +15941,9 @@ fun main()
 >4. *__<u>Phantom reachable:</u>__ __"Strongly reachable"__, __"softly reachable"__ ve __"weakly reachable"__ olmayan fakat adresi, PhantomReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"phantom reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler kabaca söylemek gerekirse bir kuyruğa atılır hemen yok edilmeyebilir. Yüksek seviyede pratik bir kullanımı yoktur.*
 >
 >5. *__<u>Unreachable:</u>__ Yukarıdaki erişmlerin hiç birinin olmadığı artık __"garbage collected/eligible"__ duruma gelmiş nesnedir.*
->
->
->**_Anahtar Notlar:_** JVM'de genel olarak, klasik referanslara (yani referans dendiğinde) __"hard reference"__, SoftReference ile tutulan referansa __"soft reference"__, WeakReference ile tutulan referanslara __"weak reference"__ ve PhantomReference ile tutulan referansları __"phantom reference"__ da denilmektedir.
->
+
+**_Anahtar Notlar:_** JVM'de genel olarak, klasik referanslara (yani referans dendiğinde) __"hard reference"__, SoftReference ile tutulan referansa __"soft reference"__, WeakReference ile tutulan referanslara __"weak reference"__ ve PhantomReference ile tutulan referansları __"phantom reference"__ da denilmektedir.
+
 >*Yukarıdaki anlatılanların özellikle aşağı seviyede detayları vardır. Burada ele alınmayacaktır. Özellikle Android uygulamalarında __"memory leak__" oluşumunu engellemek için WeakReference sınıfı çeşitli durumlarda çözüm olarak kullanılabilir. Bunlar kursumuzda projeler içerisinde çeşitli durumlarda kullanılmıştır*
 
 <br>
@@ -13920,11 +15976,10 @@ fun main()
 >    1. *Thread sınıfından türetme yaparak*
 >    2. *Runnable arayüzünü implemente ederrek*
 >    3. *Executor'lar kullanarak*
->
-><br>
->
->**_Anahtar Notlar:_** Java'nın ilerleyen sürümlerinde Virtual Thread'ler de eklenmiştir. Burada belirli ölçüde ele alınacaktır.
->
+><br></br>
+
+**_Anahtar Notlar:_** Java'nın ilerleyen sürümlerinde Virtual Thread'ler de eklenmiştir. Burada belirli ölçüde ele alınacaktır.
+
 >*Android dünyasında thread'ler ile çalışmanın başka yöntemleri de vardır.*
 >
 >*Neden thread kullanalım? Bu sorunun cevabı domain'e göre değişiklik gösterebilse de genel olarakl şu maddelerle özetlenebilir:*
@@ -13934,18 +15989,16 @@ fun main()
 >
 >   - *Thread'ler blokeli IO işlemlerinde yoğun olarak kullanılmaktadır. Yani bir IO iişlemi başlatıldığında belli bir süre bloke oluşabilir. Bu durumda diğer işlemlerin de yapılabilmesi için bloke akışın diğer akışlardan ayrılması yani başka bir thread'de yapılması gerekir*
 >
->   - *Thread'ler paralel programlamada (parallel computig/programming) mecburen kullanılmaktadır*
+>   - *Thread'ler paralel programlamada (parallel computig/programming) mecburen kullanılmaktadır.*
+>
+>*JavaSE'de thread işlemlerine yönelik en temel sınıf Thread sınıfıdır. Thread sınıfının start metodu ile thread başlatılır (yaratılır). Programcı Thread sınıfından türetme yaparak run sanal metodunu override eder. run metodu yaratılan thread'e ilişkin akıştır.*
 
-<br>
+**_Anahtar Notlar:_** Java'da thread'lern ketegori olarak ikiye ayrılır: Daemon threadler, Non-daemon threadler. Bir thread default olarak bu özellikleri yaratıldığı thread'den alır. main thread non-daemon bir thread'dir. Bu sebeple aşağıdaki örnekte main metodunun bitmiş olmasına karşılık yaratılan thread'ler devam etmektedir.
 
->*JavaSE'de thread işlemlerine yönelik en temel sınıf Thread sınıfıdır. Thread sınıfının start metodu ile thread başlatılır (yaratılır). Programcı Thread sınıfından türetme yaparak run sanal metodunu override eder. run metodu yaratılan thread'e ilişkin akıştır*
->
->**_Anahtar Notlar:_** Java'da thread'lern ketegori olarak ikiye ayrılır: Daemon threadler, Non-daemon threadler. Bir thread default olarak bu özellikleri yaratıldığı thread'den alır. main thread non-daemon bir thread'dir. Bu sebeple aşağıdaki örnekte main metodunun bitmiş olmasına karşılık yaratılan thread'ler devam etmektedir
->
->**_Anahtar Notlar:_** Bir thread'i temsil eden Thread nesnesine ilişkin referans o thread içerisinde Thread sınıfının currentThread static metodu ile elde edilebilir. Thread sınıfının, thread'e özgü pek çok bilgisine yönelik metotları vardır. Örneğin getName metodu (Kotlin'de name property elemanı) thread'in ismine geri döner. Her thread'in bir ismi vardır. Programcı bir isim vermese bile otomatik olarak isim verilir. main thread'in ismi genel olarak main'dir. Thread sınıfının isDaemon metodu (Kotlin'de isDaemon property elemanı) thread'in deamon olup olmadığı bilgisini döndürür. Ayrıca bu metodun bir de mutator'ı vardır. İleride ele alınacaktır
->
->**_Anahtar Notlar:_** Thread sınıfının sleep static metodu aldığı milisaniye değeri kadar thread'i bloke eder. Bu metot InterruptedException fırlatabilir. Bu exception checked bir exception'dır. Tabii ki Kotlin'de bunun bir önemi yoktur. sleep metodunun fırlattığı bu exception ileride ele alınacaktır.
->
+**_Anahtar Notlar:_** Bir thread'i temsil eden Thread nesnesine ilişkin referans o thread içerisinde Thread sınıfının currentThread static metodu ile elde edilebilir. Thread sınıfının, thread'e özgü pek çok bilgisine yönelik metotları vardır. Örneğin getName metodu (Kotlin'de name property elemanı) thread'in ismine geri döner. Her thread'in bir ismi vardır. Programcı bir isim vermese bile otomatik olarak isim verilir. main thread'in ismi genel olarak main'dir. Thread sınıfının isDaemon metodu (Kotlin'de isDaemon property elemanı) thread'in deamon olup olmadığı bilgisini döndürür. Ayrıca bu metodun bir de mutator'ı vardır. İleride ele alınacaktır.
+
+**_Anahtar Notlar:_** Thread sınıfının sleep static metodu aldığı milisaniye değeri kadar thread'i bloke eder. Bu metot InterruptedException fırlatabilir. Bu exception checked bir exception'dır. Tabii ki Kotlin'de bunun bir önemi yoktur. sleep metodunun fırlattığı bu exception ileride ele alınacaktır.
+
 >*Aşağıdaki basit örneği inceleyiniz*
 
 ```kotlin
@@ -14556,9 +16609,7 @@ fun main()
 }
 ```
 
-<br>
-
->**_Sınıf Çalışması:_** Klavyeden 'b' girildiğinde saat:dakika:saniye biçiminde bir sayaç başlatan ve 'd' girildiğinde sayacı durduran uygulamayı yazınız. Program 'ç' girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılamayacaktır. Sayaç çalışıyorken b'ye tekrar basılırsa herhangi bir şey yapılmayacaktır
+>**_Sınıf Çalışması:_** Klavyeden 'b' girildiğinde saat:dakika:saniye biçiminde bir sayaç başlatan ve 'd' girildiğinde sayacı durduran uygulamayı yazınız. Program 'ç' girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılamayacaktır. Sayaç çalışıyorken b'ye tekrar basılırsa herhangi bir şey yapılmayacaktır.
 
 ```kotlin
 package org.csystem.app
@@ -14630,8 +16681,6 @@ private fun runApp()
 fun main() = runApp()
 ```
 
-<br>
-
 >*__Thread'lerin sonlandırılması:__ Bir thread aşağıdaki durumlardan biri gerçekleştiğinde sonlanır:*
 >- *Thread akışına ilişkin fonksiyonun sonlanması durumunda. Şüphesiz en normal durum budur.*
 >
@@ -14653,9 +16702,7 @@ fun main() = runApp()
 >
 >*Aslında bir thread'in interrupt flag denilen bir flag değeri vardır ve bu flag değeri thread başlatığında mantıksal false değerinde yani reset durumundadır. Thread sınıfının interrupt metodu interrupt flag değerini set eder yani mantıksal true değerine çeker. Bu işlem atomic bir biçimde yapılır. Yani bu set/reset işlemi bitene kadar o flag değerine yönelik araya hiç bir işlem giremez. sleep, join gibi Thread'i bloke eden fonksiyonlar bloke durumdayken interrupt flag değeri set edilirse InterruptedException fırlatırlar ve interrupt flag değerini reset ederler. Ayrıca Thread sınıfının static interrupted ve non-static isInterrupted isimli iki fonksiyonu ile interrup flag değerinin set edilip edilmediği test edilebilir. Bu iki metodun static ve non-static olmaları dışında farkı ileride ele alınacaktır.*
 
-<br>
-
->**_Anahtar Notlar:_** Üçüncü madde için flag değeri sınıfın veri elemanı olarak kullanılıyorsa Java'da volatile anahtar sözcüğü ile, Kotlin'de property elemanı Volatile annotation'ı ile işeretlenirse flag değeri thread de görülebilir. volatile bir veri elemanı derleyiciye sen bunu optimizasyon amaçlı registerda bekletme her zaman ve her akışsa memory'den kullan isteğidir. Derleyici bazı durumlarda yine de optimizasyon yapabilir. Ancak aşağıdaki gibi bir durumda derleyici volatile olması derleyiciye optimizasyon yaptırmayacaktır. Bu problem __"volatile"__ kullanmadan da çözülebilir. Örneği Volatie annotagtion'ını kaldırarak da çalıştırıp sonuçları gözlemleyiniz. Örnek durumu göstermek için yazılmıştır
+**_Anahtar Notlar:_** Üçüncü madde için flag değeri sınıfın veri elemanı olarak kullanılıyorsa Java'da volatile anahtar sözcüğü ile, Kotlin'de property elemanı Volatile annotation'ı ile işeretlenirse flag değeri thread de görülebilir. volatile bir veri elemanı derleyiciye sen bunu optimizasyon amaçlı registerda bekletme her zaman ve her akışsa memory'den kullan isteğidir. Derleyici bazı durumlarda yine de optimizasyon yapabilir. Ancak aşağıdaki gibi bir durumda derleyici volatile olması derleyiciye optimizasyon yaptırmayacaktır. Bu problem __"volatile"__ kullanmadan da çözülebilir. Örneği Volatie annotagtion'ını kaldırarak da çalıştırıp sonuçları gözlemleyiniz. Örnek durumu göstermek için yazılmıştır.
 
 ```kotlin
 package org.csystem.app
@@ -14938,8 +16985,8 @@ fun main()
 <br>
 
 >*Thread yaratılması işletim düzeyinde bir takım alt seviye işlemlerin yapılmasına yol açmaktadır. Bazı uygulamalarda çok fazla thread'in aynı zamanda yaratılması gerekebilmektedir. Örneğin multi-client bir server herhangi bir client'ın işlemi devam ederken başka bir client gelmesi durumunda da hizmet verebilmesi için her client'ın bağlantısından sonra o client için bir thread açmalıdır. İşte böyle bir durumda çok fazla client'ın bağlantı yapmaya çalışması, thread yaratılırken aşağı seviyeli işlemler dolayısıyla belirli bir yavaşlığa sebep olabilir. Bu gibi örnekler ileride yapılacaktır. İşte bu durumlarda işlemlerin hızlı bir biçimde yapılabilmesi için işletim sistemlerinin desteklediği bazı yöntemler bulunmaktadır. Bu yöntemler işletim sistemlerine değişiklik gösterebilmektedir. İşte Java 5 ile bu gibi durumlara yönelik işlemleri yapan sınıflar ve metotlar içereen __"executors"__ eklenmiştir. Executors ile tipik olarak thread havuzları (thread pool) oluşturulabilmektedir. Thread havuzları önceden yaratılmış thread'ler gerektiğinde start edilebilmektedir. Yani yukarıda anlatılan thread yaratma maliyeti daha işin başında yapılmaktadır. Bu durumda aşağı seviyeli (süphesi yüksek seviyeli de) thread yaratma maliyeti minimalize edilmiş olur. Şüphesiz executors bu işlemi en nihayetinde işletim sisteminin sağladığı yöntemler ile yapmaktadır. Ancak şüphesi bu Java/Android programcısını ilgilendirmemektedir. Java programcısı açısından çoğu durumda klasik thread yerine executors kullanımı tercih edilmelidir. O zaman Thread sınıfına neden ihtiyaç vardır? Şüphesiz basit bazı thread işlemleri yani yukarıdaki gibi thread yaratmanın maliyetinin önemli olmadığı durumlarda özellikle Kotlin ile kullanımı çok basit olduğundan klasik thread tercih edilebilir. Ayrıca Thread sınıfının çeşitli metotları thread havuzlarında da kullanılabilmektedir. Şüphesiz thread havuzlarından alında thread'ler de Java anlamında birer Thread'dir. Kısaca programcı açısından thread havuzları da arka planda Thead sınıfını kullanıyor olarak düşünülebilir. Executors çok geniş bir kütüphanedir ve pek çok işleme yönelik metotları ve sınıfları vardır. Burada yalnızca thread havuzlarının fixed ve cached olanları ele alınacaktır. Bir thread havuzu da ayrı bir thread'dir.*
->
->**_Anahtar Notlar:_** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (13 Kasım 2023) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar __"Kotlin Coroutines"__ ile kullanılabilmektedir. Kotlin Coroutines ileride ele alınacatır.
+
+**_Anahtar Notlar:_** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (13 Kasım 2023) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar __"Kotlin Coroutines"__ ile kullanılabilmektedir. Kotlin Coroutines ileride ele alınacatır.
 
 <br>
 
@@ -15137,9 +17184,7 @@ fun main()
 
 <br>
 
->**_Anahtar Notlar:_** Thread'ler ve asenkron çalışma ilgili burada anlatılanlar dışında da pek çok detay vardır. Bazıları örnekler içerisinde ele alınacaktır
-
-<br>
+**_Anahtar Notlar:_** Thread'ler ve asenkron çalışma ilgili burada anlatılanlar dışında da pek çok detay vardır. Bazıları örnekler içerisinde ele alınacaktır.
 
 ### Kotlin Coroutines:
 
