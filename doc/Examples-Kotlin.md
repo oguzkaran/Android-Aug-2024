@@ -3,6 +3,8 @@
 ### Kotlin Programlama Dili
 ### Eğitmen: Oğuz KARAN
 
+#### Düzenleyenler: Anıl Bozkırlı, Bartu Çankaya, Eda Akyıl, Yılmaz Kurtuluş
+
 **_Anahtar Notlar:_** Burada ağırlıklı olarak KotlinJVM üzerinde durulacaktır.
 
 >*Hello, World programı*
@@ -1089,7 +1091,9 @@ fun display(min: Int, max:Int) {
 }
 ```
 
->*Kotlin'de her operatörün karşılık geldiği bir fonksiyon bulunmaktadır. Bu şekilde tasarım ilgili fonksiyonun olduğu türlere ilişkin değerlerin o operatörle kullanılabilmesi anlamına gelir. Yani örneğin Complex isimli bir sınıfın operator fun plus(z: Complex) parametreli bir fonksiyonu uygun şekilde yazılmışsa `z1` ve `z2` Complex türden referansları için:*
+#### ****Operatörler****
+
+*Kotlin'de her operatörün karşılık geldiği bir fonksiyon bulunmaktadır. Bu şekilde tasarım ilgili fonksiyonun olduğu türlere ilişkin değerlerin o operatörle kullanılabilmesi anlamına gelir. Yani örneğin Complex isimli bir sınıfın operator fun plus(z: Complex) parametreli bir fonksiyonu uygun şekilde yazılmışsa `z1` ve `z2` Complex türden referansları için:*
 >
 >`z1 + z2 -> z1.plus(z2)`
 >
