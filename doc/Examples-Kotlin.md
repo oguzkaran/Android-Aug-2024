@@ -1095,7 +1095,7 @@ fun display(min: Int, max:Int) {
 
 *Kotlin'de her operatörün karşılık geldiği bir fonksiyon bulunmaktadır. Bu şekilde tasarım ilgili fonksiyonun olduğu türlere ilişkin değerlerin o operatörle kullanılabilmesi anlamına gelir. Yani örneğin Complex isimli bir sınıfın operator fun plus(z: Complex) parametreli bir fonksiyonu uygun şekilde yazılmışsa `z1` ve `z2` Complex türden referansları için:*
 >
->`z1 + z2 -> z1.plus(z2)`
+>`z1 + z2 ya da z1.plus(z2)`
 >
 >*biçiminde kullanılabilir. Temel türlerin de uygun operatör fonksiyonları yazılıdığından işlemler yapılabilir*
 
@@ -1106,16 +1106,13 @@ fun display(min: Int, max:Int) {
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val a : Int = 10
     val b : Int = 3
     var sum = a + b
 
     println("sum = $sum")
-
     sum = a.plus(b)
-
     println("sum = $sum")
 }
 ```
@@ -1125,16 +1122,13 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val a : Int = 10
     val b : Int = 3
     var result = a * b
 
     println("result = $result")
-
     result = a.times(b)
-
     println("result = $result")
 }
 ```
@@ -1144,16 +1138,13 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val a : Int = 10
     val b : Int = 3
     var result = a - b
 
     println("result = $result")
-
     result = a.minus(b)
-
     println("result = $result")
 }
 ```
@@ -1163,8 +1154,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val a : Int = 10
     val b : Int = 3
     var result = a / b
@@ -1182,8 +1172,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("Birinci sayıyı giriniz:")
     val a = readln().toInt()
 
@@ -1199,8 +1188,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("Birinci sayıyı giriniz:")
     val a = readln().toInt()
 
@@ -1208,6 +1196,7 @@ fun main()
     val b = readln().toInt()
 
     println("$a % $b = ${a.rem(b)}")
+    println("$a % $b = ${a % b}")
 }
 ```
 
@@ -1218,8 +1207,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("Birinci sayıyı giriniz:")
     val a = readln().toInt()
 
@@ -1230,53 +1218,58 @@ fun main()
 }
 ```
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı 3 basamaklı Int türden bir sayının basamakları toplamını döndüren sum3Digits fonksiyonu ve test kodunu yazınız. Fonksiyon basamak sayısı kontrolü yapmayacaktır.
+>**_Sınıf Çalışması:_** Parametresi ile aldığı 3 basamaklı Int türden bir sayının basamakları toplamını döndüren 
+> sum3Digits fonksiyonunu ve test kodunu yazınız. 
+> Açıklamalar: 
+1. > Fonksiyon basamak sayısı kontrolü yapmayacaktır.
+2. > Sayı negatif ise sonuç pozitif olarak elde edilecektir
+   
 
 ```kotlin
 package org.csystem.app
 
+import kotlin.math.abs
+
 fun main() = runSum3DigitsTest()
 
-fun runSum3DigitsTest()
-{
-    print("3 basamaklı bir sayı griniz:")
+fun runSum3DigitsTest() {
+    print("3 basamaklı bir sayı giriniz:")
     val value = readln().toInt()
 
-    print("$value sayısının basamakları toplamı:${sum3Digits(value)}")
+    println("$value sayısının basamakları toplamı:${sum3Digits(value)}")
 }
 
-fun sum3Digits(value: Int) : Int
-{
+fun sum3Digits(value: Int) : Int {
     val a = value / 100
-    val b  = value / 10 % 10
+    val b = value / 10 % 10
     val c = value % 10
 
-    return kotlin.math.abs(a + b + c);
+    return abs(a + b + c)
 }
 ```
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı 3 basamaklı Int türden bir sayının basamakları toplamını döndüren sum3Digits fonksiyonu ve test kodunu yazınız. Fonksiyon basamak sayısı kontrolü yapmayacaktır.
+>Yukarıdaki örnek operatör fonksiyonları kullanılarak aşağıdaki gibi de yapılabilir
 
 ```kotlin
 package org.csystem.app
 
+import kotlin.math.abs
+
 fun main() = runSum3DigitsTest()
 
-fun runSum3DigitsTest()
-{
-    print("3 basamaklı bir sayı griniz:")
+fun runSum3DigitsTest() {
+    print("3 basamaklı bir sayı giriniz:")
     val value = readln().toInt()
 
-    print("$value sayısının basamakları toplamı:${sum3Digits(value)}")
+    println("$value sayısının basamakları toplamı:${sum3Digits(value)}")
 }
 
-fun sum3Digits(value: Int) : Int
-{
+fun sum3Digits(value: Int) : Int {
     val a = value.div(100)
-    val b  = value.div(10).rem(10)
+    val b = value.div(10).rem(10)
     val c = value.rem(10)
 
-    return kotlin.math.abs(a + b + c);
+    return abs(a + b + c)
 }
 ```
 
@@ -1285,16 +1278,13 @@ fun sum3Digits(value: Int) : Int
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("Bir sayı giriniz:")
     val a = readln().toInt()
     var b = -a
 
     println("b = $b")
-
     b = a.unaryMinus()
-
     println("b = $b")
 }
 ```
@@ -1304,16 +1294,13 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("Bir sayı giriniz:")
     val a = readln().toInt()
     var b = +a
 
     println("b = $b")
-
     b = a.unaryPlus()
-
     println("b = $b")
 }
 ```
@@ -1323,8 +1310,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     var a = 10
 
     a++
@@ -1337,8 +1323,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     var a = 10
 
     ++a
@@ -1351,8 +1336,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     var a = 10
     val b = ++a
 
@@ -1366,8 +1350,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     var a = 10
     val b = a++
 
@@ -1376,13 +1359,12 @@ fun main()
 }
 ```
 
->`++` *operatörünün fonksiyon karşılığı. inc fonksiyonu artırılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan inc fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner*
+>`++` *operatörünün fonksiyon karşılığı olan inc fonksiyonu artırılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan inc fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner*
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val a : Int = 10
     val b = a.inc() //val b = a + 1
 
@@ -1396,8 +1378,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     var a = 10
 
     a = a.inc() //a = a + 1
@@ -1405,13 +1386,42 @@ fun main()
 }
 ```
 
+>`++` *operatörünün fonksiyon karşılığı*
+
+```kotlin
+package org.csystem.app
+
+fun main() {
+    var a = 10
+    val b = a
+
+    a = a.inc()
+
+    println("a = $a")
+    println("b = $b")
+}
+```
+>`++` *operatörünün fonksiyon karşılığı*
+
+```kotlin
+package org.csystem.app
+
+fun main() {
+    var a = 10
+
+    a = a.inc()
+    val b = a
+
+    println("a = $a")
+    println("b = $b")
+}
+```
 >`--` *operatörünün fonksiyon karşılığı. dec fonksiyonu azaltılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan dec fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner*
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val a = 10
     val b = a.dec() //b = a - 1
 
@@ -1425,8 +1435,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     var a = 10
 
     a = a.dec() //a = a - 1
@@ -1434,13 +1443,12 @@ fun main()
 }
 ```
 
->`*==` ve `!=` *operatörleri. Bu operatörlerin fonksiyon karşılıkları ileride ele alınacaktır*
+> `==` ve `!=` *operatörleri. Bu operatörlerin fonksiyon karşılıkları ileride ele alınacaktır*
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("Birinci sayıyı giriniz:")
     val a = readln().toInt()
 
@@ -1454,7 +1462,7 @@ fun main()
 }
 ```
 
->`*>`, `<=`, `<`, `>=` *operatörlerinin fonksiyon karşılıkları*
+>`>`, `<=`, `<`, `>=` *operatörlerinin fonksiyon karşkları compareTo fonksiyonudur*
 
 ```kotlin
 package org.csystem.app
@@ -1482,22 +1490,19 @@ fun main() {
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val result = foo() || bar()
 
     println("result = $result")
 }
 
-fun foo() : Boolean
-{
+fun foo() : Boolean {
     println("foo")
 
     return true
 }
 
-fun bar() : Boolean
-{
+fun bar() : Boolean {
     println("bar")
 
     return false
@@ -1509,22 +1514,19 @@ fun bar() : Boolean
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val result = bar() && foo()
 
     println("result = $result")
 }
 
-fun foo() : Boolean
-{
+fun foo() : Boolean {
     println("foo")
 
     return true
 }
 
-fun bar() : Boolean
-{
+fun bar() : Boolean {
     println("bar")
 
     return false
@@ -1536,22 +1538,19 @@ fun bar() : Boolean
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val result = foo().or(bar())
 
     println("result = $result")
 }
 
-fun foo() : Boolean
-{
+fun foo(): Boolean {
     println("foo")
 
     return true
 }
 
-fun bar() : Boolean
-{
+fun bar(): Boolean {
     println("bar")
 
     return false
@@ -1563,29 +1562,25 @@ fun bar() : Boolean
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val result = foo() || bar() && tar()
 
     println("result = $result")
 }
 
-fun foo() : Boolean
-{
+fun foo(): Boolean {
     println("foo")
 
     return true
 }
 
-fun bar() : Boolean
-{
+fun bar(): Boolean {
     println("bar")
 
     return false
 }
 
-fun tar() : Boolean
-{
+fun tar(): Boolean {
     println("tar")
 
     return false
@@ -1597,47 +1592,43 @@ fun tar() : Boolean
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val result = bar() && tar() || foo()
 
     println("result = $result")
 }
 
-fun foo() : Boolean
-{
+fun foo(): Boolean {
     println("foo")
 
     return true
 }
 
-fun bar() : Boolean
-{
+fun bar(): Boolean {
     println("bar")
 
     return false
 }
 
-fun tar() : Boolean
-{
+fun tar(): Boolean {
     println("tar")
 
     return false
 }
 ```
 
->*Mantıksal operatörlerin kısa devre davranışı göreceli olarak programın hızını artırır*
+>*Mantıksal operatörlerin kısa devre davranışı göreli olarak programın hızını artırır*
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+import kotlin.math.abs
+
+fun main() {
     run()
 }
 
-fun run()
-{
+fun run() {
     print("a kenarını giriniz:")
     val a = readln().toDouble()
 
@@ -1653,26 +1644,24 @@ fun run()
         println("$a, $b, $c bir üçgen oluşturamaz")
 }
 
-fun isTriangle(a: Double, b: Double, c: Double)
-        = a + b > c  && a + c > b && b + c > a && Math.abs(a - b) < c && Math.abs(a - c) < b && Math.abs(b - c) < a
+fun isTriangle(a: Double, b: Double, c: Double) =
+    a + b > c && a + c > b && b + c > a && abs(a - b) < c && abs(a - c) < b && abs(b - c) < a
 ```
 
->*Mantıksal NOT operatörü ve fonksiyon karşılığı*
+>*Mantıksal NOT operatörü ve not fonksiyonu*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Input a flag value as true or false:")
-    var flag = readln().toBoolean()
-    println("flag = $flag")
-
-    flag = !flag
-
-    println("flag = $flag")
-
-    println("flag = ${flag.not()}")
+package org.csystem.app  
+  
+fun main() {  
+    print("Input a flag value as true or false:")  
+    var flag = readln().toBoolean()  
+    println("flag = $flag")  
+  
+    flag = !flag  
+  
+    println("flag = $flag")  
+    println("flag = ${flag.not()}")  
 }
 ```
 
@@ -1681,26 +1670,23 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("Bir sayı giriniz:")
     val a = readln().toInt()
     val b: Int
 
     b = a
-
     println("a = $a")
     println("b = $b")
 }
 ```
 
->*Atama operatörü Kotlin'de bir ifade biçiminde ele alınmaz. Dolayısıyla aşağıdaki işlem geçersizdir. Atama operatörü bir değer üretmez*
+>*Atama operatörü Kotlin'de bir ifade (expression) biçiminde ele alınmaz. Dolayısıyla aşağıdaki işlem geçersizdir. Atama operatörü bir değer üretmez
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     var a: Int
     var b: Int
     val c: Int = 10
@@ -1712,143 +1698,227 @@ fun main()
 >*İşlemli atama operatörleri (augmented/compound assignment operators)*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var a: Int = 10
-    val b : Int = 20
-
-    a += b
-
-    println("a=$a")
-    println("b=$b")
+package org.csystem.app  
+  
+fun main() {  
+    var a: Int = 10  
+    val b: Int = 20  
+  
+    a += b  
+    println("a = $a")  
+    println("b = $b")  
 }
 ```
 
 >*İşlemli atama operatörleri işlem önceliğinden dolayı daha yalın kodların yazılmasını sağlayabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var a = 10
-    val b = 13
-
-    a *= b + 1 //a = a * (b + 1)
-
-    println("a = $a")
+package org.csystem.app  
+  
+fun main() {  
+    var a = 10  
+    val b = 13 
+    
+    a *= b + 1 //a = a * (b + 1)  
+    println("a = $a")  
 }
 ```
 
 >*Kotlin'de bir bir sonraki satıra geçmek ve noktalı virgül* `;` *sonlandırıcı (terminator) olarak kullanılabilir. Bir sonraki satıra geçmek sonlandırıcı olarak kullanılıyorsa noktalı virgül konması önerilmez*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var a = 10; var b = 10
-    a *= b; b++ //Burada a *= b nin sonuna yazılan noktalı virgül gereklidir
-
-    println("a = $a")
-    println("b = $b")
+package org.csystem.app  
+  
+fun main() {  
+    var a = 10; //; burada önerilmez  
+    var b = 10  
+    a *= b; b++ //Burada a *= b nin sonuna yazılan noktalı virgül gereklidir  
+  
+    println("a = $a")  
+    println("b = $b")  
 }
 ```
+**_Anahtar Notlar:_** Kotlin'de pek çok deyim aynı zamanda ifade biçimindedir. Bu tip deyimlere programlamada ifadesel deyim (expression statament) de denilmektedir. Örneğin Kotlin'de if bir ifadesel deyimdir. Standartlarda İngilizce karşılık olarak "if expression" biçiminde ele alınır
 
->`if` *ifadesel deyiminin (expression statement), deyim olarak kullanımı*
+>`if` expression'ın deyim olarak kullanımı*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val a = readln().toInt()
-
-    if (a % 2 == 0)
-        println("Çift")
-    else
-        println("Tek")
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val a = readln().toInt()  
+  
+    if (a % 2 == 0)  
+        println("Çift")  
+    else  
+        println("Tek")  
 }
 ```
+
 
 >`if` *ifadesinin koşul operatörü yerine kullanımı*
 
 **_Anahtar Notlar:_** Kotlin'de koşul operatörü (conditional operator) yoktur.
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val a = readln().toInt()  
+  
+    println(if (a % 2 == 0) "Çift" else "Tek")  
+}
+```
 
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val a = readln().toInt()
+**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+>
+>**_Açıklama:_** Programda yeni nesil sqrt global fonksiyonunu kullanınız.
 
-    println(if (a % 2 == 0) "Çift" else "Tek")
+
+```kotlin
+package org.csystem.app  
+  
+import kotlin.math.sqrt  
+  
+fun main() = runQuadraticEquationRootsApp()  
+  
+fun runQuadraticEquationRootsApp() {  
+    print("Input a:")  
+    val a = readln().toDouble()  
+  
+    print("Input b:")  
+    val b = readln().toDouble()  
+  
+    print("Input c:")  
+    val c = readln().toDouble()  
+  
+    findQuadraticEquationRoots(a, b, c)  
+}  
+  
+fun findQuadraticEquationRoots(a: Double, b: Double, c: Double) {  
+    fun calculateDelta() = b * b - 4 * a * c  
+    fun findByDeltaPositive(delta: Double) {  
+        val sqrtDelta = sqrt(delta)  
+        val x1 = (-b + sqrtDelta) / (2 * a)  
+        val x2 = (-b - sqrtDelta) / (2 * a)  
+  
+        println("x1 = $x1, x2 = $x2")  
+    }  
+  
+    fun findByDeltaZero() = println("x1 = x2 = ${-b / (2 * a)}")  
+  
+    val delta = calculateDelta()  
+  
+    if (delta > 0)  
+        findByDeltaPositive(delta)  
+    else if (delta == 0.0)  
+        findByDeltaZero()  
+    else  
+        println("No real root!...")  
 }
 ```
 
 >**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
 >
->**_Açıklama:_** Programda Math sınıfının sqrt metodu kullanılacaktır.
+>**_Açıklama:_** Programda yeni nesil sqrt global fonksiyonunu kullanınız.
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runApp()
-
-fun runApp()
-{
-    print("a?")
-    val a = readln().toDouble()
-
-    print("b?")
-    val b = readln().toDouble()
-
-    print("c?")
-    val c = readln().toDouble()
-
-    println(findRoots(a, b, c))
-}
-
-fun calculateDelta(a: Double, b: Double, c: Double) = b * b - 4 * a * c
-
-fun findRoots(a: Double, b: Double, c: Double) : String
-{
-    val delta = calculateDelta(a, b, c)
-
-    fun calculateRoots() : String
-    {
-        val sqrtDelta = Math.sqrt(delta)
-        return "x1 = ${(-b + sqrtDelta) / (2 * a)}, x2 = ${(-b - sqrtDelta) / (2 * a)}"
-    }
-
-    return if (delta > 0)
-                calculateRoots()
-            else if (delta == 0.0)
-                "x1 = x2 = ${-b / (2 * a)}"
-            else
-                "No real root"
+package org.csystem.app  
+  
+import kotlin.math.sqrt  
+  
+fun main() = runQuadraticEquationRootsApp()  
+  
+fun runQuadraticEquationRootsApp() {  
+    print("Input a:")  
+    val a = readln().toDouble()  
+  
+    print("Input b:")  
+    val b = readln().toDouble()  
+  
+    print("Input c:")  
+    val c = readln().toDouble()  
+  
+    println(findQuadraticEquationRoots(a, b, c))  
+}  
+  
+fun findQuadraticEquationRoots(a: Double, b: Double, c: Double): String {  
+    fun calculateDelta() = b * b - 4 * a * c  
+    val delta = calculateDelta()  
+  
+    fun calculateRoots(): String {  
+        val sqrtDelta = sqrt(delta)  
+        return "x1 = ${(-b + sqrtDelta) / (2 * a)}, x2 = ${(-b - sqrtDelta) / (2 * a)}"  
+    }  
+  
+    return if (delta > 0)  
+        calculateRoots()  
+    else if (delta == 0.0)  
+        "x1 = x2 = ${-b / (2 * a)}"  
+    else  
+        "No real root"  
 }
 ```
+**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+>
+>**_Açıklama:_** Programda yeni nesil sqrt global fonksiyonunu kullanınız.
+
+```kotlin
+package org.csystem.app  
+  
+import kotlin.math.sqrt  
+  
+fun main() = runQuadraticEquationRootsApp()  
+  
+fun runQuadraticEquationRootsApp() {  
+    print("Input a:")  
+    val a = readln().toDouble()  
+  
+    print("Input b:")  
+    val b = readln().toDouble()  
+  
+    print("Input c:")  
+    val c = readln().toDouble()  
+  
+    println(findQuadraticEquationRoots(a, b, c))  
+}  
+  
+fun findQuadraticEquationRoots(a: Double, b: Double, c: Double): String {  
+    fun calculateDelta() = b * b - 4 * a * c  
+  
+    val delta = calculateDelta()  
+  
+    fun calculateRoots(): String {  
+        val sqrtDelta = sqrt(delta)  
+          
+        return "x1 = ${(-b + sqrtDelta) / (2 * a)}, x2 = ${(-b - sqrtDelta) / (2 * a)}"  
+    }  
+  
+    return if (delta >= 0)  
+        calculateRoots()  
+    else  
+        "No real root"  
+}
+
+```
+
 
 >*Aşağıdaki örnekte else içteki* `if` *deyimine ilişkindir (dangling else)*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("a?")
-    val a = readln().toInt()
-
-    if (a % 2 == 0)
-        if (a > 0)
-            println("Çift pozitif")
-    else
-        println("Çift sayı değil")
+package org.csystem.app  
+  
+fun main() {  
+    print("a?")  
+    val a = readln().toInt()  
+  
+    if (a % 2 == 0)  
+        if (a > 0)  
+            println("Çift pozitif")  
+    else  
+        println("Çift sayı değil")  
 }
 ```
 
@@ -1857,8 +1927,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("a?")
     val a = readln().toInt()
 
@@ -1876,8 +1945,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("a?")
     val a = readln().toInt()
 
@@ -1891,22 +1959,21 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte* `if` *ifadesel deyimi ifade biçiminde koşul operatörü gibi kullanılmıştır. Kotlin'de koşul opratörü yoktur*
+>*Aşağıdaki örnekte* `if` *ifadesel deyimi ifade biçiminde koşul operatörü gibi kullanılmıştır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Birinci sayıyı giriniz:")
-    val a = readln().toInt()
-
-    print("İkinci sayıyı giriniz:")
-    val b = readln().toInt()
-
-    println("max($a, $b) = ${max(a, b)}")
-}
-
+package org.csystem.app  
+  
+fun main() {  
+    print("Birinci sayıyı giriniz:")  
+    val a = readln().toInt()  
+  
+    print("İkinci sayıyı giriniz:")  
+    val b = readln().toInt()  
+  
+    println("max($a, $b) = ${max(a, b)}")  
+}  
+  
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
@@ -1915,245 +1982,162 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 >- Kontrolün başta yapıldığı while döngü deyimi (while döngüsü)
 >- Kontrolün sonda yapıldığı while döngü deyimi (do-while döngüsü)
 >2. `for` döngü deyimi
->
-><br>
 
-<br>
-
-**_Anahtar Notlar:_** Buradaki for döngü deyimi Java'daki klasik for döngüsü değildir. Java'daki for-each döngü deyiminin
-daha yetenekli bir biçimi olarak düşünülebilir. Kotlin'de klasik for döngüsü yoktur. Ancak klasik for döngüsünün
-olmaması bir eksiklik değildir. Kotlin'deki for döngü deyimiyle çeşitli operatörler ve infix fonksiyonlar yardımıyla
-klasik for döngü deyimi ihtiyacı karşılanabilmektedir. İleride detaylı olarak ele alınacaktır*
+**_Anahtar Notlar:_** Buradaki for döngü deyimi Java'daki klasik for döngüsü değildir. Java'daki for-each döngü deyiminin daha yetenekli bir biçimi olarak düşünülebilir. Kotlin'de klasik for döngüsü yoktur. Ancak klasik for döngüsünün olmaması bir eksiklik değildir. Kotlin'deki for döngü deyimiyle çeşitli operatörler ve infix fonksiyonlar yardımıyla klasik for döngü deyimi ihtiyacı karşılanabilmektedir. İleride detaylı olarak ele alınacaktır*
 
 >*Kontrolün başta yapıldığı while döngüleri (while döngüsü)*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val n = readln().toInt()
-    var i = 0
-
-    while (i < n) {
-        print("$i ")
-        ++i
-    }
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val n = readln().toInt()  
+    var i = 0  
+  
+    while (i < n) {  
+        print("$i ")  
+        ++i  
+    }  
+  
+    println()  
 }
 ```
 
 >`while` *döngü deyiminin parantezi içerisinde atama yapılması geçersizdir. Anımsanacağı gibi atama operatörü bir ifade oluşturmaz. Dolayısıyla değer üretmez*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var value : Int
-    var count = 0
-
-    while ((value = readln().toInt()) != 0) //error
-        ++count
-
-    println("count=$count")
+package org.csystem.app  
+  
+fun main() {  
+    var a: Int  
+    var count = 0  
+  
+    while ((a = readln().toInt()) != 0) //error  
+        ++count  
+  
+    println("count=$count")  
 }
 ```
 
 >`while` *döngü deyimi ile n-kez dönen döngü kalıbı*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    var n = readln().toInt()
-
-    while (n-- > 0)
-        print("$n ")
-
-    println()
-    println("Döngü sonrası n = $n")
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    var n = readln().toInt()  
+  
+    while (n-- > 0)  
+        print("$n ")  
+  
+    println()  
+    println("Döngü sonrası n = $n")  
 }
 ```
 
->`while` *döngü deyimi ile n-kez dönen döngü kalıbı (dizi uyumlu)*
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val n = readln().toInt()
-    var i = 0
-
-    while (i < n) {
-        print("$i ")
-        ++i
-    }
-
-    println()
-}
-```
-
->`while` *döngü deyimi ile n-kez dönen döngü kalıbı (dizi uyumlu)*
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val n = readln().toInt()
-    var i = n - 1
-
-    while (i >= 0) {
-        print("$i ")
-        --i
-    }
-
-    println()
-}
-```
 
 >**_Sınıf Çalışması:_** Klavyeden sıfır girilene kadar alınan sayıların toplamını bulan programı yazınız. Örnekte break deyimini kullanabilirsiniz.
 
 **_Anahtar Notlar:_** Kotlin'de break deyiminin etiketsiz kullanımı Java ile aynıdır
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runApplication()
-
-fun runApplication()
-{
-    var sum = 0
-
-    while (true) {
-        print("Bir sayı giriniz:")
-        val value = readln().toInt()
-
-        if (value == 0)
-            break
-
-        sum += value
-    }
-
-    println("Toplam = $sum")
+package org.csystem.app  
+  
+fun main() = runApp()  
+  
+fun runApp() {  
+    println("Sayıları girmeye başlayınız:")  
+    var total = 0  
+  
+    while (true) {  
+        val a = readln().toInt()  
+  
+        if (a == 0)  
+            break  
+  
+        total += a  
+    }  
+  
+    println("Toplam:$total")    
 }
 ```
 
 >`do-while` *döngü deyimi*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val n = readln().toInt()
-    var i = 0
-
-    do {
-        println("i = $i")
-        ++i
-    } while(i < n)
-
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val n = readln().toInt()  
+    var i = 0  
+  
+    do {  
+        println("i = $i")  
+        ++i  
+    } while (i < n)  
+  
+    println("Tekrar yapıyor musunuz?")  
 }
 ```
 
 >`do-while` *döngü deyiminde Java ve C#'dan farklı olarak* `do-while` *döngü deyimi içerisinde bildirilmiş olan bir değişkenin while parantezi içerisinde kullanımı geçerlidir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    do {
-        val a = readln().toInt()
-
-        println("a = $a")
-    } while (a != 0)
-
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+fun main() {  
+    do {  
+        val a = readln().toInt()  
+  
+        println("a = $a")  
+    } while (a != 0)  
+      
+    println("Tekrar yapıyor musunuz?")  
 }
 ```
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının basamak sayısını döndüren countDigits isimli fonksiyonu döngü kullanarak yazınız yazınız ve aşağıdaki kod ile test ediniz.
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının basamak sayısını döndüren countDigits isimli fonksiyonu döngü kullanarak yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runCountDigitsTest()
-
-fun runCountDigitsTest()
-{
-    while (true) {
-        print("Bir sayı giriniz:")
-        val value = readln().toInt()
-
-        println("$value sayısının basamak sayısı:${countDigits(value)}")
-
-        if (value == 0)
-            break
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun countDigits(value: Int) : Int
-{
-    var count = 0
-    var temp = value
-
-    do {
-        ++count
-        temp /= 10
-    } while (temp != 0)
-
-    return count
+package org.csystem.app  
+  
+fun main() = runCountDigitsTest()  
+  
+fun runCountDigitsTest() {  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val value = readln().toInt()  
+  
+        println("$value sayısının basamak sayısı:${countDigits(value)}")  
+  
+        if (value == 0)  
+            break  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun countDigits(a: Int): Int {  
+    var count = 0  
+    var temp = a  
+  
+    do {  
+        ++count  
+        temp /= 10  
+    } while (temp != 0)  
+  
+    return count  
 }
 ```
-
+XXXXXXXXXXXXXXXXXXXXXXX
 >**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının basamakları toplamını döndüren sumDigits fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
+>**Açıklama:** Fonksiyon negatif sayılar için de pozitif değere geri dönecektir
 
 ```kotlin
-package org.csystem.app
 
-fun main() = runSumDigitsTest()
-
-fun runSumDigitsTest()
-{
-    while (true) {
-        print("Bir sayı giriniz:")
-        val value = readln().toInt()
-
-        println("$value sayısının basamakları toplamı:${sumDigits(value)}")
-
-        if (value == 0)
-            break
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun sumDigits(value: Int) : Int
-{
-    var total = 0
-    var temp = value
-
-    while (temp != 0) {
-        total += temp % 10
-        temp /= 10;
-    }
-
-    return kotlin.math.abs(total)
-}
 ```
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının tersini döndüren reversed isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
@@ -2161,75 +2145,13 @@ fun sumDigits(value: Int) : Int
 >**_Algoritma:_** 123 -> 3 -> 3 * 10 + 2 = 32 -> 32 * 10 + 1 = 321
 
 ```kotlin
-package org.csystem.app
 
-fun main() = runReversedTest()
-
-fun runReversedTest()
-{
-    while (true) {
-        print("Bir sayı giriniz:")
-        val value = readln().toInt()
-
-        println("$value sayısının tersi:${reversed(value)}")
-
-        if (value == 0)
-            break
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun reversed(value: Int) : Int
-{
-    var result = 0
-    var temp = value
-
-    while (temp != 0) {
-        result = result * 10 + temp % 10
-        temp /= 10
-    }
-
-    return result
-}
 ```
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının palindrom olup olmadığını test eden isPalindrome fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
-package org.csystem.app
 
-fun main() = runIsPalindromeTest()
-
-fun runIsPalindromeTest()
-{
-    while (true) {
-        print("Bir sayı giriniz:")
-        val value = readln().toInt()
-
-        println(if (isPalindrome(value)) "$value palindromdur" else "$value palindrom değildir")
-
-        if (value == 0)
-            break
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun isPalindrome(value: Int) = reversed(value) == value
-
-fun reversed(value: Int) : Int
-{
-    var result = 0
-    var temp = value
-
-    while (temp != 0) {
-        result = result * 10 + temp % 10
-        temp /= 10
-    }
-
-    return result
-}
 ```
 
 >*Aşağıdaki örnekte, Java'daki for döngü deyiminin karşılığı olan deyim yazılmıştır:*
