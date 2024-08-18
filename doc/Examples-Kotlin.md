@@ -2399,130 +2399,182 @@ fun pow(a: Int, b: Int): Int {
 >**_Açıklama:_** Kuvvet alma işlemi için bir önceki örnekte yazılan pow fonksiyonu kullanılacaktır.
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runIsArmstrongTest()
-
-fun runIsArmstrongTest()
-{
-    for (value in -10..99999)
-        if (isArmstrong(value))
-            println(value)
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun isArmstrong(value: Int) = value >= 0 && getDigitsPowSum(value) == value
-
-fun getDigitsPowSum(value: Int) : Int
-{
-    var temp = value
-    val digitCount = countDigits(value)
-    var total = 0
-
-    while (temp != 0) {
-        total += pow(temp % 10, digitCount)
-        temp /= 10
-    }
-
-    return total
-}
-
-fun countDigits(value: Int) : Int
-{
-    var count = 0
-    var temp = value
-
-    do {
-        ++count
-        temp /= 10
-    } while (temp != 0)
-
-    return count
-}
-
-fun pow(a: Int, b: Int) : Int
-{
-    var result = 1
-
-    for (i in 1..b)
-        result *= a
-
-    return result
+package org.csystem.app  
+  
+fun main() = runIsArmstrongTest()  
+  
+fun runIsArmstrongTest() {  
+    for (a in -10..99999)  
+        if (isArmstrong(a))  
+            println(a)  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun isArmstrong(a: Int): Boolean {  
+    fun digitsPowSum(): Int {  
+        var temp = a  
+        val n = countDigits(a)  
+        var result = 0  
+  
+        while (temp != 0) {  
+            result += pow(temp % 10, n)  
+            temp /= 10  
+        }  
+  
+        return result  
+    }  
+  
+    return digitsPowSum() == a  
+}  
+  
+fun pow(a: Int, b: Int): Int {  
+    var result = 1  
+  
+    for (i in 1..b)  
+        result *= a  
+  
+    return result  
+}  
+  
+fun countDigits(a: Int): Int {  
+    var count = 0  
+    var temp = a  
+  
+    do {  
+        ++count  
+        temp /= 10  
+    } while (temp != 0)  
+  
+    return count  
 }
 ```
 
->**_Sınıf Çalışması:_** Klavyeden sıfır girilene kadar alınan sayılardan pozitif ve negatif olanlarının ayrı ayrı toplamını ve kaçar tane olduklarını bulan programı yazınız.
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir sayının basamaklarının basamak sayıncı kuvvetleri toplamının kendisine eşit olup olmadığını test eden isArmstrong isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz. Fonksiyon negatif değerler için false değerini döndürecektir.
+>
+>**_Açıklama:_** Kuvvet alma işlemi için bir önceki örnekte yazılan pow fonksiyonu kullanılacaktır.
+
+```kotlin
+package org.csystem.app  
+  
+fun main() = runIsArmstrongTest()  
+  
+fun runIsArmstrongTest() {  
+    for (a in -10..99999)  
+        if (isArmstrong(a))  
+            println(a)  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun isArmstrong(a: Int) = digitsPowSum(a) == a  
+  
+fun digitsPowSum(a: Int): Int {  
+    var temp = a  
+    val n = countDigits(a)  
+    var result = 0  
+  
+    while (temp != 0) {  
+        result += pow(temp % 10, n)  
+        temp /= 10  
+    }  
+  
+    return result  
+}  
+fun pow(a: Int, b: Int): Int {  
+    var result = 1  
+  
+    for (i in 1..b)  
+        result *= a  
+  
+    return result  
+}  
+  
+fun countDigits(a: Int): Int {  
+    var count = 0  
+    var temp = a  
+  
+    do {  
+        ++count  
+        temp /= 10  
+    } while (temp != 0)  
+  
+    return count  
+}
+```
+
+>**_Sınıf Çalışması:_** Klavyeden sıfır girilene kadar alınan sayılardan pozitif ve negatif olanlarının ayrı ayrı toplamlarını ve kaçar tane olduklarını bulan programı yazınız.
 >
 >**_Not:_** Örnek Kotlin'de şu ana kadar görülen konular kullanılarak yazılmıştır.
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runPosNegCountApp()
-
-fun runPosNegCountApp()
-{
-    var posCount = 0
-    var negCount = 0
-
-    while (true) {
-        print("Bir sayı giriniz:")
-        val value = readln().toInt()
-
-        if (value == 0)
-            break
-
-        if (value > 0)
-            ++posCount
-        else
-            ++negCount
-    }
-
-    printResult(posCount, negCount)
-}
-
-fun printResult(posCount: Int, negCount: Int)
-{
-    if (posCount > 0)
-        println("$posCount adet pozitif sayı girdiniz")
-    else
-        println("Hiç pozitif sayı girmediniz")
-
-    if (negCount > 0)
-        println("$negCount adet negatif sayı girdiniz")
-    else
-        println("Hiç negatif sayı girmediniz")
+package org.csystem.app  
+  
+fun main() = runPosNegCountApp()  
+  
+fun runPosNegCountApp() {  
+    var posCount = 0  
+    var negCount = 0  
+    var posTotal = 0  
+    var negTotal = 0  
+  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val value = readln().toInt()  
+  
+        if (value == 0)  
+            break  
+  
+        if (value > 0) {  
+            posTotal += value  
+            ++posCount  
+        }  
+        else {  
+            negTotal += value  
+            ++negCount  
+        }  
+    }  
+  
+    printResult(posCount, negCount, posTotal, negTotal)  
+}  
+  
+fun printResult(posCount: Int, negCount: Int, posTotal: Int = 0, negTotal: Int) {  
+    if (posCount > 0)  
+        println("$posCount adet pozitif sayı girdiniz. Toplamları:$posTotal")  
+    else  
+        println("Hiç pozitif sayı girmediniz")  
+  
+    if (negCount > 0)  
+        println("$negCount adet pozitif sayı girdiniz. Toplamları:$negTotal")  
+    else  
+        println("Hiç negatif sayı girmediniz")  
 }
 ```
 
 >*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu<br>(Yavaş versiyon)*
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runIsPrimeTest()
-
-fun runIsPrimeTest()
-{
-    for (n in 1..100)
-        if (isPrime(n))
-            print("$n ")
-    println()
-    println(if (isPrime(1_000_003)) "Asal" else "Asal değil")
-}
-
-fun isPrime(value: Int) : Boolean
-{
-    if (value <= 1)
-        return false
-
-    for (n in 2..value / 2)
-        if (value % n == 0)
-            return false
-
-    return true
-}
+package org.csystem.app  
+  
+fun main() = runIsPrimeTest()  
+  
+fun runIsPrimeTest() {  
+    for (n in 1L..100)  
+        if (isPrime(n))  
+            print("$n ")  
+    println()  
+    println(if (isPrime(1_000_003)) "Asal" else "Asal değil")  
+}  
+  
+fun isPrime(a: Long): Boolean {  
+    if (a <= 1)  
+        return false  
+  
+    for (i in 2..a / 2)  
+        if (a % i == 0L)  
+            return false  
+  
+    return true}
 ```
 
 >*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu<br>(Hızlı versiyon)*
@@ -2530,106 +2582,106 @@ fun isPrime(value: Int) : Boolean
 >**_Kural:_** Bir sayının asal olması için karekökünden daha küçük olan asal sayıların hiçbirisine bölünememesi gerekir*
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runIsPrimeTest()
-
-fun runIsPrimeTest()
-{
-    println(if (isPrime(710584055392819667)) "Asal" else "Asal değil")
-}
-
-fun isPrime(value: Long) : Boolean
-{
-    if (value <= 1)
-        return false
-
-    if (value % 2 == 0L)
-        return value == 2L
-
-    if (value % 3 == 0L)
-        return value == 3L
-
-    if (value % 5 == 0L)
-        return value == 5L
-
-    if (value % 7 == 0L)
-        return value == 7L
-
-    var i = 11L
-
-    while (i * i <= value) {
-        if (value % i == 0L)
-            return false
-        i += 2
-    }
-
-    return true
+package org.csystem.app  
+  
+fun main() = runIsPrimeTest()  
+  
+fun runIsPrimeTest() {  
+    for (n in 1L..100)  
+        if (isPrime(n))  
+            print("$n ")  
+    println()  
+    println(if (isPrime(1_000_003)) "Asal" else "Asal değil")  
+}  
+  
+fun isPrime(a: Long): Boolean {  
+    if (a <= 1)  
+        return false  
+  
+    if (a % 2 == 0L)  
+        return a == 2L  
+  
+    if (a % 3 == 0L)  
+        return a == 3L  
+  
+    if (a % 5 == 0L)  
+        return a == 5L  
+  
+    if (a % 7 == 0L)  
+        return a == 7L  
+  
+    var i = 11  
+  
+    while (i * i <= a) {  
+        if (a % i == 0L)  
+            return false  
+  
+        i += 2  
+    }  
+  
+    return true  
 }
 ```
 
 >*Yukarıdaki iki fonksiyonun basit bir karşılaştırması*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    println(if (isPrime(1_000_003)) "Asal" else "Asal değil")
-    println(if (isPrimeSlow(1_000_003)) "Asal" else "Asal değil")
-}
-
-fun isPrimeSlow(a: Int) : Boolean
-{
-    if (a <= 1)
-        return false
-
-    val halfValue = a / 2
-
-    var count = 0
-
-    for (i in 2..halfValue) {
-        ++count
-        if (a % i == 0)
-            return false
-    }
-
-    println("isPrimeSlow:count=$count")
-    return true
-}
-
-fun isPrime(a: Long) : Boolean
-{
-    if (a <= 1)
-        return false
-
-    if (a % 2 == 0L)
-        return a == 2L
-
-    if (a % 3 == 0L)
-        return a == 3L
-
-    if (a % 5 == 0L)
-        return a == 5L
-
-    if (a % 7 == 0L)
-        return a == 7L
-
-    var i = 11L
-
-    var count = 0L
-
-    while (i * i <= a) {
-        ++count
-        if (a % i == 0L)
-            return false
-
-        i += 2
-    }
-
-    println("isPrime:count = $count")
-
-    return true
+package org.csystem.app  
+  
+fun main() {  
+    println(if (isPrime(1_000_003)) "Asal" else "Asal değil")  
+    println(if (isPrimeSlow(1_000_003)) "Asal" else "Asal değil")  
+}  
+  
+fun isPrimeSlow(a: Long): Boolean {  
+    if (a <= 1)  
+        return false  
+  
+    val halfValue = a / 2  
+  
+    var count = 0  
+  
+    for (i in 2..halfValue) {  
+        ++count  
+        if (a % i == 0L)  
+            return false  
+    }  
+  
+    println("isPrimeSlow:count=$count")  
+    return true  
+}  
+  
+fun isPrime(a: Long): Boolean {  
+    if (a <= 1)  
+        return false  
+  
+    if (a % 2 == 0L)  
+        return a == 2L  
+  
+    if (a % 3 == 0L)  
+        return a == 3L  
+  
+    if (a % 5 == 0L)  
+        return a == 5L  
+  
+    if (a % 7 == 0L)  
+        return a == 7L  
+  
+    var i = 11L  
+  
+    var count = 0L  
+  
+    while (i * i <= a) {  
+        ++count  
+        if (a % i == 0L)  
+            return false  
+  
+        i += 2  
+    }  
+  
+    println("isPrime:count = $count")  
+  
+    return true  
 }
 ```
 
@@ -2654,88 +2706,85 @@ fun isPrime(a: Long) : Boolean
 >`downTo` *infix fonksiyonu ile for döngüsü içerisinde ters sırada dönen bir döngü yazılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("a:")
-    val a = readln().toInt()
-
-    print("b:")
-    val b = readln().toInt()
-
-    for (i in b downTo a)
-        print("$i ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("Input first number:")  
+    val a = readln().toInt()  
+  
+    print("Input second number:")  
+    val b = readln().toInt()  
+  
+    for (i in b downTo a)   
+        print("$i ")  
+  
+    println()  
 }
 ```
 
 >*Aşağıdaki örnekte* `downTo` ve `step` *fonksiyonları birlikte kullanılmıştır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("a:")
-    val a = readln().toInt()
-
-    print("b:")
-    val b = readln().toInt()
-
-    for (i in b downTo a step 3)
-        print("$i ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("Input first number:")  
+    val a = readln().toInt()  
+  
+    print("Input second number:")  
+    val b = readln().toInt()  
+  
+    for (i in b downTo a step 2)  
+        print("$i ")  
+  
+    println()  
 }
 ```
 
 >`until` *infix fonksiyonu ile* `[a, b)` *aralığında döngü deyimi oluşturulabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("min:")
-    val min = readln().toInt()
-    print("bound:")
-    val bound = readln().toInt()
-
-    for (i in min until bound) //[min, bound)
-        print("$i ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("Input first number:")  
+    val a = readln().toInt()  
+  
+    print("Input second number:")  
+    val b = readln().toInt()  
+  
+    for (i in a until b)  
+        print("$i ")  
+  
+    println()  
 }
 ```
 
 >`until` *infix fonksiyonu ile step fonksiyonunun kullanımı*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("min:")
-    val min = readln().toInt()
-    print("bound:")
-    val bound = readln().toInt()
-
-    for (i in min until bound step 2) //[min, bound)
-        print("$i ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("Input first number:")  
+    val a = readln().toInt()  
+  
+    print("Input second number:")  
+    val b = readln().toInt()  
+  
+    for (i in a until b step 2)  
+        print("$i ")  
+  
+    println()  
 }
 ```
 
->*Aşağıdaki örnekte exception oluşur. step değeri pozitif bir tamsayı değeri olmalıdır. Buradaki örnek geriye doğru dolaşmak anlamına gelmez*
+>*Aşağıdaki örnekte exception oluşur. step'e verilen argüman pozitif bir değer olmalıdır. Buradaki örnek geriye doğru dolaşmak anlamına gelmez*
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val a = 10
     val b = 1
 
@@ -2746,76 +2795,96 @@ fun main()
 }
 ```
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir n sayısı için n-inci asal sayıyı döndüren getPrime isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz. Fonksiyon n'nin pozitif olmayan değerleri için kontrol yapmayacaktır.
+>*Kotlin 1.9 ile birlikte rangeUntil operatörü eklenmiştir*
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runGetPrimeTest()
-
-fun runGetPrimeTest()
-{
-    while (true) {
-        print("Bir sayı giriniz:")
-        val n = readln().toInt()
-
-        if (n <= 0)
-            break
-
-        println("${n}. asal sayı: ${getPrime(n)}")
-    }
-
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+fun main() {  
+    print("Input first number:")  
+    val a = readln().toInt()  
+  
+    print("Input second number:")  
+    val b = readln().toInt()  
+  
+    for (i in a..<b)
+        print("$i ")  
+  
+    println()  
 }
+```
 
-fun getPrime(n: Int) : Long
-{
-    var count = 0
-    var value = 2L
 
-    while (true) {
-        if (isPrime(value))
-            ++count
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir n sayısı için n-inci asal sayıyı döndüren getPrime isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz. 
+>**Açıklamalar:** 
+>- Fonksiyon n'nin pozitif olmayan değerleri için kontrol yapmayacaktır.
+>- Fonksiyonu isPrime fonksiyonunun etkinliğini düşünerek yazınız
 
-        if (count == n)
-            return value
-
-        ++value
-    }
-}
-
-fun isPrime(value: Long) : Boolean
-{
-    if (value <= 1)
-        return false
-
-    if (value % 2 == 0L)
-        return value == 2L
-
-    if (value % 3 == 0L)
-        return value == 3L
-
-    if (value % 5 == 0L)
-        return value == 5L
-
-    if (value % 7 == 0L)
-        return value == 7L
-
-    var i = 11L
-
-    while (i * i <= value) {
-        if (value % i == 0L)
-            return false
-        i += 2
-    }
-
-    return true
+```kotlin
+package org.csystem.app  
+  
+fun main() = runGetPrimeTest()  
+  
+fun runGetPrimeTest() {  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val n = readln().toInt()  
+  
+        if (n <= 0)  
+            break  
+  
+        println("${n}. asal sayı: ${getPrime(n)}")  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun getPrime(n: Int): Long {  
+    var count = 0  
+    var a = 2L  
+  
+    while (true) {  
+        if (isPrime(a))  
+            ++count  
+  
+        if (count == n)  
+            return a  
+  
+        ++a  
+    }  
+}  
+  
+fun isPrime(a: Long): Boolean {  
+    if (a <= 1)  
+        return false  
+  
+    if (a % 2 == 0L)  
+        return a == 2L  
+  
+    if (a % 3 == 0L)  
+        return a == 3L  
+  
+    if (a % 5 == 0L)  
+        return a == 5L  
+  
+    if (a % 7 == 0L)  
+        return a == 7L  
+  
+    var i = 11L  
+  
+    while (i * i <= a) {  
+        if (a % i == 0L)  
+            return false  
+        i += 2  
+    }  
+  
+    return true  
 }
 ```
 
 >*Etiketli break (labeled break) kullanımı. Dikkat* `break@<etiket ismi>` *deyimi boşluk içeremez.
 >
->*Etiket bildirimi sonunda* `@` *atomu yazılmalıdır. Aşağıdaki içiçe döngünün Java'da yazılmış bir biçimi şu şekildedir*
+>*Etiket bildirimi sonunda* `@` *atomu yazılmalıdır. Etiket ismi ile @ atomu bitişik olarak yazılmalıdır. Aşağıdaki içiçe döngünün Java'da yazılmış bir biçimi şu şekildedir*
 
 ```java
 EXIT_LOOP:
@@ -2832,20 +2901,19 @@ for (int i = 10; i <= 20; ++i) {
 >*Örnek konuyu anlatmak için yazılmıştır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    EXIT_LOOP@
-    for (i in 10..20) {
-        for (k in 2..34) {
-            println("($i, $k)")
-            if ((i + k) % 11 == 0)
-                break@EXIT_LOOP
-        }
-    }
-
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+fun main() {  
+    EXIT_LOOP@  
+    for (i in 10..20) {  
+        for (k in 2..34) {  
+            println("($i, $k)")  
+            if ((i + k) % 11 == 0)  
+                break@EXIT_LOOP  
+        }  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
 }
 ```
 
@@ -2854,70 +2922,66 @@ fun main()
 >*Örnek konuyu anlatmak için yazılmıştır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    EXIT_FIRST_LOOP@
-    for (i in 10..30) {
-        EXIT_SECOND_LOOP@
-        for (j in 45..89) {
-            for (k in 2..34) {
-                println("($i, $j, $k)")
-
-                if ((i + j + k) % 11 == 0)
-                    break@EXIT_SECOND_LOOP
-
-                if ((i + j + k) % 13 == 0)
-                    break@EXIT_FIRST_LOOP
-            }
-        }
-    }
-
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+fun main() {  
+    EXIT_FIRST_LOOP@  
+    for (i in 10..30) {  
+        EXIT_SECOND_LOOP@  
+        for (j in 45..89) {  
+            for (k in 2..34) {  
+                println("($i, $j, $k)")  
+                if ((i + j + k) % 11 == 0)  
+                    break@EXIT_SECOND_LOOP  
+  
+                if ((i + j + k) % 13 == 0)  
+                    break@EXIT_FIRST_LOOP  
+            }  
+        }  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
 }
 ```
 
 >**_Sınıf Çalışması:_** Klavyeden alınan a ve b Int türden değerleri için [a, b] aralığında tek ve çift sayıları ayrı ayrı toplayan programı yazınız. Örnekte isEven fonksiyonun "capture" yaptığına dikkat ediniz.
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runApplication()
-
-fun runApplication()
-{
-    print("a?")
-    val a = readln().toInt()
-
-    print("b?")
-    val b = readln().toInt()
-
-    findTotals(a, b)
-}
-
-fun findTotals(a: Int, b: Int)
-{
-    var evenTotal = 0
-    var oddTotal = 0
-
-    for (n in a..b) {
-        fun isEven() = n % 2 == 0
-
-        if (isEven())
-            evenTotal += n
-        else
-            oddTotal += n
-    }
-
-    print("Çift sayıların toplamı:$evenTotal")
-    print("Tek sayıların toplamı:$oddTotal")
+package org.csystem.app  
+  
+fun main() = runApplication()  
+  
+fun runApplication() {  
+    print("a?")  
+    val a = readln().toInt()  
+  
+    print("b?")  
+    val b = readln().toInt()  
+  
+    findTotals(a, b)  
+}  
+  
+fun findTotals(a: Int, b: Int) {  
+    var evenTotal = 0  
+    var oddTotal = 0  
+  
+    for (n in a..b) {  
+        fun isEven() = n % 2 == 0  
+  
+        if (isEven())  
+            evenTotal += n  
+        else  
+            oddTotal += n  
+    }  
+  
+    println("Çift sayıların toplamı:$evenTotal")  
+    println("Tek sayıların toplamı:$oddTotal")  
 }
 ```
 
->*Kotlin'de switch deyimi yoktur. Ancak benzer şekilde kullanılabilecek* `when` *ifadesi (ifadesel deyimi) vardır.* `Java 14` *ile birlikte switch'in ifade olarak kullanımı da Java'ya eklenmiştir (switch expression). Bu anlamda switch de artık ifadesel deyim olarak kullanılabilir. switch expression, when expression'a oldukça benzemektedir*
+>*Kotlin'de switch deyimi yoktur. Ancak benzer şekilde kullanılabilecek* `when` *ifadesi (when expression) vardır.* `Java 14` *ile birlikte switch'in ifade olarak kullanımı da Java'ya eklenmiştir (switch expression). Bu anlamda switch de artık ifadesel deyim olarak kullanılabilir. switch expression, when expression'a oldukça benzemektedir*
 
->*when ifadesinin switch deyimine benzer kullanımı. when ifadesinde aşağı düşme (fall through) özelliği yoktur. Aşağıdaki when ifadesinin switch deyimi karşılığı şu şekildedir:*
+>*when ifadesinde aşağı düşme (fall through) özelliği yoktur. Aşağıdaki when ifadesinin switch deyimi karşılığı şu şekildedir:*
 
 ``` java
 switch (a) {
@@ -2934,94 +2998,103 @@ switch (a) {
 }
 ```
 
+*Aşağıdaki when ifadesinin switch expression karşılığı şu şekildedir:*
+
+``` java
+switch (a) {
+    case 1 -> System.out.println("Bir");
+    case 3, 5, 6 -> System.out.println("3, 5 veya 6");
+    default -> System.out.println("Geçersiz değer!...");
+}
+```
+
+
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val a = readln().toInt()
-
-    when (a) {
-        1 -> println("Bir")
-        3, 5, 6 -> println("3, 5 veya 6")
-        else -> println("Geçersiz değer!...")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val a = readln().toInt()  
+  
+    when (a) {  
+        1 -> println("Bir")  
+        3, 5, 6 -> println("3, 5 veya 6")  
+        else -> println("Geçersiz değer!...")  
+    }  
 }
 ```
 
 >*when ifadesi*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Telefon kodunu giriniz:")
-    val code = readln().toInt()
-
-    when (code) {
-        212, 216 -> println("İstanbul")
-        312 -> println("Ankara")
-        372 -> println("Zonguldak")
-        else -> println("Geçersiz telefon kodu!...")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    print("Telefon kodunu giriniz:")  
+    val code = readln().toInt()  
+  
+    when (code) {  
+        212, 216 -> println("İstanbul")  
+        312 -> println("Ankara")  
+        372 -> println("Zonguldak")  
+        else -> println("Geçersiz telefon kodu!...")  
+    }  
 }
 ```
 
 >`when` *ifadesinin parantezsiz kullanımı. Bu kullanımda koşulların -> atomundan önce yazıldığına dikkat ediniz. Java'da switch bu şekilde kullanılamaz*
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val a = readln().toInt()  
+  
+    when {  
+        a > 0 -> println("Pozitif")  
+        a == 0 -> println("Sıfır")  
+        else -> println("Negatif")  
+    }  
+}
+```
 
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val a = readln().toInt()
+>`when` *ifadesinin ürettiği değerin kullanılması*. when ifadesinin değer üretmesi durumunda else
+>kısmı olmalıdır
 
-    when {
-        a > 0 -> println("Pozitif")
-        a == 0 -> println("Sıfır")
-        else -> println("Negatif")
-    }
+```kotlin
+package org.csystem.app  
+  
+fun main()  {  
+    print("Bir sayı giriniz:")  
+    val a = readln().toInt()  
+  
+    val message = when {  
+        a > 0 -> "Pozitif"  
+        a == 0 -> "Sıfır"  
+        else -> "Negatif"  
+    }  
+  
+    println(message)  
 }
 ```
 
 >`when` *ifadesinin ürettiği değerin kullanılması*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val a = readln().toInt()
-
-    val message = when {
-        a > 0 -> "Pozitif"
-        a == 0 -> "Sıfır"
-        else -> "Negatif"
-    }
-
-    println(message)
-}
-```
-
->`when` *ifadesinin ürettiği değerin kullanılması*
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val a = readln().toInt()
-
-    println(when {
-        a > 0 -> "Pozitif"
-        a == 0 -> "Sıfır"
-        else -> "Negatif"
-    })
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val a = readln().toInt()  
+  
+    println(  
+        when {  
+            a > 0 -> "Pozitif"  
+            a == 0 -> "Sıfır"  
+            else -> "Negatif"  
+        }  
+    )  
 }
 ```
 
@@ -3031,257 +3104,74 @@ fun main()
 > `if` expression yerine `when` expression kullanılacaktır
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runApp()
-
-fun runApp()
-{
-    while (true) {
-        print("a?")
-        val a = readln().toDouble()
-
-        print("b?")
-        val b = readln().toDouble()
-
-        print("c?")
-        val c = readln().toDouble()
-
-        if (a == 0.0 && b == 0.0 && c == 0.0)
-            break
-
-        println(findRoots(a, b, c))
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun calculateDelta(a: Double, b: Double, c: Double) = b * b - 4 * a * c
-
-fun findRoots(a: Double, b: Double, c: Double) : String
-{
-    val delta = calculateDelta(a, b, c)
-
-    fun calculateRoots() : String
-    {
-        val sqrtDelta = kotlin.math.sqrt(delta)
-        return "x1 = ${(-b + sqrtDelta) / (2 * a)}, x2 = ${(-b - sqrtDelta) / (2 * a)}"
-    }
-
-    return when {
-            delta > 0 -> calculateRoots()
-            delta == 0.0 -> "x1 = x2 = ${-b / (2 * a)}"
-            else -> "No real root"
-    }
+package org.csystem.app  
+  
+import kotlin.math.sqrt  
+  
+fun main() = runQuadraticEquationRootsApp()  
+  
+fun runQuadraticEquationRootsApp() {  
+    print("Input a:")  
+    val a = readln().toDouble()  
+  
+    print("Input b:")  
+    val b = readln().toDouble()  
+  
+    print("Input c:")  
+    val c = readln().toDouble()  
+  
+    println(findQuadraticEquationRoots(a, b, c))  
+}  
+  
+fun findQuadraticEquationRoots(a: Double, b: Double, c: Double): String {  
+    fun calculateDelta() = b * b - 4 * a * c  
+  
+    val delta = calculateDelta()  
+  
+    fun calculateRoots(): String {  
+        val sqrtDelta = sqrt(delta)  
+  
+        return "x1 = ${(-b + sqrtDelta) / (2 * a)}, x2 = ${(-b - sqrtDelta) / (2 * a)}"  
+    }  
+  
+    return when {  
+        delta >= 0 -> calculateRoots()  
+        else -> "Not real root"  
+    }  
 }
 ```
 
 >`when` *ifadesinin* `in` ve `!in` *(not in) operatörleri ile kullanımı.* `in` ve `!in` *operatörleri ileride ele alınacaktır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val value = readln().toInt()
-
-    when (value) {
-        in 10..20 -> println("10 <= value <= 20")
-        !in 1..3 -> println("value < 1 || value > 3")
-        else -> println("Geçersiz değer")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val value = readln().toInt()  
+  
+    when (value) {  
+        in 10..20 -> println("10 <= value <= 20")  
+        !in 1..3 -> println("value < 1 || value > 3")  
+        else -> println("Geçersiz değer")  
+    }  
 }
 ```
-
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 >**_Sınıf Çalışması:_** Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin haftanın hangi gününe geldiğini döndüren getDayOfWeek global fonksiyonunu aşağıdaki açıklamalara uygun olarak yazınız.
 >
 >**_Açıklama:_**
->- Aşağıdaki test kodu ile fonksiyonlarınız için genel bir test yapınız
 >- Programda tarih zamana ilişkin sınıflar kullanılmayacaktır.
 >- getDayOfWeek fonksiyonu 1.1.1900 tarihinden sonraki tarihler için çalışacaktır.
->- Fonksiyonlar geçersiz bir tarih için -1 değerini döndürecektir
->- Haftanın günü bilgisi, 1.1.1900 ile verilen tarih arasındaki toplam gün sayısı hesaplanıp 7 değerine
-göre modu alınarak bulunabilir. Bu değere göre sıfır pazar, 1 pazartesi, ..., 6 değeri de Cumartesi
-gününe karşılık gelir
+>- Fonksiyon geçersiz bir tarih için -1 değerine geri dönecektir
+>- Haftanın günü bilgisi, 1.1.1900 ile verilen tarih arasındaki toplam gün sayısı hesaplanıp 7 değerine göre modu alınarak bulunabilir. Bu değere göre sıfır pazar, 1 pazartesi, ..., 6 değeri de Cumartesi gününe karşılık gelir
 >- Programda dizi kullanılmayacaktır
->- Aşağıdaki fonksiyonların kesinlikle yazılması koşuluyla istediğiniz fonksiyonu ekleyebilirsiniz.
->- Yazılmış fonksiyonlar içerisinde değişiklik yapabilirsiniz. Ancak test etmeniz gerektiğini unutmayınız
 >- Çözüm şu ana kadar gördüğümüz konular kullanılarak yapılacaktır
->- String referansına geri dönen fonksiyonlarda String sınıfını kullanmanız gerekmez. String literal oluştururak
-yapınız
 >
 >(İleride daha iyisi yazılacaktır)
 
 ```kotlin
-package org.csystem.app
 
-fun main() = runtTest();
-
-fun runtTest()
-{
-    while (true) {
-        print("Gün?")
-        val day = readInt()
-
-        if (day <= 0)
-            break
-
-        print("Ay?")
-        val month = readInt()
-
-        print("Yıl?")
-        val year = readInt()
-
-        displayDateTR(day, month, year)
-        displayDateEN(day, month, year)
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun readInt() = readln().toInt()
-
-fun displayDateTR(day: Int, month: Int, year: Int)
-{
-    val dayOfWeek = getDayOfWeek(day, month, year)
-
-    println(when {
-        dayOfWeek >= 0 -> "$day ${getMonthNameTR(month)} $year ${getDayOfWeekTR(dayOfWeek)}"
-        else -> "Geçersiz Tarih"
-    })
-}
-
-fun displayDateEN(day: Int, month: Int, year: Int)
-{
-    val dayOfWeek = getDayOfWeek(day, month, year)
-
-    println(when {
-        dayOfWeek >= 0 -> "$day${getDaySuffix(day)} ${getMonthNameEN(month)} $year ${getDayOfWeekEN(dayOfWeek)}"
-        else -> "Invalid Date"
-    })
-}
-
-fun getDaySuffix(day: Int) :String
-{
-    return when (day) {
-        1, 21, 31 -> "st"
-        2, 22 -> "nd"
-        3, 23 -> "rd"
-        else -> "th"
-    }
-}
-
-fun getDayOfWeekTR(dayOfWeek: Int) : String
-{
-    return when (dayOfWeek) {
-        0 -> "Pazar"
-        1 -> "Pazatesi"
-        2 -> "Salı"
-        3 -> "Çarşamba"
-        4 -> "Perşembe"
-        5 -> "Cuma"
-        else -> "Cumartesi"
-    }
-}
-
-fun getMonthNameTR(month: Int) : String
-{
-    return when (month) {
-        1 -> "Ocak"
-        2 -> "Şubat"
-        3 -> "Mart"
-        4 -> "Nisan"
-        5 -> "Mayıs"
-        6 -> "Haziran"
-        7 -> "Temmuz"
-        8 -> "Ağustos"
-        9 -> "Eylül"
-        10 -> "Ekim"
-        11 -> "Kasım"
-        else -> "Aralık"
-    }
-}
-
-fun getDayOfWeekEN(dayOfWeek: Int) : String
-{
-    return when (dayOfWeek) {
-        0 -> "Sun"
-        1 -> "Mon"
-        2 -> "Tue"
-        3 -> "Wed"
-        4 -> "Thu"
-        5 -> "Fri"
-        else -> "Sat"
-    }
-}
-
-fun getMonthNameEN(month: Int) : String
-{
-    return when (month) {
-        1 -> "Jan"
-        2 -> "Feb"
-        3 -> "Mar"
-        4 -> "Apr"
-        5 -> "May"
-        6 -> "Jun"
-        7 -> "Jul"
-        8 -> "Aug"
-        9 -> "Sep"
-        10 -> "Oct"
-        111 -> "Nov"
-        else -> "Dec"
-    }
-}
-
-fun getDayOfWeek(day: Int, month: Int, year: Int) : Int
-{
-    if (year < 1900)
-        return -1
-
-    val totalDays = getDayOfYear(day, month, year)
-
-    if (totalDays == -1)
-        return -1
-
-    return (totalDays + getTotalDays(year)) % 7
-}
-
-fun getTotalDays(year: Int) : Int
-{
-    var totalDays = 0
-
-    for (y in 1900 until year)
-        totalDays += if (isLeapYear(y)) 366 else 365
-
-    return totalDays
-}
-
-fun getDayOfYear(day: Int, month: Int, year: Int) : Int
-{
-    if (!isValidDate(day, month, year))
-        return -1
-
-    var dayOfYear = day
-
-    for (m in (month - 1) downTo 1)
-        dayOfYear += getDaysOfMonth(m, year)
-
-    return dayOfYear
-}
-
-fun getDaysOfMonth(month: Int, year: Int) : Int
-{
-    return when (month) {
-        4, 6, 9, 11 -> 30
-        2 -> if (isLeapYear(year)) 29 else 28
-        else -> 31
-    }
-}
-
-fun isValidDate(day: Int, month: Int, year: Int) = day in 1..31 && month in 1..12 && day <= getDaysOfMonth(month, year)
-
-fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0
 ```
 
 >*T1 ve T2 türleri için*
@@ -3296,13 +3186,14 @@ fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0
 >*Kotlin'de genel olarak farklı türler birbirine doğrudan (implicit) atanamaz*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = 10
-    var b : Long = a //error
-
+package org.csystem.app  
+  
+fun main() {  
+    val a = 10  
+    var b: Long  
+  
+    b = a //error  
+  
     //...
 }
 ```
@@ -3310,28 +3201,26 @@ fun main()
 >*Aşağıdaki örnekte istisna bir durum vardır. Int türden  bir sabit Long türüne doğrudan atanabilir veya ilkdeğer olarak verilebilir.*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var a : Long = 10
-
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    var a: Long = 10  
+  
+    //...  
 }
 ```
 
->*Kotlin'de Java' da olduğu gibi Byte ve Short türden sabit yoktur ancak sınırlar içerisinde kalması koşuluyla Int türden bir sabit Byte veya Short türüne doğrudan atanabilir.*
+>*Kotlin'de de Java' da olduğu gibi Byte ve Short türden sabit yoktur ancak sınırlar içerisinde kalması koşuluyla Int türden bir sabit Byte veya Short türüne doğrudan atanabilir.*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var a : Short = 10
-
-    a = 10L //error: Sabit long türden
-    a = 40000 //error: Short türünün sınırları dışında
-
+package org.csystem.app  
+  
+fun main() {  
+    var a: Short = 10  
+  
+    a = 10L //error: Sabit long türden  
+    a = 40000 //error: Short türünün sınırları dışında  
+  
     //...
 }
 ```
@@ -3339,49 +3228,46 @@ fun main()
 >*Yukarıdaki istisna durum Java'da char türü için de vardır. Ancak Kotlin'de Char türü için bu durum geçersizdir.*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var a : Char = 67
-
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    var a: Char = 67  
+  
+    //...  
 }
 ```
 
 >*Temel türlere ilişkin sınıfların toXXX metotları ile birbirlerine dönüşümleri sağlanabilir. Ancak Kotlin 1.4 ile bazı metotlarda değişiklikler olmuştur. Bu durum ileride ele alınacaktır.*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = 10
-    val b : Long = a.toLong()
-
-    println("b = $b")
+package org.csystem.app  
+  
+fun main() {  
+    val a = 10  
+    val b : Long = a.toLong()  
+  
+    println("b = $b")  
 }
 ```
 
 >*Anımsanacağı gibi küçük tamsayı türünden büyük tamsayı türüne yapılan dönüşümde kaynak türe ilişkin değer pozitif ise sayının eklenen yüksek anlamlı byte değerlerine ilişkin bitler sıfır ile beslenir. Sayının işareti negatif ise işaretin kaybolmaması için sayının yüksek anlamlı byte değerlerine ilişkin bitler 1(bir) ile beslenir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val a = readln().toShort()
-    val b = a.toInt()
-
-    println("a = %d".format(a))
-    println("a = 0x%04X".format(a))
-    println("----------------------------------------------")
-    println("b = %d".format(b))
-    println("b = 0x%08X".format(b))
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val a = readln().toShort()  
+    val b = a.toInt()  
+  
+    println("a = %d".format(a))  
+    println("a = 0x%04X".format(a))  
+    println("----------------------------------------------")  
+    println("b = %d".format(b))  
+    println("b = 0x%08X".format(b))  
 }
 ```
-
+XXXXXXXXXXXXXXXXXXX
 >*Anımsanacağı gibi küçük tamsayı türünden büyük tamsayı türüne yapılan dönüşümde kaynak türe ilişkin değer pozitif ise sayının eklenen yüksek anlamlı byte değerlerine ilişkin bitler sıfır ile beslenir. Sayının işareti negatif ise işaretin kaybolmaması için sayının yüksek anlamlı byte değerlerine ilişkin bitler 1(bir) ile beslenir*
 
 ```kotlin
