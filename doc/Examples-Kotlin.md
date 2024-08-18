@@ -1983,7 +1983,7 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 >- Kontrolün sonda yapıldığı while döngü deyimi (do-while döngüsü)
 >2. `for` döngü deyimi
 
-**_Anahtar Notlar:_** Buradaki for döngü deyimi Java'daki klasik for döngüsü değildir. Java'daki for-each döngü deyiminin daha yetenekli bir biçimi olarak düşünülebilir. Kotlin'de klasik for döngüsü yoktur. Ancak klasik for döngüsünün olmaması bir eksiklik değildir. Kotlin'deki for döngü deyimiyle çeşitli operatörler ve infix fonksiyonlar yardımıyla klasik for döngü deyimi ihtiyacı karşılanabilmektedir. İleride detaylı olarak ele alınacaktır*
+**_Anahtar Notlar:_** Buradaki for döngü deyimi Java'daki klasik for döngüsü değildir. Java'daki for-each döngü deyiminin daha yetenekli bir biçimi olarak düşünülebilir. Kotlin'de klasik for döngüsü yoktur. Ancak klasik for döngüsünün olmaması bir eksiklik değildir. Kotlin'deki for döngü deyimiyle çeşitli operatörler ve infix fonksiyonlar yardımıyla klasik for döngü deyimi ihtiyacı karşılanabilmektedir. İleride detaylı olarak ele alınacaktır
 
 >*Kontrolün başta yapıldığı while döngüleri (while döngüsü)*
 
@@ -2132,78 +2132,163 @@ fun countDigits(a: Int): Int {
     return count  
 }
 ```
-XXXXXXXXXXXXXXXXXXXXXXX
+
 >**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının basamakları toplamını döndüren sumDigits fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
 >**Açıklama:** Fonksiyon negatif sayılar için de pozitif değere geri dönecektir
 
 ```kotlin
-
+package org.csystem.app  
+  
+import kotlin.math.abs  
+  
+fun main() = runSumDigitsTest()  
+  
+fun runSumDigitsTest() {  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val value = readln().toInt()  
+  
+        println("$value sayısının basamakları toplamı:${sumDigits(value)}")  
+  
+        if (value == 0)  
+            break  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun sumDigits(a: Int): Int {  
+    var total = 0  
+    var temp = a  
+  
+    while (temp != 0) {  
+        total += temp % 10  
+        temp /= 10  
+    }  
+  
+    return abs(total)  
+}
 ```
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının tersini döndüren reversed isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının tersini döndüren reverse isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 >
 >**_Algoritma:_** 123 -> 3 -> 3 * 10 + 2 = 32 -> 32 * 10 + 1 = 321
 
 ```kotlin
-
+package org.csystem.app  
+  
+fun main() = runReverseTest()  
+  
+fun runReverseTest() {  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val value = readln().toInt()  
+  
+        println("$value sayısının tersi:${reverse(value)}")  
+  
+        if (value == 0)  
+            break  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun reverse(a: Int): Int {  
+    var result = 0  
+    var temp = a  
+  
+    while (temp != 0) {  
+        result = result * 10 + temp % 10  
+        temp /= 10  
+    }  
+  
+    return result  
+}
 ```
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının palindrom olup olmadığını test eden isPalindrome fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
-
+package org.csystem.app  
+  
+fun main() = runReverseTest()  
+  
+fun runReverseTest() {  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val value = readln().toInt()  
+  
+        println("$value sayısı ${if (isPalindrome(value)) "palindromdur" else "palindrom değildir"}")  
+  
+        if (value == 0)  
+            break  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun isPalindrome(a: Int) = reverse(a) == a  
+  
+fun reverse(a: Int): Int {  
+    var result = 0  
+    var temp = a  
+  
+    while (temp != 0) {  
+        result = result * 10 + temp % 10  
+        temp /= 10  
+    }  
+  
+    return result  
+}
 ```
 
 >*Aşağıdaki örnekte, Java'daki for döngü deyiminin karşılığı olan deyim yazılmıştır:*
 
-**_Anahtar Notlar:_** `..` ile belirtilen operatör "range" sınıfları türünden referans üretir. Bu sınıflar Iterable arayüzünü desteklediği için for döngüsü ile dolaşılabilir. Iterable arayüzü ileride ele alınacaktır. Aslında Kotlin'deki for döngü deyimi Java'nın "for-each/enhanced for loop"'udur.
+**_Anahtar Notlar:_** `..` ile belirtilen operatör "range" sınıfları türünden referans üretir. Bu sınıflar `Iterable` arayüzünü desteklediği için for döngüsü ile dolaşılabilir. Iterable arayüzü ileride ele alınacaktır. Aslında Kotlin'deki for döngü deyimi Java'nın "for-each/enhanced for loop"'udur.
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    for (i in 1..10) //[1, 10]
-        print("$i ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    for (i in 1..10) //[1, 10]  
+        print("$i ")  
+  
+    println()  
 }
 ```
 
 >*for döngü deyimi*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val n = readln().toInt()
-
-    for (i in 1..n) //[1, n]
-        print("$i ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val n = readln().toInt()  
+  
+    for (i in 1..n) //[1, n]  
+        print("$i ")  
+  
+    println()  
 }
 ```
 
 >*for döngü deyimi*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("min değerini giriniz:")
-    val min = readln().toInt()
-
-    print("max değerini giriniz:")
-    val max = readln().toInt()
-
-    for (i in min..max)
-        print("$i ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("min değerini giriniz:")  
+    val min = readln().toInt()  
+  
+    print("max değerini giriniz:")  
+    val max = readln().toInt()  
+  
+    for (i in min..max)  
+        print("$i ")  
+  
+    println()  
 }
 ```
 
@@ -2212,8 +2297,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     for (i in 10..1)
         print("$i ")
 
@@ -2224,17 +2308,16 @@ fun main()
 >*Aşağıdaki örnek ikişer ikişer artarak ilerleyen bir for döngüsü gibi düşünülebilir. Bu döngü teknik olarak IntProgression sınıfı türünün infix step fonksiyonu kullanılarak yapılmıştır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayıc giriniz:")
-    val n = readln().toInt()
-
-    for (i in 1..n step 2)
-        print("$i ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val n = readln().toInt()  
+  
+    for (i in 1..n step 2)  
+        print("$i ")  
+  
+    println()  
 }
 ```
 
@@ -2243,37 +2326,34 @@ fun main()
 >**_Açıklama:_** Math sınıfının pow metodu veya Kotlin kütüphanesindeki pow fonksiyonu kullanılmayacaktır.
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runPowTest()
-
-fun runPowTest()
-{
-     while (true) {
-        print("Tabanı giriniz:")
-        val a = readln().toInt()
-
-        if (a == 0)
-            break;
-
-        print("Üssü giriniz:")
-        val b = readln().toInt()
-
-        println("pow($a, $b) = ${pow(a, b)}")
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun pow(a: Int, b: Int) : Int
-{
-    var result = 1
-    var p = b
-
-    while (p-- > 0)
-        result *= a
-
-    return result
+package org.csystem.app  
+  
+fun main() = runPowTest()  
+  
+fun runPowTest() {  
+    while (true) {  
+        print("Tabanı giriniz:")  
+        val a = readln().toInt()  
+  
+        if (a == 0)  
+            break;  
+  
+        print("Üssü giriniz:")  
+        val b = readln().toInt()  
+  
+        println("pow($a, $b) = ${pow(a, b)}")  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun pow(a: Int, b: Int): Int {  
+    var result = 1  
+  
+    for (i in 1..b)  
+        result *= a  
+  
+    return result  
 }
 ```
 
@@ -2282,36 +2362,35 @@ fun pow(a: Int, b: Int) : Int
 >**_Açıklama:_** Math sınıfının pow metodu veya Kotlin kütüphanesindeki pow fonksiyonu kullanılmayacaktır.
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runPowTest()
-
-fun runPowTest()
-{
-    while (true) {
-        print("Tabanı giriniz:")
-        val a = readln().toInt()
-
-        if (a == 0)
-            break;
-
-        print("Üssü giriniz:")
-        val b = readln().toInt()
-
-        println("pow($a, $b) = ${pow(a, b)}")
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun pow(a: Int, b: Int) : Int
-{
-    var result = 1
-
-    for (i in 1..b)
-        result *= a
-
-    return result
+package org.csystem.app  
+  
+fun main() = runPowTest()  
+  
+fun runPowTest() {  
+    while (true) {  
+        print("Tabanı giriniz:")  
+        val a = readln().toInt()  
+  
+        if (a == 0)  
+            break;  
+  
+        print("Üssü giriniz:")  
+        val b = readln().toInt()  
+  
+        println("pow($a, $b) = ${pow(a, b)}")  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun pow(a: Int, b: Int): Int {  
+    var result = 1  
+    var n = b  
+  
+    while (n-- > 0)  
+        result *= a  
+  
+    return result  
 }
 ```
 

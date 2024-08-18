@@ -1,29 +1,15 @@
 package org.csystem.app
 
-fun main() = runCountDigitsTest()
+fun main() = runIsArmstrongTest()
 
-fun runCountDigitsTest() {
-    while (true) {
-        print("Bir sayı giriniz:")
-        val value = readln().toInt()
-
-        println("$value sayısının basamak sayısı:${countDigits(value)}")
-
-        if (value == 0)
-            break
-    }
+fun runIsArmstrongTest() {
+    for (a in -10..99999)
+        if (isArmstrong(a))
+            println(a)
 
     println("Tekrar yapıyor musunuz?")
 }
 
-fun countDigits(a: Int): Int {
-    var count = 0
-    var a = a
-
-    do {
-        ++count
-        a /= 10
-    } while (a != 0)
-
-    return count
+fun isArmstrong(a: Int): Boolean {
+    TODO("Test if a is an Armstrong number")
 }
