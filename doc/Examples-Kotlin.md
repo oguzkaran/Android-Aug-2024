@@ -1772,10 +1772,34 @@ fun main() {
 }
 ```
 
-**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+>**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
 >
 >**_Açıklama:_** Programda yeni nesil sqrt global fonksiyonunu kullanınız.
-
+>
+>*İkinci dereceden (quadratic) denklem:*
+>
+>$$ax^2 + bx + c = 0$$
+>
+>*delta ($\Delta$) (discriminant) hesabı:*
+>
+>$$\Delta = b^2 - 4ac$$
+>
+>*Köklerın hesaplanması:*
+>
+>1. if $\Delta > 0$
+>
+>$$x_1 = \frac{-b + \sqrt{\Delta}}{2a}$$
+>
+>$$x_2 = \frac{-b - \sqrt{\Delta}}{2a}$$
+>
+>2.	if $\Delta = 0$
+>
+>$$x_1 = x_2 = \frac{-b}{2a}$$
+>
+>3.	if $\Delta < 0$
+>
+>		Gerçek kök yok!
+><br></br>
 
 ```kotlin
 package org.csystem.app  
@@ -1823,6 +1847,31 @@ fun findQuadraticEquationRoots(a: Double, b: Double, c: Double) {
 >**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
 >
 >**_Açıklama:_** Programda yeni nesil sqrt global fonksiyonunu kullanınız.
+>
+>*İkinci dereceden (quadratic) denklem:*
+>
+>$$ax^2 + bx + c = 0$$
+>
+>*delta ($\Delta$) (discriminant) hesabı:*
+>
+>$$\Delta = b^2 - 4ac$$
+>
+>*Köklerın hesaplanması:*
+>
+>1. if $\Delta > 0$
+>
+>$$x_1 = \frac{-b + \sqrt{\Delta}}{2a}$$
+>
+>$$x_2 = \frac{-b - \sqrt{\Delta}}{2a}$$
+>
+>2.	if $\Delta = 0$
+>
+>$$x_1 = x_2 = \frac{-b}{2a}$$
+>
+>3.	if $\Delta < 0$
+>
+>		Gerçek kök yok!
+><br></br>
 
 ```kotlin
 package org.csystem.app  
@@ -1861,9 +1910,34 @@ fun findQuadraticEquationRoots(a: Double, b: Double, c: Double): String {
         "No real root"  
 }
 ```
-**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+>**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
 >
 >**_Açıklama:_** Programda yeni nesil sqrt global fonksiyonunu kullanınız.
+>
+>*İkinci dereceden (quadratic) denklem:*
+>
+>$$ax^2 + bx + c = 0$$
+>
+>*delta ($\Delta$) (discriminant) hesabı:*
+>
+>$$\Delta = b^2 - 4ac$$
+>
+>*Köklerın hesaplanması:*
+>
+>1. if $\Delta > 0$
+>
+>$$x_1 = \frac{-b + \sqrt{\Delta}}{2a}$$
+>
+>$$x_2 = \frac{-b - \sqrt{\Delta}}{2a}$$
+>
+>2.	if $\Delta = 0$
+>
+>$$x_1 = x_2 = \frac{-b}{2a}$$
+>
+>3.	if $\Delta < 0$
+>
+>		Gerçek kök yok!
+><br></br>
 
 ```kotlin
 package org.csystem.app  
@@ -3008,7 +3082,6 @@ switch (a) {
 }
 ```
 
-
 ```kotlin
 package org.csystem.app  
   
@@ -3098,10 +3171,35 @@ fun main() {
 }
 ```
 
-> **_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+>**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
 >
-> **_Açıklamalar:_**
-> `if` expression yerine `when` expression kullanılacaktır
+>**_Açıklamalar:_**
+>`if` expression yerine `when` expression kullanılacaktır
+>
+>*İkinci dereceden (quadratic) denklem:*
+>
+>$$ax^2 + bx + c = 0$$
+>
+>*delta ($\Delta$) (discriminant) hesabı:*
+>
+>$$\Delta = b^2 - 4ac$$
+>
+>*Köklerın hesaplanması:*
+>
+>1. if $\Delta > 0$
+>
+>$$x_1 = \frac{-b + \sqrt{\Delta}}{2a}$$
+>
+>$$x_2 = \frac{-b - \sqrt{\Delta}}{2a}$$
+>
+>2.	if $\Delta = 0$
+>
+>$$x_1 = x_2 = \frac{-b}{2a}$$
+>
+>3.	if $\Delta < 0$
+>
+>		Gerçek kök yok!
+><br></br>
 
 ```kotlin
 package org.csystem.app  
@@ -5915,7 +6013,9 @@ fun main()
     bar()
     mFoo()
 }
+```
 
+```kotlin
 package test
 
 fun foo()
@@ -5927,7 +6027,9 @@ fun bar()
 {
     println("test.bar")
 }
+```
 
+```kotlin
 package mest
 
 fun foo()
@@ -5951,7 +6053,9 @@ fun main()
     bar()
     mFoo()
 }
+```
 
+```kotlin
 package test
 
 fun foo()
@@ -5963,7 +6067,9 @@ fun bar()
 {
     println("test.bar")
 }
+```
 
+```kotlin
 package mest
 
 fun foo()
@@ -7770,13 +7876,17 @@ fun runApplication()
     hr.payInsurance(manager)
     hr.payInsurance(projectWorker)
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 open class Employee(var name: String = "", var citizenId: String = "", var address: String = ""/*...*/) {
     //...
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 class HumanResources {
@@ -7787,21 +7897,27 @@ class HumanResources {
         //...
     }
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 open class Manager(name: String = "", citizenId: String = "", address: String = "",
                    var department: String = "", var salary: Double = 0.0) : Employee(name, citizenId, address) {
     //...
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 open class ProjectWorker(name: String = "", citizenId: String = "", address: String = "",
                          feePerHour: Double = 0.0, hourPerDay: Int = 0, val extraFee: Double = 0.0) : Worker(name, citizenId, address, feePerHour, hourPerDay) {
     //...
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 open class Worker(name: String = "", citizenId: String = "", address: String = "",
@@ -8250,7 +8366,9 @@ fun runApplication()
         println("----------------------------------")
     }
 }
+```
 
+```kotlin
 package org.csystem.app.generator.random
 
 import org.csystem.generator.random.createRandomAnyArray
@@ -8280,7 +8398,9 @@ fun runApplication()
         println("----------------------------------")
     }
 }
+```
 
+```kotlin
 package org.csystem.generator.random
 
 import org.csystem.math.geometry.Circle
@@ -8625,14 +8745,18 @@ fun runApplication()
     hr.payInsurance(projectWorker)
     hr.payInsurance(salesManager)
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 abstract class Employee(var name: String = "", var citizenId: String = "", var address: String = ""/*...*/) {
     abstract fun calculateInsurancePayment() : Double
     //...
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 class HumanResources {
@@ -8643,7 +8767,9 @@ class HumanResources {
         println("Insurance Payment:${employee.calculateInsurancePayment()}")
     }
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 open class Manager(name: String = "", citizenId: String = "", address: String = "",
@@ -8651,7 +8777,9 @@ open class Manager(name: String = "", citizenId: String = "", address: String = 
     override fun calculateInsurancePayment() = salary * 1.567
     //...
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 open class ProjectWorker(name: String = "", citizenId: String = "", address: String = "",
@@ -8659,7 +8787,9 @@ open class ProjectWorker(name: String = "", citizenId: String = "", address: Str
     //...
     override fun calculateInsurancePayment() = super.calculateInsurancePayment() + extraFee
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 open class SalesManager(name: String = "", citizenId: String = "", address: String = "",
@@ -8667,7 +8797,9 @@ open class SalesManager(name: String = "", citizenId: String = "", address: Stri
     //...
     override fun calculateInsurancePayment() = super.calculateInsurancePayment() + extra
 }
+```
 
+```kotlin
 package org.csystem.app.company
 
 open class Worker(name: String = "", citizenId: String = "", address: String = "",
@@ -8923,7 +9055,6 @@ data class Device(var id: Int, var name: String, var ipAddress: String = "") {
     override fun equals(other: Any?) = other is Device && id == other.id && name == other.name
     //...
 }
-
 ```
 
 >*data sınıfları componentN fonksiyonlarına sahiptir. Bu fonksiyonlar bildirim sırasına göre primary ctor ile bildirilen property elemanlarına ilişkin değerleri döndürürler*
@@ -8960,7 +9091,6 @@ fun main()
 }
 
 fun createRandomComplex(min: Double, bound: Double, random: Random = Random) = Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
-
 ```
 
 >*component fonksiyonlarına sahip olan sınıflar aşağıdaki gibi parçalanabilir*
@@ -8982,9 +9112,7 @@ fun main()
 
 fun createRandomComplexNumbers(count: Int, min: Double, bound: Double, random: Random = Random) = Array<Complex>(count) { createRandomComplex(min, bound, random) }
 fun createRandomComplex(min: Double, bound: Double, random: Random = Random) = Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
-
 ```
-
 
 >*Parçalanabilen bir sınıf için sıra önemli olarak tüm parçalar alınmayabilir*
 
@@ -9022,6 +9150,31 @@ fun createPerson(name: String, id:Int) = Person(id, name, "veli","mecidiyeköy")
 ```
 
 >**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+>
+>*İkinci dereceden (quadratic) denklem:*
+>
+>$$ax^2 + bx + c = 0$$
+>
+>*delta ($\Delta$) (discriminant) hesabı:*
+>
+>$$\Delta = b^2 - 4ac$$
+>
+>*Köklerın hesaplanması:*
+>
+>1. if $\Delta > 0$
+>
+>$$x_1 = \frac{-b + \sqrt{\Delta}}{2a}$$
+>
+>$$x_2 = \frac{-b - \sqrt{\Delta}}{2a}$$
+>
+>2.	if $\Delta = 0$
+>
+>$$x_1 = x_2 = \frac{-b}{2a}$$
+>
+>3.	if $\Delta < 0$
+>
+>		Gerçek kök yok!
+><br></br>
 
 >*Aşağıdaki örneği inceleyiniz:*
 
@@ -9051,14 +9204,16 @@ private fun runQuadraticEquationConsoleApp()
     }
 }
 
-
 fun main() = runQuadraticEquationConsoleApp()
+```
 
-
+```kotlin
 package org.csystem.math.equation.quadratic
 
 data class QuadraticEquationResultInfo(val x1: Double, val x2: Double, val exits: Boolean)
+```
 
+```kotlin
 package org.csystem.math.equation.quadratic
 
 import kotlin.math.sqrt
@@ -9100,7 +9255,6 @@ fun main()
 
 fun createRandomComplexNumbers(count: Int, min: Double, bound: Double, random: Random = Random) = Array<Complex>(count) { createRandomComplex(min, bound, random) }
 fun createRandomComplex(min: Double, bound: Double, random: Random = Random) = Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
-
 ```
 
 >*data sınıfları open olarak bildirilemez. Dolayısıyla türetmeye kapalıdır*
@@ -9231,7 +9385,6 @@ open class Circle(radius: Double = 0.0) {
     override operator fun equals(other: Any?) = other is Circle && abs(radius - other.radius) < DELTA;
     override fun toString() = "Radius = %.2f, Area =  %.2f, Circumference = %.2f".format(radius, area, circumference)
 }
-
 ```
 
 >*Kotlin'de referans türlerine bile null atanamaz*
@@ -10746,7 +10899,9 @@ fun runWriterApplication()
         println("Problem occurs")
     }
 }
+```
 
+```kotlin
 package org.csystem.app
 
 import java.io.BufferedReader
@@ -14890,7 +15045,9 @@ import org.csystem.util.array.kotlin.write
 import org.csystem.util.console.kotlin.readInt
 
 fun main() = numericLotteryNumbers(readInt("Kaç tane kupon oynamak istersiniz?")).forEach{ it.write(2) }
+```
 
+```kotlin
 package org.csystem.generator.random.lottery.numeric
 
 import kotlin.random.Random
@@ -15283,7 +15440,9 @@ fun main()
 {
     val sv = SealedValue(20) //error
 }
+```
 
+```kotlin
 package org.csystem.tuple
 
 sealed class SealedValue<out T>(val value: T) {
@@ -15303,7 +15462,9 @@ import org.csystem.tuple.SealedValue
 class MySealedValue(var a: Int) : SealedValue<Int>(a) { //error
     //...
 }
+```
 
+```kotlin
 package org.csystem.tuple
 
 sealed class SealedValue<out T>(val value: T) {
@@ -15323,13 +15484,17 @@ import org.csystem.tuple.MySealedValue
 class YourSealedValue : MySealedValue() {
     //..
 }
+```
 
+```kotlin
 package org.csystem.tuple
 
 open class MySealedValue : SealedValue<Int>(0){
     //...
 }
+```
 
+```kotlin
 package org.csystem.tuple
 
 sealed class SealedValue<out T>(val value: T) {
