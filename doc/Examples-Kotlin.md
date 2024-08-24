@@ -3272,6 +3272,8 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ```
 
+###### **Farklı Türler Arasındaki Dönüşümler**
+
 >*T1 ve T2 türleri için*
 
     var a: T1
@@ -3335,7 +3337,7 @@ fun main() {
 }
 ```
 
->*Temel türlere ilişkin sınıfların toXXX metotları ile birbirlerine dönüşümleri sağlanabilir. Ancak Kotlin 1.4 ile bazı metotlarda değişiklikler olmuştur. Bu durum ileride ele alınacaktır.*
+>*Temel türlere ilişkin sınıfların toXXX fonksiyonları ile birbirlerine dönüşümleri sağlanabilir. Ancak Kotlin 1.4 ile bazı metotlarda değişiklikler olmuştur. Bunlar konular içerisinde ele alınacaktır.*
 
 ```kotlin
 package org.csystem.app  
@@ -3354,156 +3356,155 @@ fun main() {
 package org.csystem.app  
   
 fun main() {  
-    print("Bir sayı giriniz:")  
-    val a = readln().toShort()  
-    val b = a.toInt()  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val a = readln().toShort()  
   
-    println("a = %d".format(a))  
-    println("a = 0x%04X".format(a))  
-    println("----------------------------------------------")  
-    println("b = %d".format(b))  
-    println("b = 0x%08X".format(b))  
+        if (a == 0.toShort())  
+            break  
+  
+        val b = a.toInt()  
+  
+        println("a = %d".format(a))  
+        println("a = 0x%04X".format(a))  
+        println("b = %d".format(b))  
+        println("b = 0x%08X".format(b))  
+    }  
 }
 ```
-XXXXXXXXXXXXXXXXXXX
+
 >*Anımsanacağı gibi küçük tamsayı türünden büyük tamsayı türüne yapılan dönüşümde kaynak türe ilişkin değer pozitif ise sayının eklenen yüksek anlamlı byte değerlerine ilişkin bitler sıfır ile beslenir. Sayının işareti negatif ise işaretin kaybolmaması için sayının yüksek anlamlı byte değerlerine ilişkin bitler 1(bir) ile beslenir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val a = readln().toByte()
-    val b = a.toInt()
-
-    println("a = %d".format(a))
-    println("a = 0x%02X".format(a))
-    println("------------------------------------------")
-    println("b = %d".format(b))
-    println("b = 0x%08X".format(b))
+package org.csystem.app  
+  
+fun main() {  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val a = readln().toByte()  
+  
+        if (a == 0.toByte())  
+            break  
+  
+        val b = a.toInt()  
+  
+        println("a = %d".format(a))  
+        println("a = 0x%02X".format(a))  
+        println("b = %d".format(b))  
+        println("b = 0x%08X".format(b))  
+    }  
 }
 ```
 
 >*Temel türlere ilişkin toChar metotları*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val ch: Char = 67.toChar()
-
-    println("ch = ${ch}")
+package org.csystem.app  
+  
+fun main() {  
+    val ch: Char = 67.toChar()  
+  
+    println("ch = ${ch}")  
 }
 ```
 
-**_Anahtar Notlar:_** Double ve Float sınıflarının toChar metotları `Kotlin 1.5` ile birlikte deprecated olmuşlardır. Bu dönüşümün yapılması istendiğinde önce toInt metodu çağrılıp, sonra toChar metodu çağrılabilir.
+**_Anahtar Notlar:_** Double ve Float sınıflarının toChar metotları `Kotlin 1.5` ile birlikte deprecated olmuşlardır. Bu fonksiyonların Kotlin 2.3 ile birlikte tamamen kaldırılacağı belirtilmiştir. Bu dönüşümün yapılması istendiğinde önce toInt metodu çağrılıp, sonra toChar metodu çağrılabilir.
 
->*İki Char toplama işlemine sokulamaz. Yani Char türünün Char türden parametreli toplama (plus) operatör fonksiyonu yoktur*
+>*İki Char türden değer toplama işlemine sokulamaz. Yani Char türünün Char türden parametreli toplama (plus) operatör fonksiyonu yoktur*
 
 ```kotlin
-package org.csystem.app
-
-fun main(args:Array<String>)
-{
-    val ch1 = 'a'
-    val ch2 = 'b'
-
-    var ch = ch1 + ch2 //error
-
-    //...
-}
+package org.csystem.app  
+  
+fun main() {  
+    val ch1 = 'a'  
+    val ch2 = 'b'  
+  
+    var ch = ch1 + ch2 //error  
+  
+    //...}
 ```
 
 >*İki Char birbirinden çıkartılabilir. Bu durumda sonuç Int türden elde edilir. Bu bize iki karakterin karakter tablosundaki sıra numarası farkını verir. Şüphesiz yine bu işlem Char sınıfının Char parametreli minus operatör fonksiyonu ile yapılmaktadır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val ch1 = 'A'
-    val ch2 = 'a'
-    val result = ch1 - ch2
-
-    println(result.javaClass.name) //Int
-    println(result)
+package org.csystem.app  
+  
+fun main() {  
+    val ch1 = 'D'  
+    val ch2 = 'd'  
+    val result = ch1 - ch2  
+  
+    println(result.javaClass.name) //Int  
+    println(result)  
 }
 ```
 
 >*Char türü ile Int türünün toplanması durumunda sonuç Char türden çıkar. Şüphesiz bu işlem Char sınıfının Int parametreli plus fonksiyonu ile yapılmaktadır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val ch1 = 'D'
-    val ch = ch1 + 32
-
-    println(ch.javaClass.name) //Char
-    println(ch)
+package org.csystem.app  
+  
+fun main() {  
+    val ch1 = 'D'  
+    val ch = ch1 + 32  
+  
+    println(ch.javaClass.name) //Char  
+    println(ch)  
 }
 ```
 
 >*Aşağıdaki örnekte Int sınıfının Char parametreli plus fonksiyonu olmadığından error oluşur*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val ch1 = 'D'
-    val ch = 32 + ch1 //error
-
-
+package org.csystem.app  
+  
+fun main() {  
+    val ch1 = 'D'  
+    val ch = 32 + ch1   //error
 }
 ```
 
 >*Long türünden Int türüne dönüşüm. Aşağıdaki örnekte çeşitli değerler girip sonucu gözlemleyiniz*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    while (true) {
-        print("Bir sayı giriniz:")
-        val a = readln().toLong()
-        val b: Int = a.toInt()
-
-        println("a = %d".format(a))
-        println("a = %016X".format(a))
-        println("b = %d".format(b))
-        println("b = %08X".format(b))
-
-        if (a == 0L)
-            break
-    }
+package org.csystem.app  
+  
+fun main() {  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val a = readln().toLong()  
+        val b: Int = a.toInt()  
+  
+        println("a = %d".format(a))  
+        println("a = %016X".format(a))  
+        println("b = %d".format(b))  
+        println("b = %08X".format(b))  
+  
+        if (a == 0L)  
+            break  
+    }  
 }
 ```
 
 >*Byte sınıfının toChar metodu* `Kotlin 1.5` *ile birlikte deprecated durumdadır. Bu metot yerine Int türüne dönüştürülüp toChar metodu çağrılmalıdır:*<br>`a.toInt().toChar()`<br>*Char sınıfının toInt metodu da deprecated olmuştur. Bunun Char türünün code property elemanı ile karaktere karşılık gelen sıra numarası Int türden elde edilebilir<br>Aşağıdaki örnekte çeşitli değerler girerek sonuçları gözlemleyiniz*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    while (true) {
-        print("Bir sayı giriniz:")
-        val a = readln().toByte()
-        val b: Char = a.toInt().toChar() //a.toChar() deprecated
-
-        println("a = %d".format(a))
-        println("a = %02X".format(a))
-        println("b = %c".format(b))
-        println("b = %02X".format(b.code.toShort()))
-
-        if (a.toInt() == 0)
-            break
-    }
+package org.csystem.app  
+  
+fun main() {  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val a = readln().toByte()  
+        val b: Char = a.toInt().toChar() //a.toChar() deprecated  
+  
+        println("a = %d".format(a))  
+        println("a = %02X".format(a))  
+        println("b = %c".format(b))  
+        println("b = %02X".format(b.code.toShort()))  
+  
+        if (a.toInt() == 0)  
+            break  
+    }  
 }
 ```
 
@@ -3514,33 +3515,27 @@ fun main()
 >1. Sayının noktadan sonraki kısmı atılır.
 >2. Elde edilen sayı hedef türün sınırları içerisindeyse doğrudan atanır. Elde edilen sayı hedef türün sınırları içerisinde değilse
 >
->- Hedef tür Int türü ise sayının pozitif ve negatif olması durumuna göre Int türünün en büyük veya en küçük değeri
-    alınır ve atanır
->- Hedef tür Long türü ise sayının pozitif veya negatif olma durumuna göre Long türünün en büyük ya da en küçük değer alınır.
-ve atanır.
-
-<br>
+>- Hedef tür Int türü ise sayının pozitif ve negatif olması durumuna göre Int türünün en büyük veya en küçük değeri alınır ve atanır
+>- Hedef tür Long türü ise sayının pozitif veya negatif olma durumuna göre Long türünün en büyük ya da en küçük değer alınır ve atanır.
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val a = readln().toDouble()
-    val b: Byte = a.toByte() //error
-    var c: Short = a.toShort() //error
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val a = readln().toDouble()  
+    val b: Byte = a.toByte() //error  
+    var c: Short = a.toShort() //error  
 }
 ```
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     print("Bir sayı giriniz:")
     val a = readln().toDouble()
-    val b: Char = a.toChar() //deprecated since Kotlin 1.5
+    val b: Char = a.toChar() //deprecated since Kotlin 1.5, error since 2.3
 
 }
 ```
@@ -3548,8 +3543,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val a = 300.4
     val b = a.toInt()
 
@@ -3558,36 +3552,34 @@ fun main()
 ```
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a: Double = 4_000_000_000.456
-    val b : Int = a.toInt()
-    val c : Int = 4_000_000_000.toInt()
-    val d: Int = Int.MAX_VALUE
-
-    println("a = $a")
-    println("b = $b")
-    println("c = $c")
-    println("d = $d")
+package org.csystem.app  
+  
+fun main() {  
+    val a: Double = 4_000_000_000.456  
+    val b: Int = a.toInt()  
+    val c: Int = 4_000_000_000.toInt()  
+    val d: Int = Int.MAX_VALUE  
+  
+    println("a = $a")  
+    println("b = $b")  
+    println("c = $c")  
+    println("d = $d")  
 }
 ```
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a: Double = -4_000_000_000.456
-    val b : Int = a.toInt()
-    val c : Int = (-4_000_000_000).toInt()
-    val d: Int = Int.MIN_VALUE
-
-    println("a = $a")
-    println("b = $b")
-    println("c = $c")
-    println("d = $d")
+package org.csystem.app  
+  
+fun main() {  
+    val a: Double = -4_000_000_000.456  
+    val b: Int = a.toInt()  
+    val c: Int = (-4_000_000_000).toInt()  
+    val d: Int = Int.MIN_VALUE  
+  
+    println("a = $a")  
+    println("b = $b")  
+    println("c = $c")  
+    println("d = $d")  
 }
 ```
 
@@ -3596,68 +3588,65 @@ fun main()
 >*İşlem öncesi otomatik tür dönüşümlerine ilişkin operatör fonksiyonları*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a: Int = 10
-    val b: Long = 456
-    val c = a + b // a.plus(b)
-    val d = b + a //b.plus(a)
-
-    println(c.javaClass.name)
-
-    println("c = $c")
-    println("d = $d")
+package org.csystem.app  
+  
+fun main() {  
+    val a: Int = 10  
+    val b: Long = 456  
+    val c = a + b // a.plus(b)  
+    val d = b + a //b.plus(a)  
+  
+    println(c.javaClass.name)  
+  
+    println("c = $c")  
+    println("d = $d")  
 }
 ```
 
 >*Bazen tür dönüştürme işlemi yapılmazsa bilgi kaybı oluşabilir. Aşağıdaki örnekte a için toLong çağrılmasaydı bilgi kaybı oluşabilirdi*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Birinci sayıyı giriniz:")
-    val a = readln().toInt()
-
-    print("İkinci sayıyı giriniz:")
-    val b = readln().toInt()
-    val c = a.toLong() + b
-
-    println("c = $c")
+package org.csystem.app  
+  
+fun main() {  
+    print("Birinci sayıyı giriniz:")  
+    val a = readln().toInt()  
+  
+    print("İkinci sayıyı giriniz:")  
+    val b = readln().toInt()  
+    val c = a.toLong() + b  
+  
+    println("c = $c")  
 }
 ```
 
 >**_Sınıf Çalışması:_** Klavyeden sıfır girilene kadar alınan Int türden sayıların ortalamasını bulup ekrana yazdıran programı yazınız.
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runAverageApplication()
-
-fun runAverageApplication()
-{
-    var sum = 0
-    var count = 0
-    println("Sayıları girmeye başlayınız:")
-
-    while (true) {
-        val a = readln().toInt()
-
-        if (a == 0)
-            break
-
-        sum += a; ++count
-    }
-
-    println("Ortalama:${sum.toDouble() / count}")
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+fun main() = runAverageApplication()  
+  
+fun runAverageApplication() {  
+    var total = 0L  
+    var count = 0  
+  
+    while (true) {  
+        print("Bir sayı giriniz:")  
+        val a = readln().toInt()  
+  
+        if (a == 0)  
+            break  
+  
+        total += a  
+        ++count  
+    }  
+  
+    println("Ortalama:${total.toDouble() / count}")  
 }
 ```
 
->*Sınıf bildirimi*
+>*Kotlin'de bir User Defined Type (UDT) bildiriminde UDT''nin içerisinde herhangi bir bildirim yoksa bu durumda {}'leri yazılmayabilir*
 
 ```kotlin
 class SerialPort
@@ -3672,16 +3661,17 @@ class Person {
 >*Kotlin'de new operatörü yoktur. Nesne yaratılması aşağıdaki gibi yapılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var d = DeviceInfo()
-
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    var d = DeviceInfo()  
+  
+    //...  
+}  
+  
+class DeviceInfo {  
+    //...  
 }
-
-class DeviceInfo
 ```
 
 **_Anahtar Notlar:_** Kotlin'de sınıfın bir elemanına (member) herhangi bir erişim belirleyici anahtar sözcük yazmamak (no-modifier) `public` anlamına gelir. Biz yazmamayı tercih edeceğiz.
@@ -3693,87 +3683,86 @@ class DeviceInfo
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val d = DeviceInfo()
 
     d.connect("192.167.56.23", 33000)
 }
 
 class DeviceInfo {
-    fun connect(host: String, port: Int)
-    {
+    fun connect(host: String, port: Int) {
+	    //...
         println("Connect to device on $host:$port")
     }
 }
 ```
 
->*Sınıfın public primary ctor'u*
+>*Kotlin'de bir sınıfın ctor'ları temel olarak iki gruba ayrılabilir:
+>- Primary ctor
+>- Secondary ctor
+>Bir sınıfta primary ctor ya hiç olmayabilir ya da bir tanedir, secondary ctor ya hiç olmayabilir ya da herhangi sayıda olabilmektedir
+>Sınıfın public primary ctor'u*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var s = Sample(10, 3.4)
-
-    //...
-}
-
-class Sample(a: Int, b: Double) {
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    var s = Sample(10, 3.4)  
+  
+    //...  
+}  
+  
+class Sample(a: Int, b: Double) {  
+    //...  
 }
 ```
 
 >*Sınıfın primary ctor'unun bildiriminde constructor anahtar sözcüğü kullanılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var s = Sample(10, 3.4)
-
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    var s = Sample(10, 3.4)  
+  
+    //...  
+}  
+  
+class Sample constructor(a: Int, b: Double) {  
+    //...  
 }
-
-class Sample constructor (a:Int, b:Double)
 ```
 
->*Sınıfın primary constructor bildiriminde sınıf isminden sonra,  ctor bildiriminden önce bildirime ilişkin bazı özellikler yazılacak constructor anahtar sözcüğü zorunludur. Örneğin erişim belilrleyicisi yazılacaksa constructor anahtar sözcüğü zorunludur*
+>*Sınıfın primary constructor bildiriminde sınıf isminden sonra,  ctor bildiriminden önce bildirime ilişkin bazı özellikler yazılacaksa constructor anahtar sözcüğü zorunludur. Örneğin erişim belilrleyicisi yazılacaksa constructor anahtar sözcüğü zorunludur*
 
 ```kotlin
 package org.csystem.app
 
-class Sample private constructor(a:Int, b:Double)
+class Sample private constructor(a: Int, b: Double)
 ```
 
->*primary constructor'ın parametreleri var veya val olarak bildirildiklerinde sınıfın property elemanları bildirilmiş olur. property elemanı doğrudan veri elemanı değildir. Aşağıdaki kullanımı veri elemanı biçiminde düşünülebilir*
+>*primary constructor'ın parametreleri var veya val olarak bildirildiklerinde sınıfın property elemanları bildirilmiş olur. property elemanı doğrudan veri elemanı değildir. Property'nin aşağıdaki gibi kullanımı veri elemanı biçiminde düşünülebilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample(10, 3.4)
-
-    println("s.a = ${s.a}, s.b = ${s.b}")
-
-    ++s.a
-
-    println("s.a = ${s.a}, s.b = ${s.b}")
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample(10, 3.4)  
+  
+    println("s.a = ${s.a}, s.b = ${s.b}")  
+}  
+  
+class Sample (var a: Int, val b: Double) {  
+    //...  
 }
-
-class Sample(var a: Int, val b: Double)
 ```
 
->*primary constructor'ın parametreleri var veya val olarak bildirildiklerinde sınıfın property elemanları bildirilmiş olur. property elemanı doğrudan veri elemanı değildir. Aşağıdaki kullanımı veri elemanı biçiminde düşünülebilir*
+>*primary constructor'ın parametreleri var veya val olarak bildirildiklerinde sınıfın property elemanları bildirilmiş olur. property elemanı doğrudan veri elemanı değildir. Property'nin aşağıdaki gibi kullanımı veri elemanı biçiminde düşünülebilir*
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val s = Sample(10, 3.4)
 
     println("s.a = ${s.a}")
@@ -3789,70 +3778,69 @@ class Sample(var a: Int, b: Double)
 >*Sınıfın property elemanları primary ctor içerisinde bildirilmişse erişim belirleyicisi de verilebilir. Şüphesiz default erişim belirleyici public'tir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample(10, 3.4)
-
-    println("s.a = ${s.a}")
-    println("s.b = ${s.b}") //error
-}
-
-class Sample(var a: Int, private var b: Double) {
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample(10, 3.4)  
+  
+    println("s.a = ${s.a}")  
+    println("s.b = ${s.b}") //error  
+}  
+  
+class Sample(var a: Int, private var b: Double) {  
+    //...  
 }
 ```
 
->*Sınıfın primary constructor'ının kodları init isimli bir blok içerisinde yazılabilir. init bloğu içerisinde primary constructor'ın parametrelerine veya primary constructor içerisinde bildirilmiş property elemanlarına erişilebilir*
+>*Sınıfın primary constructor'ının kodları init isimli bir blok içerisinde yazılabilir. init bloğu içerisinde primary constructor'ın parametrelerine veya primary constructor ile bildirilmiş property elemanlarına erişilebilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample(10, 3.4)
-
-    //...
-}
-
-class Sample(var a: Int, private var b: Double) {
-    init {
-        println("primary ctor: a = $a, b = $b")
-        //...
-    }
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample(10, 3.4)  
+      
+    println("------------------------------")  
+    var k = Sample(3, 6.7)  
+  
+}  
+  
+class Sample(var a: Int, var b: Double) {  
+    init {  
+        println("I am a primary ctor with values a = $a, b = $b")  
+    }  
+    //...  
 }
 ```
 
 >*Sınıfın primary ctor'u. Aşağıdaki örnek tamamen konuyu anlatmak için yazılmıştır. Sınıf ileride daha profesyonel olarak yazılacaktır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val c1 = Circle(10.3)
-    val c2 = Circle()
-
-    //...
-}
-
-class Circle(private var radius: Double = 0.0) {
-    init {
-        radius = kotlin.math.abs(radius)
-    }
-    //...
+package org.csystem.app  
+  
+import kotlin.math.abs  
+  
+fun main() {  
+    val c1 = Circle(10.3)  
+    val c2 = Circle()  
+  
+    //...  
+}  
+  
+class Circle(private var radius: Double = 0.0) {  
+    init {  
+        radius = abs(radius)  
+    }  
+    //...  
 }
 ```
 
->*Bir sınıfın  primary ctor'u olmak zorunda değildir. Bu kural bazı sınıflar için söz konusu değildir. Örneğin "data sınıfları (data class)" için primary ctor yazmak zorunludur. "data sınıfları" ileride ele alınacaktır*
+>*Bir sınıfın  primary ctor'u olmak zorunda değildir. Bu kural bazı sınıflar için geçerli değildir. Örneğin "data sınıfları (data class)" için primary ctor yazmak zorunludur. "data sınıfları" ileride ele alınacaktır*
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     var s = Sample()
 
     //...
@@ -3863,76 +3851,69 @@ class Sample {
 }
 ```
 
->*Sınıfın secondary ctor elemanı. Bir secondary ctor constructor abahtar sözcüğü ile bildirilir. Sınıfın secondary ctor'u overload edilebilir. primary ctor bir tanedir*
+>*Sınıfın  secondary ctor'u constructor anahtar sözcüğü ile bildirilir. Sınıfın secondary ctor'u overload edilebilir. primary ctor bir tanedir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var s = Sample(3)
-    var k = Sample(2.3)
-
-    //...
-}
-
-class Sample {
-    constructor(a: Int)
-    {
-        println("I am a secondary ctor with parameter type: Int")
-        println("a = $a")
-        //...
-    }
-
-    constructor(a: Double)
-    {
-        println("I am a secondary ctor with parameter type: Double")
-        println("a = $a")
-        //...
-    }
-
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    var s = Sample(3)  
+    var k = Sample(2.3)  
+  
+    //...  
+}  
+  
+class Sample {  
+    constructor(a: Int) {  
+        println("I am a secondary ctor with parameter type: Int")  
+        println("a = $a")  
+        //...  
+    }  
+  
+    constructor(a: Double) {  
+        println("I am a secondary ctor with parameter type: Double")  
+        println("a = $a")  
+        //...  
+    }  
+  
+    //...  
 }
 ```
 
->*Sınıfın primary ctor'u varsa tüm secondary ctor'ların doğrudan ya da dolaylı olarak bu ctor'u çağırıyor olmaları gerekir. Bu işlem :this ctor sentaksı ile yapılır*
+>*Sınıfın primary ctor'u varsa tüm secondary ctor'ların doğrudan ya da dolaylı olarak bu ctor'u çağırıyor olmaları gerekir. Bu işlem `:this` ctor sentaksı ile yapılır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var s1 = Sample(3)
-    println("-----------------------------------------------")
-    var s2 = Sample(2.3)
-    println("-----------------------------------------------")
-    var s3 = Sample(2F)
-    println("-----------------------------------------------")
-
-    //...
-}
-
-class Sample(var x: Double) {
-    init {
-        println("I am a primary ctor")
-        println("x = $x")
-    }
-
-    constructor(a: Int) : this(a.toFloat())
-    {
-        println("I am a secondary ctor with parameter type: Int")
-        println("a = $a")
-        //...
-    }
-
-    constructor(a: Float) : this(a.toDouble())
-    {
-        println("I am a secondary ctor with parameter type: Float")
-        println("a = $a")
-        //...
-    }
-
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    var s1 = Sample(3)  
+    println("################################################")  
+    var s2 = Sample(2.3)  
+    println("################################################")  
+    var s3 = Sample(10.toShort())  
+  
+    //...  
+}  
+  
+class Sample(a: Double) {  
+    init {  
+        println("------------------------------------------------------")  
+        println("I am a primary ctor with parameter type Double")  
+        println("------------------------------------------------------")  
+    }  
+    constructor(a: Short): this(a.toInt()) {  
+        println("------------------------------------------------------")  
+        println("I am a secondary ctor with parameter type Short")  
+        println("------------------------------------------------------")  
+    }  
+  
+    constructor(a: Int): this(a.toDouble()) {  
+        println("------------------------------------------------------")  
+        println("I am a secondary ctor with parameter type Int")  
+        println("------------------------------------------------------")  
+    }  
+  
+    //...  
 }
 ```
 
@@ -3940,7 +3921,6 @@ class Sample(var x: Double) {
 
 ```kotlin
 package org.csystem.app
-
 
 class Sample(var a: Int) {
     constructor(var b: Double) : this(12) //error
@@ -3953,104 +3933,98 @@ class Sample(var a: Int) {
 >*Secondary ctor'lar gövdesiz olabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var s = Sample(34)
-    var k = Sample(3.5)
-    //...
-
-}
-
-class Sample(var a : Double) {
-    init {
-        println("primary ctor")
-        println("a = $a")
-    }
-    constructor(b: Int) : this(b.toDouble())
+package org.csystem.app  
+  
+fun main() {  
+    var s = Sample(34)  
+    var k = Sample(3.5)  
+    //...  
+  
+}  
+  
+class Sample(var a: Double) {  
+    init {  
+        println("primary ctor")  
+        println("a = $a")  
+    }  
+  
+    constructor(b: Int) : this(b.toDouble())  
 }
 ```
 
 >*Aşağıdaki örnekte default ctor primary ctor yapılmıştır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var s1 = Sample(10)
-    println("---------------------------")
-    var s2 = Sample(4.5)
-    println("---------------------------")
-    var s3 = Sample()
-    println("---------------------------")
-
-    //...
-}
-
-class Sample() {
-    init {
-        println("primary constructor")
-    }
-
-    constructor(b: Double) : this()
-    {
-        println("constructor(Double)")
-    }
-
-    constructor(b: Int) : this(b.toDouble())
-    {
-        println("constructor(Int)")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    var s1 = Sample(10)  
+    println("---------------------------")  
+    var s2 = Sample(4.5)  
+    println("---------------------------")  
+    var s3 = Sample()  
+    println("---------------------------")  
+  
+    //...  
+}  
+  
+class Sample() {  
+    init {  
+        println("primary constructor")  
+    }  
+  
+    constructor(b: Double) : this() {  
+        println("constructor(Double)")  
+    }  
+  
+    constructor(b: Int) : this(b.toDouble()) {  
+        println("constructor(Int)")  
+    }  
 }
 ```
 
 >*Aşağıdaki örnekte hem default hem de int/Int parametreli ctor Java/Kotlin arakodunda bulunacaktır. Kotlin ile yazılan kodların Java'dan kullanımı ve Java'da yazılan kodların Kotlin'den kullanımı detayları ileride ele alınacaktır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample()
-    val k = Sample(20)
-
-    //...
-}
-
-class Sample(a: Int = 10) {
-    init {
-        println("primary constructor: a = $a")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample()  
+    val k = Sample(20)  
+  
+    //...  
+}  
+  
+class Sample(a: Int = 10) {  
+    init {  
+        println("primary constructor: a = $a")  
+    }  
 }
 ```
 
 >*Aşağıdaki örneği inceleyiniz. Örnekte default constructor yazılmıştır. Dolayıysıyla secondary default ctor çağrılır (best match). Örnek için primary ctor'un parametresi için verilen default argüman artık kullanışsızdır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample()
-    println("--------------------------------")
-    val k = Sample(30)
-
-    println("s.a = ${s.a}")
-    println("k.a = ${k.a}")
-
-}
-
-class Sample(val a: Int = 10) {
-    init {
-        println("primary constructor: $a")
-    }
-
-    constructor() : this(20)
-    {
-        println("default constructor")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample()  
+    println("--------------------------------")  
+    val k = Sample(30)  
+  
+    println("s.a = ${s.a}")  
+    println("k.a = ${k.a}")  
+  
+}  
+  
+class Sample(val a: Int = 10) {  
+    init {  
+        println("primary constructor: $a")  
+    }  
+  
+    constructor() : this(20) {  
+        println("default constructor")  
+    }  
 }
 ```
 
@@ -4099,8 +4073,6 @@ class Time(var hour: Int, var min: Int, var sec: Int, var msec: Int) {
 
 >*Örnek, default argüman kullanılarak daha Kotlin mantığıyla yazılabilir*
 
-<br>
-
 >*Aşağıdaki Time sınıfının yaklaşık Java karşılığı:*
 
 ```java
@@ -4142,69 +4114,37 @@ class Time(var hour: Int, var min: Int, var sec: Int = 0, var msec: Int = 0) {
 >*primary ctor olmasa bile init bloğu yazılabilir. Bu durumda tüm ctor'ların başında bu blok çalıştırılır. Java'daki non-static initializer ile neredeyse aynı anlamdadır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var s = Sample()
-    println("--------------------------")
-    var k = Sample(10)
-    //...
-}
-
-class Sample {
-    init {
-        println("init")
-    }
-
-    constructor()
-    {
-        println("default constructor")
-    }
-
-    constructor(a: Int)
-    {
-        println("Int constructor")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    var s = Sample()  
+    println("--------------------------")  
+    var k = Sample(10)  
+    //...  
+}  
+  
+class Sample {  
+    init {  
+        println("init")  
+    }  
+  
+    constructor() {  
+        println("default constructor")  
+    }  
+  
+    constructor(a: Int) {  
+        println("Int constructor")  
+    }  
 }
 ```
 
->*Aşağıdaki örnekte sırasıyla primary constructor, Int Double parametreli secondary constructor ve Double parametreli secondary constructor çağrılır*
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var s = Sample(3.4)
-
-    //...
-}
-
-class Sample(var a: Int = 0) {
-    init {
-        println("primary constructor")
-    }
-
-    constructor(a: Int, b: Double) : this(a)
-    {
-        println("constructor(Int, Double)")
-    }
-
-    constructor(b:Double) : this(0, b)
-    {
-        println("constructor(Double)")
-    }
-}
-```
 
 >*Point sınıfı*
 
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val p1 = Point(100.0, 100.0)
     val p2 = Point(100, 100)
     val p3 = Point()
@@ -4218,8 +4158,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
+fun main() {
     val p1 = Point(234.0, -456.7)
     val p2 = Point(230.0, -453.7)
 
@@ -4230,138 +4169,156 @@ fun main()
 ```
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val p = Point(100.0, 100.0)
-
-    println("(${p.x}, ${p.y})")
-
-    p.offset(20.0, -20.0)
-
-    println("(${p.x}, ${p.y})")
-
-    p.offset(30.0)
-
-    println("(${p.x}, ${p.y})")
-
-}
-
-class Point(var x: Double = 0.0, var y: Double = 0.0) {
-    constructor(x: Int, y: Int) : this(x.toDouble(), y.toDouble()) //optional
-    fun distance(a: Double = 0.0, b: Double = 0.0) = kotlin.math.sqrt((x - a) * (x - a) + (y - b) * (y - b))
-    fun distance(other: Point) = distance(other.x, other.y)
-
-    fun offset(dx: Double, dy: Double = dx)
-    {
-        x += dx
-        y += dy
-    }
+package org.csystem.app  
+  
+import kotlin.math.sqrt  
+  
+fun main() {  
+    val p = Point(100.0, 100.0)  
+  
+    println("(${p.x}, ${p.y})")  
+  
+    p.offset(20.0, -20.0)  
+  
+    println("(${p.x}, ${p.y})")  
+  
+    p.offset(30.0)  
+  
+    println("(${p.x}, ${p.y})")  
+  
+}  
+  
+class Point(var x: Double = 0.0, var y: Double = 0.0) {  
+    constructor(x: Int, y: Int) : this(x.toDouble(), y.toDouble()) //optional  
+  
+    fun distance(a: Double = 0.0, b: Double = 0.0) = sqrt((x - a) * (x - a) + (y - b) * (y - b))  
+    fun distance(other: Point) = distance(other.x, other.y)  
+  
+    fun offset(dx: Double, dy: Double = dx) {  
+        x += dx  
+        y += dy  
+    }  
+  
+    fun offset(dx: Int, dy: Int = dx) = offset(dx.toDouble(), dy.toDouble()) //optional  
 }
 ```
 
 >*Aşağıdaki kodda iki anlamlılıktan (ambiguity) dolayı error oluşur*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample();
-
-    //...
-    s.foo() //error: ambiguity
-}
-
-
-class Sample {
-    fun foo(a: Int = 0, b: Double = 4.5) = println("foo(Int, Double)")
-    fun foo(s: Sample = Sample(), b: Int = 34) = println("foo(Sample, Int)")
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample();  
+  
+    //...  
+    s.foo() //error: ambiguity  
+}  
+  
+  
+class Sample {  
+    fun foo(a: Int = 0, b: Double = 4.5) = println("foo(Int, Double)")  
+    fun foo(s: Sample = Sample(), b: Int = 34) = println("foo(Sample, Int)")  
 }
 ```
 
 >*Aşağıdaki kodda tam uyumdan (best match) dolayı error oluşmaz*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample();
-
-    //...
-    s.foo()
-}
-
-class Sample {
-    fun foo(a:Int = 0, b: Double = 4.5) = println("foo(Int, Double)")
-    fun foo(s: Sample = Sample(), b: Int = 34) = println("foo(Sample, Int)")
-    fun foo() = println("foo()")
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample();  
+  
+    //...  
+    s.foo()  
+}  
+  
+class Sample {  
+    fun foo(a: Int = 0, b: Double = 4.5) = println("foo(Int, Double)")  
+    fun foo(s: Sample = Sample(), b: Int = 34) = println("foo(Sample, Int)")  
+    fun foo() = println("foo()")  
 }
 ```
 
 >*Aşağıdaki kodda iki anlamlılıktan dolayı ambiguity oluşur*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample();
-
-    //...
-    s.foo(10) //error
-}
-
-class Sample {
-    fun foo(a: Int = 34, b: Float = 4.5F) = println("foo(Int, Float)")
-    fun foo(a:Int = 0, b: Double = 4.5) = println("foo(Int, Double)")
-    fun foo() = println("foo()")
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample();  
+  
+    //...  
+    s.foo(10) //error: ambiguity  
+}  
+  
+class Sample {  
+    fun foo(a: Int = 34, b: Float = 4.5F) = println("foo(Int, Float)")  
+    fun foo(a: Int = 0, b: Double = 4.5) = println("foo(Int, Double)")  
+    fun foo() = println("foo()")  
 }
 ```
 
->*Aşağıdaki örnekte Int, Float ve Long, Double parametreli foo metotları "uygun (applicable)" metotlardır. Çünkü metot çağrısında argüman olarak verilen Int türden ifade bir sabit olduğundan Long türünme de doğrudan (implicit) dönüşebilir*
+>*Aşağıdaki örnekte Int, Float ve Long, Double parametreli foo fonksiyoları "uygun (applicable)" fonksiyonlardır. Çünkü fonksiyon çağrısında argüman olarak verilen Int türden ifade bir sabit olduğundan Long türüne de doğrudan (implicit) dönüşebilir. Örneği Int parametreli foo fonksiyonunu kaldırarak ayrıca gözlemleyiniz*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample();
-
-    //...
-    s.foo(10)
-}
-
-class Sample {
-    fun foo(a: Int = 34, b: Float = 4.5F) = println("foo(Int, Float)")
-    fun foo(a: Long = 0, b: Double = 4.5) = println("foo(Long, Double)")
-    fun foo() = println("foo()")
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample();  
+  
+    //...  
+    s.foo(10)  
+}  
+  
+class Sample {  
+    fun foo(a: Int = 34, b: Float = 4.5F) = println("foo(Int, Float)")  
+    fun foo(a: Long = 0, b: Double = 4.5) = println("foo(Long, Double)")  
+    fun foo() = println("foo()")  
 }
 ```
 
->*Aşağıdaki örnmeği inceleyiniz*
+>*Aşağıdaki örneği inceleyiniz*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample();
-    val a = 10
-
-    //...
-    s.foo(a)
-}
-
-class Sample {
-    fun foo(a: Int = 34, b: Float = 4.5F) = println("foo(Int, Float)")
-    fun foo(a: Long = 0, b: Double = 4.5) = println("foo(Long, Double)")
-    fun foo() = println("foo()")
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample();  
+    val a = 10  
+  
+    //...  
+    s.foo(a)  
+}  
+  
+class Sample {  
+    fun foo(a: Int = 34, b: Float = 4.5F) = println("foo(Int, Float)")  
+    fun foo(a: Long = 0, b: Double = 4.5) = println("foo(Long, Double)")  
+    fun foo() = println("foo()")  
 }
 ```
 
+
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample();  
+    val a = 10  
+  
+    //...  
+    s.foo(a) //error: applicable function yok
+}  
+  
+class Sample {      
+    fun foo(a: Long = 0, b: Double = 4.5) = println("foo(Long, Double)")  
+    fun foo() = println("foo()")  
+}
+```
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 >*Bir property elemanının set bölümü ona atama yapıldığında çalışır. get bölümü ise değeri kullanılmak istendiğinde çalışır. Bir property elemanı için genel olarak arka planda yaratılan bir veri elemanı (backing field) bulunmaktadır. Property elemanı içerisinde, ilişkin olduğu veri elemanına erişmek için field bağlamsal anahtar sözcüğü (contextual keyword) kullanılabilir.*
 >
 >*Aşağıdaki örneğin Java karşılığı yaklaşık olarak aşağıdaki gibidir:*
