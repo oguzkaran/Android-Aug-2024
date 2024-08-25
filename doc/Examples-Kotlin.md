@@ -4318,272 +4318,282 @@ class Sample {
     fun foo() = println("foo()")  
 }
 ```
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 >*Bir property elemanının set bölümü ona atama yapıldığında çalışır. get bölümü ise değeri kullanılmak istendiğinde çalışır. Bir property elemanı için genel olarak arka planda yaratılan bir veri elemanı (backing field) bulunmaktadır. Property elemanı içerisinde, ilişkin olduğu veri elemanına erişmek için field bağlamsal anahtar sözcüğü (contextual keyword) kullanılabilir.*
 >
->*Aşağıdaki örneğin Java karşılığı yaklaşık olarak aşağıdaki gibidir:*
+>*Aşağıdaki Sample sınıfının Java karşılığı yaklaşık olarak aşağıdaki gibidir:*
 
 ```java
-package org.csystem.app;
-
-class App {
-    public static void main(String [] args)
-    {
-        Sample s = new Sample();
-
-        s.setX(10);
-
-        System.out.println(s.getX() * 2);
-        System.out.println(s.getX());
-    }
-}
-
-class Sample {
-    private int field;
-
-    public int getX()
-    {
-        System.out.println("getX");
-        return field;
-    }
-
-    public void setX(int value)
-    {
-        System.out.println("set");
-        field = value;
-    }
+class Sample {  
+    private int field1;  
+    private double field2;  
+  
+    public int getX()  
+    {      
+        System.out.println("getX");  
+        return field1;  
+    }  
+  
+    public void setX(int value)  
+    {  
+        System.out.println("set");  
+        field1 = value;  
+    }  
+  
+    public double getY()  
+    {  
+        System.out.println("getY");  
+        return field2;  
+    }  
+  
+    public void setY(double value)  
+    {  
+        System.out.println("setY");  
+        field2 = value;  
+    }  
 }
 ```
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample()
-
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample()  
+  
     s.x = 10
-
-    println(s.x)
-    println(s.x * 2)
-}
-
-class Sample {
-    var x: Int = 0
-        set(value)
-        {
-            println("set")
-
-            field = value
-        }
-        get()
-        {
-            println("get")
-            return field
-        }
+    println("---------------------------------------------------")  
+    s.y = 3.4  
+    println("---------------------------------------------------")  
+  
+    println("s.x = ${s.x}")  
+    println("---------------------------------------------------")  
+    println("s.y = ${s.y}")  
+    println("---------------------------------------------------")  
+    println(s.x * 2)  
+    println("---------------------------------------------------")  
+    ++s.x //s.x = s.x + 1  
+    println("---------------------------------------------------")  
+    println("s.x = ${s.x}")  
+    println("---------------------------------------------------")  
+    println("s.y = ${s.y}")  
+    println("---------------------------------------------------")  
+}  
+  
+class Sample {  
+    var x: Int = 0  
+        set(value) {  
+            println("setX")  
+            field = value  
+        }  
+        get() {  
+            println("getX")  
+  
+            return field  
+        }  
+    var y: Double = 0.0  
+        set(value) {  
+            println("setY")  
+            field = value  
+        }  
+        get() {  
+            println("getY")  
+  
+            return field  
+        }  
 }
 ```
 
->*Aşağıdaki örnekte x ve y property elemanları için get ve set bölümleri otomatik olarak yazılmıştır*
+>*Aşağıdaki örnekte x ve y property elemanları için get ve set bölümleri otomatik olarak yazılmıştır. z property elemanı ise get bölümü otomatik olarak yazılmıştır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample()
-
-    s.z = 3.4
-    s.x = 34
-    s.y = 345
-
-    println("${s.x}, ${s.y}, ${s.z}")
-}
-
-
-class Sample {
-    var x = 0
-    var y: Int
-    var z: Double = 0.0
-        set(value)
-        {
-            //...
-            field = value //backing field
-        }
-
-    init {
-        y = 20
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample()  
+  
+    s.z = 3.4  
+    s.x = 34  
+    s.y = 345  
+  
+    println("${s.x}, ${s.y}, ${s.z}")  
+}  
+  
+  
+class Sample {  
+    var x = 0  
+    var y: Int  
+    var z: Double = 0.0  
+        set(value) {  
+            //...  
+            field = value //backing field  
+        }  
+  
+    init {  
+        y = 20  
+    }  
 }
 ```
 
 >*Aşağıdaki örnekte x property elemanı için private set yapılarak sınıf içerisinde atama yapılabilir ancak sınıf dışında readonly duruma getirilmiş olur*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample()
-
-    s.x = 23 //error
-
-    println(s.x)
-}
-
-class Sample {
-    var x: Int = 0
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample()  
+  
+    s.x = 23 //error  
+  
+    println(s.x)  
+}  
+  
+class Sample {  
+    var x: Int = 0  
         private set
-
-    init {
-        x = 34
-    }
-
-    fun foo(a: Int)
-    {
-        x = a
-    }
+        
+	init {  
+        x = 34  
+    }  
+  
+    fun foo(a: Int) {  
+        x = a  
+    }  
 }
 ```
 
->*Aşağıdaki örnekte Sample sınıfının val olarak bildirilmiş property elemanına ilkdeğer (initialization) verilmediği için tüm ctor'larda değer verilmek zorundadır. Sample sınıfında default ctor içerisinde* `:this` *ctor sentaksı kullanıldığından, dolaylı olarak değer verilmiş olur. Mample sınıfında ise val olarak bildirilmiş x property elemanı için ilkdeğer verildiğinden ctor'lar içerisinde değer verilemez. Test sınıfında ise init bloğu içerisinde val olarak bildirilmiş x property elemanına değer verildiğinden artık ctor'lar içerisinde (aslında hiçbir yerde) değer verilemez*
+
+>*Aşağıdaki örnekte Sample sınıfının val olarak bildirilmiş property elemanına ilkdeğer (initialization) verilmediği için tüm ctor'larda değer verilmek zorundadır. Sample sınıfında default ctor içerisinde* `:this` *ctor sentaksı kullanıldığından, dolaylı olarak değer verilmiş olur. Mample sınıfında ise val olarak bildirilmiş x property elemanı için ilkdeğer verildiğinden ctor'lar içerisinde (aslında hiç bir yerde) değer verilemez. Test sınıfında ise init bloğu içerisinde val olarak bildirilmiş x property elemanına değer verildiğinden artık ctor'lar içerisinde (aslında hiçbir yerde) değer verilemez*
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample()  
+  
+    s.x = 23 //error  
+  
+    println(s.x)  
+}  
+  
+class Test {  
+    val x: Int  
+  
+    init {  
+        x = 0  
+    }  
+  
+    constructor(a: Int) {  
+        //...  
+        x = a //error  
+    }  
+  
+    constructor(): this(0) {  
+        //...  
+    }  
+  
+    //...  
+}  
+  
+class Mample {  
+    val x: Int = 10  
+  
+    constructor(a: Int) {  
+        //...  
+        x = a //error  
+    }  
+  
+    constructor(): this(0) {  
+        //...  
+    }  
+}  
+  
+class Sample {  
+    val x: Int  
+  
+    constructor(a: Int) {  
+        //...  
+        x = a;  
+    }  
+  
+    constructor(): this(0) {  
+        //...  
+    }  
+  
+    //...  
+}```
 
-fun main()
-{
-    val s = Sample()
-
-    s.x = 23 //error
-
-    println(s.x)
-}
-
-class Test {
-    val x: Int
-
-    init {
-        x = 0
-    }
-
-    constructor(a: Int)
-    {
-        //...
-        x = a //error
-    }
-
-    constructor() : this(0)
-    {
-        //...
-    }
-
-    //...
-}
-
-class Mample {
-    val x: Int = 10
-
-    constructor(a: Int)
-    {
-        //...
-        x = a //error
-    }
-
-    constructor() : this(0)
-    {
-        //...
-    }
-}
-
-class Sample {
-    val x: Int
-
-    constructor(a: Int)
-    {
-        //...
-        x = a;
-    }
-
-    constructor() : this(0)
-    {
-        //...
-    }
-
-    //...
-}
-```
-
->*Dikkat aşağıdaki örnekte r değeri yalnızca ctor içerisinde kontrol edilebilir. Atama durumunda kontrol işlemi yazılmamıştır Bu anlamda Circle sınıfı düzgün olarak tasarlanmamıştır*
+>*Dikkat aşağıdaki örnekte radius değeri yalnızca ctor içerisinde kontrol edilmiştir. Atama durumunda kontrol işlemi yazılmamıştır Bu anlamda Circle sınıfı iyi olarak tasarlanmamıştır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val c = Circle(-3.9)
-
-    println(c.r)
-
-    c.r = 3.4
-
-    println(c.r)
-
-    c.r = -4.9 // Dikkat pozitif yapılmıyor
-
-    println(c.r)
-}
-
-class Circle(var r: Double) {
-    init {
-        r = kotlin.math.abs(r)
-    }
+package org.csystem.app  
+  
+import kotlin.math.abs  
+  
+fun main() {  
+    val c = Circle(-3.9)  
+  
+    println(c.radius)  
+  
+    c.radius = 3.4  
+  
+    println(c.radius)  
+  
+    c.radius = -4.9 // Dikkat pozitif yapılmıyor  
+  
+    println(c.radius)
+}  
+  
+class Circle(var radius: Double) {  
+    init {  
+        radius = abs(radius)
+    }  
 }
 ```
 
 >*Circle sınıfı ve test kodu<br>(Daha karmaşık ve tam olarak Kotlin mantığıyla tasarlanmamış versiyon)<br>Aşağıdaki yaklaşımda backing field yani set kısmı gereksizdir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val  c = Circle(-3.4)
-
-    println(c.area)
-    println(c.circumference)
-    println("------------------------------")
-
-    c.r = -4.4
-
-    println(c.area)
-    println(c.circumference)
-    println("------------------------------")
-}
-
-class Circle(radius: Double = 0.0) {
-    var r: Double = Math.abs(radius)
-        set(value) {
-            field = kotlin.math.abs(value)
-            area = Math.PI * field * field
-            circumference = 2 * Math.PI * field
-        }
-
-    var area: Double =  kotlin.math.PI * r * r
-        private set
-        get() = kotlin.math.PI * r * r
-
-    var circumference : Double = 2 *  kotlin.math.PI * r
-        private set
-        get() = 2 *  kotlin.math.PI * r;
+package org.csystem.app  
+  
+import kotlin.math.PI  
+import kotlin.math.abs  
+  
+fun main() {  
+    val c = Circle(-3.4)  
+  
+    println(c.area)  
+    println(c.circumference)  
+    println("------------------------------")  
+  
+    c.r = -4.4  
+    println(c.area)  
+    println(c.circumference)  
+    println("------------------------------")  
+}  
+  
+class Circle(radius: Double = 0.0) {  
+    var r: Double = abs(radius)  
+        set(value) {  
+            field = abs(value)  
+            area = PI * field * field  
+            circumference = 2 * PI * field  
+        }  
+  
+    var area: Double = PI * r * r  
+        private set  
+        get() = PI * r * r  
+  
+    var circumference: Double = 2 * PI * r  
+        private set  
+        get() = 2 * PI * r;  
 }
 ```
 
 >*Circle sınıfı ve test kodu\
-(Daha profesyonel versiyon)\
-Aşağıdaki örnekte area ve circumference property elemanları için backing field yaratılmaz\
-**_Not:_** Circle sınıfı ileride göreceğimiz konular ile daha profesyonel yazılacaktır.\
-Aşağıdaki Circle sınıfının yaklaşık Java karşılığı şu şekildedir:*
+>(Daha profesyonel versiyon)\
+>Aşağıdaki örnekte area ve circumference property elemanları için backing field yaratılmaz\
+>**Not:** Circle sınıfı ileride göreceğimiz konular ile daha profesyonel yazılacaktır.\
+>Aşağıdaki Circle sınıfının yaklaşık Java karşılığı şu şekildedir:*
 
 ```java
 package org.csystem.math.geometry;
@@ -4622,384 +4632,330 @@ public class Circle {
 ```
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.geometry.Circle
-
-fun main()
-{
-    val  c = Circle(-3.4)
-
-    println(c.area)
-    println(c.circumference)
-    println("------------------------------")
-
-    c.r = -4.4
-
-    println(c.area)
-    println(c.circumference)
-    println("------------------------------")
+package org.csystem.app  
+  
+import kotlin.math.PI  
+import kotlin.math.abs  
+  
+fun main() {  
+    val c = Circle(-3.4)  
+  
+    println(c.area)  
+    println(c.circumference)  
+    println("------------------------------")  
+  
+    c.radius = -4.4  
+  
+    println(c.area)  
+    println(c.circumference)  
+    println("------------------------------")  
+}  
+  
+class Circle(radius: Double = 0.0) {  
+    var radius: Double = abs(radius)  
+        set(value) {  
+            field = abs(value)  
+        }  
+  
+    val area: Double  
+        get() = PI * radius * radius  
+  
+    val circumference: Double  
+        get() = 2 * PI * radius  
 }
 ```
+
+
+>**_Sınıf Çalışması:_** Bir karmaşık sayıyı temsil eden Complex isimli immutable sınıfı yazınız. Sınıf karmaşık sayının `0 + 0i` sayısına uzaklığı olan Norm bilgisini de verecektir:
+>`|a + bi| = `$\sqrt[2]{a * a + b * b}$
 
 ```kotlin
-/*----------------------------------------------------------------------------------------------------------------------
-	FILE        : Circle.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 19.04.2023
-
-	Circle class that represents the circle in geometry
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
-----------------------------------------------------------------------------------------------------------------------*/
-package org.csystem.math.geometry
-
-class Circle(r: Double = 0.0) {
-    var r: Double = kotlin.math.abs(r)
-        set(value) {
-            field = kotlin.math.abs(value)
-        }
-
-    val area : Double
-        get() = Math.PI * r * r
-
-    val circumference : Double
-        get() = 2 * Math.PI * r
+package org.csystem.app  
+  
+import kotlin.math.sqrt  
+  
+fun main() {  
+    val z = Complex(3.0, 4.5)  
+  
+    println("|${z.real} + ${z.imag}| = ${z.norm}")  
+    println("|${z.real} + ${z.imag}| = ${z.length}")  
+  
+    z.real = 5.6  
+    z.imag = 8.9  
+    println("|${z.real} + ${z.imag}| = ${z.norm}")  
+    println("|${z.real} + ${z.imag}| = ${z.length}")  
+}  
+  
+class Complex(var real: Double = 0.0, var imag: Double = 0.0) {  
+    val norm: Double  
+        get() = sqrt(real * real + imag * imag)
+    val length: Double  
+        get() = norm  
+    val conjugate: Complex  
+        get() = Complex(real, -imag)  
 }
 ```
 
->**_Sınıf Çalışması:_** Bir karmaşık sayıyı temsil eden Complex isimli immutable sınıfı yazınız. Sınıf karmaşık sayının `0 + 0i` sayısına uzaklığı olan Norm bilgisini de verecektir.<br></br>
->`|a + bi| = sqrt(a * a + b * b)`
-><br></br>
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.math.Complex
-
-fun main()
-{
-    val z = Complex(3.4, 5.6)
-    val zc = z.conjugate;
-
-    println("|${z.real} + i.${z.imag}| = ${z.norm}")
-    println("|${zc.real} + i.${zc.imag}| = ${zc.norm}")
-}
-```
-
-```kotlin
-/*----------------------------------------------------------------------------------------------------------------------
-	FILE        : Complex.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 19.04.2023
-
-	Immutable Complex class that represents the complex number
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
-----------------------------------------------------------------------------------------------------------------------*/
-package org.csystem.math
-
-class Complex(val real: Double = 0.0, val imag: Double = 0.0) {
-    val norm: Double
-        get() = kotlin.math.sqrt(real * real + imag * imag)
-
-    val length: Double
-        get() = norm
-
-    val conjugate: Complex
-        get() = Complex(real, -imag)
-}
-```
-
->*Kotlin JVM'de rasgele üretimi için java.util paketi içerisinde Random sınıfı kullanılabilse de, Kotlin'inin standart kütüphanesi içerisinde de random sayı üretimi yapan "object" ve fonksiyonlar vardır. Bu araçlar JavaSE'deki Random sınıfı aynı algoritmayı kullanmazlar. Programcı rasgele sayı üretiminde özel bir durum yoksa Kotlin'in rasgele sayı üretimi yapan object ve fonksiyonlarını kullanmalıdır*
+>*Kotlin JVM'de rasgele üretimi için java.util paketi içerisinde Random sınıfı kullanılabilse de, Kotlin'inin standart kütüphanesi içerisinde de random sayı üretimi yapan "object" ve fonksiyonlar vardır. Bu araçlar JavaSE'deki Random sınıfı ile aynı algoritmayı kullanmazlar. Programcı rasgele sayı üretiminde özel bir durum yoksa Kotlin'in rasgele sayı üretimi yapan object ve fonksiyonlarını kullanmalıdır*
 
 >*Random "object"'inin nextInt metotları*
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    for (i in 1..10)
-        print("${Random.nextInt(100)} ") //[0, 100)
-
-    println()
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val count = readln().toInt()  
+  
+    for (i in 0..<count)  
+        print("${Random.nextInt(100)} ") //[0, 100)  
+  
+    println()  
 }
 ```
 
 >*Random "object"'inin nextInt metotları*
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    print("Birinci sayıyı giriniz:")
-    val a = readln().toInt();
-
-    print("İkinci sayıyı giriniz:")
-    val b = readln().toInt();
-
-    for (i in 1..10)
-        print("${Random.nextInt(a, b)} ") //[a, b)
-
-    println()
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    print("Kaç tane sayı üretmek istiyorsunuz:")  
+    val count = readln().toInt();  
+  
+    print("Birinci sayıyı giriniz:")  
+    val a = readln().toInt();  
+  
+    print("İkinci sayıyı giriniz:")  
+    val b = readln().toInt();  
+  
+    for (i in 0..<count)  
+        print("${Random.nextInt(a, b)} ") //[a, b)  
+  
+    println()  
 }
 ```
 
 >*Random "object"'inin nextBoolean metodu*
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val count = readln().toInt()  
+  
+    for (i in 0..<count)  
+        print("${Random.nextBoolean()} ")  
+  
+    println()  
+}
+```
 
-import kotlin.random.Random
+>**_Sınıf Çalışması:_** Hilesiz bir paranın yazı gelme olasığını yaklaşık olarak hesaplayan basit bir simülasyon programını yazınız.
 
-fun main()
-{
-    for (i in 1..10)
-        println(Random.nextBoolean())
+```kotlin
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() = runCoinSimulationApp()  
+  
+fun runCoinSimulationApp() {  
+    print("Bir sayı giriniz:")  
+    val n = readln().toInt()  
+    println("p = ${calculateCoinProbability(n)}")  
+}  
+  
+fun calculateCoinProbability(n: Int): Double {  
+    var count = 0  
+  
+    for (i in 1..n)  
+        count += Random.nextInt(2)  
+  
+    return count.toDouble() / n  
 }
 ```
 
 >**_Sınıf Çalışması:_** Bir paranın yazı gelme olasığını yaklaşık olarak hesaplayan basit bir simülasyon programını yazınız.
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main() = runCoinSimulationApp()
-
-fun runCoinSimulationApp()
-{
-    while (true) {
-        print("Parayı kaç kez atmak istersiniz?")
-        val count = readln().toInt()
-
-        if (count <= 0)
-            break
-
-        println("p = ${coinProbability(count)}")
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun coinProbability(count: Int) : Double
-{
-    var n = 0
-
-    for (i in 0 until count)
-        n += Random.nextInt(2)
-
-    return n.toDouble() / count
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() = runCoinSimulationApp()  
+  
+fun runCoinSimulationApp() {  
+    print("Bir sayı giriniz:")  
+    val n = readln().toInt()  
+    println("p = ${calculateCoinProbability(n)}")  
+}  
+  
+fun calculateCoinProbability(n: Int): Double {  
+    var count = 0  
+  
+    for (i in 1..n)  
+        if (Random.nextBoolean())  
+            ++count  
+  
+    return count.toDouble() / n  
 }
 ```
 
->**_Sınıf Çalışması:_** Bir paranın yazı gelme olasığını yaklaşık olarak hesaplayan basit bir simülasyon programını yazınız.
+>**_Sınıf Çalışması:_** Hilesiz iki zar atma deneyinde çift (ikisinin aynı olması) gelme olasılığını yaklaşık olarak hesaplayan basit simülasyon programını yazınız.
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main() = runCoinSimulationApp()
-
-fun runCoinSimulationApp()
-{
-    while (true) {
-        print("Parayı kaç kez atmak istersiniz?")
-        val count = readln().toInt()
-
-        if (count <= 0)
-            break
-
-        println("p = ${coinProbability(count)}")
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun coinProbability(count: Int) : Double
-{
-    var n = 0
-
-    for (i in 0 until count)
-        if (Random.nextBoolean())
-            ++n
-
-    return n.toDouble() / count
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() = runSameDiceSimulationApp()  
+  
+fun runSameDiceSimulationApp() {  
+    print("Bir sayı giriniz:")  
+    val n = readln().toInt()  
+    println("p = ${calculateSameDiceProbability(n)}")  
+}  
+  
+fun calculateSameDiceProbability(n: Int): Double {  
+    fun areSame() = Random.nextInt(1, 7) == Random.nextInt(1, 7)  
+    var count = 0  
+  
+    for (i in 1..n)  
+        if (areSame())  
+            ++count  
+  
+    return count.toDouble() / n  
 }
 ```
 
->**_Sınıf Çalışması:_** İki zar atma deneyinde çift (ikisinin aynı olması) gelme olasılığını yaklaşık olarak hesaplayan basit simülasyon programını yazınız.
+
+>*Random "object"'inin nextDouble fonksiyonu*
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main() = runSameDiceProbabilitySimulation()
-
-fun runSameDiceProbabilitySimulation()
-{
-    while (true) {
-        print("Atış sayısını giriniz:")
-        val n = readln().toInt()
-
-        if (n <= 0)
-            break
-
-        println("Yazı Gelme Olasılığı:${findSameDiceProbability(n)}")
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun rollDice() = Random.nextInt(1, 7)
-
-fun areSame() = rollDice() == rollDice()
-
-fun findSameDiceProbability(n: Int) : Double
-{
-    var total = 0;
-
-    for (i in 1..n)
-        if (areSame())
-            ++total
-
-
-    return total.toDouble() / n
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val count = readln().toInt()  
+  
+    for (i in 1..count)  
+        println(Random.nextDouble()) //[0, 1)  
 }
 ```
 
 >*Random "object"'inin nextDouble fonksiyonu*
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    for (i in 1..10)
-        println(Random.nextDouble()) //[0, 1)
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val bound = readln().toDouble()  
+  
+    for (i in 1..10)  
+        println(Random.nextDouble(bound)) //[0, bound)  
 }
 ```
 
 >*Random "object"'inin nextDouble fonksiyonu*
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val bound = readln().toDouble()
-
-    for (i in 1..10)
-        println(Random.nextDouble(bound)) //[0, bound)
-}
-```
-
->*Random "object"'inin nextDouble fonksiyonu*
-
-```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    print("Birinci sayıyı giriniz:")
-    val a = readln().toDouble()
-
-    print("İkinci sayıyı giriniz:")
-    val b = readln().toDouble()
-
-    for (i in 1..10)
-        println(Random.nextDouble(a, b)) //[min, max)
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    print("Birinci sayıyı giriniz:")  
+    val a = readln().toDouble()  
+  
+    print("İkinci sayıyı giriniz:")  
+    val b = readln().toDouble()  
+  
+    for (i in 1..10)  
+        println(Random.nextDouble(a, b)) //[min, max)  
 }
 ```
 
 >*Tohum değeri Random fonksiyonu ile verilerek istenilen tohum değerinden başlayan bir Random referansı elde edilebilir*
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    while (true) {
-        print("Tohum değerini giriniz:")
-        val seed = readln().toLong()
-
-        val r = Random(seed)
-
-        for (i in 1..10)
-            print("${r.nextInt(0, 100)} ")
-
-        println()
-
-        if (seed == 0L)
-            break
-    }
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    while (true) {  
+        print("Tohum değerini giriniz:")  
+        val seed = readln().toLong()  
+  
+        val r = Random(seed)  
+  
+        for (i in 1..10)  
+            print("${r.nextInt(0, 100)} ")  
+  
+        println()  
+  
+        if (seed == 0L)  
+            break  
+    }  
 }
 ```
+
+**_Anahtar Notlar:_** Aslında Kotlin'de random sayı üretimi Random isimli abstract bir sınıf ile yapılmaktadır. Random fonksiyonu da Random referansına geri döner. object olarak kullandığımız Random ise Random sınıfı içerisinde bir companion object'tir. Bu kavramlar ileride detaylı olarak ele alınacaktır
 
 **_Anahtar Notlar:_** `java.util` paketindeki Random sınıfıyla kotlin.random paketindeki Random object'inin içsel algoritmaları aynı olmak zorunda değildir.
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    print("Tohum değerini giriniz:")
-    val seed = readln().toLong()
-    val r = Random(seed)
-    val rj = java.util.Random(seed)
-
-    for (i in 1..10)
-        print("${r.nextInt(99) + 1} ")
-
-    println()
-
-    for (i in 1..10)
-        print("${rj.nextInt(99) + 1} ")
-
-    println()
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    print("Tohum değerini giriniz:")  
+    val seed = readln().toLong()  
+    val randomKotlin = Random(seed)  
+    val randomJava = java.util.Random(seed)  
+  
+    for (i in 1..10)  
+        print("${randomKotlin.nextInt(99) + 1} ")  
+  
+    println()  
+  
+    for (i in 1..10)  
+        print("${randomJava.nextInt(99) + 1} ")  
+  
+    println()  
 }
 ```
 
->*Kotlin'de* `==` ve `!=` *operatörleri ile karşılaştırma sırasında ileride daha detaylı olarak ele alacağımız equals metodu override edilmişse bu metot çağrılır ve geri dönüş değerine göre işlem yapar. Yani bu durumda referans karşılaştırması yapmaz. equals metodu override edilmemişse referans karşılaştırması yapar.*
+>*Kotlin'de* referans türleri için `==` ve `!=` *operatörlerinin operatör fonksiyonu Any sınıfından equals metodudur. Yani aslında eşitlik karşılaştırması equals metodu çağrılarak yapılır. Any sınıfının equals metodu referans karşılaştırması yapar. Ancak sınıfta equals metodu override edilmişse bu durumda referans karşılaştırması yapılmaz. Bu durumda programcı referans karşılaştırması için bu operatörleri kullanılırsa bu işlem garanti olmayabilir. Buradaki kavramların bazıları ileride ele alınacaktır.
 >
->*data sınıflarının equals metodu içerisinde property elemanlarını* `==` 
-*işlemine sokacak şekilde otomatik olarak override edildiğinden örnekte* `==` *operatörü true değer üretir. Yani artık referans karşılaştırması yapmaz.data sınıfları ileride detaylı olarak ele alınacaktır.*
+>*data sınıflarının equals metodu içerisinde property elemanlarını* `==` şlemine sokacak şekilde otomatik olarak override edildiğinden örnekte `==` *operatörü true değer üretir. Yani artık referans karşılaştırması yapmaz. data sınıfları ileride detaylı olarak ele alınacaktır.*
 >
 >*Aşağıdaki örneği sınıf bildiriminde data anahtar sözcüğünü kaldırarak test ediniz ve sonucu gözlemleyiniz.*
 
 ```kotlin
-package org.csystem.app;
-
-fun main()
-{
-    val s = Sample(10)
-    val k = Sample(10)
-
-    println(if (s == k) "Aynı nesne" else "Farklı nesneler")
-}
-
+package org.csystem.app;  
+  
+fun main() {  
+    val s = Sample(10)  
+    val k = Sample(10)  
+  
+    println(if (s == k) "Aynı nesne" else "Farklı nesneler")  
+}  
+  
 data class Sample(var value: Int)
 ```
 
@@ -5010,37 +4966,37 @@ data class Sample(var value: Int)
 >*Bu durumda programcı kesinlikle referans karşılaştırması yapmak istiyorsa bu operatörleri tercih etmelidir.*
 
 ```kotlin
-package org.csystem.app;
-
-fun main()
-{
-    val s = Sample(10)
-    val k = Sample(10)
-
-    println(s === k)
-    println(s !== k)
-}
-
+package org.csystem.app;  
+  
+fun main() {  
+    val s = Sample(10)  
+    val k = Sample(10)  
+  
+    println(s === k)  
+    println(s !== k)  
+}  
+  
 data class Sample(var value: Int)
 ```
 
 >*Her ne kadar temel türler (yani temel türlere ilişkin sınıflar) için de* `===`, `!==` *operatörleri kullanılabilse de anlamsız bir durum oluştuğundan bu operatörlerin temel türler için kullanımı deprecated olmuştur*
 
 ```kotlin
-package org.csystem.app;
-
-fun main()
-{
-    print("Birinci sayıyı giriniz:")
-    val a = readln().toInt()
-
-    print("İkinci sayıyı giriniz:")
-    val b = readln().toInt()
-
-    println(a === b) //Deprecated
-    println(a == b)
+package org.csystem.app;  
+  
+fun main() {  
+    print("Birinci sayıyı giriniz:")  
+    val a = readln().toInt()  
+  
+    print("İkinci sayıyı giriniz:")  
+    val b = readln().toInt()  
+  
+    println(a === b) //Deprecated  
+    println(a == b)  
 }
 ```
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >*Kotlin'in kendi standart kütüphanesi içerisinde String sınıfı bulunmaktadır. Bu sınıf genel olarak Java'nın String sınıfına benzemekle birlikte ek bir takım özelliklere de sahiptir. Özellikle String sınıfına Java 11 ile birlikte önemli eklentiler yapılmıştır. Bu anlamda Kotlin'in String sınıfı bu eklentilere ve daha fazlasına zaten sahiptir*
 
