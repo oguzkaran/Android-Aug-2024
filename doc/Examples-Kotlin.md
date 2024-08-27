@@ -7844,10 +7844,12 @@ Referansın static türü bildirildiği türdür. Derleme zamanına (compile tim
 
 >*Referansın dinamik türü ise referansın gösterdiği nesnenin bellekte yaratıldığı gerçek türüdür*
 
-**_Anahtar Notlar:_** Java'da bir referansın dinamik tür bilgisi "fully qualified" olarak şu şekilde elde edilebilir:\
-`<referans>.getClass().getName()`<p>
-Bunun Kotlin karşılığı:\
-`<referans>.javaClass.name`<p>
+**_Anahtar Notlar:_** Java'da bir referansın dinamik tür bilgisi "fully qualified" olarak şu şekilde elde edilebilir:
+
+        <referans>.getClass().getName()
+Bunun Kotlin karşılığı:
+
+        <referans>.javaClass.name
 biçimindedir.
 
 >*Bir referansın dinamik türü o referansın çalışma zamanı sırasında bellekte gösterdiği gerçek nesnenin türüdür*
@@ -9593,12 +9595,12 @@ class B : A() {
 }
 ```
 
->**Exception işlemleri:** *Programın çalışma zamanı sırasında oluşan genel olarak hatalı durumlara exception denir. Aslında bir exception hata durumuna ilişkin olmayabilir. Bu durum nadiren karşımıza çıkar. Yani daha çok programın çalışma zamnında oluşan hatalı durumlara denir. Bu durumlara karşılık programcının kod içerisinde akışı belirlemesine "exception handling" denir. Kotlin'de Java'dan farklı olarak checked ve unchecked exception kavramları yoktur. Kotlin'de exception işlemleri şu anahtar sözcüklerle yapılır:*    
-	*throw, try, catch, finally*
+>**Exception işlemleri:** *Programın çalışma zamanı sırasında oluşan genel olarak hatalı durumlara exception denir. Aslında bir exception hata durumuna ilişkin olmayabilir. Bu durum nadiren karşımıza çıkar. Yani daha çok programın çalışma zamnında oluşan hatalı durumlara denir. Bu durumlara karşılık programcının kod içerisinde akışı belirlemesine "exception handling" denir. Kotlin'de Java'dan farklı olarak checked ve unchecked exception kavramları yoktur. Kotlin'de exception işlemleri şu anahtar sözcüklerle yapılır:*
 
->*throw deyiminin genel biçimi aşağıdaki gibidir: throw `<referans>` Burada referans Throwable sınıfından doğrudan ya da dolaylı olarak türetilmiş bir sınıf türünden olmaldır. Kotlin'de Throwable sınıfından Exception ve Error sınıfları türetilmiştir. Pratikte programclar Throwable sınıfından doğrudan türetme yapmazlar. Exception veya Error sınıfından doğrudan ya da dolaylı olarak türetme yaparlar. Error sınıfı ayrı bir throwable'dır. İleride ne için kullanıldığı ele alınacaktır. Java'da çok daha kritik öneme sahip olan RuntimeException isiml sınıftan da birçok sınıfı türetilmiştir. Throwable sınıfından doğrudan ya da dolaylı olarak türetilen sınıflara "exception classes" da denilmektedir.*
+        throw, try, catch, finally
+>*throw deyiminin genel biçimi aşağıdaki gibidir: throw `<referans>` Burada referans Throwable sınıfından doğrudan ya da dolaylı olarak türetilmiş bir sınıf türünden olmalıdır. Kotlin'de Throwable sınıfından Exception ve Error sınıfları türetilmiştir. Pratikte programclar Throwable sınıfından doğrudan türetme yapmazlar. Exception veya Error sınıfından doğrudan ya da dolaylı olarak türetme yaparlar. Error sınıfı ayrı bir throwable'dır. İleride ne için kullanıldığı ele alınacaktır. Java'da çok daha kritik öneme sahip olan RuntimeException isimli sınıftan da birçok sınıfı türetilmiştir. Throwable sınıfından doğrudan ya da dolaylı olarak türetilen sınıflara "exception classes" da denilmektedir.*
 
->*Bir kodun exception bakımından ele alınabilmesi için try bloğu içerisinde olması gerekir. try bloğunu bir veya birden fazla catch bloğu ile finally bloğu veya tek başına finally bloğu takip edebilir. Kotlin'de try hem deyim hem de ifsade biçiminde kullanılabilmektedir (try expression statment). Bir exceptiojn fırlatıldığında akış fırlatılan fonksiyondan bir daha geri dönmemek üzere (non-resumptive) çıkar. Akış bir try bloğu içerisinde o try bloğuna ilişkin catch bloklarına yukarıdan aşağıya sırasıyla kontrol eder. Uygun biri catch bloğu bulursa o catch bloğunu çalıştırır. Uygun catch bloğu, fırlatılan exception nesnesine ilişkin referansın atanabildiği (convert) türden catch parametresine sahip bloktur. Eğer hiç uygun blok bulamazsa, onu try bloğunu kapsayan try bloklarına ait catch bloklarına sırasıyla bakar, ilk bulduğu catch bloğunu çalıştırır. Diğer catch blokları çalıştırılmaz. Eğer hiç uygun catch bloğu bulunamazsa ve artık kapsayan hiç try bloğu kalmamışsa exception fırlatıldığı akış (thread) "abnormal" biri biçimde sonlanır. Akış try bloğundan nasıl çıkarsa çıksın finally bloğu çalıştıırılır. try bloğu hiç exception fırlatılmadan sonlanırsa tüm catch bloklarına atlanaran (varsa finally bloğu da çalıştırılarak) akış yoluna devam eder.*
+>*Bir kodun exception bakımından ele alınabilmesi için try bloğu içerisinde olması gerekir. try bloğunu bir veya birden fazla catch bloğu ile finally bloğu veya tek başına finally bloğu takip edebilir. Kotlin'de try hem deyim hem de ifade biçiminde kullanılabilmektedir (try expression statement). Bir exception fırlatıldığında akış fırlatılan fonksiyondan bir daha geri dönmemek üzere (non-resumptive) çıkar. Akış bir try bloğu içerisinde o try bloğuna ilişkin catch bloklarına yukarıdan aşağıya sırasıyla kontrol eder. Uygun biri catch bloğu bulursa o catch bloğunu çalıştırır. Uygun catch bloğu, fırlatılan exception nesnesine ilişkin referansın atanabildiği (convert) türden catch parametresine sahip bloktur. Eğer hiç uygun blok bulamazsa, onu try bloğunu kapsayan try bloklarına ait catch bloklarına sırasıyla bakar, ilk bulduğu catch bloğunu çalıştırır. Diğer catch blokları çalıştırılmaz. Eğer hiç uygun catch bloğu bulunamazsa ve artık kapsayan hiç try bloğu kalmamışsa exception fırlatıldığı akış (thread) "abnormal" biri biçimde sonlanır. Akış try bloğundan nasıl çıkarsa çıksın finally bloğu çalıştırılır. try bloğu hiç exception fırlatılmadan sonlanırsa tüm catch bloklarına atlanaran (varsa finally bloğu da çalıştırılarak) akış yoluna devam eder.*
 
 >*Kotlin'de checked ve unchecked exception kavramları yoktur. Aşağıdaki örneğin Java karşılığı geçersizdir*
 
@@ -13421,7 +13423,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte koşullara uyan ürünlerin isimlerinden oluşan yeni dizi (Array<Product> dizisinden Array<String>) elde edilmiştir*
+>*Aşağıdaki örnekte koşullara uyan ürünlerin isimlerinden oluşan yeni dizi (*`Array<Product>` *dizisinden* `Array<String>`*) elde edilmiştir*
 
 ```kotlin
 package org.csystem.app
@@ -13938,7 +13940,7 @@ fun main()
 }
 ```
 
->*Bir veri yapısının, veri yapısının verileri nasıl tuttuğundan bağımsız olarak dolaşılmasına (iterate) olanak sağlayan araçlara programlamada genel olarak iterator denir. Kotlin'de for döngü deyimiyle dolaşılabilir bir sınıfın Iterable<T> arayüzünü desteklemesi gerekir. Bu arayüzün iterator metodu Iterator<T> arayüz referansına geri döner. bu arayüzün hasNext abstract metodu ile bir sonraki verinin varlığına ilişkin Boolean türden değer elde edilir. next metodu bir sonraki elemanın değerine geri döner, her next çağrısında bir sonraki elemandan önceki elemana konumlanılır. next metodu hasNext false olduğunda yani artık eleman kalmadığınd çağrılırsa NoSuchElementException fırlatılır. Aşağıdaki iterator metodunun çağrılması ve döngü işlemi for döngü deyimiyle doğrudan yapılabilir*
+>*Bir veri yapısının, veri yapısının verileri nasıl tuttuğundan bağımsız olarak dolaşılmasına (iterate) olanak sağlayan araçlara programlamada genel olarak iterator denir. Kotlin'de for döngü deyimiyle dolaşılabilir bir sınıfın* `Iterable<T>` *arayüzünü desteklemesi gerekir. Bu arayüzün iterator metodu* `Iterator<T>` *arayüz referansına geri döner. bu arayüzün hasNext abstract metodu ile bir sonraki verinin varlığına ilişkin Boolean türden değer elde edilir. next metodu bir sonraki elemanın değerine geri döner, her next çağrısında bir sonraki elemandan önceki elemana konumlanılır. next metodu hasNext false olduğunda yani artık eleman kalmadığınd çağrılırsa NoSuchElementException fırlatılır. Aşağıdaki iterator metodunun çağrılması ve döngü işlemi for döngü deyimiyle doğrudan yapılabilir*
 
 ```
 for (value in a)
@@ -15875,12 +15877,9 @@ fun main()
 }
 ```
 
-<br>
+>*Yukarıda kullanılan sınıflar ve fonksiyonların son halleri aşağıda yol ifadesi verilen proje içerisinden incelenebilir:*
 
->*Yukarıda kullanılan sınıflar ve fonksiyonların son halleri aşağıda yol ifadesi verilen proje içerisinden incelenebilir:
-   `~/src/SampleCodes/SampleKotlin*`
-
-<br>
+        ~/src/SampleCodes/SampleKotlin
 
 <pre>
     Eclipse                     : Workspace
@@ -15896,8 +15895,6 @@ fun main()
                                         Module
                                         ...
 </pre>
-
-<br>
 
 >*JVM'de ve ART'de Bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:*
 >
