@@ -4520,7 +4520,8 @@ class Sample {
     }  
   
     //...  
-}```
+}
+```
 
 >*Dikkat aşağıdaki örnekte radius değeri yalnızca ctor içerisinde kontrol edilmiştir. Atama durumunda kontrol işlemi yazılmamıştır Bu anlamda Circle sınıfı iyi olarak tasarlanmamıştır*
 
