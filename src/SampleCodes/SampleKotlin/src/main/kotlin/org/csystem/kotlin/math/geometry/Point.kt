@@ -1,4 +1,4 @@
-package org.csystem.math.geometry
+package org.csystem.kotlin.math.geometry
 
 import kotlin.math.sqrt
 

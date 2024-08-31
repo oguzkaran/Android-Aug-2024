@@ -1,12 +1,11 @@
-package org.csystem.app;
+package org.csystem.app
 
 fun main() {
-    print("Birinci sayıyı giriniz:")
-    val a = readln().toInt()
+    print("Bir karakter giriniz:")
+    val ch = readln()[0]
 
-    print("İkinci sayıyı giriniz:")
-    val b = readln().toInt()
-
-    println(a === b) //Deprecated
-    println(a == b)
+    println(ch.uppercase())
+    println(ch.uppercaseChar())
+    println(ch.lowercase())
+    println(ch.lowercaseChar())
 }

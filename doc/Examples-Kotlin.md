@@ -3255,21 +3255,94 @@ fun main() {
     }  
 }
 ```
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 >**_Sınıf Çalışması:_** Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin haftanın hangi gününe geldiğini döndüren getDayOfWeek global fonksiyonunu aşağıdaki açıklamalara uygun olarak yazınız.
 >
 >**_Açıklama:_**
 >- Programda tarih zamana ilişkin sınıflar kullanılmayacaktır.
 >- getDayOfWeek fonksiyonu 1.1.1900 tarihinden sonraki tarihler için çalışacaktır.
 >- Fonksiyon geçersiz bir tarih için -1 değerine geri dönecektir
->- Haftanın günü bilgisi, 1.1.1900 ile verilen tarih arasındaki toplam gün sayısı hesaplanıp 7 değerine göre modu alınarak bulunabilir. Bu değere göre sıfır pazar, 1 pazartesi, ..., 6 değeri de Cumartesi gününe karşılık gelir
->- Programda dizi kullanılmayacaktır
->- Çözüm şu ana kadar gördüğümüz konular kullanılarak yapılacaktır
+>- Haftanın günü bilgisi, 1.1.1900 ile verilen tarih arasındaki toplam gün sayısı hesaplanıp 7 değerine göre modu alınarak bulunabilir. Bu değer, sıfır pazar, 1 pazartesi, ..., 6 Cumartesi olacak şekilde elde edilir.
+>- Ay bilgisi,  Ocak 1, Şubat 2, ...., Aralık 12 biçiminde verilebilecektir.
+>- Programda dizi kullanılmayacaktır.
+>- Çözüm şu ana kadar gördüğümüz konular kullanılarak yapılacaktır.
 >
 >(İleride daha iyisi yazılacaktır)
 
 ```kotlin
-
+package org.csystem.app  
+  
+fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0  
+  
+fun getDays(month: Int, year: Int) = when (month) {  
+    4, 6, 9, 11 -> 30  
+    2 -> if (isLeapYear(year)) 29 else 28  
+    else -> 31  
+}  
+  
+fun isValidDate(day: Int, month: Int, year: Int) = day in 1..31 && month in 1..12 && year >= 1990 &&  
+        day <= getDays(month, year)  
+  
+fun getDayOfYear(day: Int, month: Int, year: Int): Int {  
+    var dayOfYear = day  
+  
+    for (m in month - 1 downTo 1)  
+        dayOfYear += getDays(m, year)  
+  
+    return dayOfYear  
+}  
+  
+fun getTotalDays(day: Int, month: Int, year: Int): Int {  
+    var totalDays = getDayOfYear(day, month, year)  
+  
+    for (y in 1900..<year)  
+        totalDays += if (isLeapYear(y)) 366 else 365  
+  
+    return totalDays  
+}  
+  
+fun getDayOfWeek(day: Int, month: Int, year: Int) =  
+    if (isValidDate(day, month, year)) getTotalDays(day, month, year) % 7 else -1  
+  
+fun getDayOfWeekStr(dayOfWeekValue: Int) = when (dayOfWeekValue) {  
+    0 -> "Sunday"  
+    1 -> "Monday"  
+    2 -> "Tuesday"  
+    3 -> "Wednesday"  
+    4 -> "Thursday"  
+    5 -> "Friday"  
+    6 -> "Saturday"  
+    else -> ""  
+}  
+  
+fun printDate(day: Int, month: Int, year: Int) {  
+    val dayOfWeekValue = getDayOfWeek(day, month, year)  
+  
+    if (dayOfWeekValue != -1)  
+        println("%02d/%02d/%04d %s".format(day, month, year, getDayOfWeekStr(dayOfWeekValue)))  
+    else  
+        println("Invalid date")  
+}  
+  
+fun runDateApp() {  
+    while (true) {  
+        print("Day?")  
+        val day = readln().toInt()  
+  
+        if (day == 0)  
+            break  
+  
+        print("Month?")  
+        val month = readln().toInt()  
+  
+        print("Year?")  
+        val year = readln().toInt()  
+  
+        printDate(day, month, year)  
+    }  
+}  
+  
+fun main() = runDateApp()
 ```
 
 ###### **Farklı Türler Arasındaki Dönüşümler**
@@ -4667,6 +4740,37 @@ class Circle(radius: Double = 0.0) {
 ```
 
 
+>**_Sınıf Çalışması:_** Bir karmaşık sayıyı temsil eden MutableComplex isimli sınıfı yazınız. Sınıf karmaşık sayının `0 + 0i` sayısına uzaklığı olan Norm bilgisini de verecektir:
+>`|a + bi| = `$\sqrt[2]{a ^ 2+ b ^ 2}$
+
+```kotlin
+package org.csystem.app  
+  
+import kotlin.math.sqrt  
+  
+fun main() {  
+    val z = MutableComplex(3.0, 4.5)  
+  
+    println("|${z.real} + ${z.imag}| = ${z.norm}")  
+    println("|${z.real} + ${z.imag}| = ${z.length}")  
+  
+    z.real = 5.6  
+    z.imag = 8.9  
+    println("|${z.real} + ${z.imag}| = ${z.norm}")  
+    println("|${z.real} + ${z.imag}| = ${z.length}")  
+}  
+  
+class MutableComplex(var real: Double = 0.0, var imag: Double = 0.0) {  
+    val norm: Double  
+        get() = sqrt(real * real + imag * imag)  
+    val length: Double  
+        get() = norm  
+    val conjugate: MutableComplex  
+        get() = MutableComplex(real, -imag)  
+}
+```
+
+
 >**_Sınıf Çalışması:_** Bir karmaşık sayıyı temsil eden Complex isimli immutable sınıfı yazınız. Sınıf karmaşık sayının `0 + 0i` sayısına uzaklığı olan Norm bilgisini de verecektir:
 >`|a + bi| = `$\sqrt[2]{a ^ 2+ b ^ 2}$
 
@@ -4680,16 +4784,11 @@ fun main() {
   
     println("|${z.real} + ${z.imag}| = ${z.norm}")  
     println("|${z.real} + ${z.imag}| = ${z.length}")  
-  
-    z.real = 5.6  
-    z.imag = 8.9  
-    println("|${z.real} + ${z.imag}| = ${z.norm}")  
-    println("|${z.real} + ${z.imag}| = ${z.length}")  
 }  
   
-class Complex(var real: Double = 0.0, var imag: Double = 0.0) {  
+class Complex(val real: Double = 0.0, val imag: Double = 0.0) {  
     val norm: Double  
-        get() = sqrt(real * real + imag * imag)
+        get() = sqrt(real * real + imag * imag)  
     val length: Double  
         get() = norm  
     val conjugate: Complex  
@@ -4997,243 +5096,228 @@ fun main() {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+>*Kotlin'in kendi standart kütüphanesi içerisinde String sınıfı bulunmaktadır. Bu sınıf genel olarak Java'nın String sınıfına benzemekle birlikte ek bir takım özelliklere de sahiptir. Kotlin'de de String sınıfı immutable'dır*
 
->*Kotlin'in kendi standart kütüphanesi içerisinde String sınıfı bulunmaktadır. Bu sınıf genel olarak Java'nın String sınıfına benzemekle birlikte ek bir takım özelliklere de sahiptir. Özellikle String sınıfına Java 11 ile birlikte önemli eklentiler yapılmıştır. Bu anlamda Kotlin'in String sınıfı bu eklentilere ve daha fazlasına zaten sahiptir*
-
->*İki tırnak içerisindeki ifadeler String türündendir*
+>*İki tırnak içerisindeki ifadeler (string literals) String türündendir*
 
 ```kotlin
-package org.csystem.app;
-
-fun main()
-{
-    val s: String = "ankara"
-
-    println(s)
+package org.csystem.app;  
+  
+fun main() {  
+    val s: String = "ankara"  
+  
+    println(s)  
 }
 ```
 
 >*Klavyeden String okunması*
 
 ```kotlin
-package org.csystem.app;
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    val s: String = readln()
-
-    println(s)
+package org.csystem.app;  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s: String = readln()  
+  
+    println(s)  
 }
 ```
 
 >*Klavyeden String okunması durumunda elde edilen nesneler farklıdır*
 
 ```kotlin
-package org.csystem.app;
-
-fun main()
-{
-    print("Birinci yazıyı giriniz:")
-    val s = readln()
-
-    print("İkinci yazıyı giriniz:")
-    val k = readln()
-
-    println(s === k)
+package org.csystem.app;  
+  
+fun main() {  
+    print("Birinci yazıyı giriniz:")  
+    val s = readln()  
+  
+    print("İkinci yazıyı giriniz:")  
+    val k = readln()  
+  
+    println(if (s === k) "Aynı nesne" else "Farklı nesneler" )  
 }
 ```
 
 >*Özdeş String atomları için aynı adres kullanılır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s1 = "ankara"
-    val s2 = "ankara"
-
-    println(s1 == s2)
-    println(s1 != s2)
-    println(s1 === s2)
-    println(s1 !== s2)
+package org.csystem.app  
+  
+fun main() {  
+    val s1 = "ankara"  
+    val s2 = "ankara"  
+  
+    println(s1 == s2)  
+    println(s1 != s2)  
+    println(s1 === s2)  
+    println(s1 !== s2)  
 }
 ```
 
 >*String sınıfının compareTo metodu*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Birinci yazıyı giriniz:")
-    val s = readln()
-
-    print("İkinci yazıyı giriniz:")
-    val k = readln()
-
-    println(s.compareTo(k))
+package org.csystem.app  
+  
+fun main() {  
+    print("Birinci yazıyı giriniz:")  
+    val s = readln()  
+  
+    print("İkinci yazıyı giriniz:")  
+    val k = readln()  
+  
+    println(s.compareTo(k))  
 }
 ```
 
 >*String sınıfının compareTo metodunun ignoreCase parametresi ile büyük küçük harf duyarsız (case insensitive) karşılaştırma yapılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Birinci yazıyı giriniz:")
-    val s = readln()
-
-    print("İkinci yazıyı giriniz:")
-    val k = readln()
-
-    println(s.compareTo(k, true))
+package org.csystem.app  
+  
+fun main() {  
+    print("Birinci yazıyı giriniz:")  
+    val s = readln()  
+  
+    print("İkinci yazıyı giriniz:")  
+    val k = readln()  
+  
+    println(s.compareTo(k, true))  
 }
 ```
 
 >*İki yazının aynı olup olmadığı* `==` veya `!=` *operatörleri ile test edilebilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Birinci yazıyı giriniz:")
-    val s = readln()
-
-    print("İkinci yazıyı giriniz:")
-    val k = readln()
-
-    println(if (s == k) "Aynı yazı" else "Farklı yazılar")
+package org.csystem.app  
+  
+fun main() {  
+    print("Birinci yazıyı giriniz:")  
+    val s = readln()  
+  
+    print("İkinci yazıyı giriniz:")  
+    val k = readln()  
+  
+    println(if (s == k) "Aynı yazı" else "Farklı yazılar")  
+    //println(if (s === k) "Aynı nesne" else "Farklı nesneler")  
 }
 ```
 
 >*İki yazının eşitliğinin case insensitive olarak karşılaştırılması*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Birinci yazıyı giriniz:")
-    val s = readln()
-
-    print("İkinci yazıyı giriniz:")
-    val k = readln()
-
-    println(if (s.equals(k, true)) "Aynı yazı" else "Farklı yazılar")
+package org.csystem.app  
+  
+fun main() {  
+    print("Birinci yazıyı giriniz:")  
+    val s = readln()  
+  
+    print("İkinci yazıyı giriniz:")  
+    val k = readln()  
+  
+    println(if (s.equals(k, true)) "Aynı yazı" else "Farklı yazılar")  
 }
 ```
 
 >*String sınıfının toUpperCase metodu* `Kotlin 1.5` *ile birlikte deprecated olmuştur. Bu fonksiyon yerine upperCase fonksiyonu kullanılmalıdır*
 
 ```kotlin
-package org.csystem.app;
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    val s1 = readln()
-    val s2 = s1.uppercase()
-
-    println(s1)
-    println(s2)
+package org.csystem.app;  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s1 = readln()  
+    val s2 = s1.uppercase()  
+  
+    println(s1)  
+    println(s2)  
 }
 ```
 
 >*String sınıfının toLowerCase metodu* `Kotlin 1.5` *ile birlikte deprecated olmuştur. Bu fonksiyon yerine lowerCase fonksiyonu kullanılmalıdır*
 
 ```kotlin
-package org.csystem.app;
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    val s1 = readln()
-    val s2 = s1.uppercase()
-
-    println(s1)
-    println(s2)
+package org.csystem.app;  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s1 = readln()  
+    val s2 = s1.lowercase()  
+  
+    println(s1)  
+    println(s2)  
 }
 ```
 
 >*String sınıfının indexOf metotları*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s1 = "İyi bir Android programcısı olmak için çok çalışmak gerekir. Çok çok çalışmak gerekir"
-    val s2 = "Çok"
-
-    println(s1.indexOf(s2))
-    println(s1.indexOf(s2, 66))
-    println(s1.indexOf(s2, ignoreCase = true))
+package org.csystem.app  
+  
+fun main() {  
+    val s1 = "İyi bir Android programcısı olmak için çok çalışmak gerekir. Çok çok çalışmak gerekir"  
+    val s2 = "Çok"  
+  
+    println(s1.indexOf(s2))  
+    println(s1.indexOf(s2, 62))  
+    println(s1.indexOf(s2, ignoreCase = true))  
+    println(s1.indexOf(s2, 62, ignoreCase = true))  
 }
 ```
 
 >*String sınıfının lastIndexOf fonksiyonları*
 
 ```kotlin
-package org.csystem.app;
-
-fun main()
-{
-    val s1 = "İyi bir Android programcısı olmak için çok çalışmak gerekir. Çok çok çalışmak gerekir"
-    val s2 = "çok"
-    val index = s1.lastIndexOf(s2)
-
-    println(index)
+package org.csystem.app;  
+  
+fun main() {  
+    val s1 = "İyi bir Android programcısı olmak için çok çalışmak gerekir. Çok çok çalışmak gerekir"  
+    val s2 = "çok"  
+    val index = s1.lastIndexOf(s2)  
+  
+    println(index)  
 }
 ```
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı iki yazıdan birincisi içerisinde ikincisinden kaç tane olduğunu döndüren countString isimli fonksiyonu ignoreCase parametresi de içerecek şekilde yazınız.
 
 ```kotlin
-package org.csystem.app;
-
-import kotlin.random.Random
-
-fun main() = runCountStringTest()
-
-fun runCountStringTest()
-{
-    while (true) {
-        print("Input the first text:")
-        val s1 = readln()
-
-        if (s1 == "quit")
-            break
-
-        print("Input the second text:")
-        val s2 = readln()
-
-        val ignoreCase = Random.nextBoolean()
-
-        println(if (ignoreCase) "case insensitive" else "case sensitive")
-        println("Count:${countString(s1, s2, ignoreCase)}")
-    }
-}
-
-fun countString(s1: String, s2: String, ignoreCase: Boolean = false) : Int
-{
-    var idx = -1
-    var count = 0
-
-    while (true) {
-        idx = s1.indexOf(s2, idx + 1, ignoreCase)
-        if (idx == -1)
-            break
-        ++count
-    }
-
-    return count
+package org.csystem.app;  
+  
+fun main() = runCountStringTest()  
+  
+fun runCountStringTest() {  
+    while (true) {  
+        print("Input first text:")  
+        val s1 = readln()  
+  
+        if ("quit" == s1)  
+            break  
+  
+        print("Input second text:")  
+        val s2 = readln()  
+  
+        println("Count:${countString(s1, s2)}")  
+        println("Count (Ignore case):${countString(s1, s2, true)}")  
+    }  
+}  
+  
+fun countString(s1: String, s2: String, ignoreCase: Boolean = false): Int {  
+    var count = 0  
+  
+    var index = -1  
+  
+    while (true) {  
+        index = s1.indexOf(s2, index + 1, ignoreCase)  
+  
+        if (index == -1)  
+            break  
+  
+        ++count  
+    }  
+  
+    return count  
 }
 ```
 
@@ -5244,333 +5328,196 @@ fun countString(s1: String, s2: String, ignoreCase: Boolean = false) : Int
 >*karşılaştırması kullanılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    val s = readln()
-
-    println(s.isBlank())
-    println(s.isEmpty())
-    println(s == "")
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s = readln()  
+  
+    println(if (s.isBlank()) "Blank" else "Not blank")  
+    println(if (s.isEmpty()) "Empty" else "Not empty")  
+    println(if (s == "") "Empty" else "Not empty")  
 }
 ```
 
 >*Kotlin'e ait bazı sınıflarda isXXX metotlarının isNotXXX versiyonları da bulundurulur. Okunabilirlik açısından "mantıksal değil operatörü" ile isXXX çağırmak yerine isNotXXX çağrılmalıdır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    var s = readln()
-
-    if (s.isNotBlank()) //if (!s.isBlank())
-        s = s.uppercase()
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s = readln()  
+  
+    println(if (s.isNotBlank()) "Not blank" else "Blank") //println(if (!s.isBlank()) "Not blank" else "Blank")  
+    println(if (s.isNotEmpty()) "Not empty" else "Empty") //println(if (!s.isEmpty()) "Not empty" else "Empty")  
+    println(if (s != "") "Not Empty" else "Empty")  
 }
 ```
 
->*String sınıfının indexer elemanı ile yazının bir indekteki karakter elde edilebilir. indexer elemanı [] operatör fonksiyonu gibi düşünülebilir. Operatör fonksiyonları ileride ele alınacaktır*
+>*String sınıfının indexer elemanı ile yazının bir indeksteki karakteri elde edilebilir. indexer elemanı aslında [] operatör fonksiyonudur. Operatör fonksiyonları ileride ele alınacaktır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    val s = readln()
-
-    for (i in 0 until s.length)
-        print("${s[i]} ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s = readln()  
+  
+    for (i in 0..<s.length)  
+        print("${s[i]} ")  
+  
+    println()  
 }
 ```
 
 >*String sınıfının tüm karakterleri* `for` *döngüsü ile elde edilebilir. Yani String sınıfı "iterable"'dır. Iterable kavramı ileride ele alınacaktır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    val s = readln()
-
-    for (ch in s)
-        print("$ch ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s = readln()  
+  
+    for (c in s)  
+        print("${c} ")  
+  
+    println()  
 }
 ```
 
->*Aşağıdaki örnekte getRandomTextEN fonksiyonu içerisindeki döngüde count tane String nesnesi yaratılacak ve sürekli referans nesneden kopartıldığından (çünkü String  immutable bir sınıf) son yaratılan nesne nin referansı kullanılacaktır. Bu durumda daha önce yaratılan nesneler için "yaratılma maliyeti" söz konusu olabilecektir*
+
+>*String sınıfına ilişkin indeks değerleri indices property elemanı ile elde edilbilir. Aslında indices property elemanı CharSequence arayüzünden gelmektedir. CharSequence arayüzü ileride ele alınacaktır*
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main() = runGetRandomTextENTest()
-
-fun runGetRandomTextENTest()
-{
-    while (true) {
-        print("Input count:")
-        val count = readln().toInt()
-
-        if (count <= 0)
-            break
-
-        val text = getRandomTextEN(count)
-
-        println(text)
-    }
-}
-
-fun getRandomTextEN(count: Int, random: Random = Random) : String
-{
-    var str = ""
-
-    for (i in 1..count)
-        str += (if (random.nextBoolean()) 'A' else 'a') + random.nextInt(26)
-
-    return str;
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s = readln()  
+  
+    for (i in s.indices)  
+        print("${s[i]} ")  
+  
+    println()  
 }
 ```
 
-**_Anahtar Notlar:_** Yazılarla işlem yapan, mutable olan ve String sınıfına yardımcı iki tane temel sınıf bulunmaktadır:<br>`StringBuilder, StringBuffer`<br>Bu sınıflar genel olarak aynıdır. Aralarındaki farklar ileride ele alınacaktır. Farkların sözkonusu olduğu koldar dışında `StringBuilder` sınıfı kullanılmalıdır. Bu sınıflar içerisinde Char türden dizi tutulduğundan yazı üzerinde değişiklik yapılabilmektedir. Bu sınıflar genel olarak String sınıfının immutable olmasının dezavantajlı olduğu durumlarda kullanılır. `StringBuffer` sınıfının farkı ileride ele alınacaktır
+**_Anahtar Notlar:_** Yazılarla işlem yapan, mutable olan ve String sınıfına yardımcı iki tane temel sınıf bulunmaktadır:`StringBuilder, StringBuffer`. Bu sınıflar genel olarak aynıdır. Aralarındaki farklar ileride ele alınacaktır. Farkların sözkonusu olduğu koldar dışında `StringBuilder` sınıfı kullanılmalıdır. Bu sınıflar içerisinde Char türden dizi tutulduğundan yazı üzerinde değişiklik yapılabilmektedir. Bu sınıflar genel olarak String sınıfının immutable olmasının dezavantajlı olduğu durumlarda kullanılır. `StringBuffer` sınıfının farkı ileride ele alınacaktır
 
 >*Aşağıdaki örnekte StringBuilder kullanılarak nesne yaratma maliyeti görece ortadan kaldırılmıştır*
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main() = runGetRandomTextENTest()
-
-fun runGetRandomTextENTest()
-{
-    while (true) {
-        print("Input count:")
-        val count = readln().toInt()
-
-        if (count <= 0)
-            break
-
-        val text = getRandomTextEN(count)
-
-        println(text)
-    }
-}
-
-fun getRandomTextEN(count: Int, random: Random = Random) : String
-{
-    val sb = StringBuilder(count)
-
-    for (i in 1..count)
-        sb.append((if (random.nextBoolean()) 'A' else 'a') + random.nextInt(26))
-
-    return sb.toString()
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() = runGenerateRandomTextENTest()  
+  
+fun runGenerateRandomTextENTest() {  
+    while (true) {  
+        print("Input count:")  
+        val count = readln().toInt()  
+  
+        if (count <= 0)  
+            break  
+  
+        val text = generateRandomTextEN(count)  
+  
+        println(text)  
+    }  
+}  
+  
+fun generateRandomTextEN(count: Int, random: Random = Random): String {  
+    val sb = StringBuilder(count)  
+  
+    for (i in 1..count)  
+        sb.append((if (random.nextBoolean()) 'A' else 'a') + random.nextInt(26))  
+  
+    return sb.toString()  
 }
 ```
 
 >*Aşağıdaki örneği inceleyiniz. StringBuilder kullanılmasaydı ne olurdu?*
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runReverseTest()
-
-fun runReverseTest()
-{
-    while (true) {
-        print("Input text:")
-        val s = readln()
-
-        if (s == "quit")
-            break
-
-        val str = reverse(s)
-
-        println("($str)")
-    }
-}
-
+package org.csystem.app  
+  
+fun main() = runReverseTest()  
+  
+fun runReverseTest() {  
+    while (true) {  
+        print("Input text:")  
+        val s = readln()  
+  
+        if (s == "quit")  
+            break  
+  
+        val str = reverse(s)  
+  
+        println("($str)")  
+    }  
+}  
+  
 fun reverse(s: String) = StringBuilder(s).reverse().toString()
 ```
 
 >*Char türünün bazı isXXX metotları*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir karakter giriniz:")
-    val ch = readln()[0]
-
-    println(if (ch.isDigit()) "rakam" else "rakam değil")
-    println(if (ch.isWhitespace()) "boşluk" else "boşluk değil")
-    println(if (ch.isLetter()) "alfabetik" else "alfabetik değil")
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir karakter giriniz:")  
+    val ch = readln()[0]  
+  
+    println(if (ch.isDigit()) "rakam" else "rakam değil")  
+    println(if (ch.isWhitespace()) "boşluk" else "boşluk değil")  
+    println(if (ch.isLetter()) "alfabetik" else "alfabetik değil")  
 }
 ```
 
->*Char türünün upperCase metodu. Bu ve lowercase metodu String'e geri döner. Char dondüren versiyonları için upperCaseChar ve lowerCaseChar metotları kullanılmalıdır*
+>*Char türünün uppercase ve lowercase metotları String'e geri döner. Char dondüren versiyonları için upperCaseChar ve lowerCaseChar metotları kullanılmalıdır. uppercaseChar ve lowercaseChar metotları Kotlin 1.5 ile eklenmiştir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir karakter giriniz:")
-    val ch = readln()[0]
-
-    println(ch.uppercase())
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir karakter giriniz:")  
+    val ch = readln()[0]  
+  
+    println(ch.uppercase())  
+    println(ch.uppercaseChar())  
+    println(ch.lowercase())  
+    println(ch.lowercaseChar())  
 }
+```
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
+
+```kotlin
+
 ```
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
-package org.csystem.app
 
-fun main() = runChangeCaseTest()
-
-fun runChangeCaseTest()
-{
-    while (true) {
-        print("Input text:")
-        val s = readln()
-
-        if (s == "quit")
-            break
-
-        val str = changeCase(s)
-
-        println("($str)")
-    }
-}
-
-fun changeCase(s: String) : String
-{
-    val sb = StringBuilder(s)
-
-    for (i in s.indices)
-        sb[i] = if (s[i].isUpperCase()) s[i].lowercaseChar()else s[i].uppercaseChar()
-
-    return sb.toString()
-}
-```
-
->**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
-
-```kotlin
-package org.csystem.app
-
-fun main() = runChangeCaseTest()
-
-fun runChangeCaseTest()
-{
-    while (true) {
-        print("Input text:")
-        val s = readln()
-
-        if (s == "quit")
-            break
-
-        val str = changeCase(s)
-
-        println("($str)")
-    }
-}
-
-fun changeCase(s: String) : String
-{
-    val sb = StringBuilder(s)
-
-    for (i in s.indices)
-        sb[i] = when {s[i].isUpperCase() -> s[i].lowercaseChar() else -> s[i].uppercaseChar()}
-
-    return sb.toString()
-}
 ```
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harfleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
-package org.csystem.app
 
-fun main() = runChangeCaseTest()
-
-fun runChangeCaseTest()
-{
-    while (true) {
-        print("Input text:")
-        val s = readln()
-
-        if (s == "quit")
-            break
-
-        val str = changeCase(s)
-
-        println("($str)")
-    }
-}
-
-fun changeCase(s: String) : String
-{
-    val sb = StringBuilder(s.length)
-
-    for (c in s)
-        if (c.isUpperCase())
-            sb.append(c.lowercaseChar())
-        else
-            sb.append(c.uppercaseChar())
-
-    return sb.toString()
-}
 ```
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
-package org.csystem.app
 
-fun main() = runChangeCaseTest()
-
-fun runChangeCaseTest()
-{
-    while (true) {
-        print("Input text:")
-        val s = readln()
-
-        if (s == "quit")
-            break
-
-        val str = changeCase(s)
-
-        println("($str)")
-    }
-}
-
-fun changeCase(s: String) : String
-{
-    val sb = StringBuilder(s.length)
-
-    for (c in s)
-        when {
-            c.isUpperCase() -> sb.append(c.lowercaseChar())
-            else -> sb.append(c.uppercaseChar())
-        }
-
-    return sb.toString()
-}
 ```
 
 >*String sınıfının substring metotları*
