@@ -4667,7 +4667,7 @@ class Circle(radius: Double = 0.0) {
 
 
 >**_Sınıf Çalışması:_** Bir karmaşık sayıyı temsil eden Complex isimli immutable sınıfı yazınız. Sınıf karmaşık sayının `0 + 0i` sayısına uzaklığı olan Norm bilgisini de verecektir:
->`|a + bi| = `$\sqrt[2]{a * a + b * b}$
+>`|a + bi| = `$\sqrt[2]{a ^ 2+ b ^ 2}$
 
 ```kotlin
 package org.csystem.app  
