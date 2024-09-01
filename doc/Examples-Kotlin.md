@@ -5123,6 +5123,19 @@ fun main() {
 }
 ```
 
+>*String sınıfının length property elemanı ile karakter sayısı elde edilebilir*
+
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    print("Input text:")  
+    val s = readln()  
+  
+    println("Length:${s.length}")  
+}
+```
+
 >*Klavyeden String okunması durumunda elde edilen nesneler farklıdır*
 
 ```kotlin
@@ -5494,45 +5507,84 @@ fun main() {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
-
+package org.csystem.app  
+  
+fun main() = runChangeCaseTest()  
+  
+fun runChangeCaseTest() {  
+    while (true) {  
+        print("Input text:")  
+        val s = readln()  
+  
+        if ("quit" == s)  
+            break  
+  
+        println(changeCase(s))  
+    }  
+}  
+  
+fun changeCase(s: String): String {  
+    val sb = StringBuilder(s)  
+  
+    for (i in s.indices)  
+        sb[i] = if (sb[i].isUpperCase())  
+            sb[i].lowercaseChar()  
+        else  
+            sb[i].uppercaseChar()  
+  
+    return sb.toString()  
+}
 ```
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
-
-```
-
->**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harfleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
-
-```kotlin
-
-```
-
->**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının büyük harfleri küçük, küçük harleri büyük harf yapılmış ve geri kalan karakteler aynı olacak şekilde yeni bir yazıya geri dönen changeCase isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
-
-```kotlin
-
+package org.csystem.app  
+  
+fun main() = runChangeCaseTest()  
+  
+fun runChangeCaseTest() {  
+    while (true) {  
+        print("Input text:")  
+        val s = readln()  
+  
+        if ("quit" == s)  
+            break  
+  
+        println(changeCase(s))  
+    }  
+}  
+  
+fun changeCase(s: String): String {  
+    val sb = StringBuilder(s)  
+  
+    for (i in s.indices)  
+        sb[i] = when {  
+            sb[i].isUpperCase() -> sb[i].lowercaseChar()  
+            else -> sb[i].uppercaseChar()  
+        }  
+  
+    return sb.toString()  
+}
 ```
 
 >*String sınıfının substring metotları*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = "ankara"
-
-    println(s.substring(2))
-    println(s.substring(2, 5)) //[2, 5)
-    println(s.substring(2..4)) //[2, 4]
-    println(s.substring(2 until 5)) //[2, 5)
+package org.csystem.app  
+  
+fun main() {  
+    val s = "ankara"  
+  
+    println(s.substring(2))  
+    println(s.substring(2, 5)) //[2, 5)  
+    println(s.substring(2..4)) //[2, 4]  
+    println(s.substring(2..<5)) //[2, 5)  
+    println(s.substring(2 until 5)) //[2, 5)  
 }
 ```
 
@@ -5541,245 +5593,231 @@ fun main()
 >**_Örnek:_** profesyonel Bir Android Programcısı olmak için çok çalışmak gerekir -> Profesyonel bir android programcısı olmak için çok çalışmak gerekir.
 
 ```kotlin
-package org.csystem.app
-
-fun main() = runCapitalizeTest()
-
-fun runCapitalizeTest()
-{
-    while (true) {
-        print("Bir yazı giriniz:")
-        val text = readln()
-
-        println(capitalize(text))
-
-        if (text == "elma")
-            break
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun capitalize(s: String) = if (s.isNotEmpty()) s[0].uppercase() + s.substring(1).lowercase() else ""
+package org.csystem.app  
+  
+fun main() = runCapitalizeTest()  
+  
+fun runCapitalizeTest() {  
+    while (true) {  
+        print("Input text:")  
+        val s = readln()  
+  
+        if ("quit" == s)  
+            break  
+  
+        println(capitalize(s))  
+    }  
+}  
+  
+fun capitalize(s: String) = if (s != "") s[0].uppercase() + s.substring(1).lowercase() else ""
 ```
+
+
+**_Anahtar Notlar:_** String sınıfının capitalize fonksiyonu Kotlin 1.5 ile birlikte deprecated olmuştur. capitalize işlemi replaceFirstChar isimli bir fonksiyon kullanılarak da yapılabilmektedir. Bu fonksiyon "High Order Function"'dır. High order function kavramı ileride detaylı olarak ele alınacağından replaceFirstChar fonksiyonu da gösterilecektir
 
 >*String sınıfının substringBefore ve substringAfter metotları*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = "ankara-istanbul-izmir"
-
-    println(s.substringAfter('-'))
-    println(s.substringBefore('-'))
+package org.csystem.app  
+  
+fun main() {  
+    val s = "ankara-istanbul-izmir"  
+  
+    println(s.substringAfter('-'))  
+    println(s.substringBefore('-'))  
 }
 ```
 
 >*String sınıfının substringBefore ve substringAfter metotlarının  missingDelimiterValue parametreleri String türdendir. Ayraç bulunamazsa default olarak yazının kendisini döner. Programcı bu parametre için, ayraç bulamadığında döneceği yazıyı argüman olarak geçebilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    val s = readln()
-
-    println(s.substringAfter('-', "zonguldak"))
-    println(s.substringBefore('-', "izmir"))
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s = readln()  
+  
+    println(s.substringAfter('-'))  
+    println(s.substringAfter('-', "zonguldak"))  
+    println(s.substringBefore('-'))  
+    println(s.substringBefore('-', "izmir"))  
 }
 ```
 
 >*String sınıfının substringBefore ve substringAfter metotları ayraç olarak bir String alabilirler*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = "ankara-istanbul-;izmir"
-
-    println(s.substringAfter("-;"))
-    println(s.substringBefore("-;"))
+package org.csystem.app  
+  
+fun main() {  
+    val s = "ankara-istanbul-;izmir"  
+  
+    println(s.substringAfter("-;"))  
+    println(s.substringBefore("-;"))  
 }
 ```
 
 >*String sınıfının substringAfterLast ve substringBeforeLast metotları*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    val s = readln()
-
-    println(s.substringAfterLast('-'))
-    println(s.substringBeforeLast('-'))
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s = readln()  
+  
+    println(s.substringAfterLast('-'))  
+    println(s.substringBeforeLast('-'))  
 }
 ```
 
 >*String sınıfının substringAfterXXX ve substringBeforeXXX metotlarının kullanımı*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Email adresinizi giriniz:")
-    val s = readln()
-    val info = s.substringBefore('@', "Geçersiz email ismi")
-    val domain = s.substringAfter('@', "Geçersiz email domain'i")
-    val extension = s.substringAfterLast('.', "Geçersiz uzantı")
-
-    println("Info:${info}")
-    println("Domain:${domain}")
-    println("Extension:${extension}")
+package org.csystem.app  
+  
+fun main() {  
+    print("Input email:")  
+    val s = readln()  
+    val info = s.substringBefore('@', "Geçersiz email ismi")  
+    val domain = s.substringAfter('@', "Geçersiz email domain'i")  
+    val extension = s.substringAfterLast('.', "Geçersiz uzantı")  
+  
+    println("Info:${info}")  
+    println("Domain:${domain}")  
+    println("Extension:.${extension}")  
 }
 ```
 
 >*String sınıfının substringAfterLast metodunun kullanımı*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Dosya yol bilgisini giriniz:")
-    val path = readln()
-    val fileName = path.substringAfterLast('/');
-
-    println(fileName)
+package org.csystem.app  
+  
+fun main() {  
+    print("Dosya yol bilgisini giriniz:")  
+    val path = readln()  
+    val fileName = path.substringAfterLast('/');   
+  
+    println(fileName)  
 }
 ```
 
 >*String template*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val fahrenheit: Double = 60.0
-    val s = "Bugün hava ${5.0 / 9.0 * (fahrenheit - 32)} derece"
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    val fahrenheit: Double = 60.0  
+    val s = "Bugün hava ${5.0 / 9.0 * (fahrenheit - 32)} derece"  
+    println(s)  
 }
 ```
 
 >*İki tırnak içerisinde escape sequence kullanımı*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = "c:\\test\\numbers.txt"
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    val s = "c:\\test\\numbers.txt"  
+  
+    println(s)  
 }
 ```
 
->*""" ve """ arasındaki String'lere raw (regular) string denir. Bu string sabitlerinde escape sequence karakterler
-kullanılamaz*
+
+>*""" ve """ arasındaki String'lere raw (regular) string denir. Bu string sabitlerinde escape sequence karakterler kullanılamaz*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = """c:\test\numbers.txt"""
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    val s = """c:\test\numbers.txt"""  
+  
+    println(s)  
 }
 ```
 
 >*İki tırnak arasında bulunan String sabitleri aynı satırda yazılmalıdır. Aksi durumda error oluşur*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = "c:\test\numbers.txt
-            ali" //error
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    val s = "c:\test\numbers.txt  
+    ali" //error  
+  
+    println(s)  
 }
 ```
 
->*Yukarıdaki problem raw string kullanılarak çözülebilir. Raw stringlerde tüm karakterler kendi anlamındadır. WYSIWYG (What You See Is What You Get)*
+>*Yukarıdaki problem raw string kullanılarak çözülebilir. Raw stringlerde genel olarak tüm karakterler kendi anlamındadır. WYSIWYG (What You See Is What You Get)*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = """c:\test\numbers.txt
-                ali"""
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    val s = """c:\test\numbers.txt  
+                ali"""    
+    
+    println(s)  
 }
 ```
 
 >*Raw string'lerde iki tırnak karakteri tek başına kullanılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = """"ankara"""
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    val s = """"ankara""""  
+  
+    println(s)  
 }
 ```
 
 >*Raw string'lerde tek tırnak karakteri tek başına kullanılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = """'ankara'"""
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    val s = """'ankara'"""  
+  
+    println(s)  
 }
 ```
 
 >*Raw string içerisinde $ karakteri ile ifade yazımı (string template) yapılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = 10
-    val s = """a = $a"""
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    val a = 10  
+    val s = """a = $a"""  
+  
+    println(s)  
 }
 ```
 
->*String sınıfının format metodu Java'daki format metoduna benzer*
+>*String sınıfının format metodu JavaSE'deki String sınıfının format format metoduna benzer. Kullanım olarak ise daha sonra eklenen formatted metodu gibidir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir sayı giriniz:")
-    val value = readln().toInt()
-    val s = "value = %X".format(value)
-
-    println(s)
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir sayı giriniz:")  
+    val value = readln().toInt()  
+    val s = "value = %X".format(value)  
+  
+    println(s)  
 }
 ```
 
->*String sınıfının format metodu Java'daki format metoduna benzer:*
+>*String sınıfının format metodunun önemli bazı format karakterleri:*
 
     Bazı format karakterleri:
     d       -> decimal tamsayı türü
@@ -5791,15 +5829,32 @@ fun main()
     b       -> Boolean
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    val x = 100  
+    val y = 50  
+    val s = "(%03d, %03d)".format(x, y)  
+  
+    println(s)  
+}
+```
 
-fun main()
-{
-    val x = 100
-    val y = 50
-    val s = "(%03d, %03d)".format(x, y)
+>*String sınıfının format metodunda format karakterlerinin kullanımı*
 
-    println(s)
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    print("Birinci sayıyı giriniz:")  
+    val a = readln().toDouble()  
+  
+    print("İkinci sayıyı giriniz:")  
+    val b = readln().toDouble()  
+  
+    val c = a + b  
+  
+    println("%f + %f = %.20f".format(a, b, c))  
 }
 ```
 
@@ -5808,27 +5863,7 @@ fun main()
 ```kotlin
 package org.csystem.app
 
-fun main()
-{
-    print("Birinci sayıyı giriniz:")
-    val a = readln().toDouble()
-
-    print("İkinci sayıyı giriniz:")
-    val b = readln().toDouble()
-
-    val c = a + b
-
-    println("%f + %f = %.20f".format(a, b, c))
-}
-```
-
->*String sınıfının format metodunda format karakterlerinin kullanımı*
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
+fun main() {
     var day = 11
     var mon = 7
     var year = 1983
@@ -5840,106 +5875,47 @@ fun main()
 }
 ```
 
->*Aşağıda anlatılan import bildirimlerinde kullanılan "yıldızlı import bildirimi" ve "yıldızsız impoprt bildirimi" terimleri sırasıyla "import on demand declaration" ve "import single type/name declaration" anlamında kullanılmaktadır. Türkçe karşılıkları tamamen Oğuz Karan tarafından uydurulmuştur*
+>****_Anahtar Notlar:_*** Aşağıda anlatılan import bildirimlerinde kullanılan "yıldızlı import bildirimi" ve "yıldızsız import bildirimi" terimleri sırasıyla "import on demand declaration" ve "import single type/name declaration" anlamında kullanılmaktadır. Türkçe karşılıkları tamamen Oğuz Karan tarafından uydurulmuştur*
 
 >*Yıldızsız import bildiriminde (import single type declaration) ilgili isme takma isim (alias) verilebilir*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt as rInt
-
-fun main()
-{
-    val a = rInt("Bir sayı giriniz:")
-
-    println("a = $a")
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt as readIntConsole  
+import org.csystem.kotlin.util.io.readInt as readIntFile  
+  
+fun main() {  
+    val a = readIntConsole("Birinci sayıyı giriniz:")  
+    val b = readIntFile("test.dat")  
+  
+    //...  
 }
 ```
 
->*Yıldızsız import bildiriminde ilgili isme takma isim (alias) verilebilir. Aşağıdaki örneği inceleyiniz*
+>*Aşağıdaki örneği inceleyiniz*
 
 ```kotlin
-package org.csystem.app
-
-package org.csystem.app
-
-import test.foo as tFoo
-import mest.foo as mFoo
-import test.bar
-
-fun main()
-{
-    tFoo()
-    bar()
-    mFoo()
+package org.csystem.app  
+  
+import kotlin.random.Random as KRandom  
+import java.util.Random as JRandom  
+  
+fun main() {  
+    val rk = KRandom  
+    val rj = JRandom()  
+  
+    for (i in 1..10)  
+        print("%02d ".format(rk.nextInt(100)))  
+  
+    println()  
+  
+    for (i in 1..10)  
+        print("%02d ".format(rj.nextInt(100)))  
 }
 ```
 
-```kotlin
-package test
-
-fun foo()
-{
-    println("test.foo")
-}
-
-fun bar()
-{
-    println("test.bar")
-}
-```
-
-```kotlin
-package mest
-
-fun foo()
-{
-    println("mest.foo")
-}
-```
-
->*Yıldızsız import bildiriminde ilgili isme takma isim (alias) verilebilir*
-
-```kotlin
-package org.csystem.app
-
-import test.bar
-import test.foo
-import mest.foo as mFoo
-
-fun main()
-{
-    foo()
-    bar()
-    mFoo()
-}
-```
-
-```kotlin
-package test
-
-fun foo()
-{
-    println("test.foo")
-}
-
-fun bar()
-{
-    println("test.bar")
-}
-```
-
-```kotlin
-package mest
-
-fun foo()
-{
-    println("mest.foo")
-}
-```
-
->**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının pangram olup olmadığını test eden isPangramT ve isPangramEN fonksiyonlarını yazınız ve aşağıdaki kod ile test ediniz.
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının pangram olup olmadığını test eden isPangramTR ve isPangramEN fonksiyonlarını stringUtil.kt dosyası içerisinde yazınız ve aşağıdaki kod ile test ediniz.
 >
 >**_Açıklama:_** Fonksiyonlar özel isim ve cümle anlamı kontrolü yapmayacaktır.
 >
@@ -5948,229 +5924,169 @@ fun foo()
 >**_İngilizce pangram:_** The quick brown fox jumps over the lazy dog
 
 ```kotlin
-package org.csystem.util.string.kotlin.test
-
-import org.csystem.util.string.kotlin.isPangramEN
-import org.csystem.util.string.kotlin.isPangramTR
-
-fun main() = runIsPangramTest()
-
-fun runIsPangramTest()
-{
-    runIsPangramTRTest()
-    runIsPangramENTest()
-}
-
-fun runIsPangramTRTest()
-{
-    while (true) {
-        print("Bir yazı giriniz:")
-        val s = readln()
-
-        if ("elma" == s)
-            break
-
-        println(if (isPangramTR(s)) "Pangram" else "Pangram değil")
-    }
-}
-
-fun runIsPangramENTest()
-{
-    while (true) {
-        print("Input a text:")
-        val s = readln()
-
-        if ("quit" == s)
-            break
-
-        println(if (isPangramEN(s)) "Pangram" else "Not a Pangram")
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.string.isPangramEN  
+import org.csystem.kotlin.util.string.isPangramTR  
+  
+fun main() = runIsPangramTest()  
+  
+fun runIsPangramTest() {  
+    runIsPangramTRTest()  
+    runIsPangramENTest()  
+}  
+  
+fun runIsPangramTRTest() {  
+    while (true) {  
+        print("Bir yazı giriniz:")  
+        val s = readln()  
+  
+        if ("elma" == s)  
+            break  
+  
+        println(if (isPangramTR(s)) "Pangram" else "Pangram değil")  
+    }  
+}  
+  
+fun runIsPangramENTest() {  
+    while (true) {  
+        print("Input a text:")  
+        val s = readln()  
+  
+        if ("quit" == s)  
+            break  
+  
+        println(if (isPangramEN(s)) "Pangram" else "Not a Pangram")  
+    }  
 }
 ```
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının pangram olup olmadığını test eden isPangramTR ve isPangramEN fonksiyonlarını yazınız ve aşağıdaki kod ile test ediniz
->
->**_Açıklama:_** Fonksiyonlar özel isim ve cümle anlamı kontrolü yapmayacaktır.
->
->**_Türkçe pangram:_** Pijamalı hasta yağız şoföre çabucak güvendi
->
->**_İngilizce pangram:_** The quick brown fox jumps over the lazy dog
+**_Anahtar Notlar:_** Kotlin dosyaları için tipik IDE programlar (IntelliJ Idea, Android Studio, Eclipse vb.) Java dosyalarında olduğu gibi ilgili sınıf (ya da fonksiyon) hangi paket içerisinde bulunuyorsa o dizinde bulunur zorunluluğunu uygulamaz. Ancak Kotlin JVM kullanan programcılar genelde Java'daki gibi dosyaları konumlandırırlar.
+
+>*Kotlin'de global değişkenler de bildirilebilir. Bu durumda global değişken tüm tüm fonksiyonlar içerisinde kullanılabilir. Genel olarak az kullanılsa da bazı durumlarda kullanılabilmektedir. 
+>***_Anahtar Notlar:_*** Global değişkenler yapısallık, nesne yönelimlilik gibi programlama paradigmaları açısından çoğu zaman uygun olmamaktadır. Bu sebeple programcının buna dikkat etmesi gererkir. 
+>Aşağıdaki demo örneği inceleyiniz*
 
 ```kotlin
-package org.csystem.util.string.kotlin.test
-
-import org.csystem.util.string.kotlin.isPangramEN
-import org.csystem.util.string.kotlin.isPangramTR
-
-fun main() = runIsPangramTest()
-
-fun runIsPangramTest()
-{
-    runIsPangramTRTest()
-    runIsPangramENTest()
-}
-
-fun runIsPangramTRTest()
-{
-    while (true) {
-        print("Bir yazı giriniz:")
-        val s = readln()
-
-        if ("elma" == s)
-            break
-
-        println(if (isPangramTR(s)) "Pangram" else "Pangram değil")
-    }
-}
-
-fun runIsPangramENTest()
-{
-    while (true) {
-        print("Input a text:")
-        val s = readln()
-
-        if ("quit" == s)
-            break
-
-        println(if (isPangramEN(s)) "Pangram" else "Not a Pangram")
-    }
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+var a = 10  
+  
+fun main() {  
+    println("a = $a")  
+    foo(1, 100)  
+    println("a = $a")  
+}  
+  
+fun foo(origin: Int, bound: Int)  {  
+    a = Random.nextInt(origin, bound)  
 }
 ```
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının içerisindeki ilk en uzun palindromu döndüren getFirstLongestPalindrome ve son en uzun parlindromu döndüren getLastLongestPalindrome fonksiyonlarını ve aynı fonksiyonların en kısa palindromları döndüren getFirstShortestPalindrome ve getLastShortestPalindrome fonksiyonlarını yazınız. En kısa palindrom en az iki karakterden oluşmalıdır.
->
->**_Palindrome:_** İçerisinde bulunan yalnızca alfabetik karakterler tersten okunduğunda aynısı olaran yazılardır:
->
->**_Örnek:_**\
->Ey Edip Adana'da pide ye\
->Anastas mum satsana\
->Ali Papila
->
->**_İpucu:_** Parametresi ile alığı biri yazının paklindrome olup olmadığını test eden örneğin isPalindrome isimli bir fonksiyon yazabilirsiniz.
 
-<br>
+> Diziler Kotlin'de standart kütüphanede bulunan sınıflarla temsil edilmiştir. Temel türlere ilişkin dizi sınıfları şunlardır:
+> - IntArray
+> - LongArray
+> - ShortArray
+> - ByteArray
+> - FloatArray
+> - DoubleArray
+> - CharArray
+> - BooleanArray
+> Ayrıca generic olarak bildirilmiş Array isimli bir sınıf da ayrıca bulunur. Array sınıfı generics konusu ile birlikte ele alınacaktır
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının isogram olup olmadığını test eden isIsogramTR ve isIsogramEN fonksiyonlarını `stringUtil.kt` içerisinde yazınız ve aşağıdaki kod ile test ediniz.
->
->**_Isogram:_** Yazı içerisinde ilgili alfabenin her karakterinden yalnızca bir tane bulunan yazılara denir.
->
->**_Not:_** (İleride daha iyisi yazılacaktır)
-
-```kotlin
-package org.csystem.util.string.kotlin.test
-
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.string.kotlin.isIsogramEN
-import org.csystem.util.string.kotlin.isIsogramTR
-
-fun main() = runIsIsogramTest()
-
-fun runIsIsogramTest()
-{
-    runIsIsogramTRTest()
-    runIsIsogramENTest()
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun runIsIsogramTRTest()
-{
-    while (true) {
-        val s = readString("Bir yazı giriniz:")
-        if ("elma" == s)
-            break
-
-        println(if (isIsogramTR(s)) "Isogram" else "Isogram değil")
-    }
-}
-
-fun runIsIsogramENTest()
-{
-    while (true) {
-        val s = readString("Enter a text:")
-        if ("quit" == s)
-            break
-        println(if (isIsogramEN(s)) "Isogram" else "Not an isogram")
-    }
-}
-```
-
-**_Anahtar Notlar:_** Kotlin dosyaları için tipik IDE programlar (IntelliJ Idea, Android Studio, Eclipse vb.) Java dosyalarında olduğu gibi hangi paket içerisinde bulunuyorsa o dizinde bulunur zorunluluğunu uygulamaz. Ancak Kotlin JVM kullanan programcılar genelde Java'daki gibi dosyaları konumlandırırlar.
+> Dizilere ilk değer vermek (initialization) için global fonksiyonlar kullanılır. Temel türden dizilere ilişkin ilkdeğer verme fonksiyonları şunlardır:
+> - intArrayOf
+> - longArrayOf
+> - shortArrayOf
+> - byteArrayOf
+> - floatArrayOf
+> - doubleArrayOf
+> - charArrayOf
+> - booleanArrayOf
+> Ayrıca generic olarak bildirilmiş arrayOf isimli global bir fonksiyon da bulunmaktadır. Örneğin String türden dizilere ilkdeğer vermek için bu fonksiyon kullanılabilir.
+> Diziler dolaşılabilir (iterable) türlerdir.
 
 >*arrayOf generic fonksiyonu ile bir dizi ilk değer verme sentaksı biçiminde kullanılabilir. Diziler Kotlin'de de dolaşılabilir (iterable) olduğundan for döngü deyimi kullanılabilir*
 
+
+>Aşağıdaki demo örneği inceleyiniz
+
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    val ia = intArrayOf(1, 2, 3, 4)  
+    var da = doubleArrayOf(3.4, 5.6, 8.9)  
+    var ba = booleanArrayOf(false, true, false, false)  
+    var ca = charArrayOf('a', 'b', 'c')  
+  
+    for (v in ia)  
+        print("$v ")  
+      
+    println()  
+    //...  
+}
+```
 
-fun main()
-{
-    val cities = arrayOf("ankara", "istanbul", "izmir")
 
-    for (city in cities)
-        println(city)
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val cities = arrayOf("ankara", "istanbul", "izmir")  
+  
+    for (c in cities)  
+        println(c)  
 }
 ```
 
 >*Dizilerin eleman sayısına size property elemanı ile erişilebilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val cities = arrayOf("ankara", "istanbul", "izmir")
-    val size = cities.size
-    var i = 0
-
-    while (i < size) {
-        println(cities[i])
-        ++i
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val cities = arrayOf("ankara", "istanbul", "izmir")  
+    val size = cities.size  
+    var i = 0  
+  
+    while (i < size) {  
+        println(cities[i])  
+        ++i  
+    }  
 }
 ```
 
 >*Dizilerin eleman sayısı size property elemanı ile elde edilebilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val cities = arrayOf("ankara", "istanbul", "izmir")
-    val size = cities.size
-
-    for (i in 0 until size)
-        println(cities[i])
+package org.csystem.app  
+  
+fun main() {  
+    val cities = arrayOf("ankara", "istanbul", "izmir")  
+    val size = cities.size  
+  
+    for (i in 0 until size)  
+        println(cities[i])  
 }
 ```
 
 >*Dizilerin eleman sayısı count isimli extension fonksiyon ile de elde edilebilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val cities = arrayOf("ankara", "istanbul", "izmir")
-    val n = cities.count()
-
-    for (i in 0 until n)
-        println(cities[i])
-}
-```
-
->*Int türden dizi*
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val numbers = arrayOf(10, 20, 30)
-
-    for (value in numbers)
-        print("$value ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    val cities = arrayOf("ankara", "istanbul", "izmir")  
+    val n = cities.count()  
+  
+    for (i in 0 until n)  
+        println(cities[i])  
 }
 ```
 
@@ -6184,46 +6100,46 @@ for (i in 0 until a.size)
 ```
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = arrayOf(10, 20, 30)
-
-    for (i in a.indices)
-        a[i] *= a[i];
-
-    for (value in a)
-        print("$value ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    val a = arrayOf(10, 20, 30)  
+  
+    for (i in a.indices)  
+        a[i] *= a[i];  
+  
+    for (value in a)  
+        print("$value ")  
+  
+    println()  
 }
 ```
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir dizinin elemanlarını stdout'a yazdıran write isimli fonksiyonu ve aldığı Int türden count, min ve bound ile random isimli Random türden parametreleri count elemanlı elemanları `[min, bound)` aralığında rasgele değerlerle doldurulmuş bir dizi referansına geri dönen randomIntArray isimli fonksiyonu arrayUtil.kt içerisinde yazınız ve aşağıdaki kod ile test ediniz.
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir dizinin elemanlarını stdout'a yazdıran write isimli fonksiyonu ve aldığı Int türden count, origin ve bound ile random isimli Random türden parametreleri count elemanlı elemanları `[origin, bound)` aralığında rasgele değerlerle doldurulmuş bir dizi referansına geri dönen randomIntArray isimli fonksiyonu arrayUtil.kt içerisinde yazınız ve aşağıdaki kod ile test ediniz.
 
 ```kotlin
-package org.csystem.util.array.kotlin.test
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.console.kotlin.readInt
-
-fun main() = runRandomIntArrayTest()
-
-fun runRandomIntArrayTest()
-{
-    while (true) {
-        val count = readInt("Dizinin eleman sayısını giriniz:")
-
-        if (count <= 0)
-            break
-        val a = randomIntArray(count, 0, 100)
-
-        write(2, a)
-    }
-
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomIntArray  
+import org.csystem.kotlin.util.array.write  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() = runRandomIntArrayTest()  
+  
+fun runRandomIntArrayTest() {  
+    while (true) {  
+        val count = readInt("Dizinin eleman sayısını giriniz:")  
+  
+        if (count <= 0)  
+            break  
+        val a = randomIntArray(count, 0, 100)  
+  
+        write(2, a)  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
 }
 ```
 
@@ -6583,6 +6499,53 @@ fun isValidDate(day: Int, month: Int, year: Int) = day in 1..31 && month in 1..1
 
 fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0
 ```
+
+
+
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının isogram olup olmadığını test eden isIsogramTR ve isIsogramEN fonksiyonlarını `stringUtil.kt` içerisinde yazınız ve aşağıdaki kod ile test ediniz.
+>
+>**_Isogram:_** Yazı içerisinde ilgili alfabenin her karakterinden yalnızca bir tane bulunan yazılara denir.
+>
+>**_Not:_** (İleride daha iyisi yazılacaktır)
+
+```kotlin
+package org.csystem.util.string.kotlin.test
+
+import org.csystem.util.console.kotlin.readString
+import org.csystem.util.string.kotlin.isIsogramEN
+import org.csystem.util.string.kotlin.isIsogramTR
+
+fun main() = runIsIsogramTest()
+
+fun runIsIsogramTest()
+{
+    runIsIsogramTRTest()
+    runIsIsogramENTest()
+    println("Tekrar yapıyor musunuz?")
+}
+
+fun runIsIsogramTRTest()
+{
+    while (true) {
+        val s = readString("Bir yazı giriniz:")
+        if ("elma" == s)
+            break
+
+        println(if (isIsogramTR(s)) "Isogram" else "Isogram değil")
+    }
+}
+
+fun runIsIsogramENTest()
+{
+    while (true) {
+        val s = readString("Enter a text:")
+        if ("quit" == s)
+            break
+        println(if (isIsogramEN(s)) "Isogram" else "Not an isogram")
+    }
+}
+```
+
 
 >**Kotlin'de erişim belirleyiciler iki kategoriye ayrılırlar:**
 >
