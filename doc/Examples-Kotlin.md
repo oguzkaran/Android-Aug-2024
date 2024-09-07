@@ -1,8 +1,71 @@
-### C ve Sistem Programcıları Derneği
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Long türden bir sayıyı 3'erli basamaklara ayırarak bir diziye yerleştiren ve dizinin referansını döndüren digitsInThrees fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
+>
+>**_Açıklama:_** Negatif sayılar için de dizinin elemanları pozitif olacaktır.
+
+```
+1234567 -> 1 234 567
+1       -> 1
+3456    -> 3 456
+12456   -> 12 456
+123456  -> 123 456
+1000000 -> 1 0 0
+```
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.digitsInTwos  
+import kotlin.random.Random  
+  
+fun main() = runDigitsLongTest()  
+  
+fun runDigitsLongTest() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val value = Random.nextLong();  
+        print("$value -> ")  
+        printArray(digitsInThrees(value))  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}
+```isVali### C ve Sistem Programcıları Derneği
 ### Android Programlama Kursu
 ### Kotlin Programlama Dili
 ### Eğitmen: Oğuz KARAN
-
+package org.csystem.app;  
+  
+class App {  
+    public static void main(String [] args)  
+    {  
+       Sample [] samples;  
+  
+       samples = new Sample[10];  
+  
+       for (int i = 0; i < 10; ++i)  
+          samples[i] = new Sample(i);  
+  
+       System.out.println("Dizi elemanları yazdırılıyor:");  
+       for (int i = 0; i < 10; ++i)  
+          System.out.printf("%d ", samples[i].x);  
+  
+       System.out.println();  
+    }  
+}  
+  
+class Sample {  
+    public int x;  
+  
+    public Sample(int a)  
+    {  
+       x = a;  
+    }  
+  
+    //...  
+}
 #### Düzenleyenler: Anıl Bozkırlı, Bartu Çankaya, Eda Akyıl, Yılmaz Kurtuluş
 
 **_Anahtar Notlar:_** Burada ağırlıklı olarak KotlinJVM üzerinde durulacaktır.
@@ -6115,15 +6178,18 @@ fun main() {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir dizinin elemanlarını stdout'a yazdıran write isimli fonksiyonu ve aldığı Int türden count, origin ve bound ile random isimli Random türden parametreleri count elemanlı elemanları `[origin, bound)` aralığında rasgele değerlerle doldurulmuş bir dizi referansına geri dönen randomIntArray isimli fonksiyonu arrayUtil.kt içerisinde yazınız ve aşağıdaki kod ile test ediniz.
+>**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir dizinin elemanlarını stdout'a yazdıran printArray isimli aşağıdaki fonksiyonu ve randomIntArray isimli aşağıdaki fonksiyonu sırasıyla console.kt ve arrayUtil.kt içerisinde yazınız ve aşağıdaki kod ile test ediniz.
+>Fonksiyonlar:
+>`fun printArray(a: DoubleArray, n: Int = 1, sep: String = " ", end: String = "\n")`
+>`fun randomArray(count: Int, origin: Int, bound: Int, random: Random = Random): IntArray`
+
 
 ```kotlin
 package org.csystem.app  
   
-import org.csystem.kotlin.util.array.randomIntArray  
-import org.csystem.kotlin.util.array.write  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
 import org.csystem.kotlin.util.console.readInt  
   
 fun main() = runRandomIntArrayTest()  
@@ -6134,9 +6200,36 @@ fun runRandomIntArrayTest() {
   
         if (count <= 0)  
             break  
-        val a = randomIntArray(count, 0, 100)  
+        val a = randomArray(count, 0, 100)  
   
-        write(2, a)  
+        printArray(a, 3)  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}
+```
+
+> Aşağıdaki test kodunu ve ilgili fonksiyonları inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() = runRandomIntArrayTest()  
+  
+fun runRandomIntArrayTest() {  
+    while (true) {  
+        val count = readInt("Dizinin eleman sayısını giriniz:")  
+  
+        if (count <= 0)  
+            break  
+  
+        val a = randomArray(count, 2.345, 2.346)  
+  
+        printArray(a, 4)  
     }  
   
     println("Tekrar yapıyor musunuz?")  
@@ -6147,59 +6240,54 @@ fun runRandomIntArrayTest() {
 >*joinToString fonksiyonu ile dizi içerisindeki elemanlar bir ayraç veya bir ön ek veya bir son ek ile birleştirilebilir*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.kotlin.util.array.randomIntArray
-
-fun main()
-{
-    val a = randomIntArray(10, 0, 100)
-
-    write(2, a)
-
-    val str = a.joinToString("-", "{", "}")
-
-    println(str)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
+  
+fun main() {  
+    val a = randomArray(10, 0, 100)  
+  
+    printArray(a, 2)  
+    val str = a.joinToString("-", "{", "}")  
+  
+    println(str)  
 }
 ```
 
 >*joinToString fonksiyonu ile dizi içerisindeki elemanlar bir ayraç veya bir ön ek veya bir son ek ile birleştirilebilir*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.array.kotlin.write
-
-fun main()
-{
-    val a = randomIntArray(10, 0, 100)
-
-    write(2, a)
-
-    val str = a.joinToString(prefix = "{", separator = "-", postfix = "}")
-
-    println(str)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
+  
+fun main() {  
+    val a = randomArray(10, 0, 100)  
+  
+    printArray(a, 2)  
+    val str = a.joinToString(prefix ="{", separator =  "-", postfix = "}")  
+  
+    println(str)  
 }
 ```
 
 >*joinToString fonksiyonu*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.array.kotlin.write
-
-fun main()
-{
-    val a = randomIntArray(10, 0, 100)
-
-    write(2, a)
-
-    val str = a.joinToString(prefix = "{", postfix = "}")
-
-    println(str)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
+  
+fun main() {  
+    val a = randomArray(10, 0, 100)  
+  
+    printArray(a, 2)  
+    val str = a.joinToString(prefix ="{", postfix = "}")  
+  
+    println(str)  
 }
 ```
 
@@ -6208,54 +6296,25 @@ fun main()
 >**_Not:_** Sayı negatif olsa bile basamak değerleri pozitif olacaktır.
 
 ```kotlin
-package org.csystem.util.numeric.test
-
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.digits
-import kotlin.random.Random
-
-fun main() = runDigitsLongTest()
-
-fun runDigitsLongTest()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val value = Random.nextLong();
-        print("$value -> ")
-        write(digits(value))
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-```
-
->**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının basamaklarından oluşan diziyi döndüren digits fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
->
->**_Not:_** Sayı negatif olsa bile basamak değerleri pozitif olacaktır.
-
-```kotlin
-package org.csystem.util.numeric.test
-
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.digits
-import kotlin.random.Random
-
-fun main() = runDigitsIntTest()
-
-fun runDigitsIntTest()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val value = Random.nextInt();
-        print("$value -> ")
-        write(digits(value))
-    }
-
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.digits  
+import kotlin.random.Random  
+  
+fun main() = runDigitsLongTest()  
+  
+fun runDigitsLongTest() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val value = Random.nextLong();  
+        print("$value -> ")  
+        printArray(digits(value))  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
 }
 ```
 
@@ -6265,27 +6324,16 @@ fun runDigitsIntTest()
 >- Fonksiyon basamak sayısı kontrolü yapmayacaktır
 >- Bu fonksiyonun daha geneli yazıldığında private olarak bildirilecektir. Şimdilik bunu görmezden geliniz
 
-<br>
-
 ```kotlin
-package org.csystem.util.numeric.test
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.numToStr3DigitsTR
-import kotlin.random.Random
-
-fun main() = runNumToStrTest()
-
-fun runNumToStrTest()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val value = Random.nextInt(-999, 1000)
-        println("$value -> ${numToStr3DigitsTR(value)}")
-    }
-
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.numeric.numToStr3DigitsTR  
+  
+fun main() = runNumToStrTest()  
+  
+fun runNumToStrTest() {  
+    for (v in -999..999)  
+        println("$v -> ${numToStr3DigitsTR(v)}")  
 }
 ```
 
@@ -6302,21 +6350,55 @@ fun runNumToStrTest()
 1000000 -> 1 0 0
 ```
 
->**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayıyı 3'erli basamaklara ayırarak bir diziye yerleştiren ve dizinin referansını döndüren digitsInThrees fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
->
->**_Açıklama:_** Negatif sayılar için de dizinin elemanları pozitif olacaktır.
-
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.digitsInThrees  
+import kotlin.random.Random  
+  
+fun main() = runDigitsLongTest()  
+  
+fun runDigitsLongTest() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val value = Random.nextLong();  
+        print("$value -> ")  
+        printArray(digitsInThrees(value))  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}
 ```
-1234567 -> 1 234 567
-1       -> 1
-3456    -> 3 456
-12456   -> 12 456
-123456  -> 123 456
-1000000 -> 1 0 0
+
+>*Aşağıdaki demo örneği ve ilgili fonksiyonları inceleyiniz*
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.digitsInTwos  
+import kotlin.random.Random  
+  
+fun main() = runDigitsLongTest()  
+  
+fun runDigitsLongTest() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val value = Random.nextLong();  
+        print("$value -> ")  
+        printArray(digitsInTwos(value))  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}
 ```
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı gün, ay ve yıl bilgisine ilişkin tarihin haftanın hangi gününe geldiğini döndüren getDayOfWeek global fonksiyonunu aşağıdaki açıklamalara uygun olarak yazınız.
->
 >**_Açıklama:_**
 >- Aşağıdaki test kodu ile fonksiyonlarınız için genel bir test yapınız.
 >- Programda tarih zamana ilişkin sınıflar kullanılmayacaktır.
@@ -6327,243 +6409,143 @@ fun runNumToStrTest()
 >- Aşağıdaki fonksiyonların kesinlikle yazılması koşuluyla istediğiniz fonksiyonu ekleyebilirsiniz.
 >- Yazılmış fonksiyonlar içerisinde değişiklik yapabilirsiniz. Ancak test etmeniz gerektiğini unutmayınız.
 >- Çözüm şu ana kadar gördüğümüz konular kullanılarak yapılacaktır.
->- String referansına geri dönen fonksiyonlarda String sınıfını kullanmanız gerekmez. String literal oluştururakyapınız.
->
 >(İleride daha iyisi yazılacaktır)
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main() = runtTest();
-
-fun runtTest()
-{
-    while (true) {
-        val day = readInt("Gün?")
-
-        if (day <= 0)
-            break
-
-
-        val month = readInt("Ay?")
-        val year = readInt("Yıl?")
-
-        displayDateTR(day, month, year)
-        displayDateEN(day, month, year)
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-
-fun displayDateTR(day: Int, month: Int, year: Int)
-{
-    val dayOfWeek = getDayOfWeek(day, month, year)
-
-    println(when {
-        dayOfWeek >= 0 -> "$day ${getMonthNameTR(month)} $year ${getDayOfWeekTR(dayOfWeek)}"
-        else -> "Geçersiz Tarih"
-    })
-}
-
-fun displayDateEN(day: Int, month: Int, year: Int)
-{
-    val dayOfWeek = getDayOfWeek(day, month, year)
-
-    println(when {
-        dayOfWeek >= 0 -> "$day${getDaySuffix(day)} ${getMonthNameEN(month)} $year ${getDayOfWeekEN(dayOfWeek)}"
-        else -> "Invalid Date"
-    })
-}
-
-fun getDaySuffix(day: Int) :String
-{
-    return when (day) {
-        1, 21, 31 -> "st"
-        2, 22 -> "nd"
-        3, 23 -> "rd"
-        else -> "th"
-    }
-}
-
-fun getDayOfWeekTR(dayOfWeek: Int) : String
-{
-    return when (dayOfWeek) {
-        0 -> "Pazar"
-        1 -> "Pazatesi"
-        2 -> "Salı"
-        3 -> "Çarşamba"
-        4 -> "Perşembe"
-        5 -> "Cuma"
-        else -> "Cumartesi"
-    }
-}
-
-fun getMonthNameTR(month: Int) : String
-{
-    return when (month) {
-        1 -> "Ocak"
-        2 -> "Şubat"
-        3 -> "Mart"
-        4 -> "Nisan"
-        5 -> "Mayıs"
-        6 -> "Haziran"
-        7 -> "Temmuz"
-        8 -> "Ağustos"
-        9 -> "Eylül"
-        10 -> "Ekim"
-        11 -> "Kasım"
-        else -> "Aralık"
-    }
-}
-
-fun getDayOfWeekEN(dayOfWeek: Int) : String
-{
-    return when (dayOfWeek) {
-        0 -> "Sun"
-        1 -> "Mon"
-        2 -> "Tue"
-        3 -> "Wed"
-        4 -> "Thu"
-        5 -> "Fri"
-        else -> "Sat"
-    }
-}
-
-fun getMonthNameEN(month: Int) : String
-{
-    return when (month) {
-        1 -> "Jan"
-        2 -> "Feb"
-        3 -> "Mar"
-        4 -> "Apr"
-        5 -> "May"
-        6 -> "Jun"
-        7 -> "Jul"
-        8 -> "Aug"
-        9 -> "Sep"
-        10 -> "Oct"
-        111 -> "Nov"
-        else -> "Dec"
-    }
-}
-
-fun getDayOfWeek(day: Int, month: Int, year: Int) : Int
-{
-    if (year < 1900)
-        return -1
-
-    val totalDays = getDayOfYear(day, month, year)
-
-    if (totalDays == -1)
-        return -1
-
-    return (totalDays + getTotalDays(year)) % 7
-}
-
-fun getTotalDays(year: Int) : Int
-{
-    var totalDays = 0
-
-    for (y in 1900 until year)
-        totalDays += if (isLeapYear(y)) 366 else 365
-
-    return totalDays
-}
-
-fun getDayOfYear(day: Int, month: Int, year: Int) : Int
-{
-    if (!isValidDate(day, month, year))
-        return -1
-
-    var dayOfYear = day
-
-    for (m in (month - 1) downTo 1)
-        dayOfYear += getDaysOfMonth(m, year)
-
-    return dayOfYear
-}
-
-fun getDaysOfMonth(month: Int, year: Int) : Int
-{
-    return when (month) {
-        4, 6, 9, 11 -> 30
-        2 -> if (isLeapYear(year)) 29 else 28
-        else -> 31
-    }
-}
-
-fun isValidDate(day: Int, month: Int, year: Int) = day in 1..31 && month in 1..12 && day <= getDaysOfMonth(month, year)
-
-fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0
+package org.csystem.app  
+  
+val daysOfMonths = arrayOf(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)  
+val daysOfWeek = arrayOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")  
+val months = arrayOf("", "January", "February", "March", "April", "May", "June", "July", "August", "September",  
+    "October", "November", "December")  
+  
+fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0  
+  
+fun getDays(month: Int, year: Int) = if (month == 2 && isLeapYear(year)) 29 else daysOfMonths[month]  
+  
+fun isValidDate(day: Int, month: Int, year: Int) = day in 1..31 && month in 1..12 && year >= 1990 &&  
+        day <= getDays(month, year)  
+  
+fun getDayOfYear(day: Int, month: Int, year: Int): Int {  
+    var dayOfYear = day  
+  
+    for (m in month - 1 downTo 1)  
+        dayOfYear += getDays(m, year)  
+  
+    return dayOfYear  
+}  
+  
+fun getTotalDays(day: Int, month: Int, year: Int): Int {  
+    var totalDays = getDayOfYear(day, month, year)  
+  
+    for (y in 1900..<year)  
+        totalDays += if (isLeapYear(y)) 366 else 365  
+  
+    return totalDays  
+}  
+  
+fun getDayOfWeek(day: Int, month: Int, year: Int) =  
+    if (isValidDate(day, month, year)) getTotalDays(day, month, year) % 7 else -1  
+  
+fun getDaySuffix(day: Int) = when (day) {  
+    1, 21, 31 -> "st"  
+    2, 22 -> "nd"  
+    3, 23 -> "rd"  
+    else -> "th"  
+}  
+  
+  
+fun printDate(day: Int, month: Int, year: Int) {  
+    val dayOfWeekValue = getDayOfWeek(day, month, year)  
+  
+    if (dayOfWeekValue != -1)  
+        println("%d%s %s %04d %s".format(day, getDaySuffix(day), months[month], year, daysOfWeek[dayOfWeekValue]))  
+    else  
+        println("Invalid date")  
+}  
+  
+fun runDateApp() {  
+    while (true) {  
+        print("Day?")  
+        val day = readln().toInt()  
+  
+        if (day == 0)  
+            break  
+  
+        print("Month?")  
+        val month = readln().toInt()  
+  
+        print("Year?")  
+        val year = readln().toInt()  
+  
+        printDate(day, month, year)  
+    }  
+}  
+  
+fun main() = runDateApp()
 ```
 
 
-
->**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının isogram olup olmadığını test eden isIsogramTR ve isIsogramEN fonksiyonlarını `stringUtil.kt` içerisinde yazınız ve aşağıdaki kod ile test ediniz.
->
+>**_Sınıf Çalışması:_** Parametresi ile aldığı bir yazının isogram olup olmadığını test eden `isIsogramTR` ve `isIsogramEN` fonksiyonlarını `stringUtil.kt` içerisinde yazınız ve aşağıdaki kod ile test ediniz.
 >**_Isogram:_** Yazı içerisinde ilgili alfabenin her karakterinden yalnızca bir tane bulunan yazılara denir.
->
 >**_Not:_** (İleride daha iyisi yazılacaktır)
 
 ```kotlin
-package org.csystem.util.string.kotlin.test
-
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.string.kotlin.isIsogramEN
-import org.csystem.util.string.kotlin.isIsogramTR
-
-fun main() = runIsIsogramTest()
-
-fun runIsIsogramTest()
-{
-    runIsIsogramTRTest()
-    runIsIsogramENTest()
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun runIsIsogramTRTest()
-{
-    while (true) {
-        val s = readString("Bir yazı giriniz:")
-        if ("elma" == s)
-            break
-
-        println(if (isIsogramTR(s)) "Isogram" else "Isogram değil")
-    }
-}
-
-fun runIsIsogramENTest()
-{
-    while (true) {
-        val s = readString("Enter a text:")
-        if ("quit" == s)
-            break
-        println(if (isIsogramEN(s)) "Isogram" else "Not an isogram")
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readString  
+import org.csystem.kotlin.util.string.isIsogramEN  
+import org.csystem.kotlin.util.string.isIsogramTR  
+  
+fun main() = runIsIsogramTest()  
+  
+fun runIsIsogramTest() {  
+    runIsIsogramTRTest()  
+    runIsIsogramENTest()  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun runIsIsogramTRTest() {  
+    while (true) {  
+        val s = readString("Bir yazı giriniz:")  
+        if ("elma" == s)  
+            break  
+  
+        println(if (isIsogramTR(s)) "Isogram" else "Isogram değil")  
+    }  
+}  
+  
+fun runIsIsogramENTest() {  
+    while (true) {  
+        val s = readString("Enter a text:")  
+        if ("quit" == s)  
+            break  
+        println(if (isIsogramEN(s)) "Isogram" else "Not an isogram")  
+    }  
 }
 ```
 
+XXXXXXXXXXXXXXXXX
 
 >**Kotlin'de erişim belirleyiciler iki kategoriye ayrılırlar:**
 >
 >**Global düzeyde erişim belirleyiciler:**
->- Hiçbir şey yazmamak default erişimdir. public'dir
->- public: Bir global elemanın dosyası dışından da erişilebilmesi demektir
->- internal: Module düzeyinde erişimdir. İleride ele alınacak
->- private: Yalnızca kendi dosyası içerisinde erişilebilirdir
+>- Hiçbir şey yazmamak default erişimdir. public'dir.
+>- public: Bir global elemanın dosyası dışından da erişilebilmesi demektir.
+>- internal: Module düzeyinde erişimdir.
+>- private: Yalnızca kendi dosyası içerisinde erişilebilirdir.
 >
 >**Sınıf elemanlarının erişim belirleyicileri:**
 >- Hiçbir şey yazmamak default erişimdir. public'dir
->- public: Sınıf dışından da erişilebilirdir
->- internal: Modül düzeyinde erişimdir
->- protected: Yalnızca türemiş sınıflar erişebilir
+>- public: Sınıf dışından da erişilebilirdir.
+>- internal: Modül düzeyinde erişimdir.
+>- protected: Yalnızca türemiş sınıflar erişebilir. İleride ele alınacaktır.
 >- private: Yalnızca kendi sınıfı içerisinde erişilebilir elemanlardır
 >
->*Kotlin'de Java'da ki gibi pakete özgü (package private) erişim belirleyiciler yoktur. Kotlin'de bu durum modül (module) düzetinde ele alınmıştır. Module kavramı ileride ele alınacaktır*
->
+>*Kotlin'de Java'da ki gibi pakete özgü (package private) erişim belirleyiciler yoktur. Kotlin'de bu durum modül (module) düzeyinde ele alınmıştır.*
+
+>*numberUtil.kt dosyasındaki private elemanları inceleyiniz*
+
 >*Kotlin'deki enum türü Java'dakine çok benzer.*
 
 **_Anahtar Notlar:_** enum kullanımı Android programlamada bazı durumlarda performası olumsuz yönde etkileyebilir. Bu tip durumlar ileride ela alınacaktır.

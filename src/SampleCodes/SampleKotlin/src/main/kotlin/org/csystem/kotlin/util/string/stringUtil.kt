@@ -33,12 +33,22 @@ fun countString(s1: String, s2: String, ignoreCase: Boolean = false): Int {
 
 
 fun isIsogram(s: String, alphabet: String, ignoreCase: Boolean = false): Boolean {
-    TODO()
+    for (c in alphabet) {
+        val i = s.indexOf(c, 0, ignoreCase)
+
+        if (i == -1)
+            return false
+
+        if (s.indexOf(c, i + 1, ignoreCase) != -1)
+            return false
+    }
+
+    return true
 }
 
-fun isIsogramEN(s: String) = isPangram(s.lowercase(), "abcdefghijklmnopqrstuvwxyz")
+fun isIsogramEN(s: String) = isIsogram(s.lowercase(), "abcdefghijklmnopqrstuvwxyz")
 
-fun isIsogramTR(s: String) = isPangram(s.lowercase(), "abcçdefgğhıijklmnoöprsştuüvyz")
+fun isIsogramTR(s: String) = isIsogram(s.lowercase(), "abcçdefgğhıijklmnoöprsştuüvyz")
 
 
 fun isPangram(s: String, alphabet: String, ignoreCase: Boolean = false): Boolean {
