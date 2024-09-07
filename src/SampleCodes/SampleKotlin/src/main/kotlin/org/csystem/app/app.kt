@@ -1,20 +1,32 @@
-package org.csystem.util.numeric.test
+package org.csystem.util.string.kotlin.test
 
-import org.csystem.kotlin.util.console.printArray
-import org.csystem.kotlin.util.console.readInt
-import org.csystem.kotlin.util.numeric.digits
-import kotlin.random.Random
+import org.csystem.kotlin.util.console.readString
+import org.csystem.kotlin.util.string.isIsogramEN
+import org.csystem.kotlin.util.string.isIsogramTR
 
-fun main() = runDigitsLongTest()
+fun main() = runIsIsogramTest()
 
-fun runDigitsLongTest() {
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val value = Random.nextLong();
-        print("$value -> ")
-        printArray(digits(value))
-    }
-
+fun runIsIsogramTest() {
+    runIsIsogramTRTest()
+    runIsIsogramENTest()
     println("Tekrar yapıyor musunuz?")
+}
+
+fun runIsIsogramTRTest() {
+    while (true) {
+        val s = readString("Bir yazı giriniz:")
+        if ("elma" == s)
+            break
+
+        println(if (isIsogramTR(s)) "Isogram" else "Isogram değil")
+    }
+}
+
+fun runIsIsogramENTest() {
+    while (true) {
+        val s = readString("Enter a text:")
+        if ("quit" == s)
+            break
+        println(if (isIsogramEN(s)) "Isogram" else "Not an isogram")
+    }
 }

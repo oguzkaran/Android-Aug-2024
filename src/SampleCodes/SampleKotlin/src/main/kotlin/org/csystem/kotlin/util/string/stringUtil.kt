@@ -31,6 +31,16 @@ fun countString(s1: String, s2: String, ignoreCase: Boolean = false): Int {
     return count
 }
 
+
+fun isIsogram(s: String, alphabet: String, ignoreCase: Boolean = false): Boolean {
+    TODO()
+}
+
+fun isIsogramEN(s: String) = isPangram(s.lowercase(), "abcdefghijklmnopqrstuvwxyz")
+
+fun isIsogramTR(s: String) = isPangram(s.lowercase(), "abcçdefgğhıijklmnoöprsştuüvyz")
+
+
 fun isPangram(s: String, alphabet: String, ignoreCase: Boolean = false): Boolean {
     for (c in alphabet)
         if (!s.contains(c, ignoreCase))
@@ -43,3 +53,5 @@ fun isPangramEN(s: String) = isPangram(s.lowercase(), "abcdefghijklmnopqrstuvwxy
 
 
 fun isPangramTR(s: String) = isPangram(s.lowercase(), "abcçdefgğhıijklmnoöprsştuüvyz")
+
+
