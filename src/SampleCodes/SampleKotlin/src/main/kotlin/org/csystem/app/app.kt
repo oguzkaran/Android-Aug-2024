@@ -1,20 +1,19 @@
-package org.csystem.app
+package org.csystem.util.numeric.test
 
-import org.csystem.kotlin.util.array.randomIntArray
-import org.csystem.kotlin.util.array.write
+import org.csystem.kotlin.util.console.printArray
 import org.csystem.kotlin.util.console.readInt
+import org.csystem.kotlin.util.numeric.digits
+import kotlin.random.Random
 
-fun main() = runRandomIntArrayTest()
+fun main() = runDigitsLongTest()
 
-fun runRandomIntArrayTest() {
-    while (true) {
-        val count = readInt("Dizinin eleman sayısını giriniz:")
+fun runDigitsLongTest() {
+    val count = readInt("Bir sayı giriniz:")
 
-        if (count <= 0)
-            break
-        val a = randomIntArray(count, 0, 100)
-
-        write(2, a)
+    for (i in 1..count) {
+        val value = Random.nextLong();
+        print("$value -> ")
+        printArray(digits(value))
     }
 
     println("Tekrar yapıyor musunuz?")
