@@ -17,6 +17,10 @@ tasks.withType<Jar> {
 }
 
 dependencies {
+    implementation("org.csystem:org-csystem-kotlin-util-console:1.0.0")
+    implementation("org.csystem:org-csystem-kotlin-math:1.0.0")
+    implementation("org.csystem:org-csystem-kotlin-util:1.0.0")
+
     testImplementation(kotlin("test"))
 }
 

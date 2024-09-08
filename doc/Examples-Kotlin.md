@@ -126,20 +126,18 @@ fun bar() : Unit {
 }
 ```
 
-#### Kotlin'de Temel Türler ####
+#### Kotlin Programlama Dilinde Temel Türler ####
 
->| Tür ismi | Uzunluk (byte) | Sınır Değerler |
->|----------|----------------|-|
->| Short    | 2              |[-32768, +32767]|
->| Int      | 4              |[-2147483648, +2147483647]|
->| Long     | 8              |[-9223372036854775808, +9223372036854775807]|
->| Byte     | 1              |[-128, +127]|
->| Float    | 4              |[±3.6 * 10-38, ±3.6 * 10+38]|
->| Double   | 8              |[±1.6 * 10-308, ±1.6 * 10+308]|
->| Char     | 2              |[0, 65535]|
->| Boolean  | 1              |true, false|
-
-<br>
+| Tür ismi | Uzunluk (byte) | Sınır Değerler                               |
+| -------- | -------------- | -------------------------------------------- |
+| Short    | 2              | [-32768, +32767]                             |
+| Int      | 4              | [-2147483648, +2147483647]                   |
+| Long     | 8              | [-9223372036854775808, +9223372036854775807] |
+| Byte     | 1              | [-128, +127]                                 |
+| Float    | 4              | [±3.6 * 10-38, ±3.6 * 10+38]                 |
+| Double   | 8              | [±1.6 * 10-308, ±1.6 * 10+308]               |
+| Char     | 2              | [0, 65535]                                   |
+| Boolean  | 1              | true, false                                  |
 
 **_Anahtar Notlar:_** Kotlin'de temel türler (primitive/built-in/pre-defined types) sınıf ile temsil edilmiştir.
 
@@ -6525,26 +6523,88 @@ fun runIsIsogramENTest() {
 }
 ```
 
-XXXXXXXXXXXXXXXXX
+> ENCAPSULATION NOTLARI EKLENECEK
 
 >**Kotlin'de erişim belirleyiciler iki kategoriye ayrılırlar:**
 >
 >**Global düzeyde erişim belirleyiciler:**
 >- Hiçbir şey yazmamak default erişimdir. public'dir.
+>
 >- public: Bir global elemanın dosyası dışından da erişilebilmesi demektir.
->- internal: Module düzeyinde erişimdir.
+>
+>- internal: Module düzeyinde erişimdir. Bu duruma ilgili global elemana yalnızca o modül içerisinde erişilebilir. Yani daha basit bir anlatımla internal bir eleman aynı module için public, farklı modüller için private anlamındadır.
+>
 >- private: Yalnızca kendi dosyası içerisinde erişilebilirdir.
 >
 >**Sınıf elemanlarının erişim belirleyicileri:**
->- Hiçbir şey yazmamak default erişimdir. public'dir
->- public: Sınıf dışından da erişilebilirdir.
->- internal: Modül düzeyinde erişimdir.
->- protected: Yalnızca türemiş sınıflar erişebilir. İleride ele alınacaktır.
->- private: Yalnızca kendi sınıfı içerisinde erişilebilir elemanlardır
+>- Hiçbir şey yazmamak default erişimdir. public'dir.
 >
->*Kotlin'de Java'da ki gibi pakete özgü (package private) erişim belirleyiciler yoktur. Kotlin'de bu durum modül (module) düzeyinde ele alınmıştır.*
+>- public: Sınıf dışından da erişilebilirdir.
+>
+>- internal: Modül düzeyinde erişimdir. Bu duruma ilgili sınıf elemanına yalnızca o modül içerisinde erişilebilir. Yani daha basit bir anlatımla internal bir eleman aynı module için public, farklı modüller için private anlamındadır.
+>
+>- protected: Yalnızca türemiş sınıflar erişebilir. İleride ele alınacaktır.
+>
+>- private: Yalnızca kendi sınıfı içerisinde erişilebilir elemanlardır.
+>
+>***Anahtar Notlar:*** Kotlin'de Java'da ki gibi pakete özgü (package private) erişim belirleyiciler yoktur. Kotlin'de bu durum modül (module) düzeyinde ele alınmıştır.
+>
+>***Anahtar Notlar:*** Bir derleme birimindeki (compilation unit) bir user defined type bidirimi de global düzeyde bir bildirimdir.
+>
+>KConsoleLib, KMathLib ve KUtilLib kütüphanelerini inceleyiniz
+>
 
->*numberUtil.kt dosyasındaki private elemanları inceleyiniz*
+> *Aşağıdaki demo Time sınıfının Kotlin ve Java karşılıklarını inceleyiniz. Sınıfların detaylarına girilmemiştir yalnızca hour elemanının gizlenmesine odaklanınız*
+
+```java
+//Time.java
+package org.csystem.datetime;  
+  
+public class Time {  
+    private int m_hour, m_minute, m_second, m_millisecond;  
+  
+    //...
+  
+    public void setHour(int value)  
+    {  
+        if (value < 0 || value > 59)  
+            throw new IllegalArgumentException("Invalid value");  
+  
+        m_hour = value;  
+  
+        //...  
+    }  
+  
+    public int getHour()  
+    {  
+        return m_hour;  
+    }  
+  
+    //  
+}
+
+```
+
+```kotlin
+//Time.kt
+package org.csystem.kotlin.datetime
+  
+class Time {  
+    var hour: Int = 0  
+        set(value) {  
+            if (value < 0 || value > 59)  
+                throw IllegalArgumentException("Invalid value")  
+  
+            field = value  
+            //...  
+        }  
+  
+    //...  
+}
+```
+
+XXXXXXXXXXXXXXXXXXXXXXX
+#### Kotlin enum sınıfları
 
 >*Kotlin'deki enum türü Java'dakine çok benzer.*
 
@@ -15774,20 +15834,6 @@ fun main()
 
         ~/src/SampleCodes/SampleKotlin
 
-<pre>
-    Eclipse                     : Workspace
-                                        Project
-                                        Project
-                                        ...
-    Visual Studio               : Solution
-                                        Project
-                                        Project
-                                        ...
-    IntelliJ/Android Studio     : Project
-                                        Module
-                                        Module
-                                        ...
-</pre>
 
 >*JVM'de ve ART'de Bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:*
 >
