@@ -1,71 +1,8 @@
->**_Sınıf Çalışması:_** Parametresi ile aldığı Long türden bir sayıyı 3'erli basamaklara ayırarak bir diziye yerleştiren ve dizinin referansını döndüren digitsInThrees fonksiyonunu yazınız ve aşağıdaki kod ile test ediniz.
->
->**_Açıklama:_** Negatif sayılar için de dizinin elemanları pozitif olacaktır.
-
-```
-1234567 -> 1 234 567
-1       -> 1
-3456    -> 3 456
-12456   -> 12 456
-123456  -> 123 456
-1000000 -> 1 0 0
-```
-
-```kotlin
-package org.csystem.app  
-  
-import org.csystem.kotlin.util.console.printArray  
-import org.csystem.kotlin.util.console.readInt  
-import org.csystem.kotlin.util.numeric.digitsInTwos  
-import kotlin.random.Random  
-  
-fun main() = runDigitsLongTest()  
-  
-fun runDigitsLongTest() {  
-    val count = readInt("Bir sayı giriniz:")  
-  
-    for (i in 1..count) {  
-        val value = Random.nextLong();  
-        print("$value -> ")  
-        printArray(digitsInThrees(value))  
-    }  
-  
-    println("Tekrar yapıyor musunuz?")  
-}
-```isVali### C ve Sistem Programcıları Derneği
+### C ve Sistem Programcıları Derneği
 ### Android Programlama Kursu
 ### Kotlin Programlama Dili
 ### Eğitmen: Oğuz KARAN
-package org.csystem.app;  
-  
-class App {  
-    public static void main(String [] args)  
-    {  
-       Sample [] samples;  
-  
-       samples = new Sample[10];  
-  
-       for (int i = 0; i < 10; ++i)  
-          samples[i] = new Sample(i);  
-  
-       System.out.println("Dizi elemanları yazdırılıyor:");  
-       for (int i = 0; i < 10; ++i)  
-          System.out.printf("%d ", samples[i].x);  
-  
-       System.out.println();  
-    }  
-}  
-  
-class Sample {  
-    public int x;  
-  
-    public Sample(int a)  
-    {  
-       x = a;  
-    }  
-  
-    //...  
-}
+
 #### Düzenleyenler: Anıl Bozkırlı, Bartu Çankaya, Eda Akyıl, Yılmaz Kurtuluş
 
 **_Anahtar Notlar:_** Burada ağırlıklı olarak KotlinJVM üzerinde durulacaktır.
