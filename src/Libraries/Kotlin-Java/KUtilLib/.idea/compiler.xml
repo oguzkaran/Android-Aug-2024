@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="GenericLib" />
-        <module name="Library-Maven" />
+        <module name="KUtilLib" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -18,7 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="GenericApp" options="-parameters" />
       <module name="GenericLib" options="-parameters" />
-      <module name="Library-Maven" options="-parameters" />
+      <module name="KUtilLib" options="-parameters" />
     </option>
   </component>
 </project>

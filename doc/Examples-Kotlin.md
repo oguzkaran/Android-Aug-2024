@@ -6540,591 +6540,523 @@ class Time {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXX
 #### Kotlin enum sınıfları
 
 >*Kotlin'deki enum türü Java'dakine çok benzer.*
 
-**_Anahtar Notlar:_** enum kullanımı Android programlamada bazı durumlarda performası olumsuz yönde etkileyebilir. Bu tip durumlar ileride ela alınacaktır.
+**_Anahtar Notlar:_** enum kullanımı Android programlamada bazı durumlarda performası olumsuz yönde etkileyebilir. Bu tip durumlar ileride detaylı olarak ele alınacaktır.
 
 >*enum türleri enum ve class anahtar sözcükleri ile bildirilir. enum sabitleri (enum constants) ait oldukları enum türünden referanslardır. Şüphesiz bu referanslar da aynı enum türünden yaratılmış olan nesnelerin adreslerini tutarlar*
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    val favColor: Color = Color.BLUE  
+  
+    //...  
+  
+    printColor(favColor)  
+}  
+  
+fun printColor(color: Color) = println(color.toString())  
 
-fun main()
-{
-    val favColor: Color = Color.BLUE
-
-    println(favColor.toString())
-}
-
-enum class Color {
-    RED, GREEN, BLUE
-}
-```
-
->*enum class türünden nesne hiç bir şekilde yaratılamaz. Sabitlere ilişkin nesneler zaten yaratılmıştır. Bu anlamda bir enum class'ın ctor'ları private'dan öte bir erişime sahiptir*
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val favColor = Color() //error
-
-    println(favColor.toString())
-}
-
-
-enum class Color {
-    RED, GREEN, BLUE
+enum class Color {  
+    RED, GREEN, BLUE  
 }
 ```
 
->*enum türlerinin ordinal property elemanı o enum referansına ilişkin sabitin bildirim sıra numarasını verir. ordinal numarası sıfırdan başlar*
+>*Programcı enum class türünden nesneyi uygulama içersinde  hiç bir şekilde yaratamaz. Sabitlere ilişkin nesneler zaten yaratılmıştır. Bu durumda uygulamadaki bir enum türünden nesne sayısı ilgili enum class'ın sabitlerinin sayısı kadardır. Bu anlamda bir enum class içerisinde de ilgili enum class türünden nesne programcı tarafından yaratılamaz*
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    val favColor = Color() //error  
+} 
 
-fun main()
-{
-    val favColor = Color.GREEN
-    val ordinal = favColor.ordinal
-
-    println("ordinal of $favColor is $ordinal")
-}
-
-enum class Color {
-    RED, GREEN, BLUE
+enum class Color {  
+    RED, GREEN, BLUE  
 }
 ```
 
->*enum türlerinin values metodu tüm enum sabitlerine ilişkin referanslardan oluşan dizi referansı döndürür*
+>*enum türlerinin ordinal property elemanı o enum referansına ilişkin sabitin bildirim sıra numarasını verir. ordinal numarası sıfır değerinden başlar*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val ordinal = 2
-    val color = Color.values()[ordinal]
-
-    println(color)
+package org.csystem.app  
+  
+fun main() {  
+    val favColor: Color = Color.BLUE  
+  
+    //...  
+  
+    printColorInfo(favColor)  
+}  
+  
+fun printColorInfo(color: Color) = println("Ordinal of ${color.toString()} is ${color.ordinal}")  
+  
+enum class Color {  
+    RED, GREEN, BLUE  
 }
+```
 
+>*enum türlerinin values metodu tüm enum sabitlerine ilişkin referanslardan oluşan dizi referansına geri döner. Aşağıdaki örnekte ** ile belirtilen values metodu çağrısının her generateRandomColor  çağrıdında yeni bir dizi yaratması durumu göz ardı edilmiştir*
 
-enum class Color {
-    RED, GREEN, BLUE
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input a number:")  
+  
+  
+    for (i in 1..count)  
+        printColorInfo(generateRandomColor())  
+}  
+  
+fun generateRandomColor(random: Random = Random): Color {  
+    val colors = Color.values() //** 
+  
+    return colors[random.nextInt(colors.size)]  
+}  
+  
+fun printColorInfo(color: Color) = println("Color: ${color.toString()}")  
+  
+enum class Color {  
+    RED, GREEN, BLUE  
+}
+```
+
+> *Aşağıdaki örnekte values metodunun her çağrısının yeni bir dizi yarattığı gösterilmiştir*
+
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val dayOfWeeks1 = DayOfWeek.values()  
+    val dayOfWeeks2 = DayOfWeek.values()  
+  
+    println(if (dayOfWeeks1 === dayOfWeeks2) "Aynı nesne" else "Farklı nesneler")  
+}  
+  
+enum class DayOfWeek {  
+    SUN, MON, TUE, WED, THU, FRI, SAT  
 }
 ```
 
 >*enum türlerinin sabitlere ilişkin referanslar values isimli metot ile elde edilebilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    for (dayOfWeek in DayOfWeek.values())
-        print("$dayOfWeek ")
-
-    println()
-}
-
-enum class DayOfWeek {
-    SUN, MON, TUE, WED, THU, FRI, SAT
+package org.csystem.app  
+  
+fun main() {  
+    for (dayOfWeek in DayOfWeek.values())  
+        print("$dayOfWeek ")  
+  
+    println()  
+}  
+  
+enum class DayOfWeek {  
+    SUN, MON, TUE, WED, THU, FRI, SAT  
 }
 ```
 
->*enum türlerinin valueOf metodu parametresi ile aldığı yazıya ilişin bir enum sabiti varsa o sabitin tuttuğu adrese geri döner. Yoksa exception oluşur*
+>*Kotlin 1.9 ile birlikte values metodu yerine ilgili enum sınıfının entries property elemanı kullanılarak dizi elde edilebilir. Kotlin 1.9'dan itibaren programcının aşağıdaki şekilde dizi elde etmesi önerilir. Aşağıdaki örneği inceleyiniz*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readString
-
-fun main()
-{
-    val s = readString("Input the day of week as string with three characters:")
-    val dow = DayOfWeek.valueOf(s.uppercase())
-
-    println(dow)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input a number:")  
+  
+  
+    for (i in 1..count)  
+        printColorInfo(generateRandomColor())  
+}  
+  
+fun generateRandomColor(random: Random = Random): Color {  
+    val colors = Color.entries.toTypedArray()  
+  
+    return colors[random.nextInt(colors.size)]  
+}  
+  
+fun printColorInfo(color: Color) = println("Color: ${color.toString()}")  
+  
+enum class Color {  
+    RED, GREEN, BLUE  
 }
+```
 
 
-enum class DayOfWeek {
-    SUN, MON, TUE, WED, THU, FRI, SAT
+>*Aşağıdaki örneği inceleyiniz*
+
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val dayOfWeeks1 = DayOfWeek.entries.toTypedArray()  
+    val dayOfWeeks2 = DayOfWeek.entries.toTypedArray()  
+  
+    println(if (dayOfWeeks1 === dayOfWeeks2) "Aynı nesne" else "Farklı nesneler")  
+}  
+  
+enum class DayOfWeek {  
+    SUN, MON, TUE, WED, THU, FRI, SAT  
+}
+```
+
+
+>*enum türlerinin valueOf metodu parametresi ile aldığı yazıya ilişkin bir enum sabiti varsa o sabitin tuttuğu adrese geri döner. Yoksa exception oluşur*
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readString  
+  
+fun main() {  
+    val s = readString("Input the day of week as string with three characters:")  
+    val dow = DayOfWeek.valueOf(s.uppercase())  
+  
+    println(dow)  
+}  
+  
+enum class DayOfWeek {  
+    SUN, MON, TUE, WED, THU, FRI, SAT  
 }
 ```
 
 >*enum sabitlerine değer iliştirilmesi*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val colorValues = Color.values()
-    val monthValues = Month.values()
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val favColor = colorValues[Random.nextInt(colorValues.size)]
-        val month = monthValues[Random.nextInt(monthValues.size)]
-
-        println("-------------------------------------------------------")
-        println("(R=${favColor.r}, G=${favColor.g}, B=${favColor.b})")
-        println("${month.textTR}, ${month.days}")
-        println("-------------------------------------------------------")
-    }
-}
-
-enum class Month(val days: Int, val textTR: String) {
-    JAN(31, "Ocak"), FEB(28, "Şubat"), MAR(31, "Mart"), APR(30, "Nisan"), MAY(31, "Mayıs"),  JUN(30, "Haziran"),
-    JUL(31, "Temmuz"), AUG(31, "Ağustos"), SEP(30, "Eylül"), OCT(31, "Ekim"), NOV(30, "Kasım"), DEC(31, "Aralık")
-}
-
-enum class Color(val r: Int = 0, val g: Int = 0, val b: Int = 0) {
-    RED(255), GREEN(g = 255), BLUE(b = 255), WHITE(255, 255, 255), BLACK
-}
-```
-
->*enum'ların eşitlik karşılaştırması `==` veya `===` operatörü ile yapılabilir*
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-private val g_colors = Color.values()
-
-fun main() = runRandomColorGenerator()
-
-fun runRandomColorGenerator()
-{
-    val count = readInt("Kaç tane renk üretmek istersiniz:")
-
-    for (i in 1..count) {
-        val c1 = getRandomColor()
-        val c2 = getRandomColor()
-
-        println("---------------------------------------------------------------")
-        println("$c1: r = ${c1.r}, g = ${c1.g}, b = ${c1.b}")
-        println("$c2: r = ${c2.r}, g = ${c2.g}, b = ${c2.b}")
-        println(if (c1 === c2) "Aynı renk" else "Farklı renkler")
-        println(if (c1 == c2) "Aynı renk" else "Farklı renkler")
-        println("---------------------------------------------------------------")
-    }
-}
-
-fun getRandomColor() = g_colors[Random.nextInt(g_colors.size)]
-
-enum class Color(val r: Int = 0, val g: Int = 0, val b: Int = 0) {
-    RED(255), GREEN(g = 255), BLUE(b = 255), WHITE(255, 255, 255), BLACK
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val colorValues = Color.entries.toTypedArray()  
+    val monthValues = Month.entries.toTypedArray()  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val favColor = colorValues[Random.nextInt(colorValues.size)]  
+        val month = monthValues[Random.nextInt(monthValues.size)]  
+  
+        println("-------------------------------------------------------")  
+        println("${favColor.toString()}: (R=${favColor.r}, G=${favColor.g}, B=${favColor.b})")  
+        println("${month.toString()}: ${month.textTR}, ${month.days}, ${month.textEN}")  
+        println("-------------------------------------------------------")  
+    }  
+}  
+  
+enum class Month(val days: Int, val textTR: String, val textEN: String) {  
+    JAN(31, "Ocak", "January"), FEB(28, "Şubat", "February"), MAR(31, "Mart", "March"), APR(30, "Nisan", "April"),  
+    MAY(31, "Mayıs", "May"), JUN(30, "Haziran", "June"), JUL(31, "Temmuz", "July"), AUG(31, "Ağustos", "August"),  
+    SEP(30, "Eylül", "September"), OCT(31, "Ekim", "October"), NOV(30, "Kasım", "November"), DEC(31, "Aralık", "December")  
+}  
+  
+enum class Color(val r: Int = 0, val g: Int = 0, val b: Int = 0) {  
+    RED(255), GREEN(g = 255), BLUE(b = 255), WHITE(255, 255, 255), BLACK  
 }
 ```
 
->*enum'lara başka elemanlar da eklenebilmektedir. Aşağıdaki örneği inceleyiniz*
+>*enum'ların eşitlik karşılaştırması `==`, `===`, `!=` veya `!==` operatörleri ile yapılabilir. *
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val values = Month.values()
-    val size = values.size
-
-    for (i in 1..count) {
-        val month = values[Random.nextInt(size)]
-        val year = Random.nextInt(1999, 2150)
-
-        println("${year}, ${month.textTR}, ${month.getDaysByYear(year)}")
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+private val g_colors = Color.entries.toTypedArray()  
+  
+fun main() = runRandomColorGenerator()  
+  
+fun runRandomColorGenerator() {  
+    val count = readInt("Kaç tane renk üretmek istersiniz:")  
+  
+    for (i in 1..count) {  
+        val c1 = getRandomColor()  
+        val c2 = getRandomColor()  
+  
+        println("---------------------------------------------------------------")  
+        println("$c1: r = ${c1.r}, g = ${c1.g}, b = ${c1.b}")  
+        println("$c2: r = ${c2.r}, g = ${c2.g}, b = ${c2.b}")  
+        println(if (c1 === c2) "Aynı renk" else "Farklı renkler")  
+        println(if (c1 == c2) "Aynı renk" else "Farklı renkler")  
+        println(if (c1 !== c2) "Farklı renkler" else "Aynı renk")  
+        println(if (c1 != c2) "Farklı renkler" else "Aynı renk")  
+        println("---------------------------------------------------------------")  
+    }  
+}  
+  
+fun getRandomColor() = g_colors[Random.nextInt(g_colors.size)]  
+  
+enum class Color(val r: Int = 0, val g: Int = 0, val b: Int = 0) {  
+    RED(255), GREEN(g = 255), BLUE(b = 255), WHITE(255, 255, 255), BLACK  
 }
+```
 
-enum class Month(val days: Int, val textTR: String) {
-    JAN(31, "Ocak"), FEB(28, "Şubat"), MAR(31, "Mart"), APR(30, "Nisan"), MAY(31, "Mayıs"),  JUN(30, "Haziran"),
-    JUL(31, "Temmuz"), AUG(31, "Ağustos"), SEP(30, "Eylül"), OCT(31, "Ekim"), NOV(30, "Kasım"), DEC(31, "Aralık");
-    companion object {
-        private fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0
-    }
+>*enum'lara başka elemanlar da eklenebilmektedir. Bu durumda son enum sabitinden sonra noktalı virgül kullanılması zorunludur. Aşağıdaki örneği inceleyiniz*
 
-    fun getDaysByYear(year: Int) = if (ordinal == 1 && isLeapYear(year)) 29 else days
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+    val values = Month.entries.toTypedArray()  
+    val size = values.size  
+  
+    for (i in 1..count) {  
+        val month = values[Random.nextInt(size)]  
+        val year = Random.nextInt(1999, 2150)  
+  
+        println("${year}, ${month.textTR}, ${month.getDaysByYear(year)}")  
+    }  
+}  
+  
+enum class Month(val days: Int, val textTR: String) {  
+    JAN(31, "Ocak"), FEB(28, "Şubat"), MAR(31, "Mart"), APR(30, "Nisan"), MAY(31, "Mayıs"), JUN(30, "Haziran"),  
+    JUL(31, "Temmuz"), AUG(31, "Ağustos"), SEP(30, "Eylül"), OCT(31, "Ekim"), NOV(30, "Kasım"), DEC(31, "Aralık");  
+  
+    companion object {  
+        private fun isLeapYear(year: Int) = year % 4 == 0 && year % 100 != 0 || year % 400 == 0  
+    }  
+  
+    fun getDaysByYear(year: Int) = if (ordinal == 1 && isLeapYear(year)) 29 else days  
 }
 ```
 
 >*enum sınıfları ile Java' da olduğu gibi Kotlin'de de Singleton bir sınıf yazılabilir. Kotlin'de Singleton sınıf yazmanın daha kolay bir yöntemi de ileride anlatılacaktır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val repository1 = DeviceRepository.INSTANCE
-    val repository2 = DeviceRepository.INSTANCE
-
-    println(if (repository1 === repository2) "Aynı nesne" else "Farklı nesneler")
-}
-
-enum class DeviceRepository {
-    INSTANCE;
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val repository1 = DeviceRepository.INSTANCE  
+    val repository2 = DeviceRepository.INSTANCE  
+  
+    println(if (repository1 === repository2) "Aynı nesne" else "Farklı nesneler")  
+}  
+  
+enum class DeviceRepository(var host: String, var port: Int) {  
+    INSTANCE("localhost", 1024);  
+    //...  
 }
 ```
 
-**_Anahtar Notlar:_** Kotlin'de sınıfların private property elemanlarını Java'daki gibi `m_` ile değil, `m` öneki ile başlatacağız.
+**_Anahtar Notlar:_** Kotlin'de sınıfların private property elemanlarını `m` öneki ile başlatacağız.
 
 #### Nesne yönelimli programlamanın temel ilkeleri:
 
-- Single Responsibility Principle (SRP)
-- Open Closed Principle (OCP)
-- Liskov Substitution Principle (LSP)
-- Interface Segregation Principle (ISP)
-- Dependency Inversion Principle (DIP)
-
+- **S**ingle Responsibility Principle (SRP)
+- **O**pen Closed Principle (OCP)
+- **L**iskov Substitution Principle (LSP)
+- **I**nterface Segregation Principle (ISP)
+- **D**ependency Inversion Principle (DIP)
 #### Sınıflararası ilişkiler:
 
-Sınıflararası ilişkiler aslında nesneler arasındaki ilişkiler olarak düşünülmelidir. Örneğin araba ile motoru arasında bir ilişki vardır. Ya da insan ile kimlik kartı arasında da biri ilişki vardır. Bu ilişkiler aslında nesneler arasındadır. Ancak nesnelerin bu ilişkiler olacak şekilde yaratılabilmesi ve kullanılabilmesi için sınıfların uygun bir biçimde yazılması gerekir.
+>Sınıflararası ilişkiler aslında nesneler arasındaki ilişkiler olarak düşünülmelidir. Örneğin araba ile motoru arasında bir ilişki vardır. Ya da insan ile kimlik kartı arasında da biri ilişki vardır. Bu ilişkiler aslında nesneler arasındadır. Ancak nesnelerin bu ilişkiler olacak şekilde yaratılabilmesi ve kullanılabilmesi için sınıfların uygun bir biçimde yazılması gerekir.
+>
+>Nesne yönelimli programlama tekniği kullanılarak geliştirilecek bir projenin kodlama aşamasına gelindiğinde önce sınıflar ve aralarındaki ilişkiler belirlenir. Sonra kodlamaya geçilir. İlişkiler belirlenirken sınıfların ve nesnelerin konuya (domain) ilişkin durumları düşünülür.
 
-Nesne yönelimli programlama tekniği kullanılarak geliştirilecek bir projenin kodlama aşamasına gelindiğinde önce sınıflar ve aralarındaki ilişkiler belirlenir. Sonra kodlamaya geçilir. İlişkiler belirlenirken sınıfların ve nesnelerin konuya (domain) ilişkin durumları düşünülür.
+**_Anahtar Notlar:_** Bir projenin müşteri ile görüşülmesinden (requirements) teslimine (deployment) kadar geçen sürecin çeşitli şemalarla anlatılmasını sağlayan UML (Unified Modeling Language) denilen bir araç bazı durumlarda kullanılabilmektedir. Bu aracın önemli ve geliştiricileri ilgilendiren şemalarından birisi "sınıf şemaları (class diagrams)"'dır. Bu, genel olarak kodlamaya yönelik ve kodlamaya başlamadan önce yapılan bir şemadır. Bu şemada sınıfların detayları ve aralarındaki ilişkiler çizilir. 
 
-**_Anahtar Notlar:_** Bir projenin müşteri ile görüşülmesinden (ihtiyaçların belirlenmesi) teslimine (deployment) kadar geçen sürecin çeşitli şemalarla anlatılmasını sağlayan UML (Unified Modeling Language) denilen bir araç bazı durumlarda kullanılabilmektedir. Bu aracın önemli ve geliştiricileri ilgilendiren şemalarından birisi "sınıf şemaları (class diagrams)"'dır. Bu, kodlamaya yönelik ve kodlamaya başlamadan önce yapılan bir şemadır. Bu şemada sınıfların detayları ve aralarındaki ilişkiler çizilir. UML her zaman ve her detayıyla kullanılmalı mıdır? Bunun için verilebilecek cevap nettir: Hayır. Gerekiğinde ve gerektiği kadarı kullanılmalıdır.
+***Anahtar Notlar:*** UML her zaman ve her detayıyla kullanılmalı mıdır? Bunun için verilebilecek cevap nettir: Hayır. Gerekiğinde ve gerektiği kadarlık kısmı kullanılmalıdır.
 
 **_Anahtar Notlar:_** Kavram ya da kavramlar modellenirken genel durumlar düşünülür. İstisna niteliğinde olabilecek durumlar modelleme yapılırken - genel olarak - göz önünde bulundurulmaz. Aksi durumda hiçbir şey modellenemez. Örneğin, araba ile motoru arasındaki ilişki için şu durumlar söyleniyor olsun:
 1. Araba nesnesine ait olan motor nesnesi başka bir araba nesnesi veya başka bir nesne tarafından kullanılamaz
 2. Araba nesnesine ait motor nesnesinin ömrü hemen hemen araba ile başlayıp, araba ile son bulur.
 Burada örneğin ikinci madde bazı durumlarda gerçekleşmeyebilir. Ama bu ilişkinin genel durumunu bozmaz.
 
-Bir kodun derlenebilmesi için başka bir bildirimin var ve erişilebilir olması gerektiği duruma "bağımlılık (dependency)" denir.
-
-İki sınıf arasında genel olarak aşağıdaki ilişkilerden ya hiçbirisi yoktur ya da bir tanesi vardır:
-
-1. ***İçerme (Composition) (has a):*** A ve B arasındaki "A has a B" ilişkisi için aşağıdaki iki koşulun da gerçeklenmesi gerekir, ya da tersine aşağıdaki iki koşulun da gerçeklendiği ilişkidir:
+> Bir kodun derlenebilmesi için başka bir bildirimin var olması ve erişilebilir olması gerektiği duruma "bağımlılık (dependency)" denir.
+> 
+> İki sınıf arasında genel olarak aşağıdaki ilişkilerden ya hiçbirisi yoktur ya da bir tanesi vardır:
+>1. ***İçerme (Composition) (has a):*** A ile B arasındaki "A has a B" ilişkisi için aşağıdaki iki koşulun da gerçeklenmesi gerekir, ya da tersine aşağıdaki iki koşulun da gerçeklendiği ilişkidir:
 	- A nesnesine ait B nesnesi başka bir nesne tarafından kullanılmayacak
 	- A nesnesine ait B nesnesi ömrüne hemen hemen A ile başlayacak ve hemen hemen A nesnesi ile ömrü son bulacak\
 	Bu ilişkide A nesnesi kendisine ait B nesnesini istediği bir durumda (birçok durumda ya da hemen her durumda) kullanabilmektedir. Bu tarz kullanıma bütünsel (whole) kullanım denir.
-2. ***Birleşme (Aggregation) (holds a):*** A ve B arasındaki "A holds a B" ilişkisi compostion ilişkisine ilişkin kuralların en az birisinin gerçeklenmediği bütünsel kullanım ilişkisidir.
-3. ***Çağrışım (Association):*** A nesnesinin B nesnesini ihtiyacı olduğunda kullanması, saklamaması ilişkisidir. Yani bütünsel bir kullanım yoktur. Bu kullanıma "parçalı (partial) kullanım" da denir.
-4. ***Türetme/Kalıtım (Inheritance) (is a):*** Biyoloji'den programlamaya aktarılmıştır. Biyoloji'de kalıtım ebeveynin (parent) özelliklerinin çocuğuna (child) aktarılmasıdır. Programlamaya ilişkin detayları ileride ele alınacaktır.
+>2. ***Birleşme (Aggregation) (holds a):*** A ile B arasındaki "A holds a B" ilişkisi compostion ilişkisine ilişkin kuralların en az birisinin gerçeklenmediği bütünsel kullanım ilişkisidir.
+>3. ***Çağrışım (Association):*** A nesnesinin B nesnesini ihtiyacı olduğunda kullanması, saklamaması ilişkisidir. Yani bütünsel bir kullanım yoktur. Bu kullanıma "parçalı (partial) kullanım" da denir.
+>4. ***Türetme/Kalıtım (Inheritance) (is a):*** Biyoloji'den programlamaya aktarılmıştır. Biyoloji'de kalıtım ebeveynin (parent) özelliklerinin çocuğuna (child) aktarılmasıdır. Programlamaya ilişkin detayları ileride ele alınacaktır.
 
-**_Anahtar Notlar:_** Yukarıdaki ilişkilerden "inheritance" dışında kalan ilişkiler için Kotlin'de doğrudan sentaks ve semantik kurallar yoktur. Dilin genel sentaks ve semantic kuralları ile ilişkinin kuralları doğrultusunda gerçekleştirilebilir (implementation). Ancak "inheritnace" için Kotlin'de ayrı sentaks ve semantik kurallar ayrıdır.
-
-**_Anahtar Notlar:_** Bazı sınıfların implementasyonları gereği yukarıdaki ilişkilerden hiçbirisi olmayabilir. Ya da bazı özel durumlar dolayısıyla da yukarıdaki ilişkilerden biri olmayabilir. Ama ortada yine bir bağımlılık (dependency) söz konusudur. Bu da yine genel durumu bozmaz. Böylesi durumlar ileride ele alıncaktır
-
-<br>
+**_Anahtar Notlar:_** Bazı sınıfların implementasyonları gereği yukarıdaki ilişkilerden hiçbirisi olmayabilir. Ya da bazı özel durumlar dolayısıyla da yukarıdaki ilişkilerden biri olmayabilir. Ama ortada yine bir bağımlılık (dependency) söz konusudur. Bu da yine genel durumu bozmaz. Böylesi durumlar ileride ele alıncaktır.
 
 >*A ile B arasındaki composition (has a) ilişkisi*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A(/*....*/)
-
-    a.doWork1()
-    a.doWork2()
-
-    //...
-}
-
-class A {
-    private var mB: B
-
-    init {
-        mB = B(/*...*/)
-    }
-
-    fun doWork1()
-    {
-        mB.doSomething()
-        //...
-    }
-
-    fun doWork2()
-    {
-        mB.doSomething()
-        //...
-    }
-
-    //...
-}
-
-class B {
-    //...
-    fun doSomething()
-    {
-        //...
-    }
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val a = A(/*...*/)  
+  
+    a.doWork1()  
+    a.doWork2()  
+}  
+  
+class A(/*...*/) {  
+    private val mB: B  
+  
+    init {  
+        //...  
+        mB = B(/*...*/)  
+        //...  
+    }  
+  
+    fun doWork1() {  
+        mB.doSomething()  
+        //...  
+    }  
+  
+    fun doWork2() {  
+        mB.doSomething()  
+        //...  
+    }  
+    //...  
+}  
+  
+class B {  
+    fun doSomething() {  
+        //...  
+    }  
 }
 ```
 
 >*A ile B arasındaki aggregation (holds a) ilişkisi*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val b1 = B(/*...*/)
-    val a = A(b1/*...*/)
-
-    a.doWork1()
-    a.doWork2()
-
-    val b2 = B(/*...*/)
-
-    a.b = b2
-
-    a.doWork1()
-    a.doWork2()
-}
-
-class A(var b: B/*...*/) {
-    //...
-    fun doWork1()
-    {
-        b.doSomething()
-        //...
-    }
-
-    fun doWork2()
-    {
-        b.doSomething()
-        //...
-    }
-
-    //...
-}
-
-class B {
-    //...
-    fun doSomething()
-    {
-        //...
-    }
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val b1 = B(/*...*/)  
+    val b2 = B(/*...*/)  
+    val a = A(b1/*...*/)  
+  
+    a.doWork1()  
+    a.doWork2()  
+  
+    a.b = b2  
+  
+    a.doWork1()  
+    a.doWork2()  
+}  
+  
+class A(b: B/*...*/) {  
+    var b: B  
+  
+    init {  
+        //...  
+        this.b = b  
+        //...  
+    }  
+  
+    fun doWork1() {  
+        b.doSomething()  
+        //...  
+    }  
+  
+    fun doWork2() {  
+        b.doSomething()  
+        //...  
+    }  
+    //...  
+}  
+  
+class B {  
+    fun doSomething() {  
+        //...  
+    }  
 }
 ```
+
+XXXXXXXXXXXXXXXXXXXX
 
 >*Car, Engine, Plane, Driver ve Pilot sınıfları arasındaki ilişkiler*
 
 **_Anahtar Notlar:_** Kotlin'de referans dizileri Array generic sınıfının bir açılımı olarak bildirilir. Bu konu ileride ele alınacaktır. Örnekte yalnızca sınıflararası ilişkilere odaklanınız.
 
 ```kotlin
-package org.csystem.app
 
-fun main()
-{
-    val driver = Driver("Eray Taşay")
-    val car = Car(driver/*...*/)
-    val pilots = arrayOf(Pilot("Anıl Topuz", "1. Pilot"), Pilot("Bora Şahin", "2. Pilot"), Pilot("Emirhan Kabal", "3.Pilot"))
-    val plane = Plane(4, pilots/*...*/)
-
-    car.run()
-    println("----------------------------------------------")
-    plane.fly()
-}
-
-class Plane(engineCount: Int /*...*/, var pilots: Array<Pilot>) {
-    private var mEngines: Array<Engine>
-    init {
-        mEngines = Array(engineCount) {Engine(/*...*/)}
-        //...
-    }
-
-    //...
-
-    private fun startEngines()
-    {
-        for (engine in mEngines)
-            engine.startEngine()
-    }
-
-    private fun accelerateEngines()
-    {
-        for (engine in mEngines)
-            engine.accelerateEngine()
-    }
-
-    private fun slowEngines()
-    {
-        for (engine in mEngines)
-            engine.slowEngine()
-    }
-
-    private fun stopEngines()
-    {
-        for (engine in mEngines)
-            engine.stopEngine()
-    }
-
-
-    fun fly()
-    {
-        println("Pilots")
-        for (p in pilots)
-            println("${p.title}, ${p.name}")
-
-        startEngines()
-        accelerateEngines()
-
-        println("flying!...")
-        //...
-
-        slowEngines()
-        stopEngines()
-    }
-
-    //...
-}
-
-class Pilot(var name: String, var title: String) {
-    //...
-}
-
-class Car(var driver: Driver) {
-    private var mEngine: Engine = Engine(/*....*/)
-
-    //...
-
-    fun brake()
-    {
-        println("brake")
-        mEngine.slowEngine()
-    }
-
-    fun run()
-    {
-        println("Driver:${driver.name}")
-        mEngine.startEngine()
-        mEngine.accelerateEngine()
-
-        println("running!...")
-
-        //...
-
-        brake()
-        mEngine.stopEngine()
-    }
-
-    //...
-}
-
-class Driver(var name: String/*...*/) {
-    //...
-}
-
-class Engine {
-    //...
-    fun startEngine()
-    {
-        println("start engine")
-    }
-
-    fun accelerateEngine()
-    {
-        println("accelerate engine")
-    }
-
-    fun slowEngine()
-    {
-        println("slow engine")
-    }
-
-    fun stopEngine()
-    {
-        println("stop engine")
-    }
-    //...
-}
 ```
 
 >*A ile B arasındaki association ilişkisi*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val b = B(/*...*/)
-    val a = A(/*...*/)
-
-    a.doWork(b)
-
-    val b1 = B(/*...*/)
-
-    a.doWork(b1)
-}
-
-class A {
-    //...
-    fun doWork(b: B)
-    {
-        //...
-        b.doSomething()
-        //...
-    }
-    //
-}
-
-
-class B {
-    fun doSomething()
-    {
-        //...
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val b = B(/*...*/)  
+    val a = A(/*...*/)  
+  
+    a.doWork(b)  
+  
+    val b1 = B(/*...*/)  
+  
+    a.doWork(b1)  
+}  
+  
+class A {  
+    //...  
+    fun doWork(b: B) {  
+        //...  
+        b.doSomething()  
+        //...  
+    }  
+    //  
+}  
+  
+  
+class B {  
+    fun doSomething() {  
+        //...  
+    }  
 }
 ```
 
 >*Taxi, Driver ve Client arasındaki ilişkiler*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val driver = Driver(/*...*/)
-    val taxi = Taxi(driver/*...*/)
-
-    //...
-
-    val client = Client(/*...*/)
-
-    taxi.take(client)
-
-    val client2 = Client(/*...*/)
-
-    taxi.take(client2)
-
-    //...
-}
-
-class Taxi(var driver: Driver /*...*/) {
-    //...
-
-    fun take(c: Client)
-    {
-        //...
-    }
-}
-
-class Client {
-    //...
-}
-
-class Driver {
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val driver = Driver(/*...*/)  
+    val taxi = Taxi(driver/*...*/)  
+  
+    //...  
+  
+    val client = Client(/*...*/)  
+  
+    taxi.take(client)  
+  
+    val client2 = Client(/*...*/)  
+  
+    taxi.take(client2)  
+  
+    //...  
+}  
+  
+class Taxi(var driver: Driver /*...*/) {  
+    //...  
+  
+    fun take(c: Client) {  
+        //...  
+    }  
+}  
+  
+class Client {  
+    //...  
+}  
+  
+class Driver {  
+    //...  
 }
 ```
 
@@ -15409,48 +15341,7 @@ fun foo(a: Int, b: Int, c: Int = 10,) //Since 1.4
 }
 ```
 
-<br>
-
->*Java 8 ile beraber tarih-zaman işlemlerine ilişkin pek çok sınıf standart kütüphaneye eklenmiştir. Kotlin'de tarih zaman işlemleri için bu sınıflar kullanılmaktadır*
-
-<br>
-
->*`LocalDate` sınıfının of metotları*
-
-```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-
-fun main()
-{
-    val date = LocalDate.of(2023, 6, 21)
-
-    println("${date.dayOfMonth}/${date.monthValue}/${date.year}")
-    println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")
-}
-```
-
-<br>
-
->*LocalDate sınıfının Month enum class parametreli of metodu*
-
-```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-import java.time.Month
-
-fun main()
-{
-    val date = LocalDate.of(2023, Month.JUNE, 21)
-
-    println("${date.dayOfMonth}/${date.monthValue}/${date.year}")
-    println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")
-}
-```
-
-<br>
+-<br>
 
 >*LocalDate sınıfı (ve tüm diğer Java 8 tarih-zaman sınıfları) geçerlilik kontrolü yapar. Bu sınıflar geçerli olmayan bilgiler için DateTimeException nesnesi fırlatır*
 

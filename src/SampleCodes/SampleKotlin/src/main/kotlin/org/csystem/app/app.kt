@@ -1,16 +1,34 @@
 package org.csystem.app
 
 fun main() {
-    move(Direction.RIGHT)
-    move(Direction.BOTTOM)
-    move(Direction.TOP)
+    val driver = Driver(/*...*/)
+    val taxi = Taxi(driver/*...*/)
+
+    //...
+
+    val client = Client(/*...*/)
+
+    taxi.take(client)
+
+    val client2 = Client(/*...*/)
+
+    taxi.take(client2)
+
     //...
 }
 
-enum class Direction {
-    RIGHT, TOP, LEFT, BOTTOM
+class Taxi(var driver: Driver /*...*/) {
+    //...
+
+    fun take(c: Client) {
+        //...
+    }
 }
 
-fun move(direction: Direction) {
+class Client {
+    //...
+}
 
+class Driver {
+    //...
 }
