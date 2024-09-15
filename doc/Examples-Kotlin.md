@@ -6977,17 +6977,137 @@ class B {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXX
 
->*Car, Engine, Plane, Driver ve Pilot sınıfları arasındaki ilişkiler*
+>*Car, Engine, Driver, Plane, ve Pilot sınıfları arasındaki ilişkiler*
+
+
+![Class Diagram](./kmedia/DemoRaceGameClassDiagram.PNG)
 
 **_Anahtar Notlar:_** Kotlin'de referans dizileri Array generic sınıfının bir açılımı olarak bildirilir. Bu konu ileride ele alınacaktır. Örnekte yalnızca sınıflararası ilişkilere odaklanınız.
 
 ```kotlin
-
+package org.csystem.app  
+  
+fun main() = runDemoRaceApp()  
+  
+fun runDemoRaceApp() {  
+    val driver1 = Driver("Ali Serçe", 234)  
+    val driver2 = Driver("Güray Sönmez", 23)  
+  
+    val car = Car(driver1/*...*/)  
+  
+    car.run()  
+  
+    car.driver = driver2  
+  
+    car.run()  
+  
+    val pilots = arrayOf(Pilot("Kaan Aslan", 1), Pilot("Oğuz Karan", 2), Pilot("Hüseyin Büte", 3))  
+    val plane = Plane(pilots, 4/*...*/)  
+  
+    plane.fly()  
+}  
+  
+class Plane(var pilots: Array<Pilot>, engineCount: Int/*...*/) {  
+    private val mEngines: Array<Engine>  
+  
+    init {  
+        mEngines = Array(engineCount) {Engine(/*...*/)}  
+    }  
+  
+    private fun startEngines() {  
+        for (e in mEngines)  
+            e.startEngine()  
+    }  
+  
+    private fun stopEngines() {  
+        for (e in mEngines)  
+            e.stopEngine()  
+    }  
+  
+    private fun accelerateEngines() {  
+        for (e in mEngines)  
+            e.accelerateEngine()  
+    }  
+  
+    private fun slowEngines() {  
+        for (e in mEngines)  
+            e.slowEngine()  
+    }  
+  
+    fun fly() {  
+        println("Pilots:")  
+  
+        for (p in pilots)  
+            println("${p.title}, ${p.name}")  
+  
+        startEngines()  
+        accelerateEngines()  
+        println("flying....")  
+        slowEngines()  
+        stopEngines()  
+    }  
+}  
+  
+class Pilot(var name: String, var title: Int) {  
+    //...  
+}  
+  
+class Car(var driver: Driver/*...*/) {  
+    private val mEngine: Engine  
+  
+    init {  
+        mEngine = Engine(/*...*/)  
+        //...  
+    }  
+  
+    fun brake() {  
+        println("brake...")  
+        mEngine.slowEngine()  
+    }  
+  
+    fun run() {  
+        println("Driver -> Name:${driver.name}, Rating: ${driver.rating}")  
+        mEngine.startEngine()  
+        mEngine.accelerateEngine()  
+  
+        println("running...")  
+  
+        brake()  
+        mEngine.stopEngine()  
+    }  
+}  
+  
+class Driver(var name: String, var rating: Int) {  
+    //...  
+}  
+  
+class Engine {  
+    //...  
+    fun startEngine() {  
+        //...  
+        println("Start Engine")  
+    }  
+  
+    fun stopEngine() {  
+        //...  
+        println("Stop Engine")  
+    }  
+  
+    fun accelerateEngine() {  
+        //...  
+        println("Accelerate Engine")  
+    }  
+  
+    fun slowEngine() {  
+        //...  
+        println("Slow Engine")  
+    }  
+}
 ```
 
 >*A ile B arasındaki association ilişkisi*
+
 
 ```kotlin
 package org.csystem.app  
@@ -7023,6 +7143,7 @@ class B {
 
 >*Taxi, Driver ve Client arasındaki ilişkiler*
 
+![Class Diagram](./kmedia/DemoTaxiAppClassDiagram.PNG)
 ```kotlin
 package org.csystem.app  
   
@@ -7060,36 +7181,39 @@ class Driver {
 }
 ```
 
->*Aşağıdaki örnekte Person sınıfı ile String sınıfı arasındaki ilişki ne tam bir composition ne de tam bir aggregation ilişkisidir. Buradaki durum istisnadır ve ilişki anlamında isimlendirilmesi gerekmez*
+>*Aşağıdaki örnekte Person sınıfı ile String sınıfı arasındaki ilişki ne tam bir composition ne de tam bir aggregation ilişkisidir. Buradaki durum istisnadır ve ilişki anlamında isimlendirilmesi gerekmez. Sonuçta bir dependency vardır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var name = "Ali"
-    val person = Person(name, 1)
-
-    name = "ali"
-    println("${person.name}, ${person.no}")
-}
-
+package org.csystem.app  
+  
+fun main() {  
+    var name = "Ali"  
+    val person = Person(name, 1)  
+  
+    name = "ali"  
+    println("${person.name}, ${person.no}")  
+}  
+  
 class Person(var name: String, var no: Int)
 ```
+#### Türetme/Kalıtım 
 
->*Türetme/Kalıtım (Inheritance) kavramı programlamada bir sınıfı kodlarına dokunmadan ve/veya kodlarını kopyalamadan genişletmek (extension) için kullanılır. Burada genişletme var olan özelliklere ekleme olarak düşünülebilir. Bu ilişkide B sınıfı A sınıfından türetilmişse "B is an A" cümlesi geçerli olur.*
+>*Türetme/Kalıtım (Inheritance) kavramı programlamada bir sınıfı kodlarına dokunmadan ve/veya kodlarını kopyalamadan genişletmek (extension) için kullanılır. Burada genişletme var olan özelliklere ekleme olarak düşünülebilir. Bu ilişkide B sınıfı A sınıfından türetilmişse "B **is a**n A" cümlesi geçerli olur.*
 >
->*B sınıfı A sınıfından türetilmiş olsun. B sınıfına A sınıfının bir türemiş sınıfı (derived class) denir. A sınıfına da B sınıfının taban sınıfı (base class) denir. Bu iki terim nesne yönelimli programlama tekniğine ilişkin genel terimlerdir. Kotlin'de ve Java'da "base class" yerine "super class", "derived class" yerine de "sub class" terimleri daha çok kullanılır.*
+>*B sınıfı A sınıfından türetilmiş olsun. B sınıfına A sınıfının bir türemiş sınıfı (derived class) denir. A sınıfına da B sınıfının taban sınıfı (base class) denir. Bu iki terim nesne yönelimli programlama tekniğine ilişkin genel terimlerdir. Kotlin'de ve Java'da "base class" yerine **"super class"**, "derived class" yerine de **"sub class"** terimleri daha çok kullanılır.*
 
 **_Anahtar Notlar:_** Nesne yönelimli programlamda "base class" yerine Biyoloji'den gelen terim olan "parent class", "derived class" yerine de yine Biyoloji'den gelen "child class" terimleri de kullanılır.
 
->*Bir dizi türetme söz konusu olabilir. Örneğin C sınıfı B sınıfından, B sınıfı da A sınıfından türetilmiş olsun. Bu durumda C'nin taban sınıfı (super class) dendiğinde doğrudan taban sınıf (direct super class) olan B sınıfı anlaşılır. Bu hiyerarşide A sınıfı C'nin dolaylı taban sınıfıdır (indirect super class.) Örneğimizde "C nin taban sınıfları B ve A'dır" cümlesi teknik olarak doğru değildir. Doğrusu "C'nin taban sınıfı B'dir, dolaylı taban sınıflarından biri A'dır" cümlesidir.*
+>*Bir dizi türetme söz konusu olabilir. Örneğin C sınıfı B sınıfından, B sınıfı da A sınıfından türetilmiş olsun. 
+
+![Class Diagram](./kmedia/Inheritance1.PNG)
+>Bu durumda C'nin taban sınıfı (super class) dendiğinde doğrudan taban sınıf (direct super class) olan B sınıfı anlaşılır. Bu hiyerarşide A sınıfı C'nin dolaylı taban sınıfıdır (indirect super class.) Örneğimizde "C nin taban sınıfları B ve A'dır" cümlesi teknik olarak doğru değildir. Doğrusu "C'nin taban sınıfı B'dir, dolaylı taban sınıflarından biri A'dır" cümlesidir.*
 >
 >*Kotlin'de ve Java'da bir sınıf birden fazla (doğrudan) taban sınıfa sahip olamaz. Yani çoklu türetme (multiple inheritance) yoktur. Bir sınıf yalnızca tek bir sınıftan türetilebilir.*
 
 **_Anahtar Notlar:_** Kotlin'de ve Java'da çoklu türetmenin gerektiği yerlerde kısmi (partial) olarak desteklenmesini sağlayan "interface" denilen bir tür bulunmaktadır. Çoklu türetmenin pratikteki gerekliliği "interface"'ler ile karşılanabilmektedir. "interface" konusu ileride ele alınacaktır.
 
->*Türetme kavramı programlamada "bir sınıfın kodlarına dokunmadan o sınıfı genişletmek" anlamına gelir. Bu da OCP'nin "open for extension closed for modification" mottosuna uygun olduğunu gösterir*
+>*Türetme kavramı programlamada "bir sınıfın kodlarına dokunmadan o sınıfı genişletmek" anlamına gelir. Bu da OCP'nin "open for extension closed for modification" mottosuna uygun olduğunu gösterir*.
 >
 >*Anımsanacağı gibi Java'da bir sınıf final anahtar sözcüğü ile bildirilmemişse türetmeye açıktır. Yani bu durumda Java'da bir sınıf default olarak türetmeye açıktır denebilir. Ancak Kotlin'de bir sınıf default olarak türetmeya açık değildir. Bir sınıfın türtilebilir olması yani türetmeye açık olması için open anahtar sözcüğü ile bildirilmesi gerekir*
 >
@@ -7110,560 +7234,376 @@ open class A {
 >*Anımsanacağı gibi türemiş sınıf nesnesi içerisinde taban sınıf nesnesi kadarlık bir bellek bölgesi de bulunmaktadır. Bu anlamda türemiş sınıf nesnesi taban sınıf nesnesini kapsar durumdadır. Bu kapsama mantıksal değildir. Yani bellek kapsamadır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val b = B()
-
-    b.x = 10
-    b.y = 20
-
-    println("x = ${b.x}, y = ${b.y}")
-}
-
-class B : A() {
-    var y: Int = 0
-    //...
-}
-
-open class A {
-    var x: Int = 0
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val b = B()  
+  
+    b.x = 10  
+    b.y = 20  
+  
+    println("x = ${b.x}, y = ${b.y}")  
+}  
+  
+class B : A() {  
+    var y: Int = 0  
+    //...  
+}  
+  
+open class A {  
+    var x: Int = 0  
+    //...  
 }
 ```
 
 >*Anımsanacağı gibi Java'da (dolayısıyla Kotlin JVM'de) bir nesnenin yaratılması adımları şunlardır:*
->1. Bellekte yer ayrılır
->2. non-static olan ve final olmayan veri elemanlarına default değerler atanır
->3. ctor çağrılır
+>1. Bellekte yer ayrılır.
+>2. non-static olan ve final olmayan veri elemanlarına default değerler atanır. Kotlin'de veri elemanlarının arka planda yaratıldığını anımsayınız.
+>3. ctor çağrılır.
 >
->*Bir nesnenin yartılmasının tamamlanması yani adresinin elde edilmesi bu 3 adımın düzgün bir biçimde tamamlanmasıyla olur. Bu adımlar herhangi birinde problem olursa nesne yaratılmamış olur. Örneğin ctor'da bir exception oluştuğunda nesne yaratılması adımları düzgün bir biçimde tamamlanmadığı için nesne yaratılmış olmaz*
->
+>*Bir nesnenin yartılmasının tamamlanması yani adresinin elde edilmesi bu 3 adımın düzgün bir biçimde tamamlanmasıyla olur. Bu adımlaın herhangi birinde problem olursa nesne yaratılmamış olur. Örneğin ctor'da bir exception oluştuğunda nesne yaratılması adımları düzgün bir biçimde tamamlanmadığı için nesne yaratılmış olmaz*
+
+
 >*Türemiş sınıf içerisinde taban sınıfın ctor'unun çağrılması durumu. Aşağıdaki örnekte taban sınıfın default ctor'u kullanılarak türetme yapıldığından B'nin mutlaka primary olarak default ctor'u olmalıdır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val x = B()
-    println("--------------------------------------------")
-    val y = B(10)
-    //...
-}
-
-class B() : A() {
-    init {
-        println("B.constructor()")
-    }
-
-    constructor(a: Int) : this()
-    {
-        println("B.constructor(Int)")
-    }
-}
-
-open class A {
-    constructor()
-    {
-        println("A.constructor()")
-    }
-
+package org.csystem.app  
+  
+fun main() {  
+    val x = B()  
+    println("--------------------------------------------")  
+    val y = B(10)  
+    //...  
+}  
+  
+class B() : A() {  
+    init {  
+        println("I am a default ctor of B")  
+    }  
+  
+    constructor(a: Int) : this() {  
+        println("I am a ctor of B with parameter type Int")  
+    }  
+}  
+  
+open class A {  
+    constructor() {  
+        println("I am a default ctor of A")  
+    }  
 }
 ```
 
 >*Taban sınıfın herhangi bir ctor'unun çağrılmasının sağlanması*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var x = B(10)
-    println("-------------------------------------")
-    var y = B(1.0)
-    println("-------------------------------------")
-    var z = C()
-
-    //...
-}
-
-
-class C : A() {
-    init {
-        println("default ctor of C")
-    }
-}
-
-class B(x: Int) : A(x) {
-    init {
-        println("ctor(Int) of B")
-    }
-
-    constructor(x: Double) : this(x.toInt())
-    {
-        println("ctor(Double) of B")
-    }
-}
-
-open class A(c: Int) {
-    init {
-        println("ctor(Int) of A")
-    }
-
-    constructor() : this(10)
-    {
-        println("default ctor of A")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    var x = B(10)  
+    println("-------------------------------------")  
+    var y = B(1.0)  
+    println("-------------------------------------")  
+    var z = C()  
+  
+    //...  
+}  
+  
+  
+class C : A() {  
+    init {  
+        println("default ctor of C")  
+    }  
+}  
+  
+class B(x: Int) : A(x) {  
+    init {  
+        println("ctor(Int) of B")  
+    }  
+  
+    constructor(x: Double) : this(x.toInt()) {  
+        println("ctor(Double) of B")  
+    }  
+}  
+  
+open class A(c: Int) {  
+    init {  
+        println("ctor(Int) of A")  
+    }  
+  
+    constructor() : this(10) {  
+        println("default ctor of A")  
+    }  
 }
 ```
 
 >*Taban sınıfın herhangi bir ctor'unun super anahtar sözcüğü kullanılarak çağrılmasının sağlanması. Taban sınıfın primary ctor'u yoksa türetmede :'den sonra doğrudan sınıf ismi kullanılır*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    B()
-    println("-------------------------------------")
-    B(10)
-}
-
-class B : A {
-    constructor() //: super()
-    {
-        println("default ctor of B")
-    }
-
-    constructor(x: Int) : super(x)
-    {
-        println("ctor(Int) of B")
-    }
-}
-
-open class A {
-    constructor(x: Int)
-    {
-        println("ctor(Int) of A")
-    }
-
-    constructor()
-    {
-        println("default ctor of A")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    B()  
+    println("-------------------------------------")  
+    B(10)  
+}  
+  
+class B : A {  
+    constructor() { //: super() {  
+        println("default ctor of B")  
+    }  
+  
+    constructor(x: Int) : super(x) {  
+        println("ctor(Int) of B")  
+    }  
+}  
+  
+open class A {  
+    constructor(x: Int) {  
+        println("ctor(Int) of A")  
+    }  
+  
+    constructor() {  
+        println("default ctor of A")  
+    }  
 }
 ```
 
 >*AnalyticalCircle sınıfı*
 
+![Class Diagram](./kmedia/AnalyticalCircle.PNG)
+
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.geometry.AnalyticalCircle
-
-fun main()
-{
-    val ac = AnalyticalCircle()
-
-    println("Radius:${ac.radius}")
-    println("Area:${ac.area}")
-    println("Circumference:${ac.circumference}")
-    println("Center:${ac.x}, ${ac.y}")
-
-    ac.radius = -2.3
-    ac.x = 200.0
-    ac.y = 12.3
-
-    println("Radius:${ac.radius}")
-    println("Area:${ac.area}")
-    println("Circumference:${ac.circumference}")
-    println("Center:${ac.x}, ${ac.y}")
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.AnalyticalCircle  
+  
+fun main() {  
+    val ac = AnalyticalCircle()  
+  
+    println("Radius:${ac.radius}")  
+    println("Area:${ac.area}")  
+    println("Circumference:${ac.circumference}")  
+    println("Center:${ac.x}, ${ac.y}")  
+  
+    ac.radius = -2.3  
+    ac.x = 200.0  
+    ac.y = 12.3  
+  
+    println("Radius:${ac.radius}")  
+    println("Area:${ac.area}")  
+    println("Circumference:${ac.circumference}")  
+    println("Center:${ac.x}, ${ac.y}")  
 }
 ```
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.geometry.AnalyticalCircle
-
-fun main()
-{
-    val ac = AnalyticalCircle(-2.3, 23.5, 56.7)
-
-    println("Radius:${ac.radius}")
-    println("Area:${ac.area}")
-    println("Circumference:${ac.circumference}")
-    println("Center:${ac.x}, ${ac.y}")
-
-    ac.radius = 2.3
-    ac.x = 200.0
-    ac.y = 12.3
-
-    println("Radius:${ac.radius}")
-    println("Area:${ac.area}")
-    println("Circumference:${ac.circumference}")
-    println("Center:${ac.x}, ${ac.y}")
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.AnalyticalCircle  
+  
+fun main() {  
+    val ac = AnalyticalCircle(-2.3, 23.5, 56.7)  
+  
+    println("Radius:${ac.radius}")  
+    println("Area:${ac.area}")  
+    println("Circumference:${ac.circumference}")  
+    println("Center:${ac.x}, ${ac.y}")  
+  
+    ac.radius = 2.3  
+    ac.x = 200.0  
+    ac.y = 12.3  
+  
+    println("Radius:${ac.radius}")  
+    println("Area:${ac.area}")  
+    println("Circumference:${ac.circumference}")  
+    println("Center:${ac.x}, ${ac.y}")  
 }
 ```
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.geometry.AnalyticalCircle
-
-fun main()
-{
-    val ac = AnalyticalCircle(x = 23.5, y = 56.7)
-
-    println("Radius:${ac.radius}")
-    println("Area:${ac.area}")
-    println("Circumference:${ac.circumference}")
-    println("Center:${ac.x}, ${ac.y}")
-
-    ac.radius = 2.3
-    ac.x = 200.0
-    ac.y = 12.3
-
-    println("Radius:${ac.radius}")
-    println("Area:${ac.area}")
-    println("Circumference:${ac.circumference}")
-    println("Center:${ac.x}, ${ac.y}")
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.AnalyticalCircle  
+  
+fun main() {  
+    val ac = AnalyticalCircle(x = 23.5, y = 56.7)  
+  
+    println("Radius:${ac.radius}")  
+    println("Area:${ac.area}")  
+    println("Circumference:${ac.circumference}")  
+    println("Center:${ac.x}, ${ac.y}")  
+  
+    ac.radius = 2.3  
+    ac.x = 200.0  
+    ac.y = 12.3  
+  
+    println("Radius:${ac.radius}")  
+    println("Area:${ac.area}")  
+    println("Circumference:${ac.circumference}")  
+    println("Center:${ac.x}, ${ac.y}")  
 }
 ```
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.geometry.AnalyticalCircle
-
-fun main()
-{
-    val ac1 = AnalyticalCircle(3.0, 100.0, 200.0)
-    val ac2 = AnalyticalCircle(2.0, 97.0, 204.0)
-    val centerDistance = ac1.centerDistance(ac2)
-
-    println("Center distance:$centerDistance")
-    println(if (ac1.isTangent(ac2)) "Teğet" else "Teğet değil")
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.AnalyticalCircle  
+  
+fun main() {  
+    val ac1 = AnalyticalCircle(3.0, 100.0, 200.0)  
+    val ac2 = AnalyticalCircle(2.0, 97.0, 204.0)  
+    val centerDistance = ac1.centerDistance(ac2)  
+  
+    println("Center distance:$centerDistance")  
+    println(if (ac1.isTangent(ac2)) "Teğet" else "Teğet değil")  
 }
 ```
+
+>*Aralarında türetme ilişkisi olmayan iki sınıf türünden referans birbirine doğrudan (implicit) atanamaz*
 
 ```kotlin
-/*----------------------------------------------------------------------
-	FILE        : AnalyticalCircle.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 03.05.2023
-
-	AnalyticalCircle class that represents a circle in cartesian plane
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
------------------------------------------------------------------------*/
-package org.csystem.math.geometry
-
-import kotlin.math.abs
-
-open class AnalyticalCircle(radius: Double = 0.0, x: Double = 0.0, y: Double = 0.0) : Circle (radius) {
-    private val mCenter = MutablePoint(x, y)
-    constructor(radius: Double = 0.0, center: MutablePoint) : this(radius, center.x, center.y)
-    constructor(radius: Double = 0.0, center: Point) : this(radius, center.x, center.y)
-
-    var x: Double
-        get() = mCenter.x
-        set(value)
-        {
-            mCenter.x = value
-        }
-
-    var y: Double
-        get() = mCenter.y
-        set(value)
-        {
-            mCenter.y = value
-        }
-
-    fun centerDistance(other: AnalyticalCircle) = mCenter.distance(other.mCenter)
-    fun isTangent(other: AnalyticalCircle) = abs(centerDistance(other) - radius - other.radius) < 0.00001
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+    val b: B  
+  
+    b = a //error  
+  
+}  
+  
+class A {  
+    //...  
+}  
+  
+class B {  
+    //...  
 }
 ```
 
-```kotlin
-/*----------------------------------------------------------------------
-	FILE        : Circle.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 03.05.2023
-
-	Circle class that represents the circle in geometry
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
------------------------------------------------------------------------*/
-package org.csystem.math.geometry
-
-import kotlin.math.abs
-
-open class Circle(radius: Double = 0.0) {
-    var radius: Double = abs(radius)
-        set(value) {
-            field = abs(value)
-        }
-
-    val area : Double
-        get() = Math.PI * radius * radius
-
-    val circumference : Double
-        get() = 2 * Math.PI * radius
-}
-```
-
-```kotlin
-/*----------------------------------------------------------------------
-	FILE        : MutablePoint.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 03.05.2023
-
-	Mutable Point class that represents a point in cartesian plane
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
------------------------------------------------------------------------*/
-package org.csystem.math.geometry
-
-import kotlin.math.sqrt
-
-class MutablePoint(var x: Double = 0.0, var y: Double = 0.0) {
-    constructor(x: Int, y: Int) : this(x.toDouble(), y.toDouble()) //optional
-    fun distance(a: Double = 0.0, b: Double = 0.0) = sqrt((x - a) * (x - a) + (y - b) * (y - b))
-    fun distance(other: MutablePoint) = distance(other.x, other.y)
-
-    fun offset(dx: Double, dy: Double = dx)
-    {
-        x += dx
-        y += dy
-    }
-}
-```
-
-```kotlin
-/*----------------------------------------------------------------------
-	FILE        : Point.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 03.05.2023
-
-	Immutable Point class that represents a point in cartesian plane
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
------------------------------------------------------------------------*/
-package org.csystem.math.geometry
-
-import kotlin.math.sqrt
-
-class Point(val x: Double = 0.0, val y: Double = 0.0) {
-    constructor(x: Int, y: Int) : this(x.toDouble(), y.toDouble()) //optional
-    fun distance(a: Double = 0.0, b: Double = 0.0) = sqrt((x - a) * (x - a) + (y - b) * (y - b))
-    fun distance(other: Point) = distance(other.x, other.y)
-}
-```
-
->*Aralarında türetme ilişkisi olmayan iki sınıf türünden referans birbirine doğrudan atanamaz*
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-    val b: B
-
-    b = a //error
-
-}
-
-class A {
-    //...
-}
-
-class B {
-    //...
-}
-```
-
->*Aralarında türetme ilişkisi olmayan sınıflar türünden iki referans as operatörü ile birbirine doğrudan atanabilir.*
+>*Aralarında türetme ilişkisi olmayan sınıflar türünden iki referans as operatörü ile birbirine atanabilir (explicit conversion/casting)*
 >
 >*Aşağıdaki kodda exception oluşur. as operatörü ileride detaylı olarak incelenecektir*
 
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-    var b: B = a as B
-
-    //...
-}
-
-class A {
-    //...
-}
-
-class B {
-    //...
-}
-```
-
->*Türemiş sınıf (sub class) türünden  bir referans taban sınıf (super class) türünden bir referansa doğrudan (implicit) atanabilir (upcasting)*
+***Anahtar Notlar:*** Bu durumun Java'da error olduğunu anımsayınız.
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val b = B(10, 20)
-
-    println("b.x = ${b.x}, b.y = ${b.y}")
-    val a: A = b
-
-    println("a.x = ${a.x}")
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+    var b: B = a as B  
+  
+    //...  
+}  
+  
+class A {  
+    //...  
+}  
+  
+class B {  
+    //...  
 }
-
-
-class B(var y: Int, x: Int) : A(x)
-
-open class A(var x: Int)
-
 ```
 
 >*Türemiş sınıf (sub class) türünden  bir referans taban sınıf (super class) türünden bir referansa doğrudan (implicit) atanabilir (upcasting). Bu durumda türemiş sınıf nesnenin taban sınıf kısmının adresi taban sınıf referansına atanmış olur*
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    val b = B(10, 34)  
+    val a: A  
+  
+    a = b //upcasting
+  
+    println("b.x = ${b.x}, b.y = ${b.y}")  
+    println("a.x = ${a.x}")  
+    println("-----------------------------------")  
+  
+    ++a.x  
+  
+    println("b.x = ${b.x}, b.y = ${b.y}")  
+    println("a.x = ${a.x}")  
+    println("-----------------------------------")  
+}  
 
-fun main()
-{
-    val b = B(10, 20)
-
-    println("b.x = ${b.x}, b.y = ${b.y}")
-    val a: A = b
-
-    println("a.x = ${a.x}")
-
-    ++a.x
-    println("a.x = ${a.x}")
-    println("b.x = ${b.x}, b.y = ${b.y}")
+class B(x: Int, var y: Int) : A(x) {  
+    //...  
+}  
+  
+open class A(var x: Int) {  
+    //...  
 }
-
-class B(var y: Int, x: Int) : A(x)
-
-open class A(var x: Int)
 ```
 
->*upcasting'in anlamı*
+>*Aşağıdaki demo örnekte main fonksiyonunun türden bağımsız (type independent) yazıldığına dikkat ediniz. Yani bu senaryoda A hiyerarşisine herhangi bir sınıf eklendiğinde main fonksiyonunun kodlarında değişiklik yapılması gerekmez *
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A(10)
-    val b = B(10, 20)
-    val c = C(10, 20, 30)
-
-    doWork(a)
-    doWork(b)
-    doWork(c)
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    while (true) {  
+        val a = generateA()  
+  
+        doWork(a)  
+        Thread.sleep(500)  
+    }  
 }
-
-fun doWork(a: A)
-{
-    println("a.x = ${a.x}")
+  
+fun generateA(random: Random = Random): A {  
+    return when (random.nextInt(1, 6)) {  
+        1 -> A(10)  
+        2 -> B(20, 23)  
+        3 -> C(30, 30)  
+        4 -> D(40, 20, 30)  
+        else -> E(50)  
+    }  
+}  
+  
+fun doWork(a: A) {  
+    println(a.javaClass.name)  
+    println("x = ${a.x}")  
+    a.doSomething()  
+    println("-----------------------------")  
+}  
+  
+open class E(x: Int) : A(10) {  
+    //...  
+}  
+  
+open class D(x: Int, var y: Int, var z: Int) : A(x) {  
+    //...  
+}  
+  
+open class C(x: Int, var z: Int) : B(x, 10) {  
+    //...  
+}  
+  
+open class B(x: Int, var y: Int) : A(x) {  
+    //...  
+}  
+  
+open class A(var x: Int) {  
+    //...  
+    fun doSomething() {  
+        println("A.doSomething")  
+    }  
 }
-
-open class A(var x: Int)
-
-open class B(var y: Int, x: Int) : A(x)
-
-class C(var z: Int, x: Int, y: Int) : B(y, x)
 ```
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >*CompanyApp uygulaması. Örnekte payInsurance fonksiyonun türden bağımsız yazıldığına dikkat ediniz*
 
 ```kotlin
-package org.csystem.app.company
 
-private fun getWorker() = Worker("Ali", "12345678912", "Geyikli", 400.0, 7)
-private fun getManager() = Manager("Veli", "12345678914", "Silivri", "Pazarlama", 50000.0)
-private fun getProjectWorker() = ProjectWorker("Selami", "12345678918", "Şişli", 400.0, 7, 13000.89)
-
-fun main() = runApplication()
-
-fun runApplication()
-{
-    val hr = HumanResources()
-    val worker = getWorker()
-    val manager = getManager()
-    val projectWorker = getProjectWorker()
-
-    hr.payInsurance(worker)
-    hr.payInsurance(manager)
-    hr.payInsurance(projectWorker)
-}
 ```
 
-```kotlin
-package org.csystem.app.company
-
-open class Employee(var name: String = "", var citizenId: String = "", var address: String = ""/*...*/) {
-    //...
-}
-```
-
-```kotlin
-package org.csystem.app.company
-
-class HumanResources {
-    //...
-    fun payInsurance(employee: Employee)
-    {
-        println("Name:${employee.name}, CitizenId:${employee.citizenId}, Address:${employee.address}")
-        //...
-    }
-}
-```
-
-```kotlin
-package org.csystem.app.company
-
-open class Manager(name: String = "", citizenId: String = "", address: String = "",
-                   var department: String = "", var salary: Double = 0.0) : Employee(name, citizenId, address) {
-    //...
-}
-```
-
-```kotlin
-package org.csystem.app.company
-
-open class ProjectWorker(name: String = "", citizenId: String = "", address: String = "",
-                         feePerHour: Double = 0.0, hourPerDay: Int = 0, val extraFee: Double = 0.0) : Worker(name, citizenId, address, feePerHour, hourPerDay) {
-    //...
-}
-```
-
-```kotlin
-package org.csystem.app.company
-
-open class Worker(name: String = "", citizenId: String = "", address: String = "",
-             var feePerHour: Double = 0.0, var hourPerDay: Int = 0) : Employee(name, citizenId, address) {
-    //...
-}
-```
-
->*Bir referansın iki tane türü vardır: static type, dynmaic type* 
-Referansın static türü bildirildiği türdür. Derleme zamanına (compile time) ilişkindir ve değişmez. Referansın türü dendiğinde static tür anlaşılır.
-
+>*Bir referansın iki tane türü vardır: static type, dynmaic type* Referansın static türü bildirildiği türdür. Derleme zamanına (compile time) ilişkindir ve değişmez. Referansın türü dendiğinde static tür anlaşılır.
+>
 >*Referansın dinamik türü ise referansın gösterdiği nesnenin bellekte yaratıldığı gerçek türüdür*
 
 **_Anahtar Notlar:_** Java'da bir referansın dinamik tür bilgisi "fully qualified" olarak şu şekilde elde edilebilir:

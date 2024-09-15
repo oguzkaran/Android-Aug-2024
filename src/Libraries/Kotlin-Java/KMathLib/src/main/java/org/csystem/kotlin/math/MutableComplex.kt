@@ -1,3 +1,7 @@
+/**
+ * MutableComplex.kt
+ * @author Android-Aug-2024 group
+ */
 package org.csystem.kotlin.math
 
 import kotlin.math.sqrt

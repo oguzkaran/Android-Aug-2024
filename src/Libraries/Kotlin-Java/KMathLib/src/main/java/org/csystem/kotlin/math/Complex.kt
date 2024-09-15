@@ -1,3 +1,8 @@
+/**
+ * Complex.kt
+ * Class that represents a complex number
+ * @author Android-Aug-2024 group
+ */
 package org.csystem.kotlin.math
 
 import kotlin.math.sqrt

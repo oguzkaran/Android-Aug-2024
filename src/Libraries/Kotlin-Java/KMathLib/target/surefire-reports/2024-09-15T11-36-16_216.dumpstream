@@ -1,4 +1,4 @@
-# Created at 2024-09-08T11:17:03.548
+# Created at 2024-09-15T11:36:16.569
 Boot Manifest-JAR contains absolute paths in classpath 'D:\Repositories\Android-Aug-2024\src\Libraries\Kotlin-Java\KMathLib\target\test-classes'
 Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
 'other' has different root

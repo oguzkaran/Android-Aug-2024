@@ -1,9 +1,13 @@
+/**
+ * Circle.kt
+ * @author Android-Aug-2024 group
+ */
 package org.csystem.kotlin.math.geometry
 
 import kotlin.math.PI
 import kotlin.math.abs
 
-class Circle(radius: Double = 0.0) {
+open class Circle(radius: Double = 0.0) {
     var radius: Double = abs(radius)
         set(value) {
             field = abs(value)
