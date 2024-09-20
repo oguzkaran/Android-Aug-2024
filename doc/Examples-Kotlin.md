@@ -80,9 +80,9 @@ fun bar() : Unit {
 
 **_Anahtar Notlar:_** Kotlin'de "işaretsiz (unsigned)" tamsayı türleri de bulunur. Bunlar ileride ele alınacaktır.
 
-<br>
-
->*Yerel değişken bildirimi var veya val anahtar sözcüğü ile yapılabilir. Bir değişkenin türü değişken isminden sonra `:` ile birlikte yazılır. Değişken bildirim noktasında değer verilmesi durumunda (initialization) tür yazılmayabilir.<br>Bu durumda tür atanan ifadenin türü olarak derleyici tarafından tespit edilir (type inference/deduction)*
+>*Yerel değişken bildirimi var veya val anahtar sözcüğü ile yapılabilir. Bir değişkenin türü değişken isminden sonra `:` ile birlikte yazılır. Değişken bildirim noktasında değer verilmesi durumunda (initialization) tür yazılmayabilir.*
+>
+>*Bu durumda tür atanan ifadenin türü olarak derleyici tarafından tespit edilir (type inference/deduction)*
 
 ```kotlin
 package org.csystem.app
@@ -893,7 +893,8 @@ fun foo() = println("foo")
 ```
 
 **_Anahtar Notlar:_** Kotlin'e `1.2` versiyonundan itibaren matematiksel işlemler yapan ayrı bir grup fonksiyon eklenmiştir.
-Programcı bu fonksiyonları kullanmalıdır. Kotlin math kütüphanesi ileride kullanılacaktır<br>
+Programcı bu fonksiyonları kullanmalıdır. Kotlin math kütüphanesi ileride kullanılacaktır
+
 **_Anahtar Notlar:_** Aslında Kotlin JVM programcısı, yapacağı işleme yönelik fonksiyonlar Kotlin'de standart olarak varsa
 onu kullanmalıdır. Yoksa zaten JavaSE'yi kullanacaktır
 
@@ -1097,8 +1098,6 @@ fun display(min: Int, max:Int) {
 >
 >*biçiminde kullanılabilir. Temel türlerin de uygun operatör fonksiyonları yazılıdığından işlemler yapılabilir*
 
-<br>
-
 >*Aritmetik `+` operatörü ve plus fonksiyonu*
 
 ```kotlin
@@ -1165,7 +1164,9 @@ fun main() {
 }
 ```
 
->*Mod operatörünün birinci operandı negatif ise sonuç her zaman negatif çıkar.<br>Yani mod operatörünün ürettiği değerin işareti birinci operandının işareti ile aynıdır*
+>*Mod operatörünün birinci operandı negatif ise sonuç her zaman negatif çıkar.*
+>
+>*Yani mod operatörünün ürettiği değerin işareti birinci operandının işareti ile aynıdır*
 
 ```kotlin
 package org.csystem.app
@@ -1797,7 +1798,6 @@ fun main() {
 >3.	if $\Delta < 0$
 >
 >		Gerçek kök yok!
-><br></br>
 
 ```kotlin
 package org.csystem.app  
@@ -1869,7 +1869,6 @@ fun findQuadraticEquationRoots(a: Double, b: Double, c: Double) {
 >3.	if $\Delta < 0$
 >
 >		Gerçek kök yok!
-><br></br>
 
 ```kotlin
 package org.csystem.app  
@@ -1935,7 +1934,6 @@ fun findQuadraticEquationRoots(a: Double, b: Double, c: Double): String {
 >3.	if $\Delta < 0$
 >
 >		Gerçek kök yok!
-><br></br>
 
 ```kotlin
 package org.csystem.app  
@@ -2623,7 +2621,9 @@ fun printResult(posCount: Int, negCount: Int, posTotal: Int = 0, negTotal: Int) 
 }
 ```
 
->*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu<br>(Yavaş versiyon)*
+>*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu*
+>
+>*(Yavaş versiyon)*
 
 ```kotlin
 package org.csystem.app  
@@ -2649,7 +2649,9 @@ fun isPrime(a: Long): Boolean {
     return true}
 ```
 
->*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu<br>(Hızlı versiyon)*
+>*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu*
+>
+>*(Hızlı versiyon)*
 >
 >**_Kural:_** Bir sayının asal olması için karekökünden daha küçük olan asal sayıların hiçbirisine bölünememesi gerekir*
 
@@ -3197,7 +3199,6 @@ fun main() {
 >3.	if $\Delta < 0$
 >
 >		Gerçek kök yok!
-><br></br>
 
 ```kotlin
 package org.csystem.app  
@@ -3557,7 +3558,13 @@ fun main() {
 }
 ```
 
->*Byte sınıfının toChar metodu* `Kotlin 1.5` *ile birlikte deprecated durumdadır. Bu metot yerine Int türüne dönüştürülüp toChar metodu çağrılmalıdır:*<br>`a.toInt().toChar()`<br>*Char sınıfının toInt metodu da deprecated olmuştur. Bunun Char türünün code property elemanı ile karaktere karşılık gelen sıra numarası Int türden elde edilebilir<br>Aşağıdaki örnekte çeşitli değerler girerek sonuçları gözlemleyiniz*
+>*Byte sınıfının toChar metodu* `Kotlin 1.5` *ile birlikte deprecated durumdadır. Bu metot yerine Int türüne dönüştürülüp toChar metodu çağrılmalıdır:*
+>
+>`a.toInt().toChar()`
+>
+>*Char sınıfının toInt metodu da deprecated olmuştur. Bunun Char türünün code property elemanı ile karaktere karşılık gelen sıra numarası Int türden elde edilebilir*
+>
+>*Aşağıdaki örnekte çeşitli değerler girerek sonuçları gözlemleyiniz*
 
 ```kotlin
 package org.csystem.app  
@@ -4622,7 +4629,11 @@ class Circle(var radius: Double) {
 }
 ```
 
->*Circle sınıfı ve test kodu<br>(Daha karmaşık ve tam olarak Kotlin mantığıyla tasarlanmamış versiyon)<br>Aşağıdaki yaklaşımda backing field yani set kısmı gereksizdir*
+>*Circle sınıfı ve test kodu*
+>
+>*(Daha karmaşık ve tam olarak Kotlin mantığıyla tasarlanmamış versiyon)*
+>
+>*Aşağıdaki yaklaşımda backing field yani set kısmı gereksizdir*
 
 ```kotlin
 package org.csystem.app  
@@ -8851,7 +8862,6 @@ fun createPerson(name: String, id:Int) = Person(id, name, "veli","mecidiyeköy")
 >3.	if $\Delta < 0$
 >
 >		Gerçek kök yok!
-><br></br>
 
 >*Aşağıdaki örneği inceleyiniz:*
 
@@ -12349,9 +12359,13 @@ object Operation {
 
 >*Kotlin'de fonksiyonlar ismine Lambda function ya da function literal bir sentaks ile de bildirilebilir. Lambda function bir fonksiyon türündendir. Yazılışına göre tür derleyici tarafından tespit edilir ve istenirse uygun bir function türünden referansa atanabilir. Lambda fonksiyonlarda son yazılan ifadenin değerine geri dönülmiş olur. Ya da başka bir deyişle geri dönüş değeri olan bir fonksiyon türü için lambda fonksiyon yazıldığında son yazılan ifade adeta return deyimi ile yazılmış olur*
 >
->*Aşağıdaki örnekte bir function literal yazılmış ve fonksiyon çağırma operatörü uygulanmıştır. Bu durumda derleyici Kotlin anlamında aşağıdaki gibi bir fonksiyon yazar:<br>fun _xyz(a: Int, b: Int) : Int = a + b<br>
-Fonksiyon çağrısını da şu şekilde yapar:<br>
-_xyz(10, 20)*
+>*Aşağıdaki örnekte bir function literal yazılmış ve fonksiyon çağırma operatörü uygulanmıştır. Bu durumda derleyici Kotlin anlamında aşağıdaki gibi bir fonksiyon yazar:*
+>
+>fun _xyz(a: Int, b: Int) : Int = a + b
+>
+>*Fonksiyon çağrısını da şu şekilde yapar:*
+>
+>_xyz(10, 20)
 >
 >*Bu işlemin Java karşılığı yaklaşık şu şekildedir:*
 
@@ -13756,8 +13770,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*next metodu eleman yoksa NoSuchElementException nesnesi fırlatır*
 
 ```kotlin
@@ -13786,8 +13798,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*RandomIntGenerator sınıfı*
 
 ```kotlin
@@ -13808,9 +13818,6 @@ fun main()
         print("%02d ".format(value))
 }
 ```
-
-<br>
-
 
 	FILE        : RandomIntGenerator.kt
 	AUTHOR      : Android-Mar-2023 Group
@@ -13854,9 +13861,6 @@ class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private
 }
 ```
 
-<br>
-
-
 	FILE        : RandomIntGenerator.kt
 	AUTHOR      : Android-Mar-2023 Group
 	LAST UPDATE : 14.06.2023
@@ -13897,9 +13901,6 @@ class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private
 }
 ```
 
-<br>
-
-
 	FILE        : RandomIntGenerator.kt
 	AUTHOR      : Android-Mar-2023 Group
 	LAST UPDATE : 14.06.2023
@@ -13937,15 +13938,11 @@ class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private
 }
 ```
 
-<br>
-
 >*Iterable arayüzüne eklenti olarak yazılmış bir grup fonksiyon vardır. Bu fonksiyonlar genel olarak callback alırlar. Bu fonksiyonlar genel olarak iki gruba ayrılabilir:* 
 >
 >1. *__<u>Intermediate operation functions:</u>__ Veriler üzerinde çağrılacak callback'leri belirlemekte kullanılır. Bu fonksiyonlar aldıkları callback'i doğrudan çalıştırmazlar. Bir terminal operation function devam eden zincirin sonunda çağrıldığında bu callback'ler de çağrılır. Yani aslında bir ara fonksiyonun aldığı calllback'in çağrılabilmesi için bir terminal operation function çağrılması gerekir.*
 >
 >2. *__<u>Terminal operation functions:</u>__ Bir zincir (pipeline) içerisinde ya bir işlem yapan ya da tüm belirlenen ara işlemlere göre bir değer döndüren metotlardır. Bir pipeline içerisinde istenildiği kadar intermediate function çağrısı olabilir ancak bir tane terminal function çağrısı yapılabilir*
-
-<br>
 
 >*forEach ve filter eklenti fonksiyonları*
 
@@ -13974,8 +13971,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örneği ve write fonksiyonunu inceleyiniz*
 
 ```kotlin
@@ -13997,8 +13992,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Iterable arayüzüne eklenti olarak bulunan metotların bir çoğu String sınıfında da eklenti olarak bulunmaktadır. String sınıfı bu anlamda __"iterable"__ değildir ancak __"iterable"__ olarak kullanılabilmektedir*
 
 ```kotlin
@@ -14013,8 +14006,6 @@ fun main()
     s.filter { it.isUpperCase() }.forEach(::println)
 }
 ```
-
-<br>
 
 >*Anımsanacağı gibi String sınıfı da for döngü deyimi ile dolaşılabilir*
 
@@ -14033,8 +14024,6 @@ fun main()
     println()
 }
 ```
-
-<br>
 
 >*Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir*
 
@@ -14062,8 +14051,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Yukarıdaki örnek için filter fonksiyonları ayrı ayrı da çağrılabilir*
 
 ```kotlin
@@ -14089,11 +14076,7 @@ fun main()
 }
 ```
 
-<br>
-
 >*Kotlin'de standart collection sınıflar genel olarak immutable ve mutable olmak üzere iki gruba ayrılır. Bu ayrım arayüzler düzeyinde yapılır. Genel olarak __"mutable collection"__'lar MutableXXX biçiminde isimlendirilmiştir. Bu durumda içerisinde Mutable geçmeyen arayüzler Immutable olur. Sınıflar için bu isimlendirmede istisnalar bulunmaktadır*
-
-<br>
 
 >*Collection arayüzünü destekleyen sınıfların MutableCollection veya Collection parametreli ctor'ları bulunur*
 
@@ -14113,11 +14096,7 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aralarında öncelik sonralık ilişkisi bulunan collection sınıflara genel olarak liste tarzı collection sınıflar denir ve bu collection sınıflar `List<E>` veya `MutableList<E>` arayüzünü desteklerler. Aslında `MutableList<E>` arayüzü Kotlin'de `List<E>` arayüzünden türetilmiştir. Buradaki `List<E>` arayüzü ile JavaSE'deki `List<E>` arayüzü aynı değildir. JavaSE'deki `List<E>` arayüzü Kotlin'deki `MutableList<E>` arayüzüne karşılık gelir. Collection sınıflar için immutable ve mutable collection arayüzleri için genel olarak durum böyledir*
-
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -14137,8 +14116,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Mutable liste tarzı collection sınıfların MutableList arayüzünden gelen Collection parametreli addAll metotları bulunur*
 
 ```kotlin
@@ -14155,8 +14132,6 @@ fun main()
     println()
 }
 ```
-
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -14184,8 +14159,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örneği inceleyiniz*
 
 ```kotlin
@@ -14205,8 +14178,6 @@ fun main()
     }
 }
 ```
-
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -14231,8 +14202,6 @@ fun main()
     }
 }
 ```
-
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -14261,8 +14230,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örneği inceleyiniz*
 
 ```kotlin
@@ -14290,8 +14257,6 @@ fun main() {
 }
 ```
 
-<br>
-
 >*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır Örnekte lambda fonksiyon içerisinde parametre kullanılmadığında bazı static kod analizi araçları uyarı verebilir. Bu uyarının kalkması için Lambda fonksiyon içerisindeki parametre alttire karakteri ile pas geçilecek şekilde belirtilebilir. Bu uyarı dikkate alınmasa da bir sorun oluşturmaz*
 
 ```kotlin
@@ -14307,8 +14272,6 @@ fun main()
     IntArray(count) {it}.forEach { _ -> print("${Random.nextInt(100)} ") }
 }
 ```
-
-<br>
 
 >*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır*
 
@@ -14327,8 +14290,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır*
 
 ```kotlin
@@ -14345,8 +14306,6 @@ fun main()
     println()
 }
 ```
-
-<br>
 
 >*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır*
 
@@ -14365,8 +14324,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örnekte count tane rasgele sayı IntRange kullanılarak ekrana bastırılmıştır*
 
 ```kotlin
@@ -14383,8 +14340,6 @@ fun main()
     println()
 }
 ```
-
-<br>
 
 >*Aşağıdaki örnekte take ve count eklenti fonksiyonları kullanılmıştır*
 
@@ -14415,8 +14370,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır*
 
 ```kotlin
@@ -14445,8 +14398,6 @@ fun main()
     }
 }
 ```
-
-<br>
 
 >*Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır*
 
@@ -14477,8 +14428,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örnekte generateSequence fonksiyonu ile count tane rasgele sayı üretilmiştir*
 
 ```kotlin
@@ -14498,8 +14447,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örnekte 2'den başlayarak her adımda 3 katının bir fazlası olacak şekilde artırarak count tane sayı elde edilmiştir*
 
 ```kotlin
@@ -14515,8 +14462,6 @@ fun main()
     println()
 }
 ```
-
-<br>
 
 >*generateSequence fonksiyonu*
 
@@ -14535,8 +14480,6 @@ fun main() {
 }
 ```
 
-<br>
-
 >*Yukarıdaki işlem aşağıdaki gibi de yapılabilir*
 
 ```kotlin
@@ -14553,8 +14496,6 @@ fun main() {
     println()
 }
 ```
-
-<br>
 
 >*Aşağıdaki örnekte [-2 * PI, 2 * PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir*
 
@@ -14574,8 +14515,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örnekte [-2 * PI, 2 * PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir*
 
 ```kotlin
@@ -14589,8 +14528,6 @@ fun main()
     generateSequence(-2 * PI) { it + 0.1 }.takeWhile { it <= 2 * PI }.map { sin(it) }.forEach(::println)
 }
 ```
-
-<br>
 
 >*generateSequence fonksiyonu*
 
@@ -14609,8 +14546,6 @@ fun main()
         .forEach{print("$it ")}
 }
 ```
-
-<br>
 
 >*Aşağıdaki örnekte printCollatz fonksiyonunun generateSequence ile yazıldığına dikkat ediniz*
 
@@ -14632,8 +14567,6 @@ fun printCollatz(value: Int)
 }
 ```
 
-<br>
-
 >*Aşağıdaki örneği inceleyiniz*
 
 ```kotlin
@@ -14653,8 +14586,6 @@ fun printCollatz(value: Int)
     println(1)
 }
 ```
-
-<br>
 
 >*Aşağıdaki hepsi birbirinden farklı count tane sayı üretilmiştir. Şüphesiz count sayısının aralıktaki toplam sayıyı aşmaması gerekir. Aşması durumunda artık üretim yapılamaz ve sonsuz döngü oluşur*
 
@@ -14682,8 +14613,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örnekte artık tekrarlamayan sayı kalma olasılığı yoktur*
 
 ```kotlin
@@ -14709,8 +14638,6 @@ fun main()
     }
 }
 ```
-
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -14740,12 +14667,8 @@ fun numericLotteryNumbers(random: Random = Random): IntArray
 }
 ```
 
-<br>
-
 >*`Collection<T>/MutableCollection<T>` arayüzünden `Set<T>/MutableSet<T>` arayüzü türetilmiştir. `Set<T> ve MutableSet<T>` arayüzleri matematik'teki küme kavramını temsil eden arayüzlerdir. Yani, elemanların eklenme sırasının önemi yoktur ve bir elemandan birden fazla aynı küme collection'ında olamaz*
 
-<br>
-
 >*Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler*
 
 ```kotlin
@@ -14765,8 +14688,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler*
 
 ```kotlin
@@ -14785,8 +14706,6 @@ fun main()
     write(mutableSet)
 }
 ```
-
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -14808,8 +14727,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örneği inceleyiniz*
 
 ```kotlin
@@ -14829,8 +14746,6 @@ fun main()
     println()
 }
 ```
-
-<br>
 
 >*Set tarzı collection'larda, __"hash"__ kullananlar eşitlik kontrolü için equals ve hashCode metotlarının geri dönüş değerine bakarlar. Bu durumda programcı bir tür durumlar için bu metotları gerekirse override etmelidir.*
 
@@ -14860,8 +14775,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*TreeSet sınıfı elemanları sıralı biçimde tutar*
 
 ```kotlin
@@ -14882,8 +14795,6 @@ fun main()
     }
 }
 ```
-
-<br>
 
 >*Aşağıdaki örnekte ürünler isimlerine göre ascending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır*
 
@@ -14906,8 +14817,6 @@ fun main()
 }
 ```
 
-<br>
-
 >*Aşağıdaki örnekte ürünler isimlerine göre descending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır*
 
 ```kotlin
@@ -14929,7 +14838,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -14964,11 +14872,9 @@ fun getNumericLotteryNumbers(random: Random = Random) : IntArray
 }
 ```
 
-<br>
 
 >*`Map<K, V>/MutableMap<K, V>` arayüzü anahtara karşılık gelen değerlere ilişkin collection sınıflarının taban arayüzüdür. `Map<K, V>/MutableMap<K, V>` arayüzü hiç bir arayüzden türetilmemiştir. Bu arayüzü implemente eden sınıflar için anahtar türü `Set<K>` olarak tutulur. En çok kullanılan `HashMap<K, V>` ve `TreeMap<K, V>` sınıfları K türünü sırasıyla `HashSet<T>` ve `TreeSet<T>` olarak tutarlar*
 
-<br>
 
 >*map tarzı colection'lar*
 
@@ -14991,7 +14897,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*map tarzı colection'lar*
 
@@ -15014,7 +14919,6 @@ fun main()
 }
 ```
 
-<br>
 
 >* map tarzı colection'lar*
 
@@ -15040,7 +14944,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*__map tarzı colection'lar:__ Örnekte TreeMap kullanıldığından anahtar değerlerinin sıralanması gerekmez*
 
@@ -15066,11 +14969,9 @@ fun main()
 }
 ```
 
-<br>
 
 >*inline fonksiyon çağrıları byte code'a çağrı biçiminde değil doğrudan kodlarıyla birlikte yazılır. inline fonksiyonlar eğer fonksiyon parametreli ise (high order function) dışarıdan almış olduğu callback fonksiyon da inline yapılmış olur*
 
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -15089,7 +14990,6 @@ fun <T> display(t: T) = println(t)
 inline fun <T> T.doWork(callback: (T) -> Unit) = callback(this)
 ```
 
-<br>
 
 >*inline high order fonksiyonların callback olarak aldıkları fonksiyonların inline olmaması isteniyorsa parametre noinline olarak bildirilmelidir. Bu durumda ilgili callback fonksiyon inline olmaz, fonksiyon çağrısı byet code'a eklenir*
 
@@ -15104,7 +15004,6 @@ fun main()
 inline fun <T> T.doWork(block: (T) -> T, noinline callback: (T) -> Unit) = callback(block(this))
 ```
 
-<br>
 
 >*sealed bir sınıf default olarak abstract bildirilir. Dolayısıyla bu sınıf türünden nesne yaratılamaz*
 
@@ -15127,7 +15026,6 @@ sealed class SealedValue<out T>(val value: T) {
 }
 ```
 
-<br>
 
 >*sealed bir sınıftan türemiş bir sınıf aynı pakette bildirilmelidir. Bu durumda sealed olarak soyutlanmış bir sınıftan doğrudan (direct) türetilmiş tüm sınıflar da aynı pakette olmalıdır*
 
@@ -15149,7 +15047,6 @@ sealed class SealedValue<out T>(val value: T) {
 }
 ```
 
-<br>
 
 >*Aşağıdaki örnekte MySealedValue sealed olmadığından ondan türemiş sınıflar aynı pakette olmak zorunda değildir*
 
@@ -15179,7 +15076,6 @@ sealed class SealedValue<out T>(val value: T) {
 }
 ```
 
-<br>
 
 >*const val değişkenler:*
 >- *Değeri derleme zamanında hesaplanan değişkenlerdir (constant folding)*
@@ -15217,7 +15113,6 @@ object Mample {
 }
 ```
 
-<br>
 
 >**SAM (Single Abstract Method) interface:**   
 >
@@ -15255,7 +15150,6 @@ class MySample {
 }
 ```
 
-<br>
 
 >*Kotlin 1.4'den itibaren virgülle ayrılan her liste tarzı ifadenin sonunda kullanılan virgül geçerlidir (trailing comma)*
 
@@ -15280,8 +15174,6 @@ fun foo(a: Int, b: Int, c: Int = 10,) //Since 1.4
     println("c=$c")
 }
 ```
-
--<br>
 
 >*LocalDate sınıfı (ve tüm diğer Java 8 tarih-zaman sınıfları) geçerlilik kontrolü yapar. Bu sınıflar geçerli olmayan bilgiler için DateTimeException nesnesi fırlatır*
 
@@ -15322,7 +15214,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*LocalDate sınıfının now isimli static metodu sistemin tarih bilgisini elde etmekte kullanılır*
 
@@ -15339,7 +15230,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*LocalDate sınıfının isAfter ve isBefore metotları ve equals metodu*
 
@@ -15360,7 +15250,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*ChronoUnit enum sınıfı ile tarih-zaman ölçümleri yapılabilir*
 
@@ -15405,7 +15294,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*LocalDate sıfınının plusXXX metotları*
 
@@ -15424,7 +15312,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*Tarih-zaman sınıflarının withXXX metotları*
 
@@ -15448,7 +15335,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*LocalTime sınıfının atDate metodu*
 
@@ -15468,7 +15354,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*LocalDate sınıfının atTime metodu*
 
@@ -15489,7 +15374,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*LocalDateTime sınıfının toLocalDate ve toLocalTime sınıfları*
 
@@ -15510,7 +15394,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*DateTimeFormatter sınıfı ile tarih ve/veya zaman bilgilerinin formatlanması*
 
@@ -15535,7 +15418,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*LocalDate, LocalTime ve LocalDateTime sınıflarının parse metotları*
 
@@ -15556,7 +15438,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örnekte birden fazla formatter ile işlem yapan örnek bir fonksiyon yazılmıştır. Detaylar gözardı edilmiştir. Bir kütüphane içerisine daha detaylısı eklenecektir*
 
@@ -15619,14 +15500,12 @@ fun main()
 
 >*Yukarıdaki anlatılanların özellikle aşağı seviyede detayları vardır. Burada ele alınmayacaktır. Özellikle Android uygulamalarında __"memory leak__" oluşumunu engellemek için WeakReference sınıfı çeşitli durumlarda çözüm olarak kullanılabilir. Bunlar kursumuzda projeler içerisinde çeşitli durumlarda kullanılmıştır*
 
-<br>
 
 >*Bir kütüphaneyi (.aar veya .jar olarak) Android uygulamasında kullanmak için yöntemler genel olarak şunlardır:*
 >1. *Eğer uygulama ve kütüphane aynı proje içerisinde olarak. Buna modül kullanımı da denir*
 >2. *Proje lokalinde doğrudan kütüphane dosyası kullanılabilir*
 >3. *Kütüphane belirli bir uzak (remote) repository'de ise oradan kullanılabilier. Biz burada maven repository kullanacağız*
 
-<br>
 
 >*Birarada çalışan kodları betimlemek için pek çok terim kullanılmaktadır. Bunların arasında bağlam (context) bakımından bazı farklılıklar bulunmaktadır. Öncelikle bu terimlerin ve kavramların anlamlarını açıklayalım:*
 >
@@ -15638,7 +15517,6 @@ fun main()
 >
 >*__Parallel Computing/Programming:__ Bu terim bir işi aynı makinede thread’lere ayırarak ve onları farklı CPU ya da 	çekirdeklere atayarak aynı anda çalıştırma gayretini anlatmaktadır. Dolayısıyla burada toplamda hızlı bir işlemin 	yapılması hedeflenir. Şüphesiz tek CPU ya da tek çekirdekli sistemlerde parallel programlama yapılamaz. Öncelikle 	parallel programlama için söz konusu sistemde birden fazla CPU ve/veya çekirdek bulunması gerekir. Hatta parallel 	programlama faaliyetinde bir süredir grafik kartlarındaki işlemcilerden de faydalanılabilmektedir.*
 
-<br>
 
 
 >*Program terimi uygulamanın genel olarak çalışabilir veya çalıştırılabilir dosyasına verilen isimdir. İşletim sistemi düzeyinde çalışan programa __"process"__ denir. Modern sistemlerde process'ler biraz ondan biraz bundan tekniğiyle çalıştırır. Process'lerin (aslında thread'lerin) işletim sistemi tarafından CPU ya da çekirdekler üzerinde çalıştırılmasına __"çizelgeleme (scheduling)"__ denilmektedir. Thread aslında process'lerin ayrı akışlarını belirtir.*
@@ -15649,7 +15527,6 @@ fun main()
 >    1. *Thread sınıfından türetme yaparak*
 >    2. *Runnable arayüzünü implemente ederrek*
 >    3. *Executor'lar kullanarak*
-><br></br>
 
 **_Anahtar Notlar:_** Java'nın ilerleyen sürümlerinde Virtual Thread'ler de eklenmiştir. Burada belirli ölçüde ele alınacaktır.
 
@@ -15703,7 +15580,6 @@ class MyThread(private val mCount: Int, private val mRandom: Random = Random) : 
 }
 ```
 
-<br>
 
 >*Bir thread başka bir yarattığında hangi thread'in önce çizelmeye gireceği o anki duruma bağlıdır. Yani hangisinin önce çizelgelemeye gireceği belirsizdir. (Hatta ayrı CPU ya da çekirdekte olurlarsa gerçekten aynı anda da çizelgelemeye girebilirler). Thread'lerin stack alanları birbirinden ayrıdır. Ancak heap alanı ortaktır. Dolayısıyla aynı nesne üzerinde birden fazla thread'in işlem yapması durumunda bir takım problemler söz konusu olabilmektedir. Bu problemlere tipik olan senkronizsyon problemleri denir. İleride bir takım senkronizasyon problemleri ve çözümleri uygulamalar içerisinde ele alınacaktır. Aşağıdaki örneği inceleyiniz*
 
@@ -15748,7 +15624,6 @@ class TextGeneratorThread(private val mCount: Long, private val mPath: String, p
 }
 ```
 
-<br>
 
 >*JavaSE'de Runnable arayüzünü implemente ederek de thread oluşturulabilir. Bu durumda Thread sınıfının Runnable parametreli ctor'ları kullanılır*
 
@@ -15797,7 +15672,6 @@ class TextGeneratorThread(private val mCount: Long, private val mPath: String, p
 }
 ```
 
-<br>
 
 >*Runnable Java'da functional interface olduğundan Kotlin'de de lambda fonksiyonlar ile kullanılabilir*
 
@@ -15842,7 +15716,6 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
     }
 }
 ```
-<br>
 
 >*Kotlin'de yukarıdaki işlemler için thread isimli bir fonksiyon eklenmiştir. Kotlin'de yukarıdaki işlemler için özel bir durum yoksa bu fonksiyonun kullanılması tavsiye edilir. Aşağıdaki örneği inceleyiniz*
 
@@ -15887,7 +15760,6 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 }
 ```
 
-<br>
 
 >*Java'da zamanlayıcı işlemleri için periyodik olarak arka planda bir iş yapmak için kullanılan temel sınıflardan biri Timer sınıfıdır. Timer sınıfı periyodik işlem için arka planda bir thread yaratır. Timer sınıfının scheduleXXX metotları TimerTask abstract sınıfı türünden aldıkları referansa ilişkin nesnenin run metodunu polymorfik olarak her periyotta çağrırırlar. schedule metotlarının farkları ve bazı detayları burada ele alınmayacaktır. Timer sınıfı Android uygulamalarında da timer olarak kullanılabilir. Bir timer nesnesi ile bir schedule yapılabilir. Bir timer cancel isimli metodu ile sonlandırılabilir. Aşağıdaki örneği inceleyiniz*
 
@@ -15918,7 +15790,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*Thread sınıfının sleep static metodu parametresi ile aldığı milisaniye değeri boyunca thread'i bloke eder. Yukarıdaki örnek sleep metodu ile aşağıdaki gibi de yapılabilir. Şüphesiz timer kullanımı daha iyidir*
 
@@ -15939,13 +15810,11 @@ fun main()
 }
 ```
 
-<br>
 
 >*Bir thread non-daemon veya daemon olarak yaratılabilir. Bu özellik default olarak o thread'i yaratan thread'den alınır. Yani thread'i yaratan thread, non-daemon ise thread non-daemon olur. main/primary thread non-daemon'dır. Non-daemon thread'lere foreground thread, daemon thread'lere ise background thread de denilmektedir. Bir thread'in daemon olup olmadığı bilgisi isDaemon metodu ile (Kotlin'de isDaemon property elemanı ile) elde edilebilir. Ayrıca thread'in daemon özelliği setDaemon metodu ile (Kotlin'de yine isDaemon property elemanı ile) yaratılmadan önce belirlenebilir. Bir thread'in daemon özelliği thread start edildikten sonra değiştirilmeye çalışılırsa exception oluşur.*
 >
 >*<u>Non-daemon ve daemon thread'leri anlamak için en basit cümle şudur:</u> "Bir process içerisinde son non-daemon thread de sonlandığında tüm deemon thread'ler sonlanır". Programcı bu basit cümleyi düşünerek bir thread'in daemon veya non-daemon olup olmayacağına domain'e göre karar verir*
 
-<br>
 
 >*Aşağıdaki örnekte main thread içerisinde yaratılan thread non-daemon'dır*
 
@@ -15979,7 +15848,6 @@ fun runDemoThread()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örnekte main thread içerisinde yaratılan thread daemın'dır. Örnekte main thread sonlandığında, process içerisinde hiç non-daemon thread kalmadığından diğer daemon thread de sonlandırılır. Bu durumda process sonlanmış olur*
 
@@ -16015,7 +15883,6 @@ fun runDemoThread()
 }
 ```
 
-<br>
 
 >*Timer sınıfının ilgili ctor'u ile Timer'ın da daemon özelliği belirlenebilir. Şüphesi bu işlemin schedule edilmeden yapılması gerekir. Aşağıdaki örneği inceleyiniz*
 
@@ -16046,7 +15913,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*Thread'in daemon özelliğinin thread yaratıldıktan sonra değiştirilmesi durumunda exception oluşur*
 
@@ -16082,11 +15948,9 @@ fun runDemoThread()
 }
 ```
 
-<br>
 
 >*Bir thread başka bir thread'i bekleyebilir. Bunun için thread sınıfının join metodu kullanılır. join metodunun parametresiz overload'u thread'in sonlanması bekler. Thread sonlandığında join çağrısı da bitmiş olur. join metodunun parametreşli overload'lar en fazla ne kadar bekleyeceği süreyi alır. Bu süre içerisinde thread sonlanırsa join'de çağrısı da soınlanır. Bu süre içerisinde beklenen thread sonlanmazsa join yine sonlanır*
 
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -16121,7 +15985,6 @@ fun runDemoThread()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -16161,7 +16024,6 @@ fun runDemoThread()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -16201,7 +16063,6 @@ fun runDemoThread()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -16248,7 +16109,6 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 }
 ```
 
-<br>
 
 >*Bir timer'ı durdurmak için cancel fonksiyonu kullanılır. cancel fonksiyonu timer fonksiyonunu o an sonlandırmaz. Fonksiyon hangi durumda olursa olsun çalışmasına devam eder. Timer durdurulur*
 
@@ -16363,15 +16223,11 @@ fun main() = runApp()
 >
 >- *Thread içerisinde bir exception oluşursa ve yakalanamazsa ilgili thread sonlanır*
 >
-><br>
->
 >*Dikkat edilirse bir thread'i doğrudan sonlandırmaya ilişkin bir fonksiyon yoktur. Aslında Thread sınıfının stop isimli bir fonksiyonu başlangıçta bu iş tasarlanmıştı. Ancak bir thread'i doğrudan sonlandırmanın kritik işlemlerde çeşitli problemlere yol açabileceği dolayısıyla bu metot deprecated yapıldı. Hatta bir çok sistemde çalışmamaktadır. Peki programcı bir thread'i başka bir thread içerisinden sonlandırmayı nasıl yapacaktır? Bu durumda ilk akla gelen bir flag değerinin diğer thread'den değpiştirilerek ilgili thread'in bu flag değerine göre sonlandırılmasını sağlamak biçiminde olabilir. Bu yöntemin üç tane tipik problemi olabilir: 1. flag değerinin değiştirilmesi birden fazla makine komutu ile yapıldığında değiştirildiği anda hemen diğer akış tarafından görülemeyebilir. Bu durumda bu işlemin atomic bir biçimde yapılması gerekir*
 >
 >2. *Thread örneğin join yada sleep gibi thread'i bloke eden bir fonksiyon içerisindeyse bu durumda bloke olduğıu sürece flag değerinin değiştiğini anlayamaz*
 >
 >3. *Derleyiciler genel olarak optimizasyonlarını uygulamanın multi threaded olabileceğine yönelik yapmazlar. Sanki uygulama single threaded bir uygulamaymış gibi yaparlar. Bu durumda bir değişkenin değerinin değişmediği ama kullanılşdığı bir akış için değerinin daha hızlı erişilebildiğinden register'larda saklayabilirler. Bu durumda o değişkenin değeri başka bir thread'de değiştirildiğinde diğer akışta değişiklik farkedilemez. Aslında bu problem yalnızca thread sonlandırmada çıkmaz. Aslında thread sonlandırma zaten programcının tuttuğu diğeriyle genel olarak yapılmadığından, sonlandırma senaryolarında böylesi bir durum oluşmaz.*
->
-><br>
 >
 >*Aslında bir thread'in interrupt flag denilen bir flag değeri vardır ve bu flag değeri thread başlatığında mantıksal false değerinde yani reset durumundadır. Thread sınıfının interrupt metodu interrupt flag değerini set eder yani mantıksal true değerine çeker. Bu işlem atomic bir biçimde yapılır. Yani bu set/reset işlemi bitene kadar o flag değerine yönelik araya hiç bir işlem giremez. sleep, join gibi Thread'i bloke eden fonksiyonlar bloke durumdayken interrupt flag değeri set edilirse InterruptedException fırlatırlar ve interrupt flag değerini reset ederler. Ayrıca Thread sınıfının static interrupted ve non-static isInterrupted isimli iki fonksiyonu ile interrup flag değerinin set edilip edilmediği test edilebilir. Bu iki metodun static ve non-static olmaları dışında farkı ileride ele alınacaktır.*
 
@@ -16412,7 +16268,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örnekte thread sleep ile bloke durumdayken interrupt flag değeri set edilmiş ve InterruptedException fırlatılmıştır*
 
@@ -16445,7 +16300,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*sleep (aynı zamanda join) fonksiyonu interrupt flag değerini set edilmişse reset duruma getirir. Örnek durumu göstermek için aşağıdaki gibi yazılmıştır*
 
@@ -16490,7 +16344,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örnekte interrupt flag değerinin set veye reset olma durumuna duyarlı herhangi bir fonksiyon çağrılmadığından thread sonlanmaz. Fonksiyonda try expression statement kullanılmasa durum aynıdır*
 
@@ -16522,7 +16375,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır*
 
@@ -16551,7 +16403,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır*
 
@@ -16581,7 +16432,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*isInterrupted metodu interrupt flag değerini set durumundan reset duruma çekmez. Aşağıdaki demo örneği inceleyiniz*
 
@@ -16655,13 +16505,11 @@ fun main()
 }
 ```
 
-<br>
 
 >*Thread yaratılması işletim düzeyinde bir takım alt seviye işlemlerin yapılmasına yol açmaktadır. Bazı uygulamalarda çok fazla thread'in aynı zamanda yaratılması gerekebilmektedir. Örneğin multi-client bir server herhangi bir client'ın işlemi devam ederken başka bir client gelmesi durumunda da hizmet verebilmesi için her client'ın bağlantısından sonra o client için bir thread açmalıdır. İşte böyle bir durumda çok fazla client'ın bağlantı yapmaya çalışması, thread yaratılırken aşağı seviyeli işlemler dolayısıyla belirli bir yavaşlığa sebep olabilir. Bu gibi örnekler ileride yapılacaktır. İşte bu durumlarda işlemlerin hızlı bir biçimde yapılabilmesi için işletim sistemlerinin desteklediği bazı yöntemler bulunmaktadır. Bu yöntemler işletim sistemlerine değişiklik gösterebilmektedir. İşte Java 5 ile bu gibi durumlara yönelik işlemleri yapan sınıflar ve metotlar içereen __"executors"__ eklenmiştir. Executors ile tipik olarak thread havuzları (thread pool) oluşturulabilmektedir. Thread havuzları önceden yaratılmış thread'ler gerektiğinde start edilebilmektedir. Yani yukarıda anlatılan thread yaratma maliyeti daha işin başında yapılmaktadır. Bu durumda aşağı seviyeli (süphesi yüksek seviyeli de) thread yaratma maliyeti minimalize edilmiş olur. Şüphesiz executors bu işlemi en nihayetinde işletim sisteminin sağladığı yöntemler ile yapmaktadır. Ancak şüphesi bu Java/Android programcısını ilgilendirmemektedir. Java programcısı açısından çoğu durumda klasik thread yerine executors kullanımı tercih edilmelidir. O zaman Thread sınıfına neden ihtiyaç vardır? Şüphesiz basit bazı thread işlemleri yani yukarıdaki gibi thread yaratmanın maliyetinin önemli olmadığı durumlarda özellikle Kotlin ile kullanımı çok basit olduğundan klasik thread tercih edilebilir. Ayrıca Thread sınıfının çeşitli metotları thread havuzlarında da kullanılabilmektedir. Şüphesiz thread havuzlarından alında thread'ler de Java anlamında birer Thread'dir. Kısaca programcı açısından thread havuzları da arka planda Thead sınıfını kullanıyor olarak düşünülebilir. Executors çok geniş bir kütüphanedir ve pek çok işleme yönelik metotları ve sınıfları vardır. Burada yalnızca thread havuzlarının fixed ve cached olanları ele alınacaktır. Bir thread havuzu da ayrı bir thread'dir.*
 
 **_Anahtar Notlar:_** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (13 Kasım 2023) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar __"Kotlin Coroutines"__ ile kullanılabilmektedir. Kotlin Coroutines ileride ele alınacatır.
 
-<br>
 
 >*Executors ile thread havuzu oluşturmnak için Executors sınıfının çeşitli metotları kullanılabilmektedir. Burada ele alacağımız metotları şunlardır:*
 >
@@ -16673,7 +16521,6 @@ fun main()
 >
 >*Bu metotlar ExecutorService arayüz referansına geri dönerler. Bu üç metodun da kullanımına programcı senaryosuna göre karar verir. Eğer tek bir thread sürekli kullanılacaksa bu durumda newFixedThreadPool(1) çağrısı yerine newSingleThreadExecutor() çağrısı yapılması tavsiye edilir. Genel olarak thread havuzu ile işlemler bittiğinde thread havuzuna ilişkin thread'in de sonlandırılması gerekir. Bu da ExecutorService arayüzünün shutdown metodu ile yapılabilir. shutdown metodu da asenkron olarak çalışır yani metot thread havuzu sonlanmadan sonlanır.. Çağrıldığında eğer running durumda thread'ler varsa thread havuzu bu thread'ler bitinceye kadar yok edilmez. Ancak yeni bir thread start edilemez. ExecutorService ile bir thread start etmek için tipik olarak iki tane metot kullanılır: execute, submit. Bu metotlar adıkları callback'ler ile thread start ederler. execute metodunun geri dönüş değeri yoktur. sumbit metodunun geri dönüş değeri `Future<T>` arayüzü türündendir. Bu arayüz submit edilen threaad'i temsil eder. `Future<T>` arayüzünün get metotları ile thread beklenebilir hatta submit metodunubn `Callable<T>` parmetreli overload'u kullanılarak thread'deb sonuç elde edilebilir. `Future<T>` arayüzünün cancel isimli metodu ile thread cancel edilebilir. cancel metodu istenirse interrupt flag değerini set edebilir. `Future<T>` kullanımı örneklerle ele alınacaktır.*
 
-<br>
 
 >*Aşağıdaki örnkte fixed thread pool kullanılmıştır*
 
@@ -16721,7 +16568,6 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 }
 ```
 
-<br>
 
 >*Aşağıdaki örneği inceleyiniz*
 
@@ -16772,7 +16618,6 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 }
 ```
 
-<br>
 
 >*Executors ile scheduler da oluşturulabilmektedir. Bunun için tipik olarak newScheduledThreadBool metodu kullanılmaktadır. Scheduler ile bir timer veya timout oluşturulabilmektedir. Bu metot ExecutorService arayüzünden türetilmiş ScheduledExecutorService arayüz referansına geri döner. Bu arayüz referansına ilişkin metotlar çağrılarak timer veya timeout oluşturulabilir. Aşağıdaki örneği inceleyiniz*
 
@@ -16793,7 +16638,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*scheduleXXX metotları `SheduledFuture<T>` interface referansına geri dönerler. Bu durumda ilgili scheduler yönetilebilir. Aşağıdaki örneği inceleyiniz*
 
@@ -16824,7 +16668,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*scheduleXXX metotları çağrıldıktan sonra shutdown metodunun çağrılmasın durumunda, scheuler'da sonlanır. submit veya execute kullanıldığında shutdown işleminin ilgili thread'lerin sonlanmasını beklediğini anımsayınız*
 
@@ -16855,7 +16698,6 @@ fun main()
 }
 ```
 
-<br>
 
 **_Anahtar Notlar:_** Thread'ler ve asenkron çalışma ilgili burada anlatılanlar dışında da pek çok detay vardır. Bazıları örnekler içerisinde ele alınacaktır.
 
@@ -16890,7 +16732,6 @@ suspend fun main()
 }
 ```
 
-<br>
 
 >*Aşağıdaki örnek klişeleşmiş ilk courutine örneklerindendir*
 
@@ -16913,7 +16754,6 @@ suspend fun main()
 }
 ```
 
-<br>
 
 >*runBlocking fonksiyonuna verilen fonksiyon sonlanana kadar (aslında içerisindeki coroutine sonlanana kadar) akış bloke olur. runBlocking fonksiyonu bir couroutine yaratır. Aşağıdaki demo örneği inceleyiniz*
 
@@ -16949,7 +16789,6 @@ fun main()
 }
 ```
 
-<br>
 
 >*runBlociking fonksiyonu ile coroutine yaratılması aşağıdaki gibi de yapılabilir. Demo örnekte launch fonksiyonu ile yaratılan coroutine main thread'de yaratılmamıştır. runBlocking fonksiyonunun yarattığı coroutine içerisinde yaratılmıştır*
 
@@ -16981,7 +16820,6 @@ fun main() = runBlocking {
 }
 ```
 
-<br>
 
 >*Aşağıdaki demo örnekte bir couroutine içerisinde başka bir coroutine yaratılmış ve runBlocking ile yaratılan coroutine doJob içerisinde yaratılan coroutine'i beklemektedir. Bu durumda derleyici ve __"Virtual Machine"__ optimize ederek coroutine sayısını dolayısıyla yaratılan thread sayısını azaltabilir*
 
@@ -17017,7 +16855,6 @@ fun run() = GlobalScope.launch {
 }
 ```
 
-<br>
 
 >*Aşağıdaki demo örnekte runBlocking scope içerisinde coroutine yaratılmıştır*
 
@@ -17056,7 +16893,6 @@ fun run() = GlobalScope.launch {
 }
 ```
 
-<br>
 
 >*Programcı isterse coroutine scope yaratabilir. Aşağıdaki örnekte coroutineScope fonksiyonunun __"callback"__ fonksiyonu launch ile yaratılan coroutine akışı bitene kadar sonlanmaz. suspend fonksiyonlar içerisinde coroutine'e ilişkin fonksiyonlar da çağrılabilir. Aslında suspend fonksiyonlar __"duraklayabile (suspend)"__ ve __"devam edebilen (resume)"__ fonksiyonlardır. Aşağıdaki örnekte couroutineScope ile bir sonuç da elde edilmektedir*
 
@@ -17098,7 +16934,6 @@ fun run() = GlobalScope.launch {
 }
 ```
 
-<br>
 
 >*Yukarıdaki örnek async fonksiyonu ile await kullanarak da yapılabilir*
 
@@ -17140,7 +16975,6 @@ fun run() = GlobalScope.launch {
 }
 ```
 
-<br>
 
 >*Yukarıdaki demo örnek async fonksiyonu ile await kullanılarak da yapılabilir. async fonksiyonu tipik `Deferred<y>` türünden bir interface referansına geri döner. Bu arayüzün await metodu ilgili coroutine beklenebilir. await metodu async fonksiyonuna verilen callback fonksiyonun değerine geri döner. Yani bu anlamda klasik `Future<T>` arayüzüne benzetilebilir*
 
