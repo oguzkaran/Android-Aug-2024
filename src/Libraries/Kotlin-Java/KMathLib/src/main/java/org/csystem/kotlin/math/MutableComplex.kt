@@ -13,4 +13,6 @@ class MutableComplex(var real: Double = 0.0, var imag: Double = 0.0) {
         get() = norm  
     val conjugate: MutableComplex
         get() = MutableComplex(real, -imag)
+
+    override fun toString() = "($real, $imag)"
 }

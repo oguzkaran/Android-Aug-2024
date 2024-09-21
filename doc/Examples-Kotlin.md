@@ -7605,209 +7605,247 @@ open class A(var x: Int) {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
->*CompanyApp uygulaması. Örnekte payInsurance fonksiyonun türden bağımsız yazıldığına dikkat ediniz*
+>*DemoCompanyApp uygulaması. Örnekte payInsurance fonksiyonunun türden bağımsız yazıldığına dikkat ediniz*
 
+
+![Class Diagram](./kmedia/DemoCompanyApp.PNG)
 ```kotlin
-
+package org.csystem.app  
+  
+import org.csystem.app.demo.company.employee.*  
+import org.csystem.app.demo.company.hr.HumanResources  
+import kotlin.random.Random  
+  
+private fun getManager(): Manager {  
+    val manager = Manager(300000.0, "Yazılım")  
+  
+    manager.citizenId = "12345678";  
+    manager.name = "Ali Veli";  
+    manager.address = "Mecidiyeköy";  
+  
+    return manager  
+}  
+  
+private fun getWorker(): Worker {  
+    val worker = Worker(1000.0, 8)  
+  
+    worker.citizenId = "12345679";  
+    worker.name = "Selami Secati";  
+    worker.address = "Şişli";  
+  
+    return worker  
+}  
+  
+private fun getSalesManager(): SalesManager {  
+    val salesManager = SalesManager(40000.0)  
+  
+    salesManager.citizenId = "12345679";  
+    salesManager.name = "Mustafa Mehmet";  
+    salesManager.address = "Fatih";  
+    salesManager.salary = 3000000.0  
+    salesManager.department = "Pazarlama"  
+  
+    return salesManager  
+}  
+  
+  
+private fun getProjectWorker(): Worker {  
+    val worker = ProjectWorker(30000.0)  
+  
+    worker.citizenId = "12345677";  
+    worker.name = "Ayşe Fatma";  
+    worker.address = "Beylikdüzü";  
+    worker.feePerHour = 2000.0  
+    worker.hourPerDay = 6  
+  
+    return worker  
+}  
+  
+private fun getEmployee(): Employee {  
+    return when (Random.nextInt(4)) {  
+        0 -> getManager()  
+        1 -> getWorker()  
+        2 -> getProjectWorker()  
+        else -> getSalesManager()  
+    }  
+}  
+  
+private fun runDemoCompanyApp() {  
+    val hr = HumanResources()  
+  
+    while (true) {  
+        println("----------------------------------------------------")  
+        val employee = getEmployee()  
+  
+        hr.payInsurance(employee)  
+        Thread.sleep(1000)  
+        println("----------------------------------------------------")  
+    }  
+}  
+  
+fun main() = runDemoCompanyApp()
 ```
 
->*Bir referansın iki tane türü vardır: static type, dynmaic type* Referansın static türü bildirildiği türdür. Derleme zamanına (compile time) ilişkindir ve değişmez. Referansın türü dendiğinde static tür anlaşılır.
+>Bir referansın iki tane türü vardır: **static type, dynamic type.*** 
+>***static type:*** Referansın static türü bildirildiği türdür. Derleme zamanına (compile time) ilişkindir ve değişmez. Referansın türü dendiğinde static tür anlaşılır.
 >
->*Referansın dinamik türü ise referansın gösterdiği nesnenin bellekte yaratıldığı gerçek türüdür*
+>***dynamic type:*** Referansın dinamik türü ise referansın gösterdiği nesnenin bellekte yaratıldığı gerçek türüdür. Çalışma zamanına ilişkindir. Değişebilir.
 
 **_Anahtar Notlar:_** Java'da bir referansın dinamik tür bilgisi "fully qualified" olarak şu şekilde elde edilebilir:
 
         <referans>.getClass().getName()
+        
 Bunun Kotlin karşılığı:
 
         <referans>.javaClass.name
+        
 biçimindedir.
 
 >*Bir referansın dinamik türü o referansın çalışma zamanı sırasında bellekte gösterdiği gerçek nesnenin türüdür*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    while (true) {
-        val value = readInt("Bir sayı giriniz:")
-
-        if (value == 0)
-            break
-
-        val x: A
-
-        x = if (value > 0) B() else A()
-
-        println(x.javaClass.name) // x referansının dinamik türü stdout'a yazdırılıyor
-    }
-    println("Tekrar yapıyor musunuz?")
-}
-
-open class A {
-    //...
-}
-
-class B : A() {
-    //...
-}
-```
-
->*Bir referansın dinamik türü o referansın çalışma zamanı sırasında bellekte gösterdiği gerçek nesnenin türüdür*
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val x: A = createRandomA()
-
-        println(x.javaClass.name)
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun createRandomA(random: Random = Random) : A
-{
-    return when (random.nextInt(5)) {
-        0 -> B()
-        1 -> C()
-        2 -> D()
-        3 -> E()
-        else -> A()
-    }
-}
-
-open class A {
-    //...
-}
-
-open class B : A() {
-    //...
-}
-
-open class C : B() {
-    //...
-}
-
-class D : A() {
-    //...
-}
-
-class E : C() {
-    //...
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+    var x: A  
+    for (i in 1..count) {  
+        x = createRandomA()  
+  
+        println(x.javaClass.name)  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun createRandomA(random: Random = Random): A {  
+    return when (random.nextInt(5)) {  
+        0 -> B()  
+        1 -> C()  
+        2 -> D()  
+        3 -> E()  
+        else -> A()  
+    }  
+}  
+  
+open class A {  
+    //...  
+}  
+  
+open class B : A() {  
+    //...  
+}  
+  
+open class C : B() {  
+    //...  
+}  
+  
+class D : A() {  
+    //...  
+}  
+  
+class E : C() {  
+    //...  
 }
 ```
 
->*Taban sınıf türünden bir referans türemiş sınıf türünden bir referansa as operatörü ile atanabilir (downcasting). Bu işlem derleme zamanından geçmek içindir. Bu durumda çalışma zamanında kaynak referansın dinamik türünün as operatörüne verilen türü kapsayıp kapsamadığına bakılır. Kapsıyorsa haklı dönüşümdür, akış devam eder. Kapsamıyorsa haksız dönüşümdür, exception oluşur*
+>*Taban sınıf türünden bir referans türemiş sınıf türünden bir referansa as operatörü ile atanabilir (downcasting). Bu işlem derleme zamanından geçmek içindir. Bu durumda çalışma zamanında kaynak referansın dinamik türünün as operatörüne verilen türü kapsayıp kapsamadığına bakılır. Kapsıyorsa haklı dönüşümdür, akış devam eder. Kapsamıyorsa haksız dönüşümdür, exception oluşur. Buradaki kapsama nesneseldir*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val x: A = createRandomA()
-
-        println(x.javaClass.name)
-
-        val y: C = x as C
-
-        y.c = 10
-
-        println("y.c = ${y.c}")
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun createRandomA(random: Random = Random) : A
-{
-    return when (random.nextInt(5)) {
-        0 -> B()
-        1 -> C()
-        2 -> D()
-        3 -> E()
-        else -> A()
-    }
-}
-
-open class A {
-    //...
-}
-
-open class B : A() {
-    //...
-}
-
-open class C(var c: Int  = 10) : B() {
-    //...
-}
-
-class D : A() {
-    //...
-}
-
-class E : C() {
-    //...
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val x: A = createRandomA()  
+  
+        println(x.javaClass.name)  
+  
+        val y: C = x as C  
+  
+        y.c = 10  
+  
+        println("y.c = ${y.c}")  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun createRandomA(random: Random = Random): A {  
+    return when (random.nextInt(5)) {  
+        0 -> B()  
+        1 -> C()  
+        2 -> D()  
+        3 -> E()  
+        else -> A()  
+    }  
+}  
+  
+open class A {  
+    //...  
+}  
+  
+open class B : A() {  
+    //...  
+}  
+  
+open class C(var c: Int = 10) : B() {  
+    //...  
+}  
+  
+open class D : A() {  
+    //...  
+}  
+  
+open class E : C() {  
+    //...  
 }
 ```
 
 >*Any sınıfı tüm sınıfların doğrudan ya da dolaylı olarak taban sınıfı biçimindedir. Java ve C# daki Object sınıfının Kotlin'deki karşılığıdır. Bu durumda Kotlin'de tüm referanslar Any türden bir referansa doğrudan (implicit) olarak atanabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a: Any = Sample()
-    var s: Sample = a as Sample
-
-    //...
-}
-
-class Sample  {
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val a: Any = Sample()  
+    var s: Sample = a as Sample  
+  
+    //...  
+}  
+  
+class Sample {  
+    //...  
 }
 ```
 
 >*Temel türler de bir sınıf olarak temsil edildiğinden Kotlin anlamında zaten kutulama (boxing) yapılmış olur. Ancak aşağı seviyede kutulama (Java anlamında kutulama da denebilir) Any sınıfına atamada gerçekleşir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = 20
-    val any: Any = a //boxing
-
-    println(a.javaClass.name)
-    println(any.javaClass.name)
-
-    val value = any as Int //unboxing
-
-    println(value)
+package org.csystem.app  
+  
+fun main() {  
+    val a = 20  
+    val any: Any = a //boxing  
+  
+    println(a.javaClass.name)  
+    println(any.javaClass.name)  
+  
+    val value = any as Int //unboxing  
+  
+    println(value)  
 }
 ```
 
->*Anımsanacağı gibi bir referansın dinamik türünün bir türü kapsayıp kapsamadığı instanceof operatörü ile test edilebilir. Bu operatör "downcasting" işleminin güvenli bir biçimde yapılabilmesi için kullanılır. Kotlin'de bu işlem* `is` ve `!is` *operatörü ile yapılabilir.* `is` *operatörü instance of operatörüne karşılık gelir.* `!is` *operatörü de Java'da aşağıdaki bir kontrolün karşılığı olarak düşünülebilir:*
+>Anımsanacağı gibi bir referansın dinamik türünün bir türü kapsayıp kapsamadığı instanceof operatörü ile test edilebilir. Bu operatör "downcasting" işleminin güvenli bir biçimde yapılabilmesi için kullanılır. Kotlin'de bu işlem* `is` ve `!is` *operatörü ile yapılabilir.* `is` *operatörü instanceof operatörüne karşılık gelir. `!is` operatörü de Java'da aşağıdaki bir kontrolün karşılığı olarak düşünülebilir:
 
 ```java
 if (!(a instanceof T))
@@ -7823,470 +7861,501 @@ if (a !is T)
 >`is` *operatörü*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val x: A = createRandomA()
-
-        println("---------------------------------------")
-        println(x.javaClass.name)
-
-        if (x is C) {
-            val y: C = x as C
-            y.c = 10
-
-            println("y.c = ${y.c}")
-        }
-        else
-            println("Haksız dönüşüm")
-
-        println("---------------------------------------")
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun createRandomA(random: Random = Random) : A
-{
-    return when (random.nextInt(5)) {
-        0 -> B()
-        1 -> C()
-        2 -> D()
-        3 -> E()
-        else -> A()
-    }
-}
-
-open class A {
-    //...
-}
-
-open class B : A() {
-    //...
-}
-
-open class C(var c: Int  = 10) : B() {
-    //...
-}
-
-class D : A() {
-    //...
-}
-
-class E : C() {
-    //...
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val x: A = createRandomA()  
+  
+        println("---------------------------------------")  
+        println(x.javaClass.name)  
+  
+        if (x is C) {  
+            val y: C = x as C  
+            y.c = 10  
+  
+            println("y.c = ${y.c}")  
+        } else  
+            println("Haksız dönüşüm")  
+  
+        println("---------------------------------------")  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun createRandomA(random: Random = Random): A {  
+    return when (random.nextInt(5)) {  
+        0 -> B()  
+        1 -> C()  
+        2 -> D()  
+        3 -> E()  
+        else -> A()  
+    }  
+}  
+  
+open class A {  
+    //...  
+}  
+  
+open class B : A() {  
+    //...  
+}  
+  
+open class C(var c: Int = 10) : B() {  
+    //...  
+}  
+  
+class D : A() {  
+    //...  
+}  
+  
+class E : C() {  
+    //...  
 }
 ```
 
 >`!is` *operatörü*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val x: A = createRandomA()
-
-        println("---------------------------------------")
-        println(x.javaClass.name)
-
-        if (x !is C)
-            println("Haksız dönüşüm")
-        else {
-            val y: C = x as C
-            y.c = 10
-
-            println("y.c = ${y.c}")
-        }
-
-
-        println("---------------------------------------")
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun createRandomA(random: Random = Random) : A
-{
-    return when (random.nextInt(5)) {
-        0 -> B()
-        1 -> C()
-        2 -> D()
-        3 -> E()
-        else -> A()
-    }
-}
-
-open class A {
-    //...
-}
-
-open class B : A() {
-    //...
-}
-
-open class C(var c: Int  = 10) : B() {
-    //...
-}
-
-class D : A() {
-    //...
-}
-
-class E : C() {
-    //...
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val x: A = createRandomA()  
+  
+        println("---------------------------------------")  
+        println(x.javaClass.name)  
+  
+        if (x !is C)  
+            println("Haksız dönüşüm")  
+        else {  
+            val y: C = x as C  
+            y.c = 10  
+  
+            println("y.c = ${y.c}")  
+        }  
+  
+  
+        println("---------------------------------------")  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun createRandomA(random: Random = Random): A {  
+    return when (random.nextInt(5)) {  
+        0 -> B()  
+        1 -> C()  
+        2 -> D()  
+        3 -> E()  
+        else -> A()  
+    }  
+}  
+  
+open class A {  
+    //...  
+}  
+  
+open class B : A() {  
+    //...  
+}  
+  
+open class C(var c: Int = 10) : B() {  
+    //...  
+}  
+  
+class D : A() {  
+    //...  
+}  
+  
+class E : C() {  
+    //...  
 }
 ```
 
->*Kotlin'de akıllı dönüşüm (smart cast) denilen bir kavram vardır. Derleyici downcasting ya da unboxing durumlarında hedef türe dönüştürmenin güvenli olduğunu anlarsa as operatörüne gerek kalmaksınız dönüşüme ilişkin kod derleme zamanında otomatik olarak yazılır. Akıllı dönüşüm diğer detaylarıyla birlikte ileride ele alınacaktır*
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+>*Kotlin'de akıllı **dönüşüm (smart cast)** denilen bir kavram vardır. Örneğin derleyici downcasting ya da unboxing durumlarında hedef türe dönüştürmenin güvenli olduğunu anlarsa as operatörüne gerek kalmaksınız dönüşüme ilişkin kod derleme zamanında otomatik olarak yazılır. Akıllı dönüşüm diğer detaylarıyla birlikte ileride ele alınacaktır*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    for (i in 1..count) {
-        val x: A = createRandomA()
-
-        println("---------------------------------------")
-        println(x.javaClass.name)
-
-        if (x is C) {
-            x.c = 10 //smart cast
-            println("x.c = ${x.c}")
-        }
-        else
-            println("Haksız dönüşüm")
-
-        println("---------------------------------------")
-    }
-
-    println("Tekrar yapıyor musunuz?")
-}
-
-fun createRandomA(random: Random = Random) : A
-{
-    return when (random.nextInt(5)) {
-        0 -> B()
-        1 -> C()
-        2 -> D()
-        3 -> E()
-        else -> A()
-    }
-}
-
-open class A {
-    //...
-}
-
-open class B : A() {
-    //...
-}
-
-open class C(var c: Int  = 10) : B() {
-    //...
-}
-
-class D : A() {
-    //...
-}
-
-class E : C() {
-    //...
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val x: A = createRandomA()  
+  
+        println("---------------------------------------")  
+        println(x.javaClass.name)  
+  
+        if (x is C) {  
+            val y: C = x  
+            y.c = 10  
+  
+            println("y.c = ${y.c}")  
+        } else  
+            println("Haksız dönüşüm")  
+  
+        println("---------------------------------------")  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun createRandomA(random: Random = Random): A {  
+    return when (random.nextInt(5)) {  
+        0 -> B()  
+        1 -> C()  
+        2 -> D()  
+        3 -> E()  
+        else -> A()  
+    }  
+}  
+  
+open class A {  
+    //...  
+}  
+  
+open class B : A() {  
+    //...  
+}  
+  
+open class C(var c: Int = 10) : B() {  
+    //...  
+}  
+  
+class D : A() {  
+    //...  
+}  
+  
+class E : C() {  
+    //...  
 }
 
 ```
 
->*Any türünden bir dizide heterojen türler tutulabilir. is operatörü ile de dinamik tür kontrolü yapılabilir*
+>Aşağıdaki örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    for (i in 1..count) {  
+        val x: A = createRandomA()  
+  
+        println("---------------------------------------")  
+        println(x.javaClass.name)  
+  
+        if (x !is C)  
+            println("Haksız dönüşüm")  
+        else {  
+            val y: C = x  
+            y.c = 10  
+  
+            println("y.c = ${y.c}")  
+        }  
+  
+  
+        println("---------------------------------------")  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
+}  
+  
+fun createRandomA(random: Random = Random): A {  
+    return when (random.nextInt(5)) {  
+        0 -> B()  
+        1 -> C()  
+        2 -> D()  
+        3 -> E()  
+        else -> A()  
+    }  
+}  
+  
+open class A {  
+    //...  
+}  
+  
+open class B : A() {  
+    //...  
+}  
+  
+open class C(var c: Int = 10) : B() {  
+    //...  
+}  
+  
+class D : A() {  
+    //...  
+}  
+  
+class E : C() {  
+    //...  
+}
+```
+
+
+>Any türünden bir dizide heterojen türler tutulabilir. is operatörü ile de dinamik tür kontrolü yapılabilir
 
 **_Anahtar Notlar:_** Kotlin'de referans dizileri Array isimli generic bir sınıf ile yaratılabilir. Bu konu ileride ele alınacaktır.
 
 >*Aşağıdaki örneği inceleyiniz*
 
 ```kotlin
-package org.csystem.app.generator.random
+package org.csystem.app.generator  
+  
+import org.csystem.kotlin.math.Complex  
+import org.csystem.kotlin.math.geometry.Point  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun runDemoGeneratorApp() {  
+    val count = readInt("Input count:")  
+  
+    val array = createArray(count)  
+  
+    for (a in array) {  
+        println("------------------------------------------------------")  
+        println(a.javaClass.name)  
+  
+        if (a is Point)  
+            println("(${a.x}, ${a.y})")  
+        else if (a is Complex)  
+            println("|(${a.real}, ${a.real})| = ${a.norm}")  
+        else if (a is Int)  
+            println("$a * $a = ${a * a}")  
+        else if (a is Boolean)  
+            println("Not of:${!a}")  
+        else if (a is Char)  
+            println("Character:$a, Upper:${a.uppercase()}")  
+        println("------------------------------------------------------")  
+    }  
+}
+```
 
-import org.csystem.generator.random.createRandomAnyArray
-import org.csystem.math.geometry.Circle
-import org.csystem.math.geometry.Point
-import org.csystem.util.console.kotlin.readInt
-
-fun main() = runApplication()
-
-fun runApplication()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val any = createRandomAnyArray(count)
-
-    for (a in any) {
-        println("----------------------------------")
-        println(a.javaClass.name)
-
-        if (a is String)
-            println("$a -> ${a.uppercase()}")
-        else if (a is Int)
-            println("$a * $a = ${a * a}")
-        else if (a is Point)
-            println("(${a.x}, ${a.y})")
-        else if (a is Boolean)
-            println("flag = $a, !flag = ${!a}")
-        else if (a is Circle)
-            println("Radius:${a.radius}, Area:${a.area}, Perimeter:${a.circumference}")
-
-        println("----------------------------------")
-    }
+>Yukarıdaki örnek when expression ile de yapılabilir
+```kotlin
+package org.csystem.app.generator  
+  
+import org.csystem.kotlin.math.Complex  
+import org.csystem.kotlin.math.geometry.Point  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun runDemoGeneratorApp() {  
+    val count = readInt("Input count:")  
+  
+    val array = createArray(count)  
+  
+    for (a in array) {  
+        println("------------------------------------------------------")  
+        println(a.javaClass.name)  
+  
+        when (a) {  
+            is Point -> println("(${a.x}, ${a.y})")  
+            is Complex -> println("|(${a.real}, ${a.real})| = ${a.norm}")  
+            is Int -> println("$a * $a = ${a * a}")  
+            is Boolean -> println("Not of:${!a}")  
+            is Char -> println("Character:$a, Upper:${a.uppercase()}")  
+        }  
+  
+        println("------------------------------------------------------")  
+    }  
 }
 ```
 
 ```kotlin
-package org.csystem.app.generator.random
-
-import org.csystem.generator.random.createRandomAnyArray
-import org.csystem.math.geometry.Circle
-import org.csystem.math.geometry.Point
-import org.csystem.util.console.kotlin.readInt
-
-fun main() = runApplication()
-
-fun runApplication()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val any = createRandomAnyArray(count)
-
-    for (a in any) {
-        println("----------------------------------")
-        println(a.javaClass.name)
-
-        when (a) {
-            is String -> println("$a -> ${a.uppercase()}")
-            is Int -> println("$a * $a = ${a * a}")
-            is Point -> println("(${a.x}, ${a.y})")
-            is Boolean -> println("flag = $a, !flag = ${!a}")
-            is Circle -> println("Radius:${a.radius}, Area:${a.area}, Perimeter:${a.circumference}")
-        }
-
-        println("----------------------------------")
-    }
+package org.csystem.app.generator  
+  
+import org.csystem.kotlin.math.Complex  
+import org.csystem.kotlin.math.geometry.Point  
+import kotlin.random.Random  
+  
+private fun createObject(): Any {  
+    return when (Random.nextInt(5)) {  
+        0 -> Point(Random.nextDouble(-100.0, 100.0), Random.nextDouble(-100.0, 100.0))  
+        1 -> Complex(Random.nextDouble(-10.0, 10.0), Random.nextDouble(-10.0, 10.0))  
+        2 -> Random.nextInt(-128, 128)  
+        3 -> Random.nextBoolean()  
+        else -> (if (Random.nextBoolean()) 'A' else 'a') + Random.nextInt(26)  
+    }  
+}  
+  
+fun createArray(count: Int): Array<Any> {  
+    val result = Array<Any>(count) { }  
+  
+    for (i in result.indices)  
+        result[i] = createObject()  
+  
+    return result  
 }
 ```
 
-```kotlin
-package org.csystem.generator.random
-
-import org.csystem.math.geometry.Circle
-import org.csystem.math.geometry.Point
-import kotlin.random.Random
-
-private fun createRandomString(count: Int, random: Random) : String
-{
-    val sb = StringBuilder()
-
-    for (i in 1..count)
-        sb.append((if (random.nextBoolean()) 'A' else 'a') + random.nextInt(26))
-
-    return sb.toString()
-}
-
-//String, Int, Point, Boolean, Circle
-private fun createRandomAny(random: Random) : Any
-{
-    return when (random.nextInt(5)) {
-        0 -> createRandomString(random.nextInt(5, 15), random)
-        1 -> random.nextInt(-128, 128)
-        2 -> Point(random.nextDouble(-100.0, 100.0), random.nextDouble(-100.0, 100.0))
-        3 -> random.nextBoolean()
-        else -> Circle(random.nextDouble(-3.0, 3.0))
-    }
-}
-
-fun createRandomAnyArray(count: Int, random: Random = Random) : Array<Any>
-{
-    val result = Array<Any>(count){}
-
-    for (i in result.indices)
-        result[i] = createRandomAny(random)
-
-    return result
-}
-```
-
-### Polymorphism (çok biçimlilik):
+### Polymorphism:
 
 >*Biyolojiden programlamaya aktarılmıştır. Biyoloji'de "polymorphism", farklı doku ya da organların evrim süreci içerisinde temel hedefleri aynı kalması koşuluyla o hedefe nasıl ulaşılacağının değişebilmesidir.*
 >
->*Aslında polymorphism ikiye ayrılır: run time polymorphism, compile time polymorphism. Bu bölümde anlatılan ve Biyoloji'den gelen "runtime polymophism"'dir. Polymorphism dendiğinde "runtime polymorphism" anlaşılır. Compile time polymorphism Kotlin'de "generic"'ler ile gerçekleştirilir. Bu konu ileride ele alınacaktır*
+>*Programlamda polymorphism ikiye ayrılabilir: **run time polymorphism (RTP), compile time polymorphism (CTP)**. Bu bölümde anlatılan ve Biyoloji'den gelen "runtime polymophism"'dir. Polymorphism dendiğinde "runtime polymorphism" anlaşılır. Compile time polymorphism Kotlin'de "generic"'ler ile gerçekleştirilir. Bu konu ileride ele alınacaktır.*
 >
->*Çok biçimliliğin programlama açısından 3(üç) tane tanımından bahsedilebilir:*
->1. *Biyolojik Tanım: Taban sınıfın bir fonksiyonunun türemiş sınıfta yeniden gerçekleştirilmesi (implementation)
->2. *Yazılım Mühendisliği Tanımı: Türden bağımsız kod yazmak*
->3. *Aşağı Seviyeli Tanım: Önceden yazılmış kodların sonradan yazılmış kodları çağırabilmesi*
+>*RTP'nin programlama açısından 3(üç) şekilde betimlenebilir:
+>**1. Biyolojik Tanım:** Taban sınıfın bir fonksiyonunun türemiş sınıfta yeniden gerçekleştirilmesi (implementation).
 >
->*Çok biçimlilik sanal metotlar (virtual method) kullanılarak gerçekleştirilir. Kotlin'de bir metodun sanal olması için "open" anahtar sözcüğü ile bildirilmesi gerekir. Ayrıca türemiş sınıfta override edilen metot için de override anahtar sözcüğü kullanılmalıdır. open ile bildirilmiş sanal bir metodun türemiş sınıfta override edilmesi zorunlu değildir*
-
-**_Anahtar Notlar:_** Java'da non-static olan, final olmayan veya abstract olarak bildirilmiş bir metot sanaldır. Kotlin'de ise bir metodun sanal olması programcı tarafından bildirilmelidir. private metotlar sanal olamazlar.
-
-**_Anahtar Notlar:_** Global fonksiyonlar sanal olamazlar
-
->*Derleyici sanal bir metot çağrısı gördüğünde şu şekilde bir kod üretir: Derleme zamanında referansın dinamik türüne bak, dinamik türe ilişkin sınıfta sanal metot override edilmişse onu çağır. Edilmemişse sırasıyla taban sınıfına ve dolaylı sınıflarına da bak ilk bulduğun metodu çağır*
+>**2. Yazılım Mühendisliği Tanımı:** Türden bağımsız kod yazmaktır.
 >
+>**3. Aşağı Seviyeli Tanım:** Önceden yazılmış kodların sonradan yazılmış kodları çağırabilmesidir.
+>
+>Çok biçimlilik **sanal metotlar (virtual method)** kullanılarak gerçekleştirilir. Kotlin'de bir metodun sanal olması için **"open"** anahtar sözcüğü ile bildirilmesi gerekir. Ayrıca türemiş sınıfta override edilen metot için de override anahtar sözcüğü kullanılmalıdır. open ile bildirilmiş sanal bir metodun türemiş sınıfta override edilmesi zorunlu değildir. private metotlar ve global fonksiyonlar sanal olamazlar.
+
+**_Anahtar Notlar:_** Java'da non-static olan, final olmayan veya abstract olarak bildirilmiş bir metot sanaldır. Kotlin'de ise bir metodun sanal olması programcı tarafından belirtilmedlir. 
+
+>*Derleyici sanal bir metot çağrısı gördüğünde şu şekilde bir kod üretir: **Çalışma zamanında referansın dinamik türüne bak, dinamik türe ilişkin sınıfta sanal metot override edilmişse onu çağır., edilmemişse sırasıyla taban sınıfına ve dolaylı sınıflarına da bak ilk bulduğun metodu ilgili çağır***
+
+
 >*Aşağıdaki örneği çalıştırıp sonucu gözlemleyiniz*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val n = readInt("Input count:")
-
-    for (i in 1..n) {
-        val x: A = createRandomA()
-
-        println("-----------------------------------------------------------")
-        println(x.javaClass.name)
-        x.foo()
-        println("-----------------------------------------------------------")
-    }
-}
-
-fun createRandomA(random: Random = Random) : A
-{
-    return when(random.nextInt(4)) {
-        0 -> A()
-        1 -> B()
-        2 -> C()
-        else -> D()
-    }
-}
-
-open class D : C() {
-    //...
-}
-
-open class C : B() {
-    override fun foo() //override
-    {
-        println("C.foo")
-    }
-}
-
-open class B : A() {
-    override fun foo() //override
-    {
-        println("B.foo")
-    }
-}
-
-open class A {
-    open fun foo() //sanal metot (virtual method)
-    {
-        println("A.foo")
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val n = readInt("Input count:")  
+    var x: A  
+  
+    for (i in 1..n) {  
+        x = createRandomA()  
+        println("-----------------------------------------------------------")  
+        println(x.javaClass.name)  
+        x.foo()  
+        println("-----------------------------------------------------------")  
+    }  
+}  
+  
+fun createRandomA(random: Random = Random): A {  
+    return when (random.nextInt(5)) {  
+        0 -> A()  
+        1 -> B()  
+        2 -> C()  
+        3 -> D()  
+        else -> E()  
+    }  
+}  
+  
+open class E : A() {  
+    //..  
+}  
+  
+open class D : C() {  
+    //...  
+}  
+  
+open class C : B() {  
+    override fun foo() { //override  
+        println("C.foo")  
+    }  
+}  
+  
+open class B : A() {  
+    override fun foo() { //override  
+        println("B.foo")  
+    }  
+}  
+  
+open class A {  
+    open fun foo() { //sanal metot (virtual method)  
+        println("A.foo")  
+    }  
 }
 ```
 
 >*final override metot artık override işlemine kapatılmıştır*
 
 ```kotlin
-package org.csystem.app
-
-open class A {
-    open fun foo() //sanal metot
-    {
-        println("A.foo")
-    }
-}
-
-open class B : A() {
-    final override fun foo()
-    {
-        println("A.foo")
-    }
-}
-
-class C : B() {
-    override fun foo() //error
-    {
-        println("C.foo")
-    }
+package org.csystem.app  
+  
+open class A {  
+    open fun foo() {  
+        println("A.foo")  
+    }  
+}  
+  
+open class B : A() {  
+    final override fun foo() {  
+        println("A.foo")  
+    }  
+}  
+  
+class C : B() {  
+    override fun foo() { //error  
+        println("C.foo")  
+    }  
 }
 ```
 
 >*Aşağıdaki örnek Kotlin'de geçersizdir*
 
 ```kotlin
-package org.csystem.app
-
-open class A {
-    open fun foo()
-    {
-        println("A.foo")
-    }
-    //...
-}
-
-open class B : A() {
-    override fun foo()
-    {
-        println("B.foo")
-    }
-}
-
-open class C : B() {
-    open fun foo() //error
-    {
-        //...
-    }
+package org.csystem.app  
+  
+open class A {  
+    open fun foo() {  
+        println("A.foo")  
+    }  
+    //...  
+}  
+  
+open class B : A() {  
+    override fun foo() {  
+        println("B.foo")  
+    }  
+}  
+  
+open class C : B() {  
+    open fun foo() { //error  
+        //...    }  
 }
 ```
 
 >*Aşağıdaki örnek Kotlin'de geçersizdir*
 
 ```kotlin
-package org.csystem.app
-
-open class A {
-    open fun foo()
-    {
-        println("A.foo")
-    }
-    //...
+package org.csystem.app  
+  
+open class A {  
+    open fun foo() {  
+        println("A.foo")  
+    }  
+    //...  
+}  
+  
+open class B : A() {  
+    final override fun foo() {  
+        println("B.foo")  
+    }  
+}  
+  
+open class C : B() {  
+    open fun foo() { //error  
+        //...    }  
 }
-
-open class B : A() {
-    final override fun foo()
-    {
-        println("B.foo")
-    }
-}
-
-open class C : B() {
-    open fun foo() //error
-    {
-        //...
-    }
-}
-
 ```
 
 **_Anahtar Notlar:_** print ve println metotlarının `Any?` parametreli overload'ları toString metodunu çağırırlar ve elde edilen yazıyı stdout'a basarlar.
@@ -8294,38 +8363,36 @@ open class C : B() {
 >*Any sınıfının toString metodu nesneye yönelik tekil bir yazıya döner. Bu yazının nasıl elde edildiğinin programcı açısından önemi yoktur*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s1 = Sample()
-    val s2 = Sample()
-
-    println(s1)
-    println(s2)
-}
-
-class Sample {
-
+package org.csystem.app  
+  
+fun main() {  
+    val s1 = Sample()  
+    val s2 = Sample()  
+  
+    println(s1)  
+    println(s2)  
+}  
+  
+class Sample {  
+    //...  
 }
 ```
 
 >*Aşağıdaki örnekte toString metodu override edilmiştir. Bu durumda println tarafından override edilen çağrılmış olur*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s1 = Sample()
-    val s2 = Sample()
-
-    println(s1)
-    println(s2)
-}
-
-class Sample {
-    override fun toString() = "Sample"
+package org.csystem.app  
+  
+fun main() {  
+    val s1 = Sample()  
+    val s2 = Sample()  
+  
+    println(s1)  
+    println(s2)  
+}  
+  
+class Sample {  
+    override fun toString() = "Sample"  
 }
 
 ```
@@ -8333,32 +8400,32 @@ class Sample {
 >*Complex sınıfının toString metodu*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.kotlin.util.math.Complex
-
-fun main()
-{
-    val z = Complex(2.3, -6.7)
-
-    println(z)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.Complex  
+  
+fun main() {  
+    val z = Complex(2.3, -6.7)  
+  
+    println(z)  
 }
 ```
 
 >*Point sınıfının toString metodu*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.geometry.Point
-
-fun main()
-{
-    val z = Point(2.33456, -6.7789)
-
-    println(z)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.Point  
+  
+fun main() {  
+    val point = Point(3.4, -4.5)  
+  
+    println("Point:$point")  
 }
 ```
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >*Any sınıfının equals metodu bir sınıf türünden nesnelerin eşitlik karşılaştırması için kullanılır. Bu durumda bu metot sınıfa özgü olarak override edilir. Bu metot aynı zamanda o sınıf referansların `==` ve `!=` operatörleri ile kullanıldıklarında da çağrılır.
 >

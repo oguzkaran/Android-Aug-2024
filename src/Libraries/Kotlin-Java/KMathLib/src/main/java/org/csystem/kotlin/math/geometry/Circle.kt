@@ -18,4 +18,6 @@ open class Circle(radius: Double = 0.0) {
 
     val circumference: Double
         get() = 2 * PI * radius
+
+    override fun toString() = "Radius:$radius, Area:$area, Circumference:$circumference"
 }

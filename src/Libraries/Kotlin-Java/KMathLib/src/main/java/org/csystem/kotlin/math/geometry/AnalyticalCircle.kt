@@ -29,4 +29,6 @@ class AnalyticalCircle(radius: Double = 0.0, x: Double = 0.0, y: Double = 0.0) :
     fun centerDistance(other: AnalyticalCircle) = mCenter.distance(other.mCenter)
     fun isTangent(other: AnalyticalCircle) = abs(centerDistance(other) - radius - other.radius) < 0.00001
     fun offset(dx: Double, dy: Double = dx) = mCenter.offset(dx, dy)
+
+    override fun toString() = "${super.toString()}, Center:$mCenter"
 }
