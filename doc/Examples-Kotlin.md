@@ -7,9 +7,9 @@
 
 **_Anahtar Notlar:_** Burada ağırlıklı olarak KotlinJVM üzerinde durulacaktır.
 
->*Hello, World programı*
+>Hello, World programı
 >
->*`Kotlin 1.3` versiyonundan itibaren main fonksiyonunun parametresi olmak zorunda değildir.*
+>`Kotlin 1.3` versiyonundan itibaren main fonksiyonunun parametresi olmak zorunda değildir.
 
 ```kotlin
 package org.csystem.app
@@ -21,7 +21,7 @@ fun main() {
 
 **_Anahtar Notlar:_** Kotlin'de bir fonksiyon fun anahtar sözcüğü ile bildirilir. Kotlin'de bir fonksiyonun geri dönüş değeri fonksiyon isminden önce yazılmaz. Bir fonksiyonun geri dönüş değeri yoksa herhangi bir geri dönüş değeri bilgisi yazılmayabilir.
 
->*Bir fonksiyonu çağıran fonksiyon (caller) ile çağrılan fonksiyon (callee) aynı pakette ise paket ismi kullanılmayabilir. Yani aynı `.kt` uzantılı dosyada bulunan veya farklı dosyada fakat aynı paket altında bulunan fonksiyonlar doğrudan çağrılabilir.*
+>Bir fonksiyonu çağıran fonksiyon (caller) ile çağrılan fonksiyon (callee) aynı pakette ise paket ismi kullanılmayabilir. Yani aynı `.kt` uzantılı dosyada bulunan veya farklı dosyada fakat aynı paket altında bulunan fonksiyonlar doğrudan çağrılabilir.
 
 ```kotlin
 package org.csystem.app
@@ -42,7 +42,7 @@ fun bar() {
 }
 ```
 
->*Bir fonksiyonun geri dönüş değeri fonksiyon bildiriminde gövde yazılmadan önce, :'den sonra yazılmalıdır. Unit C, C++, Java ve C#'daki void anahtar sözcüğüne karşılık getirilebilir. `Kotlin 1.1` versiyonundan sonra geri dönüş değeri olmayan fonksiyonlar için Unit yazılması zorunlu değildir*
+>Bir fonksiyonun geri dönüş değeri fonksiyon bildiriminde gövde yazılmadan önce, :'den sonra yazılmalıdır. Unit C, C++, Java ve C#'daki void anahtar sözcüğüne karşılık getirilebilir. `Kotlin 1.1` versiyonundan sonra geri dönüş değeri olmayan fonksiyonlar için Unit yazılması zorunlu değildir
 
 ```kotlin
 package org.csystem.app
@@ -80,9 +80,9 @@ fun bar() : Unit {
 
 **_Anahtar Notlar:_** Kotlin'de "işaretsiz (unsigned)" tamsayı türleri de bulunur. Bunlar ileride ele alınacaktır.
 
->*Yerel değişken bildirimi var veya val anahtar sözcüğü ile yapılabilir. Bir değişkenin türü değişken isminden sonra `:` ile birlikte yazılır. Değişken bildirim noktasında değer verilmesi durumunda (initialization) tür yazılmayabilir.*
+>Yerel değişken bildirimi var veya val anahtar sözcüğü ile yapılabilir. Bir değişkenin türü değişken isminden sonra `:` ile birlikte yazılır. Değişken bildirim noktasında değer verilmesi durumunda (initialization) tür yazılmayabilir.
 >
->*Bu durumda tür atanan ifadenin türü olarak derleyici tarafından tespit edilir (type inference/deduction)*
+>Bu durumda tür atanan ifadenin türü olarak derleyici tarafından tespit edilir (type inference/deduction)
 
 ```kotlin
 package org.csystem.app
@@ -97,7 +97,7 @@ fun main() {
 }
 ```
 
->*println fonksiyonu bir değişkenin içeriğini ekrana basar*
+>println fonksiyonu bir değişkenin içeriğini ekrana basar
 
 ```kotlin
 package org.csystem.app
@@ -111,7 +111,7 @@ fun main() {
 }
 ```
 
->*val ile bildirilen değişkenler içerisine bir kez değer verilebilir*
+>val ile bildirilen değişkenler içerisine bir kez değer verilebilir
 
 ```kotlin
 package org.csystem.app
@@ -130,7 +130,7 @@ fun main() {
 **_Anahtar Notlar:_** Kotlin'de faaliyet alanı (scope) boyunca bir kez değer verilen bir değişkenin val olarak bildirilmesi
 iyi bir tekniktir
 
->*İki tırnak içerisindeki ifadeler (string literals), "string template" biçimindedir. Bu ifadeler içerisinde `$` ile yazılan bir ifade string oluşturulurken hesaplanır ve değeri yazı içerisinde formatlanır*
+>İki tırnak içerisindeki ifadeler (string literals), "string template" biçimindedir. Bu ifadeler içerisinde `$` ile yazılan bir ifade string oluşturulurken hesaplanır ve değeri yazı içerisinde formatlanır
 
 ```kotlin
 package org.csystem.app
@@ -144,7 +144,7 @@ fun main() {
 }
 ```
 
->*İki tırnak içerisindeki ifadeler "string template" biçimindedir. Bu ifadeler içerisinde $ ile yazılan bir ifade string oluşturulurken hesaplanır ve değeri yazı içerisine eklenir*
+>İki tırnak içerisindeki ifadeler "string template" biçimindedir. Bu ifadeler içerisinde $ ile yazılan bir ifade string oluşturulurken hesaplanır ve değeri yazı içerisine eklenir
 
 ```kotlin
 package org.csystem.app
@@ -158,7 +158,7 @@ fun main() {
 }
 ```
 
->*İki tırnak içerisindeki ifadeler "string template" biçimindedir. Bu ifadeler içerisinde $ ile yazılan bir ifade string oluşturulurken hesaplanır ve değeri yazı içerisine eklenir*
+>İki tırnak içerisindeki ifadeler "string template" biçimindedir. Bu ifadeler içerisinde $ ile yazılan bir ifade string oluşturulurken hesaplanır ve değeri yazı içerisine eklenir
 
 ```kotlin
 package org.csystem.app
@@ -171,7 +171,7 @@ fun main() {
 }
 ```
 
->*string template içerisinde $ karakteri formatlanmak (yani yazı içerisinde çıkartılmak) istenirse ters bölü ile(escape sequence) olarak yazılmalıdır. Eğer $ tek başına yazı içerisinde kullanılırsa doğrudan yazılabilir.*
+>string template içerisinde $ karakteri formatlanmak (yani yazı içerisinde çıkartılmak) istenirse ters bölü ile(escape sequence) olarak yazılmalıdır. Eğer $ tek başına yazı içerisinde kullanılırsa doğrudan yazılabilir.
 
 ```kotlin
 package org.csystem.app
@@ -183,7 +183,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnekte en soldaki $ karakteri için ters bölü kullanılmasına gerek yoktur*
+>Aşağıdaki örnekte en soldaki $ karakteri için ters bölü kullanılmasına gerek yoktur
 
 ```kotlin
 package org.csystem.app
@@ -195,7 +195,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnekte metot içerisinde bir alt blok bildirimi yapılmamıştır. Aşağıdaki örnekte yapılanın ne olduğu ileride ele alınacaktır*
+>Aşağıdaki örnekte metot içerisinde bir alt blok bildirimi yapılmamıştır. Aşağıdaki örnekte yapılanın ne olduğu ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app
@@ -209,7 +209,7 @@ fun main() {
 }
 ```
 
->*Yukarıdaki örnekte blok olarak kullanılmak isteniyorsa run fonksiyonu aşağıdaki gibi çağrılabilir. run fonksiyonu ve aşağıdaki gibi fonksiyon çağırma detayları ileride ele alınacaktır. Örnekteki kodun Java karşılığı:*
+>Yukarıdaki örnekte blok olarak kullanılmak isteniyorsa run fonksiyonu aşağıdaki gibi çağrılabilir. run fonksiyonu ve aşağıdaki gibi fonksiyon çağırma detayları ileride ele alınacaktır. Örnekteki kodun Java karşılığı:
 
 ```java
 package org.csystem.app;
@@ -238,7 +238,7 @@ fun main() {
 }
 ```
 
->*Yukarıdaki örnek aşağıdaki gibi de yapılabilir. Detaylar ileride ele alınacaktır*
+>Yukarıdaki örnek aşağıdaki gibi de yapılabilir. Detaylar ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app
@@ -252,7 +252,7 @@ fun main() {
 }
 ```
 
->*Kapsayan bloklarda aynı isimli yerel değişken bildirimi geçerlidir. Bu durumda içteki blokta o blok içerisinde bildirilen değişken kapsayan bloktaki değişken ismini maskeler (shadowing). Bu durumda birçok derleyici ve IDE uyarı verir. Aslında aşağıdaki işlemin burada ankatıldığından daha farkjlı bir detayı vardır. Bu durum ileride ele alınacaktır*
+>Kapsayan bloklarda aynı isimli yerel değişken bildirimi geçerlidir. Bu durumda içteki blokta o blok içerisinde bildirilen değişken kapsayan bloktaki değişken ismini maskeler (shadowing). Bu durumda birçok derleyici ve IDE uyarı verir. Aslında aşağıdaki işlemin burada ankatıldığından daha farkjlı bir detayı vardır. Bu durum ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app
@@ -273,7 +273,7 @@ fun main() {
 }
 ```
 
->*Temel türler kategori olarak değer türündendir (value type). Yani temel türden değişkenler içerisinde adres tutulmaz*
+>Temel türler kategori olarak değer türündendir (value type). Yani temel türden değişkenler içerisinde adres tutulmaz
 
 ```kotlin
 package org.csystem.app
@@ -292,7 +292,7 @@ fun main() {
 }
 ```
 
->*Klavyeden (aslında stdin'den) Int türden değer okuma kalıbı. Örnekteki bazı operatörler ileride ele alınacaktır*
+>Klavyeden (aslında stdin'den) Int türden değer okuma kalıbı. Örnekteki bazı operatörler ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app
@@ -305,7 +305,7 @@ fun main() {
 }
 ```
 
->*Kotlin 1.6 ile birlikte klavyeden (aslında stdin'den) enter basılana kadar girilen yazıyı bir String olarak okuyan readln fonkiyonu eklenmiştir*
+>Kotlin 1.6 ile birlikte klavyeden (aslında stdin'den) enter basılana kadar girilen yazıyı bir String olarak okuyan readln fonkiyonu eklenmiştir
 
 ```kotlin
 package org.csystem.app
@@ -318,7 +318,7 @@ fun main() {
 }
 ```
 
->*Klavyeden Double türden değer okuma kalıbı*
+>Klavyeden Double türden değer okuma kalıbı
 
 ```kotlin
 package org.csystem.app
@@ -331,7 +331,7 @@ fun main() {
 }
 ```
 
->*Klavyeden Long türden değer okuma kalıbı*
+>Klavyeden Long türden değer okuma kalıbı
 
 ```kotlin
 package org.csystem.app
@@ -344,7 +344,7 @@ fun main() {
 }
 ```
 
->*Klavyeden değer okunması*
+>Klavyeden değer okunması
 
 ```kotlin
 package org.csystem.app
@@ -380,7 +380,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de de değer verilmemiş bir değişken kullanılamaz. Yerel değişkenlere değer verilmesi programcının sorumluluğundadır*
+>Kotlin'de de değer verilmemiş bir değişken kullanılamaz. Yerel değişkenlere değer verilmesi programcının sorumluluğundadır
 
 ```kotlin
 package org.csystem.app
@@ -395,7 +395,7 @@ fun main() {
 
 ### Sabitler
 
->*Sayı nokta içermiyorsa ve hiçbir sonek almamışsa Int veya Long türlerinden ilk olarak hangisinin sınırları içerisindeyse o türdendir. Sayı Long türü sınırları dışındaysa error oluşur*
+>Sayı nokta içermiyorsa ve hiçbir sonek almamışsa Int veya Long türlerinden ilk olarak hangisinin sınırları içerisindeyse o türdendir. Sayı Long türü sınırları dışındaysa error oluşur
 
 ```kotlin
 package org.csystem.app
@@ -408,7 +408,7 @@ fun main() {
 }
 ```
 
->*Sayı nokta içermiyorsa ve L sonekini almışsa Long türdendir. Sayı Long türü sınırları dışındaysa error oluşur. Küçük harf L kullanılması geçersizdir*
+>Sayı nokta içermiyorsa ve L sonekini almışsa Long türdendir. Sayı Long türü sınırları dışındaysa error oluşur. Küçük harf L kullanılması geçersizdir
 
 ```kotlin
 package org.csystem.app
@@ -421,7 +421,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de bir sabitin sonunda D veya d soneki geçersizdir*
+>Kotlin'de bir sabitin sonunda D veya d soneki geçersizdir
 
 ```kotlin
 package org.csystem.app
@@ -433,7 +433,7 @@ fun main() {
 }
 ```
 
->*Sayı nokta içersin ya da içermesin F veya f sonekini almışsa Float türdendir*
+>Sayı nokta içersin ya da içermesin F veya f sonekini almışsa Float türdendir
 
 ```kotlin
 package org.csystem.app
@@ -446,7 +446,7 @@ fun main() {
 }
 ```
 
->*Sayı nokta içeriyorsa ve hiçbir sonek almamışsa Double türdendir*
+>Sayı nokta içeriyorsa ve hiçbir sonek almamışsa Double türdendir
 
 ```kotlin
 package org.csystem.app
@@ -458,7 +458,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de nokta içeren bir sabitin noktadan önceki kısmı (tam kısmı) sıfır ise sıfır yazılmayabilir.Ancak noktadan sonraki kısmı (ondalık kısmı) sıfır ise noktadan sonra bir şey yazmamak geçersizdir*
+>Kotlin'de nokta içeren bir sabitin noktadan önceki kısmı (tam kısmı) sıfır ise sıfır yazılmayabilir.Ancak noktadan sonraki kısmı (ondalık kısmı) sıfır ise noktadan sonra bir şey yazmamak geçersizdir
 
 ```kotlin
 package org.csystem.app
@@ -469,7 +469,7 @@ fun main() {
 }
 ```
 
->*Kotlin' de hexadecimal sabitler 0x veya 0X ile yazılabilir*
+>Kotlin' de hexadecimal sabitler 0x veya 0X ile yazılabilir
 
 ```kotlin
 package org.csystem.app
@@ -481,7 +481,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de octal sabit yoktur. Sayının başına sıfır konması da geçersizdir*
+>Kotlin'de octal sabit yoktur. Sayının başına sıfır konması da geçersizdir
 
 ```kotlin
 package org.csystem.app
@@ -493,7 +493,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de binary sabit 0b veya 0B ile kullanılabilmektedir*
+>Kotlin'de binary sabit 0b veya 0B ile kullanılabilmektedir
 
 ```kotlin
 package org.csystem.app
@@ -505,7 +505,7 @@ fun main() {
 }
 ```
 
->*Kotlin' de gerçek sayı sabitleri üstel olarak yazılabilir. Sayının değeri ne olursa olsun üstel olarak yazılansabitler Double türdendir*
+>Kotlin' de gerçek sayı sabitleri üstel olarak yazılabilir. Sayının değeri ne olursa olsun üstel olarak yazılansabitler Double türdendir
 
 ```kotlin
 package org.csystem.app
@@ -517,7 +517,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de karakter sabitleri tek tırnak ile yazılabilir*
+>Kotlin'de karakter sabitleri tek tırnak ile yazılabilir
 
 ```kotlin
 package org.csystem.app
@@ -529,7 +529,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de tek tırnak içerisinde özel durumlar dışında birden fazla karakter yazılamaz*
+>Kotlin'de tek tırnak içerisinde özel durumlar dışında birden fazla karakter yazılamaz
 
 ```kotlin
 package org.csystem.app
@@ -541,7 +541,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de* `\u` *(ters bölü u) kullanımı*
+>Kotlin'de `\u` (ters bölü u) kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -553,7 +553,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de desteklenene "escape sequence" karakterler. Kotlin'de bazı programlama dillerinde desteklenen escape sequence karakterler desteklenmez. Örneğin* `\0` *ile gösterilen null karakter Kotlin'de geçersizdir. Ancak kullanılmak istenirseaşağıdaki gibi* `\u0000` *biçiminde yazılabilir*
+>Kotlin'de desteklenene "escape sequence" karakterler. Kotlin'de bazı programlama dillerinde desteklenen escape sequence karakterler desteklenmez. Örneğin `\0` ile gösterilen null karakter Kotlin'de geçersizdir. Ancak kullanılmak istenirseaşağıdaki gibi `\u0000` biçiminde yazılabilir
 
 ```kotlin
 package org.csystem.app
@@ -574,7 +574,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de backtic '`'  karakteri ile bir anahtar sözcük tek başına değişken ismi yapılabilir.*
+>Kotlin'de backtic '`'  karakteri ile bir anahtar sözcük tek başına değişken ismi yapılabilir.
 
 ```kotlin
 package org.csystem.app
@@ -588,12 +588,12 @@ fun main() {
 
 **_Anahtar Notlar:_** Şüphesiz bir anahtar sözcüğün doğrudan değişken ismi olarak kullanımı pratikte çok anlamlı değildir. IntelliJ gibi bazı IDE'lerin Java ile yazılmış bir kodu Kotlin ile yazılmış bir kod dönüştüren translator eklentileri vardır. Bu translator'lar dönüşümde Java'da değişken ismi olarak yapılmış ancak Kotlin'de anahtar sözcük olan isimleri backtic karakteri sarmalayarak Kotlin kod üretirler.
 
->*Kotlin'de aşağıdaki iki durum dışında değişken isimlendirme kuralları Java ile aynıdır.*
+>Kotlin'de aşağıdaki iki durum dışında değişken isimlendirme kuralları Java ile aynıdır.
 >1. backtic kullanımı
 >2. Kotlin'de alttire karakteri tek başına değişken ismi olarak kullanılamaz
 >
->*Anımsanacağı gibi Java 9 öncesinde alttire karakteri tek başına değişken ismi olarak kullanılabilmekteydi.*\
->*İki tane iki tırnak karakteri arasında ters bölü tek başına kullanıldığında escape sequence karakter bekler*
+>Anımsanacağı gibi Java 9 öncesinde alttire karakteri tek başına değişken ismi olarak kullanılabilmekteydi.\
+>İki tane iki tırnak karakteri arasında ters bölü tek başına kullanıldığında escape sequence karakter bekler
 
 ```kotlin
 package org.csystem.app
@@ -603,7 +603,7 @@ fun main() {
 }
 ```
 
->*İki tane iki tırnak karakteri arasında ters bölü karakterinin kullanımı*
+>İki tane iki tırnak karakteri arasında ters bölü karakterinin kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -613,7 +613,7 @@ fun main() {
 }
 ```
 
->*`$` karakterinin yazıda kullanımı*
+>`$` karakterinin yazıda kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -623,7 +623,7 @@ fun main() {
 }
 ```
 
->*Sabitlerin basamakları arasında alttire karakteri istenildiği kadar kullanılabilir.*
+>Sabitlerin basamakları arasında alttire karakteri istenildiği kadar kullanılabilir.
 
 ```kotlin
 package org.csystem.app
@@ -635,7 +635,7 @@ fun main() {
 }
 ```
 
->*Sabitlerde alttire kullanımı*
+>Sabitlerde alttire kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -647,7 +647,7 @@ fun main() {
 }
 ```
 
->*Sabitlerde alttire kullanımı*
+>Sabitlerde alttire kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -659,7 +659,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de tek bir ifade içeren fonksiyonlar (single expression functions) için gövde yazmaya gerek yoktur. Tek ifadeli fonksiyonlar için geri dönüş değeri bilgisi yazılmayabilir*
+>Kotlin'de tek bir ifade içeren fonksiyonlar (single expression functions) için gövde yazmaya gerek yoktur. Tek ifadeli fonksiyonlar için geri dönüş değeri bilgisi yazılmayabilir
 
 ```kotlin
 package org.csystem.app
@@ -676,7 +676,7 @@ fun isEven(a: Int) = a % 2 == 0
 fun isOdd(a: Int): Boolean = !isEven(a)
 ```
 
->*Fonksiyonların parametreleri ve argümanlar ile çağrılması*
+>Fonksiyonların parametreleri ve argümanlar ile çağrılması
 
 ```kotlin
 package org.csystem.app
@@ -690,13 +690,13 @@ fun add(a: Int, b: Int) = a + b
 fun display(a: Int, b: Double) = println("a = $a, b = $b")
 ```
 
->*Fonksiyonların parametre değişkenleri var veya val anahtar sözcüğü ile bildirilemez*
+>Fonksiyonların parametre değişkenleri var veya val anahtar sözcüğü ile bildirilemez
 
 ```kotlin
 fun foo(val a: Int, var b: Double) = println("a = $a, b = $b") //error
 ```
 
->*Fonksiyonların parametre değişkenlerinin fonksiyon içerisinde değerin değiştirilmesi geçersizdir*
+>Fonksiyonların parametre değişkenlerinin fonksiyon içerisinde değerin değiştirilmesi geçersizdir
 
 ```kotlin
 fun foo(a: Int, b: Double) {
@@ -705,7 +705,7 @@ fun foo(a: Int, b: Double) {
 }
 ```
 
->*Bir fonksiyon içerisinde bir parametre değişken ismi ile aynı olaran yerel değişken bildirimi geçerlidir. Ancak bazı programcılar bu durumu özellikle kullanmaz*
+>Bir fonksiyon içerisinde bir parametre değişken ismi ile aynı olaran yerel değişken bildirimi geçerlidir. Ancak bazı programcılar bu durumu özellikle kullanmaz
 
 ```kotlin
 package org.csystem.app
@@ -724,7 +724,7 @@ fun foo(a: Int, b: Double) {
 }
 ```
 
->*Yukarıdaki örnek aşağıdaki gibi de yapılabilir*
+>Yukarıdaki örnek aşağıdaki gibi de yapılabilir
 
 ```kotlin
 package org.csystem.app
@@ -743,7 +743,7 @@ fun foo(a: Int, b: Double) {
 }
 ```
 
->*Fonksiyonların çağrılması*
+>Fonksiyonların çağrılması
 
 ```kotlin
 package org.csystem.app
@@ -762,7 +762,7 @@ fun add(a: Int, b: Int) = a + b
 
 ```
 
->*Bir fonksiyonun default argümanları olabilir. Programcı default argümanları anlamlı olacak şekilde belirlemelidir. Örneğin bir fonksiyonun hiç bir parametresinin default argümanı almayabilir*
+>Bir fonksiyonun default argümanları olabilir. Programcı default argümanları anlamlı olacak şekilde belirlemelidir. Örneğin bir fonksiyonun hiç bir parametresinin default argümanı almayabilir
 
 ```kotlin
 package org.csystem.app
@@ -775,7 +775,7 @@ fun main() {
 fun add(a:Int, b: Int = 0) = a + b
 ```
 
->*Bir fonksiyonun default argümanları olabilir. Programcı default argümanları anlamlı olacak şekilde belirlemelidir. Örneğin bir fonksiyonun hiç bir parametresinin default argümanı almayabilir*
+>Bir fonksiyonun default argümanları olabilir. Programcı default argümanları anlamlı olacak şekilde belirlemelidir. Örneğin bir fonksiyonun hiç bir parametresinin default argümanı almayabilir
 
 ```kotlin
 package org.csystem.app
@@ -789,7 +789,7 @@ fun main() {
 fun add(a:Int = 0, b: Int = 0) = a + b
 ```
 
->*Bir fonksiyon çağrılırken isimli argümanlar (named argument) verilebilir*
+>Bir fonksiyon çağrılırken isimli argümanlar (named argument) verilebilir
 
 ```kotlin
 package org.csystem.app
@@ -802,7 +802,7 @@ fun main() {
 fun display(a: Int, b: Int) = println("a = $a, b = $b")
 ```
 
->*Bir fonksiyon çağrılırken isimli argümanlar verilebilir*
+>Bir fonksiyon çağrılırken isimli argümanlar verilebilir
 
 ```kotlin
 package org.csystem.app
@@ -815,7 +815,7 @@ fun main() {
 fun foo(a: Int, b: Double, c: Char) = println("a = $a, b = $b, c = $c")
 ```
 
->*İsimli argümanların default argüman alan fonksiyonlarda kullanımına çok sık rastalanır. Zaten çoğu zaman da isimli argüman kullanımı default argümanlar ile anlamlıdır*
+>İsimli argümanların default argüman alan fonksiyonlarda kullanımına çok sık rastalanır. Zaten çoğu zaman da isimli argüman kullanımı default argümanlar ile anlamlıdır
 
 ```kotlin
 package org.csystem.app
@@ -827,7 +827,7 @@ fun main() {
 fun foo(a: Int = 67, b: Double, c: Char) = println("a = $a, b = $b, c = $c")
 ```
 
->*İsimli argümanların default argüman alan metotlarda kullanımına çok sık rastalanır. Zaten çoğu zaman da
+>İsimli argümanların default argüman alan metotlarda kullanımına çok sık rastalanır. Zaten çoğu zaman da
 isimli argüman kullanımı default argümanlar ile anlamlıdır*
 
 ```kotlin
@@ -842,7 +842,7 @@ fun main() {
 fun foo(a: Int = 67, b: Double = 0.1, c: Char = 'C') = println("a = $a, b = $b, c = $c")
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -857,7 +857,7 @@ fun main() {
 fun foo(a: Int = 10, b: Int = 20, c: Int = 30) = println("a = $a, b = $b, c = $c")
 ```
 
->*Aşağıdaki örneği inceleyiniz. bar metodunun parametresinin default argümanı olan add metodu çağrısı, bar default arguman ile çağrıldığında çağrılır*
+>Aşağıdaki örneği inceleyiniz. bar metodunun parametresinin default argümanı olan add metodu çağrısı, bar default arguman ile çağrıldığında çağrılır
 
 ```kotlin
 package org.csystem.app
@@ -877,7 +877,7 @@ fun add(a: Int, b: Int): Int {
 fun bar(a: Int = add(10, 20)) = println("a = $a")
 ```
 
->*Aşağıdaki örneği inceleyiniz. `**` ile belirtilen çağrıda "tam uyum (best match)" dolayısıyla parametresiz foo çağrılır. Aşağıdaki Int parametreli fonksiyon için parametresiz foo varken default argüman anlamlı mıdır? Şüphesiz bu soru örnek özelinde düşünülmeldir*
+>Aşağıdaki örneği inceleyiniz. `**` ile belirtilen çağrıda "tam uyum (best match)" dolayısıyla parametresiz foo çağrılır. Aşağıdaki Int parametreli fonksiyon için parametresiz foo varken default argüman anlamlı mıdır? Şüphesiz bu soru örnek özelinde düşünülmeldir
 
 ```kotlin
 package org.csystem.app
@@ -898,7 +898,7 @@ Programcı bu fonksiyonları kullanmalıdır. Kotlin math kütüphanesi ileride 
 **_Anahtar Notlar:_** Aslında Kotlin JVM programcısı, yapacağı işleme yönelik fonksiyonlar Kotlin'de standart olarak varsa
 onu kullanmalıdır. Yoksa zaten JavaSE'yi kullanacaktır
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -913,7 +913,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de fonksiyon içerisinde fonksiyon bildirimi yapılabilir. İçteki fonksiyon bildirildiği yerden bildirildiği bloğun sonuna kadar çağrılabilir. Başka bir yerden çağrılamaz. Bu tür fonksiyonlara "yerel (local) fonksiyonlar" denir*
+>Kotlin'de fonksiyon içerisinde fonksiyon bildirimi yapılabilir. İçteki fonksiyon bildirildiği yerden bildirildiği bloğun sonuna kadar çağrılabilir. Başka bir yerden çağrılamaz. Bu tür fonksiyonlara "yerel (local) fonksiyonlar" denir
 
 ```kotlin
 package org.csystem.app
@@ -932,7 +932,7 @@ fun foo() {
 }
 ```
 
->*Yerel fonksiyonlar*
+>Yerel fonksiyonlar
 
 ```kotlin
 package org.csystem.app
@@ -954,7 +954,7 @@ fun displayStatus(a: Int) {
 }
 ```
 
->*Yerel fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir. Bu kavrama "capture" denir*
+>Yerel fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir. Bu kavrama "capture" denir
 
 ```kotlin
 package org.csystem.app
@@ -981,7 +981,7 @@ fun displayStatus(a: Int) {
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -1011,7 +1011,7 @@ fun printDistance(x1: Double, y1: Double, x2: Double, y2: Double) {
 }
 ```
 
->*Yerel fonksiyonlar içerisinde kendisinden önce bildirilen yerel fonksiyonlar da çağrılabilir*
+>Yerel fonksiyonlar içerisinde kendisinden önce bildirilen yerel fonksiyonlar da çağrılabilir
 
 ```kotlin
 package org.csystem.app
@@ -1034,7 +1034,7 @@ fun foo(a: Int) {
 }
 ```
 
->*Yerel fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler kullanılabilir hatta değiştirilebilir.*
+>Yerel fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler kullanılabilir hatta değiştirilebilir.
 
 **_Anahtar Notlar:_** Java'da yakalanan (capture) değişkenlere faaliyet alanları boyunca bir kez değer verilebilir. Bu
 değerin yakalanmadan önce yapılması zorunludur (effectively final)
@@ -1069,7 +1069,7 @@ fun foo(a: Int) {
 }
 ```
 
->*Yerel fonksiyonlar*
+>Yerel fonksiyonlar
 
 ```kotlin
 package org.csystem.app
@@ -1096,9 +1096,9 @@ fun display(min: Int, max:Int) {
 >
 >`z1 + z2 ya da z1.plus(z2)`
 >
->*biçiminde kullanılabilir. Temel türlerin de uygun operatör fonksiyonları yazılıdığından işlemler yapılabilir*
+>biçiminde kullanılabilir. Temel türlerin de uygun operatör fonksiyonları yazılıdığından işlemler yapılabilir
 
->*Aritmetik `+` operatörü ve plus fonksiyonu*
+>Aritmetik `+` operatörü ve plus fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -1114,7 +1114,7 @@ fun main() {
 }
 ```
 
->*Aritmetik `*` operatörü ve times fonksiyonu*
+>Aritmetik `` operatörü ve times fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -1130,7 +1130,7 @@ fun main() {
 }
 ```
 
->*Aritmetik `-` operatörü ve minus fonksiyonu*
+>Aritmetik `-` operatörü ve minus fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -1146,7 +1146,7 @@ fun main() {
 }
 ```
 
->*Aritmetik `/` operatörü ve div fonksiyonu*
+>Aritmetik `/` operatörü ve div fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -1164,9 +1164,9 @@ fun main() {
 }
 ```
 
->*Mod operatörünün birinci operandı negatif ise sonuç her zaman negatif çıkar.*
+>Mod operatörünün birinci operandı negatif ise sonuç her zaman negatif çıkar.
 >
->*Yani mod operatörünün ürettiği değerin işareti birinci operandının işareti ile aynıdır*
+>Yani mod operatörünün ürettiği değerin işareti birinci operandının işareti ile aynıdır
 
 ```kotlin
 package org.csystem.app
@@ -1182,7 +1182,7 @@ fun main() {
 }
 ```
 
->*Aritmetik `%` operatörü ve rem fonksiyonu*
+>Aritmetik `%` operatörü ve rem fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -1201,7 +1201,7 @@ fun main() {
 
 **_Anahtar Notlar:_** `%` operatörüne karşılık gelen fonksiyon Kotlin'in ilk sürümlerinde "mod" isimli bir fonksiyondu. Daha sonra mod fonksiyonu "rem" fonksiyonu olarak değiştirildi. Ancak `Kotlin 1.5` ile birlikte bir çok eklenen matematiksel (extension olarak yazılan) fonksiyon ile birlikte Matematikteki mod işlemine karşılık "mod" isimli fonksiyon da eklendi. Bu anlamda mod fonksiyonu operatör fonksiyonu değildir
 
->*mod fonksiyonu*
+>mod fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -1272,7 +1272,7 @@ fun sum3Digits(value: Int) : Int {
 }
 ```
 
->*İşaret* `-` *operatörü ve unaryMinus fonksiyonu*
+>İşaret `-` operatörü ve unaryMinus fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -1288,7 +1288,7 @@ fun main() {
 }
 ```
 
->*İşaret* `+` *operatörü ve unaryPlus fonksiyonu*
+>İşaret `+` operatörü ve unaryPlus fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -1304,7 +1304,7 @@ fun main() {
 }
 ```
 
->`++` *operatörünün kullanımı nasıl olursa olsun değişkeni bir artırır*
+>`++` operatörünün kullanımı nasıl olursa olsun değişkeni bir artırır
 
 ```kotlin
 package org.csystem.app
@@ -1317,7 +1317,7 @@ fun main() {
 }
 ```
 
->`++` *operatörünün kullanımı nasıl olursa olsun değişkeni bir artırır*
+>`++` operatörünün kullanımı nasıl olursa olsun değişkeni bir artırır
 
 ```kotlin
 package org.csystem.app
@@ -1330,7 +1330,7 @@ fun main() {
 }
 ```
 
->`++` *operatörünün prefix kullanımı*
+>`++` operatörünün prefix kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -1344,7 +1344,7 @@ fun main() {
 }
 ```
 
->`++` *operatörünün postfix kullanımı*
+>`++` operatörünün postfix kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -1358,7 +1358,7 @@ fun main() {
 }
 ```
 
->`++` *operatörünün fonksiyon karşılığı olan inc fonksiyonu artırılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan inc fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner*
+>`++` operatörünün fonksiyon karşılığı olan inc fonksiyonu artırılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan inc fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner
 
 ```kotlin
 package org.csystem.app
@@ -1372,7 +1372,7 @@ fun main() {
 }
 ```
 
->`++` *operatörünün fonksiyon karşılığı*
+>`++` operatörünün fonksiyon karşılığı
 
 ```kotlin
 package org.csystem.app
@@ -1385,7 +1385,7 @@ fun main() {
 }
 ```
 
->`++` *operatörünün fonksiyon karşılığı*
+>`++` operatörünün fonksiyon karşılığı
 
 ```kotlin
 package org.csystem.app
@@ -1400,7 +1400,7 @@ fun main() {
     println("b = $b")
 }
 ```
->`++` *operatörünün fonksiyon karşılığı*
+>`++` operatörünün fonksiyon karşılığı
 
 ```kotlin
 package org.csystem.app
@@ -1415,7 +1415,7 @@ fun main() {
     println("b = $b")
 }
 ```
->`--` *operatörünün fonksiyon karşılığı. dec fonksiyonu azaltılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan dec fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner*
+>`--` operatörünün fonksiyon karşılığı. dec fonksiyonu azaltılmış değeri döndürür. Temel türlere ilişkin sınıflar immutable olduğundan dec fonksiyonu artırma işlemini yapmaz. Artırılmış değere geri döner
 
 ```kotlin
 package org.csystem.app
@@ -1429,7 +1429,7 @@ fun main() {
 }
 ```
 
->`--` *operatörünün fonksiyon karşılığı*
+>`--` operatörünün fonksiyon karşılığı
 
 ```kotlin
 package org.csystem.app
@@ -1442,7 +1442,7 @@ fun main() {
 }
 ```
 
-> `==` ve `!=` *operatörleri. Bu operatörlerin fonksiyon karşılıkları ileride ele alınacaktır*
+> `==` ve `!=` operatörleri. Bu operatörlerin fonksiyon karşılıkları ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app
@@ -1461,7 +1461,7 @@ fun main() {
 }
 ```
 
->`>`, `<=`, `<`, `>=` *operatörlerinin fonksiyon karşkları compareTo fonksiyonudur*
+>`>`, `<=`, `<`, `>=` operatörlerinin fonksiyon karşkları compareTo fonksiyonudur
 
 ```kotlin
 package org.csystem.app
@@ -1484,7 +1484,7 @@ fun main() {
 }
 ```
 
->*Mantıksal operatörlerin kısa devre davranışı (short circuit behavior)*
+>Mantıksal operatörlerin kısa devre davranışı (short circuit behavior)
 
 ```kotlin
 package org.csystem.app
@@ -1508,7 +1508,7 @@ fun bar() : Boolean {
 }
 ```
 
->*Mantıksal operatörlerin kısa devre davranışı (short circuit behavior)*
+>Mantıksal operatörlerin kısa devre davranışı (short circuit behavior)
 
 ```kotlin
 package org.csystem.app
@@ -1532,7 +1532,7 @@ fun bar() : Boolean {
 }
 ```
 
->*Mantıksal operatörlerin fonksiyon karşılıkları. Aşağıdaki örnekte bar fonksiyonu çağrılmadan or fonksiyonunun çağrılamayacağına dikkat ediniz. Bu durumda kısa devre davranışından faydalanılmaz*
+>Mantıksal operatörlerin fonksiyon karşılıkları. Aşağıdaki örnekte bar fonksiyonu çağrılmadan or fonksiyonunun çağrılamayacağına dikkat ediniz. Bu durumda kısa devre davranışından faydalanılmaz
 
 ```kotlin
 package org.csystem.app
@@ -1556,7 +1556,7 @@ fun bar(): Boolean {
 }
 ```
 
->`&&` ve `||` *operatörleri klasik öncelik kuralına uymazlar. Bu operatörlerin aynı ifadede olması durumunda her zaman işlem soldan başlar, ancak öncelik kuralına uyulsa çıkacak sonucun aynısına ulaşılır. Yani bu operatörlerin temel amacı doğru sonuca en kısa yoldan ulaşmaktır. Şüphesiz bu kısa devre davranışı ile sağlanır*
+>`&&` ve `||` operatörleri klasik öncelik kuralına uymazlar. Bu operatörlerin aynı ifadede olması durumunda her zaman işlem soldan başlar, ancak öncelik kuralına uyulsa çıkacak sonucun aynısına ulaşılır. Yani bu operatörlerin temel amacı doğru sonuca en kısa yoldan ulaşmaktır. Şüphesiz bu kısa devre davranışı ile sağlanır
 
 ```kotlin
 package org.csystem.app
@@ -1586,7 +1586,7 @@ fun tar(): Boolean {
 }
 ```
 
->*Aşağıdaki örnekte yine en kısa yoldan doğru sonuca ulaşılacak şekilde derleyici tarafından kod üretilir. Yine işlem soldan başlar ancak örnekte işlem sırasıyla operatör öncelik sırası aynıdır*
+>Aşağıdaki örnekte yine en kısa yoldan doğru sonuca ulaşılacak şekilde derleyici tarafından kod üretilir. Yine işlem soldan başlar ancak örnekte işlem sırasıyla operatör öncelik sırası aynıdır
 
 ```kotlin
 package org.csystem.app
@@ -1616,7 +1616,7 @@ fun tar(): Boolean {
 }
 ```
 
->*Mantıksal operatörlerin kısa devre davranışı göreli olarak programın hızını artırır*
+>Mantıksal operatörlerin kısa devre davranışı göreli olarak programın hızını artırır
 
 ```kotlin
 package org.csystem.app
@@ -1647,7 +1647,7 @@ fun isTriangle(a: Double, b: Double, c: Double) =
     a + b > c && a + c > b && b + c > a && abs(a - b) < c && abs(a - c) < b && abs(b - c) < a
 ```
 
->*Mantıksal NOT operatörü ve not fonksiyonu*
+>Mantıksal NOT operatörü ve not fonksiyonu
 
 ```kotlin
 package org.csystem.app  
@@ -1664,7 +1664,7 @@ fun main() {
 }
 ```
 
->*Atama operatörü*
+>Atama operatörü
 
 ```kotlin
 package org.csystem.app
@@ -1680,7 +1680,7 @@ fun main() {
 }
 ```
 
->*Atama operatörü Kotlin'de bir ifade (expression) biçiminde ele alınmaz. Dolayısıyla aşağıdaki işlem geçersizdir. Atama operatörü bir değer üretmez
+>Atama operatörü Kotlin'de bir ifade (expression) biçiminde ele alınmaz. Dolayısıyla aşağıdaki işlem geçersizdir. Atama operatörü bir değer üretmez
 
 ```kotlin
 package org.csystem.app
@@ -1694,7 +1694,7 @@ fun main() {
 }
 ```
 
->*İşlemli atama operatörleri (augmented/compound assignment operators)*
+>İşlemli atama operatörleri (augmented/compound assignment operators)
 
 ```kotlin
 package org.csystem.app  
@@ -1709,7 +1709,7 @@ fun main() {
 }
 ```
 
->*İşlemli atama operatörleri işlem önceliğinden dolayı daha yalın kodların yazılmasını sağlayabilir*
+>İşlemli atama operatörleri işlem önceliğinden dolayı daha yalın kodların yazılmasını sağlayabilir
 
 ```kotlin
 package org.csystem.app  
@@ -1723,7 +1723,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de bir bir sonraki satıra geçmek ve noktalı virgül* `;` *sonlandırıcı (terminator) olarak kullanılabilir. Bir sonraki satıra geçmek sonlandırıcı olarak kullanılıyorsa noktalı virgül konması önerilmez*
+>Kotlin'de bir bir sonraki satıra geçmek ve noktalı virgül `;` sonlandırıcı (terminator) olarak kullanılabilir. Bir sonraki satıra geçmek sonlandırıcı olarak kullanılıyorsa noktalı virgül konması önerilmez
 
 ```kotlin
 package org.csystem.app  
@@ -1739,7 +1739,7 @@ fun main() {
 ```
 **_Anahtar Notlar:_** Kotlin'de pek çok deyim aynı zamanda ifade biçimindedir. Bu tip deyimlere programlamada ifadesel deyim (expression statament) de denilmektedir. Örneğin Kotlin'de if bir ifadesel deyimdir. Standartlarda İngilizce karşılık olarak "if expression" biçiminde ele alınır
 
->`if` expression'ın deyim olarak kullanımı*
+>`if` expression'ın deyim olarak kullanımı
 
 ```kotlin
 package org.csystem.app  
@@ -1756,7 +1756,7 @@ fun main() {
 ```
 
 
->`if` *ifadesinin koşul operatörü yerine kullanımı*
+>`if` ifadesinin koşul operatörü yerine kullanımı
 
 **_Anahtar Notlar:_** Kotlin'de koşul operatörü (conditional operator) yoktur.
 
@@ -1775,15 +1775,15 @@ fun main() {
 >
 >**_Açıklama:_** Programda yeni nesil sqrt global fonksiyonunu kullanınız.
 >
->*İkinci dereceden (quadratic) denklem:*
+>İkinci dereceden (quadratic) denklem:
 >
 >$$ax^2 + bx + c = 0$$
 >
->*delta ($\Delta$) (discriminant) hesabı:*
+>delta ($\Delta$) (discriminant) hesabı:
 >
 >$$\Delta = b^2 - 4ac$$
 >
->*Köklerın hesaplanması:*
+>Köklerın hesaplanması:
 >
 >1. if $\Delta > 0$
 >
@@ -1846,15 +1846,15 @@ fun findQuadraticEquationRoots(a: Double, b: Double, c: Double) {
 >
 >**_Açıklama:_** Programda yeni nesil sqrt global fonksiyonunu kullanınız.
 >
->*İkinci dereceden (quadratic) denklem:*
+>İkinci dereceden (quadratic) denklem:
 >
 >$$ax^2 + bx + c = 0$$
 >
->*delta ($\Delta$) (discriminant) hesabı:*
+>delta ($\Delta$) (discriminant) hesabı:
 >
 >$$\Delta = b^2 - 4ac$$
 >
->*Köklerın hesaplanması:*
+>Köklerın hesaplanması:
 >
 >1. if $\Delta > 0$
 >
@@ -1911,15 +1911,15 @@ fun findQuadraticEquationRoots(a: Double, b: Double, c: Double): String {
 >
 >**_Açıklama:_** Programda yeni nesil sqrt global fonksiyonunu kullanınız.
 >
->*İkinci dereceden (quadratic) denklem:*
+>İkinci dereceden (quadratic) denklem:
 >
 >$$ax^2 + bx + c = 0$$
 >
->*delta ($\Delta$) (discriminant) hesabı:*
+>delta ($\Delta$) (discriminant) hesabı:
 >
 >$$\Delta = b^2 - 4ac$$
 >
->*Köklerın hesaplanması:*
+>Köklerın hesaplanması:
 >
 >1. if $\Delta > 0$
 >
@@ -1975,7 +1975,7 @@ fun findQuadraticEquationRoots(a: Double, b: Double, c: Double): String {
 ```
 
 
->*Aşağıdaki örnekte else içteki* `if` *deyimine ilişkindir (dangling else)*
+>Aşağıdaki örnekte else içteki `if` deyimine ilişkindir (dangling else)
 
 ```kotlin
 package org.csystem.app  
@@ -1992,7 +1992,7 @@ fun main() {
 }
 ```
 
->*Yukarıdaki problem bileşik deyim (blok) konarak çözülebilir*
+>Yukarıdaki problem bileşik deyim (blok) konarak çözülebilir
 
 ```kotlin
 package org.csystem.app
@@ -2010,7 +2010,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki durumda dangling* `else` *yoktur*
+>Aşağıdaki durumda dangling `else` yoktur
 
 ```kotlin
 package org.csystem.app
@@ -2029,7 +2029,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnekte* `if` *ifadesel deyimi ifade biçiminde koşul operatörü gibi kullanılmıştır*
+>Aşağıdaki örnekte `if` ifadesel deyimi ifade biçiminde koşul operatörü gibi kullanılmıştır
 
 ```kotlin
 package org.csystem.app  
@@ -2047,7 +2047,7 @@ fun main() {
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
->*Kotlin programlama dilinde döngüler 2(iki) gruba ayrılır:*
+>Kotlin programlama dilinde döngüler 2(iki) gruba ayrılır:
 >1. `while` döngü deyimleri
 >- Kontrolün başta yapıldığı while döngü deyimi (while döngüsü)
 >- Kontrolün sonda yapıldığı while döngü deyimi (do-while döngüsü)
@@ -2055,7 +2055,7 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 
 **_Anahtar Notlar:_** Buradaki for döngü deyimi Java'daki klasik for döngüsü değildir. Java'daki for-each döngü deyiminin daha yetenekli bir biçimi olarak düşünülebilir. Kotlin'de klasik for döngüsü yoktur. Ancak klasik for döngüsünün olmaması bir eksiklik değildir. Kotlin'deki for döngü deyimiyle çeşitli operatörler ve infix fonksiyonlar yardımıyla klasik for döngü deyimi ihtiyacı karşılanabilmektedir. İleride detaylı olarak ele alınacaktır
 
->*Kontrolün başta yapıldığı while döngüleri (while döngüsü)*
+>Kontrolün başta yapıldığı while döngüleri (while döngüsü)
 
 ```kotlin
 package org.csystem.app  
@@ -2074,7 +2074,7 @@ fun main() {
 }
 ```
 
->`while` *döngü deyiminin parantezi içerisinde atama yapılması geçersizdir. Anımsanacağı gibi atama operatörü bir ifade oluşturmaz. Dolayısıyla değer üretmez*
+>`while` döngü deyiminin parantezi içerisinde atama yapılması geçersizdir. Anımsanacağı gibi atama operatörü bir ifade oluşturmaz. Dolayısıyla değer üretmez
 
 ```kotlin
 package org.csystem.app  
@@ -2090,7 +2090,7 @@ fun main() {
 }
 ```
 
->`while` *döngü deyimi ile n-kez dönen döngü kalıbı*
+>`while` döngü deyimi ile n-kez dönen döngü kalıbı
 
 ```kotlin
 package org.csystem.app  
@@ -2134,7 +2134,7 @@ fun runApp() {
 }
 ```
 
->`do-while` *döngü deyimi*
+>`do-while` döngü deyimi
 
 ```kotlin
 package org.csystem.app  
@@ -2153,7 +2153,7 @@ fun main() {
 }
 ```
 
->`do-while` *döngü deyiminde Java ve C#'dan farklı olarak* `do-while` *döngü deyimi içerisinde bildirilmiş olan bir değişkenin while parantezi içerisinde kullanımı geçerlidir*
+>`do-while` döngü deyiminde Java ve C#'dan farklı olarak `do-while` döngü deyimi içerisinde bildirilmiş olan bir değişkenin while parantezi içerisinde kullanımı geçerlidir
 
 ```kotlin
 package org.csystem.app  
@@ -2242,7 +2242,7 @@ fun sumDigits(a: Int): Int {
 
 >**_Sınıf Çalışması:_** Parametresi ile aldığı Int türden bir sayının tersini döndüren reverse isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz.
 >
->**_Algoritma:_** 123 -> 3 -> 3 * 10 + 2 = 32 -> 32 * 10 + 1 = 321
+>**_Algoritma:_** 123 -> 3 -> 3  10 + 2 = 32 -> 32  10 + 1 = 321
 
 ```kotlin
 package org.csystem.app  
@@ -2312,7 +2312,7 @@ fun reverse(a: Int): Int {
 }
 ```
 
->*Aşağıdaki örnekte, Java'daki for döngü deyiminin karşılığı olan deyim yazılmıştır:*
+>Aşağıdaki örnekte, Java'daki for döngü deyiminin karşılığı olan deyim yazılmıştır:
 
 **_Anahtar Notlar:_** `..` ile belirtilen operatör "range" sınıfları türünden referans üretir. Bu sınıflar `Iterable` arayüzünü desteklediği için for döngüsü ile dolaşılabilir. Iterable arayüzü ileride ele alınacaktır. Aslında Kotlin'deki for döngü deyimi Java'nın "for-each/enhanced for loop"'udur.
 
@@ -2327,7 +2327,7 @@ fun main() {
 }
 ```
 
->*for döngü deyimi*
+>for döngü deyimi
 
 ```kotlin
 package org.csystem.app  
@@ -2343,7 +2343,7 @@ fun main() {
 }
 ```
 
->*for döngü deyimi*
+>for döngü deyimi
 
 ```kotlin
 package org.csystem.app  
@@ -2362,7 +2362,7 @@ fun main() {
 }
 ```
 
->*Dikkat aşağıdaki örnek azalarak ilerlemez. Dolayısıyla tersten dolaşmak anlamına gelmez*
+>Dikkat aşağıdaki örnek azalarak ilerlemez. Dolayısıyla tersten dolaşmak anlamına gelmez
 
 ```kotlin
 package org.csystem.app
@@ -2375,7 +2375,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnek ikişer ikişer artarak ilerleyen bir for döngüsü gibi düşünülebilir. Bu döngü teknik olarak IntProgression sınıfı türünün infix step fonksiyonu kullanılarak yapılmıştır*
+>Aşağıdaki örnek ikişer ikişer artarak ilerleyen bir for döngüsü gibi düşünülebilir. Bu döngü teknik olarak IntProgression sınıfı türünün infix step fonksiyonu kullanılarak yapılmıştır
 
 ```kotlin
 package org.csystem.app  
@@ -2621,9 +2621,9 @@ fun printResult(posCount: Int, negCount: Int, posTotal: Int = 0, negTotal: Int) 
 }
 ```
 
->*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu*
+>Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu
 >
->*(Yavaş versiyon)*
+>(Yavaş versiyon)
 
 ```kotlin
 package org.csystem.app  
@@ -2649,11 +2649,11 @@ fun isPrime(a: Long): Boolean {
     return true}
 ```
 
->*Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu*
+>Bir sayının asal olup olmadığını test eden isPrime fonksiyonu ve test kodu
 >
->*(Hızlı versiyon)*
+>(Hızlı versiyon)
 >
->**_Kural:_** Bir sayının asal olması için karekökünden daha küçük olan asal sayıların hiçbirisine bölünememesi gerekir*
+>**_Kural:_** Bir sayının asal olması için karekökünden daha küçük olan asal sayıların hiçbirisine bölünememesi gerekir
 
 ```kotlin
 package org.csystem.app  
@@ -2697,7 +2697,7 @@ fun isPrime(a: Long): Boolean {
 }
 ```
 
->*Yukarıdaki iki fonksiyonun basit bir karşılaştırması*
+>Yukarıdaki iki fonksiyonun basit bir karşılaştırması
 
 ```kotlin
 package org.csystem.app  
@@ -2759,7 +2759,7 @@ fun isPrime(a: Long): Boolean {
 }
 ```
 
->*Yukarıdaki isPrime fonksiyonlarını, özellikle hızlı versiyonunu aşağıdaki sayılar ile test ediniz ve sonuçları gözlemleyiniz:*
+>Yukarıdaki isPrime fonksiyonlarını, özellikle hızlı versiyonunu aşağıdaki sayılar ile test ediniz ve sonuçları gözlemleyiniz:
 
     6750161072220585911
     1603318868174368979
@@ -2777,7 +2777,7 @@ fun isPrime(a: Long): Boolean {
     4498306523077899307
     4434895834573449257
 
->`downTo` *infix fonksiyonu ile for döngüsü içerisinde ters sırada dönen bir döngü yazılabilir*
+>`downTo` infix fonksiyonu ile for döngüsü içerisinde ters sırada dönen bir döngü yazılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -2796,7 +2796,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnekte* `downTo` ve `step` *fonksiyonları birlikte kullanılmıştır*
+>Aşağıdaki örnekte `downTo` ve `step` fonksiyonları birlikte kullanılmıştır
 
 ```kotlin
 package org.csystem.app  
@@ -2815,7 +2815,7 @@ fun main() {
 }
 ```
 
->`until` *infix fonksiyonu ile* `[a, b)` *aralığında döngü deyimi oluşturulabilir*
+>`until` infix fonksiyonu ile `[a, b)` aralığında döngü deyimi oluşturulabilir
 
 ```kotlin
 package org.csystem.app  
@@ -2834,7 +2834,7 @@ fun main() {
 }
 ```
 
->`until` *infix fonksiyonu ile step fonksiyonunun kullanımı*
+>`until` infix fonksiyonu ile step fonksiyonunun kullanımı
 
 ```kotlin
 package org.csystem.app  
@@ -2853,7 +2853,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnekte exception oluşur. step'e verilen argüman pozitif bir değer olmalıdır. Buradaki örnek geriye doğru dolaşmak anlamına gelmez*
+>Aşağıdaki örnekte exception oluşur. step'e verilen argüman pozitif bir değer olmalıdır. Buradaki örnek geriye doğru dolaşmak anlamına gelmez
 
 ```kotlin
 package org.csystem.app
@@ -2869,7 +2869,7 @@ fun main() {
 }
 ```
 
->*Kotlin 1.9 ile birlikte rangeUntil operatörü eklenmiştir*
+>Kotlin 1.9 ile birlikte rangeUntil operatörü eklenmiştir
 
 ```kotlin
 package org.csystem.app  
@@ -2956,9 +2956,9 @@ fun isPrime(a: Long): Boolean {
 }
 ```
 
->*Etiketli break (labeled break) kullanımı. Dikkat* `break@<etiket ismi>` *deyimi boşluk içeremez.
+>Etiketli break (labeled break) kullanımı. Dikkat `break@<etiket ismi>` deyimi boşluk içeremez.
 >
->*Etiket bildirimi sonunda* `@` *atomu yazılmalıdır. Etiket ismi ile @ atomu bitişik olarak yazılmalıdır. Aşağıdaki içiçe döngünün Java'da yazılmış bir biçimi şu şekildedir*
+>Etiket bildirimi sonunda `@` atomu yazılmalıdır. Etiket ismi ile @ atomu bitişik olarak yazılmalıdır. Aşağıdaki içiçe döngünün Java'da yazılmış bir biçimi şu şekildedir
 
 ```java
 EXIT_LOOP:
@@ -2972,7 +2972,7 @@ for (int i = 10; i <= 20; ++i) {
 }
 ```
 
->*Örnek konuyu anlatmak için yazılmıştır*
+>Örnek konuyu anlatmak için yazılmıştır
 
 ```kotlin
 package org.csystem.app  
@@ -2991,9 +2991,9 @@ fun main() {
 }
 ```
 
->*Etiketli break (labeled break) kullanımı*
+>Etiketli break (labeled break) kullanımı
 >
->*Örnek konuyu anlatmak için yazılmıştır*
+>Örnek konuyu anlatmak için yazılmıştır
 
 ```kotlin
 package org.csystem.app  
@@ -3053,9 +3053,9 @@ fun findTotals(a: Int, b: Int) {
 }
 ```
 
->*Kotlin'de switch deyimi yoktur. Ancak benzer şekilde kullanılabilecek* `when` *ifadesi (when expression) vardır.* `Java 14` *ile birlikte switch'in ifade olarak kullanımı da Java'ya eklenmiştir (switch expression). Bu anlamda switch de artık ifadesel deyim olarak kullanılabilir. switch expression, when expression'a oldukça benzemektedir*
+>Kotlin'de switch deyimi yoktur. Ancak benzer şekilde kullanılabilecek `when` ifadesi (when expression) vardır. `Java 14` ile birlikte switch'in ifade olarak kullanımı da Java'ya eklenmiştir (switch expression). Bu anlamda switch de artık ifadesel deyim olarak kullanılabilir. switch expression, when expression'a oldukça benzemektedir
 
->*when ifadesinde aşağı düşme (fall through) özelliği yoktur. Aşağıdaki when ifadesinin switch deyimi karşılığı şu şekildedir:*
+>when ifadesinde aşağı düşme (fall through) özelliği yoktur. Aşağıdaki when ifadesinin switch deyimi karşılığı şu şekildedir:
 
 ``` java
 switch (a) {
@@ -3097,7 +3097,7 @@ fun main() {
 }
 ```
 
->*when ifadesi*
+>when ifadesi
 
 ```kotlin
 package org.csystem.app  
@@ -3115,7 +3115,7 @@ fun main() {
 }
 ```
 
->`when` *ifadesinin parantezsiz kullanımı. Bu kullanımda koşulların -> atomundan önce yazıldığına dikkat ediniz. Java'da switch bu şekilde kullanılamaz*
+>`when` ifadesinin parantezsiz kullanımı. Bu kullanımda koşulların -> atomundan önce yazıldığına dikkat ediniz. Java'da switch bu şekilde kullanılamaz
 
 ```kotlin
 package org.csystem.app  
@@ -3132,7 +3132,7 @@ fun main() {
 }
 ```
 
->`when` *ifadesinin ürettiği değerin kullanılması*. when ifadesinin değer üretmesi durumunda else
+>`when` ifadesinin ürettiği değerin kullanılması. when ifadesinin değer üretmesi durumunda else
 >kısmı olmalıdır
 
 ```kotlin
@@ -3152,7 +3152,7 @@ fun main()  {
 }
 ```
 
->`when` *ifadesinin ürettiği değerin kullanılması*
+>`when` ifadesinin ürettiği değerin kullanılması
 
 ```kotlin
 package org.csystem.app  
@@ -3176,15 +3176,15 @@ fun main() {
 >**_Açıklamalar:_**
 >`if` expression yerine `when` expression kullanılacaktır
 >
->*İkinci dereceden (quadratic) denklem:*
+>İkinci dereceden (quadratic) denklem:
 >
 >$$ax^2 + bx + c = 0$$
 >
->*delta ($\Delta$) (discriminant) hesabı:*
+>delta ($\Delta$) (discriminant) hesabı:
 >
 >$$\Delta = b^2 - 4ac$$
 >
->*Köklerın hesaplanması:*
+>Köklerın hesaplanması:
 >
 >1. if $\Delta > 0$
 >
@@ -3238,7 +3238,7 @@ fun findQuadraticEquationRoots(a: Double, b: Double, c: Double): String {
 }
 ```
 
->`when` *ifadesinin* `in` ve `!in` *(not in) operatörleri ile kullanımı.* `in` ve `!in` *operatörleri ileride ele alınacaktır*
+>`when` ifadesinin `in` ve `!in` (not in) operatörleri ile kullanımı. `in` ve `!in` operatörleri ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app  
@@ -3346,16 +3346,16 @@ fun main() = runDateApp()
 
 ###### **Farklı Türler Arasındaki Dönüşümler**
 
->*T1 ve T2 türleri için*
+>T1 ve T2 türleri için
 
     var a: T1
     var b: T2
     değişkenleri için
     a = b
 
->*işleminde b'nin türüne kaynak tür (source type), a'nın türüne hedef tür (target type) denir. Bu ifadede bir doğrundan atama (dönüşüm) (implicit conversion) vardır. Kotlin'de de "implicit ve explicit conversion" kuralları belirlidir. Ancak Kotlin'de genel olarak farklı türler birbirine doğrudan atanamaz.*
+>işleminde b'nin türüne kaynak tür (source type), a'nın türüne hedef tür (target type) denir. Bu ifadede bir doğrundan atama (dönüşüm) (implicit conversion) vardır. Kotlin'de de "implicit ve explicit conversion" kuralları belirlidir. Ancak Kotlin'de genel olarak farklı türler birbirine doğrudan atanamaz.
 
->*Kotlin'de genel olarak farklı türler birbirine doğrudan (implicit) atanamaz*
+>Kotlin'de genel olarak farklı türler birbirine doğrudan (implicit) atanamaz
 
 ```kotlin
 package org.csystem.app  
@@ -3370,7 +3370,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnekte istisna bir durum vardır. Int türden  bir sabit Long türüne doğrudan atanabilir veya ilkdeğer olarak verilebilir.*
+>Aşağıdaki örnekte istisna bir durum vardır. Int türden  bir sabit Long türüne doğrudan atanabilir veya ilkdeğer olarak verilebilir.
 
 ```kotlin
 package org.csystem.app  
@@ -3382,7 +3382,7 @@ fun main() {
 }
 ```
 
->*Kotlin'de de Java' da olduğu gibi Byte ve Short türden sabit yoktur ancak sınırlar içerisinde kalması koşuluyla Int türden bir sabit Byte veya Short türüne doğrudan atanabilir.*
+>Kotlin'de de Java' da olduğu gibi Byte ve Short türden sabit yoktur ancak sınırlar içerisinde kalması koşuluyla Int türden bir sabit Byte veya Short türüne doğrudan atanabilir.
 
 ```kotlin
 package org.csystem.app  
@@ -3397,7 +3397,7 @@ fun main() {
 }
 ```
 
->*Yukarıdaki istisna durum Java'da char türü için de vardır. Ancak Kotlin'de Char türü için bu durum geçersizdir.*
+>Yukarıdaki istisna durum Java'da char türü için de vardır. Ancak Kotlin'de Char türü için bu durum geçersizdir.
 
 ```kotlin
 package org.csystem.app  
@@ -3409,7 +3409,7 @@ fun main() {
 }
 ```
 
->*Temel türlere ilişkin sınıfların toXXX fonksiyonları ile birbirlerine dönüşümleri sağlanabilir. Ancak Kotlin 1.4 ile bazı metotlarda değişiklikler olmuştur. Bunlar konular içerisinde ele alınacaktır.*
+>Temel türlere ilişkin sınıfların toXXX fonksiyonları ile birbirlerine dönüşümleri sağlanabilir. Ancak Kotlin 1.4 ile bazı metotlarda değişiklikler olmuştur. Bunlar konular içerisinde ele alınacaktır.
 
 ```kotlin
 package org.csystem.app  
@@ -3422,7 +3422,7 @@ fun main() {
 }
 ```
 
->*Anımsanacağı gibi küçük tamsayı türünden büyük tamsayı türüne yapılan dönüşümde kaynak türe ilişkin değer pozitif ise sayının eklenen yüksek anlamlı byte değerlerine ilişkin bitler sıfır ile beslenir. Sayının işareti negatif ise işaretin kaybolmaması için sayının yüksek anlamlı byte değerlerine ilişkin bitler 1(bir) ile beslenir*
+>Anımsanacağı gibi küçük tamsayı türünden büyük tamsayı türüne yapılan dönüşümde kaynak türe ilişkin değer pozitif ise sayının eklenen yüksek anlamlı byte değerlerine ilişkin bitler sıfır ile beslenir. Sayının işareti negatif ise işaretin kaybolmaması için sayının yüksek anlamlı byte değerlerine ilişkin bitler 1(bir) ile beslenir
 
 ```kotlin
 package org.csystem.app  
@@ -3445,7 +3445,7 @@ fun main() {
 }
 ```
 
->*Anımsanacağı gibi küçük tamsayı türünden büyük tamsayı türüne yapılan dönüşümde kaynak türe ilişkin değer pozitif ise sayının eklenen yüksek anlamlı byte değerlerine ilişkin bitler sıfır ile beslenir. Sayının işareti negatif ise işaretin kaybolmaması için sayının yüksek anlamlı byte değerlerine ilişkin bitler 1(bir) ile beslenir*
+>Anımsanacağı gibi küçük tamsayı türünden büyük tamsayı türüne yapılan dönüşümde kaynak türe ilişkin değer pozitif ise sayının eklenen yüksek anlamlı byte değerlerine ilişkin bitler sıfır ile beslenir. Sayının işareti negatif ise işaretin kaybolmaması için sayının yüksek anlamlı byte değerlerine ilişkin bitler 1(bir) ile beslenir
 
 ```kotlin
 package org.csystem.app  
@@ -3468,7 +3468,7 @@ fun main() {
 }
 ```
 
->*Temel türlere ilişkin toChar metotları*
+>Temel türlere ilişkin toChar metotları
 
 ```kotlin
 package org.csystem.app  
@@ -3482,7 +3482,7 @@ fun main() {
 
 **_Anahtar Notlar:_** Double ve Float sınıflarının toChar metotları `Kotlin 1.5` ile birlikte deprecated olmuşlardır. Bu fonksiyonların Kotlin 2.3 ile birlikte tamamen kaldırılacağı belirtilmiştir. Bu dönüşümün yapılması istendiğinde önce toInt metodu çağrılıp, sonra toChar metodu çağrılabilir.
 
->*İki Char türden değer toplama işlemine sokulamaz. Yani Char türünün Char türden parametreli toplama (plus) operatör fonksiyonu yoktur*
+>İki Char türden değer toplama işlemine sokulamaz. Yani Char türünün Char türden parametreli toplama (plus) operatör fonksiyonu yoktur
 
 ```kotlin
 package org.csystem.app  
@@ -3496,7 +3496,7 @@ fun main() {
     //...}
 ```
 
->*İki Char birbirinden çıkartılabilir. Bu durumda sonuç Int türden elde edilir. Bu bize iki karakterin karakter tablosundaki sıra numarası farkını verir. Şüphesiz yine bu işlem Char sınıfının Char parametreli minus operatör fonksiyonu ile yapılmaktadır*
+>İki Char birbirinden çıkartılabilir. Bu durumda sonuç Int türden elde edilir. Bu bize iki karakterin karakter tablosundaki sıra numarası farkını verir. Şüphesiz yine bu işlem Char sınıfının Char parametreli minus operatör fonksiyonu ile yapılmaktadır
 
 ```kotlin
 package org.csystem.app  
@@ -3511,7 +3511,7 @@ fun main() {
 }
 ```
 
->*Char türü ile Int türünün toplanması durumunda sonuç Char türden çıkar. Şüphesiz bu işlem Char sınıfının Int parametreli plus fonksiyonu ile yapılmaktadır*
+>Char türü ile Int türünün toplanması durumunda sonuç Char türden çıkar. Şüphesiz bu işlem Char sınıfının Int parametreli plus fonksiyonu ile yapılmaktadır
 
 ```kotlin
 package org.csystem.app  
@@ -3525,7 +3525,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnekte Int sınıfının Char parametreli plus fonksiyonu olmadığından error oluşur*
+>Aşağıdaki örnekte Int sınıfının Char parametreli plus fonksiyonu olmadığından error oluşur
 
 ```kotlin
 package org.csystem.app  
@@ -3536,7 +3536,7 @@ fun main() {
 }
 ```
 
->*Long türünden Int türüne dönüşüm. Aşağıdaki örnekte çeşitli değerler girip sonucu gözlemleyiniz*
+>Long türünden Int türüne dönüşüm. Aşağıdaki örnekte çeşitli değerler girip sonucu gözlemleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -3558,13 +3558,13 @@ fun main() {
 }
 ```
 
->*Byte sınıfının toChar metodu* `Kotlin 1.5` *ile birlikte deprecated durumdadır. Bu metot yerine Int türüne dönüştürülüp toChar metodu çağrılmalıdır:*
+>Byte sınıfının toChar metodu `Kotlin 1.5` ile birlikte deprecated durumdadır. Bu metot yerine Int türüne dönüştürülüp toChar metodu çağrılmalıdır:
 >
 >`a.toInt().toChar()`
 >
->*Char sınıfının toInt metodu da deprecated olmuştur. Bunun Char türünün code property elemanı ile karaktere karşılık gelen sıra numarası Int türden elde edilebilir*
+>Char sınıfının toInt metodu da deprecated olmuştur. Bunun Char türünün code property elemanı ile karaktere karşılık gelen sıra numarası Int türden elde edilebilir
 >
->*Aşağıdaki örnekte çeşitli değerler girerek sonuçları gözlemleyiniz*
+>Aşağıdaki örnekte çeşitli değerler girerek sonuçları gözlemleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -3588,7 +3588,7 @@ fun main() {
 
 **_Anahtar Notlar:_** Gerçek sayı türlerinden Short ve Byte türlerine dönüştüren toShort ve toByte fonksiyonları kaldırılmıştır. Ayrıca gerçek sayı türlerinin toChar fonksiyonları da deprecated olmuştur. Bu anlamda bu 3 tür için toInt fonksiyonu çağrılarak Int türüne dönüştürme yapıp sonradan ilgili türlere dönüştürecek fonksiyonların çağrılması gerekir. Bu anlamda gerçek sayı türlerinden tamsayı türlerine dönüşüm ya Int türüne ya da Long türüne yapılabilmektedir.
 
->*Gerçek sayı türünden tamsayı türüne dönüşüm aşağıdaki gibi gerçekleşir:*
+>Gerçek sayı türünden tamsayı türüne dönüşüm aşağıdaki gibi gerçekleşir:
 >
 >1. Sayının noktadan sonraki kısmı atılır.
 >2. Elde edilen sayı hedef türün sınırları içerisindeyse doğrudan atanır. Elde edilen sayı hedef türün sınırları içerisinde değilse
@@ -3663,7 +3663,7 @@ fun main() {
 
 **_Anahtar Notlar:_** Kotlin'de temel türlere ilişkin dönüşümler (explicit veya implicit) aslında operatör fonksiyonları ile yapılır. Burada basitleştirmek için işlem öncesi otomatik tür denüşümü diyeceğiz.
 
->*İşlem öncesi otomatik tür dönüşümlerine ilişkin operatör fonksiyonları*
+>İşlem öncesi otomatik tür dönüşümlerine ilişkin operatör fonksiyonları
 
 ```kotlin
 package org.csystem.app  
@@ -3681,7 +3681,7 @@ fun main() {
 }
 ```
 
->*Bazen tür dönüştürme işlemi yapılmazsa bilgi kaybı oluşabilir. Aşağıdaki örnekte a için toLong çağrılmasaydı bilgi kaybı oluşabilirdi*
+>Bazen tür dönüştürme işlemi yapılmazsa bilgi kaybı oluşabilir. Aşağıdaki örnekte a için toLong çağrılmasaydı bilgi kaybı oluşabilirdi
 
 ```kotlin
 package org.csystem.app  
@@ -3724,7 +3724,7 @@ fun runAverageApplication() {
 }
 ```
 
->*Kotlin'de bir User Defined Type (UDT) bildiriminde UDT''nin içerisinde herhangi bir bildirim yoksa bu durumda {}'leri yazılmayabilir*
+>Kotlin'de bir User Defined Type (UDT) bildiriminde UDT''nin içerisinde herhangi bir bildirim yoksa bu durumda {}'leri yazılmayabilir
 
 ```kotlin
 class SerialPort
@@ -3736,7 +3736,7 @@ class Person {
 }
 ```
 
->*Kotlin'de new operatörü yoktur. Nesne yaratılması aşağıdaki gibi yapılabilir*
+>Kotlin'de new operatörü yoktur. Nesne yaratılması aşağıdaki gibi yapılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -3756,7 +3756,7 @@ class DeviceInfo {
 
 **_Anahtar Notlar:_** Anımsanacağı gibi Java'da no-modifier bir eleman aynı paketteki diğer sınıflar için `public`, farklı paketteki sınıflar için `private` anlamındadır.
 
->*Kotlin'de new operatörü yoktur. Nesne yaratılması aşağıdaki gibi yapılabilir*
+>Kotlin'de new operatörü yoktur. Nesne yaratılması aşağıdaki gibi yapılabilir
 
 ```kotlin
 package org.csystem.app
@@ -3775,11 +3775,11 @@ class DeviceInfo {
 }
 ```
 
->*Kotlin'de bir sınıfın ctor'ları temel olarak iki gruba ayrılabilir:
+>Kotlin'de bir sınıfın ctor'ları temel olarak iki gruba ayrılabilir:
 >- Primary ctor
 >- Secondary ctor
 >Bir sınıfta primary ctor ya hiç olmayabilir ya da bir tanedir, secondary ctor ya hiç olmayabilir ya da herhangi sayıda olabilmektedir
->Sınıfın public primary ctor'u*
+>Sınıfın public primary ctor'u
 
 ```kotlin
 package org.csystem.app  
@@ -3795,7 +3795,7 @@ class Sample(a: Int, b: Double) {
 }
 ```
 
->*Sınıfın primary ctor'unun bildiriminde constructor anahtar sözcüğü kullanılabilir*
+>Sınıfın primary ctor'unun bildiriminde constructor anahtar sözcüğü kullanılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -3811,7 +3811,7 @@ class Sample constructor(a: Int, b: Double) {
 }
 ```
 
->*Sınıfın primary constructor bildiriminde sınıf isminden sonra,  ctor bildiriminden önce bildirime ilişkin bazı özellikler yazılacaksa constructor anahtar sözcüğü zorunludur. Örneğin erişim belilrleyicisi yazılacaksa constructor anahtar sözcüğü zorunludur*
+>Sınıfın primary constructor bildiriminde sınıf isminden sonra,  ctor bildiriminden önce bildirime ilişkin bazı özellikler yazılacaksa constructor anahtar sözcüğü zorunludur. Örneğin erişim belilrleyicisi yazılacaksa constructor anahtar sözcüğü zorunludur
 
 ```kotlin
 package org.csystem.app
@@ -3819,7 +3819,7 @@ package org.csystem.app
 class Sample private constructor(a: Int, b: Double)
 ```
 
->*primary constructor'ın parametreleri var veya val olarak bildirildiklerinde sınıfın property elemanları bildirilmiş olur. property elemanı doğrudan veri elemanı değildir. Property'nin aşağıdaki gibi kullanımı veri elemanı biçiminde düşünülebilir*
+>primary constructor'ın parametreleri var veya val olarak bildirildiklerinde sınıfın property elemanları bildirilmiş olur. property elemanı doğrudan veri elemanı değildir. Property'nin aşağıdaki gibi kullanımı veri elemanı biçiminde düşünülebilir
 
 ```kotlin
 package org.csystem.app  
@@ -3835,7 +3835,7 @@ class Sample (var a: Int, val b: Double) {
 }
 ```
 
->*primary constructor'ın parametreleri var veya val olarak bildirildiklerinde sınıfın property elemanları bildirilmiş olur. property elemanı doğrudan veri elemanı değildir. Property'nin aşağıdaki gibi kullanımı veri elemanı biçiminde düşünülebilir*
+>primary constructor'ın parametreleri var veya val olarak bildirildiklerinde sınıfın property elemanları bildirilmiş olur. property elemanı doğrudan veri elemanı değildir. Property'nin aşağıdaki gibi kullanımı veri elemanı biçiminde düşünülebilir
 
 ```kotlin
 package org.csystem.app
@@ -3853,7 +3853,7 @@ fun main() {
 class Sample(var a: Int, b: Double)
 ```
 
->*Sınıfın property elemanları primary ctor içerisinde bildirilmişse erişim belirleyicisi de verilebilir. Şüphesiz default erişim belirleyici public'tir*
+>Sınıfın property elemanları primary ctor içerisinde bildirilmişse erişim belirleyicisi de verilebilir. Şüphesiz default erişim belirleyici public'tir
 
 ```kotlin
 package org.csystem.app  
@@ -3870,7 +3870,7 @@ class Sample(var a: Int, private var b: Double) {
 }
 ```
 
->*Sınıfın primary constructor'ının kodları init isimli bir blok içerisinde yazılabilir. init bloğu içerisinde primary constructor'ın parametrelerine veya primary constructor ile bildirilmiş property elemanlarına erişilebilir*
+>Sınıfın primary constructor'ının kodları init isimli bir blok içerisinde yazılabilir. init bloğu içerisinde primary constructor'ın parametrelerine veya primary constructor ile bildirilmiş property elemanlarına erişilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -3891,7 +3891,7 @@ class Sample(var a: Int, var b: Double) {
 }
 ```
 
->*Sınıfın primary ctor'u. Aşağıdaki örnek tamamen konuyu anlatmak için yazılmıştır. Sınıf ileride daha profesyonel olarak yazılacaktır*
+>Sınıfın primary ctor'u. Aşağıdaki örnek tamamen konuyu anlatmak için yazılmıştır. Sınıf ileride daha profesyonel olarak yazılacaktır
 
 ```kotlin
 package org.csystem.app  
@@ -3913,7 +3913,7 @@ class Circle(private var radius: Double = 0.0) {
 }
 ```
 
->*Bir sınıfın  primary ctor'u olmak zorunda değildir. Bu kural bazı sınıflar için geçerli değildir. Örneğin "data sınıfları (data class)" için primary ctor yazmak zorunludur. "data sınıfları" ileride ele alınacaktır*
+>Bir sınıfın  primary ctor'u olmak zorunda değildir. Bu kural bazı sınıflar için geçerli değildir. Örneğin "data sınıfları (data class)" için primary ctor yazmak zorunludur. "data sınıfları" ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app
@@ -3929,7 +3929,7 @@ class Sample {
 }
 ```
 
->*Sınıfın  secondary ctor'u constructor anahtar sözcüğü ile bildirilir. Sınıfın secondary ctor'u overload edilebilir. primary ctor bir tanedir*
+>Sınıfın  secondary ctor'u constructor anahtar sözcüğü ile bildirilir. Sınıfın secondary ctor'u overload edilebilir. primary ctor bir tanedir
 
 ```kotlin
 package org.csystem.app  
@@ -3958,7 +3958,7 @@ class Sample {
 }
 ```
 
->*Sınıfın primary ctor'u varsa tüm secondary ctor'ların doğrudan ya da dolaylı olarak bu ctor'u çağırıyor olmaları gerekir. Bu işlem `:this` ctor sentaksı ile yapılır*
+>Sınıfın primary ctor'u varsa tüm secondary ctor'ların doğrudan ya da dolaylı olarak bu ctor'u çağırıyor olmaları gerekir. Bu işlem `:this` ctor sentaksı ile yapılır
 
 ```kotlin
 package org.csystem.app  
@@ -3995,7 +3995,7 @@ class Sample(a: Double) {
 }
 ```
 
->*Sınıfın secondary constructor'larının parametreleri property elemanı olamaz. Yani var veya val anahtar sözcükleri bu değişkenler için kullanılamaz*
+>Sınıfın secondary constructor'larının parametreleri property elemanı olamaz. Yani var veya val anahtar sözcükleri bu değişkenler için kullanılamaz
 
 ```kotlin
 package org.csystem.app
@@ -4008,7 +4008,7 @@ class Sample(var a: Int) {
 }
 ```
 
->*Secondary ctor'lar gövdesiz olabilir*
+>Secondary ctor'lar gövdesiz olabilir
 
 ```kotlin
 package org.csystem.app  
@@ -4030,7 +4030,7 @@ class Sample(var a: Double) {
 }
 ```
 
->*Aşağıdaki örnekte default ctor primary ctor yapılmıştır*
+>Aşağıdaki örnekte default ctor primary ctor yapılmıştır
 
 ```kotlin
 package org.csystem.app  
@@ -4061,7 +4061,7 @@ class Sample() {
 }
 ```
 
->*Aşağıdaki örnekte hem default hem de int/Int parametreli ctor Java/Kotlin arakodunda bulunacaktır. Kotlin ile yazılan kodların Java'dan kullanımı ve Java'da yazılan kodların Kotlin'den kullanımı detayları ileride ele alınacaktır*
+>Aşağıdaki örnekte hem default hem de int/Int parametreli ctor Java/Kotlin arakodunda bulunacaktır. Kotlin ile yazılan kodların Java'dan kullanımı ve Java'da yazılan kodların Kotlin'den kullanımı detayları ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app  
@@ -4080,7 +4080,7 @@ class Sample(a: Int = 10) {
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz. Örnekte default constructor yazılmıştır. Dolayıysıyla secondary default ctor çağrılır (best match). Örnek için primary ctor'un parametresi için verilen default argüman artık kullanışsızdır*
+>Aşağıdaki örneği inceleyiniz. Örnekte default constructor yazılmıştır. Dolayıysıyla secondary default ctor çağrılır (best match). Örnek için primary ctor'un parametresi için verilen default argüman artık kullanışsızdır
 
 ```kotlin
 package org.csystem.app  
@@ -4106,9 +4106,9 @@ class Sample(val a: Int = 10) {
 }
 ```
 
->*Aşağıdaki iskelet kodu inceleyiniz:*
+>Aşağıdaki iskelet kodu inceleyiniz:
 >
->*Aşağıdaki Time sınıfının yaklaşık Java karşılığı:*
+>Aşağıdaki Time sınıfının yaklaşık Java karşılığı:
 
 ```java
 package org.csystem.app;
@@ -4149,9 +4149,9 @@ class Time(var hour: Int, var min: Int, var sec: Int, var msec: Int) {
 }
 ```
 
->*Örnek, default argüman kullanılarak daha Kotlin mantığıyla yazılabilir*
+>Örnek, default argüman kullanılarak daha Kotlin mantığıyla yazılabilir
 
->*Aşağıdaki Time sınıfının yaklaşık Java karşılığı:*
+>Aşağıdaki Time sınıfının yaklaşık Java karşılığı:
 
 ```java
 package org.csystem.app;
@@ -4189,7 +4189,7 @@ class Time(var hour: Int, var min: Int, var sec: Int = 0, var msec: Int = 0) {
 }
 ```
 
->*primary ctor olmasa bile init bloğu yazılabilir. Bu durumda tüm ctor'ların başında bu blok çalıştırılır. Java'daki non-static initializer ile neredeyse aynı anlamdadır*
+>primary ctor olmasa bile init bloğu yazılabilir. Bu durumda tüm ctor'ların başında bu blok çalıştırılır. Java'daki non-static initializer ile neredeyse aynı anlamdadır
 
 ```kotlin
 package org.csystem.app  
@@ -4217,7 +4217,7 @@ class Sample {
 ```
 
 
->*Point sınıfı*
+>Point sınıfı
 
 ```kotlin
 package org.csystem.app
@@ -4281,7 +4281,7 @@ class Point(var x: Double = 0.0, var y: Double = 0.0) {
 }
 ```
 
->*Aşağıdaki kodda iki anlamlılıktan (ambiguity) dolayı error oluşur*
+>Aşağıdaki kodda iki anlamlılıktan (ambiguity) dolayı error oluşur
 
 ```kotlin
 package org.csystem.app  
@@ -4300,7 +4300,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki kodda tam uyumdan (best match) dolayı error oluşmaz*
+>Aşağıdaki kodda tam uyumdan (best match) dolayı error oluşmaz
 
 ```kotlin
 package org.csystem.app  
@@ -4319,7 +4319,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki kodda iki anlamlılıktan dolayı ambiguity oluşur*
+>Aşağıdaki kodda iki anlamlılıktan dolayı ambiguity oluşur
 
 ```kotlin
 package org.csystem.app  
@@ -4338,7 +4338,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki örnekte Int, Float ve Long, Double parametreli foo fonksiyoları "uygun (applicable)" fonksiyonlardır. Çünkü fonksiyon çağrısında argüman olarak verilen Int türden ifade bir sabit olduğundan Long türüne de doğrudan (implicit) dönüşebilir. Örneği Int parametreli foo fonksiyonunu kaldırarak ayrıca gözlemleyiniz*
+>Aşağıdaki örnekte Int, Float ve Long, Double parametreli foo fonksiyoları "uygun (applicable)" fonksiyonlardır. Çünkü fonksiyon çağrısında argüman olarak verilen Int türden ifade bir sabit olduğundan Long türüne de doğrudan (implicit) dönüşebilir. Örneği Int parametreli foo fonksiyonunu kaldırarak ayrıca gözlemleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -4357,7 +4357,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -4378,7 +4378,7 @@ class Sample {
 ```
 
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -4397,9 +4397,9 @@ class Sample {
 }
 ```
 
->*Bir property elemanının set bölümü ona atama yapıldığında çalışır. get bölümü ise değeri kullanılmak istendiğinde çalışır. Bir property elemanı için genel olarak arka planda yaratılan bir veri elemanı (backing field) bulunmaktadır. Property elemanı içerisinde, ilişkin olduğu veri elemanına erişmek için field bağlamsal anahtar sözcüğü (contextual keyword) kullanılabilir.*
+>Bir property elemanının set bölümü ona atama yapıldığında çalışır. get bölümü ise değeri kullanılmak istendiğinde çalışır. Bir property elemanı için genel olarak arka planda yaratılan bir veri elemanı (backing field) bulunmaktadır. Property elemanı içerisinde, ilişkin olduğu veri elemanına erişmek için field bağlamsal anahtar sözcüğü (contextual keyword) kullanılabilir.
 >
->*Aşağıdaki Sample sınıfının Java karşılığı yaklaşık olarak aşağıdaki gibidir:*
+>Aşağıdaki Sample sınıfının Java karşılığı yaklaşık olarak aşağıdaki gibidir:
 
 ```java
 class Sample {  
@@ -4481,7 +4481,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki örnekte x ve y property elemanları için get ve set bölümleri otomatik olarak yazılmıştır. z property elemanı ise get bölümü otomatik olarak yazılmıştır*
+>Aşağıdaki örnekte x ve y property elemanları için get ve set bölümleri otomatik olarak yazılmıştır. z property elemanı ise get bölümü otomatik olarak yazılmıştır
 
 ```kotlin
 package org.csystem.app  
@@ -4512,7 +4512,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki örnekte x property elemanı için private set yapılarak sınıf içerisinde atama yapılabilir ancak sınıf dışında readonly duruma getirilmiş olur*
+>Aşağıdaki örnekte x property elemanı için private set yapılarak sınıf içerisinde atama yapılabilir ancak sınıf dışında readonly duruma getirilmiş olur
 
 ```kotlin
 package org.csystem.app  
@@ -4540,7 +4540,7 @@ class Sample {
 ```
 
 
->*Aşağıdaki örnekte Sample sınıfının val olarak bildirilmiş property elemanına ilkdeğer (initialization) verilmediği için tüm ctor'larda değer verilmek zorundadır. Sample sınıfında default ctor içerisinde* `:this` *ctor sentaksı kullanıldığından, dolaylı olarak değer verilmiş olur. Mample sınıfında ise val olarak bildirilmiş x property elemanı için ilkdeğer verildiğinden ctor'lar içerisinde (aslında hiç bir yerde) değer verilemez. Test sınıfında ise init bloğu içerisinde val olarak bildirilmiş x property elemanına değer verildiğinden artık ctor'lar içerisinde (aslında hiçbir yerde) değer verilemez*
+>Aşağıdaki örnekte Sample sınıfının val olarak bildirilmiş property elemanına ilkdeğer (initialization) verilmediği için tüm ctor'larda değer verilmek zorundadır. Sample sınıfında default ctor içerisinde `:this` ctor sentaksı kullanıldığından, dolaylı olarak değer verilmiş olur. Mample sınıfında ise val olarak bildirilmiş x property elemanı için ilkdeğer verildiğinden ctor'lar içerisinde (aslında hiç bir yerde) değer verilemez. Test sınıfında ise init bloğu içerisinde val olarak bildirilmiş x property elemanına değer verildiğinden artık ctor'lar içerisinde (aslında hiçbir yerde) değer verilemez
 
 ```kotlin
 package org.csystem.app  
@@ -4601,7 +4601,7 @@ class Sample {
 }
 ```
 
->*Dikkat aşağıdaki örnekte radius değeri yalnızca ctor içerisinde kontrol edilmiştir. Atama durumunda kontrol işlemi yazılmamıştır Bu anlamda Circle sınıfı iyi olarak tasarlanmamıştır*
+>Dikkat aşağıdaki örnekte radius değeri yalnızca ctor içerisinde kontrol edilmiştir. Atama durumunda kontrol işlemi yazılmamıştır Bu anlamda Circle sınıfı iyi olarak tasarlanmamıştır
 
 ```kotlin
 package org.csystem.app  
@@ -4629,11 +4629,11 @@ class Circle(var radius: Double) {
 }
 ```
 
->*Circle sınıfı ve test kodu*
+>Circle sınıfı ve test kodu
 >
->*(Daha karmaşık ve tam olarak Kotlin mantığıyla tasarlanmamış versiyon)*
+>(Daha karmaşık ve tam olarak Kotlin mantığıyla tasarlanmamış versiyon)
 >
->*Aşağıdaki yaklaşımda backing field yani set kısmı gereksizdir*
+>Aşağıdaki yaklaşımda backing field yani set kısmı gereksizdir
 
 ```kotlin
 package org.csystem.app  
@@ -4672,11 +4672,11 @@ class Circle(radius: Double = 0.0) {
 }
 ```
 
->*Circle sınıfı ve test kodu\
+>Circle sınıfı ve test kodu\
 >(Daha profesyonel versiyon)\
 >Aşağıdaki örnekte area ve circumference property elemanları için backing field yaratılmaz\
 >**Not:** Circle sınıfı ileride göreceğimiz konular ile daha profesyonel yazılacaktır.\
->Aşağıdaki Circle sınıfının yaklaşık Java karşılığı şu şekildedir:*
+>Aşağıdaki Circle sınıfının yaklaşık Java karşılığı şu şekildedir:
 
 ```java
 package org.csystem.math.geometry;
@@ -4805,9 +4805,9 @@ class Complex(val real: Double = 0.0, val imag: Double = 0.0) {
 }
 ```
 
->*Kotlin JVM'de rasgele üretimi için java.util paketi içerisinde Random sınıfı kullanılabilse de, Kotlin'inin standart kütüphanesi içerisinde de random sayı üretimi yapan "object" ve fonksiyonlar vardır. Bu araçlar JavaSE'deki Random sınıfı ile aynı algoritmayı kullanmazlar. Programcı rasgele sayı üretiminde özel bir durum yoksa Kotlin'in rasgele sayı üretimi yapan object ve fonksiyonlarını kullanmalıdır*
+>Kotlin JVM'de rasgele üretimi için java.util paketi içerisinde Random sınıfı kullanılabilse de, Kotlin'inin standart kütüphanesi içerisinde de random sayı üretimi yapan "object" ve fonksiyonlar vardır. Bu araçlar JavaSE'deki Random sınıfı ile aynı algoritmayı kullanmazlar. Programcı rasgele sayı üretiminde özel bir durum yoksa Kotlin'in rasgele sayı üretimi yapan object ve fonksiyonlarını kullanmalıdır
 
->*Random "object"'inin nextInt metotları*
+>Random "object"'inin nextInt metotları
 
 ```kotlin
 package org.csystem.app  
@@ -4825,7 +4825,7 @@ fun main() {
 }
 ```
 
->*Random "object"'inin nextInt metotları*
+>Random "object"'inin nextInt metotları
 
 ```kotlin
 package org.csystem.app  
@@ -4849,7 +4849,7 @@ fun main() {
 }
 ```
 
->*Random "object"'inin nextBoolean metodu*
+>Random "object"'inin nextBoolean metodu
 
 ```kotlin
 package org.csystem.app  
@@ -4946,7 +4946,7 @@ fun calculateSameDiceProbability(n: Int): Double {
 ```
 
 
->*Random "object"'inin nextDouble fonksiyonu*
+>Random "object"'inin nextDouble fonksiyonu
 
 ```kotlin
 package org.csystem.app  
@@ -4962,7 +4962,7 @@ fun main() {
 }
 ```
 
->*Random "object"'inin nextDouble fonksiyonu*
+>Random "object"'inin nextDouble fonksiyonu
 
 ```kotlin
 package org.csystem.app  
@@ -4978,7 +4978,7 @@ fun main() {
 }
 ```
 
->*Random "object"'inin nextDouble fonksiyonu*
+>Random "object"'inin nextDouble fonksiyonu
 
 ```kotlin
 package org.csystem.app  
@@ -4997,7 +4997,7 @@ fun main() {
 }
 ```
 
->*Tohum değeri Random fonksiyonu ile verilerek istenilen tohum değerinden başlayan bir Random referansı elde edilebilir*
+>Tohum değeri Random fonksiyonu ile verilerek istenilen tohum değerinden başlayan bir Random referansı elde edilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -5049,11 +5049,11 @@ fun main() {
 }
 ```
 
->*Kotlin'de* referans türleri için `==` ve `!=` *operatörlerinin operatör fonksiyonu Any sınıfından equals metodudur. Yani aslında eşitlik karşılaştırması equals metodu çağrılarak yapılır. Any sınıfının equals metodu referans karşılaştırması yapar. Ancak sınıfta equals metodu override edilmişse bu durumda referans karşılaştırması yapılmaz. Bu durumda programcı referans karşılaştırması için bu operatörleri kullanılırsa bu işlem garanti olmayabilir. Buradaki kavramların bazıları ileride ele alınacaktır.
+>Kotlin'de referans türleri için `==` ve `!=` operatörlerinin operatör fonksiyonu Any sınıfından equals metodudur. Yani aslında eşitlik karşılaştırması equals metodu çağrılarak yapılır. Any sınıfının equals metodu referans karşılaştırması yapar. Ancak sınıfta equals metodu override edilmişse bu durumda referans karşılaştırması yapılmaz. Bu durumda programcı referans karşılaştırması için bu operatörleri kullanılırsa bu işlem garanti olmayabilir. Buradaki kavramların bazıları ileride ele alınacaktır.
 >
->*data sınıflarının equals metodu içerisinde property elemanlarını* `==` şlemine sokacak şekilde otomatik olarak override edildiğinden örnekte `==` *operatörü true değer üretir. Yani artık referans karşılaştırması yapmaz. data sınıfları ileride detaylı olarak ele alınacaktır.*
+>data sınıflarının equals metodu içerisinde property elemanlarını `==` şlemine sokacak şekilde otomatik olarak override edildiğinden örnekte `==` operatörü true değer üretir. Yani artık referans karşılaştırması yapmaz. data sınıfları ileride detaylı olarak ele alınacaktır.
 >
->*Aşağıdaki örneği sınıf bildiriminde data anahtar sözcüğünü kaldırarak test ediniz ve sonucu gözlemleyiniz.*
+>Aşağıdaki örneği sınıf bildiriminde data anahtar sözcüğünü kaldırarak test ediniz ve sonucu gözlemleyiniz.
 
 ```kotlin
 package org.csystem.app;  
@@ -5068,11 +5068,11 @@ fun main() {
 data class Sample(var value: Int)
 ```
 
->*Kotlin'de referans karşılaştırmasının kesin olarak yapılabilmesi için iki tane ek eşitlik karşılaştırma operatörleri bulunmaktadır:*
+>Kotlin'de referans karşılaştırmasının kesin olarak yapılabilmesi için iki tane ek eşitlik karşılaştırma operatörleri bulunmaktadır:
 >   
 >`===`, `!==`
 >
->*Bu durumda programcı kesinlikle referans karşılaştırması yapmak istiyorsa bu operatörleri tercih etmelidir.*
+>Bu durumda programcı kesinlikle referans karşılaştırması yapmak istiyorsa bu operatörleri tercih etmelidir.
 
 ```kotlin
 package org.csystem.app;  
@@ -5088,7 +5088,7 @@ fun main() {
 data class Sample(var value: Int)
 ```
 
->*Her ne kadar temel türler (yani temel türlere ilişkin sınıflar) için de* `===`, `!==` *operatörleri kullanılabilse de anlamsız bir durum oluştuğundan bu operatörlerin temel türler için kullanımı deprecated olmuştur*
+>Her ne kadar temel türler (yani temel türlere ilişkin sınıflar) için de `===`, `!==` operatörleri kullanılabilse de anlamsız bir durum oluştuğundan bu operatörlerin temel türler için kullanımı deprecated olmuştur
 
 ```kotlin
 package org.csystem.app;  
@@ -5105,9 +5105,9 @@ fun main() {
 }
 ```
 
->*Kotlin'in kendi standart kütüphanesi içerisinde String sınıfı bulunmaktadır. Bu sınıf genel olarak Java'nın String sınıfına benzemekle birlikte ek bir takım özelliklere de sahiptir. Kotlin'de de String sınıfı immutable'dır*
+>Kotlin'in kendi standart kütüphanesi içerisinde String sınıfı bulunmaktadır. Bu sınıf genel olarak Java'nın String sınıfına benzemekle birlikte ek bir takım özelliklere de sahiptir. Kotlin'de de String sınıfı immutable'dır
 
->*İki tırnak içerisindeki ifadeler (string literals) String türündendir*
+>İki tırnak içerisindeki ifadeler (string literals) String türündendir
 
 ```kotlin
 package org.csystem.app;  
@@ -5119,7 +5119,7 @@ fun main() {
 }
 ```
 
->*Klavyeden String okunması*
+>Klavyeden String okunması
 
 ```kotlin
 package org.csystem.app;  
@@ -5132,7 +5132,7 @@ fun main() {
 }
 ```
 
->*String sınıfının length property elemanı ile karakter sayısı elde edilebilir*
+>String sınıfının length property elemanı ile karakter sayısı elde edilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -5145,7 +5145,7 @@ fun main() {
 }
 ```
 
->*Klavyeden String okunması durumunda elde edilen nesneler farklıdır*
+>Klavyeden String okunması durumunda elde edilen nesneler farklıdır
 
 ```kotlin
 package org.csystem.app;  
@@ -5161,7 +5161,7 @@ fun main() {
 }
 ```
 
->*Özdeş String atomları için aynı adres kullanılır*
+>Özdeş String atomları için aynı adres kullanılır
 
 ```kotlin
 package org.csystem.app  
@@ -5177,7 +5177,7 @@ fun main() {
 }
 ```
 
->*String sınıfının compareTo metodu*
+>String sınıfının compareTo metodu
 
 ```kotlin
 package org.csystem.app  
@@ -5193,7 +5193,7 @@ fun main() {
 }
 ```
 
->*String sınıfının compareTo metodunun ignoreCase parametresi ile büyük küçük harf duyarsız (case insensitive) karşılaştırma yapılabilir*
+>String sınıfının compareTo metodunun ignoreCase parametresi ile büyük küçük harf duyarsız (case insensitive) karşılaştırma yapılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -5209,7 +5209,7 @@ fun main() {
 }
 ```
 
->*İki yazının aynı olup olmadığı* `==` veya `!=` *operatörleri ile test edilebilir*
+>İki yazının aynı olup olmadığı `==` veya `!=` operatörleri ile test edilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -5226,7 +5226,7 @@ fun main() {
 }
 ```
 
->*İki yazının eşitliğinin case insensitive olarak karşılaştırılması*
+>İki yazının eşitliğinin case insensitive olarak karşılaştırılması
 
 ```kotlin
 package org.csystem.app  
@@ -5242,7 +5242,7 @@ fun main() {
 }
 ```
 
->*String sınıfının toUpperCase metodu* `Kotlin 1.5` *ile birlikte deprecated olmuştur. Bu fonksiyon yerine upperCase fonksiyonu kullanılmalıdır*
+>String sınıfının toUpperCase metodu `Kotlin 1.5` ile birlikte deprecated olmuştur. Bu fonksiyon yerine upperCase fonksiyonu kullanılmalıdır
 
 ```kotlin
 package org.csystem.app;  
@@ -5257,7 +5257,7 @@ fun main() {
 }
 ```
 
->*String sınıfının toLowerCase metodu* `Kotlin 1.5` *ile birlikte deprecated olmuştur. Bu fonksiyon yerine lowerCase fonksiyonu kullanılmalıdır*
+>String sınıfının toLowerCase metodu `Kotlin 1.5` ile birlikte deprecated olmuştur. Bu fonksiyon yerine lowerCase fonksiyonu kullanılmalıdır
 
 ```kotlin
 package org.csystem.app;  
@@ -5272,7 +5272,7 @@ fun main() {
 }
 ```
 
->*String sınıfının indexOf metotları*
+>String sınıfının indexOf metotları
 
 ```kotlin
 package org.csystem.app  
@@ -5288,7 +5288,7 @@ fun main() {
 }
 ```
 
->*String sınıfının lastIndexOf fonksiyonları*
+>String sınıfının lastIndexOf fonksiyonları
 
 ```kotlin
 package org.csystem.app;  
@@ -5343,11 +5343,11 @@ fun countString(s1: String, s2: String, ignoreCase: Boolean = false): Int {
 }
 ```
 
->`isBlank` ve `isEmpty` *fonksiyonları. isBlank fonksiyonu yazının tamamı boşluk (whitespace) karakterlerinden oluşuyorsa true döndürür.* `isEmpty` *fonksiyonu yerine:* 
+>`isBlank` ve `isEmpty` fonksiyonları. isBlank fonksiyonu yazının tamamı boşluk (whitespace) karakterlerinden oluşuyorsa true döndürür. `isEmpty` fonksiyonu yerine: 
 >
 >`s == ""` 
 >
->*karşılaştırması kullanılabilir*
+>karşılaştırması kullanılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -5362,7 +5362,7 @@ fun main() {
 }
 ```
 
->*Kotlin'e ait bazı sınıflarda isXXX metotlarının isNotXXX versiyonları da bulundurulur. Okunabilirlik açısından "mantıksal değil operatörü" ile isXXX çağırmak yerine isNotXXX çağrılmalıdır*
+>Kotlin'e ait bazı sınıflarda isXXX metotlarının isNotXXX versiyonları da bulundurulur. Okunabilirlik açısından "mantıksal değil operatörü" ile isXXX çağırmak yerine isNotXXX çağrılmalıdır
 
 ```kotlin
 package org.csystem.app  
@@ -5377,7 +5377,7 @@ fun main() {
 }
 ```
 
->*String sınıfının indexer elemanı ile yazının bir indeksteki karakteri elde edilebilir. indexer elemanı aslında [] operatör fonksiyonudur. Operatör fonksiyonları ileride ele alınacaktır*
+>String sınıfının indexer elemanı ile yazının bir indeksteki karakteri elde edilebilir. indexer elemanı aslında [] operatör fonksiyonudur. Operatör fonksiyonları ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app  
@@ -5393,7 +5393,7 @@ fun main() {
 }
 ```
 
->*String sınıfının tüm karakterleri* `for` *döngüsü ile elde edilebilir. Yani String sınıfı "iterable"'dır. Iterable kavramı ileride ele alınacaktır*
+>String sınıfının tüm karakterleri `for` döngüsü ile elde edilebilir. Yani String sınıfı "iterable"'dır. Iterable kavramı ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app  
@@ -5410,7 +5410,7 @@ fun main() {
 ```
 
 
->*String sınıfına ilişkin indeks değerleri indices property elemanı ile elde edilbilir. Aslında indices property elemanı CharSequence arayüzünden gelmektedir. CharSequence arayüzü ileride ele alınacaktır*
+>String sınıfına ilişkin indeks değerleri indices property elemanı ile elde edilbilir. Aslında indices property elemanı CharSequence arayüzünden gelmektedir. CharSequence arayüzü ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app  
@@ -5428,7 +5428,7 @@ fun main() {
 
 **_Anahtar Notlar:_** Yazılarla işlem yapan, mutable olan ve String sınıfına yardımcı iki tane temel sınıf bulunmaktadır:`StringBuilder, StringBuffer`. Bu sınıflar genel olarak aynıdır. Aralarındaki farklar ileride ele alınacaktır. Farkların sözkonusu olduğu koldar dışında `StringBuilder` sınıfı kullanılmalıdır. Bu sınıflar içerisinde Char türden dizi tutulduğundan yazı üzerinde değişiklik yapılabilmektedir. Bu sınıflar genel olarak String sınıfının immutable olmasının dezavantajlı olduğu durumlarda kullanılır. `StringBuffer` sınıfının farkı ileride ele alınacaktır
 
->*Aşağıdaki örnekte StringBuilder kullanılarak nesne yaratma maliyeti görece ortadan kaldırılmıştır*
+>Aşağıdaki örnekte StringBuilder kullanılarak nesne yaratma maliyeti görece ortadan kaldırılmıştır
 
 ```kotlin
 package org.csystem.app  
@@ -5461,7 +5461,7 @@ fun generateRandomTextEN(count: Int, random: Random = Random): String {
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz. StringBuilder kullanılmasaydı ne olurdu?*
+>Aşağıdaki örneği inceleyiniz. StringBuilder kullanılmasaydı ne olurdu?
 
 ```kotlin
 package org.csystem.app  
@@ -5485,7 +5485,7 @@ fun runReverseTest() {
 fun reverse(s: String) = StringBuilder(s).reverse().toString()
 ```
 
->*Char türünün bazı isXXX metotları*
+>Char türünün bazı isXXX metotları
 
 ```kotlin
 package org.csystem.app  
@@ -5500,7 +5500,7 @@ fun main() {
 }
 ```
 
->*Char türünün uppercase ve lowercase metotları String'e geri döner. Char dondüren versiyonları için upperCaseChar ve lowerCaseChar metotları kullanılmalıdır. uppercaseChar ve lowercaseChar metotları Kotlin 1.5 ile eklenmiştir*
+>Char türünün uppercase ve lowercase metotları String'e geri döner. Char dondüren versiyonları için upperCaseChar ve lowerCaseChar metotları kullanılmalıdır. uppercaseChar ve lowercaseChar metotları Kotlin 1.5 ile eklenmiştir
 
 ```kotlin
 package org.csystem.app  
@@ -5581,7 +5581,7 @@ fun changeCase(s: String): String {
 }
 ```
 
->*String sınıfının substring metotları*
+>String sınıfının substring metotları
 
 ```kotlin
 package org.csystem.app  
@@ -5624,7 +5624,7 @@ fun capitalize(s: String) = if (s != "") s[0].uppercase() + s.substring(1).lower
 
 **_Anahtar Notlar:_** String sınıfının capitalize fonksiyonu Kotlin 1.5 ile birlikte deprecated olmuştur. capitalize işlemi replaceFirstChar isimli bir fonksiyon kullanılarak da yapılabilmektedir. Bu fonksiyon "High Order Function"'dır. High order function kavramı ileride detaylı olarak ele alınacağından replaceFirstChar fonksiyonu da gösterilecektir
 
->*String sınıfının substringBefore ve substringAfter metotları*
+>String sınıfının substringBefore ve substringAfter metotları
 
 ```kotlin
 package org.csystem.app  
@@ -5637,7 +5637,7 @@ fun main() {
 }
 ```
 
->*String sınıfının substringBefore ve substringAfter metotlarının  missingDelimiterValue parametreleri String türdendir. Ayraç bulunamazsa default olarak yazının kendisini döner. Programcı bu parametre için, ayraç bulamadığında döneceği yazıyı argüman olarak geçebilir*
+>String sınıfının substringBefore ve substringAfter metotlarının  missingDelimiterValue parametreleri String türdendir. Ayraç bulunamazsa default olarak yazının kendisini döner. Programcı bu parametre için, ayraç bulamadığında döneceği yazıyı argüman olarak geçebilir
 
 ```kotlin
 package org.csystem.app  
@@ -5653,7 +5653,7 @@ fun main() {
 }
 ```
 
->*String sınıfının substringBefore ve substringAfter metotları ayraç olarak bir String alabilirler*
+>String sınıfının substringBefore ve substringAfter metotları ayraç olarak bir String alabilirler
 
 ```kotlin
 package org.csystem.app  
@@ -5666,7 +5666,7 @@ fun main() {
 }
 ```
 
->*String sınıfının substringAfterLast ve substringBeforeLast metotları*
+>String sınıfının substringAfterLast ve substringBeforeLast metotları
 
 ```kotlin
 package org.csystem.app  
@@ -5680,7 +5680,7 @@ fun main() {
 }
 ```
 
->*String sınıfının substringAfterXXX ve substringBeforeXXX metotlarının kullanımı*
+>String sınıfının substringAfterXXX ve substringBeforeXXX metotlarının kullanımı
 
 ```kotlin
 package org.csystem.app  
@@ -5698,7 +5698,7 @@ fun main() {
 }
 ```
 
->*String sınıfının substringAfterLast metodunun kullanımı*
+>String sınıfının substringAfterLast metodunun kullanımı
 
 ```kotlin
 package org.csystem.app  
@@ -5712,7 +5712,7 @@ fun main() {
 }
 ```
 
->*String template*
+>String template
 
 ```kotlin
 package org.csystem.app  
@@ -5724,7 +5724,7 @@ fun main() {
 }
 ```
 
->*İki tırnak içerisinde escape sequence kullanımı*
+>İki tırnak içerisinde escape sequence kullanımı
 
 ```kotlin
 package org.csystem.app  
@@ -5737,7 +5737,7 @@ fun main() {
 ```
 
 
->*""" ve """ arasındaki String'lere raw (regular) string denir. Bu string sabitlerinde escape sequence karakterler kullanılamaz*
+>""" ve """ arasındaki String'lere raw (regular) string denir. Bu string sabitlerinde escape sequence karakterler kullanılamaz
 
 ```kotlin
 package org.csystem.app  
@@ -5749,7 +5749,7 @@ fun main() {
 }
 ```
 
->*İki tırnak arasında bulunan String sabitleri aynı satırda yazılmalıdır. Aksi durumda error oluşur*
+>İki tırnak arasında bulunan String sabitleri aynı satırda yazılmalıdır. Aksi durumda error oluşur
 
 ```kotlin
 package org.csystem.app  
@@ -5762,7 +5762,7 @@ fun main() {
 }
 ```
 
->*Yukarıdaki problem raw string kullanılarak çözülebilir. Raw stringlerde genel olarak tüm karakterler kendi anlamındadır. WYSIWYG (What You See Is What You Get)*
+>Yukarıdaki problem raw string kullanılarak çözülebilir. Raw stringlerde genel olarak tüm karakterler kendi anlamındadır. WYSIWYG (What You See Is What You Get)
 
 ```kotlin
 package org.csystem.app  
@@ -5775,7 +5775,7 @@ fun main() {
 }
 ```
 
->*Raw string'lerde iki tırnak karakteri tek başına kullanılabilir*
+>Raw string'lerde iki tırnak karakteri tek başına kullanılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -5787,7 +5787,7 @@ fun main() {
 }
 ```
 
->*Raw string'lerde tek tırnak karakteri tek başına kullanılabilir*
+>Raw string'lerde tek tırnak karakteri tek başına kullanılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -5799,7 +5799,7 @@ fun main() {
 }
 ```
 
->*Raw string içerisinde $ karakteri ile ifade yazımı (string template) yapılabilir*
+>Raw string içerisinde $ karakteri ile ifade yazımı (string template) yapılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -5812,7 +5812,7 @@ fun main() {
 }
 ```
 
->*String sınıfının format metodu JavaSE'deki String sınıfının format format metoduna benzer. Kullanım olarak ise daha sonra eklenen formatted metodu gibidir*
+>String sınıfının format metodu JavaSE'deki String sınıfının format format metoduna benzer. Kullanım olarak ise daha sonra eklenen formatted metodu gibidir
 
 ```kotlin
 package org.csystem.app  
@@ -5826,7 +5826,7 @@ fun main() {
 }
 ```
 
->*String sınıfının format metodunun önemli bazı format karakterleri:*
+>String sınıfının format metodunun önemli bazı format karakterleri:
 
     Bazı format karakterleri:
     d       -> decimal tamsayı türü
@@ -5849,7 +5849,7 @@ fun main() {
 }
 ```
 
->*String sınıfının format metodunda format karakterlerinin kullanımı*
+>String sınıfının format metodunda format karakterlerinin kullanımı
 
 ```kotlin
 package org.csystem.app  
@@ -5867,7 +5867,7 @@ fun main() {
 }
 ```
 
->*String sınıfının format metodunda format karakterlerinin kullanımı*
+>String sınıfının format metodunda format karakterlerinin kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -5884,9 +5884,9 @@ fun main() {
 }
 ```
 
->****_Anahtar Notlar:_*** Aşağıda anlatılan import bildirimlerinde kullanılan "yıldızlı import bildirimi" ve "yıldızsız import bildirimi" terimleri sırasıyla "import on demand declaration" ve "import single type/name declaration" anlamında kullanılmaktadır. Türkçe karşılıkları tamamen Oğuz Karan tarafından uydurulmuştur*
+>****_Anahtar Notlar:_*** Aşağıda anlatılan import bildirimlerinde kullanılan "yıldızlı import bildirimi" ve "yıldızsız import bildirimi" terimleri sırasıyla "import on demand declaration" ve "import single type/name declaration" anlamında kullanılmaktadır. Türkçe karşılıkları tamamen Oğuz Karan tarafından uydurulmuştur
 
->*Yıldızsız import bildiriminde (import single type declaration) ilgili isme takma isim (alias) verilebilir*
+>Yıldızsız import bildiriminde (import single type declaration) ilgili isme takma isim (alias) verilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -5902,7 +5902,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -5972,9 +5972,9 @@ fun runIsPangramENTest() {
 
 **_Anahtar Notlar:_** Kotlin dosyaları için tipik IDE programlar (IntelliJ Idea, Android Studio, Eclipse vb.) Java dosyalarında olduğu gibi ilgili sınıf (ya da fonksiyon) hangi paket içerisinde bulunuyorsa o dizinde bulunur zorunluluğunu uygulamaz. Ancak Kotlin JVM kullanan programcılar genelde Java'daki gibi dosyaları konumlandırırlar.
 
->*Kotlin'de global değişkenler de bildirilebilir. Bu durumda global değişken tüm tüm fonksiyonlar içerisinde kullanılabilir. Genel olarak az kullanılsa da bazı durumlarda kullanılabilmektedir. 
+>Kotlin'de global değişkenler de bildirilebilir. Bu durumda global değişken tüm tüm fonksiyonlar içerisinde kullanılabilir. Genel olarak az kullanılsa da bazı durumlarda kullanılabilmektedir. 
 >***_Anahtar Notlar:_*** Global değişkenler yapısallık, nesne yönelimlilik gibi programlama paradigmaları açısından çoğu zaman uygun olmamaktadır. Bu sebeple programcının buna dikkat etmesi gererkir. 
->Aşağıdaki demo örneği inceleyiniz*
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -6018,7 +6018,7 @@ fun foo(origin: Int, bound: Int)  {
 > Ayrıca generic olarak bildirilmiş arrayOf isimli global bir fonksiyon da bulunmaktadır. Örneğin String türden dizilere ilkdeğer vermek için bu fonksiyon kullanılabilir.
 > Diziler dolaşılabilir (iterable) türlerdir.
 
->*arrayOf generic fonksiyonu ile bir dizi ilk değer verme sentaksı biçiminde kullanılabilir. Diziler Kotlin'de de dolaşılabilir (iterable) olduğundan for döngü deyimi kullanılabilir*
+>arrayOf generic fonksiyonu ile bir dizi ilk değer verme sentaksı biçiminde kullanılabilir. Diziler Kotlin'de de dolaşılabilir (iterable) olduğundan for döngü deyimi kullanılabilir
 
 
 >Aşağıdaki demo örneği inceleyiniz
@@ -6054,7 +6054,7 @@ fun main() {
 }
 ```
 
->*Dizilerin eleman sayısına size property elemanı ile erişilebilir*
+>Dizilerin eleman sayısına size property elemanı ile erişilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -6071,7 +6071,7 @@ fun main() {
 }
 ```
 
->*Dizilerin eleman sayısı size property elemanı ile elde edilebilir*
+>Dizilerin eleman sayısı size property elemanı ile elde edilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -6085,7 +6085,7 @@ fun main() {
 }
 ```
 
->*Dizilerin eleman sayısı count isimli extension fonksiyon ile de elde edilebilir*
+>Dizilerin eleman sayısı count isimli extension fonksiyon ile de elde edilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -6099,9 +6099,9 @@ fun main() {
 }
 ```
 
->*Dizilerin indices property elemanı* `[0, size)` *aralığında bir IntRange referansına döner:*
+>Dizilerin indices property elemanı `[0, size)` aralığında bir IntRange referansına döner:
 >
->*Eşdeğer bir döngü:*
+>Eşdeğer bir döngü:
 
 ```kotlin
 for (i in 0 until a.size)
@@ -6183,7 +6183,7 @@ fun runRandomIntArrayTest() {
 ```
 
 
->*joinToString fonksiyonu ile dizi içerisindeki elemanlar bir ayraç veya bir ön ek veya bir son ek ile birleştirilebilir*
+>joinToString fonksiyonu ile dizi içerisindeki elemanlar bir ayraç veya bir ön ek veya bir son ek ile birleştirilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -6201,7 +6201,7 @@ fun main() {
 }
 ```
 
->*joinToString fonksiyonu ile dizi içerisindeki elemanlar bir ayraç veya bir ön ek veya bir son ek ile birleştirilebilir*
+>joinToString fonksiyonu ile dizi içerisindeki elemanlar bir ayraç veya bir ön ek veya bir son ek ile birleştirilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -6219,7 +6219,7 @@ fun main() {
 }
 ```
 
->*joinToString fonksiyonu*
+>joinToString fonksiyonu
 
 ```kotlin
 package org.csystem.app  
@@ -6319,7 +6319,7 @@ fun runDigitsLongTest() {
 }
 ```
 
->*Aşağıdaki demo örneği ve ilgili fonksiyonları inceleyiniz*
+>Aşağıdaki demo örneği ve ilgili fonksiyonları inceleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -6502,7 +6502,7 @@ fun runIsIsogramENTest() {
 >KConsoleLib, KMathLib ve KUtilLib kütüphanelerini inceleyiniz
 >
 
-> *Aşağıdaki demo Time sınıfının Kotlin ve Java karşılıklarını inceleyiniz. Sınıfların detaylarına girilmemiştir yalnızca hour elemanının gizlenmesine odaklanınız*
+> Aşağıdaki demo Time sınıfının Kotlin ve Java karşılıklarını inceleyiniz. Sınıfların detaylarına girilmemiştir yalnızca hour elemanının gizlenmesine odaklanınız
 
 ```java
 //Time.java
@@ -6553,11 +6553,11 @@ class Time {
 
 #### Kotlin enum sınıfları
 
->*Kotlin'deki enum türü Java'dakine çok benzer.*
+>Kotlin'deki enum türü Java'dakine çok benzer.
 
 **_Anahtar Notlar:_** enum kullanımı Android programlamada bazı durumlarda performası olumsuz yönde etkileyebilir. Bu tip durumlar ileride detaylı olarak ele alınacaktır.
 
->*enum türleri enum ve class anahtar sözcükleri ile bildirilir. enum sabitleri (enum constants) ait oldukları enum türünden referanslardır. Şüphesiz bu referanslar da aynı enum türünden yaratılmış olan nesnelerin adreslerini tutarlar*
+>enum türleri enum ve class anahtar sözcükleri ile bildirilir. enum sabitleri (enum constants) ait oldukları enum türünden referanslardır. Şüphesiz bu referanslar da aynı enum türünden yaratılmış olan nesnelerin adreslerini tutarlar
 
 ```kotlin
 package org.csystem.app  
@@ -6577,7 +6577,7 @@ enum class Color {
 }
 ```
 
->*Programcı enum class türünden nesneyi uygulama içersinde  hiç bir şekilde yaratamaz. Sabitlere ilişkin nesneler zaten yaratılmıştır. Bu durumda uygulamadaki bir enum türünden nesne sayısı ilgili enum class'ın sabitlerinin sayısı kadardır. Bu anlamda bir enum class içerisinde de ilgili enum class türünden nesne programcı tarafından yaratılamaz*
+>Programcı enum class türünden nesneyi uygulama içersinde  hiç bir şekilde yaratamaz. Sabitlere ilişkin nesneler zaten yaratılmıştır. Bu durumda uygulamadaki bir enum türünden nesne sayısı ilgili enum class'ın sabitlerinin sayısı kadardır. Bu anlamda bir enum class içerisinde de ilgili enum class türünden nesne programcı tarafından yaratılamaz
 
 ```kotlin
 package org.csystem.app  
@@ -6591,7 +6591,7 @@ enum class Color {
 }
 ```
 
->*enum türlerinin ordinal property elemanı o enum referansına ilişkin sabitin bildirim sıra numarasını verir. ordinal numarası sıfır değerinden başlar*
+>enum türlerinin ordinal property elemanı o enum referansına ilişkin sabitin bildirim sıra numarasını verir. ordinal numarası sıfır değerinden başlar
 
 ```kotlin
 package org.csystem.app  
@@ -6611,7 +6611,7 @@ enum class Color {
 }
 ```
 
->*enum türlerinin values metodu tüm enum sabitlerine ilişkin referanslardan oluşan dizi referansına geri döner. Aşağıdaki örnekte ** ile belirtilen values metodu çağrısının her generateRandomColor  çağrıdında yeni bir dizi yaratması durumu göz ardı edilmiştir*
+>enum türlerinin values metodu tüm enum sabitlerine ilişkin referanslardan oluşan dizi referansına geri döner. Aşağıdaki örnekte ** ile belirtilen values metodu çağrısının her generateRandomColor  çağrıdında yeni bir dizi yaratması durumu göz ardı edilmiştir
 
 ```kotlin
 package org.csystem.app  
@@ -6640,7 +6640,7 @@ enum class Color {
 }
 ```
 
-> *Aşağıdaki örnekte values metodunun her çağrısının yeni bir dizi yarattığı gösterilmiştir*
+> Aşağıdaki örnekte values metodunun her çağrısının yeni bir dizi yarattığı gösterilmiştir
 
 ```kotlin
 package org.csystem.app  
@@ -6657,7 +6657,7 @@ enum class DayOfWeek {
 }
 ```
 
->*enum türlerinin sabitlere ilişkin referanslar values isimli metot ile elde edilebilir*
+>enum türlerinin sabitlere ilişkin referanslar values isimli metot ile elde edilebilir
 
 ```kotlin
 package org.csystem.app  
@@ -6674,7 +6674,7 @@ enum class DayOfWeek {
 }
 ```
 
->*Kotlin 1.9 ile birlikte values metodu yerine ilgili enum sınıfının entries property elemanı kullanılarak dizi elde edilebilir. Kotlin 1.9'dan itibaren programcının aşağıdaki şekilde dizi elde etmesi önerilir. Aşağıdaki örneği inceleyiniz*
+>Kotlin 1.9 ile birlikte values metodu yerine ilgili enum sınıfının entries property elemanı kullanılarak dizi elde edilebilir. Kotlin 1.9'dan itibaren programcının aşağıdaki şekilde dizi elde etmesi önerilir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -6704,7 +6704,7 @@ enum class Color {
 ```
 
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -6722,7 +6722,7 @@ enum class DayOfWeek {
 ```
 
 
->*enum türlerinin valueOf metodu parametresi ile aldığı yazıya ilişkin bir enum sabiti varsa o sabitin tuttuğu adrese geri döner. Yoksa exception oluşur*
+>enum türlerinin valueOf metodu parametresi ile aldığı yazıya ilişkin bir enum sabiti varsa o sabitin tuttuğu adrese geri döner. Yoksa exception oluşur
 
 ```kotlin
 package org.csystem.app  
@@ -6741,7 +6741,7 @@ enum class DayOfWeek {
 }
 ```
 
->*enum sabitlerine değer iliştirilmesi*
+>enum sabitlerine değer iliştirilmesi
 
 ```kotlin
 package org.csystem.app  
@@ -6776,7 +6776,7 @@ enum class Color(val r: Int = 0, val g: Int = 0, val b: Int = 0) {
 }
 ```
 
->*enum'ların eşitlik karşılaştırması `==`, `===`, `!=` veya `!==` operatörleri ile yapılabilir. *
+>enum'ların eşitlik karşılaştırması `==`, `===`, `!=` veya `!==` operatörleri ile yapılabilir. 
 
 ```kotlin
 package org.csystem.app  
@@ -6813,7 +6813,7 @@ enum class Color(val r: Int = 0, val g: Int = 0, val b: Int = 0) {
 }
 ```
 
->*enum'lara başka elemanlar da eklenebilmektedir. Bu durumda son enum sabitinden sonra noktalı virgül kullanılması zorunludur. Aşağıdaki örneği inceleyiniz*
+>enum'lara başka elemanlar da eklenebilmektedir. Bu durumda son enum sabitinden sonra noktalı virgül kullanılması zorunludur. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -6846,7 +6846,7 @@ enum class Month(val days: Int, val textTR: String) {
 }
 ```
 
->*enum sınıfları ile Java' da olduğu gibi Kotlin'de de Singleton bir sınıf yazılabilir. Kotlin'de Singleton sınıf yazmanın daha kolay bir yöntemi de ileride anlatılacaktır*
+>enum sınıfları ile Java' da olduğu gibi Kotlin'de de Singleton bir sınıf yazılabilir. Kotlin'de Singleton sınıf yazmanın daha kolay bir yöntemi de ileride anlatılacaktır
 
 ```kotlin
 package org.csystem.app  
@@ -6901,7 +6901,7 @@ Burada örneğin ikinci madde bazı durumlarda gerçekleşmeyebilir. Ama bu ili�
 
 **_Anahtar Notlar:_** Bazı sınıfların implementasyonları gereği yukarıdaki ilişkilerden hiçbirisi olmayabilir. Ya da bazı özel durumlar dolayısıyla da yukarıdaki ilişkilerden biri olmayabilir. Ama ortada yine bir bağımlılık (dependency) söz konusudur. Bu da yine genel durumu bozmaz. Böylesi durumlar ileride ele alıncaktır.
 
->*A ile B arasındaki composition (has a) ilişkisi*
+>A ile B arasındaki composition (has a) ilişkisi
 
 ```kotlin
 package org.csystem.app  
@@ -6941,7 +6941,7 @@ class B {
 }
 ```
 
->*A ile B arasındaki aggregation (holds a) ilişkisi*
+>A ile B arasındaki aggregation (holds a) ilişkisi
 
 ```kotlin
 package org.csystem.app  
@@ -6989,7 +6989,7 @@ class B {
 ```
 
 
->*Car, Engine, Driver, Plane, ve Pilot sınıfları arasındaki ilişkiler*
+>Car, Engine, Driver, Plane, ve Pilot sınıfları arasındaki ilişkiler
 
 
 ![Class Diagram](./kmedia/DemoRaceGameClassDiagram.PNG)
@@ -7117,7 +7117,7 @@ class Engine {
 }
 ```
 
->*A ile B arasındaki association ilişkisi*
+>A ile B arasındaki association ilişkisi
 
 
 ```kotlin
@@ -7152,7 +7152,7 @@ class B {
 }
 ```
 
->*Taxi, Driver ve Client arasındaki ilişkiler*
+>Taxi, Driver ve Client arasındaki ilişkiler
 
 ![Class Diagram](./kmedia/DemoTaxiAppClassDiagram.PNG)
 ```kotlin
@@ -7192,7 +7192,7 @@ class Driver {
 }
 ```
 
->*Aşağıdaki örnekte Person sınıfı ile String sınıfı arasındaki ilişki ne tam bir composition ne de tam bir aggregation ilişkisidir. Buradaki durum istisnadır ve ilişki anlamında isimlendirilmesi gerekmez. Sonuçta bir dependency vardır*
+>Aşağıdaki örnekte Person sınıfı ile String sınıfı arasındaki ilişki ne tam bir composition ne de tam bir aggregation ilişkisidir. Buradaki durum istisnadır ve ilişki anlamında isimlendirilmesi gerekmez. Sonuçta bir dependency vardır
 
 ```kotlin
 package org.csystem.app  
@@ -7209,26 +7209,26 @@ class Person(var name: String, var no: Int)
 ```
 #### Türetme/Kalıtım 
 
->*Türetme/Kalıtım (Inheritance) kavramı programlamada bir sınıfı kodlarına dokunmadan ve/veya kodlarını kopyalamadan genişletmek (extension) için kullanılır. Burada genişletme var olan özelliklere ekleme olarak düşünülebilir. Bu ilişkide B sınıfı A sınıfından türetilmişse "B **is a**n A" cümlesi geçerli olur.*
+>Türetme/Kalıtım (Inheritance) kavramı programlamada bir sınıfı kodlarına dokunmadan ve/veya kodlarını kopyalamadan genişletmek (extension) için kullanılır. Burada genişletme var olan özelliklere ekleme olarak düşünülebilir. Bu ilişkide B sınıfı A sınıfından türetilmişse "B **is a**n A" cümlesi geçerli olur.
 >
->*B sınıfı A sınıfından türetilmiş olsun. B sınıfına A sınıfının bir türemiş sınıfı (derived class) denir. A sınıfına da B sınıfının taban sınıfı (base class) denir. Bu iki terim nesne yönelimli programlama tekniğine ilişkin genel terimlerdir. Kotlin'de ve Java'da "base class" yerine **"super class"**, "derived class" yerine de **"sub class"** terimleri daha çok kullanılır.*
+>B sınıfı A sınıfından türetilmiş olsun. B sınıfına A sınıfının bir türemiş sınıfı (derived class) denir. A sınıfına da B sınıfının taban sınıfı (base class) denir. Bu iki terim nesne yönelimli programlama tekniğine ilişkin genel terimlerdir. Kotlin'de ve Java'da "base class" yerine **"super class"**, "derived class" yerine de **"sub class"** terimleri daha çok kullanılır.
 
 **_Anahtar Notlar:_** Nesne yönelimli programlamda "base class" yerine Biyoloji'den gelen terim olan "parent class", "derived class" yerine de yine Biyoloji'den gelen "child class" terimleri de kullanılır.
 
->*Bir dizi türetme söz konusu olabilir. Örneğin C sınıfı B sınıfından, B sınıfı da A sınıfından türetilmiş olsun. 
+>Bir dizi türetme söz konusu olabilir. Örneğin C sınıfı B sınıfından, B sınıfı da A sınıfından türetilmiş olsun. 
 
 ![Class Diagram](./kmedia/Inheritance1.PNG)
->Bu durumda C'nin taban sınıfı (super class) dendiğinde doğrudan taban sınıf (direct super class) olan B sınıfı anlaşılır. Bu hiyerarşide A sınıfı C'nin dolaylı taban sınıfıdır (indirect super class.) Örneğimizde "C nin taban sınıfları B ve A'dır" cümlesi teknik olarak doğru değildir. Doğrusu "C'nin taban sınıfı B'dir, dolaylı taban sınıflarından biri A'dır" cümlesidir.*
+>Bu durumda C'nin taban sınıfı (super class) dendiğinde doğrudan taban sınıf (direct super class) olan B sınıfı anlaşılır. Bu hiyerarşide A sınıfı C'nin dolaylı taban sınıfıdır (indirect super class.) Örneğimizde "C nin taban sınıfları B ve A'dır" cümlesi teknik olarak doğru değildir. Doğrusu "C'nin taban sınıfı B'dir, dolaylı taban sınıflarından biri A'dır" cümlesidir.
 >
->*Kotlin'de ve Java'da bir sınıf birden fazla (doğrudan) taban sınıfa sahip olamaz. Yani çoklu türetme (multiple inheritance) yoktur. Bir sınıf yalnızca tek bir sınıftan türetilebilir.*
+>Kotlin'de ve Java'da bir sınıf birden fazla (doğrudan) taban sınıfa sahip olamaz. Yani çoklu türetme (multiple inheritance) yoktur. Bir sınıf yalnızca tek bir sınıftan türetilebilir.
 
 **_Anahtar Notlar:_** Kotlin'de ve Java'da çoklu türetmenin gerektiği yerlerde kısmi (partial) olarak desteklenmesini sağlayan "interface" denilen bir tür bulunmaktadır. Çoklu türetmenin pratikteki gerekliliği "interface"'ler ile karşılanabilmektedir. "interface" konusu ileride ele alınacaktır.
 
->*Türetme kavramı programlamada "bir sınıfın kodlarına dokunmadan o sınıfı genişletmek" anlamına gelir. Bu da OCP'nin "open for extension closed for modification" mottosuna uygun olduğunu gösterir*.
+>Türetme kavramı programlamada "bir sınıfın kodlarına dokunmadan o sınıfı genişletmek" anlamına gelir. Bu da OCP'nin "open for extension closed for modification" mottosuna uygun olduğunu gösterir.
 >
->*Anımsanacağı gibi Java'da bir sınıf final anahtar sözcüğü ile bildirilmemişse türetmeye açıktır. Yani bu durumda Java'da bir sınıf default olarak türetmeye açıktır denebilir. Ancak Kotlin'de bir sınıf default olarak türetmeya açık değildir. Bir sınıfın türtilebilir olması yani türetmeye açık olması için open anahtar sözcüğü ile bildirilmesi gerekir*
+>Anımsanacağı gibi Java'da bir sınıf final anahtar sözcüğü ile bildirilmemişse türetmeye açıktır. Yani bu durumda Java'da bir sınıf default olarak türetmeye açıktır denebilir. Ancak Kotlin'de bir sınıf default olarak türetmeya açık değildir. Bir sınıfın türtilebilir olması yani türetmeye açık olması için open anahtar sözcüğü ile bildirilmesi gerekir
 >
->*Türetme işlemi : atomu ile yapılır*
+>Türetme işlemi : atomu ile yapılır
 
 ```kotlin
 package org.csystem.app
@@ -7242,7 +7242,7 @@ open class A {
 }
 ```
 
->*Anımsanacağı gibi türemiş sınıf nesnesi içerisinde taban sınıf nesnesi kadarlık bir bellek bölgesi de bulunmaktadır. Bu anlamda türemiş sınıf nesnesi taban sınıf nesnesini kapsar durumdadır. Bu kapsama mantıksal değildir. Yani bellek kapsamadır*
+>Anımsanacağı gibi türemiş sınıf nesnesi içerisinde taban sınıf nesnesi kadarlık bir bellek bölgesi de bulunmaktadır. Bu anlamda türemiş sınıf nesnesi taban sınıf nesnesini kapsar durumdadır. Bu kapsama mantıksal değildir. Yani bellek kapsamadır
 
 ```kotlin
 package org.csystem.app  
@@ -7267,15 +7267,15 @@ open class A {
 }
 ```
 
->*Anımsanacağı gibi Java'da (dolayısıyla Kotlin JVM'de) bir nesnenin yaratılması adımları şunlardır:*
+>Anımsanacağı gibi Java'da (dolayısıyla Kotlin JVM'de) bir nesnenin yaratılması adımları şunlardır:
 >1. Bellekte yer ayrılır.
 >2. non-static olan ve final olmayan veri elemanlarına default değerler atanır. Kotlin'de veri elemanlarının arka planda yaratıldığını anımsayınız.
 >3. ctor çağrılır.
 >
->*Bir nesnenin yartılmasının tamamlanması yani adresinin elde edilmesi bu 3 adımın düzgün bir biçimde tamamlanmasıyla olur. Bu adımlaın herhangi birinde problem olursa nesne yaratılmamış olur. Örneğin ctor'da bir exception oluştuğunda nesne yaratılması adımları düzgün bir biçimde tamamlanmadığı için nesne yaratılmış olmaz*
+>Bir nesnenin yartılmasının tamamlanması yani adresinin elde edilmesi bu 3 adımın düzgün bir biçimde tamamlanmasıyla olur. Bu adımlaın herhangi birinde problem olursa nesne yaratılmamış olur. Örneğin ctor'da bir exception oluştuğunda nesne yaratılması adımları düzgün bir biçimde tamamlanmadığı için nesne yaratılmış olmaz
 
 
->*Türemiş sınıf içerisinde taban sınıfın ctor'unun çağrılması durumu. Aşağıdaki örnekte taban sınıfın default ctor'u kullanılarak türetme yapıldığından B'nin mutlaka primary olarak default ctor'u olmalıdır*
+>Türemiş sınıf içerisinde taban sınıfın ctor'unun çağrılması durumu. Aşağıdaki örnekte taban sınıfın default ctor'u kullanılarak türetme yapıldığından B'nin mutlaka primary olarak default ctor'u olmalıdır
 
 ```kotlin
 package org.csystem.app  
@@ -7304,7 +7304,7 @@ open class A {
 }
 ```
 
->*Taban sınıfın herhangi bir ctor'unun çağrılmasının sağlanması*
+>Taban sınıfın herhangi bir ctor'unun çağrılmasının sağlanması
 
 ```kotlin
 package org.csystem.app  
@@ -7347,7 +7347,7 @@ open class A(c: Int) {
 }
 ```
 
->*Taban sınıfın herhangi bir ctor'unun super anahtar sözcüğü kullanılarak çağrılmasının sağlanması. Taban sınıfın primary ctor'u yoksa türetmede :'den sonra doğrudan sınıf ismi kullanılır*
+>Taban sınıfın herhangi bir ctor'unun super anahtar sözcüğü kullanılarak çağrılmasının sağlanması. Taban sınıfın primary ctor'u yoksa türetmede :'den sonra doğrudan sınıf ismi kullanılır
 
 ```kotlin
 package org.csystem.app  
@@ -7379,7 +7379,7 @@ open class A {
 }
 ```
 
->*AnalyticalCircle sınıfı*
+>AnalyticalCircle sınıfı
 
 ![Class Diagram](./kmedia/AnalyticalCircle.PNG)
 
@@ -7470,7 +7470,7 @@ fun main() {
 }
 ```
 
->*Aralarında türetme ilişkisi olmayan iki sınıf türünden referans birbirine doğrudan (implicit) atanamaz*
+>Aralarında türetme ilişkisi olmayan iki sınıf türünden referans birbirine doğrudan (implicit) atanamaz
 
 ```kotlin
 package org.csystem.app  
@@ -7492,9 +7492,9 @@ class B {
 }
 ```
 
->*Aralarında türetme ilişkisi olmayan sınıflar türünden iki referans as operatörü ile birbirine atanabilir (explicit conversion/casting)*
+>Aralarında türetme ilişkisi olmayan sınıflar türünden iki referans as operatörü ile birbirine atanabilir (explicit conversion/casting)
 >
->*Aşağıdaki kodda exception oluşur. as operatörü ileride detaylı olarak incelenecektir*
+>Aşağıdaki kodda exception oluşur. as operatörü ileride detaylı olarak incelenecektir
 
 ***Anahtar Notlar:*** Bu durumun Java'da error olduğunu anımsayınız.
 
@@ -7517,7 +7517,7 @@ class B {
 }
 ```
 
->*Türemiş sınıf (sub class) türünden  bir referans taban sınıf (super class) türünden bir referansa doğrudan (implicit) atanabilir (upcasting). Bu durumda türemiş sınıf nesnenin taban sınıf kısmının adresi taban sınıf referansına atanmış olur*
+>Türemiş sınıf (sub class) türünden  bir referans taban sınıf (super class) türünden bir referansa doğrudan (implicit) atanabilir (upcasting). Bu durumda türemiş sınıf nesnenin taban sınıf kısmının adresi taban sınıf referansına atanmış olur
 
 ```kotlin
 package org.csystem.app  
@@ -7548,7 +7548,7 @@ open class A(var x: Int) {
 }
 ```
 
->*Aşağıdaki demo örnekte main fonksiyonunun türden bağımsız (type independent) yazıldığına dikkat ediniz. Yani bu senaryoda A hiyerarşisine herhangi bir sınıf eklendiğinde main fonksiyonunun kodlarında değişiklik yapılması gerekmez *
+>Aşağıdaki demo örnekte main fonksiyonunun türden bağımsız (type independent) yazıldığına dikkat ediniz. Yani bu senaryoda A hiyerarşisine herhangi bir sınıf eklendiğinde main fonksiyonunun kodlarında değişiklik yapılması gerekmez 
 
 ```kotlin
 package org.csystem.app  
@@ -7606,7 +7606,7 @@ open class A(var x: Int) {
 ```
 
 
->*DemoCompanyApp uygulaması. Örnekte payInsurance fonksiyonunun türden bağımsız yazıldığına dikkat ediniz*
+>DemoCompanyApp uygulaması. Örnekte payInsurance fonksiyonunun türden bağımsız yazıldığına dikkat ediniz
 
 
 ![Class Diagram](./kmedia/DemoCompanyApp.PNG)
@@ -7699,7 +7699,7 @@ Bunun Kotlin karşılığı:
         
 biçimindedir.
 
->*Bir referansın dinamik türü o referansın çalışma zamanı sırasında bellekte gösterdiği gerçek nesnenin türüdür*
+>Bir referansın dinamik türü o referansın çalışma zamanı sırasında bellekte gösterdiği gerçek nesnenin türüdür
 
 ```kotlin
 package org.csystem.app  
@@ -7750,7 +7750,7 @@ class E : C() {
 }
 ```
 
->*Taban sınıf türünden bir referans türemiş sınıf türünden bir referansa as operatörü ile atanabilir (downcasting). Bu işlem derleme zamanından geçmek içindir. Bu durumda çalışma zamanında kaynak referansın dinamik türünün as operatörüne verilen türü kapsayıp kapsamadığına bakılır. Kapsıyorsa haklı dönüşümdür, akış devam eder. Kapsamıyorsa haksız dönüşümdür, exception oluşur. Buradaki kapsama nesneseldir*
+>Taban sınıf türünden bir referans türemiş sınıf türünden bir referansa as operatörü ile atanabilir (downcasting). Bu işlem derleme zamanından geçmek içindir. Bu durumda çalışma zamanında kaynak referansın dinamik türünün as operatörüne verilen türü kapsayıp kapsamadığına bakılır. Kapsıyorsa haklı dönüşümdür, akış devam eder. Kapsamıyorsa haksız dönüşümdür, exception oluşur. Buradaki kapsama nesneseldir
 
 ```kotlin
 package org.csystem.app  
@@ -7807,7 +7807,7 @@ open class E : C() {
 }
 ```
 
->*Any sınıfı tüm sınıfların doğrudan ya da dolaylı olarak taban sınıfı biçimindedir. Java ve C# daki Object sınıfının Kotlin'deki karşılığıdır. Bu durumda Kotlin'de tüm referanslar Any türden bir referansa doğrudan (implicit) olarak atanabilir*
+>Any sınıfı tüm sınıfların doğrudan ya da dolaylı olarak taban sınıfı biçimindedir. Java ve C# daki Object sınıfının Kotlin'deki karşılığıdır. Bu durumda Kotlin'de tüm referanslar Any türden bir referansa doğrudan (implicit) olarak atanabilir
 
 ```kotlin
 package org.csystem.app  
@@ -7824,7 +7824,7 @@ class Sample {
 }
 ```
 
->*Temel türler de bir sınıf olarak temsil edildiğinden Kotlin anlamında zaten kutulama (boxing) yapılmış olur. Ancak aşağı seviyede kutulama (Java anlamında kutulama da denebilir) Any sınıfına atamada gerçekleşir*
+>Temel türler de bir sınıf olarak temsil edildiğinden Kotlin anlamında zaten kutulama (boxing) yapılmış olur. Ancak aşağı seviyede kutulama (Java anlamında kutulama da denebilir) Any sınıfına atamada gerçekleşir
 
 ```kotlin
 package org.csystem.app  
@@ -7842,7 +7842,7 @@ fun main() {
 }
 ```
 
->Anımsanacağı gibi bir referansın dinamik türünün bir türü kapsayıp kapsamadığı instanceof operatörü ile test edilebilir. Bu operatör "downcasting" işleminin güvenli bir biçimde yapılabilmesi için kullanılır. Kotlin'de bu işlem* `is` ve `!is` *operatörü ile yapılabilir.* `is` *operatörü instanceof operatörüne karşılık gelir. `!is` operatörü de Java'da aşağıdaki bir kontrolün karşılığı olarak düşünülebilir:
+>Anımsanacağı gibi bir referansın dinamik türünün bir türü kapsayıp kapsamadığı instanceof operatörü ile test edilebilir. Bu operatör "downcasting" işleminin güvenli bir biçimde yapılabilmesi için kullanılır. Kotlin'de bu işlem `is` ve `!is` operatörü ile yapılabilir. `is` operatörü instanceof operatörüne karşılık gelir. `!is` operatörü de Java'da aşağıdaki bir kontrolün karşılığı olarak düşünülebilir:
 
 ```java
 if (!(a instanceof T))
@@ -7855,7 +7855,7 @@ if (a !is T)
 
 *Bu operatörün kullanımına ilişkin bazı  detaylar ileride ele alınacaktır*
 
->`is` *operatörü*
+>`is` operatörü
 
 ```kotlin
 package org.csystem.app  
@@ -7917,7 +7917,7 @@ class E : C() {
 }
 ```
 
->`!is` *operatörü*
+>`!is` operatörü
 
 ```kotlin
 package org.csystem.app  
@@ -7981,7 +7981,7 @@ class E : C() {
 }
 ```
 
->*Kotlin'de akıllı **dönüşüm (smart cast)** denilen bir kavram vardır. Örneğin derleyici downcasting ya da unboxing durumlarında hedef türe dönüştürmenin güvenli olduğunu anlarsa as operatörüne gerek kalmaksınız dönüşüme ilişkin kod derleme zamanında otomatik olarak yazılır. Akıllı dönüşüm diğer detaylarıyla birlikte ileride ele alınacaktır*
+>Kotlin'de akıllı **dönüşüm (smart cast)** denilen bir kavram vardır. Örneğin derleyici downcasting ya da unboxing durumlarında hedef türe dönüştürmenin güvenli olduğunu anlarsa as operatörüne gerek kalmaksınız dönüşüme ilişkin kod derleme zamanında otomatik olarak yazılır. Akıllı dönüşüm diğer detaylarıyla birlikte ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app  
@@ -8113,7 +8113,7 @@ class E : C() {
 
 **_Anahtar Notlar:_** Kotlin'de referans dizileri Array isimli generic bir sınıf ile yaratılabilir. Bu konu ileride ele alınacaktır.
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app.generator  
@@ -8205,11 +8205,11 @@ fun createArray(count: Int): Array<Any> {
 
 ### Polymorphism:
 
->*Biyolojiden programlamaya aktarılmıştır. Biyoloji'de "polymorphism", farklı doku ya da organların evrim süreci içerisinde temel hedefleri aynı kalması koşuluyla o hedefe nasıl ulaşılacağının değişebilmesidir.*
+>Biyolojiden programlamaya aktarılmıştır. Biyoloji'de "polymorphism", farklı doku ya da organların evrim süreci içerisinde temel hedefleri aynı kalması koşuluyla o hedefe nasıl ulaşılacağının değişebilmesidir.
 >
->*Programlamda polymorphism ikiye ayrılabilir: **run time polymorphism (RTP), compile time polymorphism (CTP)**. Bu bölümde anlatılan ve Biyoloji'den gelen "runtime polymophism"'dir. Polymorphism dendiğinde "runtime polymorphism" anlaşılır. Compile time polymorphism Kotlin'de "generic"'ler ile gerçekleştirilir. Bu konu ileride ele alınacaktır.*
+>Programlamda polymorphism ikiye ayrılabilir: **run time polymorphism (RTP), compile time polymorphism (CTP)**. Bu bölümde anlatılan ve Biyoloji'den gelen "runtime polymophism"'dir. Polymorphism dendiğinde "runtime polymorphism" anlaşılır. Compile time polymorphism Kotlin'de "generic"'ler ile gerçekleştirilir. Bu konu ileride ele alınacaktır.
 >
->*RTP'nin programlama açısından 3(üç) şekilde betimlenebilir:
+>RTP'nin programlama açısından 3(üç) şekilde betimlenebilir:
 >**1. Biyolojik Tanım:** Taban sınıfın bir fonksiyonunun türemiş sınıfta yeniden gerçekleştirilmesi (implementation).
 >
 >**2. Yazılım Mühendisliği Tanımı:** Türden bağımsız kod yazmaktır.
@@ -8220,10 +8220,10 @@ fun createArray(count: Int): Array<Any> {
 
 **_Anahtar Notlar:_** Java'da non-static olan, final olmayan veya abstract olarak bildirilmiş bir metot sanaldır. Kotlin'de ise bir metodun sanal olması programcı tarafından belirtilmedlir. 
 
->*Derleyici sanal bir metot çağrısı gördüğünde şu şekilde bir kod üretir: **Çalışma zamanında referansın dinamik türüne bak, dinamik türe ilişkin sınıfta sanal metot override edilmişse onu çağır., edilmemişse sırasıyla taban sınıfına ve dolaylı sınıflarına da bak ilk bulduğun metodu ilgili çağır***
+>Derleyici sanal bir metot çağrısı gördüğünde şu şekilde bir kod üretir: **Çalışma zamanında referansın dinamik türüne bak, dinamik türe ilişkin sınıfta sanal metot override edilmişse onu çağır., edilmemişse sırasıyla taban sınıfına ve dolaylı sınıflarına da bak ilk bulduğun metodu ilgili çağır***
 
 
->*Aşağıdaki örneği çalıştırıp sonucu gözlemleyiniz*
+>Aşağıdaki örneği çalıştırıp sonucu gözlemleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -8281,7 +8281,7 @@ open class A {
 }
 ```
 
->*final override metot artık override işlemine kapatılmıştır*
+>final override metot artık override işlemine kapatılmıştır
 
 ```kotlin
 package org.csystem.app  
@@ -8305,7 +8305,7 @@ class C : B() {
 }
 ```
 
->*Aşağıdaki örnek Kotlin'de geçersizdir*
+>Aşağıdaki örnek Kotlin'de geçersizdir
 
 ```kotlin
 package org.csystem.app  
@@ -8329,7 +8329,7 @@ open class C : B() {
 }
 ```
 
->*Aşağıdaki örnek Kotlin'de geçersizdir*
+>Aşağıdaki örnek Kotlin'de geçersizdir
 
 ```kotlin
 package org.csystem.app  
@@ -8355,7 +8355,7 @@ open class C : B() {
 
 **_Anahtar Notlar:_** print ve println metotlarının `Any?` parametreli overload'ları toString metodunu çağırırlar ve elde edilen yazıyı stdout'a basarlar.
 
->*Any sınıfının toString metodu nesneye yönelik tekil bir yazıya döner. Bu yazının nasıl elde edildiğinin programcı açısından önemi yoktur*
+>Any sınıfının toString metodu nesneye yönelik tekil bir yazıya döner. Bu yazının nasıl elde edildiğinin programcı açısından önemi yoktur
 
 ```kotlin
 package org.csystem.app  
@@ -8373,7 +8373,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki örnekte toString metodu override edilmiştir. Bu durumda println tarafından override edilen çağrılmış olur*
+>Aşağıdaki örnekte toString metodu override edilmiştir. Bu durumda println tarafından override edilen çağrılmış olur
 
 ```kotlin
 package org.csystem.app  
@@ -8392,7 +8392,7 @@ class Sample {
 
 ```
 
->*Complex sınıfının toString metodu*
+>Complex sınıfının toString metodu
 
 ```kotlin
 package org.csystem.app  
@@ -8406,7 +8406,7 @@ fun main() {
 }
 ```
 
->*Point sınıfının toString metodu*
+>Point sınıfının toString metodu
 
 ```kotlin
 package org.csystem.app  
@@ -8421,9 +8421,9 @@ fun main() {
 ```
 >override edilen bir metot içerisinde taban sınıfın yin aynı metot çağrılmak istendiğinde super referansı kullanılır. Bu kavrama augmentation da denilmektedir. AnalyticalCircle sınfının toString metodunu inceleyiniz.
 
->*Any sınıfının equals metodu bir sınıf türünden nesnelerin eşitlik karşılaştırması için kullanılır. Bu metot ilgili sınıfa göre override edilir. Bu metot aynı zamanda o sınıf türünden referansların `==` ve `!=` operatörleri ile kullanıldıklarında da çağrılır. Yani metot aslında ilgili sınıf için mantıksal eşitlik karşılaştırması için kullanılmaktadır. Any sınıfının equals metodu referans karşılaştırma yapar.
+>Any sınıfının equals metodu bir sınıf türünden nesnelerin eşitlik karşılaştırması için kullanılır. Bu metot ilgili sınıfa göre override edilir. Bu metot aynı zamanda o sınıf türünden referansların `==` ve `!=` operatörleri ile kullanıldıklarında da çağrılır. Yani metot aslında ilgili sınıf için mantıksal eşitlik karşılaştırması için kullanılmaktadır. Any sınıfının equals metodu referans karşılaştırma yapar.
 >
->Proje içerisindeki sınıfları ve equals metotlarını inceleyiniz*
+>Proje içerisindeki sınıfları ve equals metotlarını inceleyiniz
 
 ```kotlin
 package org.csystem.app  
@@ -8470,7 +8470,7 @@ class B : A() {
 }
 ```
 
->*companyDemoApp uygulaması*
+>companyDemoApp uygulaması
 
 ```kotlin
 package org.csystem.app.demo.company.employee  
@@ -8612,7 +8612,7 @@ class SalesManager(var saleExtra: Double) : Manager() {
 }
 ```
 
->*abstract sınıfların property elemanı olabilir, ctor elemanı olabilir*
+>abstract sınıfların property elemanı olabilir, ctor elemanı olabilir
 
 ```kotlin
 package org.csystem.app  
@@ -8643,7 +8643,7 @@ abstract class A(val str: String = "", value: Int = 0) {
 }
 ```
 
->*abstract bir bir sınıftan türeyen sınıf en az bir tane abstract metodu override etmezse o da abstract bildirilmelidir*
+>abstract bir bir sınıftan türeyen sınıf en az bir tane abstract metodu override etmezse o da abstract bildirilmelidir
 
 ```kotlin
 class D : A() { //error  
@@ -8777,7 +8777,7 @@ abstract class A {
 }
 ```
 
->*Taban sınıfta var olarak bildirilmiş bir property elemanı türemiş sınıfta val olarak bildirilemez*
+>Taban sınıfta var olarak bildirilmiş bir property elemanı türemiş sınıfta val olarak bildirilemez
 
 ```kotlin
 package org.csystem.app  
@@ -8935,7 +8935,7 @@ data class Device(var id: Int, var name: String, var ipAddress: String) {
 }
 ```
 
->*Complex sınıfı*
+>Complex sınıfı
 
 ```kotlin
 package org.csystem.app  
@@ -8975,7 +8975,7 @@ data class Device(var id: Int, var name: String) {
 }
 ```
 
->*Yukarıdaki sınıf aşağıdaki gibi de yazılabilir*
+>Yukarıdaki sınıf aşağıdaki gibi de yazılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -8994,7 +8994,7 @@ data class Device(var id: Int, var name: String, var ipAddress: String = "") {
 }
 ```
 
->*data sınıfları componentN fonksiyonlarına sahiptir. Bu fonksiyonlar bildirim sırasına göre primary ctor ile bildirilen property elemanlarına ilişkin değerleri döndürürler*
+>data sınıfları componentN fonksiyonlarına sahiptir. Bu fonksiyonlar bildirim sırasına göre primary ctor ile bildirilen property elemanlarına ilişkin değerleri döndürürler
 
 ```kotlin
 package org.csystem.app  
@@ -9029,7 +9029,7 @@ fun createRandomComplex(min: Double, bound: Double, random: Random = Random) =
     Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
 ```
 
->*component fonksiyonlarına sahip olan sınıflar aşağıdaki gibi parçalanabilir*
+>component fonksiyonlarına sahip olan sınıflar aşağıdaki gibi parçalanabilir
 
 ```kotlin
 package org.csystem.app  
@@ -9052,7 +9052,7 @@ fun createRandomComplex(min: Double, bound: Double, random: Random = Random) =
     Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
 ```
 
->*Parçalanabilen bir sınıf için sıra önemli olarak tüm parçalar alınmayabilir*
+>Parçalanabilen bir sınıf için sıra önemli olarak tüm parçalar alınmayabilir
 
 ```kotlin
 package org.csystem.app  
@@ -9069,7 +9069,7 @@ fun createPerson(name: String, id: Int) = Person(id, name, "veli", "mecidiyeköy
 ```
 
 
->*Parçalama işleminde alınması istenmeyen ara parçalar için* `_` *karakteri kullanılabilir*
+>Parçalama işleminde alınması istenmeyen ara parçalar için `_` karakteri kullanılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -9087,15 +9087,15 @@ fun createPerson(name: String, id: Int) = Person(id, name, "veli", "mecidiyeköy
 
 >**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
 >
->*İkinci dereceden (quadratic) denklem:*
+>İkinci dereceden (quadratic) denklem:
 >
 >$$ax^2 + bx + c = 0$$
 >
->*delta ($\Delta$) (discriminant) hesabı:*
+>delta ($\Delta$) (discriminant) hesabı:
 >
 >$$\Delta = b^2 - 4ac$$
 >
->*Köklerın hesaplanması:*
+>Köklerın hesaplanması:
 >
 >1. if $\Delta > 0$
 >
@@ -9111,7 +9111,7 @@ fun createPerson(name: String, id: Int) = Person(id, name, "veli", "mecidiyeköy
 >
 >		Gerçek kök yok!
 
->*Aşağıdaki örneği inceleyiniz:*
+>Aşağıdaki örneği inceleyiniz:
 
 ```kotlin
 package org.csystem.app  
@@ -9184,7 +9184,7 @@ fun createRandomComplex(min: Double, bound: Double, random: Random = Random) =
     Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
 ```
 
->*data sınıfları open olarak bildirilemez. Dolayısıyla türetmeye kapalıdır*
+>data sınıfları open olarak bildirilemez. Dolayısıyla türetmeye kapalıdır
 
 ```kotlin
 package org.csystem.app  
@@ -9193,7 +9193,7 @@ class MyPerson(name: String, id: Int) : Person(name, id) //error
 open data class Person(var name: String, var id: Int) //error
 ```
 
->*data sınıfı olamayan sınıflar için de componentN fonksiyonları yazılabilir. Bu durumda yine parçalama yapılabilir*
+>data sınıfı olamayan sınıflar için de componentN fonksiyonları yazılabilir. Bu durumda yine parçalama yapılabilir
 
 ```kotlin
 package org.csystem.app  
@@ -9214,7 +9214,7 @@ open class Person(var id: Int, var name: String) {
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 >data sınıflarının copy isimli metotları bulunur. copy metodu data sınıfının bir kopyasını (klonunu) çıkartır. copy metodu data sınıfı içersinde programcı tarafından yazılmaz.. copy metodu parametre olarak primary cotor'da bildirilen property elemanlarına ilişkin parametrelere sınıf property elemanlarını default argüman olarak geçecek şekilde yazılır. 
 
->*Örnek bir temsili sınıf:*
+>Örnek bir temsili sınıf:
  
 ```kotlin
 class Person(var id: Int, var name: String) {
@@ -9223,7 +9223,7 @@ class Person(var id: Int, var name: String) {
     } 
 ```
 
->*Dikkat yukarıdaki temsili sınıf bir data sınıfı olmadığı için diğer metotlar yazılmaz*
+>Dikkat yukarıdaki temsili sınıf bir data sınıfı olmadığı için diğer metotlar yazılmaz
 
 ```kotlin
 package org.csystem.app
@@ -9245,7 +9245,7 @@ fun main()
 data class Person(var id: Int, var name: String)
 ```
 
->*Circle sınıfı data sınıfı olmamasına rağmen elemanları anlamlı olduğunda componentN fonksiyonları yazılmıştır*
+>Circle sınıfı data sınıfı olmamasına rağmen elemanları anlamlı olduğunda componentN fonksiyonları yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -9260,7 +9260,7 @@ fun main()
 }
 ```
 
->*Circle sınıfının copy metodu programcı tarafından yazılmıştır*
+>Circle sınıfının copy metodu programcı tarafından yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -9314,7 +9314,7 @@ open class Circle(radius: Double = 0.0) {
 }
 ```
 
->*Kotlin'de referans türlerine bile null atanamaz*
+>Kotlin'de referans türlerine bile null atanamaz
 
 ```kotlin
 package org.csystem.app
@@ -9328,7 +9328,7 @@ fun main()
 class Person
 ```
 
->*Kotlin'de T bir tür olmak üzere* `T?` *nullable type olarak adlandırılır*
+>Kotlin'de T bir tür olmak üzere `T?` nullable type olarak adlandırılır
 
 ```kotlin
 package org.csystem.app
@@ -9341,7 +9341,7 @@ fun main()
 class Person
 ```
 
->*Kotlin'de temel türler sınıf olarak bildirildiğinden temel türlere ilişkin sınıflar türünden nullable referanslar da olabilir*
+>Kotlin'de temel türler sınıf olarak bildirildiğinden temel türlere ilişkin sınıflar türünden nullable referanslar da olabilir
 
 ```kotlin
 package org.csystem.app
@@ -9354,7 +9354,7 @@ fun main()
 }
 ```
 
->*Kotlin'de nullable bir referans ile o referansa ilişkin sınıfın elemanlarına nokta operatörü erişilemez*
+>Kotlin'de nullable bir referans ile o referansa ilişkin sınıfın elemanlarına nokta operatörü erişilemez
 
 ```kotlin
 package org.csystem.app
@@ -9367,7 +9367,7 @@ fun main()
 }
 ```
 
->*Kotlin'de nullable bir referans ile* `?.` *operatörü kullanılarak elemanlara erişilebilir*
+>Kotlin'de nullable bir referans ile `?.` operatörü kullanılarak elemanlara erişilebilir
 
 ```kotlin
 package org.csystem.app
@@ -9380,9 +9380,9 @@ fun main()
 }
 ```
 
->`?.` *operatörünün kullanımında  hiç bir zaman NullPointerException (NPE) fırlatılmasına yol açmaz.* 
+>`?.` operatörünün kullanımında  hiç bir zaman NullPointerException (NPE) fırlatılmasına yol açmaz. 
 >
->*Aşağıdaki örneği inceleyiniz:*
+>Aşağıdaki örneği inceleyiniz:
 
 ```kotlin
 package org.csystem.app
@@ -9404,7 +9404,7 @@ fun main()
 fun randomText(random: Random = Random) = if (random.nextBoolean()) getRandomTextEN(10) else null
 ```
 
->***Elvis Operatörü:** Bu operatör aslında "null coalecing operatör"'dür. Ancak Elvis Presley'nin gözleri ve saçına benzetildiği için "Elvis operator" de denilmektedir*
+>***Elvis Operatörü:** Bu operatör aslında "null coalecing operatör"'dür. Ancak Elvis Presley'nin gözleri ve saçına benzetildiği için "Elvis operator" de denilmektedir
 
 ```kotlin
 package org.csystem.app
@@ -9426,7 +9426,7 @@ fun main()
 fun randomText(random: Random = Random) = if (random.nextBoolean()) getRandomTextEN(10) else null
 ```
 
->*Aşağıdaki örnekte* `if` *deyiminin doğru kısmında a'nın null olamayacağını derleyici anlamış smart cast yapılmıştır*
+>Aşağıdaki örnekte `if` deyiminin doğru kısmında a'nın null olamayacağını derleyici anlamış smart cast yapılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -9464,7 +9464,7 @@ fun randomIntArray(n: Int, min: Int, max: Int) : IntArray?
 }
 ```
 
->*Aşağıdaki örnekte yine smart cast vardır*
+>Aşağıdaki örnekte yine smart cast vardır
 
 ```kotlin
 package org.csystem.app
@@ -9505,7 +9505,7 @@ class B : A() {
 }
 ```
 
-> `!!` *operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir*
+> `!!` operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir
 
 ```kotlin
 package org.csystem.app
@@ -9519,7 +9519,7 @@ fun main()
 }
 ```
 
->`!!` *operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz*
+>`!!` operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -9556,7 +9556,7 @@ class B : A() {
 }
 ```
 
->`kotlin.io` *paketi içerisinde bulunan readLine fonksiyonu String? türüne geri döner*
+>`kotlin.io` paketi içerisinde bulunan readLine fonksiyonu String? türüne geri döner
 
 ```kotlin
 package org.csystem.app
@@ -9570,7 +9570,7 @@ fun main()
 }
 ```
 
->`!!` *operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz*
+>`!!` operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -9607,14 +9607,14 @@ class B : A() {
 }
 ```
 
->**Exception işlemleri:** *Programın çalışma zamanı sırasında oluşan genel olarak hatalı durumlara exception denir. Aslında bir exception hata durumuna ilişkin olmayabilir. Bu durum nadiren karşımıza çıkar. Yani daha çok programın çalışma zamnında oluşan hatalı durumlara denir. Bu durumlara karşılık programcının kod içerisinde akışı belirlemesine "exception handling" denir. Kotlin'de Java'dan farklı olarak checked ve unchecked exception kavramları yoktur. Kotlin'de exception işlemleri şu anahtar sözcüklerle yapılır:*
+>**Exception işlemleri:** Programın çalışma zamanı sırasında oluşan genel olarak hatalı durumlara exception denir. Aslında bir exception hata durumuna ilişkin olmayabilir. Bu durum nadiren karşımıza çıkar. Yani daha çok programın çalışma zamnında oluşan hatalı durumlara denir. Bu durumlara karşılık programcının kod içerisinde akışı belirlemesine "exception handling" denir. Kotlin'de Java'dan farklı olarak checked ve unchecked exception kavramları yoktur. Kotlin'de exception işlemleri şu anahtar sözcüklerle yapılır:
 
         throw, try, catch, finally
->*throw deyiminin genel biçimi aşağıdaki gibidir: throw `<referans>` Burada referans Throwable sınıfından doğrudan ya da dolaylı olarak türetilmiş bir sınıf türünden olmalıdır. Kotlin'de Throwable sınıfından Exception ve Error sınıfları türetilmiştir. Pratikte programclar Throwable sınıfından doğrudan türetme yapmazlar. Exception veya Error sınıfından doğrudan ya da dolaylı olarak türetme yaparlar. Error sınıfı ayrı bir throwable'dır. İleride ne için kullanıldığı ele alınacaktır. Java'da çok daha kritik öneme sahip olan RuntimeException isimli sınıftan da birçok sınıfı türetilmiştir. Throwable sınıfından doğrudan ya da dolaylı olarak türetilen sınıflara "exception classes" da denilmektedir.*
+>throw deyiminin genel biçimi aşağıdaki gibidir: throw `<referans>` Burada referans Throwable sınıfından doğrudan ya da dolaylı olarak türetilmiş bir sınıf türünden olmalıdır. Kotlin'de Throwable sınıfından Exception ve Error sınıfları türetilmiştir. Pratikte programclar Throwable sınıfından doğrudan türetme yapmazlar. Exception veya Error sınıfından doğrudan ya da dolaylı olarak türetme yaparlar. Error sınıfı ayrı bir throwable'dır. İleride ne için kullanıldığı ele alınacaktır. Java'da çok daha kritik öneme sahip olan RuntimeException isimli sınıftan da birçok sınıfı türetilmiştir. Throwable sınıfından doğrudan ya da dolaylı olarak türetilen sınıflara "exception classes" da denilmektedir.
 
->*Bir kodun exception bakımından ele alınabilmesi için try bloğu içerisinde olması gerekir. try bloğunu bir veya birden fazla catch bloğu ile finally bloğu veya tek başına finally bloğu takip edebilir. Kotlin'de try hem deyim hem de ifade biçiminde kullanılabilmektedir (try expression statement). Bir exception fırlatıldığında akış fırlatılan fonksiyondan bir daha geri dönmemek üzere (non-resumptive) çıkar. Akış bir try bloğu içerisinde o try bloğuna ilişkin catch bloklarına yukarıdan aşağıya sırasıyla kontrol eder. Uygun biri catch bloğu bulursa o catch bloğunu çalıştırır. Uygun catch bloğu, fırlatılan exception nesnesine ilişkin referansın atanabildiği (convert) türden catch parametresine sahip bloktur. Eğer hiç uygun blok bulamazsa, onu try bloğunu kapsayan try bloklarına ait catch bloklarına sırasıyla bakar, ilk bulduğu catch bloğunu çalıştırır. Diğer catch blokları çalıştırılmaz. Eğer hiç uygun catch bloğu bulunamazsa ve artık kapsayan hiç try bloğu kalmamışsa exception fırlatıldığı akış (thread) "abnormal" biri biçimde sonlanır. Akış try bloğundan nasıl çıkarsa çıksın finally bloğu çalıştırılır. try bloğu hiç exception fırlatılmadan sonlanırsa tüm catch bloklarına atlanaran (varsa finally bloğu da çalıştırılarak) akış yoluna devam eder.*
+>Bir kodun exception bakımından ele alınabilmesi için try bloğu içerisinde olması gerekir. try bloğunu bir veya birden fazla catch bloğu ile finally bloğu veya tek başına finally bloğu takip edebilir. Kotlin'de try hem deyim hem de ifade biçiminde kullanılabilmektedir (try expression statement). Bir exception fırlatıldığında akış fırlatılan fonksiyondan bir daha geri dönmemek üzere (non-resumptive) çıkar. Akış bir try bloğu içerisinde o try bloğuna ilişkin catch bloklarına yukarıdan aşağıya sırasıyla kontrol eder. Uygun biri catch bloğu bulursa o catch bloğunu çalıştırır. Uygun catch bloğu, fırlatılan exception nesnesine ilişkin referansın atanabildiği (convert) türden catch parametresine sahip bloktur. Eğer hiç uygun blok bulamazsa, onu try bloğunu kapsayan try bloklarına ait catch bloklarına sırasıyla bakar, ilk bulduğu catch bloğunu çalıştırır. Diğer catch blokları çalıştırılmaz. Eğer hiç uygun catch bloğu bulunamazsa ve artık kapsayan hiç try bloğu kalmamışsa exception fırlatıldığı akış (thread) "abnormal" biri biçimde sonlanır. Akış try bloğundan nasıl çıkarsa çıksın finally bloğu çalıştırılır. try bloğu hiç exception fırlatılmadan sonlanırsa tüm catch bloklarına atlanaran (varsa finally bloğu da çalıştırılarak) akış yoluna devam eder.
 
->*Kotlin'de checked ve unchecked exception kavramları yoktur. Aşağıdaki örneğin Java karşılığı geçersizdir*
+>Kotlin'de checked ve unchecked exception kavramları yoktur. Aşağıdaki örneğin Java karşılığı geçersizdir
 
 ```kotlin
 package org.csystem.app
@@ -9632,7 +9632,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz:*
+>Aşağıdaki örneği inceleyiniz:
 
 ```kotlin
 package org.csystem.app
@@ -9680,7 +9680,7 @@ fun divide(a: Double, b: Double) : Double
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz:*
+>Aşağıdaki örneği inceleyiniz:
 
 ```kotlin
 package org.csystem.app
@@ -9729,7 +9729,7 @@ fun divide(a: Double, b: Double) : Double
 }
 ```
 
->*Klavyeden geçerli değer okuyan fonksiyonlar. Fonksiyonlar SampleKotlin projesi içerisindeki console.kt dosyasına bakınız*
+>Klavyeden geçerli değer okuyan fonksiyonlar. Fonksiyonlar SampleKotlin projesi içerisindeki console.kt dosyasına bakınız
 
 ```kotlin
 package org.csystem.app
@@ -9745,7 +9745,7 @@ fun main()
 }
 ```
 
->*Klavyeden geçerli değer okuyan fonksiyonlar. Fonksiyonlar SampleKotlin projesi içerisindeki console.kt dosyasına bakınız*
+>Klavyeden geçerli değer okuyan fonksiyonlar. Fonksiyonlar SampleKotlin projesi içerisindeki console.kt dosyasına bakınız
 
 ```kotlin
 package org.csystem.app
@@ -9761,7 +9761,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz:*
+>Aşağıdaki örneği inceleyiniz:
 
 ```kotlin
 package org.csystem.app
@@ -9803,9 +9803,9 @@ fun divide(a: Double, b: Double) : Double
 }
 ```
 
->*Kotlin'de bir User Defined Type'a (sınıf, interfacec vb.) ve temel türlere ilişkin bir sınıfa programcı fonksiyonlar ekleyebilir. Yani adeta sınıf bildirimine ekleme yapmış gibi fonksiyonlar yazılabilir. Bu tarz fonksiyonlara "extension functions" denir*
+>Kotlin'de bir User Defined Type'a (sınıf, interfacec vb.) ve temel türlere ilişkin bir sınıfa programcı fonksiyonlar ekleyebilir. Yani adeta sınıf bildirimine ekleme yapmış gibi fonksiyonlar yazılabilir. Bu tarz fonksiyonlara "extension functions" denir
 
->*Extension (eklenti) fonksiyonlar*
+>Extension (eklenti) fonksiyonlar
 
 ```kotlin
 package org.csystem.app
@@ -9826,7 +9826,7 @@ fun main()
 fun Int.square() = this * this
 ```
 
-> *Extension (eklenti) fonksiyonlar*
+> Extension (eklenti) fonksiyonlar
 
 ```kotlin
 package org.csystem.app
@@ -9843,7 +9843,7 @@ fun main()
 }
 ```
 
->*Extension (eklenti) fonksiyonlar*
+>Extension (eklenti) fonksiyonlar
 
 ```kotlin
 package org.csystem.util.array.kotlin.test
@@ -9871,7 +9871,7 @@ fun runRandomIntArrayTest()
 }
 ```
 
->***infix fonksiyonlar:***  *Fonksiyonlar infix fonksiyon olarak bildirilebilir. infix fonksiyonlar bir parametreli extension fonksiyon veya sınıfın üye fonksiyonu (metot) olmalıdır. Aşağıdaki örnek infix fonksiyonu göstermek için yazılmıştır. infix fonksiyonlar iki operandlı bir operatör biçiminde kullanılabilir. Bu durumda fonksiyon ismi operandlarının arasında kullanılabilir. Bu durumda fonksiyonun geri dönüş değeri infix olarak yazılan ifadenin değeri. Yani yine fonksiyon çağrılmış olur.*
+>***infix fonksiyonlar:***  Fonksiyonlar infix fonksiyon olarak bildirilebilir. infix fonksiyonlar bir parametreli extension fonksiyon veya sınıfın üye fonksiyonu (metot) olmalıdır. Aşağıdaki örnek infix fonksiyonu göstermek için yazılmıştır. infix fonksiyonlar iki operandlı bir operatör biçiminde kullanılabilir. Bu durumda fonksiyon ismi operandlarının arasında kullanılabilir. Bu durumda fonksiyonun geri dönüş değeri infix olarak yazılan ifadenin değeri. Yani yine fonksiyon çağrılmış olur.
 
 ```kotlin
 package org.csystem.app
@@ -9902,9 +9902,9 @@ class Operation(val a: Int) {
 
 >**_Operatör Fonksiyonları:_** Anımsanacağı gibi Kotlin'de hemen hemen tüm operatörler bir fonksiyona karşılık gelir. Temel türlere ilişkin çeşitli operatör fonksiyonlar tanımlanmıştır. Programcı bildirdiği bir sınıf için de anlamlı olan operatörlere ilişkin fonksiyonları yazabilir. Örneğin String sınıfının `+` operatörüne ilişkin plus fonksiyonları ile "string concat" yapılabilmektedir. Yine benzer şekilde equals fonksiyonu override edildiği için Strinbg'lerin özdeşlik karşılaştırması `==` ve `!=` operatörleri ile yapılabilmektedir. Hatta bu anlamda Java'da yazılmış olan ve equals metodunu override eden sınıflar türünden nesnelerin mantıksal eşitlik karşılıkları `==` ve `!=` operatörleri ile yapılabilmektedir.
 
->*Programcı yazdığı sınıfa operatör fonksiyonlarını anlamsız olacak şekilde eklememelidir. Örneğin bir tarih işlemi yapan sınıf yazıldığında iki tarihin toplanması anlamsızdır ancak birbirinden çıkartılması anlamlıdır. Bu durumda programcı bu sınıf için minus operatör fonksiyonuu yazar ancak plus operatör fonksiyonunu yazmaz*
+>Programcı yazdığı sınıfa operatör fonksiyonlarını anlamsız olacak şekilde eklememelidir. Örneğin bir tarih işlemi yapan sınıf yazıldığında iki tarihin toplanması anlamsızdır ancak birbirinden çıkartılması anlamlıdır. Bu durumda programcı bu sınıf için minus operatör fonksiyonuu yazar ancak plus operatör fonksiyonunu yazmaz
 
->*MutableComplex sınıfının operatör fonksiyonları*
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
 package org.csystem.app
@@ -9924,7 +9924,7 @@ fun main()
 }
 ```
 
->*MutableComplex sınıfının operatör fonksiyonları*
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
 package org.csystem.app
@@ -9944,7 +9944,7 @@ fun main()
 }
 ```
 
->*MutableComplex sınıfının operatör fonksiyonları*
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
 package org.csystem.app
@@ -9964,7 +9964,7 @@ fun main()
 }
 ```
 
->*MutableComplex sınıfının operatör fonksiyonları*
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
 package org.csystem.app
@@ -9984,7 +9984,7 @@ fun main()
 }
 ```
 
->*MutableComplex sınıfının operatör fonksiyonları*
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
 package org.csystem.app
@@ -10005,7 +10005,7 @@ fun main()
 }
 ```
 
->*MutableComplex sınıfının operatör fonksiyonları*
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
 package org.csystem.app
@@ -10026,7 +10026,7 @@ fun main()
 }
 ```
 
->*MutableComplex sınıfının operatör fonksiyonları*
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
 package org.csystem.app
@@ -10046,7 +10046,7 @@ fun main()
 }
 ```
 
->*MutableComplex sınıfının operatör fonksiyonları*
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
 package org.csystem.app
@@ -10064,7 +10064,7 @@ fun main()
 }
 ```
 
->`++` (inc) ve `--`(dec) *operatör fonksiyonları yazılırken nesne için artırma/azaltma yapılmamalıdır. Artırılmış/azaltılmış yeni bir nesnenin referansına dönülmelidir. Derleyici uygun kodları üreterek bu operatörlerin prefix ve postfix olarak doğru kullanılmalarını sağlar*
+>`++` (inc) ve `--`(dec) operatör fonksiyonları yazılırken nesne için artırma/azaltma yapılmamalıdır. Artırılmış/azaltılmış yeni bir nesnenin referansına dönülmelidir. Derleyici uygun kodları üreterek bu operatörlerin prefix ve postfix olarak doğru kullanılmalarını sağlar
 
 ```kotlin
 package org.csystem.app
@@ -10138,7 +10138,7 @@ fun main()
 }
 ```
 
->*Anımsanacağı gibi data sınıflarının equals operatör fonksiyonu primary ctor'da bildirilmiş karşılıklı property elemanları için* `==` *operatörü ile karşılaştırma yapacak şekilde override edilmiştir*
+>Anımsanacağı gibi data sınıflarının equals operatör fonksiyonu primary ctor'da bildirilmiş karşılıklı property elemanları için `==` operatörü ile karşılaştırma yapacak şekilde override edilmiştir
 
 ```kotlin
 package org.csystem.app
@@ -10155,7 +10155,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte MutableComplex sınıfında olmayan (anlamlı da olmayan) karşılaştırma operatörlerine ilişkin compareTo fonksiyonu extension olarak "müşteri kod (client code)" tarafından yazılmıştır*
+>Aşağıdaki örnekte MutableComplex sınıfında olmayan (anlamlı da olmayan) karşılaştırma operatörlerine ilişkin compareTo fonksiyonu extension olarak "müşteri kod (client code)" tarafından yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -10188,7 +10188,7 @@ fun main()
 }
 ```
 
->*Kotlin'de fonksiyon çağırma operatör fonksiyonu overload edilebilir. Bu durumda ilgili sınıf türünden referans ismi fonksiyon ismi gibi kullanılabilir. Bu operatör fonksiyonunun ismi invoke'dur. Fonksiyon çağırma operatör fonksiyonu overload edilmiş sınıflara programlamada "functor/function object" de denilmektedir. Bu operatör fonksiyonu bazı durumlarda callback/callable alan fonksiyonlarda (high order functions (HOF)) kullanılabilmektedir. HOF'lar ileride ele alınacaktır*
+>Kotlin'de fonksiyon çağırma operatör fonksiyonu overload edilebilir. Bu durumda ilgili sınıf türünden referans ismi fonksiyon ismi gibi kullanılabilir. Bu operatör fonksiyonunun ismi invoke'dur. Fonksiyon çağırma operatör fonksiyonu overload edilmiş sınıflara programlamada "functor/function object" de denilmektedir. Bu operatör fonksiyonu bazı durumlarda callback/callable alan fonksiyonlarda (high order functions (HOF)) kullanılabilmektedir. HOF'lar ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app
@@ -10211,7 +10211,7 @@ fun main()
 }
 ```
 
->*MutableComplex sınıfı*
+>MutableComplex sınıfı
 
 ```kotlin
 package org.csystem.app
@@ -10231,7 +10231,7 @@ fun main()
 }
 ```
 
->*Sınıfın get ve/veya set operatör fonksiyonları overload edildiğinde o sınıf türünden bir referans* `[]` *operatörü ile de kullanılabilir. Bu tarz kullanıma ilişkin fonksiyonlara bazı kaynaklar "indexer" da denmektedir. Bu terim Kotlin'e özgü değildir*
+>Sınıfın get ve/veya set operatör fonksiyonları overload edildiğinde o sınıf türünden bir referans `[]` operatörü ile de kullanılabilir. Bu tarz kullanıma ilişkin fonksiyonlara bazı kaynaklar "indexer" da denmektedir. Bu terim Kotlin'e özgü değildir
 
 ```kotlin
 package org.csystem.app
@@ -10347,7 +10347,7 @@ data class MutableComplex(var real: Double = 0.0, var imag: Double = 0.0) {
 }
 ```
 
->*Aşağıdaki örnekte Path isimli bir yol ifadesi üzerinde işlem yapan basit bir sınıf yazılmıştır. Detayları gözardı etmek koşuluyla div operatör fonksiyonuna yüklenen göreve dikkat ediniz*
+>Aşağıdaki örnekte Path isimli bir yol ifadesi üzerinde işlem yapan basit bir sınıf yazılmıştır. Detayları gözardı etmek koşuluyla div operatör fonksiyonuna yüklenen göreve dikkat ediniz
 
 ```kotlin
 package org.csystem.app
@@ -10373,7 +10373,7 @@ class FilePath(var path: String) {
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -10393,9 +10393,9 @@ data class Vector3(val x: Float, val y: Float, val z: Float) {
 ```
 
 >***Interface:*** \
->*Interface bildirimi yine bir tür bildirimidir (user defined type). interface nesne özelliği göstermez. interface içerisinde gövdesiz yazılan metotlar abstract olarak bildirilmiş olur. Bu anlamda interface'ler abstract sınıflara benzerler. Bir interface'den bir sınıf türetilmezi, bir sınıf bir interface'i destekler (implementation). Interface'ler ile "multiple inheritance" da belirli ölçüde desteklenmiş olur*
+>Interface bildirimi yine bir tür bildirimidir (user defined type). interface nesne özelliği göstermez. interface içerisinde gövdesiz yazılan metotlar abstract olarak bildirilmiş olur. Bu anlamda interface'ler abstract sınıflara benzerler. Bir interface'den bir sınıf türetilmezi, bir sınıf bir interface'i destekler (implementation). Interface'ler ile "multiple inheritance" da belirli ölçüde desteklenmiş olur
 
->*interface bildirimi interface anahtar sözcüğü ile yapılır. interface ismini okunabilirlik açısından I ile başlatacağız. Kotlin'deki standart interface'lerde bu convention'a uyulmamıştır*
+>interface bildirimi interface anahtar sözcüğü ile yapılır. interface ismini okunabilirlik açısından I ile başlatacağız. Kotlin'deki standart interface'lerde bu convention'a uyulmamıştır
 
 ```kotlin
 package org.csystem.app
@@ -10435,7 +10435,7 @@ interface IX {
 }
 ```
 
->*Bir sınıf birden fazla interface'i implemente etmişse farklı interface'lerdeki aynı metotlar için bir tane metot yazılması yeterlidir*
+>Bir sınıf birden fazla interface'i implemente etmişse farklı interface'lerdeki aynı metotlar için bir tane metot yazılması yeterlidir
 
 ```kotlin
 package org.csystem.app
@@ -10476,7 +10476,7 @@ interface IY {
 }
 ```
 
-> `super<tür ismi>` *sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir*
+> `super<tür ismi>` sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir
 
 ```kotlin
 package org.csystem.app
@@ -10519,7 +10519,7 @@ interface IY {
 }
 ```
 
->`super<tür ismi>` *sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir*
+>`super<tür ismi>` sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir
 
 ```kotlin
 package org.csystem.app
@@ -10570,7 +10570,7 @@ interface IY {
 }
 ```
 
->*Aşağıdaki örnekte* `**` *ile belirtilen çağrıda açısal parantez kullanılmalıdır. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmaktadır.* 
+>Aşağıdaki örnekte `**` ile belirtilen çağrıda açısal parantez kullanılmalıdır. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmaktadır. 
 
  **_Anahtar Notlar:_** Java'da super referansı nesnenin taban sınıf kımının adresi anlamına gelir, desteklediği imterface'ler ile bir bağlantısı yoktur. Ancak Kotlin'de super aynı zamanda desteklediği interface'ler için de kullanılır. Zaten bu sebeple açısal parantez kullanımı da dile eklenmiştir.
 
@@ -10621,7 +10621,7 @@ interface IY {
 }
 ```
 
->*Aşağıdaki örnekte* `**` *ile belirtilen çağrıda açısal parantez kullanılmasına gerek yoktur. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmamaktadır. Ancak sentaks olarak açısal parantez kullanımı da geçerlidir*
+>Aşağıdaki örnekte `**` ile belirtilen çağrıda açısal parantez kullanılmasına gerek yoktur. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmamaktadır. Ancak sentaks olarak açısal parantez kullanımı da geçerlidir
 
 ```kotlin
 package org.csystem.app
@@ -10662,7 +10662,7 @@ interface IY {
 }
 ```
 
->*Aşağıdaki örnekte* `**` *ile belirtilen çağrıda açısal parantez kullanılmalıdır. IX içerisindeki bar metodunun private olması bu durumu etkilemez*
+>Aşağıdaki örnekte `**` ile belirtilen çağrıda açısal parantez kullanılmalıdır. IX içerisindeki bar metodunun private olması bu durumu etkilemez
 
 ```kotlin
 package org.csystem.app
@@ -10710,9 +10710,9 @@ interface IY {
 
 **_Anahtar Notlar:_** interface'lerin default metotları yani gövdesi olan metotları olabilir. Bu metotlar sanaldır ancak abstract değildir. Bu durum Java ve Kotlin için de geçerlidir.
 
->*Kullanılabilmesi için mantıksal olarak açılması (open) gereken ve kullanım sonunda mantıksal olarak kapatılması gereken bir kaynağın (resource) bir sınıf tarafından kullanılnası durumunda bu sınıf bir convention olarak Closeable arayüzünü destekler. Başka bir deyişle Closeable arayüzünü destekleyen bir sınıf için böylesi bir kullanum söz konusudur algılanır. Closeable arayüzünün close isimli bir metodu bulunur. Yani kaynağı kullanan sınıfta bu arayüzün close metodunu kaynağın kullanımını serbest bırakacak şekilde override edilir. Bunu kullanan programcı da close çağırması gerektiğini bilir ve çağırır. Kotlin'de Closeable arayüzünü destekleyen sınıfların use isimli extension fonksiyonları vardır. Bu fonksiyon başka bir fonksiyonu callback olarak alır. Callback kavramı ileride detaylandırılacağından ilgili konuya gelene kadar use kullamını bir kalıp biçiminde düşüneceğiz. use fonksiyonu çağrısı bitikten sonra o sınıf için close fonksiyonu otomatik olarak çağrılır. Bu durumda programcının ayrıca close çağırması gerekmez*
+>Kullanılabilmesi için mantıksal olarak açılması (open) gereken ve kullanım sonunda mantıksal olarak kapatılması gereken bir kaynağın (resource) bir sınıf tarafından kullanılnası durumunda bu sınıf bir convention olarak Closeable arayüzünü destekler. Başka bir deyişle Closeable arayüzünü destekleyen bir sınıf için böylesi bir kullanum söz konusudur algılanır. Closeable arayüzünün close isimli bir metodu bulunur. Yani kaynağı kullanan sınıfta bu arayüzün close metodunu kaynağın kullanımını serbest bırakacak şekilde override edilir. Bunu kullanan programcı da close çağırması gerektiğini bilir ve çağırır. Kotlin'de Closeable arayüzünü destekleyen sınıfların use isimli extension fonksiyonları vardır. Bu fonksiyon başka bir fonksiyonu callback olarak alır. Callback kavramı ileride detaylandırılacağından ilgili konuya gelene kadar use kullamını bir kalıp biçiminde düşüneceğiz. use fonksiyonu çağrısı bitikten sonra o sınıf için close fonksiyonu otomatik olarak çağrılır. Bu durumda programcının ayrıca close çağırması gerekmez
 
->*use extension fonksiyonu. Bu, aslında Java'daki try-with-resources deyiminin Kotlin'deki karşılığıdır. Aşağıdaki kodun Java karşılığı:*
+>use extension fonksiyonu. Bu, aslında Java'daki try-with-resources deyiminin Kotlin'deki karşılığıdır. Aşağıdaki kodun Java karşılığı:
 
 ```java
 try (Sample s = new Sample()) {
@@ -10755,7 +10755,7 @@ class Sample : Closeable {
 }
 ```
 
->*Aşağıdaki örnekte exception oluşsa bile (exception yakalanamayacak) close çağrılır*
+>Aşağıdaki örnekte exception oluşsa bile (exception yakalanamayacak) close çağrılır
 
 ```kotlin
 package org.csystem.app
@@ -10787,9 +10787,9 @@ class Sample : Closeable {
 }
 ```
 
->*Bir dosyanın verileri (byte'ları) üzerinde işlem yapabilmek için işletim sisteminin çekirdeği düzeyinde bir takım işlemlerin yapılması gerekir. Bu işlemlere mantıksal olarak "dosyayı açmak" denir. Bir dosya ile ilgili işlemler bittiğinde yine çekirdek düzeyin yapılması gereken işlemler vardır. Buna da mantıksal olarak "dosyayı kapatmak" denir. JavaSE'de bulunan dosya işlemlerine yönelik (aslında IO işlemlerine yönelik) sınıfların bir çoğu Closeable arayüzünü destekler. Bu durumda programcının dosyayı kapatmak için close fonksiyonunu çağırması veya use fonbksiyonunu kullanması gerekir. Aşağıdaki birinci örnekte bir dosyaya klavyeden girilen yazılar satır satır eklenmektedir. İkinci örnekte ise dosyadan satır satır veriler okunmaktadır. Uygulamaya yönelik detaylar şu an önemsizdir. Yalnızca use fonksiyonunun kullanımına odaklanınız*
+>Bir dosyanın verileri (byte'ları) üzerinde işlem yapabilmek için işletim sisteminin çekirdeği düzeyinde bir takım işlemlerin yapılması gerekir. Bu işlemlere mantıksal olarak "dosyayı açmak" denir. Bir dosya ile ilgili işlemler bittiğinde yine çekirdek düzeyin yapılması gereken işlemler vardır. Buna da mantıksal olarak "dosyayı kapatmak" denir. JavaSE'de bulunan dosya işlemlerine yönelik (aslında IO işlemlerine yönelik) sınıfların bir çoğu Closeable arayüzünü destekler. Bu durumda programcının dosyayı kapatmak için close fonksiyonunu çağırması veya use fonbksiyonunu kullanması gerekir. Aşağıdaki birinci örnekte bir dosyaya klavyeden girilen yazılar satır satır eklenmektedir. İkinci örnekte ise dosyadan satır satır veriler okunmaktadır. Uygulamaya yönelik detaylar şu an önemsizdir. Yalnızca use fonksiyonunun kullanımına odaklanınız
 
->***Not:** Örnekleri test etmek için ilk önce yazma yapan programı çalıştırınız*
+>***Not:** Örnekleri test etmek için ilk önce yazma yapan programı çalıştırınız
 
 ```kotlin
 package org.csystem.app
@@ -10861,9 +10861,9 @@ fun runReaderApplication()
 ```
 
 >***Generics:***   
->*Kotlin'de ve Java'da generics derleme zamanında çok biçimli kodlar yazmak için kullanılır. Bu anlamda derleme zamanında türden bağımsız kod yazılabilmektedir. Java ve Kotlin'de generic kavramı temelde aynı amaçta olsa da birçok farklılığı da buklunmaktadır.Burada Kotlin'de generic kavramı ele alınacaktır. Generic kavramı genel olarak generic türler ve generic fonksiyonlar olmak üzere iki gruba ayrılabilir*
+>Kotlin'de ve Java'da generics derleme zamanında çok biçimli kodlar yazmak için kullanılır. Bu anlamda derleme zamanında türden bağımsız kod yazılabilmektedir. Java ve Kotlin'de generic kavramı temelde aynı amaçta olsa da birçok farklılığı da buklunmaktadır.Burada Kotlin'de generic kavramı ele alınacaktır. Generic kavramı genel olarak generic türler ve generic fonksiyonlar olmak üzere iki gruba ayrılabilir
 
->*Generic sınıflar*
+>Generic sınıflar
 
 ```kotlin
 package org.csystem.app
@@ -10882,7 +10882,7 @@ fun main()
 class Sample<T>(var x: T)
 ```
 
->*Aşağıdaki örnekte açılım (instantiation) yapılmadığı halde generic tür tespit edilebildiğinden (type inference/deduction) sorun oluşmaz*
+>Aşağıdaki örnekte açılım (instantiation) yapılmadığı halde generic tür tespit edilebildiğinden (type inference/deduction) sorun oluşmaz
 
 ```kotlin
 package org.csystem.app
@@ -10899,7 +10899,7 @@ fun main()
 class Sample<T>(var x: T)
 ```
 
->*Generic sınıflar için nesne yaratılırken generic parametrelerin türleri tespit edilemezse açılım kesinlikle kullanılmalıdır. Aksi durumda error oluşur*
+>Generic sınıflar için nesne yaratılırken generic parametrelerin türleri tespit edilemezse açılım kesinlikle kullanılmalıdır. Aksi durumda error oluşur
 
 ```kotlin
 package org.csystem.app
@@ -10919,7 +10919,7 @@ class Sample<T> {
 }
 ```
 
->*Referans bildiriminde açılım kullanılmalıdır. Tür tespiti dışında generic sınıflar açısal parantezsiz kullanılamaz. Bilindiği gibi Java' da generic bir sınıf açılımsız kullanıldığında generic parametre yerine Object geçmiş olur ki bu durum da Java'da tavsiye edilen bir kullanımm değildir*
+>Referans bildiriminde açılım kullanılmalıdır. Tür tespiti dışında generic sınıflar açısal parantezsiz kullanılamaz. Bilindiği gibi Java' da generic bir sınıf açılımsız kullanıldığında generic parametre yerine Object geçmiş olur ki bu durum da Java'da tavsiye edilen bir kullanımm değildir
 
 ```kotlin
 package org.csystem.app
@@ -10936,7 +10936,7 @@ fun main()
 class Sample<T>(var x: T)
 ```
 
->*Referans bildiriminde açılım kullanılmalıdır*
+>Referans bildiriminde açılım kullanılmalıdır
 
 ```kotlin
 package org.csystem.app
@@ -10951,7 +10951,7 @@ fun main()
 class Sample<T>(var x: T)
 ```
 
->*Aşağıdaki örnekte Kotlin invariant özelliğe sahip olduğundan error oluşur*
+>Aşağıdaki örnekte Kotlin invariant özelliğe sahip olduğundan error oluşur
 
 ```kotlin
 package org.csystem.app
@@ -10973,7 +10973,7 @@ fun foo(s: Sample<Number>)
 class Sample<T>(var x: T)
 ```
 
->*Generic bir sınıfın generic parametresi out ile bildirildiğinde covariant özellik kullanılabilir*
+>Generic bir sınıfın generic parametresi out ile bildirildiğinde covariant özellik kullanılabilir
 
 ```kotlin
 package org.csystem.app
@@ -10995,7 +10995,7 @@ fun foo(s: Sample<Number>)
 class Sample<out T>(val x: T)
 ```
 
->*Aşağıdaki örnekte sınıf contravariant değildir. Açılım contravariant yapılmıştır*
+>Aşağıdaki örnekte sınıf contravariant değildir. Açılım contravariant yapılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -11017,7 +11017,7 @@ fun foo(s: Sample<in Integer>)
 class Sample<T>(var x: T? = null)
 ```
 
->*Aşağıdaki örnekte sınıf contravariant yapılmıştır*
+>Aşağıdaki örnekte sınıf contravariant yapılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -11041,7 +11041,7 @@ class Sample<in T> {
 }
 ```
 
->*out ve in anahtar sözcükleri eğer sınıfın bildiriminde yazılacaksa sınıfın property elemanları immutable olmalıdır*
+>out ve in anahtar sözcükleri eğer sınıfın bildiriminde yazılacaksa sınıfın property elemanları immutable olmalıdır
 
 ```kotlin
 package org.csystem.app
@@ -11064,7 +11064,7 @@ class Mest {
 class Sample<out T>(var x: T) //error
 ```
 
->*Generic parametrelere kısıtlar verilebilir. Aşağıdaki örnekte Sample sınıfının T generic parametresinin türünün Closeable arayüzünü destekkleyen bir tür ile açılımı zorunludur. Bu kısıta aynı zamanda üstten sınır (upper bound) da denilmektedir*
+>Generic parametrelere kısıtlar verilebilir. Aşağıdaki örnekte Sample sınıfının T generic parametresinin türünün Closeable arayüzünü destekkleyen bir tür ile açılımı zorunludur. Bu kısıta aynı zamanda üstten sınır (upper bound) da denilmektedir
 
 ```kotlin
 package org.csystem.app
@@ -11090,7 +11090,7 @@ class Sample<T: Closeable, K> {
 }
 ```
 
->*Pair sınıfı çok fazla kullanılan basit bir generic sınıftır*
+>Pair sınıfı çok fazla kullanılan basit bir generic sınıftır
 
 ```kotlin
 package org.csystem.app
@@ -11104,7 +11104,7 @@ fun main()
 }
 ```
 
->*Pair sınıfı bir data sınıf olduğundan bu sınıfın componentN üye fonksiyonları da bulunmaktadır*
+>Pair sınıfı bir data sınıf olduğundan bu sınıfın componentN üye fonksiyonları da bulunmaktadır
 
 ```kotlin
 package org.csystem.app
@@ -11118,7 +11118,7 @@ fun main()
 }
 ```
 
->*to generic infix fonksiyonu ile iki değerden bir Pair elde edilebilir*
+>to generic infix fonksiyonu ile iki değerden bir Pair elde edilebilir
 
 ```kotlin
 package org.csystem.app
@@ -11134,7 +11134,7 @@ fun main()
 }
 ```
 
->*Triple sınıfı*
+>Triple sınıfı
 
 ```kotlin
 package org.csystem.app
@@ -11148,7 +11148,7 @@ fun main()
 }
 ```
 
->*Triple sınıfı (ve Pair sınıfı) immutable özelliktedir*
+>Triple sınıfı (ve Pair sınıfı) immutable özelliktedir
 
 ```kotlin
 package org.csystem.app
@@ -11161,7 +11161,7 @@ fun main()
 }
 ```
 
->*Triple sınıfının (ve Pair sınıfının) toList extension metotları ile elemanlardan oluşan liste elde edilebilir*
+>Triple sınıfının (ve Pair sınıfının) toList extension metotları ile elemanlardan oluşan liste elde edilebilir
 
 ```kotlin
 package org.csystem.app
@@ -11177,7 +11177,7 @@ fun main()
 }
 ```
 
->*Triple sınıfının (ve Pair sınıfının) toList extension metotları ile elemanlardan oluşan liste elde edilebilir*
+>Triple sınıfının (ve Pair sınıfının) toList extension metotları ile elemanlardan oluşan liste elde edilebilir
 
 ```kotlin
 package org.csystem.app
@@ -11215,7 +11215,7 @@ data class Quadruple<out T1, out T2, out T3, out T4>(val first: T1, val second: 
 }
 ```
 
->*Kotlin'de diziler Array isimli bir sınıf ile temsil edilir. Array sınıfı generic bir sınıftır. Aşağıdaki örnekte Array sınıfı kullanılarak bir String dizisi yaratılmıştır. String dizisinin başlangıçta tüm elemanlarına örnekte boş string verilmiştir. Başlangıçta verilen değere ilişkin sentaks ve semantic ileride ele alınacaktır*
+>Kotlin'de diziler Array isimli bir sınıf ile temsil edilir. Array sınıfı generic bir sınıftır. Aşağıdaki örnekte Array sınıfı kullanılarak bir String dizisi yaratılmıştır. String dizisinin başlangıçta tüm elemanlarına örnekte boş string verilmiştir. Başlangıçta verilen değere ilişkin sentaks ve semantic ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app
@@ -11240,7 +11240,7 @@ fun main()
 }
 ```
 
->*Array sınıfı kullanılarak aşağıdaki gibi bir String dizisi oluşturulabilir*
+>Array sınıfı kullanılarak aşağıdaki gibi bir String dizisi oluşturulabilir
 
 ```kotlin
 package org.csystem.app
@@ -11254,7 +11254,7 @@ fun main()
 }
 ```
 
->*Generic fonksiyonlar*
+>Generic fonksiyonlar
 
 ```kotlin
 package org.csystem.app
@@ -11274,7 +11274,7 @@ fun <T, K> display(t: T, k: K)
 }
 ```
 
->*Generic fonksiyonlarda generic parametre türleri tespit edilebiliyorsa açılım yapmaya gerek olmaz*
+>Generic fonksiyonlarda generic parametre türleri tespit edilebiliyorsa açılım yapmaya gerek olmaz
 
 ```kotlin
 package org.csystem.app
@@ -11295,7 +11295,7 @@ fun <T, K> display(t: T, k: K)
 }
 ```
 
->*Aşağıdaki örnekte display fonskiyonu çağrısında K türü tespit edilemez*
+>Aşağıdaki örnekte display fonskiyonu çağrısında K türü tespit edilemez
 
 ```kotlin
 package org.csystem.app
@@ -11316,7 +11316,7 @@ fun <T, K> display(t: T) : K?
 }
 ```
 
->*Yukarıdaki örnekte açılım yapılarak K türü de çağırmada belirtilebilir*
+>Yukarıdaki örnekte açılım yapılarak K türü de çağırmada belirtilebilir
 
 ```kotlin
 package org.csystem.app
@@ -11337,7 +11337,7 @@ fun <T, K> display(t: T) : K?
 }
 ```
 
->*Aşağıdaki örnekte argümanın türü tespit edebilse bile açılım yapılmak zorundadır. Çünkü K'nın türünün tespit edilmesi için açılım yapılması gerekir*
+>Aşağıdaki örnekte argümanın türü tespit edebilse bile açılım yapılmak zorundadır. Çünkü K'nın türünün tespit edilmesi için açılım yapılması gerekir
 
 ```kotlin
 package org.csystem.app
@@ -11358,7 +11358,7 @@ fun <K, T> display(t: T) : K?
 }
 ```
 
->*Generic fonksiyonların parametrelerine de kısıt (sınır) verilebilir*
+>Generic fonksiyonların parametrelerine de kısıt (sınır) verilebilir
 
 ```kotlin
 package org.csystem.app
@@ -11382,7 +11382,7 @@ fun <R, T: Closeable> doWork(t: T) : R?
 }
 ```
 
->*Generic sınıfların içerisinde generic metotlar da bildirilebilir (member generics)*
+>Generic sınıfların içerisinde generic metotlar da bildirilebilir (member generics)
 
 ```kotlin
 package org.csystem.app
@@ -11425,13 +11425,13 @@ data class Value<out T>(val value: T) : Serializable {
 ```
 
 
->*Kotlin' de içiçe tür (nested types) bildirimi yapılabilmektedir. İçiçe sınıf bildirimi genel olarak 4(dört) şekilde yapılabilir:*
+>Kotlin' de içiçe tür (nested types) bildirimi yapılabilmektedir. İçiçe sınıf bildirimi genel olarak 4(dört) şekilde yapılabilir:
 >- Local classes
 >- Nested classes
 >- Inner classes
 >- Anonymous classes
 >
->*Kotlin'de yerel sınıflar bildirilebilir. Yerel fonksiyonların varlığından dolayı Kotlin'de yerel sınıfların kullanımına neredeyse gerek olmamaktadır.*
+>Kotlin'de yerel sınıflar bildirilebilir. Yerel fonksiyonların varlığından dolayı Kotlin'de yerel sınıfların kullanımına neredeyse gerek olmamaktadır.
 
 ```kotlin
 package org.csystem.app
@@ -11463,7 +11463,7 @@ class A {
 
 **Nested classes:** 
 
->*Nested sınıf türünden nesne sınıf dışında kapsayan sınıf ve nokta operatörü ile yaratılabilir*
+>Nested sınıf türünden nesne sınıf dışında kapsayan sınıf ve nokta operatörü ile yaratılabilir
 
 ```kotlin
 package org.csystem.app
@@ -11484,7 +11484,7 @@ class A {
 }
 ```
 
->*Nested sınıf içerisinde kapsayan sınıf türünün private elemanlarına erişilebilir*
+>Nested sınıf içerisinde kapsayan sınıf türünün private elemanlarına erişilebilir
 
 ```kotlin
 package org.csystem.app
@@ -11511,7 +11511,7 @@ class A private constructor()  {
 }
 ```
 
->*Kapsayan sınıf nested sınıfın private elemanlarına erişemez*
+>Kapsayan sınıf nested sınıfın private elemanlarına erişemez
 
 ```kotlin
 package org.csystem.app
@@ -11531,7 +11531,7 @@ class A {
 }
 ```
 
->*Inner sınıf türünden bir nesne sınıf dışında kapsayan sınıf türünden referans ile yaratılabilir*
+>Inner sınıf türünden bir nesne sınıf dışında kapsayan sınıf türünden referans ile yaratılabilir
 
 ```kotlin
 package org.csystem.app
@@ -11556,7 +11556,7 @@ class A {
 }
 ```
 
->*Inner sınıf içerisinde kapsayan sınıf türünün private elemanlarına erişilebilir. Erişilen private elemanlar inner class nesnesinin yaratılmasında kullanılan kapsayan sınıf nesnesinin elemanlarıdır*
+>Inner sınıf içerisinde kapsayan sınıf türünün private elemanlarına erişilebilir. Erişilen private elemanlar inner class nesnesinin yaratılmasında kullanılan kapsayan sınıf nesnesinin elemanlarıdır
 
 ```kotlin
 package org.csystem.app
@@ -11585,7 +11585,7 @@ class A (x: Int){
 }
 ```
 
->*Aşağıdaki örnekte kapsayan sınfın foo metodu inner sınıfın foo metodu içerisinde çağrılabilir. İsim aramaya göre bir problem oluşmaz*
+>Aşağıdaki örnekte kapsayan sınfın foo metodu inner sınıfın foo metodu içerisinde çağrılabilir. İsim aramaya göre bir problem oluşmaz
 
 ```kotlin
 package org.csystem.app
@@ -11613,7 +11613,7 @@ class A {
 }
 ```
 
->*Aşağıdaki örnekte inner sınıfın içerisinde recursive bir çağrı yapılmıştır*
+>Aşağıdaki örnekte inner sınıfın içerisinde recursive bir çağrı yapılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -11641,7 +11641,7 @@ class A {
 }
 ```
 
->*Yukarıdaki örnek için "qualified this expression" ile inner sınıfın içerisinde kapsayan sınıfın foo metodu çağrılabilir*
+>Yukarıdaki örnek için "qualified this expression" ile inner sınıfın içerisinde kapsayan sınıfın foo metodu çağrılabilir
 
 ```kotlin
 package org.csystem.app
@@ -11669,7 +11669,7 @@ class A {
 }
 ```
 
->*Anonim sınıflar object anahtar sözcüğü ile bildirilebilir. Anonim sınıf eğer bir interface ile klullanılırsa o interface'i destekleyen, bir sınıf ile kullanılırsa o sınıftan türetilmiş olan bir sınıf bildirimi yapmak aynı zamanda o sınıf türünden bir nesne yaratıp o nesnenin referansını elde etmek anlamındadır. Bildirilen sınıfa isim derleyici tarafından verilir*
+>Anonim sınıflar object anahtar sözcüğü ile bildirilebilir. Anonim sınıf eğer bir interface ile klullanılırsa o interface'i destekleyen, bir sınıf ile kullanılırsa o sınıftan türetilmiş olan bir sınıf bildirimi yapmak aynı zamanda o sınıf türünden bir nesne yaratıp o nesnenin referansını elde etmek anlamındadır. Bildirilen sınıfa isim derleyici tarafından verilir
 
 ```kotlin
 package org.csystem.app
@@ -11692,7 +11692,7 @@ interface IX {
 }
 ```
 
->*Anonim sınıflar tür belirtilmeden de kullanılabilir*
+>Anonim sınıflar tür belirtilmeden de kullanılabilir
 
 ```kotlin
 package org.csystem.app
@@ -11711,7 +11711,7 @@ fun main()
 }
 ```
 
->*Anonim sınıflar kendisinden önce bildirilen yerel değişkenleri ve parametre değişkenleri yakalayabilir (capture).* *Aşağıdaki anonim sınıfın derleyici tarafından yazılışının yaklaşık karşılığı (closure):*
+>Anonim sınıflar kendisinden önce bildirilen yerel değişkenleri ve parametre değişkenleri yakalayabilir (capture). Aşağıdaki anonim sınıfın derleyici tarafından yazılışının yaklaşık karşılığı (closure):
 
 ```kotlin
 class org.csystem.app.AppKt$main$a$1 (private var a: Int) : IX {
@@ -11746,7 +11746,7 @@ interface IX {
 }
 ```
 
->*Kotlin'de Java'dan farklı yakalanan bir değişkenin değeri scope'u içerisinde değiştirilebilir*
+>Kotlin'de Java'dan farklı yakalanan bir değişkenin değeri scope'u içerisinde değiştirilebilir
 
 ```kotlin
 package org.csystem.app
@@ -11774,7 +11774,7 @@ interface IX {
 }
 ```
 
->*Kotlin'de Java'dan farklı olarak yakalanan bir değişkenin değeri scope'u içerisinde değiştirilebilir*
+>Kotlin'de Java'dan farklı olarak yakalanan bir değişkenin değeri scope'u içerisinde değiştirilebilir
 
 ```kotlin
 package org.csystem.app
@@ -11801,7 +11801,7 @@ interface IX {
 }
 ```
 
->*object bildirimi (object declaration). object olarak bildirilmiş olan türe ilişkin bir tane nesne yaratılmış olur ve ismi o nesnenin referansı olarak kullanılır. Kullanım şekli itibariyla static elemanları varmış gibi erişilir*
+>object bildirimi (object declaration). object olarak bildirilmiş olan türe ilişkin bir tane nesne yaratılmış olur ve ismi o nesnenin referansı olarak kullanılır. Kullanım şekli itibariyla static elemanları varmış gibi erişilir
 
 ```kotlin
 package org.csystem.app
@@ -11825,7 +11825,7 @@ object Singleton {
 }
 ```
 
->*object bildirimi (object declaration). object olarak bildirilmiş olan türe ilişkin bir tane nesne yaratılmış olur ve ismi o nesnenin referansı olarak kullanılır. Kullanım şekli itibariyla static elemanları varmış gibi erişilir*
+>object bildirimi (object declaration). object olarak bildirilmiş olan türe ilişkin bir tane nesne yaratılmış olur ve ismi o nesnenin referansı olarak kullanılır. Kullanım şekli itibariyla static elemanları varmış gibi erişilir
 
 ```kotlin
 package org.csystem.app
@@ -11851,7 +11851,7 @@ object Singleton {
 }
 ```
 
->*object bildirimleri başka bir sınıftan türetilebilir*
+>object bildirimleri başka bir sınıftan türetilebilir
 
 ```kotlin
 package org.csystem.app
@@ -11881,7 +11881,7 @@ object Singleton : A() {
 }
 ```
 
->*object bildirimleri*
+>object bildirimleri
 
 ```kotlin
 package org.csystem.app
@@ -11914,7 +11914,7 @@ object Singleton : A() {
 }
 ```
 
->*Aşağıdaki örnekte nesne yaratılmamıştır. Fonksiyon çağırma operatör fonksiyonu çağrılmıştır. Dikkat edilirse s'nin türü Unit'dir*
+>Aşağıdaki örnekte nesne yaratılmamıştır. Fonksiyon çağırma operatör fonksiyonu çağrılmıştır. Dikkat edilirse s'nin türü Unit'dir
 
 ```kotlin
 package org.csystem.app
@@ -11946,7 +11946,7 @@ object Sample : A() {
 }
 ```
 
->*object bildirimleri (singleton) türetmeye kapalıdır*
+>object bildirimleri (singleton) türetmeye kapalıdır
 
 ```kotlin
 package org.csystem.app
@@ -11969,7 +11969,7 @@ object Singleton : A { //error
 }
 ```
 
->*object bildirimleri bir sınıf içerisinde yapılabilir*
+>object bildirimleri bir sınıf içerisinde yapılabilir
 
 ```kotlin
 package org.csystem.app
@@ -11989,7 +11989,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki örnekte* `**` *ile belirtilen ifade için invoke metodu çağrılır*
+>Aşağıdaki örnekte `**` ile belirtilen ifade için invoke metodu çağrılır
 
 ```kotlin
 package org.csystem.app
@@ -12016,7 +12016,7 @@ class A(x: Int) {
 }
 ```
 
->*Aşağıdaki örnekte* `**` *ile belirtilen ifade için yeni bir nesne yaratılmış olur*
+>Aşağıdaki örnekte `**` ile belirtilen ifade için yeni bir nesne yaratılmış olur
 
 ```kotlin
 package org.csystem.app
@@ -12036,7 +12036,7 @@ class A(x: Int) {
 }
 ```
 
->*object bildirimleri bir sınıf içerisinde companion yapılabilir. Bu durumda object içerisindeki metotlara kapsayan sınıf ismi ile de erişilebilir*
+>object bildirimleri bir sınıf içerisinde companion yapılabilir. Bu durumda object içerisindeki metotlara kapsayan sınıf ismi ile de erişilebilir
 
 ```kotlin
 package org.csystem.app
@@ -12056,7 +12056,7 @@ class Sample {
 }
 ```
 
->*companion object bildirimlerinde object'e isim verilmeyebilir*
+>companion object bildirimlerinde object'e isim verilmeyebilir
 
 ```kotlin
 package org.csystem.app
@@ -12085,7 +12085,7 @@ class Sample {
 }
 ```
 
->*companion object'e bir isim verilmediğinde o object'ib ismi Companion olarak verilmiş olur. Bu durumda sınıf dışından bu isme yani aslında o tek olan companşon object referansına Companion ismi ile erişilebilir*
+>companion object'e bir isim verilmediğinde o object'ib ismi Companion olarak verilmiş olur. Bu durumda sınıf dışından bu isme yani aslında o tek olan companşon object referansına Companion ismi ile erişilebilir
 
 ```kotlin
 package org.csystem.app
@@ -12106,7 +12106,7 @@ class Sample {
 }
 ```
 
->*companion object içeren bir sınıf ismi doğrudan kullanıldığında Companion object referansı elde edilmiş olur*
+>companion object içeren bir sınıf ismi doğrudan kullanıldığında Companion object referansı elde edilmiş olur
 
 ```kotlin
 package org.csystem.app
@@ -12129,7 +12129,7 @@ class Sample {
 }
 ```
 
->*Bir sınıf içerisinde tek bir companion object olabilir*
+>Bir sınıf içerisinde tek bir companion object olabilir
 
 ```kotlin
 package org.csystem.app
@@ -12156,7 +12156,7 @@ class Sample {
 }
 ```
 
->*Bir sınıf içerisinde tek bir companion object fakat istenildiği kadar başka object'ler olabilir*
+>Bir sınıf içerisinde tek bir companion object fakat istenildiği kadar başka object'ler olabilir
 
 ```kotlin
 package org.csystem.app
@@ -12192,7 +12192,7 @@ class Sample {
 }
 ```
 
->*Aşağıdaki örnekte Console isimli sınıf Java bakış açısıyla mantıksal static olarak bildirilmiştir. Anımsanacağı gibi tüm elemanları static olarak bildirilen sınıflara mantıksal static sınıflar ya da "utility" sınıflar denir ve utility sınıfların ctor'ları private yapılır. Örnek Java düşüncesiyle yazılmıştır. Kotlin açısından iyi yazılmamıştır*
+>Aşağıdaki örnekte Console isimli sınıf Java bakış açısıyla mantıksal static olarak bildirilmiştir. Anımsanacağı gibi tüm elemanları static olarak bildirilen sınıflara mantıksal static sınıflar ya da "utility" sınıflar denir ve utility sınıfların ctor'ları private yapılır. Örnek Java düşüncesiyle yazılmıştır. Kotlin açısından iyi yazılmamıştır
 
 ```kotlin
 package org.csystem.app
@@ -12267,7 +12267,7 @@ class Console private constructor() {
 }
 ```
 
->*Yukarıdaki örnek Kotlin bakış açısıyla aşağıdaki gibi daha iyi yazılabilir. Her iki durumda da unutlmamalıdır ki object'in ve companion object'in metotları static metotlar değildir*
+>Yukarıdaki örnek Kotlin bakış açısıyla aşağıdaki gibi daha iyi yazılabilir. Her iki durumda da unutlmamalıdır ki object'in ve companion object'in metotları static metotlar değildir
 
 ```kotlin
 package org.csystem.app
@@ -12326,9 +12326,9 @@ object Console {
 }
 ```
 
->*Kotlin'de bir türe eş isim (alias) verilebilmektedir. Bu işlem typealias anahtar sözcüğü ile yapılır. Genel olarak isimleri daha basit hale getirmek ve/veya isim çakışmalarını engellemek amaçlı kullanılmaktadır. Kotlin'de JavaSE ile aynı isimdeki bazı sınıflar kolay kullanım açısından typealias yapılmıştır*
+>Kotlin'de bir türe eş isim (alias) verilebilmektedir. Bu işlem typealias anahtar sözcüğü ile yapılır. Genel olarak isimleri daha basit hale getirmek ve/veya isim çakışmalarını engellemek amaçlı kullanılmaktadır. Kotlin'de JavaSE ile aynı isimdeki bazı sınıflar kolay kullanım açısından typealias yapılmıştır
 
->*type aliases*
+>type aliases
 
 ```kotlin
 package org.csystem.app
@@ -12352,7 +12352,7 @@ fun main()
 }
 ```
 
->*type aliases*
+>type aliases
 
 ```kotlin
 package org.csystem.app
@@ -12377,7 +12377,7 @@ fun main()
 }
 ```
 
->*type aliases*
+>type aliases
 
 ```kotlin
 package org.csystem.app
@@ -12400,7 +12400,7 @@ fun foo(a: double)
 }
 ```
 
->*type alias yapıldığında iki tür birden de kullanılabilir*
+>type alias yapıldığında iki tür birden de kullanılabilir
 
 ```kotlin
 package org.csystem.app
@@ -12417,7 +12417,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki ilginç örnek geçerlidir*
+>Aşağıdaki ilginç örnek geçerlidir
 
 ```kotlin
 package org.csystem.app
@@ -12440,7 +12440,7 @@ fun foo(a: Int)
 }
 ```
 
->*Aşağıdaki ilginç örneği inceleyiniz*
+>Aşağıdaki ilginç örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -12455,7 +12455,7 @@ fun main()
 }
 ```
 
->*typealias olarak bildirilmiş isimler yine import bildirimleri ile kullanılabilmektedir*
+>typealias olarak bildirilmiş isimler yine import bildirimleri ile kullanılabilmektedir
 
 ```kotlin
 package org.csystem.app
@@ -12486,7 +12486,7 @@ typealias DoublePairList = ArrayList<Pair<Double, Double>>
 typealias DoubleTripleList = ArrayList<Triple<Double, Int, Double>>
 ```
 
->*Aşağıdaki örneği inceleyiniz. Örnek typealias kullanımını göstermek için yazılmıştır*
+>Aşağıdaki örneği inceleyiniz. Örnek typealias kullanımını göstermek için yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -12519,7 +12519,7 @@ typealias Matrix = Array<IntArray>
 fun createMatrix(m: Int, n: Int) = Matrix(m) {IntArray(n)}
 ```
 
->*Aşağı seviyede fonksiyonların da adresleri vardır. Aslında bir fonksiyon çağrısı o fonksiyonun kodlarının bulunduğu adrese gidip çalıştırılmasıdır. Bazı programlama dillerinde fonksiyonların adreslerini tutan türler bulunur. Bu türlere genel olarak "function type" denir.*
+>Aşağı seviyede fonksiyonların da adresleri vardır. Aslında bir fonksiyon çağrısı o fonksiyonun kodlarının bulunduğu adrese gidip çalıştırılmasıdır. Bazı programlama dillerinde fonksiyonların adreslerini tutan türler bulunur. Bu türlere genel olarak "function type" denir.
 >
 >**_Function tür bildirimi:_**
 >
@@ -12539,9 +12539,9 @@ fun main()
 }
 ```
 
->*Kotlin'de bir fonksiyonun ismi fonksiyonun yapısına (yani parametri yappı ve geri dönüş değeri) uygun bir function türüne atanabilir. Fonksiyon türü bir referans türüdür. Fonksiyon türünden bir referans ile fonksiyon çağırma operatörü kullanıldığında, referansı (adresi) tutulan fonksiyon çağrılmış olur. Bu anlamda bakıldığında aslında fonksiyon ismi o fonklsiyonun adresi (referansı) gibi düşünülebilir.*
+>Kotlin'de bir fonksiyonun ismi fonksiyonun yapısına (yani parametri yappı ve geri dönüş değeri) uygun bir function türüne atanabilir. Fonksiyon türü bir referans türüdür. Fonksiyon türünden bir referans ile fonksiyon çağırma operatörü kullanıldığında, referansı (adresi) tutulan fonksiyon çağrılmış olur. Bu anlamda bakıldığında aslında fonksiyon ismi o fonklsiyonun adresi (referansı) gibi düşünülebilir.
 >
->*Bir fonksiyon türüne global bir fonksiyon ismi method reference operatörü* `::` *ile değer olarak verilebilir. Aşağıdaki örnek durumu göstermek için yazılmıştır*
+>Bir fonksiyon türüne global bir fonksiyon ismi method reference operatörü `::` ile değer olarak verilebilir. Aşağıdaki örnek durumu göstermek için yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -12571,7 +12571,7 @@ fun printRandomIntValue() = println(Random.nextInt())
 fun add(a: Int, b: Int) = a + b
 ```
 
->*Bir fonksiyon türüne bir sınıfın üye fonksiyonu (metot) da atanabilir. Bu durumda referans ve* `::` *ile metot ismi verilerek atama yapılır. Aşağıdaki örnek durumu göstermek için yazılmıştır*
+>Bir fonksiyon türüne bir sınıfın üye fonksiyonu (metot) da atanabilir. Bu durumda referans ve `::` ile metot ismi verilerek atama yapılır. Aşağıdaki örnek durumu göstermek için yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -12597,17 +12597,17 @@ object Operation {
 }
 ```
 
->*Kotlin'de fonksiyonlar ismine Lambda function ya da function literal bir sentaks ile de bildirilebilir. Lambda function bir fonksiyon türündendir. Yazılışına göre tür derleyici tarafından tespit edilir ve istenirse uygun bir function türünden referansa atanabilir. Lambda fonksiyonlarda son yazılan ifadenin değerine geri dönülmiş olur. Ya da başka bir deyişle geri dönüş değeri olan bir fonksiyon türü için lambda fonksiyon yazıldığında son yazılan ifade adeta return deyimi ile yazılmış olur*
+>Kotlin'de fonksiyonlar ismine Lambda function ya da function literal bir sentaks ile de bildirilebilir. Lambda function bir fonksiyon türündendir. Yazılışına göre tür derleyici tarafından tespit edilir ve istenirse uygun bir function türünden referansa atanabilir. Lambda fonksiyonlarda son yazılan ifadenin değerine geri dönülmiş olur. Ya da başka bir deyişle geri dönüş değeri olan bir fonksiyon türü için lambda fonksiyon yazıldığında son yazılan ifade adeta return deyimi ile yazılmış olur
 >
->*Aşağıdaki örnekte bir function literal yazılmış ve fonksiyon çağırma operatörü uygulanmıştır. Bu durumda derleyici Kotlin anlamında aşağıdaki gibi bir fonksiyon yazar:*
+>Aşağıdaki örnekte bir function literal yazılmış ve fonksiyon çağırma operatörü uygulanmıştır. Bu durumda derleyici Kotlin anlamında aşağıdaki gibi bir fonksiyon yazar:
 >
 >fun _xyz(a: Int, b: Int) : Int = a + b
 >
->*Fonksiyon çağrısını da şu şekilde yapar:*
+>Fonksiyon çağrısını da şu şekilde yapar:
 >
 >_xyz(10, 20)
 >
->*Bu işlemin Java karşılığı yaklaşık şu şekildedir:*
+>Bu işlemin Java karşılığı yaklaşık şu şekildedir:
 
 ```java
 class _xyz {
@@ -12631,7 +12631,7 @@ fun main()
 }
 ```
 
->*Parametresiz bir lambda fonksiyonu/fonksiyon sabiti lambda function/function literal bildirimi*
+>Parametresiz bir lambda fonksiyonu/fonksiyon sabiti lambda function/function literal bildirimi
 
 ```kotlin
 package org.csystem.app
@@ -12644,7 +12644,7 @@ fun main()
 }
 ```
 
->*Parametresiz bir lambda fonksiyonu bildirimi*
+>Parametresiz bir lambda fonksiyonu bildirimi
 
 ```kotlin
 package org.csystem.app
@@ -12657,7 +12657,7 @@ fun main()
 }
 ```
 
->*Parametresiz bir lambda fonksiyonu bildirimi. Örnekte referansın türü de bildirilmiştir*
+>Parametresiz bir lambda fonksiyonu bildirimi. Örnekte referansın türü de bildirilmiştir
 
 ```kotlin
 package org.csystem.app
@@ -12670,7 +12670,7 @@ fun main()
 }
 ```
 
->*Parametreli bir fonksiyon türü için parametre değişkenleri fonksiyon sabiti içerisinde bildirilebilir. Eğer lambda fonksiyonun atandağı değişkenin türü belirli ise parametre değişkenlerine türler yazılmayabilir.*
+>Parametreli bir fonksiyon türü için parametre değişkenleri fonksiyon sabiti içerisinde bildirilebilir. Eğer lambda fonksiyonun atandağı değişkenin türü belirli ise parametre değişkenlerine türler yazılmayabilir.
 
 ```kotlin
 package org.csystem.app
@@ -12683,7 +12683,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte f'nin türü yazılmadığından a parametre değişkeninin türü yazılmalıdır*
+>Aşağıdaki örnekte f'nin türü yazılmadığından a parametre değişkeninin türü yazılmalıdır
 
 ```kotlin
 package org.csystem.app
@@ -12696,7 +12696,7 @@ fun main()
 }
 ```
 
->*Parametreli bir fonksiyon türü için parametre değişkenleri fonksiyon sabiti içerisinde türü ile bildirilebilir*
+>Parametreli bir fonksiyon türü için parametre değişkenleri fonksiyon sabiti içerisinde türü ile bildirilebilir
 
 ```kotlin
 package org.csystem.app
@@ -12710,7 +12710,7 @@ fun main()
 
 ```
 
->*Aşağıdaki örnekte add değişkeninin türü belirtilmelidir. Çünkü derleyici Lambda fonksiyon içerisinde a ve b değişkenleri için tür tespiti (type inference/deduction) yapamaz*
+>Aşağıdaki örnekte add değişkeninin türü belirtilmelidir. Çünkü derleyici Lambda fonksiyon içerisinde a ve b değişkenleri için tür tespiti (type inference/deduction) yapamaz
 
 ```kotlin
 package org.csystem.app
@@ -12723,7 +12723,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte Lambda fonksiyonun parametre değişkenlerinin türleri belirtilmelidir*
+>Aşağıdaki örnekte Lambda fonksiyonun parametre değişkenlerinin türleri belirtilmelidir
 
 ```kotlin
 package org.csystem.app
@@ -12736,7 +12736,7 @@ fun main()
 }
 ```
 
->*Tek parametreli Lambda fonksiyonlarda "it" built-in olarak parametre ismi olarak kullanılabilir*
+>Tek parametreli Lambda fonksiyonlarda "it" built-in olarak parametre ismi olarak kullanılabilir
 
 ```kotlin
 package org.csystem.app
@@ -12749,7 +12749,7 @@ fun main()
 }
 ```
 
->*Tek parametreli Lambda fonksiyonlarda "it" built-in olarak parametre ismi olarak kullanılabilir*
+>Tek parametreli Lambda fonksiyonlarda "it" built-in olarak parametre ismi olarak kullanılabilir
 
 ```kotlin
 package org.csystem.app
@@ -12762,7 +12762,7 @@ fun main()
 }
 ```
 
->*Lambda fonksiyonlar*
+>Lambda fonksiyonlar
 
 ```kotlin
 package org.csystem.app
@@ -12775,7 +12775,7 @@ fun main()
 }
 ```
 
->*Lambda fonksiyonlar*
+>Lambda fonksiyonlar
 
 ```kotlin
 package org.csystem.app
@@ -12791,7 +12791,7 @@ fun main()
 }
 ```
 
->*Lambda fonksiyonlar*
+>Lambda fonksiyonlar
 
 ```kotlin
 package org.csystem.app
@@ -12807,11 +12807,11 @@ fun main()
 }
 ```
 
->*Bazı fonksiyonlar içeride yapacakları işlemlerin detaylarını dışarıdan alırlar. Bu kavrama callable ya da callback denilmektedir. Java dünyasında bu kevram abstract sınıflar ya da interface'ler ile ilgili metotlarının override edilmesiyle gerçekleştirilir. Yani metodun ilgili parametresi genel olarak bir interface ya da abstract class türden olur ve bu metodu çağıran programcı ilgili referansa o referansa ilişkin sınıfsa türetilmiş interface ise implemente edilmiş bir sınıfa nesnenin adresini (referansını) verir ve metot da ilgili sanal metodu çağırarak aslında nasıl yapacağını bilmeden yazılmış olur. Bu tarz metotlara (fonksiyonlara) programlama dillerinde genel olarak "High Order Function (HOF)" denir. Kotlin'de HOF'lar genel olarak function türleri ile yazılır. Şüphesiz interface kullanılarak da yazılabilir. Kotlin'de bir fonksiyonun son parametresi function türündense ve bu parametreye bir lambda function geçilecekse bu durumda bu lambda function fonksiyon çağırma operatöründen sonra yazılabilir. Ayrıca fonksiyon tek parametreli ise ve fonksiyonun o tek parametresi de bir function türünden ise hiç fonksiyon çağırma operatörü kullanmadan doğrudan lambda function yazılabilir.*
+>Bazı fonksiyonlar içeride yapacakları işlemlerin detaylarını dışarıdan alırlar. Bu kavrama callable ya da callback denilmektedir. Java dünyasında bu kevram abstract sınıflar ya da interface'ler ile ilgili metotlarının override edilmesiyle gerçekleştirilir. Yani metodun ilgili parametresi genel olarak bir interface ya da abstract class türden olur ve bu metodu çağıran programcı ilgili referansa o referansa ilişkin sınıfsa türetilmiş interface ise implemente edilmiş bir sınıfa nesnenin adresini (referansını) verir ve metot da ilgili sanal metodu çağırarak aslında nasıl yapacağını bilmeden yazılmış olur. Bu tarz metotlara (fonksiyonlara) programlama dillerinde genel olarak "High Order Function (HOF)" denir. Kotlin'de HOF'lar genel olarak function türleri ile yazılır. Şüphesiz interface kullanılarak da yazılabilir. Kotlin'de bir fonksiyonun son parametresi function türündense ve bu parametreye bir lambda function geçilecekse bu durumda bu lambda function fonksiyon çağırma operatöründen sonra yazılabilir. Ayrıca fonksiyon tek parametreli ise ve fonksiyonun o tek parametresi de bir function türünden ise hiç fonksiyon çağırma operatörü kullanmadan doğrudan lambda function yazılabilir.
 >
->*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
 >
->*Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir*
+>Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir
 
 ```kotlin
 package org.csystem.app
@@ -12848,9 +12848,9 @@ fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
 }
 ```
 
->*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
 >
->*Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir. Örnekte son parametre olan function türünden parametreye geçilen lambda function fonksiyon çağırma operaytöründen sonra yazılmıştır. Bu tarz durumlarda bu çağırma biçimi tavsiye edilir*
+>Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir. Örnekte son parametre olan function türünden parametreye geçilen lambda function fonksiyon çağırma operaytöründen sonra yazılmıştır. Bu tarz durumlarda bu çağırma biçimi tavsiye edilir
 
 ```kotlin
 package org.csystem.app
@@ -12887,9 +12887,9 @@ fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
 }
 ```
 
->*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
 >
->*Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir*
+>Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir
 
 ```kotlin
 package org.csystem.app
@@ -12927,9 +12927,9 @@ fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
 }
 ```
 
->*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
 >
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -12975,9 +12975,9 @@ var idx = 0
 }
 ```
 
->*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
 >
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -13017,7 +13017,7 @@ fun IntArray.forEach(block: (Int) -> Unit)
 }
 ```
 
->*Aşağıdaki kodda bir fonksiyon sabiti bildirilmiş ve fonksiyon çağırma operatör fonksiyonu uygulanmıştır*
+>Aşağıdaki kodda bir fonksiyon sabiti bildirilmiş ve fonksiyon çağırma operatör fonksiyonu uygulanmıştır
 
 ```kotlin
 package org.csystem.app
@@ -13029,7 +13029,7 @@ fun main()
 
 ```
 
->*Dizilerin fonksiyon türden parametreli ctor'ları ile her bir eleman için dizi yaratılırken ne yapılacağı belirlenebilir Generic olan Array sınıfının fonksiyon türden parametresi olmayan ctor'u yoktur. Aşağıdaki örneği inceleyiniz*
+>Dizilerin fonksiyon türden parametreli ctor'ları ile her bir eleman için dizi yaratılırken ne yapılacağı belirlenebilir Generic olan Array sınıfının fonksiyon türden parametresi olmayan ctor'u yoktur. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -13048,7 +13048,7 @@ fun main()
 }
 ```
 
->*Lambda fonksiyonlar*
+>Lambda fonksiyonlar
 
 ```kotlin
 package org.csystem.app
@@ -13062,9 +13062,9 @@ fun main()
 }
 ```
 
->*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
 
->*Lambda fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir (capture)*
+>Lambda fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir (capture)
 
 ```kotlin
 package org.csystem.app
@@ -13105,9 +13105,9 @@ fun IntArray.forEach(block: (Int) -> Unit)
 }
 ```
 
->*Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız*
+>Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
 
->*Lambda fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir ve değerleri değiştirilebilir*
+>Lambda fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir ve değerleri değiştirilebilir
 
 **_Anahtar Notlar:_** Java'da bir yakalanan yerel bir değişken veya bir parametre değişkeni faaliyet alanı boyunca değiştirilemez (effectively final)
 
@@ -13150,7 +13150,7 @@ fun IntArray.forEach(block: (Int) -> Unit)
 }
 ```
 
->*Aşağıdaki örnekte bir fonksiyonun parametresi olan fonksiyonun da parametresi fonksiyon türündendir*
+>Aşağıdaki örnekte bir fonksiyonun parametresi olan fonksiyonun da parametresi fonksiyon türündendir
 
 ```kotlin
 package org.csystem.app
@@ -13166,7 +13166,7 @@ fun foo(callback : ((Int, Int) -> Int) -> Int)
 }
 ```
 
->*Aşağıdaki fonksiyonu inceleyiniz*
+>Aşağıdaki fonksiyonu inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -13177,7 +13177,7 @@ fun foo(callback : ((Int, Int) -> Int, (Double) -> Double) -> (Int, Int) -> Stri
 }
 ```
 
->*Lambda fonksiyonlarda kullanılmayacak parametreler alttire karakteri ile atlanabilir*
+>Lambda fonksiyonlarda kullanılmayacak parametreler alttire karakteri ile atlanabilir
 
 ```kotlin
 package org.csystem.app
@@ -13190,9 +13190,9 @@ fun main()
 }
 ```
 
->*Dizilerin fonksiyon parametresi alan fonksiyonları vardır. Bunların bazıları extension olarak yazılmıştır. Bu fonksiyonlardan bazıları burada anlatılacaktır, bazıları ise zamanla özellikle Android uygulamaları içerisinde kullanılırken ele alınacaktır*
+>Dizilerin fonksiyon parametresi alan fonksiyonları vardır. Bunların bazıları extension olarak yazılmıştır. Bu fonksiyonlardan bazıları burada anlatılacaktır, bazıları ise zamanla özellikle Android uygulamaları içerisinde kullanılırken ele alınacaktır
 
->*Dizilerin forEach fonksiyonu dizinin her bir elemanına callback olarak aldığı fonksiyonu uygular Dizilerin any fonksiyonu callback olarak aldığı predicate fonksiyona göre koşula uyan en az bir tane eleman varsa true değerine döner. all fonksiyonu callback olarak aldığı predicate fonksiyona göre tüm elemanlar koşula uyuyor ise true değerine döner. none fonksiyonu callback olarak aldığı predicate fonksiyona göre hiç bir eleman koşula uymuyor ise true değerine geri döner*
+>Dizilerin forEach fonksiyonu dizinin her bir elemanına callback olarak aldığı fonksiyonu uygular Dizilerin any fonksiyonu callback olarak aldığı predicate fonksiyona göre koşula uyan en az bir tane eleman varsa true değerine döner. all fonksiyonu callback olarak aldığı predicate fonksiyona göre tüm elemanlar koşula uyuyor ise true değerine döner. none fonksiyonu callback olarak aldığı predicate fonksiyona göre hiç bir eleman koşula uymuyor ise true değerine geri döner
 
 ```kotlin
 package org.csystem.app
@@ -13211,7 +13211,7 @@ fun main()
 }
 ```
 
->*Dizilerin filter fonksiyonu*
+>Dizilerin filter fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -13233,9 +13233,9 @@ fun main()
 }
 ```
 
->*Aşağıda örneklerde ilgili dosyadan okuma yapan fonskiyonların kodları şu aşamada önemsizdir. Proje içerisinde ilgili dosyalar ilgilşi formatlarda olduğu durumda örnekler çalıştırılabilir. Burada odaklanılması gereken bu dosyalardaki veriler veya bu dosyaları okuyan fonksiyonların nasıl yazıldığı değildir. Burada dizilere ilişkin fonksiyonların kullanımına odaklanılması gerekir*
+>Aşağıda örneklerde ilgili dosyadan okuma yapan fonskiyonların kodları şu aşamada önemsizdir. Proje içerisinde ilgili dosyalar ilgilşi formatlarda olduğu durumda örnekler çalıştırılabilir. Burada odaklanılması gereken bu dosyalardaki veriler veya bu dosyaları okuyan fonksiyonların nasıl yazıldığı değildir. Burada dizilere ilişkin fonksiyonların kullanımına odaklanılması gerekir
 >
->*Aşağıdaki örnekte stokta bulunmayan ürün varsa listelenmiştir*
+>Aşağıdaki örnekte stokta bulunmayan ürün varsa listelenmiştir
 
 ```
 package org.csystem.app
@@ -13260,7 +13260,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir*
+>Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir
 
 ```kotlin
 package org.csystem.app
@@ -13285,7 +13285,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir*
+>Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir
 
 ```kotlin
 package org.csystem.app
@@ -13311,7 +13311,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir*
+>Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir
 
 ```kotlin
 package org.csystem.app
@@ -13336,7 +13336,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir. Örnekte JavaSE'de bulunan BigDecimal sınıfı Java bakış açısıyla kullanılmıştır*
+>Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir. Örnekte JavaSE'de bulunan BigDecimal sınıfı Java bakış açısıyla kullanılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -13360,7 +13360,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir. BigDecimal sınıfı Comparable arayüzünü desteklediği ve dolayısıyla compareTo metodunu override ettiği için Kotlin'de <, >, <=, >= operatörleri ile de kullanılabilir. Artık kod Kotlin bakış açısıyla yazılmıştır*
+>Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir. BigDecimal sınıfı Comparable arayüzünü desteklediği ve dolayısıyla compareTo metodunu override ettiği için Kotlin'de <, >, <=, >= operatörleri ile de kullanılabilir. Artık kod Kotlin bakış açısıyla yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -13384,7 +13384,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte filter fonksiyonu her koşul için ayrı çağrılmıştır. Kodun yukarıdaki koda göre ekstra bir maliyeti yoktur. Hatta bazı durumlarda birden fazla kez çağrılması okunabilirliği/algılanabilirliği artırır*
+>Aşağıdaki örnekte filter fonksiyonu her koşul için ayrı çağrılmıştır. Kodun yukarıdaki koda göre ekstra bir maliyeti yoktur. Hatta bazı durumlarda birden fazla kez çağrılması okunabilirliği/algılanabilirliği artırır
 
 ```kotlin
 package org.csystem.app
@@ -13408,7 +13408,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte koşullara uyan verilerden oluşan yeni bir dizi elde edilmiştir. Şüphesiz sadece forEach kullanılacaksa bu durumda yeni dizi elde edilmeden devam edilmesi daha etkindir*
+>Aşağıdaki örnekte koşullara uyan verilerden oluşan yeni bir dizi elde edilmiştir. Şüphesiz sadece forEach kullanılacaksa bu durumda yeni dizi elde edilmeden devam edilmesi daha etkindir
 
 ```kotlin
 package org.csystem.app
@@ -13439,7 +13439,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte koşullara uyan ürünlerin isimlerinden oluşan yeni dizi (*`Array<Product>` *dizisinden* `Array<String>`*) elde edilmiştir*
+>Aşağıdaki örnekte koşullara uyan ürünlerin isimlerinden oluşan yeni dizi (`Array<Product>` dizisinden `Array<String>`) elde edilmiştir
 
 ```kotlin
 package org.csystem.app
@@ -13471,11 +13471,11 @@ fun main()
 }
 ```
 
->*Scoping functions:*
+>Scoping functions:
 >
->*LET us ALSO RUN WITH APPLY*
+>LET us ALSO RUN WITH APPLY
 >
->*apply eklenti fonksiyonu: apply eklenti fonksiyonunun callback'ine this geçirilir "apply the following assignments or calls to the object" apply fonksiyonu çağrıldığı referansa geri döner.*
+>apply eklenti fonksiyonu: apply eklenti fonksiyonunun callback'ine this geçirilir "apply the following assignments or calls to the object" apply fonksiyonu çağrıldığı referansa geri döner.
 
 ```kotlin
 package org.csystem.app
@@ -13521,7 +13521,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -13569,7 +13569,7 @@ fun main()
 }
 ```
 
->*let eklenti fonksiyonu bir türün başka bir türe dönüştürülmesi için kullanılabilir. let fonksiyonunun callback'ine this geçirilmez*
+>let eklenti fonksiyonu bir türün başka bir türe dönüştürülmesi için kullanılabilir. let fonksiyonunun callback'ine this geçirilmez
 
 ```kotlin
 package org.csystem.app
@@ -13591,7 +13591,7 @@ fun main()
 }
 ```
 
->*let fonksiyonunun bir kullanımı*
+>let fonksiyonunun bir kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -13614,7 +13614,7 @@ fun main()
 }
 ```
 
->*let fonksiyonunun bir kullanımı*
+>let fonksiyonunun bir kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -13633,7 +13633,7 @@ fun main()
 }
 ```
 
->*let fonksiyonunun bir kullanımı*
+>let fonksiyonunun bir kullanımı
 
 ```kotlin
 package org.csystem.app
@@ -13652,7 +13652,7 @@ fun main()
 }
 ```
 
->*with global fonksiyonu. Bu fonksiyon en son çalıştırılan ifadenin ürettiği değere geri döner "with this object do the following"*
+>with global fonksiyonu. Bu fonksiyon en son çalıştırılan ifadenin ürettiği değere geri döner "with this object do the following"
 
 ```kotlin
 package org.csystem.app
@@ -13694,7 +13694,7 @@ fun main()
 }
 ```
 
->*also eklenti fonksiyonu. Bu fonksiyon da çağrıldığı referansa geri döner. Bu fonksiyonun callback olarak aldığı fonksiyonun parametresi ilgili türdendir. apply fonksiyonunda ise parametresizdir. also fonksiyonun calback'ine this geçirilmez "also do the followings for that object"*
+>also eklenti fonksiyonu. Bu fonksiyon da çağrıldığı referansa geri döner. Bu fonksiyonun callback olarak aldığı fonksiyonun parametresi ilgili türdendir. apply fonksiyonunda ise parametresizdir. also fonksiyonun calback'ine this geçirilmez "also do the followings for that object"
 
 ```kotlin
 package org.csystem.app
@@ -13716,7 +13716,7 @@ fun main()
 }
 ```
 
->*Yukarıdaki örnek let ile de yapılabilirdi. Ancak okunabilirlik açısından also daha uygundur*
+>Yukarıdaki örnek let ile de yapılabilirdi. Ancak okunabilirlik açısından also daha uygundur
 
 ```kotlin
 package org.csystem.app
@@ -13736,7 +13736,7 @@ fun main()
 }
 ```
 
->*run eklenti fonksiyonu ile bir türe ilişkin bir takım işlemler yapılabilir. run fonksiyonu en son yapılan işlemin değerini döndürür. run fonksiyonunun callback'ine this geçirilir*
+>run eklenti fonksiyonu ile bir türe ilişkin bir takım işlemler yapılabilir. run fonksiyonu en son yapılan işlemin değerini döndürür. run fonksiyonunun callback'ine this geçirilir
 
 ```kotlin
 package org.csystem.app
@@ -13757,7 +13757,7 @@ fun main()
 }
 ```
 
->*run global fonksiyonu*
+>run global fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -13778,7 +13778,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -13844,7 +13844,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte bir lambda fonksiyon tanımlanmıştır. Çağrılmamıştır*
+>Aşağıdaki örnekte bir lambda fonksiyon tanımlanmıştır. Çağrılmamıştır
 
 ```kotlin
 package org.csystem.app
@@ -13861,7 +13861,7 @@ fun main()
 }
 ```
 
->*Yukardaki örnekteki lambda fonksiyon aşağıdaki gibi çağrılabilir. Kod örnek amaçlı yazılmıştır*
+>Yukardaki örnekteki lambda fonksiyon aşağıdaki gibi çağrılabilir. Kod örnek amaçlı yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -13877,7 +13877,7 @@ fun main()
 }
 ```
 
->*Yukardaki örnek aşağıdaki gibi de yapılabilir*
+>Yukardaki örnek aşağıdaki gibi de yapılabilir
 
 ```kotlin
 package org.csystem.app
@@ -13893,7 +13893,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -13906,7 +13906,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -13921,7 +13921,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz. Kod sentaksı göstermek için yazılmıştır*
+>Aşağıdaki örneği inceleyiniz. Kod sentaksı göstermek için yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -13938,7 +13938,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz. Kod sentaksı göstermek için yazılmıştır*
+>Aşağıdaki örneği inceleyiniz. Kod sentaksı göstermek için yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -13956,14 +13956,14 @@ fun main()
 }
 ```
 
->*Bir veri yapısının, veri yapısının verileri nasıl tuttuğundan bağımsız olarak dolaşılmasına (iterate) olanak sağlayan araçlara programlamada genel olarak iterator denir. Kotlin'de for döngü deyimiyle dolaşılabilir bir sınıfın* `Iterable<T>` *arayüzünü desteklemesi gerekir. Bu arayüzün iterator metodu* `Iterator<T>` *arayüz referansına geri döner. bu arayüzün hasNext abstract metodu ile bir sonraki verinin varlığına ilişkin Boolean türden değer elde edilir. next metodu bir sonraki elemanın değerine geri döner, her next çağrısında bir sonraki elemandan önceki elemana konumlanılır. next metodu hasNext false olduğunda yani artık eleman kalmadığınd çağrılırsa NoSuchElementException fırlatılır. Aşağıdaki iterator metodunun çağrılması ve döngü işlemi for döngü deyimiyle doğrudan yapılabilir*
+>Bir veri yapısının, veri yapısının verileri nasıl tuttuğundan bağımsız olarak dolaşılmasına (iterate) olanak sağlayan araçlara programlamada genel olarak iterator denir. Kotlin'de for döngü deyimiyle dolaşılabilir bir sınıfın `Iterable<T>` arayüzünü desteklemesi gerekir. Bu arayüzün iterator metodu `Iterator<T>` arayüz referansına geri döner. bu arayüzün hasNext abstract metodu ile bir sonraki verinin varlığına ilişkin Boolean türden değer elde edilir. next metodu bir sonraki elemanın değerine geri döner, her next çağrısında bir sonraki elemandan önceki elemana konumlanılır. next metodu hasNext false olduğunda yani artık eleman kalmadığınd çağrılırsa NoSuchElementException fırlatılır. Aşağıdaki iterator metodunun çağrılması ve döngü işlemi for döngü deyimiyle doğrudan yapılabilir
 
 ```
 for (value in a)
     print("$value ")
 ```
 
->*Aşağıdaki örnekte bir dizi itrator ile açık açık dolaşılmıştır*
+>Aşağıdaki örnekte bir dizi itrator ile açık açık dolaşılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -13983,7 +13983,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14010,7 +14010,7 @@ fun main()
 }
 ```
 
->*next metodu eleman yoksa NoSuchElementException nesnesi fırlatır*
+>next metodu eleman yoksa NoSuchElementException nesnesi fırlatır
 
 ```kotlin
 package org.csystem.app
@@ -14038,7 +14038,7 @@ fun main()
 }
 ```
 
->*RandomIntGenerator sınıfı*
+>RandomIntGenerator sınıfı
 
 ```kotlin
 package org.csystem.app
@@ -14178,13 +14178,13 @@ class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private
 }
 ```
 
->*Iterable arayüzüne eklenti olarak yazılmış bir grup fonksiyon vardır. Bu fonksiyonlar genel olarak callback alırlar. Bu fonksiyonlar genel olarak iki gruba ayrılabilir:* 
+>Iterable arayüzüne eklenti olarak yazılmış bir grup fonksiyon vardır. Bu fonksiyonlar genel olarak callback alırlar. Bu fonksiyonlar genel olarak iki gruba ayrılabilir: 
 >
->1. *__<u>Intermediate operation functions:</u>__ Veriler üzerinde çağrılacak callback'leri belirlemekte kullanılır. Bu fonksiyonlar aldıkları callback'i doğrudan çalıştırmazlar. Bir terminal operation function devam eden zincirin sonunda çağrıldığında bu callback'ler de çağrılır. Yani aslında bir ara fonksiyonun aldığı calllback'in çağrılabilmesi için bir terminal operation function çağrılması gerekir.*
+>1. __<u>Intermediate operation functions:</u>__ Veriler üzerinde çağrılacak callback'leri belirlemekte kullanılır. Bu fonksiyonlar aldıkları callback'i doğrudan çalıştırmazlar. Bir terminal operation function devam eden zincirin sonunda çağrıldığında bu callback'ler de çağrılır. Yani aslında bir ara fonksiyonun aldığı calllback'in çağrılabilmesi için bir terminal operation function çağrılması gerekir.
 >
->2. *__<u>Terminal operation functions:</u>__ Bir zincir (pipeline) içerisinde ya bir işlem yapan ya da tüm belirlenen ara işlemlere göre bir değer döndüren metotlardır. Bir pipeline içerisinde istenildiği kadar intermediate function çağrısı olabilir ancak bir tane terminal function çağrısı yapılabilir*
+>2. __<u>Terminal operation functions:</u>__ Bir zincir (pipeline) içerisinde ya bir işlem yapan ya da tüm belirlenen ara işlemlere göre bir değer döndüren metotlardır. Bir pipeline içerisinde istenildiği kadar intermediate function çağrısı olabilir ancak bir tane terminal function çağrısı yapılabilir
 
->*forEach ve filter eklenti fonksiyonları*
+>forEach ve filter eklenti fonksiyonları
 
 ```kotlin
 package org.csystem.app
@@ -14211,7 +14211,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği ve write fonksiyonunu inceleyiniz*
+>Aşağıdaki örneği ve write fonksiyonunu inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14232,7 +14232,7 @@ fun main()
 }
 ```
 
->*Iterable arayüzüne eklenti olarak bulunan metotların bir çoğu String sınıfında da eklenti olarak bulunmaktadır. String sınıfı bu anlamda __"iterable"__ değildir ancak __"iterable"__ olarak kullanılabilmektedir*
+>Iterable arayüzüne eklenti olarak bulunan metotların bir çoğu String sınıfında da eklenti olarak bulunmaktadır. String sınıfı bu anlamda __"iterable"__ değildir ancak __"iterable"__ olarak kullanılabilmektedir
 
 ```kotlin
 package org.csystem.app
@@ -14247,7 +14247,7 @@ fun main()
 }
 ```
 
->*Anımsanacağı gibi String sınıfı da for döngü deyimi ile dolaşılabilir*
+>Anımsanacağı gibi String sınıfı da for döngü deyimi ile dolaşılabilir
 
 ```kotlin
 package org.csystem.app
@@ -14265,7 +14265,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir*
+>Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir
 
 ```kotlin
 package org.csystem.app
@@ -14291,7 +14291,7 @@ fun main()
 }
 ```
 
->*Yukarıdaki örnek için filter fonksiyonları ayrı ayrı da çağrılabilir*
+>Yukarıdaki örnek için filter fonksiyonları ayrı ayrı da çağrılabilir
 
 ```kotlin
 package org.csystem.app
@@ -14316,9 +14316,9 @@ fun main()
 }
 ```
 
->*Kotlin'de standart collection sınıflar genel olarak immutable ve mutable olmak üzere iki gruba ayrılır. Bu ayrım arayüzler düzeyinde yapılır. Genel olarak __"mutable collection"__'lar MutableXXX biçiminde isimlendirilmiştir. Bu durumda içerisinde Mutable geçmeyen arayüzler Immutable olur. Sınıflar için bu isimlendirmede istisnalar bulunmaktadır*
+>Kotlin'de standart collection sınıflar genel olarak immutable ve mutable olmak üzere iki gruba ayrılır. Bu ayrım arayüzler düzeyinde yapılır. Genel olarak __"mutable collection"__'lar MutableXXX biçiminde isimlendirilmiştir. Bu durumda içerisinde Mutable geçmeyen arayüzler Immutable olur. Sınıflar için bu isimlendirmede istisnalar bulunmaktadır
 
->*Collection arayüzünü destekleyen sınıfların MutableCollection veya Collection parametreli ctor'ları bulunur*
+>Collection arayüzünü destekleyen sınıfların MutableCollection veya Collection parametreli ctor'ları bulunur
 
 ```kotlin
 package org.csystem.app
@@ -14336,9 +14336,9 @@ fun main()
 }
 ```
 
->*Aralarında öncelik sonralık ilişkisi bulunan collection sınıflara genel olarak liste tarzı collection sınıflar denir ve bu collection sınıflar `List<E>` veya `MutableList<E>` arayüzünü desteklerler. Aslında `MutableList<E>` arayüzü Kotlin'de `List<E>` arayüzünden türetilmiştir. Buradaki `List<E>` arayüzü ile JavaSE'deki `List<E>` arayüzü aynı değildir. JavaSE'deki `List<E>` arayüzü Kotlin'deki `MutableList<E>` arayüzüne karşılık gelir. Collection sınıflar için immutable ve mutable collection arayüzleri için genel olarak durum böyledir*
+>Aralarında öncelik sonralık ilişkisi bulunan collection sınıflara genel olarak liste tarzı collection sınıflar denir ve bu collection sınıflar `List<E>` veya `MutableList<E>` arayüzünü desteklerler. Aslında `MutableList<E>` arayüzü Kotlin'de `List<E>` arayüzünden türetilmiştir. Buradaki `List<E>` arayüzü ile JavaSE'deki `List<E>` arayüzü aynı değildir. JavaSE'deki `List<E>` arayüzü Kotlin'deki `MutableList<E>` arayüzüne karşılık gelir. Collection sınıflar için immutable ve mutable collection arayüzleri için genel olarak durum böyledir
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14356,7 +14356,7 @@ fun main()
 }
 ```
 
->*Mutable liste tarzı collection sınıfların MutableList arayüzünden gelen Collection parametreli addAll metotları bulunur*
+>Mutable liste tarzı collection sınıfların MutableList arayüzünden gelen Collection parametreli addAll metotları bulunur
 
 ```kotlin
 package org.csystem.app
@@ -14373,7 +14373,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14399,7 +14399,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14419,7 +14419,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14443,7 +14443,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14470,7 +14470,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14497,7 +14497,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır Örnekte lambda fonksiyon içerisinde parametre kullanılmadığında bazı static kod analizi araçları uyarı verebilir. Bu uyarının kalkması için Lambda fonksiyon içerisindeki parametre alttire karakteri ile pas geçilecek şekilde belirtilebilir. Bu uyarı dikkate alınmasa da bir sorun oluşturmaz*
+>Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır Örnekte lambda fonksiyon içerisinde parametre kullanılmadığında bazı static kod analizi araçları uyarı verebilir. Bu uyarının kalkması için Lambda fonksiyon içerisindeki parametre alttire karakteri ile pas geçilecek şekilde belirtilebilir. Bu uyarı dikkate alınmasa da bir sorun oluşturmaz
 
 ```kotlin
 package org.csystem.app
@@ -14513,7 +14513,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır*
+>Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -14530,7 +14530,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır*
+>Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -14547,7 +14547,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır*
+>Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -14564,7 +14564,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte count tane rasgele sayı IntRange kullanılarak ekrana bastırılmıştır*
+>Aşağıdaki örnekte count tane rasgele sayı IntRange kullanılarak ekrana bastırılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -14581,7 +14581,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte take ve count eklenti fonksiyonları kullanılmıştır*
+>Aşağıdaki örnekte take ve count eklenti fonksiyonları kullanılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -14610,7 +14610,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır*
+>Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -14639,7 +14639,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır*
+>Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -14668,7 +14668,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte generateSequence fonksiyonu ile count tane rasgele sayı üretilmiştir*
+>Aşağıdaki örnekte generateSequence fonksiyonu ile count tane rasgele sayı üretilmiştir
 
 ```kotlin
 package org.csystem.app
@@ -14687,7 +14687,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte 2'den başlayarak her adımda 3 katının bir fazlası olacak şekilde artırarak count tane sayı elde edilmiştir*
+>Aşağıdaki örnekte 2'den başlayarak her adımda 3 katının bir fazlası olacak şekilde artırarak count tane sayı elde edilmiştir
 
 ```kotlin
 package org.csystem.app
@@ -14703,7 +14703,7 @@ fun main()
 }
 ```
 
->*generateSequence fonksiyonu*
+>generateSequence fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -14720,7 +14720,7 @@ fun main() {
 }
 ```
 
->*Yukarıdaki işlem aşağıdaki gibi de yapılabilir*
+>Yukarıdaki işlem aşağıdaki gibi de yapılabilir
 
 ```kotlin
 package org.csystem.app
@@ -14737,7 +14737,7 @@ fun main() {
 }
 ```
 
->*Aşağıdaki örnekte [-2 * PI, 2 * PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir*
+>Aşağıdaki örnekte [-2  PI, 2  PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir
 
 ```kotlin
 package org.csystem.app
@@ -14755,7 +14755,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte [-2 * PI, 2 * PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir*
+>Aşağıdaki örnekte [-2  PI, 2  PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir
 
 ```kotlin
 package org.csystem.app
@@ -14769,7 +14769,7 @@ fun main()
 }
 ```
 
->*generateSequence fonksiyonu*
+>generateSequence fonksiyonu
 
 ```kotlin
 package org.csystem.app
@@ -14787,7 +14787,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte printCollatz fonksiyonunun generateSequence ile yazıldığına dikkat ediniz*
+>Aşağıdaki örnekte printCollatz fonksiyonunun generateSequence ile yazıldığına dikkat ediniz
 
 ```kotlin
 package org.csystem.app
@@ -14807,7 +14807,7 @@ fun printCollatz(value: Int)
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14827,7 +14827,7 @@ fun printCollatz(value: Int)
 }
 ```
 
->*Aşağıdaki hepsi birbirinden farklı count tane sayı üretilmiştir. Şüphesiz count sayısının aralıktaki toplam sayıyı aşmaması gerekir. Aşması durumunda artık üretim yapılamaz ve sonsuz döngü oluşur*
+>Aşağıdaki hepsi birbirinden farklı count tane sayı üretilmiştir. Şüphesiz count sayısının aralıktaki toplam sayıyı aşmaması gerekir. Aşması durumunda artık üretim yapılamaz ve sonsuz döngü oluşur
 
 ```kotlin
 package org.csystem.app
@@ -14853,7 +14853,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte artık tekrarlamayan sayı kalma olasılığı yoktur*
+>Aşağıdaki örnekte artık tekrarlamayan sayı kalma olasılığı yoktur
 
 ```kotlin
 package org.csystem.app
@@ -14879,7 +14879,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14907,28 +14907,9 @@ fun numericLotteryNumbers(random: Random = Random): IntArray
 }
 ```
 
->*`Collection<T>/MutableCollection<T>` arayüzünden `Set<T>/MutableSet<T>` arayüzü türetilmiştir. `Set<T> ve MutableSet<T>` arayüzleri matematik'teki küme kavramını temsil eden arayüzlerdir. Yani, elemanların eklenme sırasının önemi yoktur ve bir elemandan birden fazla aynı küme collection'ında olamaz*
+>`Collection<T>/MutableCollection<T>` arayüzünden `Set<T>/MutableSet<T>` arayüzü türetilmiştir. `Set<T> ve MutableSet<T>` arayüzleri matematik'teki küme kavramını temsil eden arayüzlerdir. Yani, elemanların eklenme sırasının önemi yoktur ve bir elemandan birden fazla aynı küme collection'ında olamaz
 
->*Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler*
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.iterable.kotlin.write
-
-fun main()
-{
-    val mutableSet = mutableSetOf(89, 1, 2, 3, 1, 3, 4, 5)
-
-    println(mutableSet.javaClass.name)
-    println(mutableSet.add(45))
-    println(mutableSet.add(45))
-    mutableSet.add(450)
-    write(mutableSet)
-}
-```
-
->*Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler*
+>Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler
 
 ```kotlin
 package org.csystem.app
@@ -14947,7 +14928,26 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler
+
+```kotlin
+package org.csystem.app
+
+import org.csystem.util.iterable.kotlin.write
+
+fun main()
+{
+    val mutableSet = mutableSetOf(89, 1, 2, 3, 1, 3, 4, 5)
+
+    println(mutableSet.javaClass.name)
+    println(mutableSet.add(45))
+    println(mutableSet.add(45))
+    mutableSet.add(450)
+    write(mutableSet)
+}
+```
+
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14967,7 +14967,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14987,7 +14987,7 @@ fun main()
 }
 ```
 
->*Set tarzı collection'larda, __"hash"__ kullananlar eşitlik kontrolü için equals ve hashCode metotlarının geri dönüş değerine bakarlar. Bu durumda programcı bir tür durumlar için bu metotları gerekirse override etmelidir.*
+>Set tarzı collection'larda, __"hash"__ kullananlar eşitlik kontrolü için equals ve hashCode metotlarının geri dönüş değerine bakarlar. Bu durumda programcı bir tür durumlar için bu metotları gerekirse override etmelidir.
 
 **_Anahtar Notlar:_** Hash code üretmek ayrı bir kavramdır ve bir çok durumda üretmenin farklı yöntemleri vardır. Aşağıdaki örnekte ürünün id değeri Int olduğundan ve aynı id'ye sahip birden fazla ürünün __"set"__ içerisinde bulunmaması gerektiği varsayımıyla düşünülmüştür.
 
@@ -15015,7 +15015,7 @@ fun main()
 }
 ```
 
->*TreeSet sınıfı elemanları sıralı biçimde tutar*
+>TreeSet sınıfı elemanları sıralı biçimde tutar
 
 ```kotlin
 package org.csystem.app
@@ -15036,7 +15036,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte ürünler isimlerine göre ascending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır*
+>Aşağıdaki örnekte ürünler isimlerine göre ascending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır
 
 ```kotlin
 package org.csystem.app
@@ -15057,7 +15057,7 @@ fun main()
 }
 ```
 
->*Aşağıdaki örnekte ürünler isimlerine göre descending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır*
+>Aşağıdaki örnekte ürünler isimlerine göre descending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır
 
 ```kotlin
 package org.csystem.app
@@ -15079,7 +15079,7 @@ fun main()
 ```
 
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -15113,10 +15113,10 @@ fun getNumericLotteryNumbers(random: Random = Random) : IntArray
 ```
 
 
->*`Map<K, V>/MutableMap<K, V>` arayüzü anahtara karşılık gelen değerlere ilişkin collection sınıflarının taban arayüzüdür. `Map<K, V>/MutableMap<K, V>` arayüzü hiç bir arayüzden türetilmemiştir. Bu arayüzü implemente eden sınıflar için anahtar türü `Set<K>` olarak tutulur. En çok kullanılan `HashMap<K, V>` ve `TreeMap<K, V>` sınıfları K türünü sırasıyla `HashSet<T>` ve `TreeSet<T>` olarak tutarlar*
+>`Map<K, V>/MutableMap<K, V>` arayüzü anahtara karşılık gelen değerlere ilişkin collection sınıflarının taban arayüzüdür. `Map<K, V>/MutableMap<K, V>` arayüzü hiç bir arayüzden türetilmemiştir. Bu arayüzü implemente eden sınıflar için anahtar türü `Set<K>` olarak tutulur. En çok kullanılan `HashMap<K, V>` ve `TreeMap<K, V>` sınıfları K türünü sırasıyla `HashSet<T>` ve `TreeSet<T>` olarak tutarlar
 
 
->*map tarzı colection'lar*
+>map tarzı colection'lar
 
 ```kotlin
 package org.csystem.app
@@ -15138,7 +15138,7 @@ fun main()
 ```
 
 
->*map tarzı colection'lar*
+>map tarzı colection'lar
 
 ```kotlin
 package org.csystem.app
@@ -15160,7 +15160,7 @@ fun main()
 ```
 
 
->* map tarzı colection'lar*
+> map tarzı colection'lar
 
 ```kotlin
 package org.csystem.app
@@ -15185,7 +15185,7 @@ fun main()
 ```
 
 
->*__map tarzı colection'lar:__ Örnekte TreeMap kullanıldığından anahtar değerlerinin sıralanması gerekmez*
+>__map tarzı colection'lar:__ Örnekte TreeMap kullanıldığından anahtar değerlerinin sıralanması gerekmez
 
 ```kotlin
 package org.csystem.app
@@ -15210,10 +15210,10 @@ fun main()
 ```
 
 
->*inline fonksiyon çağrıları byte code'a çağrı biçiminde değil doğrudan kodlarıyla birlikte yazılır. inline fonksiyonlar eğer fonksiyon parametreli ise (high order function) dışarıdan almış olduğu callback fonksiyon da inline yapılmış olur*
+>inline fonksiyon çağrıları byte code'a çağrı biçiminde değil doğrudan kodlarıyla birlikte yazılır. inline fonksiyonlar eğer fonksiyon parametreli ise (high order function) dışarıdan almış olduğu callback fonksiyon da inline yapılmış olur
 
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -15231,7 +15231,7 @@ inline fun <T> T.doWork(callback: (T) -> Unit) = callback(this)
 ```
 
 
->*inline high order fonksiyonların callback olarak aldıkları fonksiyonların inline olmaması isteniyorsa parametre noinline olarak bildirilmelidir. Bu durumda ilgili callback fonksiyon inline olmaz, fonksiyon çağrısı byet code'a eklenir*
+>inline high order fonksiyonların callback olarak aldıkları fonksiyonların inline olmaması isteniyorsa parametre noinline olarak bildirilmelidir. Bu durumda ilgili callback fonksiyon inline olmaz, fonksiyon çağrısı byet code'a eklenir
 
 ```kotlin
 package org.csystem.app
@@ -15245,7 +15245,7 @@ inline fun <T> T.doWork(block: (T) -> T, noinline callback: (T) -> Unit) = callb
 ```
 
 
->*sealed bir sınıf default olarak abstract bildirilir. Dolayısıyla bu sınıf türünden nesne yaratılamaz*
+>sealed bir sınıf default olarak abstract bildirilir. Dolayısıyla bu sınıf türünden nesne yaratılamaz
 
 ```kotlin
 package org.csystem.app
@@ -15267,7 +15267,7 @@ sealed class SealedValue<out T>(val value: T) {
 ```
 
 
->*sealed bir sınıftan türemiş bir sınıf aynı pakette bildirilmelidir. Bu durumda sealed olarak soyutlanmış bir sınıftan doğrudan (direct) türetilmiş tüm sınıflar da aynı pakette olmalıdır*
+>sealed bir sınıftan türemiş bir sınıf aynı pakette bildirilmelidir. Bu durumda sealed olarak soyutlanmış bir sınıftan doğrudan (direct) türetilmiş tüm sınıflar da aynı pakette olmalıdır
 
 ```kotlin
 package org.csystem.test
@@ -15288,7 +15288,7 @@ sealed class SealedValue<out T>(val value: T) {
 ```
 
 
->*Aşağıdaki örnekte MySealedValue sealed olmadığından ondan türemiş sınıflar aynı pakette olmak zorunda değildir*
+>Aşağıdaki örnekte MySealedValue sealed olmadığından ondan türemiş sınıflar aynı pakette olmak zorunda değildir
 
 ```kotlin
 package org.csystem.test
@@ -15317,14 +15317,14 @@ sealed class SealedValue<out T>(val value: T) {
 ```
 
 
->*const val değişkenler:*
->- *Değeri derleme zamanında hesaplanan değişkenlerdir (constant folding)*
->- *const val değişkenlere sabit ifadesi verilmeldir. Aksi durumda error oluşur*
->- *Yerel olarak bildirilemez*
->- *Sınıfların veri elemanları olamazlar*
->- *Global olarak bildirilebilirler*
->- *object'lerin veri elemanı olabilir*
->- *Fonksiyon parametre değişkenleri val olarak bildirilemeyeceğinden const val de yapılamazlar*
+>const val değişkenler:
+>- Değeri derleme zamanında hesaplanan değişkenlerdir (constant folding)
+>- const val değişkenlere sabit ifadesi verilmeldir. Aksi durumda error oluşur
+>- Yerel olarak bildirilemez
+>- Sınıfların veri elemanları olamazlar
+>- Global olarak bildirilebilirler
+>- object'lerin veri elemanı olabilir
+>- Fonksiyon parametre değişkenleri val olarak bildirilemeyeceğinden const val de yapılamazlar
 
 ```kotlin
 package org.csystem.app
@@ -15356,7 +15356,7 @@ object Mample {
 
 >**SAM (Single Abstract Method) interface:**   
 >
->*Bu arayüzlerin bir ve yalnız bir tane abstract metotları olmalıdır. Aksi durumda error oluşur. Bu arayüzler `fun` olarak bildirilirler. Bu kavram Java'daki __"functional interface"__ ile uyumlu olması açısından eklenmiştir. Programcı özel bir durum yoksa Kotlin'de SAM arayüzleri yerine fonksiyon türlerini kullanmalıdır. Örnek durumu göstermek için yazılmıştır*
+>Bu arayüzlerin bir ve yalnız bir tane abstract metotları olmalıdır. Aksi durumda error oluşur. Bu arayüzler `fun` olarak bildirilirler. Bu kavram Java'daki __"functional interface"__ ile uyumlu olması açısından eklenmiştir. Programcı özel bir durum yoksa Kotlin'de SAM arayüzleri yerine fonksiyon türlerini kullanmalıdır. Örnek durumu göstermek için yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -15391,7 +15391,7 @@ class MySample {
 ```
 
 
->*Kotlin 1.4'den itibaren virgülle ayrılan her liste tarzı ifadenin sonunda kullanılan virgül geçerlidir (trailing comma)*
+>Kotlin 1.4'den itibaren virgülle ayrılan her liste tarzı ifadenin sonunda kullanılan virgül geçerlidir (trailing comma)
 
 ```kotlin
 package org.csystem.app
@@ -15415,7 +15415,7 @@ fun foo(a: Int, b: Int, c: Int = 10,) //Since 1.4
 }
 ```
 
->*LocalDate sınıfı (ve tüm diğer Java 8 tarih-zaman sınıfları) geçerlilik kontrolü yapar. Bu sınıflar geçerli olmayan bilgiler için DateTimeException nesnesi fırlatır*
+>LocalDate sınıfı (ve tüm diğer Java 8 tarih-zaman sınıfları) geçerlilik kontrolü yapar. Bu sınıflar geçerli olmayan bilgiler için DateTimeException nesnesi fırlatır
 
 ```kotlin
 package org.csystem.app
@@ -15455,7 +15455,7 @@ fun main()
 ```
 
 
->*LocalDate sınıfının now isimli static metodu sistemin tarih bilgisini elde etmekte kullanılır*
+>LocalDate sınıfının now isimli static metodu sistemin tarih bilgisini elde etmekte kullanılır
 
 ```kotlin
 package org.csystem.app
@@ -15471,7 +15471,7 @@ fun main()
 ```
 
 
->*LocalDate sınıfının isAfter ve isBefore metotları ve equals metodu*
+>LocalDate sınıfının isAfter ve isBefore metotları ve equals metodu
 
 ```kotlin
 package org.csystem.app
@@ -15491,7 +15491,7 @@ fun main()
 ```
 
 
->*ChronoUnit enum sınıfı ile tarih-zaman ölçümleri yapılabilir*
+>ChronoUnit enum sınıfı ile tarih-zaman ölçümleri yapılabilir
 
 ```kotlin
 package org.csystem.app;
@@ -15535,7 +15535,7 @@ fun main()
 ```
 
 
->*LocalDate sıfınının plusXXX metotları*
+>LocalDate sıfınının plusXXX metotları
 
 ```kotlin
 package org.csystem.app
@@ -15553,7 +15553,7 @@ fun main()
 ```
 
 
->*Tarih-zaman sınıflarının withXXX metotları*
+>Tarih-zaman sınıflarının withXXX metotları
 
 ```kotlin
 package org.csystem.app
@@ -15576,7 +15576,7 @@ fun main()
 ```
 
 
->*LocalTime sınıfının atDate metodu*
+>LocalTime sınıfının atDate metodu
 
 ```kotlin
 package org.csystem.app
@@ -15595,7 +15595,7 @@ fun main()
 ```
 
 
->*LocalDate sınıfının atTime metodu*
+>LocalDate sınıfının atTime metodu
 
 ```kotlin
 package org.csystem.app
@@ -15615,7 +15615,7 @@ fun main()
 ```
 
 
->*LocalDateTime sınıfının toLocalDate ve toLocalTime sınıfları*
+>LocalDateTime sınıfının toLocalDate ve toLocalTime sınıfları
 
 ```kotlin
 package org.csystem.app
@@ -15635,7 +15635,7 @@ fun main()
 ```
 
 
->*DateTimeFormatter sınıfı ile tarih ve/veya zaman bilgilerinin formatlanması*
+>DateTimeFormatter sınıfı ile tarih ve/veya zaman bilgilerinin formatlanması
 
 ```kotlin
 package org.csystem.app
@@ -15659,7 +15659,7 @@ fun main()
 ```
 
 
->*LocalDate, LocalTime ve LocalDateTime sınıflarının parse metotları*
+>LocalDate, LocalTime ve LocalDateTime sınıflarının parse metotları
 
 ```kotlin
 package org.csystem.app
@@ -15679,7 +15679,7 @@ fun main()
 ```
 
 
->*Aşağıdaki örnekte birden fazla formatter ile işlem yapan örnek bir fonksiyon yazılmıştır. Detaylar gözardı edilmiştir. Bir kütüphane içerisine daha detaylısı eklenecektir*
+>Aşağıdaki örnekte birden fazla formatter ile işlem yapan örnek bir fonksiyon yazılmıştır. Detaylar gözardı edilmiştir. Bir kütüphane içerisine daha detaylısı eklenecektir
 
 ```kotlin
 package org.csystem.app
@@ -15719,69 +15719,69 @@ fun main()
 }
 ```
 
->*Yukarıda kullanılan sınıflar ve fonksiyonların son halleri aşağıda yol ifadesi verilen proje içerisinden incelenebilir:*
+>Yukarıda kullanılan sınıflar ve fonksiyonların son halleri aşağıda yol ifadesi verilen proje içerisinden incelenebilir:
 
         ~/src/SampleCodes/SampleKotlin
 
 
->*JVM'de ve ART'de Bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:*
+>JVM'de ve ART'de Bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:
 >
->1. *__<u>Strongly reachable:</u>__ Bir nesneyi en az bir referans gösteriyorsa bu şekilde erişilebiliyordur. Bu durumda nesne garbage collector (gc) tarafından yok edilemez.*
+>1. __<u>Strongly reachable:</u>__ Bir nesneyi en az bir referans gösteriyorsa bu şekilde erişilebiliyordur. Bu durumda nesne garbage collector (gc) tarafından yok edilemez.
 >
->2. *__<u>Softly reachable:</u>__ __"Strongly reachable"__ olmayan fakat adresi SoftReference isimli sınıf nesne veye nesneleri içerisinde tutulan bir nesne __"soft reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler bellek ihtiyacı olduğu durumlarda yok edilirler. Aslında teknik olarak SoftReference nesnesi içerisinde tutulan adreslere ilişkin nesneler SoftReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler.*
+>2. __<u>Softly reachable:</u>__ __"Strongly reachable"__ olmayan fakat adresi SoftReference isimli sınıf nesne veye nesneleri içerisinde tutulan bir nesne __"soft reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler bellek ihtiyacı olduğu durumlarda yok edilirler. Aslında teknik olarak SoftReference nesnesi içerisinde tutulan adreslere ilişkin nesneler SoftReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler.
 >
->3. *__<u>Weakly reachable:</u>__ __"Strongly reachable"__ ve __"softly reachable"__ olomayan fakat adresi WeakReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"weakly reachble"__ erişimlidir. Bu şekilde erişime sahip nesneler __"garbage collected"__ olmaya adaydırlar. Aslında teknik olarak WeakReference nesnesi içerisinde tutulan adreslere ilişkin nesneler WeakReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler. GC, bir nesne yalnızca WeakReference ile gösteriliyorsa o nesneyi WeakReference'dan kopartır.*
+>3. __<u>Weakly reachable:</u>__ __"Strongly reachable"__ ve __"softly reachable"__ olomayan fakat adresi WeakReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"weakly reachble"__ erişimlidir. Bu şekilde erişime sahip nesneler __"garbage collected"__ olmaya adaydırlar. Aslında teknik olarak WeakReference nesnesi içerisinde tutulan adreslere ilişkin nesneler WeakReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler. GC, bir nesne yalnızca WeakReference ile gösteriliyorsa o nesneyi WeakReference'dan kopartır.
 >
->4. *__<u>Phantom reachable:</u>__ __"Strongly reachable"__, __"softly reachable"__ ve __"weakly reachable"__ olmayan fakat adresi, PhantomReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"phantom reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler kabaca söylemek gerekirse bir kuyruğa atılır hemen yok edilmeyebilir. Yüksek seviyede pratik bir kullanımı yoktur.*
+>4. __<u>Phantom reachable:</u>__ __"Strongly reachable"__, __"softly reachable"__ ve __"weakly reachable"__ olmayan fakat adresi, PhantomReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"phantom reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler kabaca söylemek gerekirse bir kuyruğa atılır hemen yok edilmeyebilir. Yüksek seviyede pratik bir kullanımı yoktur.
 >
->5. *__<u>Unreachable:</u>__ Yukarıdaki erişmlerin hiç birinin olmadığı artık __"garbage collected/eligible"__ duruma gelmiş nesnedir.*
+>5. __<u>Unreachable:</u>__ Yukarıdaki erişmlerin hiç birinin olmadığı artık __"garbage collected/eligible"__ duruma gelmiş nesnedir.
 
 **_Anahtar Notlar:_** JVM'de genel olarak, klasik referanslara (yani referans dendiğinde) __"hard reference"__, SoftReference ile tutulan referansa __"soft reference"__, WeakReference ile tutulan referanslara __"weak reference"__ ve PhantomReference ile tutulan referansları __"phantom reference"__ da denilmektedir.
 
->*Yukarıdaki anlatılanların özellikle aşağı seviyede detayları vardır. Burada ele alınmayacaktır. Özellikle Android uygulamalarında __"memory leak__" oluşumunu engellemek için WeakReference sınıfı çeşitli durumlarda çözüm olarak kullanılabilir. Bunlar kursumuzda projeler içerisinde çeşitli durumlarda kullanılmıştır*
+>Yukarıdaki anlatılanların özellikle aşağı seviyede detayları vardır. Burada ele alınmayacaktır. Özellikle Android uygulamalarında __"memory leak__" oluşumunu engellemek için WeakReference sınıfı çeşitli durumlarda çözüm olarak kullanılabilir. Bunlar kursumuzda projeler içerisinde çeşitli durumlarda kullanılmıştır
 
 
->*Bir kütüphaneyi (.aar veya .jar olarak) Android uygulamasında kullanmak için yöntemler genel olarak şunlardır:*
->1. *Eğer uygulama ve kütüphane aynı proje içerisinde olarak. Buna modül kullanımı da denir*
->2. *Proje lokalinde doğrudan kütüphane dosyası kullanılabilir*
->3. *Kütüphane belirli bir uzak (remote) repository'de ise oradan kullanılabilier. Biz burada maven repository kullanacağız*
+>Bir kütüphaneyi (.aar veya .jar olarak) Android uygulamasında kullanmak için yöntemler genel olarak şunlardır:
+>1. Eğer uygulama ve kütüphane aynı proje içerisinde olarak. Buna modül kullanımı da denir
+>2. Proje lokalinde doğrudan kütüphane dosyası kullanılabilir
+>3. Kütüphane belirli bir uzak (remote) repository'de ise oradan kullanılabilier. Biz burada maven repository kullanacağız
 
 
->*Birarada çalışan kodları betimlemek için pek çok terim kullanılmaktadır. Bunların arasında bağlam (context) bakımından bazı farklılıklar bulunmaktadır. Öncelikle bu terimlerin ve kavramların anlamlarını açıklayalım:*
+>Birarada çalışan kodları betimlemek için pek çok terim kullanılmaktadır. Bunların arasında bağlam (context) bakımından bazı farklılıklar bulunmaktadır. Öncelikle bu terimlerin ve kavramların anlamlarını açıklayalım:
 >
->*__Concurrent Computing/Programming (Birden fazla akış ile çalışma):__ Bu terim aslında en genel olanlardandır. Birden fazla akışın kullanılarak bir işin gerçekleştirilmesini anlatır. Örneğin, çok thread’li uygulamalar tipik olarak __“concurrent programming”__ kavramı içerisinde değerlendirilebilir. Benzer biçimde parallel programlama da, dağıtık 	programlamlama da bir __“concurrent programming”__ faaliyetidir.*
+>__Concurrent Computing/Programming (Birden fazla akış ile çalışma):__ Bu terim aslında en genel olanlardandır. Birden fazla akışın kullanılarak bir işin gerçekleştirilmesini anlatır. Örneğin, çok thread’li uygulamalar tipik olarak __“concurrent programming”__ kavramı içerisinde değerlendirilebilir. Benzer biçimde parallel programlama da, dağıtık 	programlamlama da bir __“concurrent programming”__ faaliyetidir.
 >
->*__Distributed Computing/Programming (Dağıtık Programlama):__ Bu terim ve anlattığı kavram işlerin birden fazla bilgisayara dağıtılarak birlikte gerçekleştirilmesi anlamına gelir. Terimin odaklandığı nokta söz konusu işlerin aynı makinede değil de bir ağdaki makinelerde koordineli olarak yürütülmesi sürecidir. Bugün dağıtık uygulamalar çok yaygınlaşmıştır. Şüphesiz dağıtık uygulamalar birtakım protokolleri kullanarak processler arası haberleşme yöntemleriyle koordinasyonu sağlamaktadır. Tipik olarak IP protocol ailesi tercih edilmektedir. Ancak dağıtık uygulamalar için daha yüksek seviyeli bir takım ortamlar (framework) ve kütüphaneler vardır. (Örneğin .NET’de WCF, Java’da remoting vs.) Dağıtık uygulamalar ayrı bir kategori olduğundan burada ele alınmayacaktır.*
+>__Distributed Computing/Programming (Dağıtık Programlama):__ Bu terim ve anlattığı kavram işlerin birden fazla bilgisayara dağıtılarak birlikte gerçekleştirilmesi anlamına gelir. Terimin odaklandığı nokta söz konusu işlerin aynı makinede değil de bir ağdaki makinelerde koordineli olarak yürütülmesi sürecidir. Bugün dağıtık uygulamalar çok yaygınlaşmıştır. Şüphesiz dağıtık uygulamalar birtakım protokolleri kullanarak processler arası haberleşme yöntemleriyle koordinasyonu sağlamaktadır. Tipik olarak IP protocol ailesi tercih edilmektedir. Ancak dağıtık uygulamalar için daha yüksek seviyeli bir takım ortamlar (framework) ve kütüphaneler vardır. (Örneğin .NET’de WCF, Java’da remoting vs.) Dağıtık uygulamalar ayrı bir kategori olduğundan burada ele alınmayacaktır.
 >
->*__Multithreaded Computing/Programming (Çok thread'li programlama):__ Bu terim aynı makinede işlerin birlikte birden 	fazla thread oluştururarak gerçekleştirilmesi anlamına gelir. Şüphesiz bu terim de aslında bir __“concurrent programming”__ şemsiyesi altında düşünülebilir.*
+>__Multithreaded Computing/Programming (Çok thread'li programlama):__ Bu terim aynı makinede işlerin birlikte birden 	fazla thread oluştururarak gerçekleştirilmesi anlamına gelir. Şüphesiz bu terim de aslında bir __“concurrent programming”__ şemsiyesi altında düşünülebilir.
 >
->*__Parallel Computing/Programming:__ Bu terim bir işi aynı makinede thread’lere ayırarak ve onları farklı CPU ya da 	çekirdeklere atayarak aynı anda çalıştırma gayretini anlatmaktadır. Dolayısıyla burada toplamda hızlı bir işlemin 	yapılması hedeflenir. Şüphesiz tek CPU ya da tek çekirdekli sistemlerde parallel programlama yapılamaz. Öncelikle 	parallel programlama için söz konusu sistemde birden fazla CPU ve/veya çekirdek bulunması gerekir. Hatta parallel 	programlama faaliyetinde bir süredir grafik kartlarındaki işlemcilerden de faydalanılabilmektedir.*
+>__Parallel Computing/Programming:__ Bu terim bir işi aynı makinede thread’lere ayırarak ve onları farklı CPU ya da 	çekirdeklere atayarak aynı anda çalıştırma gayretini anlatmaktadır. Dolayısıyla burada toplamda hızlı bir işlemin 	yapılması hedeflenir. Şüphesiz tek CPU ya da tek çekirdekli sistemlerde parallel programlama yapılamaz. Öncelikle 	parallel programlama için söz konusu sistemde birden fazla CPU ve/veya çekirdek bulunması gerekir. Hatta parallel 	programlama faaliyetinde bir süredir grafik kartlarındaki işlemcilerden de faydalanılabilmektedir.
 
 
 
->*Program terimi uygulamanın genel olarak çalışabilir veya çalıştırılabilir dosyasına verilen isimdir. İşletim sistemi düzeyinde çalışan programa __"process"__ denir. Modern sistemlerde process'ler biraz ondan biraz bundan tekniğiyle çalıştırır. Process'lerin (aslında thread'lerin) işletim sistemi tarafından CPU ya da çekirdekler üzerinde çalıştırılmasına __"çizelgeleme (scheduling)"__ denilmektedir. Thread aslında process'lerin ayrı akışlarını belirtir.*
+>Program terimi uygulamanın genel olarak çalışabilir veya çalıştırılabilir dosyasına verilen isimdir. İşletim sistemi düzeyinde çalışan programa __"process"__ denir. Modern sistemlerde process'ler biraz ondan biraz bundan tekniğiyle çalıştırır. Process'lerin (aslında thread'lerin) işletim sistemi tarafından CPU ya da çekirdekler üzerinde çalıştırılmasına __"çizelgeleme (scheduling)"__ denilmektedir. Thread aslında process'lerin ayrı akışlarını belirtir.
 >
->*Tipik olarak işletim sistemi bir thread'i bir CPU ya da çekirdeğe atar (assign). O thread brlirli bir süre çalıştırılır. Sonra işletim sistemi o thread'i durdurur (bloke eder). CPU ya da çekirdeğe diğer thread'i atar. Bir thread'in CPU ya da çekirdeğe atandığında parçalı çalışma süresine __"quantum time"__ denir. Bu sürenin çok uzun olması interactiviteyi azaltır (convoy effect). Bu sürenin çok kısa olması da birim zamanda yapılan işi (throughput) azaltır. Thread'ler arası geçiş (context switch) de maliyetli bir işlemdir.*
+>Tipik olarak işletim sistemi bir thread'i bir CPU ya da çekirdeğe atar (assign). O thread brlirli bir süre çalıştırılır. Sonra işletim sistemi o thread'i durdurur (bloke eder). CPU ya da çekirdeğe diğer thread'i atar. Bir thread'in CPU ya da çekirdeğe atandığında parçalı çalışma süresine __"quantum time"__ denir. Bu sürenin çok uzun olması interactiviteyi azaltır (convoy effect). Bu sürenin çok kısa olması da birim zamanda yapılan işi (throughput) azaltır. Thread'ler arası geçiş (context switch) de maliyetli bir işlemdir.
 >
->*Çok thread'li işletim sistemlerinde process çalışmaya bir thread ile başlar. Buna __"main/primary thread"__ denir. Diğer thread'ler işletim sisteminin sistem fonksiyonları (örneğin Windows API fonksiyonları, Unix/Linux sistemlerinde POSIX fonksiyonları) kullanılarak yaratılır. Java'da (dolayısıyla Kotlin'de) thread işlemleri işletim sisteminden bağımsız olarak yapılabilir. JavaSE'de thread işlemleri genel olarak şu kategorilere ayrılarak yapılabilir:*
->    1. *Thread sınıfından türetme yaparak*
->    2. *Runnable arayüzünü implemente ederrek*
->    3. *Executor'lar kullanarak*
+>Çok thread'li işletim sistemlerinde process çalışmaya bir thread ile başlar. Buna __"main/primary thread"__ denir. Diğer thread'ler işletim sisteminin sistem fonksiyonları (örneğin Windows API fonksiyonları, Unix/Linux sistemlerinde POSIX fonksiyonları) kullanılarak yaratılır. Java'da (dolayısıyla Kotlin'de) thread işlemleri işletim sisteminden bağımsız olarak yapılabilir. JavaSE'de thread işlemleri genel olarak şu kategorilere ayrılarak yapılabilir:
+>    1. Thread sınıfından türetme yaparak
+>    2. Runnable arayüzünü implemente ederrek
+>    3. Executor'lar kullanarak
 
 **_Anahtar Notlar:_** Java'nın ilerleyen sürümlerinde Virtual Thread'ler de eklenmiştir. Burada belirli ölçüde ele alınacaktır.
 
->*Android dünyasında thread'ler ile çalışmanın başka yöntemleri de vardır.*
+>Android dünyasında thread'ler ile çalışmanın başka yöntemleri de vardır.
 >
->*Neden thread kullanalım? Bu sorunun cevabı domain'e göre değişiklik gösterebilse de genel olarakl şu maddelerle özetlenebilir:*
->   - *Thread'ler arka plan olayları izlemek için idealdir. Örneğin programcı hem bir işi yapıp hem de ekranın sağ üst köşesinde o anki saniyeler mertebesinde göstermek isteyebilir. Bu durumda pencerenin işlemleri devam ederken aynı zamanda başka bir thread de sistemden o anki tarih-zaman bilgisini alarak pencerenin sağ üst köşesinde gösterebilir. Bu durumda pencerenin ana akışı devam ederken tarih-zamana ilişkin işlemde asenkron olarak yapılmış olur. Bu anlamda thread'ler Graphical User Interface (GUI) uygulamalarında genel olarak gerekmektedir.*
+>Neden thread kullanalım? Bu sorunun cevabı domain'e göre değişiklik gösterebilse de genel olarakl şu maddelerle özetlenebilir:
+>   - Thread'ler arka plan olayları izlemek için idealdir. Örneğin programcı hem bir işi yapıp hem de ekranın sağ üst köşesinde o anki saniyeler mertebesinde göstermek isteyebilir. Bu durumda pencerenin işlemleri devam ederken aynı zamanda başka bir thread de sistemden o anki tarih-zaman bilgisini alarak pencerenin sağ üst köşesinde gösterebilir. Bu durumda pencerenin ana akışı devam ederken tarih-zamana ilişkin işlemde asenkron olarak yapılmış olur. Bu anlamda thread'ler Graphical User Interface (GUI) uygulamalarında genel olarak gerekmektedir.
 >
->   - *Thread'ler bir programı hızlandırmak için kullanılabilir. Programcı çok thread kullanarak daha fazla CPU zamanı elde edebilir*
+>   - Thread'ler bir programı hızlandırmak için kullanılabilir. Programcı çok thread kullanarak daha fazla CPU zamanı elde edebilir
 >
->   - *Thread'ler blokeli IO işlemlerinde yoğun olarak kullanılmaktadır. Yani bir IO iişlemi başlatıldığında belli bir süre bloke oluşabilir. Bu durumda diğer işlemlerin de yapılabilmesi için bloke akışın diğer akışlardan ayrılması yani başka bir thread'de yapılması gerekir*
+>   - Thread'ler blokeli IO işlemlerinde yoğun olarak kullanılmaktadır. Yani bir IO iişlemi başlatıldığında belli bir süre bloke oluşabilir. Bu durumda diğer işlemlerin de yapılabilmesi için bloke akışın diğer akışlardan ayrılması yani başka bir thread'de yapılması gerekir
 >
->   - *Thread'ler paralel programlamada (parallel computig/programming) mecburen kullanılmaktadır.*
+>   - Thread'ler paralel programlamada (parallel computig/programming) mecburen kullanılmaktadır.
 >
->*JavaSE'de thread işlemlerine yönelik en temel sınıf Thread sınıfıdır. Thread sınıfının start metodu ile thread başlatılır (yaratılır). Programcı Thread sınıfından türetme yaparak run sanal metodunu override eder. run metodu yaratılan thread'e ilişkin akıştır.*
+>JavaSE'de thread işlemlerine yönelik en temel sınıf Thread sınıfıdır. Thread sınıfının start metodu ile thread başlatılır (yaratılır). Programcı Thread sınıfından türetme yaparak run sanal metodunu override eder. run metodu yaratılan thread'e ilişkin akıştır.
 
 **_Anahtar Notlar:_** Java'da thread'lern ketegori olarak ikiye ayrılır: Daemon threadler, Non-daemon threadler. Bir thread default olarak bu özellikleri yaratıldığı thread'den alır. main thread non-daemon bir thread'dir. Bu sebeple aşağıdaki örnekte main metodunun bitmiş olmasına karşılık yaratılan thread'ler devam etmektedir.
 
@@ -15789,7 +15789,7 @@ fun main()
 
 **_Anahtar Notlar:_** Thread sınıfının sleep static metodu aldığı milisaniye değeri kadar thread'i bloke eder. Bu metot InterruptedException fırlatabilir. Bu exception checked bir exception'dır. Tabii ki Kotlin'de bunun bir önemi yoktur. sleep metodunun fırlattığı bu exception ileride ele alınacaktır.
 
->*Aşağıdaki basit örneği inceleyiniz*
+>Aşağıdaki basit örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -15821,7 +15821,7 @@ class MyThread(private val mCount: Int, private val mRandom: Random = Random) : 
 ```
 
 
->*Bir thread başka bir yarattığında hangi thread'in önce çizelmeye gireceği o anki duruma bağlıdır. Yani hangisinin önce çizelgelemeye gireceği belirsizdir. (Hatta ayrı CPU ya da çekirdekte olurlarsa gerçekten aynı anda da çizelgelemeye girebilirler). Thread'lerin stack alanları birbirinden ayrıdır. Ancak heap alanı ortaktır. Dolayısıyla aynı nesne üzerinde birden fazla thread'in işlem yapması durumunda bir takım problemler söz konusu olabilmektedir. Bu problemlere tipik olan senkronizsyon problemleri denir. İleride bir takım senkronizasyon problemleri ve çözümleri uygulamalar içerisinde ele alınacaktır. Aşağıdaki örneği inceleyiniz*
+>Bir thread başka bir yarattığında hangi thread'in önce çizelmeye gireceği o anki duruma bağlıdır. Yani hangisinin önce çizelgelemeye gireceği belirsizdir. (Hatta ayrı CPU ya da çekirdekte olurlarsa gerçekten aynı anda da çizelgelemeye girebilirler). Thread'lerin stack alanları birbirinden ayrıdır. Ancak heap alanı ortaktır. Dolayısıyla aynı nesne üzerinde birden fazla thread'in işlem yapması durumunda bir takım problemler söz konusu olabilmektedir. Bu problemlere tipik olan senkronizsyon problemleri denir. İleride bir takım senkronizasyon problemleri ve çözümleri uygulamalar içerisinde ele alınacaktır. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -15865,7 +15865,7 @@ class TextGeneratorThread(private val mCount: Long, private val mPath: String, p
 ```
 
 
->*JavaSE'de Runnable arayüzünü implemente ederek de thread oluşturulabilir. Bu durumda Thread sınıfının Runnable parametreli ctor'ları kullanılır*
+>JavaSE'de Runnable arayüzünü implemente ederek de thread oluşturulabilir. Bu durumda Thread sınıfının Runnable parametreli ctor'ları kullanılır
 
 ```kotlin
 package org.csystem.app
@@ -15913,7 +15913,7 @@ class TextGeneratorThread(private val mCount: Long, private val mPath: String, p
 ```
 
 
->*Runnable Java'da functional interface olduğundan Kotlin'de de lambda fonksiyonlar ile kullanılabilir*
+>Runnable Java'da functional interface olduğundan Kotlin'de de lambda fonksiyonlar ile kullanılabilir
 
 ```kotlin
 package org.csystem.app
@@ -15957,7 +15957,7 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 }
 ```
 
->*Kotlin'de yukarıdaki işlemler için thread isimli bir fonksiyon eklenmiştir. Kotlin'de yukarıdaki işlemler için özel bir durum yoksa bu fonksiyonun kullanılması tavsiye edilir. Aşağıdaki örneği inceleyiniz*
+>Kotlin'de yukarıdaki işlemler için thread isimli bir fonksiyon eklenmiştir. Kotlin'de yukarıdaki işlemler için özel bir durum yoksa bu fonksiyonun kullanılması tavsiye edilir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16001,7 +16001,7 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 ```
 
 
->*Java'da zamanlayıcı işlemleri için periyodik olarak arka planda bir iş yapmak için kullanılan temel sınıflardan biri Timer sınıfıdır. Timer sınıfı periyodik işlem için arka planda bir thread yaratır. Timer sınıfının scheduleXXX metotları TimerTask abstract sınıfı türünden aldıkları referansa ilişkin nesnenin run metodunu polymorfik olarak her periyotta çağrırırlar. schedule metotlarının farkları ve bazı detayları burada ele alınmayacaktır. Timer sınıfı Android uygulamalarında da timer olarak kullanılabilir. Bir timer nesnesi ile bir schedule yapılabilir. Bir timer cancel isimli metodu ile sonlandırılabilir. Aşağıdaki örneği inceleyiniz*
+>Java'da zamanlayıcı işlemleri için periyodik olarak arka planda bir iş yapmak için kullanılan temel sınıflardan biri Timer sınıfıdır. Timer sınıfı periyodik işlem için arka planda bir thread yaratır. Timer sınıfının scheduleXXX metotları TimerTask abstract sınıfı türünden aldıkları referansa ilişkin nesnenin run metodunu polymorfik olarak her periyotta çağrırırlar. schedule metotlarının farkları ve bazı detayları burada ele alınmayacaktır. Timer sınıfı Android uygulamalarında da timer olarak kullanılabilir. Bir timer nesnesi ile bir schedule yapılabilir. Bir timer cancel isimli metodu ile sonlandırılabilir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16031,7 +16031,7 @@ fun main()
 ```
 
 
->*Thread sınıfının sleep static metodu parametresi ile aldığı milisaniye değeri boyunca thread'i bloke eder. Yukarıdaki örnek sleep metodu ile aşağıdaki gibi de yapılabilir. Şüphesiz timer kullanımı daha iyidir*
+>Thread sınıfının sleep static metodu parametresi ile aldığı milisaniye değeri boyunca thread'i bloke eder. Yukarıdaki örnek sleep metodu ile aşağıdaki gibi de yapılabilir. Şüphesiz timer kullanımı daha iyidir
 
 ```kotlin
 package org.csystem.app
@@ -16051,12 +16051,12 @@ fun main()
 ```
 
 
->*Bir thread non-daemon veya daemon olarak yaratılabilir. Bu özellik default olarak o thread'i yaratan thread'den alınır. Yani thread'i yaratan thread, non-daemon ise thread non-daemon olur. main/primary thread non-daemon'dır. Non-daemon thread'lere foreground thread, daemon thread'lere ise background thread de denilmektedir. Bir thread'in daemon olup olmadığı bilgisi isDaemon metodu ile (Kotlin'de isDaemon property elemanı ile) elde edilebilir. Ayrıca thread'in daemon özelliği setDaemon metodu ile (Kotlin'de yine isDaemon property elemanı ile) yaratılmadan önce belirlenebilir. Bir thread'in daemon özelliği thread start edildikten sonra değiştirilmeye çalışılırsa exception oluşur.*
+>Bir thread non-daemon veya daemon olarak yaratılabilir. Bu özellik default olarak o thread'i yaratan thread'den alınır. Yani thread'i yaratan thread, non-daemon ise thread non-daemon olur. main/primary thread non-daemon'dır. Non-daemon thread'lere foreground thread, daemon thread'lere ise background thread de denilmektedir. Bir thread'in daemon olup olmadığı bilgisi isDaemon metodu ile (Kotlin'de isDaemon property elemanı ile) elde edilebilir. Ayrıca thread'in daemon özelliği setDaemon metodu ile (Kotlin'de yine isDaemon property elemanı ile) yaratılmadan önce belirlenebilir. Bir thread'in daemon özelliği thread start edildikten sonra değiştirilmeye çalışılırsa exception oluşur.
 >
->*<u>Non-daemon ve daemon thread'leri anlamak için en basit cümle şudur:</u> "Bir process içerisinde son non-daemon thread de sonlandığında tüm deemon thread'ler sonlanır". Programcı bu basit cümleyi düşünerek bir thread'in daemon veya non-daemon olup olmayacağına domain'e göre karar verir*
+><u>Non-daemon ve daemon thread'leri anlamak için en basit cümle şudur:</u> "Bir process içerisinde son non-daemon thread de sonlandığında tüm deemon thread'ler sonlanır". Programcı bu basit cümleyi düşünerek bir thread'in daemon veya non-daemon olup olmayacağına domain'e göre karar verir
 
 
->*Aşağıdaki örnekte main thread içerisinde yaratılan thread non-daemon'dır*
+>Aşağıdaki örnekte main thread içerisinde yaratılan thread non-daemon'dır
 
 ```kotlin
 package org.csystem.app
@@ -16089,7 +16089,7 @@ fun runDemoThread()
 ```
 
 
->*Aşağıdaki örnekte main thread içerisinde yaratılan thread daemın'dır. Örnekte main thread sonlandığında, process içerisinde hiç non-daemon thread kalmadığından diğer daemon thread de sonlandırılır. Bu durumda process sonlanmış olur*
+>Aşağıdaki örnekte main thread içerisinde yaratılan thread daemın'dır. Örnekte main thread sonlandığında, process içerisinde hiç non-daemon thread kalmadığından diğer daemon thread de sonlandırılır. Bu durumda process sonlanmış olur
 
 ```kotlin
 package org.csystem.app
@@ -16124,7 +16124,7 @@ fun runDemoThread()
 ```
 
 
->*Timer sınıfının ilgili ctor'u ile Timer'ın da daemon özelliği belirlenebilir. Şüphesi bu işlemin schedule edilmeden yapılması gerekir. Aşağıdaki örneği inceleyiniz*
+>Timer sınıfının ilgili ctor'u ile Timer'ın da daemon özelliği belirlenebilir. Şüphesi bu işlemin schedule edilmeden yapılması gerekir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16154,7 +16154,7 @@ fun main()
 ```
 
 
->*Thread'in daemon özelliğinin thread yaratıldıktan sonra değiştirilmesi durumunda exception oluşur*
+>Thread'in daemon özelliğinin thread yaratıldıktan sonra değiştirilmesi durumunda exception oluşur
 
 ```kotlin
 package org.csystem.app
@@ -16189,10 +16189,10 @@ fun runDemoThread()
 ```
 
 
->*Bir thread başka bir thread'i bekleyebilir. Bunun için thread sınıfının join metodu kullanılır. join metodunun parametresiz overload'u thread'in sonlanması bekler. Thread sonlandığında join çağrısı da bitmiş olur. join metodunun parametreşli overload'lar en fazla ne kadar bekleyeceği süreyi alır. Bu süre içerisinde thread sonlanırsa join'de çağrısı da soınlanır. Bu süre içerisinde beklenen thread sonlanmazsa join yine sonlanır*
+>Bir thread başka bir thread'i bekleyebilir. Bunun için thread sınıfının join metodu kullanılır. join metodunun parametresiz overload'u thread'in sonlanması bekler. Thread sonlandığında join çağrısı da bitmiş olur. join metodunun parametreşli overload'lar en fazla ne kadar bekleyeceği süreyi alır. Bu süre içerisinde thread sonlanırsa join'de çağrısı da soınlanır. Bu süre içerisinde beklenen thread sonlanmazsa join yine sonlanır
 
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16226,7 +16226,7 @@ fun runDemoThread()
 ```
 
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16265,7 +16265,7 @@ fun runDemoThread()
 ```
 
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16304,7 +16304,7 @@ fun runDemoThread()
 ```
 
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16350,7 +16350,7 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 ```
 
 
->*Bir timer'ı durdurmak için cancel fonksiyonu kullanılır. cancel fonksiyonu timer fonksiyonunu o an sonlandırmaz. Fonksiyon hangi durumda olursa olsun çalışmasına devam eder. Timer durdurulur*
+>Bir timer'ı durdurmak için cancel fonksiyonu kullanılır. cancel fonksiyonu timer fonksiyonunu o an sonlandırmaz. Fonksiyon hangi durumda olursa olsun çalışmasına devam eder. Timer durdurulur
 
 ```kotlin
 package org.csystem.app
@@ -16454,22 +16454,22 @@ private fun runApp()
 fun main() = runApp()
 ```
 
->*__Thread'lerin sonlandırılması:__ Bir thread aşağıdaki durumlardan biri gerçekleştiğinde sonlanır:*
->- *Thread akışına ilişkin fonksiyonun sonlanması durumunda. Şüphesiz en normal durum budur.*
+>__Thread'lerin sonlandırılması:__ Bir thread aşağıdaki durumlardan biri gerçekleştiğinde sonlanır:
+>- Thread akışına ilişkin fonksiyonun sonlanması durumunda. Şüphesiz en normal durum budur.
 >
->- *Thread daemon bir thread ise, thread'in ait olduğıu process içerisindeki non-daemon thread'ler sonlandığında*
+>- Thread daemon bir thread ise, thread'in ait olduğıu process içerisindeki non-daemon thread'ler sonlandığında
 >
->- *Process sonlandırıldığında. Bu durum,dışarıdan yapılabileceği gibi process içerisinde herhangi bir akışta System.exit veya Kotlin'de exitProcess fonksiyonları çağrıldığında process sonlandığı için tüm thread'ler de sonlanır*
+>- Process sonlandırıldığında. Bu durum,dışarıdan yapılabileceği gibi process içerisinde herhangi bir akışta System.exit veya Kotlin'de exitProcess fonksiyonları çağrıldığında process sonlandığı için tüm thread'ler de sonlanır
 >
->- *Thread içerisinde bir exception oluşursa ve yakalanamazsa ilgili thread sonlanır*
+>- Thread içerisinde bir exception oluşursa ve yakalanamazsa ilgili thread sonlanır
 >
->*Dikkat edilirse bir thread'i doğrudan sonlandırmaya ilişkin bir fonksiyon yoktur. Aslında Thread sınıfının stop isimli bir fonksiyonu başlangıçta bu iş tasarlanmıştı. Ancak bir thread'i doğrudan sonlandırmanın kritik işlemlerde çeşitli problemlere yol açabileceği dolayısıyla bu metot deprecated yapıldı. Hatta bir çok sistemde çalışmamaktadır. Peki programcı bir thread'i başka bir thread içerisinden sonlandırmayı nasıl yapacaktır? Bu durumda ilk akla gelen bir flag değerinin diğer thread'den değpiştirilerek ilgili thread'in bu flag değerine göre sonlandırılmasını sağlamak biçiminde olabilir. Bu yöntemin üç tane tipik problemi olabilir: 1. flag değerinin değiştirilmesi birden fazla makine komutu ile yapıldığında değiştirildiği anda hemen diğer akış tarafından görülemeyebilir. Bu durumda bu işlemin atomic bir biçimde yapılması gerekir*
+>Dikkat edilirse bir thread'i doğrudan sonlandırmaya ilişkin bir fonksiyon yoktur. Aslında Thread sınıfının stop isimli bir fonksiyonu başlangıçta bu iş tasarlanmıştı. Ancak bir thread'i doğrudan sonlandırmanın kritik işlemlerde çeşitli problemlere yol açabileceği dolayısıyla bu metot deprecated yapıldı. Hatta bir çok sistemde çalışmamaktadır. Peki programcı bir thread'i başka bir thread içerisinden sonlandırmayı nasıl yapacaktır? Bu durumda ilk akla gelen bir flag değerinin diğer thread'den değpiştirilerek ilgili thread'in bu flag değerine göre sonlandırılmasını sağlamak biçiminde olabilir. Bu yöntemin üç tane tipik problemi olabilir: 1. flag değerinin değiştirilmesi birden fazla makine komutu ile yapıldığında değiştirildiği anda hemen diğer akış tarafından görülemeyebilir. Bu durumda bu işlemin atomic bir biçimde yapılması gerekir
 >
->2. *Thread örneğin join yada sleep gibi thread'i bloke eden bir fonksiyon içerisindeyse bu durumda bloke olduğıu sürece flag değerinin değiştiğini anlayamaz*
+>2. Thread örneğin join yada sleep gibi thread'i bloke eden bir fonksiyon içerisindeyse bu durumda bloke olduğıu sürece flag değerinin değiştiğini anlayamaz
 >
->3. *Derleyiciler genel olarak optimizasyonlarını uygulamanın multi threaded olabileceğine yönelik yapmazlar. Sanki uygulama single threaded bir uygulamaymış gibi yaparlar. Bu durumda bir değişkenin değerinin değişmediği ama kullanılşdığı bir akış için değerinin daha hızlı erişilebildiğinden register'larda saklayabilirler. Bu durumda o değişkenin değeri başka bir thread'de değiştirildiğinde diğer akışta değişiklik farkedilemez. Aslında bu problem yalnızca thread sonlandırmada çıkmaz. Aslında thread sonlandırma zaten programcının tuttuğu diğeriyle genel olarak yapılmadığından, sonlandırma senaryolarında böylesi bir durum oluşmaz.*
+>3. Derleyiciler genel olarak optimizasyonlarını uygulamanın multi threaded olabileceğine yönelik yapmazlar. Sanki uygulama single threaded bir uygulamaymış gibi yaparlar. Bu durumda bir değişkenin değerinin değişmediği ama kullanılşdığı bir akış için değerinin daha hızlı erişilebildiğinden register'larda saklayabilirler. Bu durumda o değişkenin değeri başka bir thread'de değiştirildiğinde diğer akışta değişiklik farkedilemez. Aslında bu problem yalnızca thread sonlandırmada çıkmaz. Aslında thread sonlandırma zaten programcının tuttuğu diğeriyle genel olarak yapılmadığından, sonlandırma senaryolarında böylesi bir durum oluşmaz.
 >
->*Aslında bir thread'in interrupt flag denilen bir flag değeri vardır ve bu flag değeri thread başlatığında mantıksal false değerinde yani reset durumundadır. Thread sınıfının interrupt metodu interrupt flag değerini set eder yani mantıksal true değerine çeker. Bu işlem atomic bir biçimde yapılır. Yani bu set/reset işlemi bitene kadar o flag değerine yönelik araya hiç bir işlem giremez. sleep, join gibi Thread'i bloke eden fonksiyonlar bloke durumdayken interrupt flag değeri set edilirse InterruptedException fırlatırlar ve interrupt flag değerini reset ederler. Ayrıca Thread sınıfının static interrupted ve non-static isInterrupted isimli iki fonksiyonu ile interrup flag değerinin set edilip edilmediği test edilebilir. Bu iki metodun static ve non-static olmaları dışında farkı ileride ele alınacaktır.*
+>Aslında bir thread'in interrupt flag denilen bir flag değeri vardır ve bu flag değeri thread başlatığında mantıksal false değerinde yani reset durumundadır. Thread sınıfının interrupt metodu interrupt flag değerini set eder yani mantıksal true değerine çeker. Bu işlem atomic bir biçimde yapılır. Yani bu set/reset işlemi bitene kadar o flag değerine yönelik araya hiç bir işlem giremez. sleep, join gibi Thread'i bloke eden fonksiyonlar bloke durumdayken interrupt flag değeri set edilirse InterruptedException fırlatırlar ve interrupt flag değerini reset ederler. Ayrıca Thread sınıfının static interrupted ve non-static isInterrupted isimli iki fonksiyonu ile interrup flag değerinin set edilip edilmediği test edilebilir. Bu iki metodun static ve non-static olmaları dışında farkı ileride ele alınacaktır.
 
 **_Anahtar Notlar:_** Üçüncü madde için flag değeri sınıfın veri elemanı olarak kullanılıyorsa Java'da volatile anahtar sözcüğü ile, Kotlin'de property elemanı Volatile annotation'ı ile işeretlenirse flag değeri thread de görülebilir. volatile bir veri elemanı derleyiciye sen bunu optimizasyon amaçlı registerda bekletme her zaman ve her akışsa memory'den kullan isteğidir. Derleyici bazı durumlarda yine de optimizasyon yapabilir. Ancak aşağıdaki gibi bir durumda derleyici volatile olması derleyiciye optimizasyon yaptırmayacaktır. Bu problem __"volatile"__ kullanmadan da çözülebilir. Örneği Volatie annotagtion'ını kaldırarak da çalıştırıp sonuçları gözlemleyiniz. Örnek durumu göstermek için yazılmıştır.
 
@@ -16509,7 +16509,7 @@ fun main()
 ```
 
 
->*Aşağıdaki örnekte thread sleep ile bloke durumdayken interrupt flag değeri set edilmiş ve InterruptedException fırlatılmıştır*
+>Aşağıdaki örnekte thread sleep ile bloke durumdayken interrupt flag değeri set edilmiş ve InterruptedException fırlatılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -16541,7 +16541,7 @@ fun main()
 ```
 
 
->*sleep (aynı zamanda join) fonksiyonu interrupt flag değerini set edilmişse reset duruma getirir. Örnek durumu göstermek için aşağıdaki gibi yazılmıştır*
+>sleep (aynı zamanda join) fonksiyonu interrupt flag değerini set edilmişse reset duruma getirir. Örnek durumu göstermek için aşağıdaki gibi yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -16585,7 +16585,7 @@ fun main()
 ```
 
 
->*Aşağıdaki örnekte interrupt flag değerinin set veye reset olma durumuna duyarlı herhangi bir fonksiyon çağrılmadığından thread sonlanmaz. Fonksiyonda try expression statement kullanılmasa durum aynıdır*
+>Aşağıdaki örnekte interrupt flag değerinin set veye reset olma durumuna duyarlı herhangi bir fonksiyon çağrılmadığından thread sonlanmaz. Fonksiyonda try expression statement kullanılmasa durum aynıdır
 
 ```kotlin
 package org.csystem.app
@@ -16616,7 +16616,7 @@ fun main()
 ```
 
 
->*Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır*
+>Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -16644,7 +16644,7 @@ fun main()
 ```
 
 
->*Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır*
+>Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -16673,7 +16673,7 @@ fun main()
 ```
 
 
->*isInterrupted metodu interrupt flag değerini set durumundan reset duruma çekmez. Aşağıdaki demo örneği inceleyiniz*
+>isInterrupted metodu interrupt flag değerini set durumundan reset duruma çekmez. Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16709,7 +16709,7 @@ fun main()
 }
 ```
 
->*interrupted metodu interrupt flag değerini set durumundan reset duruma çeker. Aşağıdaki demo örneği inceleyiniz*
+>interrupted metodu interrupt flag değerini set durumundan reset duruma çeker. Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16746,23 +16746,23 @@ fun main()
 ```
 
 
->*Thread yaratılması işletim düzeyinde bir takım alt seviye işlemlerin yapılmasına yol açmaktadır. Bazı uygulamalarda çok fazla thread'in aynı zamanda yaratılması gerekebilmektedir. Örneğin multi-client bir server herhangi bir client'ın işlemi devam ederken başka bir client gelmesi durumunda da hizmet verebilmesi için her client'ın bağlantısından sonra o client için bir thread açmalıdır. İşte böyle bir durumda çok fazla client'ın bağlantı yapmaya çalışması, thread yaratılırken aşağı seviyeli işlemler dolayısıyla belirli bir yavaşlığa sebep olabilir. Bu gibi örnekler ileride yapılacaktır. İşte bu durumlarda işlemlerin hızlı bir biçimde yapılabilmesi için işletim sistemlerinin desteklediği bazı yöntemler bulunmaktadır. Bu yöntemler işletim sistemlerine değişiklik gösterebilmektedir. İşte Java 5 ile bu gibi durumlara yönelik işlemleri yapan sınıflar ve metotlar içereen __"executors"__ eklenmiştir. Executors ile tipik olarak thread havuzları (thread pool) oluşturulabilmektedir. Thread havuzları önceden yaratılmış thread'ler gerektiğinde start edilebilmektedir. Yani yukarıda anlatılan thread yaratma maliyeti daha işin başında yapılmaktadır. Bu durumda aşağı seviyeli (süphesi yüksek seviyeli de) thread yaratma maliyeti minimalize edilmiş olur. Şüphesiz executors bu işlemi en nihayetinde işletim sisteminin sağladığı yöntemler ile yapmaktadır. Ancak şüphesi bu Java/Android programcısını ilgilendirmemektedir. Java programcısı açısından çoğu durumda klasik thread yerine executors kullanımı tercih edilmelidir. O zaman Thread sınıfına neden ihtiyaç vardır? Şüphesiz basit bazı thread işlemleri yani yukarıdaki gibi thread yaratmanın maliyetinin önemli olmadığı durumlarda özellikle Kotlin ile kullanımı çok basit olduğundan klasik thread tercih edilebilir. Ayrıca Thread sınıfının çeşitli metotları thread havuzlarında da kullanılabilmektedir. Şüphesiz thread havuzlarından alında thread'ler de Java anlamında birer Thread'dir. Kısaca programcı açısından thread havuzları da arka planda Thead sınıfını kullanıyor olarak düşünülebilir. Executors çok geniş bir kütüphanedir ve pek çok işleme yönelik metotları ve sınıfları vardır. Burada yalnızca thread havuzlarının fixed ve cached olanları ele alınacaktır. Bir thread havuzu da ayrı bir thread'dir.*
+>Thread yaratılması işletim düzeyinde bir takım alt seviye işlemlerin yapılmasına yol açmaktadır. Bazı uygulamalarda çok fazla thread'in aynı zamanda yaratılması gerekebilmektedir. Örneğin multi-client bir server herhangi bir client'ın işlemi devam ederken başka bir client gelmesi durumunda da hizmet verebilmesi için her client'ın bağlantısından sonra o client için bir thread açmalıdır. İşte böyle bir durumda çok fazla client'ın bağlantı yapmaya çalışması, thread yaratılırken aşağı seviyeli işlemler dolayısıyla belirli bir yavaşlığa sebep olabilir. Bu gibi örnekler ileride yapılacaktır. İşte bu durumlarda işlemlerin hızlı bir biçimde yapılabilmesi için işletim sistemlerinin desteklediği bazı yöntemler bulunmaktadır. Bu yöntemler işletim sistemlerine değişiklik gösterebilmektedir. İşte Java 5 ile bu gibi durumlara yönelik işlemleri yapan sınıflar ve metotlar içereen __"executors"__ eklenmiştir. Executors ile tipik olarak thread havuzları (thread pool) oluşturulabilmektedir. Thread havuzları önceden yaratılmış thread'ler gerektiğinde start edilebilmektedir. Yani yukarıda anlatılan thread yaratma maliyeti daha işin başında yapılmaktadır. Bu durumda aşağı seviyeli (süphesi yüksek seviyeli de) thread yaratma maliyeti minimalize edilmiş olur. Şüphesiz executors bu işlemi en nihayetinde işletim sisteminin sağladığı yöntemler ile yapmaktadır. Ancak şüphesi bu Java/Android programcısını ilgilendirmemektedir. Java programcısı açısından çoğu durumda klasik thread yerine executors kullanımı tercih edilmelidir. O zaman Thread sınıfına neden ihtiyaç vardır? Şüphesiz basit bazı thread işlemleri yani yukarıdaki gibi thread yaratmanın maliyetinin önemli olmadığı durumlarda özellikle Kotlin ile kullanımı çok basit olduğundan klasik thread tercih edilebilir. Ayrıca Thread sınıfının çeşitli metotları thread havuzlarında da kullanılabilmektedir. Şüphesiz thread havuzlarından alında thread'ler de Java anlamında birer Thread'dir. Kısaca programcı açısından thread havuzları da arka planda Thead sınıfını kullanıyor olarak düşünülebilir. Executors çok geniş bir kütüphanedir ve pek çok işleme yönelik metotları ve sınıfları vardır. Burada yalnızca thread havuzlarının fixed ve cached olanları ele alınacaktır. Bir thread havuzu da ayrı bir thread'dir.
 
 **_Anahtar Notlar:_** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (13 Kasım 2023) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar __"Kotlin Coroutines"__ ile kullanılabilmektedir. Kotlin Coroutines ileride ele alınacatır.
 
 
->*Executors ile thread havuzu oluşturmnak için Executors sınıfının çeşitli metotları kullanılabilmektedir. Burada ele alacağımız metotları şunlardır:*
+>Executors ile thread havuzu oluşturmnak için Executors sınıfının çeşitli metotları kullanılabilmektedir. Burada ele alacağımız metotları şunlardır:
 >
->*__<u>newSingleThreadExecutor:</u>__ Bu metot ile havuzda tek bir thread yaratılmış olur ve gerektiğinde kullanılabilir. Bu durumda yalnızca bir tane thread start edilebilir. İkinci bir thread'in start edilmesi durumunda diğer thread'in bitmesi beklenir. Yani havuzda aynı anda çalıştırılacak thread sayısı bir tanedir.*
+>__<u>newSingleThreadExecutor:</u>__ Bu metot ile havuzda tek bir thread yaratılmış olur ve gerektiğinde kullanılabilir. Bu durumda yalnızca bir tane thread start edilebilir. İkinci bir thread'in start edilmesi durumunda diğer thread'in bitmesi beklenir. Yani havuzda aynı anda çalıştırılacak thread sayısı bir tanedir.
 >
->*__<u>newFixedThreadPool:</u>__ Bu metot ile n tane thread yaratılmış olur. Burada n tane thread running durumundayken n + 1 ve yukarındaki thread'ler start (execute/submit) edildiğinde havuzdaki diğer threadlerin birmesini beklerler.Yani havuzda aynı anda çalıştırılacak thread sayısı n tanedir. Bu metodun bu n sayısını parametre olarak alan overload'u vardır.*
+>__<u>newFixedThreadPool:</u>__ Bu metot ile n tane thread yaratılmış olur. Burada n tane thread running durumundayken n + 1 ve yukarındaki thread'ler start (execute/submit) edildiğinde havuzdaki diğer threadlerin birmesini beklerler.Yani havuzda aynı anda çalıştırılacak thread sayısı n tanedir. Bu metodun bu n sayısını parametre olarak alan overload'u vardır.
 >
->*__<u>newCachedThreadPool:</u>__ Bu metot ile teorik olarak istenildiği kadar thread havuzdan kullanılabilmektedir. Bu işlemi etkin bir şekilde yapacağını garanti eder. Şüphesiz, aynı anda çalışan thread sayısının işletim sistemi düzeyinde bir limiti vardır.*
+>__<u>newCachedThreadPool:</u>__ Bu metot ile teorik olarak istenildiği kadar thread havuzdan kullanılabilmektedir. Bu işlemi etkin bir şekilde yapacağını garanti eder. Şüphesiz, aynı anda çalışan thread sayısının işletim sistemi düzeyinde bir limiti vardır.
 >
->*Bu metotlar ExecutorService arayüz referansına geri dönerler. Bu üç metodun da kullanımına programcı senaryosuna göre karar verir. Eğer tek bir thread sürekli kullanılacaksa bu durumda newFixedThreadPool(1) çağrısı yerine newSingleThreadExecutor() çağrısı yapılması tavsiye edilir. Genel olarak thread havuzu ile işlemler bittiğinde thread havuzuna ilişkin thread'in de sonlandırılması gerekir. Bu da ExecutorService arayüzünün shutdown metodu ile yapılabilir. shutdown metodu da asenkron olarak çalışır yani metot thread havuzu sonlanmadan sonlanır.. Çağrıldığında eğer running durumda thread'ler varsa thread havuzu bu thread'ler bitinceye kadar yok edilmez. Ancak yeni bir thread start edilemez. ExecutorService ile bir thread start etmek için tipik olarak iki tane metot kullanılır: execute, submit. Bu metotlar adıkları callback'ler ile thread start ederler. execute metodunun geri dönüş değeri yoktur. sumbit metodunun geri dönüş değeri `Future<T>` arayüzü türündendir. Bu arayüz submit edilen threaad'i temsil eder. `Future<T>` arayüzünün get metotları ile thread beklenebilir hatta submit metodunubn `Callable<T>` parmetreli overload'u kullanılarak thread'deb sonuç elde edilebilir. `Future<T>` arayüzünün cancel isimli metodu ile thread cancel edilebilir. cancel metodu istenirse interrupt flag değerini set edebilir. `Future<T>` kullanımı örneklerle ele alınacaktır.*
+>Bu metotlar ExecutorService arayüz referansına geri dönerler. Bu üç metodun da kullanımına programcı senaryosuna göre karar verir. Eğer tek bir thread sürekli kullanılacaksa bu durumda newFixedThreadPool(1) çağrısı yerine newSingleThreadExecutor() çağrısı yapılması tavsiye edilir. Genel olarak thread havuzu ile işlemler bittiğinde thread havuzuna ilişkin thread'in de sonlandırılması gerekir. Bu da ExecutorService arayüzünün shutdown metodu ile yapılabilir. shutdown metodu da asenkron olarak çalışır yani metot thread havuzu sonlanmadan sonlanır.. Çağrıldığında eğer running durumda thread'ler varsa thread havuzu bu thread'ler bitinceye kadar yok edilmez. Ancak yeni bir thread start edilemez. ExecutorService ile bir thread start etmek için tipik olarak iki tane metot kullanılır: execute, submit. Bu metotlar adıkları callback'ler ile thread start ederler. execute metodunun geri dönüş değeri yoktur. sumbit metodunun geri dönüş değeri `Future<T>` arayüzü türündendir. Bu arayüz submit edilen threaad'i temsil eder. `Future<T>` arayüzünün get metotları ile thread beklenebilir hatta submit metodunubn `Callable<T>` parmetreli overload'u kullanılarak thread'deb sonuç elde edilebilir. `Future<T>` arayüzünün cancel isimli metodu ile thread cancel edilebilir. cancel metodu istenirse interrupt flag değerini set edebilir. `Future<T>` kullanımı örneklerle ele alınacaktır.
 
 
->*Aşağıdaki örnkte fixed thread pool kullanılmıştır*
+>Aşağıdaki örnkte fixed thread pool kullanılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -16809,7 +16809,7 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 ```
 
 
->*Aşağıdaki örneği inceleyiniz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16859,7 +16859,7 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 ```
 
 
->*Executors ile scheduler da oluşturulabilmektedir. Bunun için tipik olarak newScheduledThreadBool metodu kullanılmaktadır. Scheduler ile bir timer veya timout oluşturulabilmektedir. Bu metot ExecutorService arayüzünden türetilmiş ScheduledExecutorService arayüz referansına geri döner. Bu arayüz referansına ilişkin metotlar çağrılarak timer veya timeout oluşturulabilir. Aşağıdaki örneği inceleyiniz*
+>Executors ile scheduler da oluşturulabilmektedir. Bunun için tipik olarak newScheduledThreadBool metodu kullanılmaktadır. Scheduler ile bir timer veya timout oluşturulabilmektedir. Bu metot ExecutorService arayüzünden türetilmiş ScheduledExecutorService arayüz referansına geri döner. Bu arayüz referansına ilişkin metotlar çağrılarak timer veya timeout oluşturulabilir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16879,7 +16879,7 @@ fun main()
 ```
 
 
->*scheduleXXX metotları `SheduledFuture<T>` interface referansına geri dönerler. Bu durumda ilgili scheduler yönetilebilir. Aşağıdaki örneği inceleyiniz*
+>scheduleXXX metotları `SheduledFuture<T>` interface referansına geri dönerler. Bu durumda ilgili scheduler yönetilebilir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16909,7 +16909,7 @@ fun main()
 ```
 
 
->*scheduleXXX metotları çağrıldıktan sonra shutdown metodunun çağrılmasın durumunda, scheuler'da sonlanır. submit veya execute kullanıldığında shutdown işleminin ilgili thread'lerin sonlanmasını beklediğini anımsayınız*
+>scheduleXXX metotları çağrıldıktan sonra shutdown metodunun çağrılmasın durumunda, scheuler'da sonlanır. submit veya execute kullanıldığında shutdown işleminin ilgili thread'lerin sonlanmasını beklediğini anımsayınız
 
 ```kotlin
 package org.csystem.app
@@ -16943,7 +16943,7 @@ fun main()
 
 ### Kotlin Coroutines:
 
->*GlobalScope object'inin launch fonksiyonu ile bir couroutine yaratılabilir. coroutine'ler __"daemon thread"__ olarak çalışır. launch fonksiyonu Job türünden bir referansa geri döner. Job sınıfının join metodu ile ilgili job beklenebilir. Ancak join metodu __"suspend"__ olarak bildirilmiş bir fonksiyon içerisinde çağrılabilir. suspend fonksiyonların detayları ileride ele alınacaktır. Aşağıdaki demo örneği inceleyiniz*
+>GlobalScope object'inin launch fonksiyonu ile bir couroutine yaratılabilir. coroutine'ler __"daemon thread"__ olarak çalışır. launch fonksiyonu Job türünden bir referansa geri döner. Job sınıfının join metodu ile ilgili job beklenebilir. Ancak join metodu __"suspend"__ olarak bildirilmiş bir fonksiyon içerisinde çağrılabilir. suspend fonksiyonların detayları ileride ele alınacaktır. Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -16973,7 +16973,7 @@ suspend fun main()
 ```
 
 
->*Aşağıdaki örnek klişeleşmiş ilk courutine örneklerindendir*
+>Aşağıdaki örnek klişeleşmiş ilk courutine örneklerindendir
 
 ```kotlin
 package org.csystem.app
@@ -16995,7 +16995,7 @@ suspend fun main()
 ```
 
 
->*runBlocking fonksiyonuna verilen fonksiyon sonlanana kadar (aslında içerisindeki coroutine sonlanana kadar) akış bloke olur. runBlocking fonksiyonu bir couroutine yaratır. Aşağıdaki demo örneği inceleyiniz*
+>runBlocking fonksiyonuna verilen fonksiyon sonlanana kadar (aslında içerisindeki coroutine sonlanana kadar) akış bloke olur. runBlocking fonksiyonu bir couroutine yaratır. Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -17030,7 +17030,7 @@ fun main()
 ```
 
 
->*runBlociking fonksiyonu ile coroutine yaratılması aşağıdaki gibi de yapılabilir. Demo örnekte launch fonksiyonu ile yaratılan coroutine main thread'de yaratılmamıştır. runBlocking fonksiyonunun yarattığı coroutine içerisinde yaratılmıştır*
+>runBlociking fonksiyonu ile coroutine yaratılması aşağıdaki gibi de yapılabilir. Demo örnekte launch fonksiyonu ile yaratılan coroutine main thread'de yaratılmamıştır. runBlocking fonksiyonunun yarattığı coroutine içerisinde yaratılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -17061,7 +17061,7 @@ fun main() = runBlocking {
 ```
 
 
->*Aşağıdaki demo örnekte bir couroutine içerisinde başka bir coroutine yaratılmış ve runBlocking ile yaratılan coroutine doJob içerisinde yaratılan coroutine'i beklemektedir. Bu durumda derleyici ve __"Virtual Machine"__ optimize ederek coroutine sayısını dolayısıyla yaratılan thread sayısını azaltabilir*
+>Aşağıdaki demo örnekte bir couroutine içerisinde başka bir coroutine yaratılmış ve runBlocking ile yaratılan coroutine doJob içerisinde yaratılan coroutine'i beklemektedir. Bu durumda derleyici ve __"Virtual Machine"__ optimize ederek coroutine sayısını dolayısıyla yaratılan thread sayısını azaltabilir
 
 ```kotlin
 package org.csystem.app
@@ -17096,7 +17096,7 @@ fun run() = GlobalScope.launch {
 ```
 
 
->*Aşağıdaki demo örnekte runBlocking scope içerisinde coroutine yaratılmıştır*
+>Aşağıdaki demo örnekte runBlocking scope içerisinde coroutine yaratılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -17134,7 +17134,7 @@ fun run() = GlobalScope.launch {
 ```
 
 
->*Programcı isterse coroutine scope yaratabilir. Aşağıdaki örnekte coroutineScope fonksiyonunun __"callback"__ fonksiyonu launch ile yaratılan coroutine akışı bitene kadar sonlanmaz. suspend fonksiyonlar içerisinde coroutine'e ilişkin fonksiyonlar da çağrılabilir. Aslında suspend fonksiyonlar __"duraklayabile (suspend)"__ ve __"devam edebilen (resume)"__ fonksiyonlardır. Aşağıdaki örnekte couroutineScope ile bir sonuç da elde edilmektedir*
+>Programcı isterse coroutine scope yaratabilir. Aşağıdaki örnekte coroutineScope fonksiyonunun __"callback"__ fonksiyonu launch ile yaratılan coroutine akışı bitene kadar sonlanmaz. suspend fonksiyonlar içerisinde coroutine'e ilişkin fonksiyonlar da çağrılabilir. Aslında suspend fonksiyonlar __"duraklayabile (suspend)"__ ve __"devam edebilen (resume)"__ fonksiyonlardır. Aşağıdaki örnekte couroutineScope ile bir sonuç da elde edilmektedir
 
 ```kotlin
 package org.csystem.app
@@ -17175,7 +17175,7 @@ fun run() = GlobalScope.launch {
 ```
 
 
->*Yukarıdaki örnek async fonksiyonu ile await kullanarak da yapılabilir*
+>Yukarıdaki örnek async fonksiyonu ile await kullanarak da yapılabilir
 
 ```kotlin
 package org.csystem.app
@@ -17216,7 +17216,7 @@ fun run() = GlobalScope.launch {
 ```
 
 
->*Yukarıdaki demo örnek async fonksiyonu ile await kullanılarak da yapılabilir. async fonksiyonu tipik `Deferred<y>` türünden bir interface referansına geri döner. Bu arayüzün await metodu ilgili coroutine beklenebilir. await metodu async fonksiyonuna verilen callback fonksiyonun değerine geri döner. Yani bu anlamda klasik `Future<T>` arayüzüne benzetilebilir*
+>Yukarıdaki demo örnek async fonksiyonu ile await kullanılarak da yapılabilir. async fonksiyonu tipik `Deferred<y>` türünden bir interface referansına geri döner. Bu arayüzün await metodu ilgili coroutine beklenebilir. await metodu async fonksiyonuna verilen callback fonksiyonun değerine geri döner. Yani bu anlamda klasik `Future<T>` arayüzüne benzetilebilir
 
 ```kotlin
 package org.csystem.app
