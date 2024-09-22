@@ -7611,9 +7611,8 @@ open class A(var x: Int) {
 
 ![Class Diagram](./kmedia/DemoCompanyApp.PNG)
 ```kotlin
-package org.csystem.app  
+package org.csystem.app.demo.company.employee  
   
-import org.csystem.app.demo.company.employee.*  
 import org.csystem.app.demo.company.hr.HumanResources  
 import kotlin.random.Random  
   
@@ -7671,7 +7670,7 @@ private fun getEmployee(): Employee {
     }  
 }  
   
-private fun runDemoCompanyApp() {  
+fun runDemoCompanyApp() {  
     val hr = HumanResources()  
   
     while (true) {  
@@ -7682,9 +7681,7 @@ private fun runDemoCompanyApp() {
         Thread.sleep(1000)  
         println("----------------------------------------------------")  
     }  
-}  
-  
-fun main() = runDemoCompanyApp()
+}
 ```
 
 >Bir referansın iki tane türü vardır: **static type, dynamic type.*** 
@@ -7983,8 +7980,6 @@ class E : C() {
     //...  
 }
 ```
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >*Kotlin'de akıllı **dönüşüm (smart cast)** denilen bir kavram vardır. Örneğin derleyici downcasting ya da unboxing durumlarında hedef türe dönüştürmenin güvenli olduğunu anlarsa as operatörüne gerek kalmaksınız dönüşüme ilişkin kod derleme zamanında otomatik olarak yazılır. Akıllı dönüşüm diğer detaylarıyla birlikte ileride ele alınacaktır*
 
@@ -8424,484 +8419,670 @@ fun main() {
     println("Point:$point")  
 }
 ```
+>override edilen bir metot içerisinde taban sınıfın yin aynı metot çağrılmak istendiğinde super referansı kullanılır. Bu kavrama augmentation da denilmektedir. AnalyticalCircle sınfının toString metodunu inceleyiniz.
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
->*Any sınıfının equals metodu bir sınıf türünden nesnelerin eşitlik karşılaştırması için kullanılır. Bu durumda bu metot sınıfa özgü olarak override edilir. Bu metot aynı zamanda o sınıf referansların `==` ve `!=` operatörleri ile kullanıldıklarında da çağrılır.
+>*Any sınıfının equals metodu bir sınıf türünden nesnelerin eşitlik karşılaştırması için kullanılır. Bu metot ilgili sınıfa göre override edilir. Bu metot aynı zamanda o sınıf türünden referansların `==` ve `!=` operatörleri ile kullanıldıklarında da çağrılır. Yani metot aslında ilgili sınıf için mantıksal eşitlik karşılaştırması için kullanılmaktadır. Any sınıfının equals metodu referans karşılaştırma yapar.
 >
 >Proje içerisindeki sınıfları ve equals metotlarını inceleyiniz*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.geometry.Point
-
-fun main()
-{
-    val p1 = Point(2.345, 5.678)
-    val p2 = Point(2.345, 5.678)
-
-    println(p1 == p2)
-    println(p1 != p2)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.Point  
+  
+fun main() {  
+    val p1 = Point(100.0, 100.0)  
+    val p2 = Point(100.0, 100.0)  
+  
+    println(if (p1 == p2) "Aynı nokta" else "Farklı noktalar")  
+    println(if (p1 === p2) "Aynı nesne" else "Farklı nesneler")  
 }
 ```
 
-**_Anahtar Notlar:_** Temel türlere ilişkin sınıfların (Short, Int, Long, Byte, Float, Double, Boolean, Char) toString ve equals metotları da override edilmiştir. toString metotları ilgili değerin yazı karşılığına geri döner.
+***_Anahtar Notlar:_*** Bir sınıf için equals metodunun override edilmesi gerektiğinde Any sınfının hashCode isimli metodunun da override edilmesi gerekir. Bir sınıf içerisinde bu iki metot birlikte ya override edilir ya da ikisi birden override edilmez. hashCode metodu ileride ele alınacaktır. 
 
->*Bazı sınıflar bir kavramın soyut halini temsil ederler. Tek başlarına nesne olmalarının anlamı yoktur. Ondan türeyen sınıfların anlamı vardır. Bu tarz sınıflar abstract olarak bildirilirler. Bu anlamda bu sınıfların bazı metotlarının kodlarının da yani gövdesinin olması anlamsızdır. Bu durumda metot abstract olarak bildirilir. abstract metotların gövdeleri olmaz ve sanal metotlardır. Bu durumda abstract sınıf bir sınıf gören programcı o sınıfın abstract metotlarının olabileceğini ve somut (concrete) bir sınıf türetmek için o abstract metotları da override etmesi gerektiğini anlar. Ya da abstract bir sınıftan türetilmiş abstract olmayan (concrete) bir sınıf gördüğünde taban sınıfının tüm abstract metotlarını override ettiğini anlar*
+**_Anahtar Notlar:_** Temel türlere ilişkin sınıfların (Short, Int, Long, Byte, Float, Double, Boolean, Char) toString ve equals metotları da (hashCode metotları da) override edilmiştir. toString metotları ilgili değerin yazı karşılığına geri döner. equals metotları ise değerlerin eşitlik karşılaştırmasını yapar.
 
->**abstract sınıflar ve metotlar**\
->*abstract sınıf türünden nesne programcı tarafından yaratılamaz. En az bir tane abstract metodu olan bir sınıf abstract olarak bildirilmelidir. abstract metotlar sanaldır*
+#### abstract Sınıflar ve abstract Metotlar
+
+>Bazı sınıflar bir kavramın soyut halini temsil ederler. Tek başlarına nesne olmalarının anlamı yoktur. Ondan türeyen sınıfların anlamı vardır. Bu tarz sınıflar `abstract` olarak bildirilirler. Bu anlamda bu sınıfların bazı metotların gövdelerinin olması anlamsızdır. Bu durumda metot abstract olarak bildirilir. abstract metotların gövdeleri olmaz ve sanal metotlardır. Bu durumda abstract bir sınıf gören programcı o sınıfın abstract metotlarının olabileceğini ve somut (concrete) bir sınıf türetmek için o abstract metotları da override etmesi gerektiğini anlar. Ya da abstract bir sınıftan türetilmiş abstract olmayan (concrete) bir sınıf gördüğünde taban sınıfının tüm abstract metotlarının override edildiğini anlar.
+
+
+>abstract sınıf türünden nesne programcı tarafından yaratılamaz. En az bir tane abstract metodu olan bir sınıf abstract olarak bildirilmelidir. abstract metotlar sanaldır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var a = A() //error
-}
-
-abstract class A {
-    abstract fun foo()
-
-}
-
-class B : A() {
-    override fun foo()
-    {
-        println("B.foo")
-        super.foo() //error
-    }
+package org.csystem.app  
+  
+fun main() {  
+    var a = A() //error  
+}  
+  
+abstract class A {  
+    abstract fun foo()  
+  
+}  
+  
+class B : A() {  
+    override fun foo() {  
+        println("B.foo")  
+        super.foo() //error  
+    }  
 }
 ```
 
 >*companyDemoApp uygulaması*
 
 ```kotlin
-package org.csystem.app.company
+package org.csystem.app.demo.company.employee  
+  
+import org.csystem.app.demo.company.hr.HumanResources  
+import kotlin.random.Random  
+  
+private fun getManager(): Manager {  
+    val manager = Manager(300000.0, "Yazılım")  
+  
+    manager.citizenId = "12345678";  
+    manager.name = "Ali Veli";  
+    manager.address = "Mecidiyeköy";  
+  
+    return manager  
+}  
+  
+private fun getWorker(): Worker {  
+    val worker = Worker(1000.0, 8)  
+  
+    worker.citizenId = "12345679";  
+    worker.name = "Selami Secati";  
+    worker.address = "Şişli";  
+  
+    return worker  
+}  
+  
+private fun getSalesManager(): SalesManager {  
+    val salesManager = SalesManager(40000.0)  
+  
+    salesManager.citizenId = "12345679";  
+    salesManager.name = "Mustafa Mehmet";  
+    salesManager.address = "Fatih";  
+    salesManager.salary = 3000000.0  
+    salesManager.department = "Pazarlama"  
+  
+    return salesManager  
+}  
+  
+  
+private fun getProjectWorker(): Worker {  
+    val worker = ProjectWorker(30000.0)  
+  
+    worker.citizenId = "12345677";  
+    worker.name = "Ayşe Fatma";  
+    worker.address = "Beylikdüzü";  
+    worker.feePerHour = 2000.0  
+    worker.hourPerDay = 6  
+  
+    return worker  
+}  
+  
+private fun getEmployee(): Employee {  
+    return when (Random.nextInt(4)) {  
+        0 -> getManager()  
+        1 -> getWorker()  
+        2 -> getProjectWorker()  
+        else -> getSalesManager()  
+    }  
+}  
+  
+fun runDemoCompanyApp() {  
+    val hr = HumanResources()  
+  
+    while (true) {  
+        println("----------------------------------------------------")  
+        val employee = getEmployee()  
+  
+        hr.payInsurance(employee)  
+        Thread.sleep(1000)  
+        println("----------------------------------------------------")  
+    }  
+}
+```
 
-private fun getWorker() = Worker("Ali", "12345678912", "Geyikli", 400.0, 7)
-private fun getManager() = Manager("Veli", "12345678914", "Silivri", "Pazarlama", 50000.0)
-private fun getSalesManager() = SalesManager("Fatma", "12345678916", "Mecidiyeköy", "Pazarlama", 50000.0, 10000.0)
-private fun getProjectWorker() = ProjectWorker("Selami", "12345678918", "Şişli", 400.0, 7, 13000.89)
 
-fun main() = runApplication()
-
-fun runApplication()
-{
-    val hr = HumanResources()
-    val worker = getWorker()
-    val manager = getManager()
-    val salesManager = getSalesManager()
-    val projectWorker = getProjectWorker()
-
-    hr.payInsurance(worker)
-    hr.payInsurance(manager)
-    hr.payInsurance(projectWorker)
-    hr.payInsurance(salesManager)
+```kotlin
+package org.csystem.app.demo.company.employee  
+  
+abstract class Employee(var citizenId: String = "", var name: String = "", var address: String = "") {  
+    abstract fun calculateInsurancePayment(): Double  
 }
 ```
 
 ```kotlin
-package org.csystem.app.company
-
-abstract class Employee(var name: String = "", var citizenId: String = "", var address: String = ""/*...*/) {
-    abstract fun calculateInsurancePayment() : Double
-    //...
+package org.csystem.app.demo.company.hr  
+  
+import org.csystem.app.demo.company.employee.Employee  
+  
+class HumanResources {  
+    //...  
+    fun payInsurance(employee: Employee) {  
+        println("Citizen Id:${employee.citizenId}")  
+        println("Citizen Id:${employee.name}")  
+        println("Citizen Id:${employee.address}")  
+        println("Insurance Payment:${employee.calculateInsurancePayment()}")  
+        //...  
+    }  
 }
 ```
 
 ```kotlin
-package org.csystem.app.company
-
-class HumanResources {
-    //...
-    fun payInsurance(employee: Employee)
-    {
-        println("Name:${employee.name}, CitizenId:${employee.citizenId}, Address:${employee.address}")
-        println("Insurance Payment:${employee.calculateInsurancePayment()}")
-    }
+package org.csystem.app.demo.company.employee  
+  
+open class Manager(var salary: Double = 0.0, var department: String = "") : Employee() {  
+    //...  
+    override fun calculateInsurancePayment() = salary * 30  
 }
 ```
 
 ```kotlin
-package org.csystem.app.company
-
-open class Manager(name: String = "", citizenId: String = "", address: String = "",
-                   var department: String = "", var salary: Double = 0.0) : Employee(name, citizenId, address) {
-    override fun calculateInsurancePayment() = salary * 1.567
-    //...
+package org.csystem.app.demo.company.employee  
+  
+open class Worker(var feePerHour: Double = 0.0, var hourPerDay: Int = 0) : Employee() {  
+    //...  
+    override fun calculateInsurancePayment() = feePerHour * hourPerDay.toDouble() * 1.5  
 }
 ```
 
 ```kotlin
-package org.csystem.app.company
 
-open class ProjectWorker(name: String = "", citizenId: String = "", address: String = "",
-                         feePerHour: Double = 0.0, hourPerDay: Int = 0, val extraFee: Double = 0.0) : Worker(name, citizenId, address, feePerHour, hourPerDay) {
-    //...
-    override fun calculateInsurancePayment() = super.calculateInsurancePayment() + extraFee
+```
+
+```kotlin
+package org.csystem.app.demo.company.employee  
+  
+class ProjectWorker(var extraFee: Double) : Worker() {  
+    //...  
+    override fun calculateInsurancePayment() = super.calculateInsurancePayment() + extraFee * 1.5  
 }
 ```
 
 ```kotlin
-package org.csystem.app.company
-
-open class SalesManager(name: String = "", citizenId: String = "", address: String = "",
-                        department: String = "", salary: Double = 0.0, val extra: Double = 0.0) : Manager(name, citizenId, address, department, salary) {
-    //...
-    override fun calculateInsurancePayment() = super.calculateInsurancePayment() + extra
-}
-```
-
-```kotlin
-package org.csystem.app.company
-
-open class Worker(name: String = "", citizenId: String = "", address: String = "",
-             var feePerHour: Double = 0.0, var hourPerDay: Int = 0) : Employee(name, citizenId, address) {
-    //...
-    override fun calculateInsurancePayment() = feePerHour * hourPerDay *  30
+package org.csystem.app.demo.company.employee  
+  
+class SalesManager(var saleExtra: Double) : Manager() {  
+    //...  
+    override fun calculateInsurancePayment() = super.calculateInsurancePayment() + saleExtra  
 }
 ```
 
 >*abstract sınıfların property elemanı olabilir, ctor elemanı olabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a: A = B("ankara", 6) //upcasting
-
-    a.foo()
-}
-
-class B(str: String, x: Int, var y: Int = 0) : A(str, x) {
-    override fun foo()
-    {
-        println("B.foo")
-        println("y=$y")
-        super.bar()
-    }
-}
-
-abstract class A(val str: String = "", value: Int = 0) {
-    var x: Int = value
-
-    abstract fun foo()
-
-    fun bar()
-    {
-        println("x=$x, str=$str")
-        println("A.bar")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a: A = B("ankara", 6) //upcasting  
+  
+    a.foo()  
+}  
+  
+class B(str: String, x: Int, var y: Int = 0) : A(str, x) {  
+    override fun foo() {  
+        println("B.foo")  
+        println("y=$y")  
+        super.bar()  
+    }  
+}  
+  
+abstract class A(val str: String = "", value: Int = 0) {  
+    var x: Int = value  
+  
+    abstract fun foo()  
+  
+    fun bar() {  
+        println("x=$x, str=$str")  
+        println("A.bar")  
+    }  
 }
 ```
 
 >*abstract bir bir sınıftan türeyen sınıf en az bir tane abstract metodu override etmezse o da abstract bildirilmelidir*
 
 ```kotlin
-package org.csystem.app
-
-open class C : B() {
-    override fun bar()
-    {
-        //...
-    }
-}
-
-abstract class B : A() {
-    override fun foo()
-    {
-        //...
-    }
-}
-
-abstract class A(val str: String = "") {
-    abstract fun foo()
-    abstract fun bar()
-}
-```
-
->*abstract property elemanları*
-
-```kotlin
-package org.csystem.app
-
-import kotlin.math.absoluteValue
-
-fun main()
-{
-    val a: A = B()
-
-    a.x = -5
-
-    println("a.x = ${a.x}")
-}
-
-class B : A() {
-    override var x: Int = 0
-        set(value) {field = value.absoluteValue}
-}
-
-abstract class A {
-    abstract var x: Int
+class D : A() { //error  
+    override fun foo() {  
+        //...  
+    }  
+}  
+  
+open class C : B() {  
+    override fun bar() {  
+        //...  
+    }  
+}  
+  
+abstract class B : A() {  
+    override fun foo() {  
+        //...  
+    }  
+}  
+  
+abstract class A(val str: String = "") {  
+    abstract fun foo()  
+    abstract fun bar()  
 }
 ```
 
->*Aşağıdaki örnekte A sınıfı içerisindeki x property elemanı "readonly" olduğundan error oluşur. Örnekte abstract bir readonly property elemanı read-write olarak override edilmiştir*
+>abstract property elemanları. Aşağıdaki sınıfların Java karşılıkları şu şekilde yazılabilir:
+
+```java
+abstract class A {  
+    abstract int getX();  
+    abstract void setX(int value);  
+    //...  
+}  
+  
+class B extends A {  
+    private int m_x;  
+  
+    @Override  
+    public int getX()  
+    {  
+        return m_x;  
+    }  
+  
+    @Override  
+    public void setX(int value)  
+    {  
+        m_x = Math.abs(value);  
+    }  
+}
+```
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.math.absoluteValue
-
-fun main()
-{
-    val a: A = B()
-
-    a.x = -5 //error
-
-    println("a.x = ${a.x}")
-
-    val b = B()
-
-    b.x = 10;
+package org.csystem.app  
+  
+import kotlin.math.absoluteValue  
+  
+fun main() {  
+    val a: A = B()  
+  
+    a.x = -5  
+  
+    println("a.x = ${a.x}")  
+}  
+  
+class B : A() {  
+    override var x: Int = 0  
+        set(value) {  
+            field = value.absoluteValue  
+        }  
+}  
+  
+abstract class A {  
+    abstract var x: Int  
 }
+```
 
+>Aşağıdaki örnekte A sınıfı içerisindeki x property elemanı "readonly" olduğundan error oluşur. Örnekte abstract bir readonly property elemanı read-write olarak override edilmiştir. Aşağıdaki sınıfların Java karşılıkları şu şekilde yazılabilir:
 
-class B : A() {
-    override var x: Int = 0
-        set(value) {field = value.absoluteValue}
+```java
+package org.csystem.app.demo.java;  
+  
+abstract class A {  
+    abstract int getX();  
+    //...  
+}  
+  
+class B extends A {  
+    private int m_x;  
+  
+    @Override  
+    public int getX()  
+    {  
+        return m_x;  
+    }  
+  
+    public void setX(int value)  
+    {  
+        m_x = Math.abs(value);  
+    }  
 }
+```
 
-abstract class A {
-    abstract val x: Int
+```kotlin
+package org.csystem.app  
+  
+import kotlin.math.absoluteValue  
+  
+fun main() {  
+    val a: A = B()  
+  
+    a.x = -5 //error  
+  
+    println("a.x = ${a.x}")  
+  
+    val b = B()  
+  
+    b.x = 10;  
+}  
+  
+  
+class B : A() {  
+    override var x: Int = 0  
+        set(value) {  
+            field = value.absoluteValue  
+        }  
+}  
+  
+abstract class A {  
+    abstract val x: Int  
 }
 ```
 
 >*Taban sınıfta var olarak bildirilmiş bir property elemanı türemiş sınıfta val olarak bildirilemez*
 
 ```kotlin
-package org.csystem.app
-
-class B : A() {
-    override val x: Int = 0 //error:
-}
-
-abstract class A {
-    abstract var x: Int
+package org.csystem.app  
+  
+class B : A() {  
+    override val x: Int = 0 //error:  
+}  
+  
+abstract class A {  
+    abstract var x: Int  
 }
 ```
 
-**_Anahtar Notlar:_** Yukarıdaki örneklerden de anlaşılacağı gibi taban sınıftaki property elemanı read-write anlamında yükseltilebilir, ancak düşürülemez
+**_Anahtar Notlar:_** Yukarıdaki örneklerden de anlaşılacağı gibi taban sınıftaki property elemanı read-write anlamında yükseltilebilir, ancak düşürülemez.
 
->**Data classes (Veri Sınıfları):** \
->Bir sınıf data anahtar sözcüğü ile bildirildiğinde o sınıfın primary ctor elemanı olmak zorundadır. Bu ctor elemanında belirtilen parametreler ya val ya da var olarak bildirilmelidir. Yani data sınıflarının primary ctor elemanlarında property'ler bildirilmelidir. data sınıfları içerisinde bir takım metotlar otomatik olarak override edilmektedir. Örneğin toString metodu her bir property elemanı için toString metodunu çağırarak yazıyı oluşturur*
+> Kotlin'de protected bölüm Java'dakinden biraz faklıdır. Anımsanacağı gibi sınıfın protected bölümü aynı paketteki diğer sınıflar için public anlamındadır. Farklı paketteki diğer sınıflar için türetme söz konusu değilse private anlamındadır. Türetme söz konusu ise bu türemiş sınıf kendisine ait olan protected bölüme doğrudan erişebilir. Kotlin'de erişim belirleyiciler paketler düzeyinde ele alınmadığı için protected bölümün anlamı tüm diğer sınıflar aynıdır.
+
+> Yukarıda kullanılan bazı sınıfların buraya kadar olan implementasyonları:
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val device = Device(1, "test", "192.168.2.123")
-
-    println(device)
+package org.csystem.kotlin.math.geometry  
+  
+import kotlin.math.abs   
+import kotlin.math.sqrt  
+  
+class Point(val x: Double = 0.0, val y: Double = 0.0) {  
+    fun distance(a: Double = 0.0, b: Double = 0.0) = sqrt((x - a) * (x - a) + (y - b) * (y - b))  
+    fun distance(other: Point) = distance(other.x, other.y)  
+  
+    override fun equals(other: Any?) = other is Point && abs(x - other.x) < 0.00001 && abs(y - other.y) < 0.00001  
+    override fun toString() = "($x, $y)"  
 }
+```
 
+```kotlin
+package org.csystem.kotlin.math.geometry  
+  
+import kotlin.math.abs  
+import kotlin.math.sqrt  
+  
+class MutablePoint(var x: Double = 0.0, var y: Double = 0.0) {  
+    fun distance(a: Double = 0.0, b: Double = 0.0) = sqrt((x - a) * (x - a) + (y - b) * (y - b))  
+    fun distance(other: MutablePoint) = distance(other.x, other.y)  
+  
+    fun offset(dx: Double, dy: Double = dx) {  
+        x += dx  
+        y += dy  
+    }  
+	override fun equals(other: Any?) = other is MutablePoint && abs(x - other.x) < 0.00001 && abs(y - other.y) < 0.00001  
+
+    override fun toString() = "($x, $y)"    
+}
+```
+
+```kotlin
+package org.csystem.kotlin.math  
+  
+import kotlin.math.abs  
+import kotlin.math.sqrt  
+  
+class Complex(val real: Double = 0.0, val imag: Double = 0.0) {  
+    val norm: Double  
+        get() = sqrt(real * real + imag * imag)  
+    val length: Double  
+        get() = norm  
+    val conjugate: Complex  
+        get() = Complex(real, -imag)  
+  
+    override fun equals(other: Any?) = other is Complex && abs(real - other.real) < 0.00001 && abs(imag - other.imag) < 0.00001  
+    override fun toString() = "($real, $imag)"  
+}
+```
+
+```kotlin
+package org.csystem.kotlin.math  
+  
+import kotlin.math.abs  
+import kotlin.math.sqrt  
+  
+class MutableComplex(var real: Double = 0.0, var imag: Double = 0.0) {  
+    val norm: Double  
+        get() = sqrt(real * real + imag * imag)  
+    val length: Double  
+        get() = norm  
+    val conjugate: MutableComplex  
+        get() = MutableComplex(real, -imag)  
+  
+    override fun equals(other: Any?) = other is MutableComplex && abs(real - other.real) < 0.00001 && abs(imag - other.imag) < 0.00001  
+    override fun toString() = "($real, $imag)"  
+}
+```
+
+>**Data classes (Veri Sınıfları):** \
+>Veri sınıfları data anahtar sözcüğü ile bildirilir.  Bir veri sınıfının  primary ctor elemanı olmak zorundadır. Bu ctor elemanında belirtilen parametreler ya val ya da var olarak bildirilmelidir. Yani data sınıflarının primary ctor elemanlarında property'ler bildirilmelidir. data sınıfları içerisinde bir takım metotlar otomatik olarak override edilmektedir. Örneğin toString metodu her bir property elemanı için toString metodunu çağırarak yazıyı oluşturur. equals metodu karşılıklı elemanlar için == karşılaştırması yapar. Programcı isterse yin bu metotları kendisi de override edebilir.
+
+> Aşağıdaki örneği inceleyiniz
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val device = Device(1, "test", "192.168.2.123")  
+  
+    println(device)  
+}  
+  
 data class Device(val id: Int, var name: String, var ipAddress: String)
 ```
 
->*data sınıfları için yazılan metotların geneli istenirse progamcı tarafından da yazılabilir. Bu durumda artık derleyici metodu yazmaz*
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val device = Device(1, "test", "192.168.2.123")
-
-    println(device)
-}
-
-data class Device(var id: Int, var name: String, var ipAddress: String) {
-    override fun toString() = "{id : $id, name: $name, ipAddress: $ipAddress}"
+package org.csystem.app  
+  
+fun main() {  
+    val device = Device(1, "test", "192.168.2.123")  
+  
+    println(device)  
+}  
+  
+data class Device(var id: Int, var name: String, var ipAddress: String) {  
+    override fun toString() = "{id : $id, name: $name, ipAddress: $ipAddress}"  
 }
 ```
 
->*data sınıflarının equals metodu da otomatik olarak override edilir.  Bu metot primary ctor ile belirtilen property elemanlarını karşılıklı olarak `==` operatörü ile karşılaştırır*
+>Aşağıdaki örneği inceleyiniz
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val d1 = Device(1, "test", "192.168.2.123")  
+    val d2 = Device(1, "test", "192.168.2.123")  
+  
+    println(if (d1 == d2) "Aynı cihaz" else "Farklı cihazlar")  
+    println(if (d1 != d2) "Farklı cihazlar" else "Aynı cihaz")  
+}  
+  
+data class Device(var id: Int, var name: String, var ipAddress: String)
+```
+
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val d1 = Device(1, "test", "192.168.2.123")
-    val d2 = Device(1, "test", "192.168.2.123")
-
-    println(if (d1 == d2) "Aynı cihaz" else "Farklı cihazlar")
-    println(if (d1 != d2) "Farklı cihazlar" else "Aynı cihaz")
+package org.csystem.app  
+  
+fun main() {  
+    val d1 = Device(1, "mest", "192.168.2.125")  
+    val d2 = Device(1, "test", "192.168.2.123")  
+  
+    println(if (d1 == d2) "Aynı cihaz" else "Farklı cihazlar")  
+    println(if (d1 != d2) "Farklı cihazlar" else "Aynı cihaz")  
+}  
+  
+data class Device(var id: Int, var name: String, var ipAddress: String) {  
+    override fun equals(other: Any?) = other is Device && id == other.id  
 }
-
-data class Device(var id: Int, var name: String, var ipAddress: String)
 ```
 
 >*Complex sınıfı*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.Complex
-
-fun main()
-{
-    val z1 = Complex(2.3, 4.5)
-    val z2 = Complex(2.3, 4.5)
-
-    println(if (z1 == z2) "Aynı sayı" else "Farklı sayılar")
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.Complex  
+  
+fun main() {  
+    val z1 = Complex(2.3, 4.5)  
+    val z2 = Complex(2.3, 4.5)  
+  
+    println(if (z1 == z2) "Aynı sayı" else "Farklı sayılar")  
 }
 ```
 
->*Aşağıdaki örnekte otomatik olarak yazılan equals metodunun ipAddress property elemanına bakması engellenmiştir. Ayrıca otomatik olarak override edilen toString metodu için yalnızca primary ctor'da bildirilen property elemanları kullanılır. Örnekteki toString metodunu kaldırarak sonucu gözlemleyiniz*
+>Aşağıdaki örnekte otomatik olarak yazılan equals metodunun ipAddress property elemanına bakması engellenmiştir. Ayrıca otomatik olarak override edilen toString metodu için yalnızca primary ctor'da bildirilen property elemanları kullanılır. Örnekteki toString metodunu kaldırarak sonucu gözlemleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val d1 = Device(1, "test", "192.168.2.34")
-    val d2 = Device(1, "test", "192.168.2.35")
-
-    println(if (d1 == d2) "Aynı cihaz" else "Farklı cihazlar")
-    println(d1)
-    println(d2)
-}
-
-data class Device(var id: Int, var name: String) {
+package org.csystem.app  
+  
+fun main() {  
+    val d1 = Device(1, "test", "192.168.2.34")  
+    val d2 = Device(1, "test", "192.168.2.35")  
+  
+    println(if (d1 == d2) "Aynı cihaz" else "Farklı cihazlar")  
+    println(d1)  
+    println(d2)  
+}  
+  
+data class Device(var id: Int, var name: String) {  
     var ipAddress: String = ""
-
-    constructor(id: Int, name: String, ipAddress: String) : this(id, name)
-    {
-        this.ipAddress = ipAddress
-    }
-
-    override fun toString() = "Device(id=$id, name=$name, ipAddress=$ipAddress)"
+  
+    constructor(id: Int, name: String, ipAddress: String) : this(id, name) {  
+        this.ipAddress = ipAddress  
+    }  
+  
+    override fun toString() = "Device(id=$id, name=$name, ipAddress=$ipAddress)"  
 }
 ```
 
 >*Yukarıdaki sınıf aşağıdaki gibi de yazılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val d1 = Device(1, "test", "192.168.2.34")
-    val d2 = Device(1, "test", "192.168.2.35")
-
-    println(if (d1 == d2) "Aynı cihaz" else "Farklı cihazlar")
-    println(d1)
-    println(d2)
-}
-
-data class Device(var id: Int, var name: String, var ipAddress: String = "") {
-
-    override fun toString() = "Device(id=$id, name=$name)"
-    override fun equals(other: Any?) = other is Device && id == other.id && name == other.name
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val d1 = Device(1, "test", "192.168.2.34")  
+    val d2 = Device(1, "test", "192.168.2.35")  
+  
+    println(if (d1 == d2) "Aynı cihaz" else "Farklı cihazlar")  
+    println(d1)  
+    println(d2)  
+}  
+  
+data class Device(var id: Int, var name: String, var ipAddress: String = "") {  
+    override fun equals(other: Any?) = other is Device && id == other.id && name == other.name 
 }
 ```
 
 >*data sınıfları componentN fonksiyonlarına sahiptir. Bu fonksiyonlar bildirim sırasına göre primary ctor ile bildirilen property elemanlarına ilişkin değerleri döndürürler*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.Complex
-
-fun main()
-{
-    val z = Complex(3.5, 4.8)
-
-    val re = z.component1()
-    val im = z.component2()
-
-    println("$re + $im * i")
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.Complex  
+  
+fun main() {  
+    val z = Complex(3.5, 4.8)  
+  
+    val re = z.component1()  
+    val im = z.component2()  
+  
+    println("$re + $im * i")  
 }
 ```
 
->component fonksiyonlarına sahip olan sınıflar aşağıdaki gibi parçalanabilir
+>component fonksiyonlarına sahip olan sınıflar aşağıdaki gibi parçalanabilir (destructing declaration)
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.Complex
-import kotlin.random.Random
-
-fun main()
-{
-    val (re, im) = createRandomComplex(-10.0, 10.0)
-
-    println("$re + $im * i")
-}
-
-fun createRandomComplex(min: Double, bound: Double, random: Random = Random) = Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.Complex  
+import kotlin.random.Random  
+  
+fun main() {  
+    val (re, im) = createRandomComplex(-10.0, 10.0)  
+  
+    println("$re + $im * i")  
+}  
+  
+fun createRandomComplex(min: Double, bound: Double, random: Random = Random) =  
+    Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
 ```
 
 >*component fonksiyonlarına sahip olan sınıflar aşağıdaki gibi parçalanabilir*
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.Complex
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val n = readInt("Input a number:")
-
-    for ((re, im) in createRandomComplexNumbers(n, -10.0, 10.0))
-        println("$re + $im * i")
-}
-
-fun createRandomComplexNumbers(count: Int, min: Double, bound: Double, random: Random = Random) = Array<Complex>(count) { createRandomComplex(min, bound, random) }
-fun createRandomComplex(min: Double, bound: Double, random: Random = Random) = Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.Complex  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val n = readInt("Input a number:")  
+  
+    for ((re, im) in createRandomComplexNumbers(n, -10.0, 10.0))  
+        println("$re + $im * i")  
+}  
+  
+fun createRandomComplexNumbers(count: Int, min: Double, bound: Double, random: Random = Random) =  
+    Array(count) { createRandomComplex(min, bound, random) }  
+  
+fun createRandomComplex(min: Double, bound: Double, random: Random = Random) =  
+    Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
 ```
 
 >*Parçalanabilen bir sınıf için sıra önemli olarak tüm parçalar alınmayabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val (id, name, surname) = createPerson("ali", 1)
-
-    println("$name $surname, $id")
-}
-
-data class Person(val id:Int, var name:String, var surname:String, var address: String)
-
-fun createPerson(name: String, id:Int) = Person(id, name, "veli","mecidiyeköy")
+package org.csystem.app  
+  
+fun main() {  
+    val (id, name, surname) = createPerson("ali", 1)  
+  
+    println("$name $surname, $id")  
+}  
+  
+data class Person(val id: Int, var name: String, var surname: String, var address: String)  
+  
+fun createPerson(name: String, id: Int) = Person(id, name, "veli", "mecidiyeköy")
 ```
 
 
 >*Parçalama işleminde alınması istenmeyen ara parçalar için* `_` *karakteri kullanılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val (_, name, _, address,) = createPerson("ali", 1)
-
-    println("$name, $address")
-}
-
-data class Person(val id:Int, var name:String, var surname:String, var address: String)
-
-fun createPerson(name: String, id:Int) = Person(id, name, "veli","mecidiyeköy")
+package org.csystem.app  
+  
+fun main() {  
+    val (_, name, _, address) = createPerson("ali", 1)  
+  
+    println("$name, $address")  
+}  
+  
+data class Person(val id: Int, var name: String, var surname: String, var address: String)  
+  
+fun createPerson(name: String, id: Int) = Person(id, name, "veli", "mecidiyeköy")
 ```
 
 >**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
@@ -8933,113 +9114,105 @@ fun createPerson(name: String, id:Int) = Person(id, name, "veli","mecidiyeköy")
 >*Aşağıdaki örneği inceleyiniz:*
 
 ```kotlin
-package org.csystem.app.math.equation.quadratic
-
-import org.csystem.math.equation.quadratic.solveQuadraticEquation
-import org.csystem.util.console.kotlin.readDouble
-
-private fun runQuadraticEquationConsoleApp()
-{
-    while (true) {
-        val a = readDouble("Input a:")
-
-        if (a == 0.0)
-            break
-
-        val b = readDouble("Input b:")
-        val c = readDouble("Input c:")
-
-        val (x1, x2, exists) = solveQuadraticEquation(a, b, c)
-
-        if (exists)
-            println("x1 = $x1, x2 = $x2")
-        else
-            println("No real root")
-    }
-}
-
-fun main() = runQuadraticEquationConsoleApp()
-```
-
-```kotlin
-package org.csystem.math.equation.quadratic
-
-data class QuadraticEquationResultInfo(val x1: Double, val x2: Double, val exits: Boolean)
-```
-
-```kotlin
-package org.csystem.math.equation.quadratic
-
-import kotlin.math.sqrt
-
-private fun calculateDelta(a: Double, b: Double, c: Double) = b * b - 4 * a * c
-
-fun solveQuadraticEquation(a: Double, b: Double, c: Double) : QuadraticEquationResultInfo
-{
-    val delta = calculateDelta(a, b, c)
-
-    return when {
-        delta >= 0 -> {
-            val sqrtDelta = sqrt(delta)
-            QuadraticEquationResultInfo((-b + sqrtDelta) / (2 * a), (-b - sqrtDelta) / (2 * a), true)
-        }
-        else -> QuadraticEquationResultInfo(Double.NaN, Double.NaN, false)
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.equation.findQuadraticEquationRoots  
+  
+fun main() = runDemoQuadraticEquationRootsApp()  
+  
+fun runDemoQuadraticEquationRootsApp() {  
+    print("Input a:")  
+    val a = readln().toDouble()  
+  
+    print("Input b:")  
+    val b = readln().toDouble()  
+  
+    print("Input c:")  
+    val c = readln().toDouble()  
+  
+    val (x1, x2, exists) = findQuadraticEquationRoots(a, b, c)  
+  
+    if (exists)  
+        println("x1 = $x1, x2 = $x2")  
+    else  
+        println("No real root")  
 }
 ```
 
->**_Sınıf Çalışması:_** Klavyeden katsayıları girilen ikinci dereceden bir denklemin köklerini bulan programı yazınız.
+```kotlin
+package org.csystem.kotlin.math.equation  
+  
+import kotlin.math.sqrt  
+  
+data class QuadraticRootInfo(val x1: Double, val x2: Double, val exists: Boolean)  
+  
+fun findQuadraticEquationRoots(a: Double, b: Double, c: Double) : QuadraticRootInfo {  
+    fun calculateDelta() = b * b - 4 * a * c  
+    val delta = calculateDelta()  
+  
+    if (delta >= 0) {  
+        val sqrtDelta = sqrt(delta)  
+  
+        return QuadraticRootInfo((-b + sqrtDelta) / (2 * a), (-b - sqrtDelta) / (2 * a), true)  
+    }  
+  
+    return QuadraticRootInfo(Double.NaN, Double.NaN, false)  
+}
+```
 
->*Programcı data sınıfları için primary ctor'da bildirmediği property elemanları için de componentN fonksiyonlarını yazabilir. Bu fonksiyonlar aslında operatör fonksiyonu olduğundan operator anahtar sözcüğü ile bildirilmelidir. Aksi durumda fonksiyon operatör fonksiyonu olmaz. Bu durumda parçalama yapılamaz*
+
+>Programcı data sınıfları için primary ctor'da bildirmediği property elemanları için de componentN fonksiyonlarını yazabilir. Bu fonksiyonlar aslında operatör fonksiyonu olduğundan operator anahtar sözcüğü ile bildirilmelidir. Aksi durumda fonksiyon operatör fonksiyonu olmaz, dolayısıyla parçalamada kullanılamaz. Programcı var olan componetN fonksiyonlarını kendisi implemente edemez
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.Complex
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val n = readInt("Input a number:")
-
-    for ((re, im, _, conj) in createRandomComplexNumbers(n, -10.0, 10.0))
-        println("$re + $im * i -> $conj")
-}
-
-fun createRandomComplexNumbers(count: Int, min: Double, bound: Double, random: Random = Random) = Array<Complex>(count) { createRandomComplex(min, bound, random) }
-fun createRandomComplex(min: Double, bound: Double, random: Random = Random) = Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.Complex  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val n = readInt("Input a number:")  
+  
+    for ((re, im, _, conj) in createRandomComplexNumbers(n, -10.0, 10.0))  
+        println("$re + $im * i -> $conj")  
+}  
+  
+fun createRandomComplexNumbers(count: Int, min: Double, bound: Double, random: Random = Random) =  
+    Array<Complex>(count) { createRandomComplex(min, bound, random) }  
+  
+fun createRandomComplex(min: Double, bound: Double, random: Random = Random) =  
+    Complex(random.nextDouble(min, bound), random.nextDouble(min, bound))
 ```
 
 >*data sınıfları open olarak bildirilemez. Dolayısıyla türetmeye kapalıdır*
 
 ```kotlin
-package org.csystem.app
-
-class MyPerson(name: String, id: Int) : Person(name, id)
-data class Person(var name: String, var id: Int)
+package org.csystem.app  
+  
+class MyPerson(name: String, id: Int) : Person(name, id) //error  
+open data class Person(var name: String, var id: Int) //error
 ```
 
 >*data sınıfı olamayan sınıflar için de componentN fonksiyonları yazılabilir. Bu durumda yine parçalama yapılabilir*
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val (id, name) = Person(1, "ali")
-
-    print("$id, $name")
-}
-
-class Person(var id: Int, var name: String) {
-    operator fun component1() = id
-    operator fun component2() = name
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val (id, name) = Person(1, "ali")  
+  
+    print("$id, $name")  
+}  
+  
+open class Person(var id: Int, var name: String) {  
+    operator fun component1() = id  
+    operator fun component2() = name  
+    //...  
 }
 ```
 
->*data sınıflarının copy isimli metotları bulunur. copy metodu data sınıfının bir kopyasını çıkartır. copy metodu data sınıfı içersinde programcı tarafından yazılmaz.. copy metodu parametre olarak primary cotor'da bildirilen property elemanlarına ilişkin parametrelere sınıf property elemanlarını default argüman olarak geçecek şekilde yazılır.* 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+>data sınıflarının copy isimli metotları bulunur. copy metodu data sınıfının bir kopyasını (klonunu) çıkartır. copy metodu data sınıfı içersinde programcı tarafından yazılmaz.. copy metodu parametre olarak primary cotor'da bildirilen property elemanlarına ilişkin parametrelere sınıf property elemanlarını default argüman olarak geçecek şekilde yazılır. 
 
 >*Örnek bir temsili sınıf:*
  

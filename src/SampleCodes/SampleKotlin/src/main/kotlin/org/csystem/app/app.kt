@@ -1,9 +1,13 @@
 package org.csystem.app
 
-import org.csystem.kotlin.math.Complex
-
 fun main() {
-    val z = Complex(2.3, -6.7)
+    val (id, name) = Person(1, "ali")
 
-    println(z)
+    print("$id, $name")
+}
+
+open class Person(var id: Int, var name: String) {
+    operator fun component1() = id
+    operator fun component2() = name
+    //...
 }
