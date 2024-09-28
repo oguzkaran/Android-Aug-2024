@@ -9211,8 +9211,7 @@ open class Person(var id: Int, var name: String) {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
->data sınıflarının copy isimli metotları bulunur. copy metodu data sınıfının bir kopyasını (klonunu) çıkartır. copy metodu data sınıfı içersinde programcı tarafından yazılmaz.. copy metodu parametre olarak primary cotor'da bildirilen property elemanlarına ilişkin parametrelere sınıf property elemanlarını default argüman olarak geçecek şekilde yazılır. 
+>data sınıflarının copy isimli metotları bulunur. copy metodu data sınıfının bir kopyasını (klonunu) çıkartır. copy metodu data sınıfı içersinde programcı tarafından yazılamaz.. copy metodu parametre olarak primary ctor'da bildirilen property elemanlarına ilişkin parametrelere sınıf property elemanlarını default argüman olarak geçecek şekilde yazılır. 
 
 >Örnek bir temsili sınıf:
  
@@ -9223,589 +9222,558 @@ class Person(var id: Int, var name: String) {
     } 
 ```
 
->Dikkat yukarıdaki temsili sınıf bir data sınıfı olmadığı için diğer metotlar yazılmaz
+>Dikkat yukarıdaki temsili sınıf bir data sınıfı olmadığı için diğer default metotlar yazılmaz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val p = Person(1, "ali")
-    val pcopy = p.copy()
-
-    println(p == pcopy)     //true
-    println(p === pcopy)    //false
-    println(pcopy)
-
-    val pcopy2 = p.copy(name = "Veli")
-
-    println(pcopy2)
-}
-
+package org.csystem.app  
+  
+fun main() {  
+    val p = Person(1, "ali")  
+    val pcopy = p.copy()  
+  
+    println(p == pcopy)     //true  
+    println(p === pcopy)    //false  
+    println(pcopy)  
+    println("-------------------------------")  
+  
+    val pcopy2 = p.copy(name = "Veli")  
+  
+    println(pcopy)  
+    println(p)  
+    println(pcopy2)  
+}  
+  
 data class Person(var id: Int, var name: String)
 ```
 
 >Circle sınıfı data sınıfı olmamasına rağmen elemanları anlamlı olduğunda componentN fonksiyonları yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.kotlin.util.math.geometry.Circle
-
-fun main()
-{
-    val (r, a, c) = Circle(3.4)
-
-    println("r = $r, area = $a, circumference = $c")
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.Circle  
+  
+fun main() {  
+    val (r, a, c) = Circle(3.4)  
+  
+    println("r = $r, area = $a, circumference = $c")  
 }
 ```
 
 >Circle sınıfının copy metodu programcı tarafından yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.kotlin.util.math.geometry.Circle
-
-fun main()
-{
-    val c = Circle(-3.4)
-    val cc = c.copy()
-
-    println(c)
-    println(cc)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.Circle  
+  
+fun main() {  
+    val c = Circle(-3.4)  
+    val cc = c.copy()  
+  
+    println(c)  
+    println(cc)  
+    println(c == cc)  
+    println(c === cc)  
 }
+```
 
-/*----------------------------------------------------------------------
-	FILE        : Circle.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 22.05.2023
+>A sınıfının içerisinde B sınıfı türünden bir referans property elemanı (arka planda veri elemanı) tutuluyor olsun. A sınıfının bir kopyası çıkartılırken içerisindeki veri elemanın da bir kopyası çıkartırsa yani veri elemanı içerisindeki adres kopyalanırsa bu durumda nesnenin kopyası da aynı B nesnesini gösterir. Bu durumda A nesnesi için "sığ kopyalama (shallow copy)" yapılmış olur. Eğer A nesnesi kopyalanırken, gösterdiği B nesnesi de kopyalanıyor ve A'nı kopyası B'nin kopyasını gösterir duruma geliyorsa bu durumda "derin kopyalama (deep copy)" yapılmış olur. Şüphesiz bu durumda B'nin de kopyasının çıkartılabilir olması gerekir. A sınıfı bir data sınıfı ise ve B sınıfı türünden  referans da primary ctor'da bildirilmişse bu durumda kopyalama sığ olacaktır.
 
-	Circle class that represents the circle in geometry
+> Aşağıdaki örnekte shallow copy yapılmıştır
 
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
------------------------------------------------------------------------*/
-package org.csystem.math.geometry
-
-import kotlin.math.abs
-
-private const val DELTA = 0.00001
-
-open class Circle(radius: Double = 0.0) {
-    var radius: Double = abs(radius)
-        set(value) {
-            field = abs(value)
-        }
-
-    val area : Double
-        get() = Math.PI * radius * radius
-
-    val circumference : Double
-        get() = 2 * Math.PI * radius
-
-    fun copy() = Circle(radius)
-    operator fun component1() = radius
-    operator fun component2() = area
-    operator fun component3() = circumference
-    override fun hashCode() = radius.hashCode()
-    override operator fun equals(other: Any?) = other is Circle && abs(radius - other.radius) < DELTA;
-    override fun toString() = "Radius = %.2f, Area =  %.2f, Circumference = %.2f".format(radius, area, circumference)
-}
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val b = B(10)  
+    val a = A(b)  
+  
+    val ac = a.copy()  
+    println(a.b.x)  
+    println(ac.b.x)  
+    println(b.x)  
+    println("----------------------------")  
+    ++a.b.x  
+    println(a.b.x)  
+    println(ac.b.x)  
+    print(b.x)  
+}  
+  
+data class B(var x: Int)  
+data class A(var b: B)
 ```
 
 >Kotlin'de referans türlerine bile null atanamaz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var p: Person = null //error
-
-}
-
+package org.csystem.app  
+  
+fun main() {  
+    var p: Person = null //error  
+  
+}  
+  
 class Person
 ```
 
 >Kotlin'de T bir tür olmak üzere `T?` nullable type olarak adlandırılır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var s : Person? = null
-}
-
+package org.csystem.app  
+  
+fun main() {  
+    var p: Person? = null  
+}  
+  
 class Person
 ```
 
 >Kotlin'de temel türler sınıf olarak bildirildiğinden temel türlere ilişkin sınıflar türünden nullable referanslar da olabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var a : Int? = null
-
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    var a: Int? = null  
+  
+    //...  
 }
 ```
 
 >Kotlin'de nullable bir referans ile o referansa ilişkin sınıfın elemanlarına nokta operatörü erişilemez
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s : String? = "ankara"
-
-    println(s.length) //error
+package org.csystem.app  
+  
+fun main() {  
+    val s: String? = "ankara"  
+  
+    println(s.length) //error  
 }
 ```
 
 >Kotlin'de nullable bir referans ile `?.` operatörü kullanılarak elemanlara erişilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s : String? = "ankara"
-
-    println(s?.length)
+package org.csystem.app  
+  
+fun main() {  
+    val s: String? = "ankara"  
+  
+    println(s?.length)  
 }
 ```
 
->`?.` operatörünün kullanımında  hiç bir zaman NullPointerException (NPE) fırlatılmasına yol açmaz. 
->
->Aşağıdaki örneği inceleyiniz:
+>`?.` operatörünün kullanımında  hiç bir zaman NullPointerException (NPE) fırlatılmaz. Aşağıdaki örneği inceleyiniz:
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.string.kotlin.getRandomTextEN
-import kotlin.random.Random
-
-fun main()
-{
-    for (i in 1..readInt("Bir sayı giriniz:")) {
-        val s: String? = randomText()
-        val len: Int? = s?.length
-
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.string.randomTextEN  
+import kotlin.random.Random  
+  
+fun main() {  
+    for (i in 1..readInt("Bir sayı giriniz:")) {  
+        val s: String? = generateRandomText()  
+        val len: Int? = s?.length  
+  
         println(if (len != null) len else "text üretilemedi")
-    }
-}
-
-fun randomText(random: Random = Random) = if (random.nextBoolean()) getRandomTextEN(10) else null
+    }  
+}  
+  
+fun generateRandomText(random: Random = Random) = if (random.nextBoolean()) randomTextEN(10) else null
 ```
 
->***Elvis Operatörü:** Bu operatör aslında "null coalecing operatör"'dür. Ancak Elvis Presley'nin gözleri ve saçına benzetildiği için "Elvis operator" de denilmektedir
+>***Elvis Operatörü:** Bu operatör aslında "null coalecing operatör"'dür. Ancak Elvis Presley'nin gözleri ve saçına benzetildiği için "Elvis operator" de denilmektedir. Elvis operatörü kullanılarak yazılan ifadelere de "elvis expression" da denilmektedir.
+
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.string.kotlin.getRandomTextEN
-import kotlin.random.Random
-
-fun main()
-{
-    for (i in 1..readInt("Bir sayı giriniz:")) {
-        val s: String? = randomText()
-        val len: Int? = s?.length
-
-        println(len ?: "text üretilemedi")
-    }
-}
-
-fun randomText(random: Random = Random) = if (random.nextBoolean()) getRandomTextEN(10) else null
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.string.randomTextEN  
+import kotlin.random.Random  
+  
+fun main() {  
+    for (i in 1..readInt("Bir sayı giriniz:")) {  
+        val s: String? = generateRandomText()  
+        val len: Int? = s?.length  
+        println(len ?: "text üretilemedi") //println(if (len != null) len else "text üretilemedi")  
+    }  
+}  
+  
+fun generateRandomText(random: Random = Random) = if (random.nextBoolean()) randomTextEN(10) else null
 ```
 
 >Aşağıdaki örnekte `if` deyiminin doğru kısmında a'nın null olamayacağını derleyici anlamış smart cast yapılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val n = readInt("n:")
-    val min = readInt("min:")
-    val max = readInt("max:")
-    val a = randomIntArray(n, min, max)
-
-    if (a != null) {
-        println("Length of an array:${a.size}")
-        write(a)
-    }
-    else
-        println("Invalid Values")
-}
-
-fun randomIntArray(n: Int, min: Int, max: Int) : IntArray?
-{
-    if (n <= 0 || min > max)
-        return null
-
-    val result = IntArray(n)
-
-    for (i in result.indices)
-        result[i] = Random.nextInt(min, max)
-
-    return result
-}
-```
-
->Aşağıdaki örnekte yine smart cast vardır
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    for (i in 1..readInt("Input a number:")) {
-        val a: A? = createRandomA()
-        val b: B? = a as? B
-
-        if (b != null)
-            b.foo()
-        else
-            println("null pointer")
-    }
-}
-
-fun createRandomA(random: Random = Random) : A?
-{
-    return when (random.nextInt(3)) {
-        1 -> A()
-        2 -> B()
-        else -> null
-    }
-}
-open class A {
-    fun foo()
-    {
-        println("foo")
-    }
-}
-
-class B : A() {
-    val x = 10
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val n = readInt("n:")  
+    val min = readInt("min:")  
+    val max = readInt("max:")  
+    val a = randomIntArray(n, min, max)  
+  
+    if (a != null) {  
+        println("Length of an array:${a.size}")  
+        printArray(a)  
+    } else  
+        println("Invalid Values")  
+}  
+  
+fun printArray(a: IntArray) {  
+    for (v in a)  
+        print("%d ".format(v))  
+  
+    println()  
+}  
+  
+fun randomIntArray(n: Int, min: Int, max: Int): IntArray? {  
+    if (n <= 0 || min > max)  
+        return null  
+  
+    val result = IntArray(n)  
+  
+    for (i in result.indices)  
+        result[i] = Random.nextInt(min, max)  
+  
+    return result  
 }
 ```
 
-> `!!` operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir
+>`as?` operatörü nullable type'lar arası dönüştürme işlemlerinde kullanılabilir.
+
+>Aşağıdaki örnekte `as?` kullanımını ve smart cast'i gözlemleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a:Int? = null
-    val b: Double = a!!.toDouble()
-
-    println(b)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    for (i in 1..readInt("Input a number:")) {  
+        val a: A? = createRandomA()  
+        val b: B? = a as? B  
+  
+        if (b != null)  
+            b.foo()  
+        else  
+            println("no object created")  
+    }  
+}  
+  
+fun createRandomA(random: Random = Random): A? {  
+    return when (random.nextInt(3)) {  
+        1 -> A()  
+        2 -> B()  
+        else -> null  
+    }  
+}  
+  
+  
+class B : A() {  
+    val x = 10  
+}  
+  
+open class A {  
+    fun foo() {  
+        println("foo")  
+    }  
 }
 ```
 
->`!!` operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz
+> `!!` operatörü nullable type'dan ilgili normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    for (i in 1..readInt("Input a number:")) {
-        val a: A = createAByValue(Random.nextInt(1, 3))!!
-
-        a.foo()
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a: Int? = null  
+    val b: Double = a!!.toDouble()  
+  
+    println(b)  
 }
+```
 
-fun createAByValue(value: Int) : A?
-{
-    return when (value) {
-        1 -> A()
-        2 -> B()
-        else -> null
-    }
-}
-open class A {
-    fun foo()
-    {
-        println("foo")
-    }
-}
+>Aşağıdaki örnekte b referansı null değerinde olduğunda foo çağrılmaz
 
-class B : A() {
-    val x = 10
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    for (i in 1..readInt("Input a number:")) {  
+        val a: A? = createRandomA()  
+        val b: B? = a as? B  
+  
+        b?.foo() //if (b != null) b.foo() 
+    }  
+}  
+  
+fun createRandomA(random: Random = Random): A? {  
+    return when (random.nextInt(3)) {  
+        1 -> A()  
+        2 -> B()  
+        else -> null  
+    }  
+}  
+  
+  
+class B : A() {  
+    val x = 10  
+}  
+  
+open class A {  
+    fun foo() {  
+        println("foo")  
+    }  
+}
+```
+
+> Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti altına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonuçları gözlemleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    for (i in 1..readInt("Input a number:")) {  
+        val a = createAByValue(Random.nextInt(1, 3))!!  
+  
+        a.foo()  
+    }  
+}  
+  
+fun createAByValue(value: Int): A? {  
+    return when (value) {  
+        1 -> A()  
+        2 -> B()  
+        else -> null  
+    }  
+}  
+  
+open class A {  
+    fun foo() {  
+        println("foo")  
+    }  
+}  
+  
+class B : A() {  
+    val x = 10  
 }
 ```
 
 >`kotlin.io` paketi içerisinde bulunan readLine fonksiyonu String? türüne geri döner
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    print("Bir yazı giriniz:")
-    val s = readLine()!!
-
-    println(s.uppercase())
+package org.csystem.app  
+  
+fun main() {  
+    print("Bir yazı giriniz:")  
+    val s = readLine()!!  
+  
+    println(s.uppercase())  
 }
 ```
 
->`!!` operatörü nullable type'dan normal türe dönüşüm için kullanılabilir fakat NPE fırlatabilir. Aşağıdaki kodda programcı createAByValue metoduna geçilen argümanlar ile birlikte null döndürmeyeceğini garanti atına aldığından NPE hiç oluşmaz. Örneği createAByValue metoduna null döndürebilecek değerleri de arguman verip sonucu gözlemleyiniz
+>Aşağıdaki örnekte nullable referansa "optional" anlamında kullanılmıştır
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    val p1 = Person("Oğuz", lastName = "Karan")      
+    val p2 = Person("Ali", "Vefa", "Serçe")  
+  
+    println(p1)  
+    println(p2)  
+}  
+  
+data class Person(var firstName: String, var middleName: String? = null, var lastName: String) {  
+    override fun toString() = "$firstName${if (middleName == null) "" else " $middleName"} $lastName"}   
+```
 
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
+>Aşağıdaki Person sınıfı yukarıdakine benzemekle beraber tipik bazı farklılıkları söz konusudur. Yani bu iki yaklaşım tamamen aynı değildir. Şüphesiz örnek özelinde yukarıdaki yaklaşım aşağıdaki yaklaşıma göre daha iyidir
 
-fun main()
-{
-    for (i in 1..readInt("Input a number:")) {
-        val a: A = createAByValue(Random.nextInt(1, 3))!!
-
-        a.foo()
-    }
-}
-
-fun createAByValue(value: Int) : A?
-{
-    return when (value) {
-        1 -> A()
-        2 -> B()
-        else -> null
-    }
-}
-open class A {
-    fun foo()
-    {
-        println("foo")
-    }
-}
-
-class B : A() {
-    val x = 10
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val p1 = Person(firstName = "Oğuz", lastName = "Karan")  
+    val p2 = Person("Ali", "Vefa", "Serçe")  
+    val p3 = Person("Oğuz", "Karan")  
+  
+    println(p1)  
+    println(p2)  
+    println(p3)  
+}  
+  
+data class Person(var firstName: String, var lastName: String) {  
+    var middleName: String? = null  
+    constructor(firstName: String, middleName: String, lastName: String): this(firstName, lastName) {  
+        this.middleName = middleName  
+    }  
+    //...  
+    override fun toString() = "$firstName${if (middleName == null) "" else " $middleName"} $lastName"  
 }
 ```
 
->**Exception işlemleri:** Programın çalışma zamanı sırasında oluşan genel olarak hatalı durumlara exception denir. Aslında bir exception hata durumuna ilişkin olmayabilir. Bu durum nadiren karşımıza çıkar. Yani daha çok programın çalışma zamnında oluşan hatalı durumlara denir. Bu durumlara karşılık programcının kod içerisinde akışı belirlemesine "exception handling" denir. Kotlin'de Java'dan farklı olarak checked ve unchecked exception kavramları yoktur. Kotlin'de exception işlemleri şu anahtar sözcüklerle yapılır:
+##### Exception işlemleri
+> Programın çalışma zamanı sırasında oluşan, genel olarak hatalı durumlara exception denir. Aslında bir exception hata durumuna ilişkin olmayabilir. Bu durum nadiren karşımıza çıkar. Yani daha çok programın çalışma zamanında oluşan hatalı durumlara denir. Bu durumlara karşılık programcının kod içerisinde akışı belirlemesine "exception handling" denir. Kotlin'de Java'dan farklı olarak checked ve unchecked exception kavramları yoktur. Kotlin'de exception işlemleri şu anahtar sözcüklerle yapılır:
+> 	throw, try, catch, finally
+>throw deyiminin genel biçimi aşağıdaki gibidir:
+> 	`throw <referans>`
+>  Burada referans Throwable sınıfından doğrudan ya da dolaylı olarak türetilmiş bir sınıf türünden olmalıdır. Kotlin'de Throwable sınıfından Exception ve Error sınıfları türetilmiştir. Pratikte programclar Throwable sınıfından doğrudan türetme yapmazlar. Exception veya Error sınıfından doğrudan ya da dolaylı olarak türetme yaparlar. Error sınıfı ayrı bir throwable'dır. İleride ne için kullanıldığı ele alınacaktır. Java'da çok daha kritik öneme sahip olan RuntimeException isimli sınıftan da birçok sınıfı türetilmiştir. Throwable sınıfından doğrudan ya da dolaylı olarak türetilen sınıflara "exception classes" da denilmektedir.
 
-        throw, try, catch, finally
->throw deyiminin genel biçimi aşağıdaki gibidir: throw `<referans>` Burada referans Throwable sınıfından doğrudan ya da dolaylı olarak türetilmiş bir sınıf türünden olmalıdır. Kotlin'de Throwable sınıfından Exception ve Error sınıfları türetilmiştir. Pratikte programclar Throwable sınıfından doğrudan türetme yapmazlar. Exception veya Error sınıfından doğrudan ya da dolaylı olarak türetme yaparlar. Error sınıfı ayrı bir throwable'dır. İleride ne için kullanıldığı ele alınacaktır. Java'da çok daha kritik öneme sahip olan RuntimeException isimli sınıftan da birçok sınıfı türetilmiştir. Throwable sınıfından doğrudan ya da dolaylı olarak türetilen sınıflara "exception classes" da denilmektedir.
-
->Bir kodun exception bakımından ele alınabilmesi için try bloğu içerisinde olması gerekir. try bloğunu bir veya birden fazla catch bloğu ile finally bloğu veya tek başına finally bloğu takip edebilir. Kotlin'de try hem deyim hem de ifade biçiminde kullanılabilmektedir (try expression statement). Bir exception fırlatıldığında akış fırlatılan fonksiyondan bir daha geri dönmemek üzere (non-resumptive) çıkar. Akış bir try bloğu içerisinde o try bloğuna ilişkin catch bloklarına yukarıdan aşağıya sırasıyla kontrol eder. Uygun biri catch bloğu bulursa o catch bloğunu çalıştırır. Uygun catch bloğu, fırlatılan exception nesnesine ilişkin referansın atanabildiği (convert) türden catch parametresine sahip bloktur. Eğer hiç uygun blok bulamazsa, onu try bloğunu kapsayan try bloklarına ait catch bloklarına sırasıyla bakar, ilk bulduğu catch bloğunu çalıştırır. Diğer catch blokları çalıştırılmaz. Eğer hiç uygun catch bloğu bulunamazsa ve artık kapsayan hiç try bloğu kalmamışsa exception fırlatıldığı akış (thread) "abnormal" biri biçimde sonlanır. Akış try bloğundan nasıl çıkarsa çıksın finally bloğu çalıştırılır. try bloğu hiç exception fırlatılmadan sonlanırsa tüm catch bloklarına atlanaran (varsa finally bloğu da çalıştırılarak) akış yoluna devam eder.
+>Bir kodun exception bakımından ele alınabilmesi (handling) için try bloğu içerisinde olması gerekir. try bloğunu bir veya birden fazla catch bloğu ile finally bloğu veya tek başına finally bloğu takip edebilir. Kotlin'de try hem deyim hem de ifade biçiminde kullanılabilmektedir (try expression statement). Bir exception fırlatıldığında akış fırlatılan fonksiyondan bir daha geri dönmemek üzere (non-resumptive) çıkar. Akış bir try bloğu içerisinde ise o try bloğuna ilişkin catch bloklarını yukarıdan aşağıya sırasıyla kontrol eder. Uygun biri catch bloğu bulursa o catch bloğunu çalıştırır. Uygun catch bloğu, fırlatılan exception nesnesine ilişkin referansın atanabildiği (implicit converetable) türden catch parametresine sahip bloktur. Eğer hiç uygun blok bulamazsa, onun try bloğunu kapsayan try bloklarına ait catch bloklarına sırasıyla bakar, ilk bulduğu catch bloğunu çalıştırır. Diğer catch blokları çalıştırılmaz. Eğer hiç uygun catch bloğu bulunamazsa ve artık kapsayan hiç try bloğu kalmamışsa exception'ın fırlatıldığı akış (thread) "abnormal" bir biçimde sonlanır. Akış try bloğundan nasıl çıkarsa çıksın finally bloğu çalıştırılır. try bloğu hiç exception fırlatılmadan sonlanırsa tüm catch blokları atlanaran (varsa finally bloğu da çalıştırılarak) akış yoluna devam eder.
 
 >Kotlin'de checked ve unchecked exception kavramları yoktur. Aşağıdaki örneğin Java karşılığı geçersizdir
 
 ```kotlin
-package org.csystem.app
-
-import java.io.IOException
-
-fun main()
-{
-    try {
-        //...
-    }
-    catch (ex: IOException) {
-        //...
-    }
+package org.csystem.app  
+  
+import java.io.IOException  
+  
+fun main() {  
+    try {  
+        //...  
+    } catch (ex: IOException) {  
+        //...  
+    }  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz:
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readDouble
-import java.lang.NumberFormatException
-
-fun main()
-{
-    var a = 0.0; var b = 0.0
-
-    while (true) {
-        try {
-            print("Input the first number:")
-            a = readln().toDouble()
-
-            print("Input the second number:")
-            b = readln().toDouble()
-
-            println(divide(a, b))
-        }
-        catch (ex: NumberFormatException) {
-            println("Invalid values")
-        }
-        catch (ex: IllegalArgumentException) {
-            println("Reason:${ex.message}")
-        }
-        if (a == 0.0)
-            break
-    }
+package org.csystem.app  
+  
+fun main() {  
+    var a = 0.0;  
+    var b = 0.0  
+  
+    while (true) {  
+        try {  
+            print("Input the first number:")  
+            a = readln().toDouble()  
+  
+            print("Input the second number:")  
+            b = readln().toDouble()  
+  
+            println(divide(a, b))  
+        } catch (ex: NumberFormatException) {  
+            println("Invalid values")  
+        } catch (ex: IllegalArgumentException) {  
+            println("Reason:${ex.message}")  
+        }  
+        if (a == 0.0)  
+            break  
+    }  
+  
+    println("Thanks")  
+}  
+  
+fun divide(a: Double, b: Double): Double {  
+    if (b == 0.0) {  
+        val msg = when (a) {  
+            0.0 -> "Undefined"  
+            else -> "Indeterminate"  
+        }  
+  
+        throw IllegalArgumentException(msg)  
+    }  
+  
+    return a / b  
 }
+```
 
-fun divide(a: Double, b: Double) : Double
-{
-    if (b == 0.0) {
-        val msg = when (a) {
-            0.0 -> "Undefined"
-            else -> "Indeterminate"
-        }
+>Klavyeden geçerli değer okuyan fonksiyonlar. KConsoleLib kütüphanesini inceleyiniz
 
-        throw IllegalArgumentException(msg)
-    }
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val a = readInt("Birinci sayıyı giriniz:", "Hatalı giriş yaptınız:")  
+    val b = readInt("İkinci sayıyı giriniz:", "Hatalı giriş yaptınız:")  
+  
+    println(a * b)  
+}
+```
 
-    return a / b
+>Klavyeden geçerli değer okuyan fonksiyonlar. KConsoleLib kütüphanesini inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val a = readInt("Birinci sayıyı giriniz:", "Hatalı giriş yaptınız:", "\n")  
+    val b = readInt("İkinci sayıyı giriniz:", "Hatalı giriş yaptınız:", "\n")  
+  
+    println(a * b)  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz:
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var a = 0.0; var b = 0.0
-
-    try {
-        while (true) {
-            print("Input the first number:")
-            a = readln().toDouble()
-
-            print("Input the second number:")
-            b = readln().toDouble()
-
-            println(divide(a, b))
-
-            if (a == 0.0)
-                break
-        }
-    }
-    catch (ex: NumberFormatException) {
-        println("Invalid values")
-    }
-    catch (ex: IllegalArgumentException) {
-        println("Reason:${ex.message}")
-    }
-    finally {
-        println("Thanks")
-    }
-}
-
-fun divide(a: Double, b: Double) : Double
-{
-    if (b == 0.0) {
-        val msg = when (a) {
-            0.0 -> "Undefined"
-            else -> "Indeterminate"
-        }
-
-        throw IllegalArgumentException(msg)
-    }
-
-    return a / b
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readDouble  
+  
+fun main() {  
+    var a = 0.0;  
+    var b: Double  
+  
+    while (true) {  
+        try {  
+            a = readDouble("Input the first number:", "Invalid Value!...")  
+            b = readDouble("Input the second number:", "Invalid value!...")  
+  
+            println(divide(a, b))  
+        } catch (ex: IllegalArgumentException) {  
+            println("Reason:${ex.message}")  
+        }  
+        if (a == 0.0)  
+            break  
+    }  
+}  
+  
+fun divide(a: Double, b: Double): Double {  
+    if (b == 0.0) {  
+        val msg = when (a) {  
+            0.0 -> "Undefined"  
+            else -> "Indeterminate"  
+        }  
+  
+        throw IllegalArgumentException(msg)  
+    }  
+  
+    return a / b  
 }
 ```
 
->Klavyeden geçerli değer okuyan fonksiyonlar. Fonksiyonlar SampleKotlin projesi içerisindeki console.kt dosyasına bakınız
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+##### Extension (eklenti) fonksiyonlar
+>Kotlin'de bir User Defined Type'a (sınıf, interface vb.) ve temel türlere ilişkin bir sınıfa programcı fonksiyonlar ekleyebilir. Yani adeta sınıf bildirimine ekleme yapmış gibi fonksiyonlar yazılabilir. Bu tarz fonksiyonlara "extension functions" denir
 
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    val a = readInt("Birinci sayıyı giriniz:", "Hatalı giriş yaptınız:")
-    val b = readInt("İkinci sayıyı giriniz:", "Hatalı giriş yaptınız:")
-
-    println(a * b)
-}
-```
-
->Klavyeden geçerli değer okuyan fonksiyonlar. Fonksiyonlar SampleKotlin projesi içerisindeki console.kt dosyasına bakınız
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    val a = readInt("Birinci sayıyı giriniz:", "Hatalı giriş yaptınız:", "\n")
-    val b = readInt("İkinci sayıyı giriniz:", "Hatalı giriş yaptınız:", "\n")
-
-    println(a * b)
-}
-```
-
->Aşağıdaki örneği inceleyiniz:
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readDouble
-
-fun main()
-{
-    var a = 0.0; var b = 0.0
-
-    while (true) {
-        try {
-            a = readDouble("Input the first number:", "Invalid Value!...")
-            b = readDouble("Input the second number:", "Invalid value!...")
-
-            println(divide(a, b))
-        }
-
-        catch (ex: IllegalArgumentException) {
-            println("Reason:${ex.message}")
-        }
-        if (a == 0.0)
-            break
-    }
-}
-
-fun divide(a: Double, b: Double) : Double
-{
-    if (b == 0.0) {
-        val msg = when (a) {
-            0.0 -> "Undefined"
-            else -> "Indeterminate"
-        }
-
-        throw IllegalArgumentException(msg)
-    }
-
-    return a / b
-}
-```
-
->Kotlin'de bir User Defined Type'a (sınıf, interfacec vb.) ve temel türlere ilişkin bir sınıfa programcı fonksiyonlar ekleyebilir. Yani adeta sınıf bildirimine ekleme yapmış gibi fonksiyonlar yazılabilir. Bu tarz fonksiyonlara "extension functions" denir
-
->Extension (eklenti) fonksiyonlar
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app

@@ -53,7 +53,7 @@ fun secondMax(a: IntArray): Int {
     TODO("Not yet implemented!...")
 }
 
-fun secondMinx(a: IntArray): Int {
+fun secondMin(a: IntArray): Int {
     TODO("Not yet implemented!...")
 }
 

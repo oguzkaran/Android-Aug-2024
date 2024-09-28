@@ -7,11 +7,11 @@ import kotlin.math.pow
 private val onesTR = arrayOf("", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz")
 private val tensTR = arrayOf("", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan")
 
-private fun digits(a: Long, n: Int): IntArray {
-    val count = (log10(abs(a).toDouble()) / n).toInt() + 1
+private fun Long.digits(n: Int): IntArray {
+    val count = (log10(abs(this).toDouble()) / n).toInt() + 1
     val d = IntArray(count)
     val divider = 10.0.pow(n).toInt()
-    var temp = abs(a)
+    var temp = abs(this)
 
     for (i in count - 1 downTo 0) {
         d[i] = (temp % divider).toInt()
@@ -47,13 +47,41 @@ private fun numToText3DigitsTR(value: Int): String {
     return sb.toString()
 }
 
-fun countDigits(a: Long) = if (a != 0L) log10(abs(a).toDouble()).toInt() + 1 else 1
+fun Long.countDigits() = if (this != 0L) log10(abs(this).toDouble()).toInt() + 1 else 1
 
-fun digits(a: Long) = digits(a, 1)
+fun Long.digits() = this.digits(1)
 
-fun digitsInTwos(a: Long) = digits(a, 2)
+fun Long.digitsInTwos() = this.digits(2)
 
-fun digitsInThrees(a: Long) = digits(a, 3)
+fun Long.digitsInThrees() = this.digits(3)
+
+fun isPrime(a: Long): Boolean {
+    if (a <= 1)
+        return false
+
+    if (a % 2 == 0L)
+        return a == 2L
+
+    if (a % 3 == 0L)
+        return a == 3L
+
+    if (a % 5 == 0L)
+        return a == 5L
+
+    if (a % 7 == 0L)
+        return a == 7L
+
+    var i = 11
+
+    while (i * i <= a) {
+        if (a % i == 0L)
+            return false
+
+        i += 2
+    }
+
+    return true
+}
 
 fun numToTextTR(a: Long): String {
     TODO()

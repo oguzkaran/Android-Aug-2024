@@ -1,5 +1,7 @@
 package org.csystem.kotlin.util.string
 
+import kotlin.random.Random
+
 fun changeCase(s: String): String {
     val sb = StringBuilder(s)
 
@@ -64,4 +66,14 @@ fun isPangramEN(s: String) = isPangram(s.lowercase(), "abcdefghijklmnopqrstuvwxy
 
 fun isPangramTR(s: String) = isPangram(s.lowercase(), "abcçdefgğhıijklmnoöprsştuüvyz")
 
+fun randomText(count: Int, sourceText: String, random: Random = Random): String {
+    val sb = StringBuilder();
 
+    for (i in 1..count)
+        sb.append(sourceText[random.nextInt(sourceText.length)])
+
+    return sb.toString();
+}
+
+fun randomTextEN(count: Int, random: Random = Random) =
+    randomText(count, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", random)

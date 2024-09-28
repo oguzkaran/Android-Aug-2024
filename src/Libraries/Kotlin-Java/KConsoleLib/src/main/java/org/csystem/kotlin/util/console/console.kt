@@ -6,19 +6,84 @@ internal fun readWithPrompt(prompt: String): String {
     return readln()
 }
 
-fun readInt(prompt: String) = readWithPrompt(prompt).toInt()
+fun readInt(prompt: String, errorPrompt: String = "", end: String = ""): Int {
+    while (true) {
+        try {
+            return readWithPrompt("$prompt$end").toInt()
+        }
+        catch (e: NumberFormatException) {
+            print("$errorPrompt$end")
+        }
+    }
+}
 
-fun readLong(prompt: String) = readWithPrompt(prompt).toLong()
+fun readLong(prompt: String, errorPrompt: String = ""): Long {
+    while (true) {
+        try {
+            return readWithPrompt(prompt).toLong()
+        }
+        catch (e: NumberFormatException) {
+            print(errorPrompt)
+        }
+    }
+}
 
-fun readDouble(prompt: String) = readWithPrompt(prompt).toDouble()
+fun readDouble(prompt: String, errorPrompt: String = ""): Double {
+    while (true) {
+        try {
+            return readWithPrompt(prompt).toDouble()
+        }
+        catch (e: NumberFormatException) {
+            print(errorPrompt)
+        }
+    }
+}
 
-fun readShort(prompt: String) = readWithPrompt(prompt).toShort()
+fun readShort(prompt: String, errorPrompt: String = ""): Short {
+    while (true) {
+        try {
+            return readWithPrompt(prompt).toShort()
+        }
+        catch (e: NumberFormatException) {
+            print(errorPrompt)
+        }
+    }
+}
 
-fun readByte(prompt: String) = readWithPrompt(prompt).toByte()
+fun readByte(prompt: String, errorPrompt: String): Byte {
+    while (true) {
+        try {
+            return readWithPrompt(prompt).toByte()
+        }
+        catch (e: NumberFormatException) {
+            print(errorPrompt)
+        }
+    }
+}
 
-fun readFloat(prompt: String) = readWithPrompt(prompt).toFloat()
+fun readFloat(prompt: String, errorPrompt: String = ""): Float {
+    while (true) {
+        try {
+            return readWithPrompt(prompt).toFloat()
+        }
+        catch (e: NumberFormatException) {
+            print(errorPrompt)
+        }
+    }
+}
 
-fun readBoolean(prompt: String) = readWithPrompt(prompt).toBoolean()
+fun readBoolean(prompt: String, errorPrompt: String = ""): Boolean {
+    while (true) {
+        val result = readWithPrompt(prompt).toBoolean()
+
+        if (!result && !prompt.equals("false", true)) {
+            println(errorPrompt)
+            continue
+        }
+
+        return result;
+    }
+}
 
 fun readString(prompt: String) = readWithPrompt(prompt)
 

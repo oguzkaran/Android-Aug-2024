@@ -20,6 +20,8 @@ open class Circle(radius: Double = 0.0) {
     val circumference: Double
         get() = 2 * PI * radius
 
+    fun copy(radius: Double = this.radius) = Circle(radius)
+
     operator fun component1() = radius
     operator fun component2() = area
     operator fun component3() = circumference
