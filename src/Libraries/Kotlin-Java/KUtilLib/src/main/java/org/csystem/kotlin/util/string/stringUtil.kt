@@ -2,10 +2,10 @@ package org.csystem.kotlin.util.string
 
 import kotlin.random.Random
 
-fun changeCase(s: String): String {
-    val sb = StringBuilder(s)
+fun String.changeCase(): String {
+    val sb = StringBuilder(this)
 
-    for (i in s.indices)
+    for (i in this.indices)
         sb[i] = when {
             sb[i].isUpperCase() -> sb[i].lowercaseChar()
             else -> sb[i].uppercaseChar()
@@ -14,15 +14,15 @@ fun changeCase(s: String): String {
     return sb.toString()
 }
 
-fun capitalize(s: String) = if (s != "") s[0].uppercase() + s.substring(1).lowercase() else ""
+fun String.capitalize() = if (this != "") this[0].uppercase() + this.substring(1).lowercase() else ""
 
-fun countString(s1: String, s2: String, ignoreCase: Boolean = false): Int {
+fun String.countString(s: String, ignoreCase: Boolean = false): Int {
     var count = 0
 
     var index = -1
 
     while (true) {
-        index = s1.indexOf(s2, index + 1, ignoreCase)
+        index = this.indexOf(s, index + 1, ignoreCase)
 
         if (index == -1)
             break
@@ -34,37 +34,37 @@ fun countString(s1: String, s2: String, ignoreCase: Boolean = false): Int {
 }
 
 
-fun isIsogram(s: String, alphabet: String, ignoreCase: Boolean = false): Boolean {
+fun String.isIsogram(alphabet: String, ignoreCase: Boolean = false): Boolean {
     for (c in alphabet) {
-        val i = s.indexOf(c, 0, ignoreCase)
+        val i = this.indexOf(c, 0, ignoreCase)
 
         if (i == -1)
             return false
 
-        if (s.indexOf(c, i + 1, ignoreCase) != -1)
+        if (this.indexOf(c, i + 1, ignoreCase) != -1)
             return false
     }
 
     return true
 }
 
-fun isIsogramEN(s: String) = isIsogram(s.lowercase(), "abcdefghijklmnopqrstuvwxyz")
+fun String.isIsogramEN() = this.lowercase().isIsogram("abcdefghijklmnopqrstuvwxyz")
 
-fun isIsogramTR(s: String) = isIsogram(s.lowercase(), "abcçdefgğhıijklmnoöprsştuüvyz")
+fun String.isIsogramTR() = this.lowercase().isIsogram("abcçdefgğhıijklmnoöprsştuüvyz")
 
 
-fun isPangram(s: String, alphabet: String, ignoreCase: Boolean = false): Boolean {
+fun String.isPangram( alphabet: String, ignoreCase: Boolean = false): Boolean {
     for (c in alphabet)
-        if (!s.contains(c, ignoreCase))
+        if (!this.contains(c, ignoreCase))
             return false
 
     return true
 }
 
-fun isPangramEN(s: String) = isPangram(s.lowercase(), "abcdefghijklmnopqrstuvwxyz")
+fun String.isPangramEN() = this.lowercase().isPangram("abcdefghijklmnopqrstuvwxyz")
 
 
-fun isPangramTR(s: String) = isPangram(s.lowercase(), "abcçdefgğhıijklmnoöprsştuüvyz")
+fun String.isPangramTR() = this.lowercase().isPangram("abcçdefgğhıijklmnoöprsştuüvyz")
 
 fun randomText(count: Int, sourceText: String, random: Random = Random): String {
     val sb = StringBuilder();
@@ -77,3 +77,6 @@ fun randomText(count: Int, sourceText: String, random: Random = Random): String 
 
 fun randomTextEN(count: Int, random: Random = Random) =
     randomText(count, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", random)
+
+fun randomTextTR(count: Int, random: Random = Random) =
+    randomText(count, "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuüvyz", random)

@@ -9769,413 +9769,469 @@ fun divide(a: Double, b: Double): Double {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-##### Extension (eklenti) fonksiyonlar
->Kotlin'de bir User Defined Type'a (sınıf, interface vb.) ve temel türlere ilişkin bir sınıfa programcı fonksiyonlar ekleyebilir. Yani adeta sınıf bildirimine ekleme yapmış gibi fonksiyonlar yazılabilir. Bu tarz fonksiyonlara "extension functions" denir
+
+##### Extension Functions
+>Kotlin'de bir User Defined Type'a (sınıf, interface vb.) ve temel türlere ilişkin bir sınıfa programcı fonksiyonlar ekleyebilir. Yani adeta sınıf bildirimine ekleme yapmış gibi fonksiyonlar yazılabilir. Bu tarz fonksiyonlara eklenti fonksiyonlar (extension functions) denir. Eklenti fonksiyon bildiriminin genel biçimi şu şekildedir:
+>`fun <UDT ismi>.<fonksiyon ismi>([parametre listesi]) {
+>	//. . . 
+>}`
+>Burada ilgili türe ilişkin değer parametre olarak verilmez, fonksiyon içerisinde `this` anahtar sözcüğü ile erişim sağlanır
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    while (true) {
-        val a = readInt("Bir sayı giriniz:")
-
-        println(a.square())
-        if (a == 0)
-            break
-    }
-}
-
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    while (true) {  
+        val a = readInt("Bir sayı giriniz:")  
+  
+        println(a.square())  
+        if (a == 0)  
+            break  
+    }  
+}  
+  
 fun Int.square() = this * this
 ```
 
-> Extension (eklenti) fonksiyonlar
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.numeric.isPrime
-
-fun main()
-{
-    for (n in 0L..100)
-        if (n.isPrime())
-            print("$n ")
-
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.numeric.isPrime  
+  
+fun main() {  
+    for (n in 0L..100)  
+        if (n.isPrime())  
+            print("$n ")  
+  
+    println()  
 }
 ```
 
->Extension (eklenti) fonksiyonlar
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.util.array.kotlin.test
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main() = runRandomIntArrayTest()
-
-fun runRandomIntArrayTest()
-{
-    while (true) {
-        val count = readInt("Dizinin eleman sayısını giriniz:")
-
-        if (count <= 0)
-            break
-        val a = Random.randomIntArray(count, 0, 100)
-
-        a.write(2)
-    }
-
-    println("Tekrar yapıyor musunuz?")
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() = runRandomIntArrayTest()  
+  
+fun runRandomIntArrayTest() {  
+    while (true) {  
+        val count = readInt("Dizinin eleman sayısını giriniz:")  
+  
+        if (count <= 0)  
+            break  
+        val a = Random.randomArray(count, 0, 100)  
+  
+        a.printArray()  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
 }
 ```
 
->***infix fonksiyonlar:***  Fonksiyonlar infix fonksiyon olarak bildirilebilir. infix fonksiyonlar bir parametreli extension fonksiyon veya sınıfın üye fonksiyonu (metot) olmalıdır. Aşağıdaki örnek infix fonksiyonu göstermek için yazılmıştır. infix fonksiyonlar iki operandlı bir operatör biçiminde kullanılabilir. Bu durumda fonksiyon ismi operandlarının arasında kullanılabilir. Bu durumda fonksiyonun geri dönüş değeri infix olarak yazılan ifadenin değeri. Yani yine fonksiyon çağrılmış olur.
+>extension fonksiyon ile aynı imzaya sahip üye bir fonksiyon varsa çağrıda önceliklidir. Yani extension yaparak üye fonksiyon gölgelenemez (shadowing)
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    val a = readInt("Bir sayı giriniz:")
-    val b = readInt("Bir sayı daha giriniz:")
-
-    println(a add b)
-    println(a.add(b))
-    val op = Operation(a)
-
-    println(op add b)
-    println(op.add(a))
-}
-
-infix fun Int.add(b: Int) = this + b
-
-class Operation(val a: Int) {
-    infix fun add(b: Int) = a + b
+package org.csystem.app  
+  
+fun main() {  
+    val x = A()  
+  
+    x.foo()  
+}  
+  
+class A {  
+    //...  
+    fun foo() {  
+        println("member foo")  
+    }  
+}  
+  
+fun A.foo() {  
+    println("extension foo")  
 }
 ```
 
-**_Anahtar Notlar:_** Her iki parametreli fonksiyon infix fonksiyon olarak yazılmalı mıdır? Bu tamamen fonksiyona bağlıdır. Gereksiz yere infix fonksiyon yazmak veya infix olması iyi bir tasarım olan fonksiyonu infix yapmamak kötü teknik olarak düşünülebilir.
+>Aşağıdkai örneği inceleyiniz
 
->**_Operatör Fonksiyonları:_** Anımsanacağı gibi Kotlin'de hemen hemen tüm operatörler bir fonksiyona karşılık gelir. Temel türlere ilişkin çeşitli operatör fonksiyonlar tanımlanmıştır. Programcı bildirdiği bir sınıf için de anlamlı olan operatörlere ilişkin fonksiyonları yazabilir. Örneğin String sınıfının `+` operatörüne ilişkin plus fonksiyonları ile "string concat" yapılabilmektedir. Yine benzer şekilde equals fonksiyonu override edildiği için Strinbg'lerin özdeşlik karşılaştırması `==` ve `!=` operatörleri ile yapılabilmektedir. Hatta bu anlamda Java'da yazılmış olan ve equals metodunu override eden sınıflar türünden nesnelerin mantıksal eşitlik karşılıkları `==` ve `!=` operatörleri ile yapılabilmektedir.
+```kotlin
+package org.csystem.app  
+  
+import a.A  
+import x.foo as xFoo  
+import y.foo as yFoo  
+  
+fun main() {  
+    val x = A()  
+  
+    x.xFoo()  
+    x.yFoo()  
+    x.foo()  
+}
+```
 
->Programcı yazdığı sınıfa operatör fonksiyonlarını anlamsız olacak şekilde eklememelidir. Örneğin bir tarih işlemi yapan sınıf yazıldığında iki tarihin toplanması anlamsızdır ancak birbirinden çıkartılması anlamlıdır. Bu durumda programcı bu sınıf için minus operatör fonksiyonuu yazar ancak plus operatör fonksiyonunu yazmaz
+
+```kotlin
+package a  
+  
+class A {  
+    //...  
+    fun foo() {  
+        println("A.foo")  
+    }  
+}
+```
+
+```kotlin
+package x  
+  
+import a.A  
+  
+fun A.foo() {  
+    println("extension of A in x")  
+}
+```
+
+```kotlin
+package y  
+  
+import a.A  
+  
+fun A.foo() {  
+    println("extension of A in y")  
+}
+```
+
+##### Infix Functions
+> Fonksiyonlar infix fonksiyon olarak bildirilebilir. infix fonksiyonlar bir parametreli extension fonksiyon veya sınıfın bir parametreli üye fonksiyonu (metot) olmalıdır. infix fonksiyonlar iki operandlı bir operatör biçiminde kullanılabilir. Bu durumda fonksiyon ismi operandlarının arasında kullanılmalıdır. Bu durumda fonksiyonun geri dönüş değeri infix olarak yazılan ifadenin değeridir. Yani yine fonksiyon çağrılmış olur.
+
+>Aşağıdaki örneği inceleyiniz
+>
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val a = readInt("Bir sayı giriniz:")  
+    val b = readInt("Bir sayı daha giriniz:")  
+  
+    println(a add b)  
+    println(a.add(b))  
+    val op = Operation(a)  
+  
+    println(op add b)  
+    println(op.add(a))  
+}  
+  
+infix fun Int.add(b: Int) = this + b  
+  
+class Operation(val a: Int) {  
+    infix fun add(b: Int) = a + b  
+}
+```
+
+**_Anahtar Notlar:_** Her tek parametreli extension veya bir parametreli üye fonksiyon infix fonksiyon olarak yazılmalı mıdır? Bu tamamen fonksiyona bağlıdır. Gereksiz yere infix fonksiyon yazmak veya infix olması iyi bir tasarım olan fonksiyonu infix yapmamak kötü teknik olarak düşünülebilir.
+
+**_Anahtar Notlar:_** Kotlin'de iki operandlı bitsel operatörler (bitwise operators) aslında infix fonksiyonlardır.
+
+##### Operatör Fonksiyonları
+>Anımsanacağı gibi Kotlin'de hemen hemen tüm operatörler bir fonksiyona karşılık gelir. Temel türlere ilişkin çeşitli operatör fonksiyonlar tanımlanmıştır. Programcı bildirdiği bir sınıf için de anlamlı olan operatörlere ilişkin fonksiyonları yazabilir. Örneğin String sınıfının `+` operatörüne ilişkin plus fonksiyonları ile "string concatanation" yapılabilmektedir. Yine benzer şekilde equals fonksiyonu override edildiği için String'lerin özdeşlik karşılaştırması `==` ve `!=` operatörleri ile yapılabilmektedir. Hatta bu anlamda Java'da yazılmış olan ve equals metodunu override eden sınıflar türünden nesnelerin mantıksal eşitlik karşılaştırması `==` ve `!=` operatörleri ile yapılabilmektedir. Bir sınıf için operatör fonksiyonlarının yazılmasına operator overloading de denilmektedir. 
+>
+>Operatör fonksiyonlarının bir çoğu okunabilirliği/algılanabilirliği artırmak için yazılır. Programcı yazdığı sınıfa operatör fonksiyonlarını anlamsız olacak şekilde eklememelidir. Örneğin bir tarih işlemi yapan sınıf yazıldığında iki tarihin toplanması anlamsızdır ancak birbirinden çıkartılması anlamlıdır. Bu durumda programcı bu sınıf için minus operatör fonksiyonunu yazar ancak plus operatör fonksiyonunu yazmaz. Benzer şekilde String sınıfının plus operatör olduğuna, minus operatör fonksiyonu olmadığına dikkat ediniz. Çünkü iki string'i birbirinden çıkarmak anlamsızdır.
+>
+>Operatör fonksiyonu bildiriminde ilgili operatör fonksiyonu operator anahtar sözcüğü ile bildirilmelidir. 
 
 >MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    val z1 = Random.nextMutableComplex(-10, 10)
-    val z2 = Random.nextMutableComplex(-10, 10)
-    val z = z1 + z2
-
-    println(z1)
-    println(z2)
-    println(z)
-}
-```
-
->MutableComplex sınıfının operatör fonksiyonları
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    val z1 = Random.nextMutableComplex(-10, 10)
-    val value = Random.nextDouble(10.0)
-    val z = z1 + value
-
-    println(z1)
-    println("value = $value")
-    println(z)
-}
-```
-
->MutableComplex sınıfının operatör fonksiyonları
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    val z1 = Random.nextMutableComplex(-10, 10)
-    val z2 = Random.nextMutableComplex(-10, 10)
-    val z = z1 - z2
-
-    println(z1)
-    println(z2)
-    println(z)
-}
-```
-
->MutableComplex sınıfının operatör fonksiyonları
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    val z = Random.nextMutableComplex(-10, 10)
-    val value = Random.nextDouble(10.0)
-    val result = z + value
-
-    println(z)
-    println("value = $value")
-    println(result)
-}
-```
-
->MutableComplex sınıfının operatör fonksiyonları
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.math.plus
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    val z = Random.nextMutableComplex(-10, 10)
-    val value = Random.nextDouble(10.0)
-    val result = value + z
-
-    println(z)
-    println("value = $value")
-    println(result)
-}
-```
-
->MutableComplex sınıfının operatör fonksiyonları
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.math.minus
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    val z = Random.nextMutableComplex(-10, 10)
-    val value = Random.nextDouble(10.0)
-    val result = value - z
-
-    println(z)
-    println("value = $value")
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    val z1 = Random.nextMutableComplex(-10, 10)  
+    val z2 = Random.nextMutableComplex(-10, 10)  
+    val z = z1 + z2  
+  
+    println(z1)  
+    println(z2)  
+    println(z)  
 }
 ```
 
 >MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    val z = Random.nextMutableComplex(-10, 10)
-    val value = Random.nextDouble(10.0)
-    val result = z - value
-
-    println(z)
-    println("value = $value")
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+fun main() {  
+    val z1 = Random.nextMutableComplex(-10, 10)  
+    val value = Random.nextDouble(10.0)  
+    val z = z1 + value  
+  
+    println(z1)  
+    println("value = $value")  
+    println(z)  
 }
 ```
 
 >MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    val z = Random.nextMutableComplex(-10, 10)
-    val result = -z
-
-    println(z)
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.plus  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+fun main() {  
+    val z1 = Random.nextMutableComplex(-10, 10)  
+    val value = Random.nextDouble(10.0)  
+    val z = value + z1  
+  
+    println(z1)  
+    println("value = $value")  
+    println(z)  
 }
 ```
 
->`++` (inc) ve `--`(dec) operatör fonksiyonları yazılırken nesne için artırma/azaltma yapılmamalıdır. Artırılmış/azaltılmış yeni bir nesnenin referansına dönülmelidir. Derleyici uygun kodları üreterek bu operatörlerin prefix ve postfix olarak doğru kullanılmalarını sağlar
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    var z = Random.nextMutableComplex(-10, 10)
-
-    println(z)
-    val result = ++z
-
-    println(z)
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+fun main() {  
+    val z1 = Random.nextMutableComplex(-10, 10)  
+    val z2 = Random.nextMutableComplex(-10, 10)  
+    val z = z1 - z2  
+  
+    println(z1)  
+    println(z2)  
+    println(z)  
 }
 ```
 
+>MutableComplex sınıfının operatör fonksiyonları
+
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    var z = Random.nextMutableComplex(-10, 10)
-
-    println(z)
-    val result = z++
-
-    println(z)
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+fun main() {  
+    val z = Random.nextMutableComplex(-10, 10)  
+    val value = Random.nextDouble(10.0)  
+    val result = z - value  
+  
+    println(z)  
+    println("value = $value")  
+    println(result)  
 }
 ```
 
+>MutableComplex sınıfının operatör fonksiyonları
+
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    var z = Random.nextMutableComplex(-10, 10)
-
-    println(z)
-    val result = --z
-
-    println(z)
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.minus  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+fun main() {  
+    val z = Random.nextMutableComplex(-10, 10)  
+    val value = Random.nextDouble(10.0)  
+    val result = value - z  
+  
+    println(z)  
+    println("value = $value")  
+    println(result)  
 }
 ```
 
+>MutableComplex sınıfının operatör fonksiyonları
+
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    var z = Random.nextMutableComplex(-10, 10)
-
-    println(z)
-    val result = z--
-
-    println(z)
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    val z = Random.nextMutableComplex(-10, 10)  
+    val result = -z  
+  
+    println(z)  
+    println(result)  
+    println(z === result)  
 }
 ```
 
->Anımsanacağı gibi data sınıflarının equals operatör fonksiyonu primary ctor'da bildirilmiş karşılıklı property elemanları için `==` operatörü ile karşılaştırma yapacak şekilde override edilmiştir
+
+>MutableComplex sınıfının operatör fonksiyonları
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    val z = Random.nextMutableComplex(-10, 10)  
+    val result = +z  
+  
+    println(z)  
+    println(result)  
+    println(z === result)  
+}
+```
 
-import org.csystem.kotlin.util.math.MutableComplex
+>`++ (inc) / --(dec)` operatör fonksiyonları yazılırken nesne için artırma/azaltma yapılmamalıdır. Artırılmış/azaltılmış yeni bir nesnenin referansına dönülmelidir. Derleyici uygun kodları üreterek bu operatörlerin prefix ve postfix olarak doğru değer üretmelerini ve yan etkiyi sağlar
 
-fun main()
-{
-    val z1 = MutableComplex(3.0, 4.0)
-    val z2 = MutableComplex(3.0, 4.0)
+> Aşağıdaki örneği inceleyiniz
 
-    println(if (z1 == z2) "Aynı sayı" else "Farklı sayılar")
-    println(if (z1 != z2) "Farklı sayılar" else "Aynı sayı")
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+fun main() {  
+    var z = Random.nextMutableComplex(-10, 10)  
+  
+    println(z)  
+    val result = ++z  
+  
+    println(z)  
+    println(result)  
+    println(z === result)  
+}
+```
+
+> Aşağıdaki örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+fun main() {  
+    var z = Random.nextMutableComplex(-10, 10)  
+  
+    println(z)  
+    val result = --z  
+  
+    println(z)  
+    println(result)  
+    println(z === result)  
+}
+```
+
+> Aşağıdaki örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+fun main() {  
+    var z = Random.nextMutableComplex(-10, 10)  
+  
+    println(z)  
+    val result = z--  
+  
+    println(z)  
+    println(result)  
+    println(z === result)  
+}
+```
+
+>MutableComplex sınıfının equals fonksiyonu
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.MutableComplex  
+  
+fun main() {  
+    val z1 = MutableComplex(3.0, 4.0)  
+    val z2 = MutableComplex(3.0, 4.0)  
+  
+    println(if (z1 == z2) "Aynı sayı" else "Farklı sayılar")  
+    println(if (z1 != z2) "Farklı sayılar" else "Aynı sayı")  
 }
 ```
 
 >Aşağıdaki örnekte MutableComplex sınıfında olmayan (anlamlı da olmayan) karşılaştırma operatörlerine ilişkin compareTo fonksiyonu extension olarak "müşteri kod (client code)" tarafından yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.MutableComplex
-import kotlin.math.abs
-
-const val delta = 0.00001
-
-operator fun MutableComplex.compareTo(other: MutableComplex) : Int
-{
-    val diff = norm - other.norm
-
-    return when {
-        abs(diff) < delta -> 0
-        diff > 0 -> 1
-        else -> -1
-    }
-}
-
-fun main()
-{
-    val z1 = MutableComplex(3.0, 4.0)
-    val z2 = MutableComplex(3.0, 4.0)
-
-    println(z1 <= z2)
-    println(z1 < z2)
-    println(z1 >= z2)
-    println(z1 > z2)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.MutableComplex  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+operator fun MutableComplex.compareTo(other: MutableComplex) = this.norm.compareTo(other.norm)  
+  
+fun main() {  
+    val z1 = Random.nextMutableComplex(-10, 10)  
+    val z2 = Random.nextMutableComplex(-10, 10)  
+  
+    println(z1)  
+    println(z2)  
+    println(z1 > z2)  
+    println(z1 >= z2)  
+    println(z1 < z2)  
+    println(z1 <= z2)  
 }
 ```
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >Kotlin'de fonksiyon çağırma operatör fonksiyonu overload edilebilir. Bu durumda ilgili sınıf türünden referans ismi fonksiyon ismi gibi kullanılabilir. Bu operatör fonksiyonunun ismi invoke'dur. Fonksiyon çağırma operatör fonksiyonu overload edilmiş sınıflara programlamada "functor/function object" de denilmektedir. Bu operatör fonksiyonu bazı durumlarda callback/callable alan fonksiyonlarda (high order functions (HOF)) kullanılabilmektedir. HOF'lar ileride ele alınacaktır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.MutableComplex
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-operator fun MutableComplex.invoke() = println(this)
-
-fun main()
-{
-    val z = Random.nextMutableComplex(-10, 10)
-
-    z()
-    println(z(2.3, 4.5))
-    z()
-    println(z(8.9))
-    z()
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+  
+import org.csystem.kotlin.math.MutableComplex  
+import kotlin.random.Random  
+  
+operator fun MutableComplex.invoke() = println(this)  
+  
+fun main() {  
+    val z = Random.nextMutableComplex(-10, 10)  
+  
+    z()  
+    println(z(2.3, 4.5))  
+    z()  
+    println(z(8.9))  
+    z()  
 }
 ```
 
@@ -10218,100 +10274,6 @@ fun main()
     --z[1]
     println("${z[1]}")
     println(z)
-}
-```
-
-```kotlin
-/*----------------------------------------------------------------------
-	FILE        : MutableComplex.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 29.05.2023
-
-	MutableComplexclass that represents the complex number
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
------------------------------------------------------------------------*/
-package org.csystem.math
-
-import java.lang.IndexOutOfBoundsException
-import kotlin.math.sqrt
-
-private fun plus(a1: Double, b1: Double, a2: Double, b2: Double) = MutableComplex(a1 + a2, b1 + b2)
-private fun minus(a1: Double, b1: Double, a2: Double, b2: Double) = plus(a1, b1, -a2, -b2)
-private fun times(a1: Double, b1: Double, a2: Double, b2: Double) : MutableComplex
-{
-    TODO()
-}
-
-private fun div(a1: Double, b1: Double, a2: Double, b2: Double) : MutableComplex
-{
-    TODO()
-}
-
-operator fun Double.plus(z: MutableComplex) = plus(this, 0.0, z.real, z.imag)
-operator fun Double.minus(z: MutableComplex) = minus(this, 0.0, z.real, z.imag)
-operator fun Double.times(z: MutableComplex) = times(this, 0.0, z.real, z.imag)
-operator fun Double.div(z: MutableComplex) = div(this, 0.0, z.real, z.imag)
-
-data class MutableComplex(var real: Double = 0.0, var imag: Double = 0.0) {
-    val norm: Double
-        get() = sqrt(real * real + imag * imag)
-
-    val length: Double
-        get() = norm
-
-    val conjugate: MutableComplex
-        get() = MutableComplex(real, -imag)
-
-    operator fun component3() = norm
-    operator fun component4() = conjugate
-
-    operator fun plus(other: MutableComplex) = plus(real, imag, other.real, other.imag)
-    operator fun plus(value: Double) = plus(real, imag, value, 0.0)
-
-    operator fun minus(other: MutableComplex) = minus(real, imag, other.real, other.imag)
-    operator fun minus(value: Double) = minus(real, imag, value, 0.0)
-
-    operator fun times(other: MutableComplex) = times(real, imag, other.real, other.imag)
-    operator fun times(value: Double) = times(real, imag, value, 0.0)
-
-    operator fun div(other: MutableComplex) = div(real, imag, other.real, other.imag)
-    operator fun div(value: Double) = div(real, imag, value, 0.0)
-
-    operator fun unaryMinus() = MutableComplex(-real, -imag)
-    operator fun unaryPlus() = copy()
-    operator fun inc() = MutableComplex(real + 1, imag)
-    operator fun dec() = MutableComplex(real - 1, imag)
-
-    operator fun invoke(real: Double, imag: Double = 0.0) : MutableComplex
-    {
-        val old = MutableComplex(this.real, this.imag)
-        this.real = real
-        this.imag = imag
-
-        return old
-    }
-
-    operator fun get(index: Int) : Double
-    {
-        if (index < 0 || index > 1)
-            throw IndexOutOfBoundsException("index must be zero or one")
-
-        return if (index == 0) real else imag
-    }
-
-    operator fun set(index: Int, value: Double)
-    {
-        if (index < 0 || index > 1)
-            throw IndexOutOfBoundsException("index must be zero or one")
-        if (index == 0)
-            real = value
-        else
-            imag = value
-    }
-
-    override fun toString() = "(%.2f, %.2f)".format(real, imag)
 }
 ```
 
@@ -10360,7 +10322,7 @@ data class Vector3(val x: Float, val y: Float, val z: Float) {
 }
 ```
 
->***Interface:*** \
+##### Interface
 >Interface bildirimi yine bir tür bildirimidir (user defined type). interface nesne özelliği göstermez. interface içerisinde gövdesiz yazılan metotlar abstract olarak bildirilmiş olur. Bu anlamda interface'ler abstract sınıflara benzerler. Bir interface'den bir sınıf türetilmezi, bir sınıf bir interface'i destekler (implementation). Interface'ler ile "multiple inheritance" da belirli ölçüde desteklenmiş olur
 
 >interface bildirimi interface anahtar sözcüğü ile yapılır. interface ismini okunabilirlik açısından I ile başlatacağız. Kotlin'deki standart interface'lerde bu convention'a uyulmamıştır
@@ -10828,7 +10790,7 @@ fun runReaderApplication()
 }
 ```
 
->***Generics:***   
+##### Generics
 >Kotlin'de ve Java'da generics derleme zamanında çok biçimli kodlar yazmak için kullanılır. Bu anlamda derleme zamanında türden bağımsız kod yazılabilmektedir. Java ve Kotlin'de generic kavramı temelde aynı amaçta olsa da birçok farklılığı da buklunmaktadır.Burada Kotlin'de generic kavramı ele alınacaktır. Generic kavramı genel olarak generic türler ve generic fonksiyonlar olmak üzere iki gruba ayrılabilir
 
 >Generic sınıflar
@@ -11429,7 +11391,7 @@ class A {
 }
 ```
 
-**Nested classes:** 
+##### Nested classes
 
 >Nested sınıf türünden nesne sınıf dışında kapsayan sınıf ve nokta operatörü ile yaratılabilir
 
@@ -11499,6 +11461,7 @@ class A {
 }
 ```
 
+##### Inner Classes
 >Inner sınıf türünden bir nesne sınıf dışında kapsayan sınıf türünden referans ile yaratılabilir
 
 ```kotlin
@@ -11637,6 +11600,8 @@ class A {
 }
 ```
 
+##### Anonymous Classes
+
 >Anonim sınıflar object anahtar sözcüğü ile bildirilebilir. Anonim sınıf eğer bir interface ile klullanılırsa o interface'i destekleyen, bir sınıf ile kullanılırsa o sınıftan türetilmiş olan bir sınıf bildirimi yapmak aynı zamanda o sınıf türünden bir nesne yaratıp o nesnenin referansını elde etmek anlamındadır. Bildirilen sınıfa isim derleyici tarafından verilir
 
 ```kotlin
@@ -11768,6 +11733,8 @@ interface IX {
     fun foo()
 }
 ```
+
+#### Object Declaration
 
 >object bildirimi (object declaration). object olarak bildirilmiş olan türe ilişkin bir tane nesne yaratılmış olur ve ismi o nesnenin referansı olarak kullanılır. Kullanım şekli itibariyla static elemanları varmış gibi erişilir
 
@@ -12294,9 +12261,10 @@ object Console {
 }
 ```
 
+##### Type Aliases
 >Kotlin'de bir türe eş isim (alias) verilebilmektedir. Bu işlem typealias anahtar sözcüğü ile yapılır. Genel olarak isimleri daha basit hale getirmek ve/veya isim çakışmalarını engellemek amaçlı kullanılmaktadır. Kotlin'de JavaSE ile aynı isimdeki bazı sınıflar kolay kullanım açısından typealias yapılmıştır
 
->type aliases
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -12320,7 +12288,7 @@ fun main()
 }
 ```
 
->type aliases
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -12345,7 +12313,7 @@ fun main()
 }
 ```
 
->type aliases
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -12488,8 +12456,10 @@ fun createMatrix(m: Int, n: Int) = Matrix(m) {IntArray(n)}
 ```
 
 >Aşağı seviyede fonksiyonların da adresleri vardır. Aslında bir fonksiyon çağrısı o fonksiyonun kodlarının bulunduğu adrese gidip çalıştırılmasıdır. Bazı programlama dillerinde fonksiyonların adreslerini tutan türler bulunur. Bu türlere genel olarak "function type" denir.
->
->**_Function tür bildirimi:_**
+
+
+#### Function Types:
+
 >
 >`([parametre listesi]) -> <Geri dönüş değeri türü>`
 
@@ -12507,7 +12477,7 @@ fun main()
 }
 ```
 
->Kotlin'de bir fonksiyonun ismi fonksiyonun yapısına (yani parametri yappı ve geri dönüş değeri) uygun bir function türüne atanabilir. Fonksiyon türü bir referans türüdür. Fonksiyon türünden bir referans ile fonksiyon çağırma operatörü kullanıldığında, referansı (adresi) tutulan fonksiyon çağrılmış olur. Bu anlamda bakıldığında aslında fonksiyon ismi o fonklsiyonun adresi (referansı) gibi düşünülebilir.
+>Kotlin'de bir fonksiyonun ismi fonksiyonun yapısına (yani parametri yapı ve geri dönüş değeri) uygun bir function türüne atanabilir. Fonksiyon türü bir referans türüdür. Fonksiyon türünden bir referans ile fonksiyon çağırma operatörü kullanıldığında, referansı (adresi) tutulan fonksiyon çağrılmış olur. Bu anlamda bakıldığında aslında fonksiyon ismi o fonklsiyonun adresi (referansı) gibi düşünülebilir.
 >
 >Bir fonksiyon türüne global bir fonksiyon ismi method reference operatörü `::` ile değer olarak verilebilir. Aşağıdaki örnek durumu göstermek için yazılmıştır
 
@@ -12565,7 +12535,7 @@ object Operation {
 }
 ```
 
->Kotlin'de fonksiyonlar ismine Lambda function ya da function literal bir sentaks ile de bildirilebilir. Lambda function bir fonksiyon türündendir. Yazılışına göre tür derleyici tarafından tespit edilir ve istenirse uygun bir function türünden referansa atanabilir. Lambda fonksiyonlarda son yazılan ifadenin değerine geri dönülmiş olur. Ya da başka bir deyişle geri dönüş değeri olan bir fonksiyon türü için lambda fonksiyon yazıldığında son yazılan ifade adeta return deyimi ile yazılmış olur
+>Kotlin'de fonksiyonlar ismine **Lambda function** ya da **function literal** denilen bir sentaks ile de bildirilebilir. Lambda function bir fonksiyon türündendir. Yazılışına göre tür derleyici tarafından tespit edilir ve istenirse uygun bir function türünden referansa atanabilir. Lambda fonksiyonlarda son yazılan ifadenin değerine geri dönülmiş olur. Ya da başka bir deyişle geri dönüş değeri olan bir fonksiyon türü için lambda fonksiyon yazıldığında son yazılan ifade adeta return deyimi ile yazılmış olur
 >
 >Aşağıdaki örnekte bir function literal yazılmış ve fonksiyon çağırma operatörü uygulanmıştır. Bu durumda derleyici Kotlin anlamında aşağıdaki gibi bir fonksiyon yazar:
 >

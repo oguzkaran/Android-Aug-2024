@@ -21,12 +21,12 @@ private fun Long.digits(n: Int): IntArray {
     return d
 }
 
-private fun numToText3DigitsTR(value: Int): String {
-    if (value == 0)
+private fun Int.numToText3DigitsTR(): String {
+    if (this == 0)
         return "sıfır"
 
-    val sb = if (value > 0) StringBuilder() else java.lang.StringBuilder("eksi")
-    val temp = abs(value)
+    val sb = if (this > 0) StringBuilder() else java.lang.StringBuilder("eksi")
+    val temp = abs(this)
     val a = temp / 100
     val b = temp / 10 % 10
     val c = temp % 10
@@ -55,26 +55,26 @@ fun Long.digitsInTwos() = this.digits(2)
 
 fun Long.digitsInThrees() = this.digits(3)
 
-fun isPrime(a: Long): Boolean {
-    if (a <= 1)
+fun Long.isPrime(): Boolean {
+    if (this <= 1)
         return false
 
-    if (a % 2 == 0L)
-        return a == 2L
+    if (this % 2 == 0L)
+        return this == 2L
 
-    if (a % 3 == 0L)
-        return a == 3L
+    if (this % 3 == 0L)
+        return this == 3L
 
-    if (a % 5 == 0L)
-        return a == 5L
+    if (this % 5 == 0L)
+        return this == 5L
 
-    if (a % 7 == 0L)
-        return a == 7L
+    if (this % 7 == 0L)
+        return this == 7L
 
     var i = 11
 
-    while (i * i <= a) {
-        if (a % i == 0L)
+    while (i * i <= this) {
+        if (this % i == 0L)
             return false
 
         i += 2
@@ -83,6 +83,6 @@ fun isPrime(a: Long): Boolean {
     return true
 }
 
-fun numToTextTR(a: Long): String {
+fun Long.numToTextTR(): String {
     TODO()
 }

@@ -1,34 +1,18 @@
 package org.csystem.app
 
-import org.csystem.kotlin.util.console.readDouble
+import org.csystem.kotlin.math.random.nextMutableComplex
+
+import org.csystem.kotlin.math.MutableComplex
+import kotlin.random.Random
+
+operator fun MutableComplex.invoke() = println(this)
 
 fun main() {
-    var a = 0.0;
-    var b: Double
+    val z = Random.nextMutableComplex(-10, 10)
 
-    while (true) {
-        try {
-            a = readDouble("Input the first number:", "Invalid Value!...")
-            b = readDouble("Input the second number:", "Invalid value!...")
-
-            println(divide(a, b))
-        } catch (ex: IllegalArgumentException) {
-            println("Reason:${ex.message}")
-        }
-        if (a == 0.0)
-            break
-    }
-}
-
-fun divide(a: Double, b: Double): Double {
-    if (b == 0.0) {
-        val msg = when (a) {
-            0.0 -> "Undefined"
-            else -> "Indeterminate"
-        }
-
-        throw IllegalArgumentException(msg)
-    }
-
-    return a / b
+    z()
+    println(z(2.3, 4.5))
+    z()
+    println(z(8.9))
+    z()
 }
