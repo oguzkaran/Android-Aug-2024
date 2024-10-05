@@ -1,22 +1,36 @@
 package org.csystem.app.demo.java;
 
-abstract class A {
-    abstract int getX();
-    abstract void setX(int value);
-    //...
-}
-
-class B extends A {
-    private int m_x;
-
+class A extends B implements IX, IY {
     @Override
-    public int getX()
+    public void foo()
     {
-        return m_x;
+        System.out.println("A.foo");
+        }
+}
+class B {
+    public void bar()
+    {
+        System.out.println("B.bar");
     }
 
-    public void setX(int value)
+    public void tar()
     {
-        m_x = Math.abs(value);
+        System.out.println("B.tar");
+    }
+}
+
+interface IY {
+    void foo();
+    default void bar()
+    {
+        System.out.println("IY.bar");
+    }
+}
+
+interface IX {
+    void foo();
+    default void bar()
+    {
+        System.out.println("IX.bar");
     }
 }

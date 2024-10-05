@@ -7,8 +7,11 @@ package org.csystem.kotlin.math
 import kotlin.math.absoluteValue
 import kotlin.math.sqrt
 
-private fun add(re1: Double = 0.0, im1: Double = 0.0, re2: Double = 0.0, im2: Double = 0.0) = MutableComplex(re1 + re2, im1 + im2)
-private fun subtract(re1: Double = 0.0, im1: Double = 0.0, re2: Double = 0.0, im2: Double = 0.0) = add(re1, im1, -re2, -im2)
+private fun add(re1: Double = 0.0, im1: Double = 0.0, re2: Double = 0.0, im2: Double = 0.0) =
+    MutableComplex(re1 + re2, im1 + im2)
+
+private fun subtract(re1: Double = 0.0, im1: Double = 0.0, re2: Double = 0.0, im2: Double = 0.0) =
+    add(re1, im1, -re2, -im2)
 
 operator fun Double.plus(z: MutableComplex) = add(re1 = this, re2 = z.real, im2 = z.imag)
 operator fun Double.minus(z: MutableComplex) = subtract(re1 = this, re2 = z.real, im2 = z.imag)
@@ -20,6 +23,9 @@ data class MutableComplex(var real: Double = 0.0, var imag: Double = 0.0) {
         get() = norm
     val conjugate: MutableComplex
         get() = MutableComplex(real, -imag)
+
+    operator fun component3() = norm
+    operator fun component4() = conjugate
 
     operator fun plus(other: MutableComplex) = add(real, imag, other.real, other.imag)
     operator fun plus(value: Double) = add(real, imag, value)
@@ -41,6 +47,23 @@ data class MutableComplex(var real: Double = 0.0, var imag: Double = 0.0) {
         this.imag = imag
 
         return this
+    }
+
+    operator fun get(i: Int): Double {
+        if (i < 0 || i > 1)
+            throw IndexOutOfBoundsException("Index must 0(zero) or 1(one)")
+
+        return if (i == 0) real else imag
+    }
+
+    operator fun set(i: Int, value: Double) {
+        if (i < 0 || i > 1)
+            throw IndexOutOfBoundsException("Index must 0(zero) or 1(one)")
+
+        if (i == 0)
+            real = value
+        else
+            imag = value
     }
 
     override operator fun equals(other: Any?) =

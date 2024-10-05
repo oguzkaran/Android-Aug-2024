@@ -66,17 +66,17 @@ fun String.isPangramEN() = this.lowercase().isPangram("abcdefghijklmnopqrstuvwxy
 
 fun String.isPangramTR() = this.lowercase().isPangram("abcçdefgğhıijklmnoöprsştuüvyz")
 
-fun randomText(count: Int, sourceText: String, random: Random = Random): String {
+fun Random.randomText(count: Int, sourceText: String): String {
     val sb = StringBuilder();
 
     for (i in 1..count)
-        sb.append(sourceText[random.nextInt(sourceText.length)])
+        sb.append(sourceText[this.nextInt(sourceText.length)])
 
     return sb.toString();
 }
 
-fun randomTextEN(count: Int, random: Random = Random) =
-    randomText(count, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", random)
+fun Random.randomTextEN(count: Int) =
+    randomText(count, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
 
-fun randomTextTR(count: Int, random: Random = Random) =
-    randomText(count, "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuüvyz", random)
+fun Random.randomTextTR(count: Int, random: Random = Random) =
+    randomText(count, "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuüvyz")

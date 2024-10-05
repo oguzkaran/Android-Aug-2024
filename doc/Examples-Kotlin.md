@@ -6471,17 +6471,6 @@ fun runIsIsogramENTest() {
 }
 ```
 
-##### Encapsulation, Data/Information Hiding
-
->NYPT'de özellikle veri elemanlarının gizlenmesine encapsulation denilmektedir. Bu anlamda bu kavrama veri/bilgi gizleme (data/information hiding) de denilmektedir. Bu kavram aslında gerçek hayattan programlamaya aktarılmıştır. Örneğin, televizyon izleyen bir kişi televizyonun kumandası ile nasıl haberleştiğini bilmek zorunda değildir. Yani  bunu bilmesi ya da bilmeemsi izlemesini etkilemez. Bu durumda aslında bu kısım televizyonu izleyenden gizlenmiştir.  Çünkü gerek yoktur. Ancak televiyonu üreten açısından bunun bilinmesi gerekir.  
->
->Bir sınıf için iki bakış açısı söz konusudur: Sınıfı yazan bakış açısı, sınıfı kullanan bakış açısı.  Sınıfı yazan, sınıfa ilişkin tüm detayları ve sınıfı kullanan bakış açısını da bilmelidir. Sınıfı kullanan ise içsel detayları bilmek zorunda değildir. Bu anlamda sınıfı yazana hizmet veren anlamında "server codes", kullanana  ise hizmet alan anlamında "client codes" da denilmektedir. Aslında bu kavramlar geneldir. Sınıfların elemanlarının  gizlenmesi ile NYPT'de kullanılmaktadır.  
->
-  Bir sınıfın veri elemanı gizlendiğinde, dışarıdan değerinin değiştirilmesi ve/veya değerinin elde edilmesi gerekebilir.  Bunun için veri elemanına erişen public metotların yazılması gerekir. Gizlenmiş bir veri elemanının değerini değiştirmek  için yazılan public metoda set metodu (setter/mutator) denir ve bir convention olarak (genelde) set öneki ile başlatılır.  Gizlenmiş bir veri elemanının değerini elde etmek için yazılan public metoda get metodu (getter/accessor) denir ve  bir convention olarak (genelde) get öneki ile başlatılır. Veri elemanı boolean türdense tipik olarak getter, is ile başlatılır. Gizlenenen bir eleman için mutator ve accessor metotlarının yazılıp yazılmayacağı sınıfa yani domain'e  bağlıdır. Bazı veri elemanları için hiç biri yazılmayabilirken, bazı veri elemanları için bir tanesi, bazı veri  elemanları için ise ikisi de yazılabilir.
->
-  Bir sınıfın public ve protected bölümleri dökumante edilir. private ve no-modifier bölümleri dökumante edilmez. Bir sınıfın bir elemanının erişim belirleyicisi (yani aslında sınıfın bölümleri) diğer sınıflar için anlamldır. Sınıf  içerisinden erişimde elemanın hengi bölümde olduğunun önemi yoktur.
-
-
 >**Kotlin'de erişim belirleyiciler iki kategoriye ayrılırlar:**
 >
 >**Global düzeyde erişim belirleyiciler:**
@@ -6560,12 +6549,26 @@ class Time {
 }
 ```
 
+##### Encapsulation, Data/Information Hiding
+
+>NYPT'de özellikle veri elemanlarının gizlenmesine **encapsulation** denilmektedir. Bu anlamda bu kavrama **veri/bilgi gizleme (data/information hiding**) de denilmektedir. Bu kavram aslında gerçek hayattan programlamaya aktarılmıştır. Örneğin, televizyon izleyen bir kişi televizyonun, kumandası ile nasıl haberleştiğini bilmek zorunda değildir. Yani  bunu bilmesi ya da bilmemesi izlemesini etkilemez. Bu durumda aslında kumanda ile haberleşme kısmı televizyonu izleyenden gizlenmiştir.  Çünkü gerek yoktur. Ancak televizyonu üreten açısından bunun bilinmesi gerekir.  
+>
+>Bir sınıf için iki bakış açısı söz konusudur: **yazan bakış açısı, kullanan bakış açısı.**  Sınıfı yazan, sınıfa ilişkin tüm detayları ve sınıfı kullanan bakış açısını da bilmelidir. Sınıfı kullanan ise içsel detayları bilmek zorunda değildir. Bu anlamda sınıfın bildirimine hizmet veren anlamında **server codes**, kullanan kodlara  ise hizmet alan anlamında **client codes** da denilmektedir. Aslında bu kavramlar geneldir, sınıf elemanlarının  gizlenmesi ile NYPT'de kullanılmaktadır.  
+>
+  Bir sınıfın veri elemanı gizlendiğinde, dışarıdan değerinin değiştirilmesi ve/veya değerinin elde edilmesi gerekebilir.  Bunun için veri elemanına erişen public metotların yazılması gerekir. Gizlenmiş bir veri elemanının değerini değiştirmek  için yazılan public metoda **set metodu (setter/mutator)** denir ve bir convention olarak (genelde) **set** öneki ile başlatılır.  Gizlenmiş bir veri elemanının değerini elde etmek için yazılan public metoda **get metodu (getter/accessor)** denir ve  bir convention olarak (genelde) **get** öneki ile başlatılır. Veri elemanı boolean türdense tipik olarak getter, **is** ile başlatılır. Gizlenenen bir eleman için mutator ve accessor metotlarının yazılıp yazılmayacağı sınıfa yani domain'e  bağlıdır. Bazı veri elemanları için hiç biri yazılmayabilirken, bazı veri elemanları için bir tanesi, bazı veri  elemanları için ise ikisi de yazılabilir. 
+>
+>Kotlinde mutator ve accessor metotlar için property'ler kullanıldığını ve  Kotlin'de genel olarak bir property elemanı için arka planda bir veri elemanı yaratıldığını dolayısıyla gizlendiğini anımsayınız.
+>
+>Bir sınıfın public ve protected bölümleri dökumante edilir. private ve no-modifier bölümleri dökumante edilmez. Bir sınıfın bir elemanının erişim belirleyicisi (yani aslında sınıfın bölümleri) diğer sınıflar için anlamldır. Sınıf  içerisinden erişimde elemanın hangi bölümde olduğunun önemi yoktur.
+>
+> Kotlin'de global fonksiyon ve global değişken kavramları da olduğunda globaş düzeyde gizleme de söz konusudur.
+
 #### Kotlin enum sınıfları
 
 >Kotlin'deki enum türü Java'dakine çok benzer.
-
-**_Anahtar Notlar:_** enum kullanımı Android programlamada bazı durumlarda performası olumsuz yönde etkileyebilir. Bu tip durumlar ileride detaylı olarak ele alınacaktır.
-
+>
+>**_Anahtar Notlar:_** enum kullanımı Android programlamada bazı durumlarda performası olumsuz yönde etkileyebilir. Bu tip durumlar ileride detaylı olarak ele alınacaktır.
+>
 >enum türleri enum ve class anahtar sözcükleri ile bildirilir. enum sabitleri (enum constants) ait oldukları enum türünden referanslardır. Şüphesiz bu referanslar da aynı enum türünden yaratılmış olan nesnelerin adreslerini tutarlar
 
 ```kotlin
@@ -10219,9 +10222,8 @@ fun main() {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
->Kotlin'de fonksiyon çağırma operatör fonksiyonu overload edilebilir. Bu durumda ilgili sınıf türünden referans ismi fonksiyon ismi gibi kullanılabilir. Bu operatör fonksiyonunun ismi invoke'dur. Fonksiyon çağırma operatör fonksiyonu overload edilmiş sınıflara programlamada "functor/function object" de denilmektedir. Bu operatör fonksiyonu bazı durumlarda callback/callable alan fonksiyonlarda (high order functions (HOF)) kullanılabilmektedir. HOF'lar ileride ele alınacaktır
+>Kotlin'de fonksiyon çağırma operatör fonksiyonu overload edilebilir. Bu durumda ilgili sınıf türünden referans ismi fonksiyon ismi gibi kullanılabilir. Bu operatör fonksiyonunun ismi invoke'dur. Fonksiyon çağırma operatör fonksiyonu overload edilmiş sınıflara programlamada **functor/function object** de denilmektedir. Bu operatör fonksiyonu bazı durumlarda callback/callable alan fonksiyonlarda (high order functions (HOF)) kullanılabilmektedir. HOF'lar ileride ele alınacaktır
 
 ```kotlin
 package org.csystem.app  
@@ -10244,954 +10246,1011 @@ fun main() {
 }
 ```
 
->MutableComplex sınıfı
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.MutableComplex
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-operator fun MutableComplex.not() = this.conjugate
-
-fun main()
-{
-    val z = Random.nextMutableComplex(-10, 10)
-
-    println(z)
-    println(!z)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.MutableComplex  
+  
+operator fun MutableComplex.invoke() = println(this)  
+operator fun MutableComplex.invoke(other: MutableComplex) = this == other  
+  
+fun main() {  
+    val z1 = MutableComplex(10.3, 5.6)  
+    val z2 = MutableComplex(10.3, 5.6)  
+  
+    z1()  
+    z2()  
+    println(if (z1(z2)) "Aynı" else "Farklı")  
 }
 ```
 
->Sınıfın get ve/veya set operatör fonksiyonları overload edildiğinde o sınıf türünden bir referans `[]` operatörü ile de kullanılabilir. Bu tarz kullanıma ilişkin fonksiyonlara bazı kaynaklar "indexer" da denmektedir. Bu terim Kotlin'e özgü değildir
+>MutableComplex sınıfı not operatör fonkaiyonu
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.math.random.nextMutableComplex
-import kotlin.random.Random
-
-fun main()
-{
-    val z = Random.nextMutableComplex(-10, 10)
-
-    println(z)
-    ++z[0]
-    println("${z[0]}")
-    println(z)
-    --z[1]
-    println("${z[1]}")
-    println(z)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.MutableComplex  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+operator fun MutableComplex.not() = this.conjugate  
+  
+fun main() {  
+    val z = Random.nextMutableComplex(-10, 10)  
+  
+    println(z)  
+    println(!z)  
 }
 ```
 
->Aşağıdaki örnekte Path isimli bir yol ifadesi üzerinde işlem yapan basit bir sınıf yazılmıştır. Detayları gözardı etmek koşuluyla div operatör fonksiyonuna yüklenen göreve dikkat ediniz
+>Sınıfın get ve/veya set operatör fonksiyonları overload edildiğinde o sınıf türünden bir referans `[]` operatörü ile de kullanılabilir. Bu tarz kullanıma ilişkin fonksiyonlara bazı kaynaklar **indexer** da denmektedir. Bu terim Kotlin'e özgü değildir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var filePath1 = FilePath("/home/oguz/study")
-    var filePath2 = FilePath("/home/oguz/study/")
-    filePath1 /= "names.txt"
-    filePath2 += "names.txt"
-
-    println(filePath1)
-    println(filePath2)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.random.nextMutableComplex  
+import kotlin.random.Random  
+  
+fun main() {  
+    val z = Random.nextMutableComplex(-10, 10)  
+  
+    println(z)  
+    println("(${z[0]}, ${z[1]}")  
+    ++z[0]  
+    --z[1]  
+    println(z)  
 }
+```
 
-class FilePath(var path: String) {
-    operator fun div(filePath: FilePath) = this / filePath.toString()
-    operator fun div(path: String) = FilePath("${this.path}/$path")
-    operator fun plus(path: String) = FilePath("${this.path}$path")
-    operator fun plus(filePath: FilePath) = this + filePath.toString()
-    override fun toString() = path
-    //...
+>Aşağıdaki örnekte FilePath isimli bir yol ifadesi üzerinde işlem yapan basit bir sınıf yazılmıştır. Detayları gözardı etmek koşuluyla div operatör fonksiyonuna yüklenen göreve dikkat ediniz
+
+```kotlin
+package org.csystem.app  
+  
+import java.nio.file.Path  
+  
+fun main() {  
+    var filePath1 = FilePath("/home/oguz/study")  
+    var filePath2 = FilePath("/home/oguz/study/")  
+    filePath1 /= "names.txt"  
+    filePath2 += "names.txt"  
+  
+    println(filePath1)  
+    println(filePath2)  
+    val path = filePath1.toPath()  
+  
+    println(path)  
+}  
+  
+class FilePath(var path: String) {  
+    operator fun div(filePath: FilePath) = this / filePath.toString()  
+    operator fun div(path: String) = FilePath("${this.path}/$path")  
+    operator fun plus(path: String) = FilePath("${this.path}$path")  
+    operator fun plus(filePath: FilePath) = this + filePath.toString()  
+    fun toPath() = Path.of(path)  
+    override fun toString() = path  
+    //...  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var vec = Vector3(2.4F, 6.7F, 0F)
-    println(vec)
-    vec *=  3F
-    println(vec)
-}
-
-data class Vector3(val x: Float, val y: Float, val z: Float) {
-    operator fun times(value: Float) = Vector3(x * value, y * value, z * value)
-    //...
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.Vector3F  
+  
+fun main() {  
+    var vec = Vector3F(2.4F, 6.7F, 20F)  
+  
+    println(vec)  
+    vec *= 3F  
+    println(vec)  
 }
 ```
 
-##### Interface
->Interface bildirimi yine bir tür bildirimidir (user defined type). interface nesne özelliği göstermez. interface içerisinde gövdesiz yazılan metotlar abstract olarak bildirilmiş olur. Bu anlamda interface'ler abstract sınıflara benzerler. Bir interface'den bir sınıf türetilmezi, bir sınıf bir interface'i destekler (implementation). Interface'ler ile "multiple inheritance" da belirli ölçüde desteklenmiş olur
-
->interface bildirimi interface anahtar sözcüğü ile yapılır. interface ismini okunabilirlik açısından I ile başlatacağız. Kotlin'deki standart interface'lerde bu convention'a uyulmamıştır
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-
-    doWork(a)
+package org.csystem.app  
+  
+import org.csystem.kotlin.math.geometry.Vector2F  
+  
+fun main() {  
+    var vec = Vector2F(2.4F, 6.7F)  
+  
+    println(vec)  
+    vec *= 3F  
+    println(vec)  
 }
+```
+##### Interface
+>Interface bildirimi yine bir tür bildirimidir (user defined type). interface nesne özelliği göstermez. interface içerisinde gövdesiz yazılan metotlar abstract olarak bildirilmiş olur. Bu anlamda interface'ler abstract sınıflara benzerler. Bir interface'den bir sınıf türetilmez, bir sınıf bir interface'i destekler (implementation). Interface'ler ile multiple inheritance' da belirli ölçüde desteklenmiş olur. Çünkü bir sınıf birden fazla interface'i destekleyebilir.
 
-fun doWork(ix: IX)
-{
-    ix.foo()
-    println(ix.value)
-    ix.bar()
-}
+>interface bildirimi interface anahtar sözcüğü ile yapılır. Biz interface isimlerimizi okunabilirlik açısından I ile başlatacağız. Kotlin'deki standart interface'lerde bu convention'a uyulmamıştır
 
-class A : IX {
-    override  fun foo()
-    {
-        println("foo")
-    }
-
-    override var value : Int = 10
-}
-
-interface IX {
-    fun foo()
-
-    fun bar()
-    {
-        println("bar")
-    }
-
-    var value: Int
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+  
+    doWork(a)  
+}  
+  
+fun doWork(ix: IX) {  
+    ix.foo()  
+    println(ix.value)  
+    ix.bar()  
+}  
+  
+class A : IX {  
+    override fun foo() {  
+        println("foo")  
+    }  
+  
+    override var value: Int = 10  
+}  
+  
+interface IX {  
+    fun foo()  
+  
+    fun bar() {  
+        println("bar")  
+    }  
+  
+    var value: Int  
 }
 ```
 
 >Bir sınıf birden fazla interface'i implemente etmişse farklı interface'lerdeki aynı metotlar için bir tane metot yazılması yeterlidir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-    val ix: IX = a
-
-    ix.foo()
-    ix.bar()
-    val iy: IY = a
-
-    iy.foo()
-}
-
-open class Sample
-
-class A : Sample(), IX, IY {
-    override fun foo()
-    {
-        println("foo")
-    }
-
-    override  fun bar()
-    {
-        println("bar")
-    }
-}
-
-interface IX {
-    fun foo()
-    fun bar()
-}
-
-interface IY {
-    fun foo()
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+    val ix: IX = a  
+  
+    ix.foo()  
+    ix.bar()  
+    val iy: IY = a  
+  
+    iy.foo()  
+}  
+  
+open class Sample  
+  
+class A : Sample(), IX, IY {  
+    override fun foo() {  
+        println("foo")  
+    }  
+  
+    override fun bar() {  
+        println("bar")  
+    }  
+}  
+  
+interface IX {  
+    fun foo()  
+    fun bar()  
+}  
+  
+interface IY {  
+    fun foo()  
 }
 ```
 
-> `super<tür ismi>` sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir
+> `super<tür ismi>` sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir (super type q)
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-
-    a.bar()
-}
-
-class A : IX, IY {
-    override  fun foo()
-    {
-        println("foo")
-    }
-
-    override fun bar()
-    {
-        println("bar")
-        super<IX>.bar()
-        super<IY>.bar()
-    }
-}
-
-interface IX {
-    fun foo()
-    fun bar() //default metot
-    {
-        println("IX.bar")
-    }
-}
-
-interface IY {
-    fun foo()
-    fun bar() //default metot
-    {
-        println("IY.bar")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+  
+    a.bar()  
+}  
+  
+class A : IX, IY {  
+    override fun foo() {  
+        println("foo")  
+    }  
+  
+    override fun bar() {  
+        println("bar")  
+        super<IX>.bar()  
+        super<IY>.bar()  
+    }  
+}  
+  
+interface IX {  
+    fun foo()  
+    fun bar() {  
+        println("IX.bar")  
+    }  
+}  
+  
+interface IY {  
+    fun foo()  
+    fun bar() {  
+        println("IY.bar")  
+    }  
 }
 ```
 
 >`super<tür ismi>` sentaksı ile taban türlere (sınıf, interface vb.) ilişkin istenilen default metot çağrılabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-
-    a.bar()
-}
-
-class A : B(), IX, IY {
-    override fun foo()
-    {
-        println("foo")
-    }
-
-    override fun bar()
-    {
-        println("bar")
-        super<B>.bar()
-        super<IX>.bar()
-        super<IY>.bar()
-    }
-}
-
-open class B {
-    open fun bar()
-    {
-        println("B.bar")
-    }
-}
-
-interface IX {
-    fun foo()
-    fun bar() //default metot
-    {
-        println("IX.bar")
-    }
-}
-
-interface IY {
-    fun foo()
-    fun bar() //default metot
-    {
-        println("IY.bar")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+  
+    a.bar()  
+}  
+  
+class A : B(), IX, IY {  
+    override fun foo() {  
+        println("foo")  
+    }  
+  
+    override fun bar() {  
+        println("bar")  
+        super<B>.bar()  
+        super.tar()  
+        super<IX>.bar()  
+        super<IY>.bar()  
+    }  
+}  
+  
+open class B {  
+    open fun bar() {  
+        println("B.bar")  
+    }  
+    open fun tar() {  
+        println("B.tar")  
+    }  
+}  
+  
+interface IX {  
+    fun foo()  
+    fun bar() {  
+        println("IX.bar")  
+    }  
+}  
+  
+interface IY {  
+    fun foo()  
+    fun bar() {  
+        println("IY.bar")  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte `**` ile belirtilen çağrıda açısal parantez kullanılmalıdır. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmaktadır. 
-
- **_Anahtar Notlar:_** Java'da super referansı nesnenin taban sınıf kımının adresi anlamına gelir, desteklediği imterface'ler ile bir bağlantısı yoktur. Ancak Kotlin'de super aynı zamanda desteklediği interface'ler için de kullanılır. Zaten bu sebeple açısal parantez kullanımı da dile eklenmiştir.
+ >**_Anahtar Notlar:_** Java'da super referansı nesnenin taban sınıf kısmının adresi anlamına gelir, desteklediği imterface'ler ile bir bağlantısı yoktur. Ancak Kotlin'de super aynı zamanda desteklediği interface'ler için de kullanılabilir. Zaten bu sebeple açısal parantez kullanımı da dile eklenmiştir.
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-
-    a.bar()
-}
-
-class A : B(), IX, IY {
-    override fun foo()
-    {
-        println("foo")
-    }
-
-    override fun bar()
-    {
-        println("bar")
-        super<B>.bar() //**
-    }
-}
-
-open class B {
-    open fun bar()
-    {
-        println("B.bar")
-    }
-}
-
-interface IX {
-    fun foo()
-    fun bar() //default metot
-    {
-        println("IX.bar")
-    }
-}
-
-interface IY {
-    fun foo()
-    fun bar() //default metot
-    {
-        println("IY.bar")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+  
+    a.bar()  
+}  
+  
+class A : B(), IX, IY {  
+    override fun foo() {  
+        println("foo")  
+    }  
+  
+    override fun bar() {  
+        println("bar")  
+        super<B>.bar() //**  
+    }  
+}  
+  
+open class B {  
+    open fun bar() {  
+        println("B.bar")  
+    }  
+}  
+  
+interface IX {  
+    fun foo()  
+    fun bar() {  
+        println("IX.bar")  
+    }  
+}  
+  
+interface IY {  
+    fun foo()  
+    fun bar() {  
+        println("IY.bar")  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte `**` ile belirtilen çağrıda açısal parantez kullanılmasına gerek yoktur. Çünkü taban arayüzler içerisinde çağrılan metot ile aynı olan metot bulunmamaktadır. Ancak sentaks olarak açısal parantez kullanımı da geçerlidir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-
-    a.bar()
-}
-
-class A : B(), IX, IY {
-    override fun foo()
-    {
-        println("foo")
-    }
-
-    override fun bar()
-    {
-        println("bar")
-        super.bar() //**
-    }
-}
-
-open class B {
-    open fun bar()
-    {
-        println("B.bar")
-    }
-}
-
-interface IX {
-    fun foo()
-}
-
-interface IY {
-    fun foo()
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+  
+    a.bar()  
+}  
+  
+class A : B(), IX, IY {  
+    override fun foo() {  
+        println("foo")  
+        super.bar()  
+    }  
+  
+    override fun bar() {  
+        println("bar")  
+        super.bar() //**  
+    }  
+}  
+  
+open class B {  
+    open fun bar() {  
+        println("B.bar")  
+    }  
+}  
+  
+interface IX {  
+    fun foo()  
+}  
+  
+interface IY {  
+    fun foo()  
 }
 ```
 
 >Aşağıdaki örnekte `**` ile belirtilen çağrıda açısal parantez kullanılmalıdır. IX içerisindeki bar metodunun private olması bu durumu etkilemez
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-
-    a.bar()
-}
-
-class A : B(), IX, IY {
-    override fun foo()
-    {
-        println("foo")
-    }
-
-    override fun bar()
-    {
-        println("bar")
-        super<B>.bar() //**
-    }
-}
-
-open class B {
-    open fun bar()
-    {
-        println("B.bar")
-    }
-}
-
-interface IX {
-    fun foo()
-
-    private fun bar()
-    {
-        //...
-    }
-}
-
-interface IY {
-    fun foo()
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+  
+    a.bar()  
+}  
+  
+class A : B(), IX, IY {  
+    override fun foo() {  
+        println("foo")  
+    }  
+  
+    override fun bar() {  
+        println("bar")  
+        super<B>.bar() //**  
+    }  
+}  
+  
+open class B {  
+    open fun bar() {  
+        println("B.bar")  
+    }  
+}  
+  
+interface IX {  
+    fun foo()  
+  
+    private fun bar() {  
+        //...  
+    }  
+}  
+  
+interface IY {  
+    fun foo()  
 }
 ```
 
 **_Anahtar Notlar:_** interface'lerin default metotları yani gövdesi olan metotları olabilir. Bu metotlar sanaldır ancak abstract değildir. Bu durum Java ve Kotlin için de geçerlidir.
 
->Kullanılabilmesi için mantıksal olarak açılması (open) gereken ve kullanım sonunda mantıksal olarak kapatılması gereken bir kaynağın (resource) bir sınıf tarafından kullanılnası durumunda bu sınıf bir convention olarak Closeable arayüzünü destekler. Başka bir deyişle Closeable arayüzünü destekleyen bir sınıf için böylesi bir kullanum söz konusudur algılanır. Closeable arayüzünün close isimli bir metodu bulunur. Yani kaynağı kullanan sınıfta bu arayüzün close metodunu kaynağın kullanımını serbest bırakacak şekilde override edilir. Bunu kullanan programcı da close çağırması gerektiğini bilir ve çağırır. Kotlin'de Closeable arayüzünü destekleyen sınıfların use isimli extension fonksiyonları vardır. Bu fonksiyon başka bir fonksiyonu callback olarak alır. Callback kavramı ileride detaylandırılacağından ilgili konuya gelene kadar use kullamını bir kalıp biçiminde düşüneceğiz. use fonksiyonu çağrısı bitikten sonra o sınıf için close fonksiyonu otomatik olarak çağrılır. Bu durumda programcının ayrıca close çağırması gerekmez
+**_Anahtar Notlar:_** Bir interface'e de extension fonksiyon yazılabilir.
 
->use extension fonksiyonu. Bu, aslında Java'daki try-with-resources deyiminin Kotlin'deki karşılığıdır. Aşağıdaki kodun Java karşılığı:
+**Anahtar Notlar:** Kotlin'de de bir interface bir ya da birden fazla interface'den türetilebilir.
+
+>Kotlin'de taban sınıf ve interface bildirimde istenilden sırada yazılabilir. Ancak okunabilirlik/algılanabilirlik açısından taban sınıfın önce yazılması önerilir
+
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+  
+    a.bar()  
+}  
+  
+class A : IX, B(), IY {  
+    override fun foo() {  
+        println("foo")  
+    }  
+  
+    override fun bar() {  
+        println("bar")  
+        super<B>.bar() //**  
+    }  
+}  
+  
+open class B {  
+    open fun bar() {  
+        println("B.bar")  
+    }  
+}  
+  
+interface IX {  
+    fun foo()  
+  
+    private fun bar() {  
+        //...  
+    }  
+}  
+  
+interface IY {  
+    fun foo()  
+}
+```
+
+#### Kullanılan Kaynakların Kontrolü
+
+>Kullanılabilmesi için mantıksal olarak açılması (open) gereken ve kullanımı bittiğinde mantıksal olarak kapatılması gereken bir kaynağın (resource) bir sınıf tarafından kullanılması durumunda bu sınıf bir convention olarak Closeable arayüzünü destekler. Başka bir deyişle Closeable arayüzünü destekleyen bir sınıf için "böylesi bir kullanım söz konusudur" algılanır. Closeable arayüzünün close isimli bir metodu bulunur. Yani kaynağı kullanan sınıfta bu arayüzün close metodunu kaynağın kullanımını serbest bırakacak (release) şekilde override edilir. Bunu kullanan programcı da close çağırması gerektiğini bilir ve çağırır. Kotlin'de Closeable arayüzünü destekleyen sınıfların use isimli extension fonksiyonları vardır. Bu fonksiyon başka bir fonksiyonu callback olarak alır. Callback kavramı ileride detaylandırılacağından ilgili konuya gelene kadar use kullamını bir kalıp biçiminde düşüneceğiz. use fonksiyonu çağrısı bitikten sonra o sınıf için close fonksiyonu otomatik olarak çağrılır. Bu durumda programcının ayrıca close çağırması gerekmez
+
+>use extension fonksiyonu aslında Java'daki `try-with-resources` deyiminin Kotlin'deki karşılığıdır. Aşağıdaki use fonksiyonu çağrısının yaklaşık Java karşlılığı şu şekildedir:
 
 ```java
-try (Sample s = new Sample()) {
-        s.foo(-10);
-    }
+Sample s = new Sample();
+
+try (s) {
+	s.foo(-10);
+}
 ```
 
 ```kotlin
-package org.csystem.app
-
-import java.io.Closeable
-import java.lang.IllegalArgumentException
-import kotlin.random.Random
-
-fun main()
-{
-    val s = Sample()
-
-    try {
-        s.use {
-            s.foo(Random.nextInt(-10, 10))
-        }
-    }
-    catch (ex: IllegalArgumentException) {
-        println(ex.message)
-    }
-}
-
-class Sample : Closeable {
-    fun foo(a: Int) {
-        if (a < 0)
-            throw IllegalArgumentException("a must be positive")
-
-        println("foo")
-    }
-    override fun close()
-    {
-        println("close")
-    }
+package org.csystem.app  
+  
+import java.io.Closeable  
+import java.lang.IllegalArgumentException  
+import kotlin.random.Random  
+  
+fun main() {  
+    val s = Sample()  
+  
+    try {  
+        s.use {  
+            s.foo(Random.nextInt(-100, 100))  
+        }  
+        println("flow ends!...");  
+    } catch (ex: IllegalArgumentException) {  
+        println(ex.message)  
+    }  
+  
+    println("main ends!...")  
+}  
+  
+class Sample : Closeable {  
+    fun foo(a: Int) {  
+        if (a < 0)  
+            throw IllegalArgumentException("a must be positive")  
+  
+        println("foo")  
+    }  
+  
+    override fun close() {  
+        println("close")  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte exception oluşsa bile (exception yakalanamayacak) close çağrılır
 
 ```kotlin
-package org.csystem.app
-
-import java.io.Closeable
-import java.lang.IllegalArgumentException
-import kotlin.random.Random
-
-fun main()
-{
-    val s = Sample()
-
-    s.use {
-        s.foo(Random.nextInt(-10, 10))
-    }
-}
-
-class Sample : Closeable {
-    fun foo(a: Int) {
-        if (a < 0)
-            throw IllegalArgumentException("a must be positive")
-
-        println("foo")
-    }
-    override fun close()
-    {
-        println("close")
-    }
+package org.csystem.app  
+  
+import java.io.Closeable  
+import java.lang.IllegalArgumentException  
+import kotlin.random.Random  
+  
+fun main() {  
+    val s = Sample()  
+  
+    s.use {  
+        s.foo(Random.nextInt(-100, 100))  
+    }  
+}  
+  
+class Sample : Closeable {  
+    fun foo(a: Int) {  
+        if (a < 0)  
+            throw IllegalArgumentException("a must be positive")  
+  
+        println("foo")  
+    }  
+  
+    override fun close() {  
+        println("close")  
+    }  
 }
 ```
 
->Bir dosyanın verileri (byte'ları) üzerinde işlem yapabilmek için işletim sisteminin çekirdeği düzeyinde bir takım işlemlerin yapılması gerekir. Bu işlemlere mantıksal olarak "dosyayı açmak" denir. Bir dosya ile ilgili işlemler bittiğinde yine çekirdek düzeyin yapılması gereken işlemler vardır. Buna da mantıksal olarak "dosyayı kapatmak" denir. JavaSE'de bulunan dosya işlemlerine yönelik (aslında IO işlemlerine yönelik) sınıfların bir çoğu Closeable arayüzünü destekler. Bu durumda programcının dosyayı kapatmak için close fonksiyonunu çağırması veya use fonbksiyonunu kullanması gerekir. Aşağıdaki birinci örnekte bir dosyaya klavyeden girilen yazılar satır satır eklenmektedir. İkinci örnekte ise dosyadan satır satır veriler okunmaktadır. Uygulamaya yönelik detaylar şu an önemsizdir. Yalnızca use fonksiyonunun kullanımına odaklanınız
-
+>Bir dosyanın verileri (byte'ları) üzerinde işlem yapabilmek için işletim sisteminin çekirdeği düzeyinde bir takım işlemlerin yapılması gerekir. Bu işlemlere mantıksal olarak "dosyayı açmak" denir. Bir dosya ile ilgili işlemler bittiğinde yine çekirdek düzeyinde yapılması gereken işlemler vardır. Buna da mantıksal olarak "dosyayı kapatmak" denir. JavaSE'de bulunan dosya işlemlerine yönelik (aslında IO işlemlerine yönelik) sınıfların bir çoğu Closeable arayüzünü destekler. Bu durumda programcının dosyayı kapatmak için close fonksiyonunu çağırması veya use fonksiyonunu kullanması gerekir. Aşağıdaki birinci örnekte bir dosyaya klavyeden girilen yazılar satır satır eklenmektedir. İkinci örnekte ise dosyadan satır satır veriler okunmaktadır. Uygulamaya yönelik detaylar şu an önemsizdir. Yalnızca use fonksiyonunun kullanımına odaklanınız.
 >***Not:** Örnekleri test etmek için ilk önce yazma yapan programı çalıştırınız
 
 ```kotlin
-package org.csystem.app
-
-import java.io.BufferedWriter
-import java.io.FileWriter
-import java.io.IOException
-import java.nio.charset.StandardCharsets
-
-fun main() = runWriterApplication()
-
-fun runWriterApplication()
-{
-    val fileName = "cities.txt"
-
-    try {
-        BufferedWriter(FileWriter(fileName, StandardCharsets.UTF_8, true)).use {
-            while (true) {
-                print("Input text:")
-                val str = readln()
-
-                if ("quit" == str)
-                    break
-
-                it.write("$str\r\n")
-            }
-            it.flush()
-        }
-    }
-    catch (ignore: IOException) {
-        println("IO Problem occurs")
-    }
-    catch (ignore: Throwable) {
-        println("Problem occurs")
-    }
+package org.csystem.app  
+  
+import java.io.BufferedWriter  
+import java.io.FileWriter  
+import java.io.IOException  
+import java.nio.charset.StandardCharsets  
+  
+fun main() = runWriterApplication()  
+  
+fun runWriterApplication() {  
+    val fileName = "cities.txt"  
+  
+    try {  
+        BufferedWriter(FileWriter(fileName, StandardCharsets.UTF_8, true)).use {  
+            while (true) {  
+                print("Input text:")  
+                val str = readln()  
+  
+                if ("quit" == str)  
+                    break  
+  
+                it.write("$str\r\n")  
+            }  
+        }  
+    } catch (ignore: IOException) {  
+        println("IO Problem occurs")  
+    } catch (ignore: Throwable) {  
+        println("Problem occurs")  
+    }  
 }
 ```
 
 ```kotlin
-package org.csystem.app
-
-import java.io.BufferedReader
-import java.io.FileReader
-import java.io.IOException
-import java.nio.charset.StandardCharsets
-
-fun main() = runReaderApplication()
-
-fun runReaderApplication()
-{
-    val fileName = "cities.txt"
-
-    try {
-        BufferedReader(FileReader(fileName, StandardCharsets.UTF_8)).use {
-            while (true) {
-                val str = it.readLine() ?: break
-
-                println(str)
-            }
-        }
-    }
-    catch (ignore: IOException) {
-        println("IO Problem occurs")
-    }
-    catch (ignore: Throwable) {
-        println("Problem occurs")
-    }
+package org.csystem.app  
+  
+import java.io.BufferedReader  
+import java.io.FileReader  
+import java.io.IOException  
+import java.nio.charset.StandardCharsets  
+  
+fun main() = runReaderApplication()  
+  
+fun runReaderApplication() {  
+    val fileName = "cities.txt"  
+  
+    try {  
+        BufferedReader(FileReader(fileName, StandardCharsets.UTF_8)).use {  
+            while (true) {  
+                val str = it.readLine() ?: break  
+  
+                println(str)  
+            }  
+        }  
+    } catch (ignore: IOException) {  
+        println("IO Problem occurs")  
+    } catch (ignore: Throwable) {  
+        println("Problem occurs")  
+    }  
 }
 ```
 
 ##### Generics
->Kotlin'de ve Java'da generics derleme zamanında çok biçimli kodlar yazmak için kullanılır. Bu anlamda derleme zamanında türden bağımsız kod yazılabilmektedir. Java ve Kotlin'de generic kavramı temelde aynı amaçta olsa da birçok farklılığı da buklunmaktadır.Burada Kotlin'de generic kavramı ele alınacaktır. Generic kavramı genel olarak generic türler ve generic fonksiyonlar olmak üzere iki gruba ayrılabilir
+>Kotlin'de ve Java'da generics derleme zamanında çok biçimli (runtime polymorphism) kodlar yazmak için kullanılır. Bu anlamda derleme zamanında türden bağımsız kod yazılabilmektedir. Java ve Kotlin'de generic kavramı temelde aynı amaçta olsa da birçok farklılığı da buklunmaktadır. Burada Kotlin'de generic kavramı ele alınacaktır. Generic kavramı genel olarak generic türler ve generic fonksiyonlar olmak üzere iki gruba ayrılabilir.
 
 >Generic sınıflar
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s1 = Sample<Int>(10)
-    val s2 = Sample<Double>(4.5)
-    val s3 = Sample<String>("csd")
-
-    println(s1.x)
-    println(s2.x)
-    println(s3.x)
+package org.csystem.app  
+  
+fun main() {  
+    val s1 = Sample<Int>(10)  
+    val s2 = Sample<Double>(4.5)  
+    val s3 = Sample<String>("csd")  
+  
+    println(s1.x)  
+    println(s2.x)  
+    println(s3.x)  
+  
+    s1.foo(10)  
+    s3.foo("istanbul")  
+}  
+  
+class Sample<T>(var x: T) {  
+    fun foo(t: T) {  
+        println("foo:$t")  
+    }  
 }
-
-class Sample<T>(var x: T)
 ```
 
->Aşağıdaki örnekte açılım (instantiation) yapılmadığı halde generic tür tespit edilebildiğinden (type inference/deduction) sorun oluşmaz
-
+>Kotlin'de nesne yaratılması aşamsında ctor'a geçilen argümanlara göre derleyici tür tespiti (type inference/deduction) yapabilirse açılım (instantation) yapılmasına gerek yoktur
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s1 = Sample(10)
-    val s2 = Sample(4.5)
-
-    println(s1.x)
-    println(s2.x)
+package org.csystem.app  
+  
+fun main() {  
+    val s1 = Sample(10)  
+    val s2 = Sample(4.5)  
+    val s3 = Sample("csd")  
+  
+    println(s1.x)  
+    println(s2.x)  
+    println(s3.x)  
+  
+    s1.foo(10)  
+    s3.foo("istanbul")  
+}  
+  
+class Sample<T>(var x: T) {  
+    fun foo(t: T) {  
+        println("foo:$t")  
+    }  
 }
-
-class Sample<T>(var x: T)
 ```
 
 >Generic sınıflar için nesne yaratılırken generic parametrelerin türleri tespit edilemezse açılım kesinlikle kullanılmalıdır. Aksi durumda error oluşur
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s1 = Sample<Int>()
-    val s2 = Sample<Double>()
-
-    s1.foo(10)
-    s2.foo(10.7)
-}
-
-class Sample<T> {
-    //...
-    fun foo(t: T) = println(t)
+package org.csystem.app  
+  
+fun main() {  
+    val s1 = Sample<Int>()  
+    val s2 = Sample<Double>()  
+  
+    s1.foo(10)  
+    s2.foo(10.7)  
+}  
+  
+class Sample<T> {  
+    //...  
+    fun foo(t: T) = println(t)  
 }
 ```
 
 >Referans bildiriminde açılım kullanılmalıdır. Tür tespiti dışında generic sınıflar açısal parantezsiz kullanılamaz. Bilindiği gibi Java' da generic bir sınıf açılımsız kullanıldığında generic parametre yerine Object geçmiş olur ki bu durum da Java'da tavsiye edilen bir kullanımm değildir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s: Sample<String>
-
-    s = Sample("ankara")
-
-    println(s.x)
+package org.csystem.app  
+  
+fun main() {  
+    val s: Sample<Int>  
+  
+    s = Sample()  
+  
+    s.foo(10)  
+}  
+  
+class Sample<T> {  
+    //...  
+    fun foo(t: T) = println(t)  
 }
-
-class Sample<T>(var x: T)
 ```
 
 >Referans bildiriminde açılım kullanılmalıdır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s: Sample<String> = Sample("ankara")
-
-    println(s.x)
-}
-
+package org.csystem.app  
+  
+fun main() {  
+    val s: Sample<String> = Sample("ankara")  
+  
+    println(s.x)  
+}  
+  
 class Sample<T>(var x: T)
 ```
 
->Aşağıdaki örnekte Kotlin invariant özelliğe sahip olduğundan error oluşur
+>Aşağıdaki örnekte sınıf **invariant** özelliğe sahip olduğundan error oluşur
 
 ```kotlin
-package org.csystem.app
-
-import java.lang.*
-
-fun main()
-{
-    val s = Sample(Integer.valueOf(10));
-
-    foo(s) //error
-}
-
-fun foo(s: Sample<Number>)
-{
-    println(s.x.toShort())
-}
-
+package org.csystem.app  
+  
+import java.lang.*  
+  
+fun main() {  
+    val s = Sample(Integer.valueOf(10));  
+  
+    foo(s) //error  
+}  
+  
+fun foo(s: Sample<Number>) {  
+    println(s.x.toShort())  
+}  
+  
 class Sample<T>(var x: T)
 ```
 
->Generic bir sınıfın generic parametresi out ile bildirildiğinde covariant özellik kullanılabilir
+>Generic bir sınıfın generic parametresi out ile bildirildiğinde **covariant** özellik kullanılabilir
 
 ```kotlin
-package org.csystem.app
-
-import java.lang.*
-
-fun main()
-{
-    val s = Sample(Integer.valueOf(10));
-
-    foo(s)
-}
-
-fun foo(s: Sample<Number>)
-{
-    println(s.x.toShort())
-}
-
-class Sample<out T>(val x: T)
+package org.csystem.app  
+  
+import java.lang.*  
+  
+fun main() {  
+    val s = Sample(Integer.valueOf(10));  
+  
+    foo(s)  
+}  
+  
+fun foo(s: Sample<out Number>) {  
+    println(s.x.toShort())  
+}  
+  
+class Sample<T>(var x: T)
 ```
 
->Aşağıdaki örnekte sınıf contravariant değildir. Açılım contravariant yapılmıştır
+>Aşağıdaki örnekte sınıf **contravariant** değildir. Açılım in ile contravariant yapılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import java.lang.*
-
-fun main()
-{
-    val s = Sample<Number>();
-
-    foo(s)
-}
-
-fun foo(s: Sample<in Integer>)
-{
-    println(s.x)
-}
-
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample<Number>(10.3);  
+  
+    foo(s)  
+}  
+  
+fun foo(s: Sample<in Int>) {  
+    println(s.x)  
+}  
+  
 class Sample<T>(var x: T? = null)
 ```
 
 >Aşağıdaki örnekte sınıf contravariant yapılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import java.lang.*
-
-fun main()
-{
-    val s = Sample<Number>();
-
-    foo(s)
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample<Number>();  
+  
+    foo(s)  
+}  
+  
+fun foo(s: Sample<Int>) {  
+    println(s)  
+}  
+  
+class Sample<in T> {  
+    //...  
 }
+```
 
-fun foo(s: Sample<Integer>)
-{
-    println(s)
-}
+>Aşağıdaki örnekte sınıf covariant yapılmıştır
 
-class Sample<in T> {
-    //...
-}
+```kotlin
+package org.csystem.app  
+  
+import java.lang.*  
+  
+fun main() {  
+    val s = Sample(Integer.valueOf(10));  
+  
+    foo(s)  
+}  
+  
+fun foo(s: Sample<Number>) {  
+    println(s.x.toShort())  
+}  
+  
+class Sample<out T>(val x: T)
 ```
 
 >out ve in anahtar sözcükleri eğer sınıfın bildiriminde yazılacaksa sınıfın property elemanları immutable olmalıdır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample(65)
-
-    val m = Mest();
-
-    m.foo(s)
-}
-
-class Mest {
-    fun foo(s: Sample<Number>)
-    {
-        println(s.x.toChar())
-    }
-}
-class Sample<out T>(var x: T) //error
+class Sample<out T>(var x: T) //error  
+class Mample<in T>(var y: T) //error
 ```
 
->Generic parametrelere kısıtlar verilebilir. Aşağıdaki örnekte Sample sınıfının T generic parametresinin türünün Closeable arayüzünü destekkleyen bir tür ile açılımı zorunludur. Bu kısıta aynı zamanda üstten sınır (upper bound) da denilmektedir
+>out ve in anahtar sözcükleri eğer sınıfın bildirimde yazılacak ve property elemanlarının mutable olması istenirse tür ismi kullanımında UnsafeVariance annotation'ı kullanılmalıdır. Bu durumun detayları ileride anlaşılacaktır
 
 ```kotlin
-package org.csystem.app
+class Sample<out T>(var x: @UnsafeVariance T) //error  
+class Mample<in T>(var y: @UnsafeVariance T) //error
+```
 
-import java.io.Closeable
-import java.io.FileOutputStream
+>Generic parametrelere kısıtlar (constraint) verilebilir. Aşağıdaki örnekte Sample sınıfının T generic parametresinin türünün Closeable arayüzünü destekkleyen bir tür ile açılımı zorunludur. Bu kısıta aynı zamanda üstten sınır (upper bound) da denilmektedir
 
-fun main()
-{
-    val s = Sample<FileOutputStream, Int>()
-
-    s.bar(FileOutputStream("text.dat"))
-}
-
-class Sample<T: Closeable, K> {
-    fun bar(t: T)
-    {
-        //...
-        t.use {
-            //...
-        }
-    }
+```kotlin
+package org.csystem.app  
+  
+import java.io.Closeable  
+import java.io.FileOutputStream  
+  
+fun main() {  
+    val s = Sample<FileOutputStream, Int>()  
+  
+    s.bar(FileOutputStream("text.dat"))  
+}  
+  
+class Sample<T: Closeable, K> {  
+    fun bar(t: T) {  
+        //...  
+        t.use {  
+            //...  
+        }  
+    }  
 }
 ```
 
 >Pair sınıfı çok fazla kullanılan basit bir generic sınıftır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val cities = arrayOf(Pair(34, "istanbul"), Pair(6, "ankara"), Pair(35, "izmir"))
-
-    for (p in cities)
-        println("${p.first}, ${p.second}")
+package org.csystem.app  
+  
+fun main() {  
+    val cities = arrayOf(Pair(34, "istanbul"), Pair(6, "ankara"), Pair(35, "izmir"))  
+  
+    for (p in cities)  
+        println("${p.first}, ${p.second}")  
 }
 ```
 
 >Pair sınıfı bir data sınıf olduğundan bu sınıfın componentN üye fonksiyonları da bulunmaktadır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val cities = arrayOf(Pair(34, "istanbul"), Pair(6, "ankara"), Pair(35, "izmir"))
-
-    for ((plate, name) in cities)
-        println("${plate}, $name")
+package org.csystem.app  
+  
+fun main() {  
+    val cities = arrayOf(Pair(34, "istanbul"), Pair(6, "ankara"), Pair(35, "izmir"))  
+  
+    for ((p, n) in cities)  
+        println("$p, $n")  
 }
 ```
 
 >to generic infix fonksiyonu ile iki değerden bir Pair elde edilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val city = 67 to "zongudak"
-
-    val (plate, name) = city
-
-    println("$plate, $name")
-
+package org.csystem.app  
+  
+fun main() {  
+    val city: Pair<Int, String> = 67 to "zongudak"  
+  
+    val (plate, name) = city  
+  
+    println("$plate, $name")  
+  
 }
 ```
 
 >Triple sınıfı
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val points = arrayOf(Triple(100, 100, 200), Triple(-100, -100, -200))
-
-    for ((x, y, z) in points)
-        println("($x, $y, $z)")
+package org.csystem.app  
+  
+fun main() {  
+    val points = arrayOf(Triple(100, 100, 200), Triple(-100, -100, -200))  
+  
+    for ((x, y, z) in points)  
+        println("($x, $y, $z)")  
 }
 ```
 
 >Triple sınıfı (ve Pair sınıfı) immutable özelliktedir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val point = Triple(100, 100, 100)
-
-    point.first = 10 //error
+package org.csystem.app  
+  
+fun main() {  
+    val point = Triple(100, 100, 100)  
+  
+    point.first = 10 //error  
 }
 ```
 
 >Triple sınıfının (ve Pair sınıfının) toList extension metotları ile elemanlardan oluşan liste elde edilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val point = Triple(100, 100, 100)
-
-    val coordinates = point.toList()
-
-    for (c in coordinates)
-        println(c)
+package org.csystem.app  
+  
+fun main() {  
+    val point = Triple(100, 100, 100)  
+  
+    val coordinates = point.toList()  
+  
+    for (c in coordinates)  
+        println(c)  
 }
 ```
 
 >Triple sınıfının (ve Pair sınıfının) toList extension metotları ile elemanlardan oluşan liste elde edilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val triple = Triple(67, 372, "zonguldak")
-
-    val list = triple.toList()
-
-    for (c in list)
-        print("$c ")
-
-    println()
+package org.csystem.app  
+  
+fun main() {  
+    val triple = Triple(67, 372, "zonguldak")  
+  
+    val list = triple.toList()  
+  
+    for (c in list)  
+        print("$c ")  
+  
+    println()  
 }
 ```
 
 ```kotlin
-/*----------------------------------------------------------------------
-	FILE        : Quadruple.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 31.05.2023
-
-	Quadruple class
-
-	Copyleft (c) 1993 by C and System Programmers Association (org.csystem.app)
-	All Rights Free
------------------------------------------------------------------------*/
-package org.csystem.tuple
-
-import java.io.Serializable
-
-data class Quadruple<out T1, out T2, out T3, out T4>(val first: T1, val second: T2, val third: T3, val forth: T4) : Serializable {
-    override fun toString() = "($first, $second, $third, $forth)"
+/**  
+ * Quadruple.kt * @author Android-Aug-2024 group */package org.csystem.kotlin.util.tuple  
+  
+import java.io.Serializable  
+  
+data class Quadruple<out T1, out T2, out T3, out T4>(val first: T1, val second: T2, val third: T3, val forth: T4) :  
+    Serializable {  
+    override fun toString() = "($first, $second, $third, $forth)"  
 }
 ```
 
 >Kotlin'de diziler Array isimli bir sınıf ile temsil edilir. Array sınıfı generic bir sınıftır. Aşağıdaki örnekte Array sınıfı kullanılarak bir String dizisi yaratılmıştır. String dizisinin başlangıçta tüm elemanlarına örnekte boş string verilmiştir. Başlangıçta verilen değere ilişkin sentaks ve semantic ileride ele alınacaktır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.string.kotlin.getRandomTextEN
-import kotlin.random.Random
-
-fun main()
-{
-    val a = Array(3) {""}
-
-    for (s in a)
-        println(if (s == "") "Boş String" else s)
-
-    println("-------------------------------------")
-
-    for (i in a.indices)
-        a[i] = Random.getRandomTextEN(Random.nextInt(5, 10))
-
-    for (s in a)
-        println(if (s == "") "Boş String" else s)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.string.randomTextTR  
+import kotlin.random.Random  
+  
+fun main() {  
+    val a = Array(3) { "" }  
+  
+    for (s in a)  
+        println(if (s == "") "Boş String" else s)  
+  
+    println("-------------------------------------")  
+  
+    for (i in a.indices)  
+        a[i] = Random.randomTextTR(Random.nextInt(5, 10))  
+  
+    for (s in a)  
+        println(if (s == "") "Boş String" else s)  
 }
 ```
 
 >Array sınıfı kullanılarak aşağıdaki gibi bir String dizisi oluşturulabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = Array(3) {"xxx"}
-
-    for (s in a)
-        println(s)
+package org.csystem.app  
+  
+fun main() {  
+    val a = Array(3) { "xxx" }  
+  
+    for (s in a)  
+        println(s)  
 }
 ```
+
+>Aşağıdaki örnekte rasgele yazılardan oluşan bir String dizisi elde edilmiştir
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.string.randomTextTR  
+import kotlin.random.Random  
+  
+fun main() {  
+    val a = Array(readInt("Bir sayı giriniz:")) { Random.randomTextTR(Random.nextInt(1, 10)) }  
+  
+    for (s in a)  
+        println(s)  
+}
+```
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >Generic fonksiyonlar
 
@@ -12465,7 +12524,6 @@ fun createMatrix(m: Int, n: Int) = Matrix(m) {IntArray(n)}
 ```
 
 >Aşağı seviyede fonksiyonların da adresleri vardır. Aslında bir fonksiyon çağrısı o fonksiyonun kodlarının bulunduğu adrese gidip çalıştırılmasıdır. Bazı programlama dillerinde fonksiyonların adreslerini tutan türler bulunur. Bu türlere genel olarak "function type" denir.
-
 
 #### Function Types:
 
