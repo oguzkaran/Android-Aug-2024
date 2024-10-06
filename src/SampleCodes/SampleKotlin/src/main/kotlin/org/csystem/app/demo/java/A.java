@@ -1,31 +1,28 @@
 package org.csystem.app.demo.java;
 
-class A extends B implements IX, IY {
-    @Override
+class B {
     public void foo()
     {
-        System.out.println("A.foo");
-        }
-}
-class B {
-    public void bar()
-    {
-        System.out.println("B.bar");
-    }
+        int a = 10;
 
-    public void tar()
-    {
-        System.out.println("B.tar");
+        var ix = new IX() {
+            @Override
+            public void foo()
+            {
+                System.out.println(a);
+            }
+
+            @Override
+            public void bar()
+            {
+                IX.super.bar();
+            }
+        };
+
+        ix.foo();
     }
 }
 
-interface IY {
-    void foo();
-    default void bar()
-    {
-        System.out.println("IY.bar");
-    }
-}
 
 interface IX {
     void foo();

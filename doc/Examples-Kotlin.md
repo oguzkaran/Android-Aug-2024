@@ -11250,178 +11250,226 @@ fun main() {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >Generic fonksiyonlar
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = "ankara"
-    val b = 10
-
-    display<String, Int>(a, b)
-}
-
-fun <T, K> display(t: T, k: K)
-{
-    println(t)
-    println(k)
+package org.csystem.app  
+  
+fun main() {  
+    val a = "ankara"  
+    val b = 10  
+  
+    display<String, Int>(a, b)  
+}  
+  
+fun <T, K> display(t: T, k: K) {  
+    println(t)  
+    println(k)  
 }
 ```
 
 >Generic fonksiyonlarda generic parametre türleri tespit edilebiliyorsa açılım yapmaya gerek olmaz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = "ankara"
-    val b = 10
-
-    display(a, b)
-    display(true, 3.4)
-}
-
-fun <T, K> display(t: T, k: K)
-{
-    println(t)
-    println(k)
+package org.csystem.app  
+  
+fun main() {  
+    val a = "ankara"  
+    val b = 10  
+  
+    display(a, b)  
+}  
+  
+fun <T, K> display(t: T, k: K) {  
+    println(t)  
+    println(k)  
 }
 ```
 
 >Aşağıdaki örnekte display fonskiyonu çağrısında K türü tespit edilemez
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = "ankara"
-    val b = 10
-
-    display(a) //error
-}
-
-fun <T, K> display(t: T) : K?
-{
-    println(t)
-
-    return null
+package org.csystem.app  
+  
+fun main() {  
+    val a = "ankara"  
+    val b = 10  
+  
+    foo(a) //error  
+}  
+  
+fun <T, K> foo(t: T): K? {  
+    println(t)  
+  
+    return null  
 }
 ```
 
 >Yukarıdaki örnekte açılım yapılarak K türü de çağırmada belirtilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = "ankara"
-    var b = 10
-
-    display<String, Int>(a)
+package org.csystem.app  
+  
+fun main() {  
+    val a = "ankara"  
+    val b = 10  
+  
+    foo<String, Int>(a) //error  
+}  
+  
+fun <T, K> foo(t: T): K? {  
+    println(t)  
+  
+    return null  
 }
+```
 
-fun <T, K> display(t: T) : K?
-{
-    println(t)
+>Aşağıdaki örnekte tüm generic tür parametreleri tespit edilebildiğinden açılım yapılması gerekmez
 
-    return null
+```java
+package org.csystem.app  
+  
+fun main() {  
+    val a = "ankara"  
+    val b = 10  
+  
+    var x: Int? = foo(a)  
+  
+}  
+  
+fun <T, K> foo(t: T): K? {  
+    println(t)  
+  
+    return null  
 }
 ```
 
 >Aşağıdaki örnekte argümanın türü tespit edebilse bile açılım yapılmak zorundadır. Çünkü K'nın türünün tespit edilmesi için açılım yapılması gerekir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = "ankara"
-    var b = 10
-
-    display<Int>(a) //error
-}
-
-fun <K, T> display(t: T) : K?
-{
-    println(t)
-
-    return null
+package org.csystem.app  
+  
+fun main() {  
+    val a = "ankara"  
+    var b = 10  
+  
+    foo<Int>(a) //error  
+}  
+  
+fun <K, T> foo(t: T): K? {  
+    println(t)  
+  
+    return null  
 }
 ```
 
 >Generic fonksiyonların parametrelerine de kısıt (sınır) verilebilir
 
 ```kotlin
-package org.csystem.app
-
-import java.io.Closeable
-import java.io.FileInputStream
-
-fun main()
-{
-    doWork<Int, Closeable>(FileInputStream("test.txt"))
-    doWork<Int, Double>(3.4) //error
-}
-
-fun <R, T: Closeable> doWork(t: T) : R?
-{
-    t.use {
-        //....
-    }
-
-    return null
+package org.csystem.app  
+  
+import java.io.Closeable  
+import java.io.FileInputStream  
+  
+fun main() {  
+    doWork<Int, FileInputStream>(FileInputStream("test.txt"))  
+    doWork<Int, Closeable>(FileInputStream("test.txt"))  
+    doWork<Int, Double>(3.4) //error  
+}  
+  
+fun <R, T : Closeable> doWork(t: T): R? {  
+    t.use {  
+        //....  
+    }  
+  
+    return null  
 }
 ```
 
 >Generic sınıfların içerisinde generic metotlar da bildirilebilir (member generics)
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Sample<Int>()
-
-    s.foo("ankara", 10)
-    s.foo(2.3, 5)
-}
-
-class Sample<T> {
-    fun <K> foo(k: K, t: T)
-    {
-        println(k)
-        println(t)
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample<Int>()  
+  
+    s.foo("ankara", 10)  
+    s.foo(2.3, 5)  
+}  
+  
+class Sample<T> {  
+    fun <K> foo(k: K, t: T) {  
+        println(k)  
+        println(t)  
+    }  
 }
 ```
+
+>Aşağıdaki basit generic sınıfı inceleyiniz
+```kotlin
+/**  
+ * Value.kt * @author Android-Aug-2024 group */package org.csystem.kotlin.util.tuple  
+  
+import java.io.Serializable  
+  
+data class Value<out T>(val value: T) : Serializable {  
+    fun toList(): List<T> = listOf(value)  
+}
+```
+
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-/*----------------------------------------------------------------------
-	FILE        : Value.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 31.05.2023
-
-	Quadruple class
-
-	Copyleft (c) 1993 by C and System Programmers Association (org.csystem.app)
-	All Rights Free
------------------------------------------------------------------------*/
-package org.csystem.tuple
-
-import java.io.Serializable
-
-data class Value<out T>(val value: T) : Serializable {
-    fun toList() : List<T> = listOf(value)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+  
+import org.csystem.kotlin.util.string.randomTextsEN  
+import kotlin.random.Random  
+  
+fun main() {  
+    while (true) {  
+        val n = readInt("Input a number:")  
+  
+        if (n <= 0)  
+            break  
+  
+        val str = Random.randomTextsEN(n, Random.nextInt(5, 16))  
+  
+        str.printArray()  
+    }  
 }
 ```
 
+>Aşağıdaki örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+  
+import org.csystem.kotlin.util.string.randomTextsEN  
+import kotlin.random.Random  
+  
+fun main() {  
+    while (true) {  
+        val n = readInt("Input a number:")  
+  
+        if (n <= 0)  
+            break  
+  
+        val str = Random.randomTextsEN(n, 5, 16)  
+  
+        str.printArray()  
+    }  
+}
+```
+
+##### İçiçe Sınıf Bildirimleri
 
 >Kotlin' de içiçe tür (nested types) bildirimi yapılabilmektedir. İçiçe sınıf bildirimi genel olarak 4(dört) şekilde yapılabilir:
 >- Local classes
@@ -11432,30 +11480,27 @@ data class Value<out T>(val value: T) : Serializable {
 >Kotlin'de yerel sınıflar bildirilebilir. Yerel fonksiyonların varlığından dolayı Kotlin'de yerel sınıfların kullanımına neredeyse gerek olmamaktadır.
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A();
-
-    a.foo(10)
-}
-
-class A {
-    fun foo(value: Int)
-    {
-        class B {
-            //..."
-            fun bar()
-            {
-                println("bar")
-            }
-        }
-
-        val b = B()
-
-        b.bar()
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a = A();  
+  
+    a.foo(10)  
+}  
+  
+class A {  
+    fun foo(value: Int) {  
+        class B {  
+            //..."  
+            fun bar() {  
+                println("bar")  
+            }  
+        }  
+  
+        val b = B()  
+  
+        b.bar()  
+    }  
 }
 ```
 
@@ -11464,68 +11509,62 @@ class A {
 >Nested sınıf türünden nesne sınıf dışında kapsayan sınıf ve nokta operatörü ile yaratılabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val b = A.B()
-
-    //...
-}
-
-class A {
-    class B {
-        //...
-    }
-
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val b = A.B()  
+  
+    //...  
+}  
+  
+class A {  
+    class B {  
+        //...  
+    }  
+  
+    //...  
 }
 ```
 
 >Nested sınıf içerisinde kapsayan sınıf türünün private elemanlarına erişilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val b = A.B()
-
-    b.foo(20)
-}
-
-class A private constructor()  {
-    private var x = 10
-
-    class B {
-        fun foo(y: Int)
-        {
-            val a = A()
-
-            println("a.x = ${a.x}")
-            println("y = $y")
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val b = A.B()  
+  
+    b.foo(20)  
+}  
+  
+class A private constructor() {  
+    private var x = 10  
+  
+    class B {  
+        fun foo(y: Int) {  
+            val a = A()  
+  
+            println("a.x = ${a.x}")  
+            println("y = $y")  
+        }  
+    }  
 }
 ```
 
 >Kapsayan sınıf nested sınıfın private elemanlarına erişemez
 
 ```kotlin
-package org.csystem.app
-
-class A {
-    class B private constructor() {
-        private var y = 10
-        //...
-    }
-
-    fun bar()
-    {
-        val b = B() //error
-
-        b.y = 20 //error
-    }
+class A {  
+    class B private constructor() {  
+        private var y = 10  
+        //...  
+    }  
+  
+    fun bar() {  
+        val b = B() //error  
+  
+        b.y = 20 //error  
+    }  
 }
 ```
 
@@ -11533,54 +11572,50 @@ class A {
 >Inner sınıf türünden bir nesne sınıf dışında kapsayan sınıf türünden referans ile yaratılabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A()
-    val b = a.B()
-
-    b.foo(20)
-}
-
-class A {
-    private val x = 10
-
-    inner class B {
-        fun foo(y: Int)
-        {
-            println("y=$y")
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a = A()  
+    val b = a.B()  
+  
+    b.foo(20)  
+}  
+  
+class A {  
+    private val x = 10  
+  
+    inner class B {  
+        fun foo(y: Int) {  
+            println("y=$y")  
+        }  
+    }  
 }
 ```
 
 >Inner sınıf içerisinde kapsayan sınıf türünün private elemanlarına erişilebilir. Erişilen private elemanlar inner class nesnesinin yaratılmasında kullanılan kapsayan sınıf nesnesinin elemanlarıdır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = A(10)
-    val b = a.B()
-    val a1 = A(20)
-    val b1 = a1.B()
-
-    b.foo(40)
-    b1.foo(30)
-}
-
-class A (x: Int){
-    private var x = x
-
-    inner class B {
-        fun foo(y: Int)
-        {
-            println("x = $x")
-            println("y = $y")
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a = A(10)  
+    val a1 = A(20)  
+    val b = a.B()  
+    val b1 = a1.B()  
+  
+    b.foo(40)  
+    b1.foo(30)  
+}  
+  
+class A(x: Int) {  
+    private var x = x  
+  
+    inner class B {  
+        fun foo(y: Int) {  
+            println("x = $x")  
+            println("y = $y")  
+        }  
+    }  
 }
 ```
 
@@ -11615,193 +11650,249 @@ class A {
 >Aşağıdaki örnekte inner sınıfın içerisinde recursive bir çağrı yapılmıştır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val b = A().B()
-
-    b.foo(20)
-}
-
-class A {
-    fun foo(x: Int)
-    {
-        println("A.foo")
-    }
-
-    inner class B {
-        fun foo(x: Int)
-        {
-            println("B.foo")
-            foo(x) //Dikkat recursive çağrı
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val b = A().B()  
+  
+    b.foo(20)  
+}  
+  
+class A {  
+    fun foo(x: Int) {  
+        println("A.foo")  
+    }  
+  
+    inner class B {  
+        fun foo(x: Int) {  
+            println("B.foo")  
+            foo(x) //Dikkat recursive çağrı  
+        }  
+    }  
 }
 ```
 
->Yukarıdaki örnek için "qualified this expression" ile inner sınıfın içerisinde kapsayan sınıfın foo metodu çağrılabilir
+>Yukarıdaki örnek için **qualified this expression** ile inner sınıfın içerisinde kapsayan sınıfın foo metodu çağrılabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val b = A().B()
-
-    b.foo(20)
+package org.csystem.app  
+  
+fun main() {  
+    val b = A().B()  
+  
+    b.foo(20)  
+}  
+  
+class A {  
+    fun foo(x: Int) {  
+        println("A.foo")  
+    }  
+  
+    inner class B {  
+        fun foo(x: Int) {  
+            println("B.foo")  
+            foo(x) //Dikkat recursive çağrı  
+        }  
+    }  
 }
+```
 
-class A {
-    fun foo(x: Int)
-    {
-        println("A.foo")
-    }
+##### Inner Class'ların İçsel Durumu
+>Inner class içerisinde inner class türünden nesnenin yaratılmasında kullanılan kapsayan sınıf nesnesinin referansı tutulur. Yani derleyici inner class içerisinde kapsayan sınıf türünden bir referans veri elemanı yerleştirir. İşte biz qualified this expression ile bu referansa erişmiş oluruz. Örneğin
 
-    inner class B {
-        fun foo(x: Int)
-        {
-            println("B.foo")
-            this@A.foo(x)
-        }
+```kotlin
+class A {  
+	//...  
+    inner class B {  
+        //...
+    }  
+}
+```
+
+>sınıfları için B türünden bir nesnenin yaratılması durumunda nesnelerin kabaca bağlantıları şu şekildedir:
+
+![Class Diagram](./kmedia/InnerClasses.PNG)
+>Burada inner class'ın byte kodunun A$B şeklinde isimlendirildiğine dikkat ediniz. Yukarıdaki inner class'ın nested class karşılığı yaklaşık olarak aşağıdaki gibidir:
+
+```kotlin
+class A {  
+    //...
+    class B(a: A) {  
+        private val mA: A = a  
+        //...  
     }
 }
 ```
 
 ##### Anonymous Classes
 
->Anonim sınıflar object anahtar sözcüğü ile bildirilebilir. Anonim sınıf eğer bir interface ile klullanılırsa o interface'i destekleyen, bir sınıf ile kullanılırsa o sınıftan türetilmiş olan bir sınıf bildirimi yapmak aynı zamanda o sınıf türünden bir nesne yaratıp o nesnenin referansını elde etmek anlamındadır. Bildirilen sınıfa isim derleyici tarafından verilir
+>Anonim sınıflar object anahtar sözcüğü ile bildirilebilir. Anonim sınıf eğer bir interface ile klullanılırsa o interface'i destekleyen, bir sınıf ile kullanılırsa o sınıftan türetilmiş olan bir sınıf bildirimi yapmak ve aynı zamanda o sınıf türünden bir nesne yaratıp o nesnenin referansını elde etmek anlamındadır. Bildirilen sınıfa isim derleyici tarafından verilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val ix = object: IX {
-        override fun foo()
-        {
-            println("foo")
-        }
-    }
-
-    println(ix.javaClass.name)
-    ix.foo()
-}
-
-interface IX {
-    fun foo()
+package org.csystem.app  
+  
+fun main() {  
+    val ix = object : IX {  
+        override fun foo() {  
+            println("foo")  
+        }  
+    }  
+  
+    println(ix.javaClass.name)  
+    ix.foo()  
+}  
+  
+interface IX {  
+    fun foo()  
 }
 ```
 
 >Anonim sınıflar tür belirtilmeden de kullanılabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = object {
-        var x = 10
-        var y = 3.4
-        //...
-    }
-
-    println(a.javaClass.name)
-    println(a.x)
-    println(a.y)
+package org.csystem.app  
+  
+fun main() {  
+    val a = object {  
+        var x = 10  
+        var y = 3.4  
+        //...  
+    }  
+  
+    println(a.javaClass.name)  
+    println(a.x)  
+    println(a.y)  
+  
+    ++a.x  
+    println(a.x)  
+  
 }
 ```
 
->Anonim sınıflar kendisinden önce bildirilen yerel değişkenleri ve parametre değişkenleri yakalayabilir (capture). Aşağıdaki anonim sınıfın derleyici tarafından yazılışının yaklaşık karşılığı (closure):
+>Anonim sınıflar kendisinden önce bildirilen yerel değişkenleri ve parametre değişkenlerini yakalayabilir (capture). Aşağıdaki anonim sınıfın derleyici tarafından yazılışının yaklaşık karşılığı (closure):
 
 ```kotlin
 class org.csystem.app.AppKt$main$a$1 (private var a: Int) : IX {
-    override fun foo()
-    {
+    override fun foo() {
         println("a = $a")
     }
 }
 ```
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    val a = readInt("Bir sayı giriniz:")
-
-    val ix = object: IX {
-        override fun foo()
-        {
-            println("a = $a")
-        }
-    }
-
-    ix.foo()
-}
-
-interface IX {
-    fun foo()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val a = readInt("Bir sayı giriniz:")  
+  
+    val ix = object : IX {  
+        override fun foo() {  
+            println("a = $a")  
+        }  
+    }  
+  
+    ix.foo()  
+}  
+  
+interface IX {  
+    fun foo()  
 }
 ```
 
 >Kotlin'de Java'dan farklı yakalanan bir değişkenin değeri scope'u içerisinde değiştirilebilir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    var a = readInt("Bir sayı giriniz:")
-
-    val ix = object: IX {
-        override fun foo()
-        {
-            println("a = $a")
-            a++
-        }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    var a = readInt("Bir sayı giriniz:")  
+  
+    val ix = object : IX {  
+        override fun foo() {  
+            println("a = $a")  
+            a++  
+        }  
     }
-
-    ix.foo()
-    ix.foo()
-}
-
-interface IX {
-    fun foo()
+  
+    ix.foo()  
+    ix.foo()  
+}  
+  
+interface IX {  
+    fun foo()  
 }
 ```
 
 >Kotlin'de Java'dan farklı olarak yakalanan bir değişkenin değeri scope'u içerisinde değiştirilebilir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    var a = readInt("Bir sayı giriniz:")
-
-    val ix = object: IX {
-        override fun foo()
-        {
-            println("a = $a")
-        }
-    }
-    ++a
-    ix.foo()
-    ix.foo()
-}
-
-interface IX {
-    fun foo()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    var a = readInt("Bir sayı giriniz:")  
+  
+    val ix = object : IX {  
+        override fun foo() {  
+            println("a = $a")  
+        }  
+    }  
+    ++a  
+    ix.foo()  
+    ix.foo()  
+}  
+  
+interface IX {  
+    fun foo()  
 }
 ```
 
+>Aşağıdaki örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val a = readInt("Bir sayı giriniz:")  
+  
+    doWork(object: IX {  
+        override fun foo() {  
+            println("a = $a")  
+        }  
+    })  
+}  
+  
+fun doWork(ix: IX) {  
+    //...  
+    ix.foo()  
+    //...  
+}  
+interface IX {  
+    fun foo()  
+}
+```
+
+>Anonim sınıf bir sınıf kullanılarak bildirilecekse (yani o sınıftan türetilecekse) ilgili sınıf open olarak bildirilmiş olmalıdır (yani türetmeye açık olmalıdır)
+
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+  
+    val x = object: A() {}  
+}  
+
+open class A
+```
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #### Object Declaration
 
 >object bildirimi (object declaration). object olarak bildirilmiş olan türe ilişkin bir tane nesne yaratılmış olur ve ismi o nesnenin referansı olarak kullanılır. Kullanım şekli itibariyla static elemanları varmış gibi erişilir
@@ -15733,9 +15824,9 @@ fun main()
 >
 >1. __<u>Strongly reachable:</u>__ Bir nesneyi en az bir referans gösteriyorsa bu şekilde erişilebiliyordur. Bu durumda nesne garbage collector (gc) tarafından yok edilemez.
 >
->2. __<u>Softly reachable:</u>__ __"Strongly reachable"__ olmayan fakat adresi SoftReference isimli sınıf nesne veye nesneleri içerisinde tutulan bir nesne __"soft reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler bellek ihtiyacı olduğu durumlarda yok edilirler. Aslında teknik olarak SoftReference nesnesi içerisinde tutulan adreslere ilişkin nesneler SoftReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler.
+>2. __<u>Softly reachable:</u>__ __"Strongly reachable"__ olmayan fakat adresi SoftReference isimli sınıf nesne veya nesneleri içerisinde tutulan bir nesne __"soft reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler bellek ihtiyacı olduğu durumlarda yok edilirler. Aslında teknik olarak SoftReference nesnesi içerisinde tutulan adreslere ilişkin nesneler SoftReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler.
 >
->3. __<u>Weakly reachable:</u>__ __"Strongly reachable"__ ve __"softly reachable"__ olomayan fakat adresi WeakReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"weakly reachble"__ erişimlidir. Bu şekilde erişime sahip nesneler __"garbage collected"__ olmaya adaydırlar. Aslında teknik olarak WeakReference nesnesi içerisinde tutulan adreslere ilişkin nesneler WeakReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler. GC, bir nesne yalnızca WeakReference ile gösteriliyorsa o nesneyi WeakReference'dan kopartır.
+>3. __<u>Weakly reachable:</u>__ __"Strongly reachable"__ ve __"softly reachable"__ olmayan fakat adresi WeakReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"weakly reachble"__ erişimlidir. Bu şekilde erişime sahip nesneler __"garbage collected"__ olmaya adaydırlar. Aslında teknik olarak WeakReference nesnesi içerisinde tutulan adreslere ilişkin nesneler WeakReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler. GC, bir nesne yalnızca WeakReference ile gösteriliyorsa o nesneyi WeakReference'dan kopartır.
 >
 >4. __<u>Phantom reachable:</u>__ __"Strongly reachable"__, __"softly reachable"__ ve __"weakly reachable"__ olmayan fakat adresi, PhantomReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"phantom reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler kabaca söylemek gerekirse bir kuyruğa atılır hemen yok edilmeyebilir. Yüksek seviyede pratik bir kullanımı yoktur.
 >

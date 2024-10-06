@@ -53,7 +53,7 @@ fun String.isIsogramEN() = this.lowercase().isIsogram("abcdefghijklmnopqrstuvwxy
 fun String.isIsogramTR() = this.lowercase().isIsogram("abcçdefgğhıijklmnoöprsştuüvyz")
 
 
-fun String.isPangram( alphabet: String, ignoreCase: Boolean = false): Boolean {
+fun String.isPangram(alphabet: String, ignoreCase: Boolean = false): Boolean {
     for (c in alphabet)
         if (!this.contains(c, ignoreCase))
             return false
@@ -80,3 +80,18 @@ fun Random.randomTextEN(count: Int) =
 
 fun Random.randomTextTR(count: Int, random: Random = Random) =
     randomText(count, "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuüvyz")
+
+fun Random.randomTexts(n: Int, count: Int, sourceText: String) = Array(n) { randomText(count, sourceText) }
+
+fun Random.randomTexts(n: Int, origin: Int, bound: Int, sourceText: String) =
+    Array(n) { randomText(nextInt(origin, bound), sourceText) }
+
+fun Random.randomTextsEN(n: Int, count: Int) =
+    randomTexts(n, count, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+
+fun Random.randomTextsEN(n: Int, origin: Int, bound: Int) = Array(n) {randomTextEN(nextInt(origin, bound))}
+
+fun Random.randomTextsTR(n: Int, count: Int) =
+    randomTexts(n, count, "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuüvyz")
+
+fun Random.randomTextsTR(n: Int, origin: Int, bound: Int) = Array(n) {randomTextTR(nextInt(origin, bound))}

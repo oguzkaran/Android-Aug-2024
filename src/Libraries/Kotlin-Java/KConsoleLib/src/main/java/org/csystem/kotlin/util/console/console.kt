@@ -156,3 +156,10 @@ fun CharArray.printArray(sep: String = "\n", end: String = "") {
     print(end)
 }
 
+fun <T> Array<T>.printArray(sep: String = "\n", end: String = "") {
+    for (v in this)
+        print("$v$sep")
+
+    print(end)
+}
+
