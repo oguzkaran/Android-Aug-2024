@@ -1,6 +1,6 @@
 ### C ve Sistem Programcıları Derneği
-### Android Programlama Kursu
-### Kotlin Programlama Dili
+
+### Java Programcıları için Kotlin Programlama Dili
 ### Eğitmen: Oğuz KARAN
 
 #### Düzenleyenler: Anıl Bozkırlı, Bartu Çankaya, Eda Akyıl, Yılmaz Kurtuluş
@@ -65,16 +65,16 @@ fun bar() : Unit {
 
 #### Kotlin Programlama Dilinde Temel Türler ####
 
-| Tür ismi | Uzunluk (byte) | Sınır Değerler                               |
-| -------- | -------------- | -------------------------------------------- |
-| Short    | 2              | [-32768, +32767]                             |
-| Int      | 4              | [-2147483648, +2147483647]                   |
-| Long     | 8              | [-9223372036854775808, +9223372036854775807] |
-| Byte     | 1              | [-128, +127]                                 |
-| Float    | 4              | [±3.6 * 10-38, ±3.6 * 10+38]                 |
-| Double   | 8              | [±1.6 * 10-308, ±1.6 * 10+308]               |
-| Char     | 2              | [0, 65535]                                   |
-| Boolean  | 1              | true, false                                  |
+| Tür ismi | Uzunluk (byte) | Sınır Değerler                                 |
+| -------- | -------------- | ---------------------------------------------- |
+| Short    | 2              | `[-32768, 32767]`                              |
+| Int      | 4              | `[-2147483648, +2147483647]`                   |
+| Long     | 8              | `[-9223372036854775808, +9223372036854775807]` |
+| Byte     | 1              | `[-128, +127]`                                 |
+| Float    | 4              | `[±3.6 * 10-38, ±3.6 * 10+38]`                 |
+| Double   | 8              | `[±1.6 * 10-308, ±1.6 * 10+308]`               |
+| Char     | 2              | `[0, 65535]`                                   |
+| Boolean  | 1              | `true, false`                                  |
 
 **_Anahtar Notlar:_** Kotlin'de temel türler (primitive/built-in/pre-defined types) sınıf ile temsil edilmiştir.
 
@@ -11892,533 +11892,540 @@ fun main() {
 open class A
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #### Object Declaration
 
->object bildirimi (object declaration). object olarak bildirilmiş olan türe ilişkin bir tane nesne yaratılmış olur ve ismi o nesnenin referansı olarak kullanılır. Kullanım şekli itibariyla static elemanları varmış gibi erişilir
+>object bildirimi (object declaration) object anahtar sözcüğü ile yapılır. **object olarak bildirilmiş olan türe ilişkin bir tane nesne yaratılmış olur ve tür ismi o nesnenin referansı olarak kullanılır.** Kullanım şekli Java bakış açısıyla sınıfın static elemanlarına erişim gibidir. object bildirimi ile singleton bir sınıf doğrudan bildirilmiş olur
+
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    Singleton.foo(23)
-    Singleton.bar(10.0)
-}
-
-object Singleton {
-    fun foo(a: Int)
-    {
-        println("foo")
-    }
-
-    fun bar(b: Double)
-    {
-        println("bar")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    Singleton.foo(23)  
+    Singleton.bar(10.0)  
+}  
+  
+object Singleton {  
+    fun foo(a: Int) {  
+        println("foo")  
+    }  
+  
+    fun bar(b: Double) {  
+        println("bar")  
+    }  
 }
 ```
 
->object bildirimi (object declaration). object olarak bildirilmiş olan türe ilişkin bir tane nesne yaratılmış olur ve ismi o nesnenin referansı olarak kullanılır. Kullanım şekli itibariyla static elemanları varmış gibi erişilir
-
+>Aşağıdaki örneği inceleyiniz
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    Singleton.foo(23)
-    Singleton.bar()
-}
-
-object Singleton {
-    private var mX : Int = 0
-
-    fun foo(x: Int)
-    {
-        mX = x
-    }
-
-    fun bar()
-    {
-        println("mX = $mX")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    Singleton.foo(23)  
+    Singleton.bar()  
+}  
+  
+object Singleton {  
+    private var mX: Int = 0  
+  
+    fun foo(x: Int) {  
+        mX = x  
+    }  
+  
+    fun bar() {  
+        println("mX = $mX")  
+    }  
 }
 ```
 
 >object bildirimleri başka bir sınıftan türetilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    Singleton(23)
-}
-
-open class A
-
-object Singleton : A() {
-    operator fun invoke(b: Int)
-    {
-        println("b = $b")
-    }
-
-    fun foo(a: Int)
-    {
-        println("foo")
-    }
-
-    fun bar(b: Double)
-    {
-        println("bar")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    Singleton(23)  
+}  
+  
+open class A  
+  
+object Singleton : A() {  
+    operator fun invoke(b: Int) {  
+        println("b = $b")  
+    }  
+  
+    fun foo(a: Int) {  
+        println("foo")  
+    }  
+  
+    fun bar(b: Double) {  
+        println("bar")  
+    }  
 }
 ```
 
->object bildirimleri
+>object türünden bir nesne programcı tarafından yaratılamaz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s = Singleton
-
-    s(23)
-    Singleton(23)
+package org.csystem.app  
+  
+fun main() {  
+    val s = Sample(10) //error  
+}  
+  
+open class A  
+  
+object Sample : A() {  
+    fun foo(a: Int) {  
+        println("foo")  
+    }  
+  
+    fun bar(b: Double) {  
+        println("bar")  
+    }  
 }
+```
 
-open class A
+>Aşağıdaki örneği inceleyiniz
 
-object Singleton : A() {
-    operator fun invoke(b: Int)
-    {
-        println("b = $b")
-    }
-
-    fun foo(a: Int)
-    {
-        println("foo")
-    }
-
-    fun bar(b: Double)
-    {
-        println("bar")
-    }
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val s = Singleton  
+  
+    s(23)  
+    Singleton(23)  
+}  
+  
+open class A  
+  
+object Singleton : A() {  
+    operator fun invoke(b: Int) {  
+        println("b = $b")  
+    }  
+  
+    fun foo(a: Int) {  
+        println("foo")  
+    }  
+  
+    fun bar(b: Double) {  
+        println("bar")  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte nesne yaratılmamıştır. Fonksiyon çağırma operatör fonksiyonu çağrılmıştır. Dikkat edilirse s'nin türü Unit'dir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val s: Unit = Sample(10)
-
-    println(s.javaClass.name)
-}
-
-open class A
-
-object Sample : A() {
-    operator fun invoke(b: Int)
-    {
-        println("b = $b")
-    }
-
-    fun foo(a: Int)
-    {
-        println("foo")
-    }
-
-    fun bar(b: Double)
-    {
-        println("bar")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val s: Unit = Sample(10)  
+  
+    println(s.javaClass.name)  
+}  
+  
+open class A  
+  
+object Sample : A() {  
+    operator fun invoke(b: Int) {  
+        println("b = $b")  
+    }  
+  
+    fun foo(a: Int) {  
+        println("foo")  
+    }  
+  
+    fun bar(b: Double) {  
+        println("bar")  
+    }  
 }
 ```
 
->object bildirimleri (singleton) türetmeye kapalıdır
+>object bildirimleri  türetmeye kapalıdır
 
 ```kotlin
-package org.csystem.app
-
-object A
-object Singleton : A { //error
-    operator fun invoke(b: Int)
-    {
-        println("b=$b")
-    }
-    fun foo(a: Int)
-    {
-        println("foo")
-    }
-
-    fun bar(b: Double)
-    {
-        println("bar")
-    }
+package org.csystem.app  
+  
+object A  
+object Singleton : A { //error  
+    operator fun invoke(b: Int) {  
+        println("b=$b")  
+    }  
+  
+    fun foo(a: Int) {  
+        println("foo")  
+    }  
+  
+    fun bar(b: Double) {  
+        println("bar")  
+    }  
 }
 ```
 
->object bildirimleri bir sınıf içerisinde yapılabilir
+>object bildirimleri bir sınıf içerisinde yapılabilir:
+>`Sample.Mample.foo()` çağrısında `Sample` tür ismi `Mample` referans ismi, `foo` metot ismidir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    Sample.Mample.foo()
-}
-
-class Sample {
-    object Mample {
-        fun foo()
-        {
-            println("foo")
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    Sample.Mample.foo()  
+}  
+  
+class Sample {  
+    object Mample {  
+        fun foo() {  
+            println("foo")  
+        }  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte `**` ile belirtilen ifade için invoke metodu çağrılır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
+package org.csystem.app  
+  
+fun main() {  
     val A = A(10)
-    val x = A(20) //**
-
-    println(x)
-}
-
-class A(x: Int) {
-    init {
-        println("A.ctor, int")
-    }
-
-    operator fun invoke(x: Int) : Int
-    {
-        println("A.invoke")
-
-        return x
-    }
+    val x = A(20) //**  
+  
+    println(x)  
+}  
+  
+class A(x: Int) {  
+    init {  
+        println("A.ctor, int")  
+    }  
+  
+    operator fun invoke(x: Int): Int {  
+        println("A.invoke")  
+  
+        return x  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte `**` ile belirtilen ifade için yeni bir nesne yaratılmış olur
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val A = A(10)
-    val x = A(20) //**
-
-    println(x)
-}
-
-class A(x: Int) {
-    init {
-        println("A.ctor, int")
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val A = A(10)  
+    val x = A(20) //**  
+  
+    println(x)  
+}  
+  
+class A(x: Int) {  
+    init {  
+        println("A.ctor, int")  
+    }  
 }
 ```
 
->object bildirimleri bir sınıf içerisinde companion yapılabilir. Bu durumda object içerisindeki metotlara kapsayan sınıf ismi ile de erişilebilir
+>object bildirimleri bir sınıf içerisinde companion yapılabilir. Bu durumda object içerisindeki elemanlara kapsayan sınıf ismi ile doğrudan erişilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    Sample.foo() // Sample.Mample.foo()
-}
-
-class Sample {
-    companion object Mample {
-        fun foo()
-        {
-            println("foo")
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    Sample.foo() // Sample.Mample.foo()  
+}  
+  
+class Sample {  
+    companion object Mample {  
+        fun foo() {  
+            println("foo")  
+        }  
+    }  
 }
 ```
 
 >companion object bildirimlerinde object'e isim verilmeyebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    Sample.foo();
-
-    val s = Sample()
-
-    s.bar()
-}
-
-class Sample {
-    fun bar()
-    {
-        println("bar")
-    }
-
-    companion object {
-        fun foo()
-        {
-            println("foo")
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    Sample.foo();  
+  
+    val s = Sample()  
+  
+    s.bar()  
+}  
+  
+class Sample {  
+    fun bar() {  
+        println("bar")  
+    }  
+  
+    companion object {  
+        fun foo() {  
+            println("foo")  
+        }  
+    }  
 }
 ```
 
->companion object'e bir isim verilmediğinde o object'ib ismi Companion olarak verilmiş olur. Bu durumda sınıf dışından bu isme yani aslında o tek olan companşon object referansına Companion ismi ile erişilebilir
+>companion object'e bir isim verilmediğinde o object'in ismi Companion olarak verilmiş olur. Bu durumda sınıf dışından bu isme yani aslında o tek olan companion object referansına Companion ismi ile erişilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var singleton = Sample.Companion
-    //...
-}
-
-class Sample {
-    companion object {
-        fun foo()
-        {
-            println("foo")
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    var singleton = Sample.Companion  
+    //...  
+}  
+  
+class Sample {  
+    companion object {  
+        fun foo() {  
+            println("foo")  
+        }  
+    }  
 }
 ```
 
 >companion object içeren bir sınıf ismi doğrudan kullanıldığında Companion object referansı elde edilmiş olur
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val singleton: Sample.Companion = Sample
-
-    singleton.foo()
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val singleton: Sample.Companion = Sample  
+  
+    singleton.foo()  
+    //...  
+}  
+  
+class Sample {  
+    companion object {  
+        fun foo() {  
+            println("foo")  
+        }  
+    }  
 }
+```
 
-class Sample {
-    companion object {
-        fun foo()
-        {
-            println("foo")
-        }
-    }
+>companion object içeren bir sınıf ismi doğrudan kullanıldığında Companion object referansı elde edilmiş olur
+
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val singleton: Sample.My = Sample  
+  
+    singleton.foo()  
+    //...  
+}  
+  
+class Sample {  
+    companion object My {  
+        fun foo() {  
+            println("foo")  
+        }  
+    }  
 }
 ```
 
 >Bir sınıf içerisinde tek bir companion object olabilir
 
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    var singleton: Sample.Companion = Sample
-    //...
-}
-class Sample {
-    companion object {
-        fun foo()
-        {
-            println("foo")
-        }
-    }
-
-    companion object Mample { //error
-        fun foo()
-        {
-            println("foo")
-        }
-    }
+```kotlin  
+class Sample {  
+    companion object {  
+        fun foo()  
+        {  
+            println("foo")  
+        }  
+    }  
+  
+    companion object Mample { //error  
+        fun foo()  
+        {  
+            println("foo")  
+        }  
+    }  
 }
 ```
 
 >Bir sınıf içerisinde tek bir companion object fakat istenildiği kadar başka object'ler olabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    Sample.foo()
-    Sample.Mample.foo()
-    Sample.Test.foo()
-}
-
-class Sample {
-    companion object {
-        fun foo()
-        {
-            println("Companion.foo")
-        }
-    }
-
-    object Mample {
-        fun foo()
-        {
-            println("Mample.foo")
-        }
-    }
-
-    object Test {
-        fun foo()
-        {
-            println("Test.foo")
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    Sample.foo()  
+    Sample.Mample.foo()  
+    Sample.Test.foo()  
+}  
+  
+class Sample {  
+    companion object {  
+        fun foo() {  
+            println("Companion.foo")  
+        }  
+    }  
+  
+    object Mample {  
+        fun foo() {  
+            println("Mample.foo")  
+        }  
+    }  
+  
+    object Test {  
+        fun foo() {  
+            println("Test.foo")  
+        }  
+    }  
 }
 ```
+
 
 >Aşağıdaki örnekte Console isimli sınıf Java bakış açısıyla mantıksal static olarak bildirilmiştir. Anımsanacağı gibi tüm elemanları static olarak bildirilen sınıflara mantıksal static sınıflar ya da "utility" sınıflar denir ve utility sınıfların ctor'ları private yapılır. Örnek Java düşüncesiyle yazılmıştır. Kotlin açısından iyi yazılmamıştır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = ConsoleUtil.readInt("Birinci sayıyı giriniz:")
-    val b = Console.readInt("İkinci sayıyı giriniz:")
-
-    println("$a * $b = ${a * b}")
-}
-
-object ConsoleUtil {
-    fun readInt(message: String, errorMessage: String = "", end: String = "") : Int
-    {
-        while (true) {
-            try {
-                return Console.readString(message, end).toInt()
-            }
-            catch (ex: Throwable) {
-                print(errorMessage + end)
-            }
-        }
-    }
-}
-
-class Console private constructor() {
-    companion object {
-        fun readString(message: String, end: String = "") : String
-        {
-            print(message + end)
-
-            return readLine()!!
-        }
-
-        fun readInt(message: String, errorMessage: String = "", end: String = "") : Int
-        {
-            while (true) {
-                try {
-                    return readString(message, end).toInt()
-                }
-                catch (ex: Throwable) {
-                    print(errorMessage + end)
-                }
-            }
-        }
-
-        fun readLong(message: String, errorMessage: String = "", end: String = "") : Long
-        {
-            while (true) {
-                try {
-                    return readString(message, end).toLong()
-                }
-                catch (ex: Throwable) {
-                    print(errorMessage + end)
-                }
-            }
-        }
-
-        fun readDouble(message: String, errorMessage: String = "", end: String = "") : Double
-        {
-            while (true) {
-                try {
-                    return readString(message, end).toDouble()
-                }
-                catch (ex: Throwable) {
-                    print(errorMessage + end)
-                }
-            }
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a = Console.readInt("Birinci sayıyı giriniz:")  
+    val b = Console.readInt("İkinci sayıyı giriniz:")  
+  
+    println("$a * $b = ${a * b}")  
+}  
+  
+  
+class Console private constructor() {  
+    companion object {  
+        fun readString(message: String, end: String = ""): String {  
+            print(message + end)  
+  
+            return readln()  
+        }  
+  
+        fun readInt(message: String, errorMessage: String = "", end: String = ""): Int {  
+            while (true) {  
+                try {  
+                    return readString(message, end).toInt()  
+                } catch (ex: Throwable) {  
+                    print(errorMessage + end)  
+                }  
+            }  
+        }  
+  
+        fun readLong(message: String, errorMessage: String = "", end: String = ""): Long {  
+            while (true) {  
+                try {  
+                    return readString(message, end).toLong()  
+                } catch (ex: Throwable) {  
+                    print(errorMessage + end)  
+                }  
+            }  
+        }  
+  
+        fun readDouble(message: String, errorMessage: String = "", end: String = ""): Double {  
+            while (true) {  
+                try {  
+                    return readString(message, end).toDouble()  
+                } catch (ex: Throwable) {  
+                    print(errorMessage + end)  
+                }  
+            }  
+        }  
+    }  
 }
 ```
 
->Yukarıdaki örnek Kotlin bakış açısıyla aşağıdaki gibi daha iyi yazılabilir. Her iki durumda da unutlmamalıdır ki object'in ve companion object'in metotları static metotlar değildir
+>Yukarıdaki örnek Kotlin bakış açısıyla aşağıdaki gibi daha iyi yazılabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val a = Console.readInt("Birinci sayıyı giriniz:")
-    val b = Console.readInt("İkinci sayıyı giriniz:")
-
-    println("$a * $b = ${a * b}")
-}
-
-object Console {
-    fun readString(message: String, end: String = "") : String
-    {
-        print(message + end)
-
-        return readLine()!!
-    }
-
-    fun readInt(message: String, errorMessage: String = "", end: String = "") : Int
-    {
-        while (true) {
-            try {
-                return readString(message, end).toInt()
-            }
-            catch (ex: Throwable) {
-                print(errorMessage + end)
-            }
-        }
-    }
-
-    fun readLong(message: String, errorMessage: String = "", end: String = "") : Long
-    {
-        while (true) {
-            try {
-                return readString(message, end).toLong()
-            }
-            catch (ex: Throwable) {
-                print(errorMessage + end)
-            }
-        }
-    }
-
-    fun readDouble(message: String, errorMessage: String = "", end: String = "") : Double
-    {
-        while (true) {
-            try {
-                return readString(message, end).toDouble()
-            }
-            catch (ex: Throwable) {
-                print(errorMessage + end)
-            }
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    val a = Console.readInt("Birinci sayıyı giriniz:")  
+    val b = Console.readInt("İkinci sayıyı giriniz:")  
+  
+    println("$a * $b = ${a * b}")  
+}  
+  
+object Console {  
+    fun readString(message: String, end: String = ""): String {  
+        print(message + end)  
+  
+        return readln()  
+    }  
+  
+    fun readInt(message: String, errorMessage: String = "", end: String = ""): Int {  
+        while (true) {  
+            try {  
+                return readString(message, end).toInt()  
+            } catch (ex: Throwable) {  
+                print(errorMessage + end)  
+            }  
+        }  
+    }  
+  
+    fun readLong(message: String, errorMessage: String = "", end: String = ""): Long {  
+        while (true) {  
+            try {  
+                return readString(message, end).toLong()  
+            } catch (ex: Throwable) {  
+                print(errorMessage + end)  
+            }  
+        }  
+    }  
+  
+    fun readDouble(message: String, errorMessage: String = "", end: String = ""): Double {  
+        while (true) {  
+            try {  
+                return readString(message, end).toDouble()  
+            } catch (ex: Throwable) {  
+                print(errorMessage + end)  
+            }  
+        }  
+    }  
 }
 ```
+
+###### object elemanlarına Java kullanılarak erişim 
+
+>Bir object'in elemanları static elemanlar değildir, non-static elemanlardır. Bu durumda bir object'in elemanlarına Java'dan erişebilmek için nesne yaratılması gerekir. Eğer object bir companion ise bu durumda Java'dan sınıf ismi ve object tür ismi ile erişim sağlanabilir çünkü object tür ismi aslında bir referans ismidir. Console sınıfının birinci implementasyonu için readInt metodu Java'dan şu şekilde çağrılabilir:
+
+```java
+Console.Companion.readInt("Birinci sayıyı giriniz", "", "")
+```
+
+>Console sınıfının ikinci implementasyonu için readInt metodu Java'dan şu şekilde çağrılabilir:
+
+```java
+Console.INSTANCE.readInt("Birinci sayıyı giriniz", "", "")
+```
+
+Bu durumda dikkat edilirse bir top level object'in ilgili referansına Java'dan `INSTANCE` erişilebilir. 
+Peki, Kotlin'de JVM için (kabaca Java için) static bir eleman nasıl bildirilebilir? Bunın JvmStatic isimli bir annotation kullanılır. İlgili eleman JvmStatic annotation'ı ile işaretlenir. Bir elemanın JvmStatic olarak işaretlebilmesi için object'in elemanı olması gerekir. Aksi durumda error oluşur. Bu durumda artık Java'dan tür ismi erişim sağlanabilir:
+
+>Aşağıdaki A sınıfının foo metodu Java'dan `A.foo()` biçiminde çağrılabilir. Tabii istenirse (ki buna hiç gerek yoktur) `A.INSTANCE.foo()` biçiminde de çağrılabilir
+>
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    A.foo()  
+}  
+  
+object A {  
+    @JvmStatic  
+    fun foo() {  
+        println("A.foo")  
+    }  
+}
+```
+
+> KConsoleLib içerisindeki Console object'ini ve consoleUtil içerisindeki global fonksiyonları inceleyiniz.
 
 ##### Type Aliases
 >Kotlin'de bir türe eş isim (alias) verilebilmektedir. Bu işlem typealias anahtar sözcüğü ile yapılır. Genel olarak isimleri daha basit hale getirmek ve/veya isim çakışmalarını engellemek amaçlı kullanılmaktadır. Kotlin'de JavaSE ile aynı isimdeki bazı sınıflar kolay kullanım açısından typealias yapılmıştır
@@ -12426,486 +12433,469 @@ object Console {
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.string.kotlin.getRandomTextEN
-import kotlin.random.Random
-
-typealias StringArrayList = ArrayList<String>
-
-fun main()
-{
-    val sList = StringArrayList() //ArrayList<String>()
-
-    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!...")
-    for (i in 1..n)
-        sList.add(Random.getRandomTextEN(n))
-
-    for (s in sList)
-        println(s)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.string.randomTextEN  
+import kotlin.random.Random  
+  
+typealias StringArrayList = ArrayList<String>  
+  
+fun main() {  
+    val sList = StringArrayList() //ArrayList<String>()  
+  
+    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!...")  
+    for (i in 1..n)  
+        sList.add(Random.randomTextEN(n))  
+  
+    for (s in sList)  
+        println(s)  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-typealias IntArrayList = ArrayList<Int>
-
-fun main()
-{
-    val iList = IntArrayList()
-
-    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!...")
-    for (i in 1..n)
-        iList.add(Random.nextInt(100))
-
-    for (i in iList)
-        print("$i ")
-
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+typealias IntArrayList = ArrayList<Int>  
+  
+fun main() {  
+    val iList = IntArrayList()  
+  
+    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!...")  
+    for (i in 1..n)  
+        iList.add(Random.nextInt(100))  
+  
+    for (i in iList)  
+        print("$i ")  
+  
+    println()  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-typealias int = Int
-typealias double = Double
-
-fun main()
-{
-    val a: int = 10
-
-    foo(3.4)
-
-    println(a)
-}
-
-fun foo(a: double)
-{
-    //...
+package org.csystem.app  
+  
+typealias int = Int  
+typealias double = Double  
+  
+fun main() {  
+    val a: int = 10  
+  
+    foo(3.4)  
+  
+    println(a)  
+}  
+  
+fun foo(a: double) {  
+    //...  
 }
 ```
 
 >type alias yapıldığında iki tür birden de kullanılabilir
 
 ```kotlin
-package org.csystem.app
-
-typealias int = Int
-
-fun main()
-{
-    val a: int  = 10
-    val b: Int = 20
-
-    println(a)
-    println(b)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.string.randomTextEN  
+import org.csystem.kotlin.util.string.randomTextTR  
+import kotlin.random.Random  
+  
+typealias StringArrayList = ArrayList<String>  
+  
+fun main() {  
+    val sListEN = StringArrayList()  
+    val sListTR = ArrayList<String>()  
+  
+    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!...")  
+    for (i in 1..n) {  
+        sListEN.add(Random.randomTextEN(n))  
+        sListTR.add(Random.randomTextTR(n))  
+    }  
+  
+    println("EN:")  
+    for (s in sListEN)  
+        println(s)  
+  
+    println("TR:")  
+    for (s in sListTR)  
+        println(s)  
 }
 ```
 
 >Aşağıdaki ilginç örnek geçerlidir
 
 ```kotlin
-package org.csystem.app
-
-typealias Int = String
-
-fun main()
-{
-    val b: Int = "ankara"
-
-    foo("zonguldak")
-
-    println(b)
-}
-
-
-fun foo(a: Int)
-{
-    println(a)
+package org.csystem.app  
+  
+typealias Int = String  
+  
+fun main() {  
+    val b: Int = "ankara"  
+  
+    foo("zonguldak")  
+  
+    println(b)  
+}  
+  
+  
+fun foo(a: Int) {  
+    println(a)  
 }
 ```
 
 >Aşağıdaki ilginç örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-typealias int = Int
-typealias Int = String
-
-fun main()
-{
-    var a: Int = "ankara"
-    var b: int = 10 //error
+package org.csystem.app  
+  
+typealias int = Int  
+typealias Int = String  
+  
+fun main() {  
+    var a: Int = "ankara"  
+    var b: int = 10 //error  
 }
 ```
 
 >typealias olarak bildirilmiş isimler yine import bildirimleri ile kullanılabilmektedir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.list.IntPairList
-import kotlin.random.Random
-
-fun main()
-{
-    val points = IntPairList()
-    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!!!")
-
-    for (i in 1..n)
-        points.add(Pair(Random.nextInt(-100, 101), Random.nextInt(-100, 101)))
-
-    for ((x, y) in points)
-        println("($x, $y)")
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.list.IntPairList  
+import kotlin.random.Random  
+  
+fun main() {  
+    val points = IntPairList()  
+    val n = readInt("Bir sayı giriniz:", "Hatalı giriş yaptınız!!!")  
+  
+    for (i in 1..n)  
+        points.add(Pair(Random.nextInt(-100, 101), Random.nextInt(-100, 101)))  
+  
+    for ((x, y) in points)  
+        println("($x, $y)")  
 }
 ```
 
 ```kotlin
-package org.csystem.util.list
+package org.csystem.kotlin.util.list
 
 typealias IntPairList = ArrayList<Pair<Int, Int>>
 typealias IntTripleList = ArrayList<Triple<Int, Int, Int>>
 typealias DoublePairList = ArrayList<Pair<Double, Double>>
 typealias DoubleTripleList = ArrayList<Triple<Double, Int, Double>>
+//...
 ```
 
 >Aşağıdaki örneği inceleyiniz. Örnek typealias kullanımını göstermek için yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.matrix.createMatrix
-import kotlin.random.Random
-
-fun main()
-{
-    val matrix = createMatrix(3, 4)
-
-    for (i in matrix.indices)
-        for (j in matrix[i].indices)
-            matrix[i][j] = Random.nextInt(100)
-
-    for (a in matrix) {
-        for (value in a)
-            print("%02d ".format(value))
-
-        println()
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.matrix.createRandomIntMatrix  
+import kotlin.random.Random  
+  
+fun main() {  
+    val m = Random.createRandomIntMatrix(3, 4, 0, 100)  
+  
+    for (a in m) {  
+        for (v in a)  
+            print("%02d ".format(v))  
+  
+        println()  
+    }  
 }
 ```
 
 ```kotlin
-package org.csystem.util.matrix
+package org.csystem.kotlin.util.matrix  
+  
+import kotlin.random.Random  
+  
+typealias IntMatrix = Array<IntArray>  
+  
+fun createMatrix(row: Int, col: Int) = IntMatrix(row) { IntArray(col) }  
+  
+fun Random.createRandomIntMatrix(row: Int, col: Int, origin: Int, bound: Int): IntMatrix {  
+    val m = createMatrix(row, col)  
+  
+    m.fillRandom(origin, bound, this)  
+  
+    return m  
+}  
+  
+fun IntMatrix.fillRandom(origin: Int, bound: Int, random: Random = Random) {  
+    for (a in this)  
+        for (i in a.indices)  
+            a[i] = random.nextInt(origin, bound)  
+}
 
-typealias Matrix = Array<IntArray>
-
-fun createMatrix(m: Int, n: Int) = Matrix(m) {IntArray(n)}
+//...
 ```
 
->Aşağı seviyede fonksiyonların da adresleri vardır. Aslında bir fonksiyon çağrısı o fonksiyonun kodlarının bulunduğu adrese gidip çalıştırılmasıdır. Bazı programlama dillerinde fonksiyonların adreslerini tutan türler bulunur. Bu türlere genel olarak "function type" denir.
-
+**Anahtar Notlar:** typealias olarak bildirilmiş isimlere genel olarak Java'dan erişilemez.
 #### Function Types:
 
+>Aşağı seviyede fonksiyonların da adresleri vardır. Aslında bir fonksiyon çağrısı o fonksiyonun kodlarının bulunduğu adrese gidip çalıştırılmasıdır. Bazı programlama dillerinde fonksiyonların adreslerini tutan türler bulunur. Bu türlere genel olarak **function type** denir. Kotlin'de function type bulunur. Java'da function type yoktur. Kotlin'de function type bildiriminin genel biçimi şu şekildedir:
 >
 >`([parametre listesi]) -> <Geri dönüş değeri türü>`
 
+>Aşağıdaki örneği inceleyiniz
+>
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f1: (Int, String) -> String
-    val f2: (Int) -> Int
-    val f3 : (Int) -> Unit
-    var f4 : () -> Unit
-    val f5 : (Int, Int) -> Int
-    //...
+package org.csystem.app  
+  
+fun main() {  
+    val f1: (Int, String) -> String  
+    val f2: (Int) -> Int  
+    val f3: (Int) -> Unit  
+    var f4: () -> Unit  
+    val f5: (Int, Int) -> Int  
+    //...  
 }
 ```
 
->Kotlin'de bir fonksiyonun ismi fonksiyonun yapısına (yani parametri yapı ve geri dönüş değeri) uygun bir function türüne atanabilir. Fonksiyon türü bir referans türüdür. Fonksiyon türünden bir referans ile fonksiyon çağırma operatörü kullanıldığında, referansı (adresi) tutulan fonksiyon çağrılmış olur. Bu anlamda bakıldığında aslında fonksiyon ismi o fonklsiyonun adresi (referansı) gibi düşünülebilir.
+>Kotlin'de bir fonksiyonun ismi fonksiyonun yapısına (yani parametrik yapısı ve geri dönüş değeri) uygun bir function türüne atanabilir. Fonksiyon türü bir referans türüdür. Fonksiyon türünden bir referans ile fonksiyon çağırma operatörü kullanıldığında, referansı (adresi) tutulan fonksiyon çağrılmış olur. Bu anlamda bakıldığında aslında fonksiyon ismi o fonksiyonun adresi (referansı) gibi kullanılmaktadır.
 >
->Bir fonksiyon türüne global bir fonksiyon ismi method reference operatörü `::` ile değer olarak verilebilir. Aşağıdaki örnek durumu göstermek için yazılmıştır
+>Bir fonksiyon türüne global bir fonksiyon ismi **function reference operatörü `::`** ile değer olarak verilebilir.
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    val f1: (Int, String) -> String = ::toStr
-    val f2: (Int) -> Int = ::square
-    val f3 : (Int) -> Unit = ::display
-    val f4 : () -> Unit = ::printRandomIntValue
-    val f5 : (Int, Int) -> Int = ::add
-
-    println(f1(10, "Value"))
-    println(f2(10))
-    f3(20)
-    f4()
-    println(f5(10, 20))
-}
-
-fun toStr(a: Int, msg: String) = "$msg:$a"
-fun square(a: Int) = a * a
-
-fun display(a: Int) = println("a = $a")
-fun printRandomIntValue() = println(Random.nextInt())
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    val f1: (Int, String) -> String = ::toStr  
+    val f2: (Int) -> Int = ::square  
+    val f3: (Int) -> Unit = ::display  
+    val f4: () -> Unit = ::printRandomIntValue  
+    val f5: (Int, Int) -> Int = ::add  
+  
+    println(f1(10, "Value"))  
+    println(f2(10))  
+    f3(20)  
+    f4()  
+    println(f5(10, 20))  
+}  
+  
+fun toStr(a: Int, msg: String) = "$msg:$a"  
+fun square(a: Int) = a * a  
+fun display(a: Int) = println("a = $a")  
+fun printRandomIntValue() = println(Random.nextInt())  
 fun add(a: Int, b: Int) = a + b
 ```
 
->Bir fonksiyon türüne bir sınıfın üye fonksiyonu (metot) da atanabilir. Bu durumda referans ve `::` ile metot ismi verilerek atama yapılır. Aşağıdaki örnek durumu göstermek için yazılmıştır
+>Bir fonksiyon türüne bir sınıfın üye fonksiyonu (metot) da atanabilir. Bu durumda referans ve `::` ile metot ismi verilerek atama yapılır. 
+>
+> Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-typealias IntBinaryOperator = (Int, Int) -> Int
-
-fun main()
-{
-    val op = BinaryOperation(10)
-    val f1: IntBinaryOperator = op::add
-    val f2: IntBinaryOperator = Operation::add
-
-    println(f1(20, 30))
-    println(f2(10, 35))
-}
-
-data class BinaryOperation(val value: Int) {
-    fun add(a: Int, b: Int) = value + a + b
-}
-
-object Operation {
-    fun add(a: Int, b: Int) = a + b
+package org.csystem.app  
+  
+typealias IntBinaryOperator = (Int, Int) -> Int  
+  
+fun main() {  
+    val op = BinaryOperation(10)  
+    val f1: IntBinaryOperator = op::add  
+    val f2: (Int, Int) -> Int = Operation::add  
+  
+    println(f1(20, 30))  
+    println(f2(10, 35))  
+}  
+  
+data class BinaryOperation(val value: Int) {  
+    fun add(a: Int, b: Int) = value + a + b  
+}  
+  
+object Operation {  
+    fun add(a: Int, b: Int) = a + b  
 }
 ```
 
->Kotlin'de fonksiyonlar ismine **Lambda function** ya da **function literal** denilen bir sentaks ile de bildirilebilir. Lambda function bir fonksiyon türündendir. Yazılışına göre tür derleyici tarafından tespit edilir ve istenirse uygun bir function türünden referansa atanabilir. Lambda fonksiyonlarda son yazılan ifadenin değerine geri dönülmiş olur. Ya da başka bir deyişle geri dönüş değeri olan bir fonksiyon türü için lambda fonksiyon yazıldığında son yazılan ifade adeta return deyimi ile yazılmış olur
+>Kotlin'de fonksiyonlar, ismine **Lambda function** ya da **function literal** denilen bir sentaks ile de bildirilebilir. Lambda function bir fonksiyon türündendir. Yazılışına göre türü derleyici tarafından tespit edilir (type inference) ve istenirse uygun bir function türünden referansa atanabilir. Lambda fonksiyonlarda son yazılan ifadenin değerine geri dönülmüş olur. Ya da başka bir deyişle geri dönüş değeri olan bir fonksiyon türü için lambda fonksiyon yazıldığında son yazılan ifade adeta return deyimi ile yazılmış olur
 >
 >Aşağıdaki örnekte bir function literal yazılmış ve fonksiyon çağırma operatörü uygulanmıştır. Bu durumda derleyici Kotlin anlamında aşağıdaki gibi bir fonksiyon yazar:
 >
->fun _xyz(a: Int, b: Int) : Int = a + b
+>`fun _xyz(a: Int, b: Int) : Int = a + b`
 >
 >Fonksiyon çağrısını da şu şekilde yapar:
 >
->_xyz(10, 20)
->
->Bu işlemin Java karşılığı yaklaşık şu şekildedir:
-
-```java
-class _xyz {
-    public int abc(int a, int b)
-    {
-        return a + b;
-    }
-}
-
-var x = new _xyz();
-
-x.abc(10, 20);
-```
+>`_xyz(10, 20)`
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    println({a: Int, b: Int -> a + b}(10, 20))
+package org.csystem.app  
+  
+fun main() {  
+    println({ a: Int, b: Int -> a + b }(10, 20))  
 }
 ```
 
 >Parametresiz bir lambda fonksiyonu/fonksiyon sabiti lambda function/function literal bildirimi
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f = {-> println("Merhaba")}
-
-    f()
+package org.csystem.app  
+  
+fun main() {  
+    val f = { -> println("Merhaba") }  
+  
+    f()  
 }
 ```
 
 >Parametresiz bir lambda fonksiyonu bildirimi
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f = {println("Merhaba")}
-
-    f()
+package org.csystem.app  
+  
+fun main() {  
+    val f = { println("Merhaba") }  
+  
+    f()  
 }
 ```
 
 >Parametresiz bir lambda fonksiyonu bildirimi. Örnekte referansın türü de bildirilmiştir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f: () -> Unit = {println("Merhaba")}
-
-    f()
+package org.csystem.app  
+  
+fun main() {  
+    val f: () -> Unit = { println("Merhaba") }  
+  
+    f()  
 }
 ```
 
->Parametreli bir fonksiyon türü için parametre değişkenleri fonksiyon sabiti içerisinde bildirilebilir. Eğer lambda fonksiyonun atandağı değişkenin türü belirli ise parametre değişkenlerine türler yazılmayabilir.
+>Parametreli bir fonksiyon türü için parametre değişkenleri fonksiyon sabiti içerisinde bildirilebilir. Eğer lambda fonksiyonun atandağı değişkenin türü belirli ise (yani derleyici parametre değişkeni için tür tespiti yapabiliyorsa) parametre değişkenlerine türler yazılmayabilir.
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f: (Int) -> Unit = {a -> println(a)}
-
-    f(10)
+package org.csystem.app  
+  
+fun main() {  
+    val f1: (Int) -> Unit = { a -> println(a) }  
+    val f2: (Int, Int) -> Int = { a, b -> a + b }  
+    
+    f1(10)  
+    println(f2(10, 20))  
 }
 ```
 
 >Aşağıdaki örnekte f'nin türü yazılmadığından a parametre değişkeninin türü yazılmalıdır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f = {a: Int -> println(a)}
-
-    f(10)
+package org.csystem.app  
+  
+fun main() {  
+    val f1 =  { a: Int -> println(a) }  
+    val f2 = { a: Int, b: Int -> a + b }  
+  
+    f1(10)  
+    println(f2(10, 20))  
 }
 ```
 
->Parametreli bir fonksiyon türü için parametre değişkenleri fonksiyon sabiti içerisinde türü ile bildirilebilir
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val foo = {a: Int -> println(a)}
-
-    foo(10)
-}
-
-```
-
->Aşağıdaki örnekte add değişkeninin türü belirtilmelidir. Çünkü derleyici Lambda fonksiyon içerisinde a ve b değişkenleri için tür tespiti (type inference/deduction) yapamaz
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val add: (Int, Int) -> Int  = {a, b -> a + b }
-
-    println(add(10, 20))
+package org.csystem.app  
+  
+fun main() {  
+    doWork(10, 20, {a, b -> a + b})      
+}  
+  
+fun doWork(x: Int, y: Int, f: (Int, Int) -> Int) {  
+    //...  
+    println(f(x, y))  
 }
 ```
 
->Aşağıdaki örnekte Lambda fonksiyonun parametre değişkenlerinin türleri belirtilmelidir
+>Tek parametreli Lambda fonksiyonlarda `it` built-in olarak parametre ismi olarak kullanılabilir. it istenirse parametre değişken olarak da bildirilebilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val add = {a: Int, b: Int -> a + b }
-
-    println(add(10, 20))
+package org.csystem.app  
+  
+fun main() {  
+    doWork(10, {a -> a * a})  
+    doWork(20, {it * it})  
+    doWork(20, {it -> it * it})  
+}  
+  
+fun doWork(a: Int, f: (Int) -> Int) {  
+    //...  
+    println(f(a))  
 }
 ```
 
->Tek parametreli Lambda fonksiyonlarda "it" built-in olarak parametre ismi olarak kullanılabilir
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f: (Int) -> Int = {it * it}
-
-    println(f(10))
+package org.csystem.app  
+  
+fun main() {  
+    val f: (String) -> String = { it.uppercase() }  
+  
+    println(f("ankara"))  
 }
 ```
 
->Tek parametreli Lambda fonksiyonlarda "it" built-in olarak parametre ismi olarak kullanılabilir
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+fun main() {  
+    val f: (String, String) -> String = { s1, s2 -> "$s1 $s2" }  
+  
+    println(f("ankara", "istanbul"))  
+}
+```
 
-fun main()
-{
-    val f : (String) -> String = {it.uppercase()}
+>Aşağıdaki örneği inceleyiniz
 
-    println(f("ankara"))
+```kotlin
+package org.csystem.app  
+  
+fun main() {  
+    val f: (String) -> String = {  
+        println("Yazı:$it")  
+        it.uppercase()  
+    }  
+  
+    println(f("ankara"))  
 }
 ```
 
 >Lambda fonksiyonlar
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f : (String, String) -> String = {s1, s2  -> "$s1 $s2"}
-
-    println(f("ankara", "istanbul"))
+package org.csystem.app  
+  
+fun main() {  
+    val f: (String) -> String = { s ->  
+        println("Yazı:$s")  
+        s.uppercase()  
+    }  
+  
+    println(f("ankara"))  
 }
 ```
 
->Lambda fonksiyonlar
+>Bazı fonksiyonlar içeride yapacakları işlemlerin detaylarını dışarıdan alırlar. Bu kavrama **callable** ya da **callback** denilmektedir. Java dünyasında bu işlem abstract sınıflar ya da interface'ler ile ilgili metotlarının override edilmesiyle gerçekleştirilir. Yani metodun ilgili parametresi genel olarak bir interface ya da abstract class türden olur ve bu metodu çağıran programcı ilgili referansa o referansa ilişkin sınıfsa türetilmiş, interface ise implemente edilmiş bir sınıf nesnenin adresini (referansını) verir ve metot da ilgili sanal metodu çağırarak aslında nasıl yapacağını bilmeden yazılmış olur. Bu tarz metotlara (fonksiyonlara) programlama dillerinde genel olarak **High Order Function (HOF)** denir. Kotlin'de HOF'lar genel olarak function type kullanılarak yazılır. Şüphesiz interface kullanılarak da yazılabilir. Kotlin'de bir fonksiyonun son parametresi function türündense ve bu parametreye bir lambda function geçilecekse bu durumda bu lambda function fonksiyon çağırma operatöründen sonra yazılabilir. Ayrıca fonksiyon tek parametreli ise ve fonksiyonun o tek parametresi de bir function türünden ise hiç fonksiyon çağırma operatörü kullanmadan doğrudan lambda function yazılabilir.
 
-```kotlin
-package org.csystem.app
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-fun main()
-{
-    val f : (String) -> String = {
-        println("Yazı:$it")
-        it.uppercase()
-    }
-
-    println(f("ankara"))
-}
-```
-
->Lambda fonksiyonlar
-
-```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f : (String) -> String = {s ->
-        println("Yazı:$s")
-        s.toUpperCase()
-    }
-
-    println(f("ankara"))
-}
-```
-
->Bazı fonksiyonlar içeride yapacakları işlemlerin detaylarını dışarıdan alırlar. Bu kavrama callable ya da callback denilmektedir. Java dünyasında bu kevram abstract sınıflar ya da interface'ler ile ilgili metotlarının override edilmesiyle gerçekleştirilir. Yani metodun ilgili parametresi genel olarak bir interface ya da abstract class türden olur ve bu metodu çağıran programcı ilgili referansa o referansa ilişkin sınıfsa türetilmiş interface ise implemente edilmiş bir sınıfa nesnenin adresini (referansını) verir ve metot da ilgili sanal metodu çağırarak aslında nasıl yapacağını bilmeden yazılmış olur. Bu tarz metotlara (fonksiyonlara) programlama dillerinde genel olarak "High Order Function (HOF)" denir. Kotlin'de HOF'lar genel olarak function türleri ile yazılır. Şüphesiz interface kullanılarak da yazılabilir. Kotlin'de bir fonksiyonun son parametresi function türündense ve bu parametreye bir lambda function geçilecekse bu durumda bu lambda function fonksiyon çağırma operatöründen sonra yazılabilir. Ayrıca fonksiyon tek parametreli ise ve fonksiyonun o tek parametresi de bir function türünden ise hiç fonksiyon çağırma operatörü kullanmadan doğrudan lambda function yazılabilir.
->
->Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
+>**Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Fonksiyonların kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız.**
 >
 >Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir
 
@@ -12944,8 +12934,6 @@ fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
 }
 ```
 
->Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
->
 >Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir. Örnekte son parametre olan function türünden parametreye geçilen lambda function fonksiyon çağırma operaytöründen sonra yazılmıştır. Bu tarz durumlarda bu çağırma biçimi tavsiye edilir
 
 ```kotlin
@@ -15452,7 +15440,7 @@ object Mample {
 
 >**SAM (Single Abstract Method) interface:**   
 >
->Bu arayüzlerin bir ve yalnız bir tane abstract metotları olmalıdır. Aksi durumda error oluşur. Bu arayüzler `fun` olarak bildirilirler. Bu kavram Java'daki __"functional interface"__ ile uyumlu olması açısından eklenmiştir. Programcı özel bir durum yoksa Kotlin'de SAM arayüzleri yerine fonksiyon türlerini kullanmalıdır. Örnek durumu göstermek için yazılmıştır
+>Bu arayüzlerin bir ve yalnız bir tane abstract metotları olmalıdır. Aksi durumda error oluşur. Bu arayüzler `fun` olarak bildirilirler. Bu kavram Java'daki **functional interface** ile uyumlu olması açısından eklenmiştir. Programcı özel bir durum yoksa Kotlin'de SAM arayüzleri yerine fonksiyon türlerini kullanmalıdır. Örnek durumu göstermek için yazılmıştır
 
 ```kotlin
 package org.csystem.app
@@ -15815,9 +15803,7 @@ fun main()
 }
 ```
 
->Yukarıda kullanılan sınıflar ve fonksiyonların son halleri aşağıda yol ifadesi verilen proje içerisinden incelenebilir:
-
-        ~/src/SampleCodes/SampleKotlin
+**Anahtar Notlar:** Yukarıda kullanılan sınıfların ve fonksiyonların son halleri [Android-Aug-2024](https://github.com/oguzkaran/Android-Aug-2024 ) repository'si içerisinde bulunmaktadır.
 
 
 >JVM'de ve ART'de Bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:

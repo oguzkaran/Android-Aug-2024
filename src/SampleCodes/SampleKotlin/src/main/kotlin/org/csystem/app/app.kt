@@ -1,9 +1,7 @@
 package org.csystem.app
 
+import java.io.FileOutputStream
+
 fun main() {
-
-    val x = object: A() {}
+    FileOutputStream("test.dat").use{}
 }
-
-
-open class A

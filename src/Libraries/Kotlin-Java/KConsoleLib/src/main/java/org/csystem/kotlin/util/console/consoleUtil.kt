@@ -1,37 +1,13 @@
 package org.csystem.kotlin.util.console
 
-internal fun readWithPrompt(prompt: String): String {
-    print(prompt)
+fun readInt(prompt: String, errorPrompt: String = "", end: String = "") = Console.readInt(prompt, errorPrompt, end)
 
-    return readln()
-}
-
-fun readInt(prompt: String, errorPrompt: String = "", end: String = ""): Int {
-    while (true) {
-        try {
-            return readWithPrompt("$prompt$end").toInt()
-        }
-        catch (e: NumberFormatException) {
-            print("$errorPrompt$end")
-        }
-    }
-}
-
-fun readLong(prompt: String, errorPrompt: String = ""): Long {
-    while (true) {
-        try {
-            return readWithPrompt(prompt).toLong()
-        }
-        catch (e: NumberFormatException) {
-            print(errorPrompt)
-        }
-    }
-}
+fun readLong(prompt: String, errorPrompt: String = "", end: String = "") =  Console.readLong(prompt, errorPrompt, end)
 
 fun readDouble(prompt: String, errorPrompt: String = ""): Double {
     while (true) {
         try {
-            return readWithPrompt(prompt).toDouble()
+            return Console.readWithPrompt(prompt).toDouble()
         }
         catch (e: NumberFormatException) {
             print(errorPrompt)
@@ -42,7 +18,7 @@ fun readDouble(prompt: String, errorPrompt: String = ""): Double {
 fun readShort(prompt: String, errorPrompt: String = ""): Short {
     while (true) {
         try {
-            return readWithPrompt(prompt).toShort()
+            return Console.readWithPrompt(prompt).toShort()
         }
         catch (e: NumberFormatException) {
             print(errorPrompt)
@@ -53,7 +29,7 @@ fun readShort(prompt: String, errorPrompt: String = ""): Short {
 fun readByte(prompt: String, errorPrompt: String): Byte {
     while (true) {
         try {
-            return readWithPrompt(prompt).toByte()
+            return Console.readWithPrompt(prompt).toByte()
         }
         catch (e: NumberFormatException) {
             print(errorPrompt)
@@ -64,7 +40,7 @@ fun readByte(prompt: String, errorPrompt: String): Byte {
 fun readFloat(prompt: String, errorPrompt: String = ""): Float {
     while (true) {
         try {
-            return readWithPrompt(prompt).toFloat()
+            return Console.readWithPrompt(prompt).toFloat()
         }
         catch (e: NumberFormatException) {
             print(errorPrompt)
@@ -74,7 +50,7 @@ fun readFloat(prompt: String, errorPrompt: String = ""): Float {
 
 fun readBoolean(prompt: String, errorPrompt: String = ""): Boolean {
     while (true) {
-        val result = readWithPrompt(prompt).toBoolean()
+        val result = Console.readWithPrompt(prompt).toBoolean()
 
         if (!result && !prompt.equals("false", true)) {
             println(errorPrompt)
@@ -85,7 +61,7 @@ fun readBoolean(prompt: String, errorPrompt: String = ""): Boolean {
     }
 }
 
-fun readString(prompt: String) = readWithPrompt(prompt)
+fun readString(prompt: String) = Console.readWithPrompt(prompt)
 
 fun IntArray.printArray(n: Int = -1, sep: String = " ", end: String = "\n") {
     val fmt = "%%0%dd%%s".format(if (n < 1) 1 else n)
