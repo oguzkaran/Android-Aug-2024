@@ -12890,247 +12890,318 @@ fun main() {
     println(f("ankara"))  
 }
 ```
+##### High Order Functions
 
->Bazı fonksiyonlar içeride yapacakları işlemlerin detaylarını dışarıdan alırlar. Bu kavrama **callable** ya da **callback** denilmektedir. Java dünyasında bu işlem abstract sınıflar ya da interface'ler ile ilgili metotlarının override edilmesiyle gerçekleştirilir. Yani metodun ilgili parametresi genel olarak bir interface ya da abstract class türden olur ve bu metodu çağıran programcı ilgili referansa o referansa ilişkin sınıfsa türetilmiş, interface ise implemente edilmiş bir sınıf nesnenin adresini (referansını) verir ve metot da ilgili sanal metodu çağırarak aslında nasıl yapacağını bilmeden yazılmış olur. Bu tarz metotlara (fonksiyonlara) programlama dillerinde genel olarak **High Order Function (HOF)** denir. Kotlin'de HOF'lar genel olarak function type kullanılarak yazılır. Şüphesiz interface kullanılarak da yazılabilir. Kotlin'de bir fonksiyonun son parametresi function türündense ve bu parametreye bir lambda function geçilecekse bu durumda bu lambda function fonksiyon çağırma operatöründen sonra yazılabilir. Ayrıca fonksiyon tek parametreli ise ve fonksiyonun o tek parametresi de bir function türünden ise hiç fonksiyon çağırma operatörü kullanmadan doğrudan lambda function yazılabilir.
+>Bazı fonksiyonlar içeride yapacakları işlemlerin detaylarını dışarıdan alırlar. Bu kavrama **callable** ya da **callback** denilmektedir. Java dünyasında bu işlem abstract sınıflar ya da interface'ler ile, ilgili metotlarının override edilmesiyle gerçekleştirilir. Yani metodun ilgili parametresi genel olarak bir interface ya da abstract class türden olur ve bu metodu çağıran programcı ilgili referansa, o referansın türü bir sınıfsa türetilmiş, interface ise implemente edilmiş bir sınıf nesnenin adresini (referansını) verir ve metot da ilgili sanal metodu çağırarak aslında nasıl yapacağını bilmeden yazılmış olur. Bu tarz metotlara (fonksiyonlara) programlama dillerinde genel olarak **High Order Function (HOF)** denir. Kotlin'de HOF'lar genel olarak function type kullanılarak yazılır. Şüphesiz interface kullanılarak da yazılabilir. Kotlin'de bir fonksiyonun son parametresi function türündense ve bu parametreye bir lambda function geçilecekse bu durumda bu lambda function fonksiyon çağırma operatöründen sonra yazılabilir. Ayrıca fonksiyon tek parametreli ise ve fonksiyonun o tek parametresi de bir function türünden ise hiç fonksiyon çağırma operatörü kullanmadan doğrudan lambda function yazılabilir.
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+>Aşağıdaki demo örnekte text bir dosyaya rassal olarak belirlenmiş yazılar eklenmektedir. use fonksiyonun tek parametreli bir callback aldığına dikkat ediniz. Ayrıca use' a verilen Lambda fonksyionun count ve path yerel değişkenlerini yakaladığını (capture) gözlemleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.console.readString  
+import org.csystem.kotlin.util.string.randomTextTR  
+import java.io.BufferedWriter  
+import java.io.FileWriter  
+import java.nio.charset.StandardCharsets  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input count:")  
+    val path = readString("Input file path:")  
+  
+    BufferedWriter(FileWriter(path, StandardCharsets.UTF_8, true)).use {  
+        for (i in 1..count)  
+            it.write("${Random.randomTextTR(Random.nextInt(5, 16))}\r\n")  
+    }  
+}
+```
 
 >**Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Fonksiyonların kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız.**
->
+
+
 >Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.isPrime
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val a = Random.randomIntArray(count, 0, 100)
-
-    a.write(2)
-
-    val primes = IntArray(a.size)
-
-    val n = a.copyIf(primes, {it.toLong().isPrime()})
-
-    primes.write(n, 2)
-}
-
-fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
-{
-    var idx = 0
-
-    for (value in this)
-        if (predicate(value))
-            dest[idx++] = value
-
-    return idx
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.isPrime  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input a number:")  
+    val a = Random.randomArray(count, 0, 100)  
+  
+    a.printArray(2)  
+  
+    val primes = IntArray(a.size)  
+  
+    val n = a.copyIf(primes, { it.toLong().isPrime() })  
+  
+    primes.printArray(2, n)  
+}  
+  
+fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean): Int {  
+    var idx = 0  
+  
+    for (value in this)  
+        if (predicate(value))  
+            dest[idx++] = value  
+  
+    return idx  
 }
 ```
 
->Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir. Örnekte son parametre olan function türünden parametreye geçilen lambda function fonksiyon çağırma operaytöründen sonra yazılmıştır. Bu tarz durumlarda bu çağırma biçimi tavsiye edilir
+>Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir. Örnekte son parametre olan function türünden parametreye geçilen lambda function fonksiyon çağırma operatöründen sonra yazılmıştır. Bu tarz durumlarda bu çağırma biçimi kullanılmalıdır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.isPrime
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val a = Random.randomIntArray(count, 0, 100)
-
-    a.write(2)
-
-    val primes = IntArray(a.size)
-
-    val n = a.copyIf(primes) { it.toLong().isPrime() }
-
-    primes.write(n, 2)
-}
-
-fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
-{
-    var idx = 0
-
-    for (value in this)
-        if (predicate(value))
-            dest[idx++] = value
-
-    return idx
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.isPrime  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input a number:")  
+    val a = Random.randomArray(count, 0, 100)  
+  
+    a.printArray(2)  
+  
+    val primes = IntArray(a.size)  
+  
+    val n = a.copyIf(primes) { it.toLong().isPrime() }  
+  
+    primes.printArray(2, n)  
+}  
+  
+fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean): Int {  
+    var idx = 0  
+  
+    for (value in this)  
+        if (predicate(value))  
+            dest[idx++] = value  
+  
+    return idx  
 }
 ```
 
->Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
->
 >Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.isPrime
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val a = Random.randomIntArray(count, 0, 100)
-
-    a.write(2)
-
-    val primes = IntArray(a.size)
-    val f: (Int) -> Boolean = {it.toLong().isPrime()}
-
-    val n = a.copyIf(primes, f)
-
-    primes.write(n, 2)
-}
-
-fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
-{
-    var idx = 0
-
-    for (value in this)
-        if (predicate(value))
-            dest[idx++] = value
-
-    return idx
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.isPrime  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input a number:")  
+    val a = Random.randomArray(count, 0, 100)  
+  
+    a.printArray(2)  
+  
+    val primes = IntArray(a.size)  
+    val isPrime: (Int) -> Boolean = { it.toLong().isPrime() }  
+    val n = a.copyIf(primes, isPrime)  
+  
+    primes.printArray(2, n)  
+}  
+  
+fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean): Int {  
+    var idx = 0  
+  
+    for (value in this)  
+        if (predicate(value))  
+            dest[idx++] = value  
+  
+    return idx  
 }
 ```
 
->Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
->
->Aşağıdaki örneği inceleyiniz
+>Aşağıdaki copyIf extension fonksiyonu parametresi ile aldığı koşula uyan elemanlardan oluşan yeni bir dizi referansına geri dönmektedir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.isPrime
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val a = Random.randomIntArray(count, 0, 100)
-
-    a.forEach { print("%02d ".format(it)) }
-
-    val primes = IntArray(a.size)
-
-    val n = a.copyIf(primes) {it.toLong().isPrime()}
-
-    println()
-
-    primes.forEach { print("%02d ".format(it)) }
-    println();
-}
-
-fun IntArray.forEach(block: (Int) -> Unit)
-{
-    for (value in this)
-        block(value)
-}
-
-
-fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean) : Int
-{
-var idx = 0
-
-    for (value in this)
-        if (predicate(value))
-            dest[idx++] = value
-
-    return idx
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.isPrime  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input a number:")  
+    val a = Random.randomArray(count, 0, 100)  
+  
+    a.printArray(2)  
+  
+    val primes = IntArray(a.size)  
+    val isPrime: (Int) -> Boolean = { it.toLong().isPrime() }  
+    val n = a.copyIf(primes) {isPrime(it)}  
+  
+    primes.printArray(2, n)  
+}  
+  
+fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean): Int {  
+    var idx = 0  
+  
+    for (value in this)  
+        if (predicate(value))  
+            dest[idx++] = value  
+  
+    return idx  
 }
 ```
 
->Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
->
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val a = Random.randomIntArray(count, 0, 100)
-
-    a.forEach { print("%02d ".format(it)) }
-    println()
-
-    val squares = a.transform { it * it }
-
-    squares.forEach { print("$it ") }
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.isPrime  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input a number:")  
+    val a = Random.randomArray(count, 0, 100)  
+  
+    a.forEach { print("%02d ".format(it)) }  
+    println()  
+  
+    val primes = IntArray(a.size)  
+    val n = a.copyIf(primes) { it.toLong().isPrime() }  
+  
+    primes.forEach(n) { print("%02d ".format(it)) }  
+    println();  
+}  
+  
+fun IntArray.forEach(count: Int, block: (Int) -> Unit) {  
+    for (i in 0..<count)  
+        block(this[i])  
+}  
+  
+fun IntArray.forEach(block: (Int) -> Unit) {  
+    for (v in this)  
+        block(v)  
+}  
+  
+  
+fun IntArray.copyIf(dest: IntArray, predicate: (Int) -> Boolean): Int {  
+    var idx = 0  
+  
+    for (value in this)  
+        if (predicate(value))  
+            dest[idx++] = value  
+  
+    return idx  
 }
+```
 
-fun IntArray.transform(block: (Int) -> Int) : IntArray
-{
-    val result = IntArray(this.size)
+>Aşağıdaki örneği inceleyiniz
 
-    for (i in this.indices)
-        result[i] = block(this[i])
-
-    return result
-}
-
-fun IntArray.forEach(block: (Int) -> Unit)
-{
-    for (value in this)
-        block(value)
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input a number:")  
+    val a = Random.randomArray(count, 0, 99)  
+  
+    a.forEach { print("%02d ".format(it)) }  
+    println()  
+  
+    val plusOnes = a.transform { it + 1 }  
+  
+    plusOnes.forEach { print("%02d ".format(it)) }  
+    println();  
+}  
+  
+fun IntArray.transform(block: (Int) -> Int): IntArray {  
+    val result = IntArray(this.size)  
+  
+    for (i in this.indices)  
+        result[i] = block(this[i])  
+  
+    return result  
+}  
+  
+fun IntArray.forEach(count: Int, block: (Int) -> Unit) {  
+    for (i in 0..<count)  
+        block(this[i])  
+}  
+  
+fun IntArray.forEach(block: (Int) -> Unit) {  
+    for (v in this)  
+        block(v)  
 }
 ```
 
 >Aşağıdaki kodda bir fonksiyon sabiti bildirilmiş ve fonksiyon çağırma operatör fonksiyonu uygulanmıştır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    { println("Merhaba") }()
+package org.csystem.app  
+  
+fun main() {  
+    { println("Merhaba") }()  
 }
 
 ```
 
->Dizilerin fonksiyon türden parametreli ctor'ları ile her bir eleman için dizi yaratılırken ne yapılacağı belirlenebilir Generic olan Array sınıfının fonksiyon türden parametresi olmayan ctor'u yoktur. Aşağıdaki örneği inceleyiniz
+>Aşağıdaki ilginç örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.string.kotlin.randomTextEN
-import kotlin.random.Random
-
-fun main()
-{
-    val a = IntArray(10) {it + 1}
-    val s = Array(10) {Random.randomTextEN(it + 1)}
-
-    a.write()
-    s.write()
+package org.csystem.app  
+  
+fun main() {  
+    println({ a: Int, b: Int -> a + b }(10, 20))  
 }
 ```
+
+>Dizilerin fonksiyon türden parametreli ctor'ları ile dizi yaratılırken her bir eleman ne yapılacağı belirlenebilir Generic olan Array sınıfının fonksiyon türden parametresi olmayan ctor'u yoktur. Fonksiyon türüne ilişkin fonksiyonu n porametresi eleman ilişkin indeks numarasıdır. Aşağıdaki örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.printArray  
+import org.csystem.kotlin.util.string.randomTextEN  
+import kotlin.random.Random  
+  
+fun main() {  
+    val a = IntArray(10) { it + 1 }  
+    val s = Array(10) { Random.randomTextEN(it + 1) }  
+  
+    a.printArray()  
+    s.printArray()  
+}
+```
+
+
+>Aşağıdaki demo örnekte dizinin tüm elemanlarına null değer atanmıştır. Açılımda nullable reference kullanıldığına dikkat ediniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.printArray  
+  
+fun main() {  
+    val s = Array<String?>(10) { null }  
+    s.printArray()  
+}
+```
+
 
 >Lambda fonksiyonlar
 
@@ -13146,279 +13217,211 @@ fun main()
 }
 ```
 
->Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
+**Anahtar Notlar:** Callable alan fonksiyonların callable argümanları çok fazla kod içeren lambda fonksiyonlar olarak verilmesi bazı durumlarda okunabilirliği azaltabilir. Bu durumda programcı ayrı bir fonksiyon yazar ve duruma göre ilgili fonksiyonu lambda fonksiyon içerisinde çağırabilir
 
->Lambda fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir (capture)
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val a = Random.randomIntArray(count, 0, 100)
-
-    a.forEach { print("%02d ".format(it)) }
-    println()
-
-    val factor = readInt("Çarpılacak sayıyı giriniz:")
-    val b = a.transform { it * factor}
-
-    b.forEach { print("$it ") }
-    println()
-}
-
-fun IntArray.transform(block: (Int) -> Int) : IntArray
-{
-    val result = IntArray(this.size)
-
-    for (i in this.indices)
-        result[i] = block(this[i])
-
-    return result
-}
-
-fun IntArray.forEach(block: (Int) -> Unit)
-{
-    for (value in this)
-        block(value)
-}
-```
-
->Aşağıdaki HOF'lar durumu göstermek için detaylar gözardı edilerek yazılmıştır. Metodun kodunun detaylı ve iyi olarak nasıl yazılması gerektiğine değil callback/callable kavramlarına odaklanınız
-
->Lambda fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler ve parametre değişkenleri kullanılabilir ve değerleri değiştirilebilir
-
-**_Anahtar Notlar:_** Java'da bir yakalanan yerel bir değişken veya bir parametre değişkeni faaliyet alanı boyunca değiştirilemez (effectively final)
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.array.kotlin.randomIntArray
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val a = Random.randomIntArray(count, 0, 100)
-
-    a.forEach { print("%02d ".format(it)) }
-    println()
-
-    var factor = readInt("Çarpılacak sayıyı giriniz:")
-    val b = a.transform { it * factor++}
-
-    b.forEach { print("$it ") }
-    println()
-}
-
-fun IntArray.transform(block: (Int) -> Int) : IntArray
-{
-    val result = IntArray(this.size)
-
-    for (i in this.indices)
-        result[i] = block(this[i])
-
-    return result
-}
-
-fun IntArray.forEach(block: (Int) -> Unit)
-{
-    for (value in this)
-        block(value)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.console.readString  
+import org.csystem.kotlin.util.string.randomTextTR  
+import java.io.BufferedWriter  
+import java.io.FileWriter  
+import java.nio.charset.StandardCharsets  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Input count:")  
+    val path = readString("Input file path:")  
+  
+    BufferedWriter(FileWriter(path, StandardCharsets.UTF_8, true)).use { saveRandomTextsCallback(it, count) }  
+}  
+  
+fun saveRandomTextsCallback(bw: BufferedWriter, count: Int) {  
+    for (i in 1..count) {  
+        val text = Random.randomTextTR(Random.nextInt(5, 16))  
+          
+        println(text)  
+        bw.write("$text\r\n")  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte bir fonksiyonun parametresi olan fonksiyonun da parametresi fonksiyon türündendir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    foo {it(10, 20)}
-}
-
-fun foo(callback : ((Int, Int) -> Int) -> Int)
-{
-    println(callback{x, y -> x + y})
+package org.csystem.app  
+  
+fun main() {  
+    foo { it(10, 20) }  
+}  
+  
+fun foo(callback: ((Int, Int) -> Int) -> Int) {  
+    println(callback { x, y -> x + y })  
 }
 ```
 
 >Aşağıdaki fonksiyonu inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun foo(callback : ((Int, Int) -> Int, (Double) -> Double) -> (Int, Int) -> String)
-{
-    //...
+fun foo(callback: ((Int, Int) -> Int, (Double) -> Double) -> (Int, Int) -> String) {  
+    //...  
 }
 ```
 
 >Lambda fonksiyonlarda kullanılmayacak parametreler alttire karakteri ile atlanabilir
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val f: (Int, Int, String) -> String = {_, _, s -> ":$s:"}
-
-    println(f(6, 312, "ankara"))
+package org.csystem.app  
+  
+fun main() {  
+    val f: (Int, Int, String) -> String = { _, _, s -> ":$s:" }  
+  
+    println(f(6, 312, "ankara"))  
 }
 ```
 
->Dizilerin fonksiyon parametresi alan fonksiyonları vardır. Bunların bazıları extension olarak yazılmıştır. Bu fonksiyonlardan bazıları burada anlatılacaktır, bazıları ise zamanla özellikle Android uygulamaları içerisinde kullanılırken ele alınacaktır
+##### Programın Komut Satır Argümanları
 
->Dizilerin forEach fonksiyonu dizinin her bir elemanına callback olarak aldığı fonksiyonu uygular Dizilerin any fonksiyonu callback olarak aldığı predicate fonksiyona göre koşula uyan en az bir tane eleman varsa true değerine döner. all fonksiyonu callback olarak aldığı predicate fonksiyona göre tüm elemanlar koşula uyuyor ise true değerine döner. none fonksiyonu callback olarak aldığı predicate fonksiyona göre hiç bir eleman koşula uymuyor ise true değerine geri döner
+>Program çalıştırılırken geçilen yazılara programın **komut satırı argümanları (command line arguments)** denir. Kotlin'de komut satırı argümanları main fonksiyonu bildiriminde `Array<String>` türünden parametre ile elde edilebilir. Programın konmut satırı argümanları console'da  (terminal'de) whitespace karakterler ile birbirinden ayrılır. Bir komut satırı argümanı boşluk içerecekse işletim sisteme göre değişmekle birlikte tek tırnak ya da iki tırnak içerisinde verilebilir.
+
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    val a = IntArray(10) { Random.nextInt(-10, 10)}
-
-    a.forEach {print("$it ")}
-    println()
-    println(a.any {it % 2 == 0})
-    println(a.all {it > 0})
-    println(a.none {it <= 0})
+package org.csystem.app  
+  
+fun main(args: Array<String>) {  
+    args.forEach { println(it) }  
 }
 ```
 
->Dizilerin filter fonksiyonu
+
+##### Dizilerin Fonksiyon Parametresi Alan Fonksiyonları
+
+>Dizilerin fonksiyon parametresi alan fonksiyonları (HOF) vardır. Bunların bazıları extension olarak yazılmıştır. Bu fonksiyonlardan bazıları burada anlatılacaktır, bazıları ise zamanla özellikle Android uygulamaları içerisinde kullanılırken ele alınacaktır
+
+>Dizilerin **forEach** fonksiyonu dizinin her bir elemanına callback olarak aldığı fonksiyonu uygular Dizilerin **any** fonksiyonu callback olarak aldığı predicate fonksiyona göre koşula uyan en az bir tane eleman varsa true değerine döner. **all** fonksiyonu callback olarak aldığı predicate fonksiyona göre tüm elemanlar koşula uyuyor ise true değerine döner. **none** fonksiyonu callback olarak aldığı predicate fonksiyona göre hiç bir eleman koşula uymuyor ise true değerine geri döner. **filter** fonksiyonu parametresi predicate'a uyan elemanları filtreler. **map** fonksiyonu elemaları başka bir türe dönüştürmek için kullanılır.
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.string.kotlin.randomTextEN
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-    val threshold = readInt("Eşik değerini giriniz:")
-    val cities = Array(count) {Random.randomTextEN(Random.nextInt(5, 10))}
-
-    cities.forEach{print("$it ")}
-
-    println("\n------------------------------------------------------------------------")
-
-    cities.filter{it.length > threshold}.forEach{print("$it ")}
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    val a = IntArray(10) { Random.nextInt(-10, 10) }  
+  
+    a.forEach { print("$it ") }  
+    println()  
+    println(a.any { it % 2 == 0 })  
+    println(a.all { it > 0 })  
+    println(a.none { it <= 0 })  
 }
 ```
 
->Aşağıda örneklerde ilgili dosyadan okuma yapan fonskiyonların kodları şu aşamada önemsizdir. Proje içerisinde ilgili dosyalar ilgilşi formatlarda olduğu durumda örnekler çalıştırılabilir. Burada odaklanılması gereken bu dosyalardaki veriler veya bu dosyaları okuyan fonksiyonların nasıl yazıldığı değildir. Burada dizilere ilişkin fonksiyonların kullanımına odaklanılması gerekir
->
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.string.randomTextEN  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+    val threshold = readInt("Eşik değerini giriniz:")  
+    val cities = Array(count) { Random.randomTextEN(Random.nextInt(5, 10)) }  
+  
+    cities.forEach { print("$it ") }  
+    println("\n------------------------------------------------------------------------")  
+    cities.filter { it.length > threshold }.forEach { print("$it ") }  
+}
+```
+
+###### Dizilerin Fonksiyon Parametresi Alan Fonksiyonlarının Kullanımına İlişkin Örnekler
+
+>Aşağıdaki örneklerde ilgili dosyadan okuma yapan fonskiyonların kodları şu aşamada önemsizdir. **Proje içerisinde ilgili dosyalar ilgili formatlarda olduğu durumda örnekler çalıştırılabilir.** Burada odaklanılması gereken bu dosyalardaki veriler veya bu dosyaları okuyan fonksiyonların nasıl yazıldığı **değildir**. Burada dizilere ilişkin fonksiyonların kullanımına odaklanılması gerekir.
+
 >Aşağıdaki örnekte stokta bulunmayan ürün varsa listelenmiştir
 
-```
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsArray
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsArray("products.csv")
-
-        if (products.any {it.stock <= 0}) {
-            println("Stokta olmayan ürünler:")
-            products.filter {it.stock <= 0}.forEach(::println)
-        }
-        else
-            println("Her ürün stokta var")
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+  
+        if (products.any { it.stock <= 0 }) {  
+            println("Stokta olmayan ürünler:")  
+            products.filter { it.stock <= 0 }.forEach(::println)  
+        } else  
+            println("Her ürün stokta var")  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsArray
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsArray("products.csv")
-
-        if (products.any {it.stock <= 0}) {
-            println("Stokta olmayan ürünler:")
-            products.filter {it.stock <= 0}.map {it.name}.forEach(::println)
-        }
-        else
-            println("Her ürün stokta var")
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+  
+        if (products.all { it.stock > 0 })  
+            println("Her ürün stokta var")  
+        else {  
+            println("Stokta olmayan ürünler:")  
+            products.filter { it.stock <= 0 }.map { it.name }.forEach(::println)  
+        }  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsArray
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsArray("products.csv")
-
-        if (products.all{it.stock > 0})
-            println("Her ürün stokta var")
-        else
-        {
-            println("Stokta olmayan ürünler:")
-            products.filter {it.stock <= 0}.map { it.name }.forEach(::println)
-        }
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+  
+        if (products.none { it.stock <= 0 })  
+            println("Her ürün stokta var")  
+        else {  
+            println("Stokta olmayan ürünler:")  
+            products.filter { it.stock <= 0 }.map { it.name }.map { it.uppercase() }.forEach(::println)  
+        }  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
->Aşağıdaki örnekte stokta bulunmayan ürün varsa isimleri listelenmiştir
 
-```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsArray
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsArray("products.csv")
-
-        if (products.none{it.stock <= 0})
-            println("Her ürün stokta var")
-        else {
-            println("Stokta olmayan ürünler:")
-            products.filter {it.stock <= 0}.map { it.name }.forEach(::println)
-        }
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
-}
-```
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir. Örnekte JavaSE'de bulunan BigDecimal sınıfı Java bakış açısıyla kullanılmıştır
 
@@ -13555,8 +13558,8 @@ fun main()
 }
 ```
 
->Scoping functions:
->
+##### Scoping functions:
+
 >LET us ALSO RUN WITH APPLY
 >
 >apply eklenti fonksiyonu: apply eklenti fonksiyonunun callback'ine this geçirilir "apply the following assignments or calls to the object" apply fonksiyonu çağrıldığı referansa geri döner.

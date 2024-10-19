@@ -63,11 +63,11 @@ fun readBoolean(prompt: String, errorPrompt: String = ""): Boolean {
 
 fun readString(prompt: String) = Console.readWithPrompt(prompt)
 
-fun IntArray.printArray(n: Int = -1, sep: String = " ", end: String = "\n") {
+fun IntArray.printArray(n: Int = -1, count: Int = this.size, sep: String = " ", end: String = "\n") {
     val fmt = "%%0%dd%%s".format(if (n < 1) 1 else n)
 
-    for (v in this)
-        print(fmt.format(v, sep))
+    for (i in 0..<count)
+        print(fmt.format(this[i], sep))
 
     print(end)
 }

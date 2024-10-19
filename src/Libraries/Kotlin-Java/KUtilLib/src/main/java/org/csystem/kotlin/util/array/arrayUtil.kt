@@ -49,6 +49,8 @@ fun Random.randomArray(count: Int, origin: Double, bound: Double): DoubleArray {
     return a
 }
 
+
+
 fun IntArray.secondMax(): Int {
     TODO("Not yet implemented!...")
 }
