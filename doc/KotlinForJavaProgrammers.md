@@ -13421,306 +13421,365 @@ fun main(args: Array<String>) {
 ```
 
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
 >Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir. Örnekte JavaSE'de bulunan BigDecimal sınıfı Java bakış açısıyla kullanılmıştır
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.console.readBigDecimal  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")  
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")  
+  
+        products.filter { it.stock > 0 && minPrice.compareTo(it.price) < 0 && it.price.compareTo(maxPrice) < 0 }  
+            .forEach(::println)  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
+}
+```
 
-import org.csystem.test.data.loadProductsFromFileAsArray
-import org.csystem.util.console.kotlin.readBigDecimal
+>Yukarıdaki örnek aşağıdaki gibi de yapılabilir
 
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsArray("products.csv")
-        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
-        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
-
-        products.filter { it.stock > 0 && minPrice.compareTo(it.price) < 0  && it.price.compareTo(maxPrice) < 0 }
-            .forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.console.readBigDecimal  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")  
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")  
+  
+        products.filter { it.stock > 0 }.filter { minPrice.compareTo(it.price) < 0 }  
+            .filter { it.price.compareTo(maxPrice) < 0 }  
+            .forEach(::println)  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir. BigDecimal sınıfı Comparable arayüzünü desteklediği ve dolayısıyla compareTo metodunu override ettiği için Kotlin'de <, >, <=, >= operatörleri ile de kullanılabilir. Artık kod Kotlin bakış açısıyla yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsArray
-import org.csystem.util.console.kotlin.readBigDecimal
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsArray("products.csv")
-        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
-        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
-
-        products.filter { it.stock > 0 && minPrice < it.price  && it.price < maxPrice }
-            .forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.console.readBigDecimal  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")  
+        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")  
+  
+        products.filter { it.stock > 0 }.filter { minPrice < it.price }.filter { it.price < maxPrice }  
+            .forEach(::println)  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
->Aşağıdaki örnekte filter fonksiyonu her koşul için ayrı çağrılmıştır. Kodun yukarıdaki koda göre ekstra bir maliyeti yoktur. Hatta bazı durumlarda birden fazla kez çağrılması okunabilirliği/algılanabilirliği artırır
+>Aşağıdaki demo örnekte koşullara uyan verilerden oluşan yeni bir dizi elde edilmiştir. Şüphesiz sadece forEach kullanılacaksa bu durumda yeni dizi elde edilmeden devam edilmesi daha etkindir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsArray
-import org.csystem.util.console.kotlin.readBigDecimal
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsArray("products.csv")
-        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
-        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
-
-        products.filter {it.stock > 0}.filter {minPrice < it.price}.filter {it.price < maxPrice}
-            .forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import java.io.BufferedWriter  
+import java.io.FileWriter  
+import java.nio.charset.StandardCharsets  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(4, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+        val minPrice = args[1].toBigDecimal()  
+        val maxPrice = args[2].toBigDecimal()  
+  
+        val result = products.filter { it.stock > 0 }.filter { minPrice < it.price }.filter { it.price < maxPrice }  
+            .toTypedArray()  
+            
+		//...
+		
+        BufferedWriter(FileWriter(args[3], StandardCharsets.UTF_8))  
+            .use { bw -> result.forEach { bw.write("$it\r\n") } }  
+  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
->Aşağıdaki örnekte koşullara uyan verilerden oluşan yeni bir dizi elde edilmiştir. Şüphesiz sadece forEach kullanılacaksa bu durumda yeni dizi elde edilmeden devam edilmesi daha etkindir
+>Yukarıdaki örnek elde edilen dizi kullanılmayacaksa doğrudan dizi elde etmeden de aşağıdaki gibi yapılabilir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsArray
-import org.csystem.util.console.kotlin.readBigDecimal
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsArray("products.csv")
-        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
-        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
-
-        val result = products
-            .filter {it.stock > 0}
-            .filter {minPrice < it.price}
-            .filter {it.price < maxPrice}
-            .toTypedArray()
-
-        //...
-
-        result.forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
-}
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.Product  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import java.io.BufferedWriter  
+import java.io.FileWriter  
+import java.math.BigDecimal  
+import java.nio.charset.StandardCharsets  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(4, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+        val minPrice = args[1].toBigDecimal()  
+        val maxPrice = args[2].toBigDecimal()  
+  
+        BufferedWriter(FileWriter(args[3], StandardCharsets.UTF_8))  
+            .use { it.writeFile(products, minPrice, maxPrice) }  
+  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
+}  
+  
+fun BufferedWriter.writeFile(products: Array<Product>, minPrice: BigDecimal, maxPrice: BigDecimal) =  
+    products.filter { it.stock > 0 }.filter { minPrice < it.price }.filter { it.price < maxPrice }  
+        .forEach { write("$it\r\n") }
 ```
 
 >Aşağıdaki örnekte koşullara uyan ürünlerin isimlerinden oluşan yeni dizi (`Array<Product>` dizisinden `Array<String>`) elde edilmiştir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsArray
-import org.csystem.util.console.kotlin.readBigDecimal
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsArray("products.csv")
-        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
-        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
-
-        val result = products
-            .filter {it.stock > 0}
-            .filter {minPrice < it.price}
-            .filter {it.price < maxPrice}
-            .map {it.name}
-            .toTypedArray()
-
-        //...
-
-        result.forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import java.io.BufferedWriter  
+import java.io.FileWriter  
+import java.nio.charset.StandardCharsets  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(4, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+        val minPrice = args[1].toBigDecimal()  
+        val maxPrice = args[2].toBigDecimal()  
+  
+        val result = products.filter { it.stock > 0 }.filter { minPrice < it.price }.filter { it.price < maxPrice }  
+            .map{it.name}  
+            .toTypedArray()  
+  
+        //...  
+  
+        BufferedWriter(FileWriter(args[3], StandardCharsets.UTF_8))  
+            .use { bw -> result.forEach { bw.write("$it\r\n") } }  
+  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
-##### Scoping functions:
-
->LET us ALSO RUN WITH APPLY
->
->apply eklenti fonksiyonu: apply eklenti fonksiyonunun callback'ine this geçirilir "apply the following assignments or calls to the object" apply fonksiyonu çağrıldığı referansa geri döner.
+>Yukarıdaki örnek elde edilen dizi kullanılmayacaksa doğrudan dizi elde etmeden de aşağıdaki gibi yapılabilir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-class Sample {
-    var a: Int = 0
-    fun foo()
-    {
-        println("foo")
-    }
-
-    fun bar()
-    {
-        println("bar")
-    }
-
-    fun tar() : Int
-    {
-        println("tar")
-        return  10;
-    }
-
-    override fun toString() = "Sample"
-}
-
-fun main()
-{
-    var x: Int
-
-    val s = Sample().apply {
-        a = readInt("Bir sayı giriniz:")
-        this.foo()
-        bar()
-        println("Merhaba")
-        x = tar()
-    }
-
-    println("s.a = ${s.a}")
-    println("x = $x")
-    println(s)
-}
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.Product  
+import org.csystem.data.processing.test.loadProductsFromFileAsArray  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import java.io.BufferedWriter  
+import java.io.FileWriter  
+import java.math.BigDecimal  
+import java.nio.charset.StandardCharsets  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(4, args.size, "Geçersiz komut satırı argümanları")  
+        val products = loadProductsFromFileAsArray(args[0])  
+        val minPrice = args[1].toBigDecimal()  
+        val maxPrice = args[2].toBigDecimal()  
+  
+        BufferedWriter(FileWriter(args[3], StandardCharsets.UTF_8))  
+            .use { it.writeFile(products, minPrice, maxPrice) }  
+  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
+}  
+  
+fun BufferedWriter.writeFile(products: Array<Product>, minPrice: BigDecimal, maxPrice: BigDecimal) =  
+    products.filter { it.stock > 0 }.filter { minPrice < it.price }.filter { it.price < maxPrice }.map { it.name }  
+        .forEach { write("$it\r\n") }
 ```
+##### Scoping functions
 
->Aşağıdaki örneği inceleyiniz
+>Kotlin'de bir grup önemli fonksiyon vardır. Bu fonksiyonların bazıları global bazıları da extension fonksiyon olarak bulunmaktadır. Bu fonksiyonlar ile bir temel tür ya da bir nesne ile faaliyet alanı anlamında yararlı işlemler yapılabilmektedir. İlgili işlemler bu fonksiyonlar kullanılmadan da yapılabilir ancak bu fonksiyonların kullanılması **okunabilirlik/algılabilirlik, derleyicinin kod optimizasyonu ve programcı açısından bir takım işlemleri kolaylaştırmak** anlamında önemlidir. Bu fonksiyonlara **scoping functions** denilmektedir. Bu fonksiyonlar  şunlardır: **let, also, run, with, apply.** Bu fonksiyonlar hatırlamak bakımından literatürde şu cümle kurulmaktadır: **let** us **also** **run** **with** **apply**
+
+> apply eklenti fonksiyonunun callback'ine this geçirilir (**apply the following assignments or calls to the object**). apply fonksiyonu çağrıldığı referansa geri döner.
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-class Sample {
-    var a: Int = 0
-    fun foo()
-    {
-        println("foo")
-    }
-
-    fun bar()
-    {
-        println("bar")
-    }
-
-    fun tar() : Int
-    {
-        println("tar")
-        return  10;
-    }
-
-    override fun toString() = "Sample"
-}
-
-fun Sample.applySampleCallback()
-{
-    a = readInt("Bir sayı giriniz:")
-    this.foo()
-    this.bar()
-    println("Merhaba")
-}
-
-fun main()
-{
-    var x: Int
-
-    val s = Sample().apply{this.applySampleCallback(); x = tar()}
-
-    println("s.a = ${s.a}")
-    println("x = $x")
-    println(s)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+  
+class Sample {  
+    var a: Int = 0  
+    fun foo() {  
+        println("foo")  
+    }  
+  
+    fun bar() {  
+        println("bar")  
+    }  
+  
+    fun tar(): Int {  
+        println("tar")  
+        return 10;  
+    }  
+  
+    override fun toString() = "Sample"  
+}  
+  
+fun main() {  
+    var x: Int  
+  
+    val s = Sample().apply {  
+        a = readInt("Bir sayı giriniz:")  
+        this.foo()  
+        bar()  
+        println("Merhaba")  
+        x = tar()  
+    }  
+  
+    println("s.a = ${s.a}")  
+    println("x = $x")  
+    println(s)  
 }
 ```
 
->let eklenti fonksiyonu bir türün başka bir türe dönüştürülmesi için kullanılabilir. let fonksiyonunun callback'ine this geçirilmez
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readString
-
-fun main()
-{
-    while (true) {
-    val s = readString("Bir yazı giriniz:")
-
-        if ("elma" == s)
-            break
-
-        val newS = s.let { "text: $it" }
-
-        println(newS)
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+class Sample {  
+    var a: Int = 0  
+    fun foo() {  
+        println("foo")  
+    }  
+  
+    fun bar() {  
+        println("bar")  
+    }  
+  
+    fun tar(): Int {  
+        println("tar")  
+        return 10;  
+    }  
+  
+    override fun toString() = "Sample"  
+}  
+  
+fun Sample.applySampleCallback() {  
+    a = readInt("Bir sayı giriniz:")  
+    this.foo()  
+    this.bar()  
+    println("Merhaba")  
+}  
+  
+fun main() {  
+    var x: Int  
+  
+    val s = Sample().apply { this.applySampleCallback(); x = tar() }  
+  
+    println("s.a = ${s.a}")  
+    println("x = $x")  
+    println(s)  
 }
 ```
 
->let fonksiyonunun bir kullanımı
+>let eklenti fonksiyonu bir türün başka bir türe dönüştürülmesi için kullanılabilir. let fonksiyonunun callback'ine this geçirilmez. let fonksiyonu aldığı callback'in geri dönüş değerine geri döner. 
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-data class Person(val citizenID: String, var name: String, var address: String)
-data class PersonViewModel(var name: String, var address: String)
-
-fun main()
-{
-    val p = Person("1234", "Lokman", "Mecidiyeköy")
-
-    val pvm = p.let {
-        val name = p.name.uppercase()
-
-        //...
-        PersonViewModel(name, p.address)
-    }
-
-    println(pvm)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readString  
+  
+fun main() {  
+    while (true) {  
+        val s = readString("Bir yazı giriniz:")  
+  
+        if ("elma" == s)  
+            break  
+  
+        val newS = s.let { "text: $it" }  
+  
+        println(newS)  
+    }  
 }
 ```
 
->let fonksiyonunun bir kullanımı
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-data class Person (val citizenID: String, var name: String, var address: String)
-data class PersonViewModel (var name: String, var address: String)
-
-fun personToPersonViewModel(p: Person) = PersonViewModel(p.name.uppercase(), p.address)
-
-fun main()
-{
-    val p = Person("1234", "Lokman", "Mecidiyeköy")
-    val pvm = p.let(::personToPersonViewModel)
-
-    println(pvm)
+package org.csystem.app  
+  
+data class Person(val citizenID: String, var name: String, var address: String)  
+data class PersonViewModel(var name: String, var address: String)  
+  
+fun main() {  
+    val p = Person("1234", "Lokman", "Mecidiyeköy")  
+  
+    val pvm = p.let {  
+        val name = p.name.uppercase()  
+  
+        //...  
+        PersonViewModel(name, p.address)  
+    }  
+  
+    println(pvm)  
 }
 ```
 
->let fonksiyonunun bir kullanımı
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+data class Person(val citizenID: String, var name: String, var address: String)  
+data class PersonViewModel(var name: String, var address: String)  
+  
+fun personToPersonViewModel(p: Person) = PersonViewModel(p.name.uppercase(), p.address)  
+  
+fun main() {  
+    val p = Person("1234", "Lokman", "Mecidiyeköy")  
+    val pvm = p.let(::personToPersonViewModel)  
+  
+    println(pvm)  
+}
+```
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -13739,311 +13798,334 @@ fun main()
 }
 ```
 
->with global fonksiyonu. Bu fonksiyon en son çalıştırılan ifadenin ürettiği değere geri döner "with this object do the following"
+>Aşağıdaki demo örneği inceleyiniz
+
+
+>with global fonksiyonu en son çalıştırılan ifadenin ürettiği değere geri döner **(with this object do the following)**.
+
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-class Sample {
-    fun foo()
-    {
-        println("foo")
-    }
-
-    fun bar()
-    {
-        println("bar")
-    }
-
-    fun tar() : Int
-    {
-        println("tar")
-        return 10;
-    }
-}
-
-fun main()
-{
-    val s = Sample()
-
-    val x = with(s) {
-        val a = Random.nextInt(100)
-
-        println("a = $a")
-        foo()
-        bar()
-        tar()
-    }
-
-    println("x = $x")
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+class Sample {  
+    fun foo() {  
+        println("foo")  
+    }  
+  
+    fun bar() {  
+        println("bar")  
+    }  
+  
+    fun tar(): Int {  
+        println("tar")  
+        return 10;  
+    }  
+}  
+  
+fun main() {  
+    val s = Sample()  
+  
+    val x = with(s) {  
+        val a = Random.nextInt(100)  
+  
+        println("a = $a")  
+        foo()  
+        bar()  
+        tar()  
+    }  
+  
+    println("x = $x")  
 }
 ```
 
->also eklenti fonksiyonu. Bu fonksiyon da çağrıldığı referansa geri döner. Bu fonksiyonun callback olarak aldığı fonksiyonun parametresi ilgili türdendir. apply fonksiyonunda ise parametresizdir. also fonksiyonun calback'ine this geçirilmez "also do the followings for that object"
+>also eklenti fonksiyonu da çağrıldığı referansa geri döner. Bu fonksiyonun callback olarak aldığı fonksiyonun parametresi ilgili türdendir. apply fonksiyonunda ise parametresizdir. also fonksiyonun calback'ine this geçirilmez **(also do the followings for that object)**.
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.countDigits
-
-fun main()
-{
-    val a: Int = readInt("Bir sayı giriniz:")
-
-    //...
-
-    val str = a
-        .also { println("Number of digits:${it.countDigits()}") }
-        .toString()
-
-    println(str)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.countDigits  
+  
+fun main() {  
+    val a = readInt("Bir sayı giriniz:")  
+  
+    //...  
+  
+    val str = a  
+        .also { println("Number of digits:${it.countDigits()}") }  
+        .toString()  
+  
+    println(str)  
 }
 ```
 
 >Yukarıdaki örnek let ile de yapılabilirdi. Ancak okunabilirlik açısından also daha uygundur
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.countDigits
-
-fun main()
-{
-    val a: Int = readInt("Bir sayı giriniz:")
-
-    //...
-
-    val str = a.let { println("Number of digits:${it.countDigits()}"); "$it" }
-
-    println(str)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.countDigits  
+  
+fun main() {  
+    val a: Int = readInt("Bir sayı giriniz:")  
+  
+    //...  
+  
+    val str = a.let { println("Number of digits:${it.countDigits()}"); "$it" }  
+  
+    println(str)  
 }
 ```
 
 >run eklenti fonksiyonu ile bir türe ilişkin bir takım işlemler yapılabilir. run fonksiyonu en son yapılan işlemin değerini döndürür. run fonksiyonunun callback'ine this geçirilir
 
+>Aşağıdaki demo örneği inceleyiniz
+
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    val a = readInt("Bir sayı giriniz:")
-
-    val result: Int = a.run {
-        val x = readInt("Çarpanı giriniz:")
-
-        this * x
-    }
-
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val a = readInt("Bir sayı giriniz:")  
+  
+    val result = a.run {  
+        val x = readInt("Çarpanı giriniz:")  
+  
+        this * x  
+    }  
+  
+    println(result)  
 }
 ```
 
->run global fonksiyonu
+>run global fonksiyon olarak da bulundurulmuştur. Bu fonksiyon da en son yapılan işlemin sonucuna geri döner
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    val a: Int = readInt("Bir sayı giriniz:")
-
-    val result: Int = run {
-        val x = readInt("Çarpanı giriniz:")
-
-        a * x
-    }
-
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+  
+fun main() {  
+    val a: Int = readInt("Bir sayı giriniz:")  
+  
+    val result = run {  
+        val x = readInt("Çarpanı giriniz:")  
+  
+        a * x  
+    }  
+  
+    println(result)  
 }
 ```
 
->Aşağıdaki örneği inceleyiniz
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-data class MyNumber(val value:Int) {
-    operator fun invoke(): Int
-    {
-        val x = readInt("Çarpanı giriniz:")
-
-        return value * x
-    }
-}
-
-fun main()
-{
-    val a: Int = readInt("Bir sayı giriniz:")
-
-    val myNumber = MyNumber(a)
-
-    var result: Int = run(myNumber::invoke)
-
-    println(result)
-
-    result = myNumber()
-
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+data class MyNumber(val value: Int) {  
+    operator fun invoke(): Int {  
+        val x = readInt("Çarpanı giriniz:")  
+  
+        return value * x  
+    }  
+}  
+  
+fun main() {  
+    val a: Int = readInt("Bir sayı giriniz:")  
+  
+    val myNumber = MyNumber(a)  
+  
+    var result: Int = run(myNumber::invoke)  
+  
+    println(result)  
+  
+    result = myNumber()  
+  
+    println(result)  
 }
 ```
 
-**_Anahtar Notlar:_** Kotlin'in şu anki versiyonunda (1.8.21) foksiyon çağırma operatör fonksiyonu yani invoke fonksiyonu yazılmış sınıflar türünden değişkenler ile fonksiyon çağırma operatörü kullanılabilir ancak isim fonksiyon olarak referans edilemez. IDE'nin mesajına göre bunun ileride ekleneceği öngörülmektedir.
+>Kotlin'in şu anki versiyonunda (2.0.20) foksiyon çağırma operatör fonksiyonu yani invoke fonksiyonu yazılmış sınıflar türünden değişkenler ile fonksiyon çağırma operatörü kullanılabilir ancak isim fonksiyon olarak referans edilemez. IDE'ye ilişkin static kod analizi aracının mesajına göre bunun ileride ekleneceği öngörülmektedir.
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-data class MyNumber(val value:Int) {
-    operator fun invoke(): Int
-    {
-    val x = readInt("Çarpanı giriniz:")
-
-        return value * x
-    }
-}
-
-fun main()
-{
-    val a: Int = readInt("Bir sayı giriniz:")
-
-    val myNumber = MyNumber(a)
-
-    var result: Int = run(myNumber::invoke)
-
-    result = run(::myNumber) //error: Unsupported [References to variables aren't supported yet]
-
-    println(result)
-
-    result = myNumber()
-
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+data class MyNumber(val value: Int) {  
+    operator fun invoke(): Int {  
+        val x = readInt("Çarpanı giriniz:")  
+  
+        return value * x  
+    }  
+}  
+  
+fun main() {  
+    val a: Int = readInt("Bir sayı giriniz:")  
+    val myNumber = MyNumber(a)  
+    var result: Int = run(myNumber::invoke)  
+  
+    result = run(::myNumber) //error: Unsupported [References to variables are unsupported]  
+  
+    println(result)  
+  
+    result = myNumber()  
+  
+    println(result)  
 }
 ```
 
->Aşağıdaki örnekte bir lambda fonksiyon tanımlanmıştır. Çağrılmamıştır
+>Aşağıdaki demo örnekte bir lambda fonksiyon tanımlanmıştır. Çağrılmamıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.kotlin.util.console.readInt
-
-fun main()
-{
-    {
-        val a = readInt("Bir sayı giriniz:")
-
-        println(a * a)
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    {  
+        val a = readInt("Bir sayı giriniz:")  
+  
+        println(a * a)  
+    }  
 }
 ```
 
 >Yukardaki örnekteki lambda fonksiyon aşağıdaki gibi çağrılabilir. Kod örnek amaçlı yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.readInt
-
-fun main()
-{
-    {
-        val a = readInt("Bir sayı giriniz:")
-        println(a * a)
-    }()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    {  
+        val a = readInt("Bir sayı giriniz:")  
+  
+        println(a * a)  
+    }()  
 }
 ```
 
 >Yukardaki örnek aşağıdaki gibi de yapılabilir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.readInt
-
-fun main()
-{
-    run {
-        val a = readInt("Bir sayı giriniz:")
-        println(a * a)
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    run {  
+        val a = readInt("Bir sayı giriniz:")  
+  
+        println(a * a)  
+    }  
 }
 ```
 
->Aşağıdaki örneği inceleyiniz
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    println({ a: Int, b: Int -> a + b }(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz")))
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    println({ a: Int, b: Int -> a + b }(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz:")))  
 }
 ```
 
->Aşağıdaki örneği inceleyiniz
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    val result = { a: Int, b: Int -> a + b }(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz"))
-    //...
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val result = { a: Int, b: Int -> a + b }(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz:"))  
+  
+    //...  
+  
+    println(result)  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz. Kod sentaksı göstermek için yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val result = { a: Int, b: Int, block: () -> Int -> a + b + block() } (readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz"))  {val value = Random.nextInt(100); println(value); value}
-    //...
-
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val result = { a: Int, b: Int, block: () -> Int -> a + b + block() }(  
+        readInt("Birinci sayıyı giriniz:"),  
+        readInt("İkinci sayıyı giriniz")  
+    ) { val value = Random.nextInt(100); println("Generated value:$value"); value }  
+    //...  
+  
+    println(result)  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz. Kod sentaksı göstermek için yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val foo = { a: Int, b: Int, block: () -> Int -> a + b + block() }
-    val result = foo(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz"))  {val value = Random.nextInt(100); println(value); value}
-    //...
-
-    println(result)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val f = { a: Int, b: Int, block: () -> Int -> a + b + block() }  
+    val result = f(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz")) {  
+        val value = Random.nextInt(100); println("Generated value:$value"); value  
+    }  
+    //...  
+  
+    println(result)  
 }
 ```
 
->Bir veri yapısının, veri yapısının verileri nasıl tuttuğundan bağımsız olarak dolaşılmasına (iterate) olanak sağlayan araçlara programlamada genel olarak iterator denir. Kotlin'de for döngü deyimiyle dolaşılabilir bir sınıfın `Iterable<T>` arayüzünü desteklemesi gerekir. Bu arayüzün iterator metodu `Iterator<T>` arayüz referansına geri döner. bu arayüzün hasNext abstract metodu ile bir sonraki verinin varlığına ilişkin Boolean türden değer elde edilir. next metodu bir sonraki elemanın değerine geri döner, her next çağrısında bir sonraki elemandan önceki elemana konumlanılır. next metodu hasNext false olduğunda yani artık eleman kalmadığınd çağrılırsa NoSuchElementException fırlatılır. Aşağıdaki iterator metodunun çağrılması ve döngü işlemi for döngü deyimiyle doğrudan yapılabilir
+>Aşağıdaki örneği inceleyiniz. Kod sentaksı göstermek için yazılmıştır
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() = doWork { a, b, f -> a + b + f() }  
+  
+fun doWork(f: (Int, Int, () -> Int) -> Int) {  
+    val result = f(readInt("Birinci sayıyı giriniz:"), readInt("İkinci sayıyı giriniz")) {  
+        val value = Random.nextInt(100); println("Generated value:$value"); value  
+    }  
+    //...  
+  
+    println(result)  
+}
+```
+
+##### Iterator Kavramı
+
+>Bir veri yapısının, veri yapısının, verileri nasıl tuttuğundan bağımsız olarak dolaşılmasına (iterate) olanak sağlayan araçlara programlamada genel olarak **iterator** denir. Kotlin'de for döngü deyimiyle dolaşılabilir bir sınıfın `Iterable<T>` arayüzünü desteklemesi gerekir. Aslında Kotlin'de `Iterable<T>` arayüzünü desteklemeyen ancak ilgili iterator isimli operatör metoda sahip olan bir sınıf da iterable'dır. Ancak bir convention olarak böylesi durumda `Iterable<T>` arayüzü de desteklenmelidir. Bu arayüzün iterator metodu `Iterator<T>` arayüz referansına geri döner. bu arayüzün hasNext abstract metodu ile bir sonraki verinin varlığına ilişkin Boolean türden değer elde edilir. next metodu bir sonraki elemanın değerine geri döner. next metodu hasNext false olduğunda yani artık eleman kalmadığında çağrılırsa NoSuchElementException fırlatılır. Aşağıdaki iterator metodunun çağrılması ve döngü işlemi for döngü deyimiyle doğrudan yapılabilir.
 
 ```
 for (value in a)
@@ -14053,217 +14135,95 @@ for (value in a)
 >Aşağıdaki örnekte bir dizi itrator ile açık açık dolaşılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    val a = IntArray(10) { Random.nextInt(100) }
-
-    val iter = a.iterator()
-
-    while (iter.hasNext())
-        print("${iter.next()} ")
-
-    println()
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    val a = IntArray(10) { Random.nextInt(100) }  
+  
+    val iter = a.iterator()  
+  
+    while (iter.hasNext())  
+        print("${iter.next()} ")  
+  
+    println()  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    val a = readInt("Birinci sayıyı giriniz:")
-    val b = readInt("İkinci sayıyı giriniz:")
-
-    val r = a..b
-    val iter = r.iterator()
-
-    while (iter.hasNext())
-        print("${iter.next()} ")
-
-    println()
-
-    for (v in r)
-        print("$v ")
-
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val a = readInt("Birinci sayıyı giriniz:")  
+    val b = readInt("İkinci sayıyı giriniz:")  
+  
+    val r = a..b  
+    val iter = r.iterator()  
+  
+    while (iter.hasNext())  
+        print("${iter.next()} ")  
+  
+    println()  
+  
+    for (v in r)  
+        print("$v ")  
+  
+    println()  
 }
 ```
 
 >next metodu eleman yoksa NoSuchElementException nesnesi fırlatır
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.array.randomArray  
+import kotlin.random.Random  
+  
+fun main() {  
+    val a = Random.randomArray(10, 1, 100)  
+    val iter = a.iterator()  
+  
+    try {  
+        while (true)  
+            print("${iter.next()} ")  
+    } catch (ex: NoSuchElementException) {  
+        println()  
+    }  
+  
+    for (value in a)  
+        print("${value} ")  
+  
+    println()  
+}```
 
-import org.csystem.util.array.kotlin.randomIntArray
-import kotlin.random.Random
-
-fun main()
-{
-    val a = Random.randomIntArray(10, 1, 100)
-    val iter = a.iterator()
-
-    try {
-        while (true)
-            print("${iter.next()} ")
-    }
-    catch (ex: NoSuchElementException) {
-        println()
-    }
-
-    for (value in a)
-        print("${value} ")
-
-    println()
-}
-```
-
->RandomIntGenerator sınıfı
+>Aşağıdaki RandomIntGenerator isimli iterable sınıfı ve örnek kodları inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.generator.random.RandomIntGenerator
-
-fun main()
-{
-    val rig = RandomIntGenerator(10, 0, 100)
-
-    for (value in rig)
-        print("%02d ".format(value))
-
-    println("\n---------------------------------------------------------------------------")
-
-    for (value in rig)
-        print("%02d ".format(value))
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.generator.random.RandomIntGenerator  
+  
+fun main() {  
+    val rig = RandomIntGenerator(10, 0, 100)  
+  
+    for (value in rig)  
+        print("%02d ".format(value))  
+  
+    println("\n---------------------------------------------------------------------------")  
+  
+    for (value in rig)  
+        print("%02d ".format(value))  
 }
 ```
 
-	FILE        : RandomIntGenerator.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 14.06.2023
-
-	Iterable RandomIntGenerator class
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
-
-```kotlin
-package org.csystem.generator.random
-
-import kotlin.random.Random
-
-class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private val mBound: Int, private val mRandom : Random = Random) : Iterable<Int> {
-    private var mIndex = -1
-
-    init {
-        if (mCount <= 0 || mMin >= mBound)
-            throw IllegalArgumentException("Invalid arguments")
-    }
-
-    override fun iterator(): Iterator<Int>
-    {
-        mIndex = -1
-
-        return object : Iterator<Int> {
-            override fun hasNext() = mIndex + 1 < mCount
-
-            override fun next(): Int {
-                if (!hasNext())
-                    throw NoSuchElementException("No such element!...")
-
-                ++mIndex
-
-                return mRandom.nextInt(mMin, mBound)
-            }
-        }
-    }
-}
-```
-
-	FILE        : RandomIntGenerator.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 14.06.2023
-
-	Iterable RandomIntGenerator class
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
-
-```kotlin
-package org.csystem.generator.random
-
-import kotlin.random.Random
-
-class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private val mBound: Int, private val mRandom : Random = Random) : Iterable<Int> {
-    init {
-        if (mCount <= 0 || mMin >= mBound)
-            throw IllegalArgumentException("Invalid arguments")
-    }
-
-    override fun iterator(): Iterator<Int>
-    {
-        var count = -1
-
-        return object : Iterator<Int> {
-            override fun hasNext() = count + 1 < mCount
-
-            override fun next(): Int {
-                if (!hasNext())
-                    throw NoSuchElementException("No such element!...")
-
-                ++count
-
-                return mRandom.nextInt(mMin, mBound)
-            }
-        }
-    }
-}
-```
-
-	FILE        : RandomIntGenerator.kt
-	AUTHOR      : Android-Mar-2023 Group
-	LAST UPDATE : 14.06.2023
-
-	Iterable RandomIntGenerator class
-
-	Copyleft (c) 1993 by C and System Programmers Association
-	All Rights Free
-
-```kotlin
-package org.csystem.generator.random
-
-import kotlin.random.Random
-
-class RandomIntGenerator(private val mCount: Int, private val mMin: Int, private val mBound: Int, private val mRandom : Random = Random) : Iterable<Int> {
-    init {
-        if (mCount <= 0 || mMin >= mBound)
-            throw IllegalArgumentException("Invalid arguments")
-    }
-
-    override fun iterator() = object : Iterator<Int> {
-        private var mIndex = -1
-
-        override fun hasNext() = mIndex + 1 < mCount
-
-        override fun next(): Int {
-            if (!hasNext())
-                throw NoSuchElementException("No such element!...")
-
-            ++mIndex
-
-            return mRandom.nextInt(mMin, mBound)
-        }
-    }
-}
-```
+XXXXXXXXXXXXXXXXXXXXXXXXXX
+##### Iterable Arayüzünün Eklenti Fonksiyonları
 
 >Iterable arayüzüne eklenti olarak yazılmış bir grup fonksiyon vardır. Bu fonksiyonlar genel olarak callback alırlar. Bu fonksiyonlar genel olarak iki gruba ayrılabilir: 
 >

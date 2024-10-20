@@ -1,20 +1,15 @@
 package org.csystem.app
 
-import org.csystem.data.processing.test.loadProductsFromFileAsArray
-import org.csystem.kotlin.util.console.commandline.lengthEquals
+import org.csystem.kotlin.util.generator.random.RandomIntGenerator
 
-fun main(args: Array<String>) {
-    try {
-        lengthEquals(1, args.size, "Geçersiz komut satırı argümanları")
-        val products = loadProductsFromFileAsArray(args[0])
+fun main() {
+    val rig = RandomIntGenerator(10, 0, 100)
 
-        if (products.none { it.stock <= 0 })
-            println("Her ürün stokta var")
-        else {
-            println("Stokta olmayan ürünler:")
-            products.filter { it.stock <= 0 }.map { it.name }.map { it.uppercase() }.forEach(::println)
-        }
-    } catch (ex: Throwable) {
-        println(ex.message)
-    }
+    for (value in rig)
+        print("%02d ".format(value))
+
+    println("\n---------------------------------------------------------------------------")
+
+    for (value in rig)
+        print("%02d ".format(value))
 }

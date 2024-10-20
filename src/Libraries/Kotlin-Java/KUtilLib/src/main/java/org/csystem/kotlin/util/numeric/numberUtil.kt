@@ -47,13 +47,14 @@ private fun Int.numToText3DigitsTR(): String {
     return sb.toString()
 }
 
+fun Int.countDigits() = toLong().countDigits()
 fun Long.countDigits() = if (this != 0L) log10(abs(this).toDouble()).toInt() + 1 else 1
 
-fun Long.digits() = this.digits(1)
+fun Long.digits() = digits(1)
 
-fun Long.digitsInTwos() = this.digits(2)
+fun Long.digitsInTwos() = digits(2)
 
-fun Long.digitsInThrees() = this.digits(3)
+fun Long.digitsInThrees() = digits(3)
 
 fun Long.isPrime(): Boolean {
     if (this <= 1)
