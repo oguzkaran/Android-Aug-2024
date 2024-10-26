@@ -8,15 +8,19 @@ class RandomDoubleGenerator(private val count: Int, private val origin: Double, 
         if (count <= 0 || origin >= bound)
             throw IllegalArgumentException("Invalid arguments")
     }
-    override operator fun iterator(): Iterator<Double> {
-        return object: Iterator<Double> {
-            override fun hasNext(): Boolean {
-                TODO("Not yet implemented")
-            }
 
-            override fun next(): Double {
-                TODO("Not yet implemented")
-            }
+    private inner class RandomDoubleGeneratorIterator : Iterator<Double> {
+        private var n: Int = 0
+        override fun hasNext(): Boolean {
+            return n + 1 <= count
+        }
+
+        override fun next(): Double {
+            if (!hasNext())
+                throw NoSuchElementException("All numbers generated")
+
+            return random.nextDouble(origin, bound).also { ++n }
         }
     }
+    override operator fun iterator(): Iterator<Double> = RandomDoubleGeneratorIterator()
 }

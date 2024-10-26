@@ -9,13 +9,18 @@ class RandomIntGenerator(private val count: Int, private val origin: Int, privat
             throw IllegalArgumentException("Invalid arguments")
     }
     override operator fun iterator(): Iterator<Int> {
+        var n = 0
+
         return object: Iterator<Int> {
             override fun hasNext(): Boolean {
-                TODO("Not yet implemented")
+                return n + 1 <= count
             }
 
             override fun next(): Int {
-                TODO("Not yet implemented")
+                if (!hasNext())
+                    throw NoSuchElementException("All numbers generated")
+
+                return random.nextInt(origin, bound).also { ++n }
             }
         }
     }

@@ -84,6 +84,8 @@ fun Long.isPrime(): Boolean {
     return true
 }
 
+fun Int.isPrime() = toLong().isPrime()
+
 fun Long.numToTextTR(): String {
     TODO()
 }

@@ -1,15 +1,9 @@
 package org.csystem.app
 
-import org.csystem.kotlin.util.generator.random.RandomIntGenerator
+import org.csystem.kotlin.util.console.readInt
 
 fun main() {
-    val rig = RandomIntGenerator(10, 0, 100)
-
-    for (value in rig)
-        print("%02d ".format(value))
-
-    println("\n---------------------------------------------------------------------------")
-
-    for (value in rig)
-        print("%02d ".format(value))
+    println(generateSequence { readInt("Bir sayı giriniz:") }
+        .takeWhile { it != 0 }
+        .sum())
 }

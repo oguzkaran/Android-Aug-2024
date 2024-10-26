@@ -14222,413 +14222,473 @@ fun main() {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXX
+```kotlin
+package org.csystem.kotlin.util.generator.random  
+  
+import kotlin.random.Random  
+  
+class RandomIntGenerator(private val count: Int, private val origin: Int, private val bound: Int,  
+                         private val random: Random = Random): Iterable<Int> {  
+    init {  
+        if (count <= 0 || origin >= bound)  
+            throw IllegalArgumentException("Invalid arguments")  
+    }  
+    override operator fun iterator(): Iterator<Int> {  
+        var n = 0  
+  
+        return object: Iterator<Int> {  
+            override fun hasNext(): Boolean {  
+                return n + 1 <= count  
+            }  
+  
+            override fun next(): Int {  
+                if (!hasNext())  
+                    throw NoSuchElementException("All numbers generated")  
+  
+                return random.nextInt(origin, bound).also { ++n }  
+            }  
+        }  
+    }  
+}
+```
+
+
+>Aşağıdaki RandomDoubleGenerator isimli iterable sınıfı ve örnek kodları inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.generator.random.RandomDoubleGenerator  
+  
+fun main() {  
+    val rig = RandomDoubleGenerator(10, 2.34, 2.341)  
+  
+    for (value in rig)  
+        print("%f ".format(value))  
+  
+    println("\n---------------------------------------------------------------------------")  
+  
+    for (value in rig)  
+        print("%f ".format(value))  
+}
+```
+
+```kotlin
+package org.csystem.kotlin.util.generator.random  
+  
+import kotlin.random.Random  
+  
+class RandomDoubleGenerator(private val count: Int, private val origin: Double, private val bound: Double,  
+                            private val random: Random = Random): Iterable<Double> {  
+    init {  
+        if (count <= 0 || origin >= bound)  
+            throw IllegalArgumentException("Invalid arguments")  
+    }  
+  
+    private inner class RandomDoubleGeneratorIterator : Iterator<Double> {  
+        private var n: Int = 0  
+        override fun hasNext(): Boolean {  
+            return n + 1 <= count  
+        }  
+  
+        override fun next(): Double {  
+            if (!hasNext())  
+                throw NoSuchElementException("All numbers generated")  
+  
+            return random.nextDouble(origin, bound).also { ++n }  
+        }  
+    }  
+    override operator fun iterator(): Iterator<Double> = RandomDoubleGeneratorIterator()  
+}
+```
+
+>Aşağıdaki RandomLongGenerator isimli iterable sınıfı ve örnek kodları inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.generator.random.RandomLongGenerator  
+  
+fun main() {  
+    val rig = RandomLongGenerator(5, 2_000_000_000, 4_000_000_000)  
+  
+    for (value in rig)  
+        print("%d ".format(value))  
+  
+    println("\n---------------------------------------------------------------------------")  
+  
+    for (value in rig)  
+        print("%d ".format(value))  
+}
+```
+
+```kotlin
+package org.csystem.kotlin.util.generator.random  
+  
+import kotlin.random.Random  
+  
+class RandomLongGenerator(private val count: Int, private val origin: Long, private val bound: Long,  
+                          private val random: Random = Random): Iterable<Long> {  
+    init {  
+        if (count <= 0 || origin >= bound)  
+            throw IllegalArgumentException("Invalid arguments")  
+    }  
+  
+    private class RandomLongGeneratorIterator(private val count: Int, private val origin: Long, private val bound: Long,  
+                                              private val random: Random) : Iterator<Long> {  
+        private var n: Int = 0  
+  
+        override fun hasNext(): Boolean {  
+            return n + 1 <= count  
+        }  
+  
+        override fun next(): Long {  
+            if (!hasNext())  
+                throw NoSuchElementException("All numbers generated")  
+  
+            return random.nextLong(origin, bound).also { ++n }  
+        }  
+    }  
+    override operator fun iterator(): Iterator<Long> = RandomLongGeneratorIterator(count, origin, bound, random)  
+}
+```
 ##### Iterable Arayüzünün Eklenti Fonksiyonları
 
->Iterable arayüzüne eklenti olarak yazılmış bir grup fonksiyon vardır. Bu fonksiyonlar genel olarak callback alırlar. Bu fonksiyonlar genel olarak iki gruba ayrılabilir: 
+>Iterable arayüzüne eklenti olarak yazılmış bir grup fonksiyon vardır. Bu fonksiyonlar genel olarak callback alırlar.  Bu fonksiyonlar genel olarak iki gruba ayrılabilir: 
 >
->1. __<u>Intermediate operation functions:</u>__ Veriler üzerinde çağrılacak callback'leri belirlemekte kullanılır. Bu fonksiyonlar aldıkları callback'i doğrudan çalıştırmazlar. Bir terminal operation function devam eden zincirin sonunda çağrıldığında bu callback'ler de çağrılır. Yani aslında bir ara fonksiyonun aldığı calllback'in çağrılabilmesi için bir terminal operation function çağrılması gerekir.
+>- **Intermediate operation functions:** Veriler üzerinde çağrılacak callback'leri belirlemekte kullanılır. Bu fonksiyonlar aldıkları callback'i doğrudan çağırmazlar. Bir terminal operation function devam eden zincirin sonunda çağrıldığında bu callback'ler de çağrılır. Yani aslında bir ara fonksiyonun aldığı calllback'in çağrılabilmesi için bir terminal operation function çağrılması gerekir.
 >
->2. __<u>Terminal operation functions:</u>__ Bir zincir (pipeline) içerisinde ya bir işlem yapan ya da tüm belirlenen ara işlemlere göre bir değer döndüren metotlardır. Bir pipeline içerisinde istenildiği kadar intermediate function çağrısı olabilir ancak bir tane terminal function çağrısı yapılabilir
+>- **Terminal operation functions:** Bir zincir (pipeline) içerisinde ya bir işlem yapan ya da tüm belirlenen ara işlemlere göre bir değer döndüren metotlardır. Bir pipeline içerisinde istenildiği kadar intermediate function çağrısı olabilir ancak bir tane terminal function çağrısı yapılabilir
+
+**Anahtar Notlar:** Aslında dizilere ilişkin extension fonksiyonlar da bu anlamda iki gruba ayrılabilirler.
 
 >forEach ve filter eklenti fonksiyonları
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.generator.random.RandomIntGenerator
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.numeric.isPrime
-
-fun main()
-{
-    val randomIntGenerator = RandomIntGenerator(readInt("Bir sayı giriniz:"), 0, 100)
-
-    randomIntGenerator.forEach {print("$it ")}
-
-    println()
-
-    randomIntGenerator.filter { it % 2 == 0 }.forEach {print("$it ")}
-
-    println()
-
-    randomIntGenerator.filter { it.isPrime() }.forEach {print("$it ")}
-
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.generator.random.RandomIntGenerator  
+import org.csystem.kotlin.util.numeric.isPrime  
+  
+fun main() {  
+    val randomIntGenerator = RandomIntGenerator(readInt("Bir sayı giriniz:"), 0, 100)  
+  
+    randomIntGenerator.forEach { print("%02d ".format(it)) }  
+  
+    println()  
+  
+    randomIntGenerator.filter { it % 2 == 0 }.forEach { print("%02d ".format(it)) }  
+  
+    println()  
+  
+    randomIntGenerator.filter { it.isPrime() }.forEach { print("%02d ".format(it)) }  
+  
+    println()  
 }
 ```
 
->Aşağıdaki örneği ve write fonksiyonunu inceleyiniz
+
+>Iterable arayüzüne eklenti olarak bulunan metotların bir çoğu `String` sınıfında da eklenti olarak bulunmaktadır. String sınıfı bu anlamda iterable değildir ancak iterable olarak kullanılabilmektedir
+
+>Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.generator.random.RandomIntGenerator
-import org.csystem.util.console.kotlin.readInt
-
-import org.csystem.util.iterable.kotlin.write
-import org.csystem.util.numeric.isPrime
-
-fun main()
-{
-    val randomIntGenerator = RandomIntGenerator(readInt("Bir sayı giriniz:"), 0, 100)
-
-    write(randomIntGenerator)
-    write(randomIntGenerator.filter { it % 2 == 0 })
-    write(randomIntGenerator.filter { it.isPrime() })
-}
-```
-
->Iterable arayüzüne eklenti olarak bulunan metotların bir çoğu String sınıfında da eklenti olarak bulunmaktadır. String sınıfı bu anlamda __"iterable"__ değildir ancak __"iterable"__ olarak kullanılabilmektedir
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readString
-
-fun main()
-{
-    val s = readString("Bir yazı giriniz:")
-
-    s.filter { it.isUpperCase() }.forEach(::println)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readString  
+  
+fun main() {  
+    val s = readString("Bir yazı giriniz:")  
+  
+    s.filter { it.isUpperCase() }.forEach(::print)  
 }
 ```
 
 >Anımsanacağı gibi String sınıfı da for döngü deyimi ile dolaşılabilir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readString
-
-fun main()
-{
-    val s = readString("Bir yazı giriniz:")
-
-    for (c in s)
-        print("$c ")
-
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readString  
+  
+fun main() {  
+    val s = readString("Bir yazı giriniz:")  
+  
+    for (c in s)  
+        print("$c ")  
+  
+    println()  
 }
 ```
 
 >Aşağıdaki örnekte klavyeden girilen minimum ve maksimum değerler arasındaki fiyata sahip stokta bulunan ürünler listelenmiştir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsIterable
-import org.csystem.util.console.kotlin.readBigDecimal
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsIterable("products-withheader.csv")
-        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
-        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
-
-        //products.forEach(::println)
-        println("Filtered Products:")
-        products.filter { it.stock > 0 && minPrice < it.price  && it.price < maxPrice }
-            .forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsIterable  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(3, args.size, "wrong number of arguments")  
+        val products = loadProductsFromFileAsIterable(args[0])  
+        val minPrice = args[1].toBigDecimal()  
+        val maxPrice = args[2].toBigDecimal()  
+  
+        //products.forEach(::println)  
+        println("Filtered Products:")  
+        products.filter { it.stock > 0 }.filter { minPrice <= it.price }.filter { it.price <= maxPrice }  
+            .forEach(::println)  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
->Yukarıdaki örnek için filter fonksiyonları ayrı ayrı da çağrılabilir
+>Kotlin'de Itearable arayüzünden türetilmiş `MutableIterable<T>` arayüzü vardır. Bu arayüzün remove metodu dolaşım sırasında elemanın silinmesi için kullanılabilir.
+
+>Kotlin'de standart collection sınıflar genel olarak immutable ve mutable olmak üzere iki gruba ayrılır. Bu ayrım arayüzler düzeyinde yapılır. Genel olarak **mutable collection**'lar MutableXXX biçiminde isimlendirilmiştir. Bu durumda genel olarak ismi içerisinde Mutable geçmeyen arayüzler Immutable olur. Bazı sınıflar için istisnalar bulunmaktadır.
+
+>Collection sınıfların `Collection<T>` arayüzünü destekleyen sınıflarınını `MutableCollection<T>` veya  `Collection<T>` parametreli ctor'ları bulunur. Bu ctor'lar ile bir collection içerisindeki veri başka bir collection'a geçirilebilir. `Collection<T>` veya `MutableCollection<T>` arayüzünden türetilen bazı arayüzler ile collection'lar adeta sınıflantırılmıştır. Örneğin aralarında öncelik sonralık ilişkisi olan veri yapılarını temsil eden collection sınıflar `List<T>` arayüzünü desteklerler, mutable olaranlar ise `MutableList<T>` arayüzünü desteklerler. Bu anlamda `MutableList<T>`, `List<T>` arayüzünden türetilmiştir. Collection sınıf oluşturmak için bir grup global fonksiyon da bulunmaktadır. Bu sınıflar genel olarak xxxOf ve mutableXxxxOf biçiminde isimlendirilmişlerdir. Bu fonksiyonlar ilgili interface referansına geri dönerler. Örneğin listOf isimli global fonksiyon ile immutable bir list oluşturulabilir, mutableListOf isimli global fonksiyon ile mutable bir list oluşturulabilir. 
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsIterable
-import org.csystem.util.console.kotlin.readBigDecimal
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsIterable("products-withheader.csv")
-        val minPrice = readBigDecimal("Minimum fiyatı giriniz:")
-        val maxPrice = readBigDecimal("Maximum fiyatı giriniz:")
-
-        //products.forEach(::println)
-        println("Filtered Products:")
-        products.filter { it.stock > 0}.filter{ minPrice < it.price }.filter {it.price < maxPrice }.forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.util.io.write  
+import java.util.*  
+  
+fun main() {  
+    val mutableList = mutableListOf(10, 20, 30)  
+    val linkedList = LinkedList(mutableList)  
+  
+    linkedList.write()  
 }
 ```
 
->Kotlin'de standart collection sınıflar genel olarak immutable ve mutable olmak üzere iki gruba ayrılır. Bu ayrım arayüzler düzeyinde yapılır. Genel olarak __"mutable collection"__'lar MutableXXX biçiminde isimlendirilmiştir. Bu durumda içerisinde Mutable geçmeyen arayüzler Immutable olur. Sınıflar için bu isimlendirmede istisnalar bulunmaktadır
-
->Collection arayüzünü destekleyen sınıfların MutableCollection veya Collection parametreli ctor'ları bulunur
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import java.util.*
-
-fun main()
-{
-    val mutableList = mutableListOf(10, 20, 30)
-    val linkedList = LinkedList(mutableList)
-
-    linkedList.forEach{print("$it ")}
-
-    println()
+package org.csystem.app  
+  
+import org.csystem.util.io.write  
+import java.util.*  
+  
+fun main() {  
+    val list = listOf(10, 20, 30)  
+    val linkedList = LinkedList(list)  
+  
+    linkedList.write()  
 }
 ```
 
->Aralarında öncelik sonralık ilişkisi bulunan collection sınıflara genel olarak liste tarzı collection sınıflar denir ve bu collection sınıflar `List<E>` veya `MutableList<E>` arayüzünü desteklerler. Aslında `MutableList<E>` arayüzü Kotlin'de `List<E>` arayüzünden türetilmiştir. Buradaki `List<E>` arayüzü ile JavaSE'deki `List<E>` arayüzü aynı değildir. JavaSE'deki `List<E>` arayüzü Kotlin'deki `MutableList<E>` arayüzüne karşılık gelir. Collection sınıflar için immutable ve mutable collection arayüzleri için genel olarak durum böyledir
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val mutableList = mutableListOf("ankara", "istanbul", "İzmir")
-    val mutableArrayList: MutableList<Int> = ArrayList()
-
-    println(mutableList.javaClass.name)
-    println(mutableArrayList.javaClass.name)
-
-    mutableList.forEach(::println)
-    mutableArrayList.forEach(::println)
+package org.csystem.app  
+  
+fun main() {  
+    val mutableList = mutableListOf("ankara", "istanbul", "İzmir")  
+    val mutableArrayList: MutableList<Int> = ArrayList()  
+  
+    println(mutableList.javaClass.name)  
+    println(mutableArrayList.javaClass.name)  
+  
+    mutableList.forEach(::println)  
+    mutableArrayList.forEach(::println)  
 }
 ```
 
 >Mutable liste tarzı collection sınıfların MutableList arayüzünden gelen Collection parametreli addAll metotları bulunur
 
 ```kotlin
-package org.csystem.app
-
-import java.util.*
-
-fun main()
-{
-    val linkedList = LinkedList<Int>()
-
-    linkedList.addAll(mutableListOf(10, 20, 30))
-    linkedList.forEach{print("$it ")}
-    println()
+package org.csystem.app  
+  
+import java.util.*  
+  
+fun main() {  
+    val linkedList = LinkedList<Int>()  
+  
+    linkedList.addAll(mutableListOf(10, 20, 30))  
+    linkedList.forEach { print("$it ") }  
+    println()  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.iterable.kotlin.write
-
-fun main()
-{
-    val intList = ArrayList<Int>()
-
-    while (true) {
-        val value = readInt("Bir sayı giriniz:")
-
-        if (value == 0)
-            break
-
-        intList.add(value)
-    }
-
-    write(intList)
-
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.util.io.write  
+  
+fun main() {  
+    val intList = ArrayList<Int>()  
+  
+    while (true) {  
+        val value = readInt("Bir sayı giriniz:")  
+  
+        if (value == 0)  
+            break  
+  
+        intList.add(value)  
+    }  
+  
+    intList.write()  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadNamesFromFileAsList
-import org.csystem.util.console.kotlin.readString
-
-fun main()
-{
-    try {
-        val str = readString("Bir yazı giriniz:")
-        loadNamesFromFileAsList("names.csv").filter {it.contains(str)}.forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadNamesFromFileAsList  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.console.readString  
+import org.csystem.util.io.write  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val text = readString("Input a text:");  
+  
+        loadNamesFromFileAsList(args[0]).filter { it.contains(text) }.write("\n")  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadNamesFromFileAsList
-import org.csystem.util.console.kotlin.readString
-
-fun main()
-{
-    try {
-        val str = readString("Bir yazı giriniz:")
-
-        loadNamesFromFileAsList("names.csv")
-            .filter{it.contains(str)}
-            .map { it.length }
-            .forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadNamesFromFileAsList  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.console.readString  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val text = readString("Input a text:");  
+  
+        loadNamesFromFileAsList(args[0]).filter { it.contains(text) }.map { it.length }.forEach{ print("$it ")}  
+        println()  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadNamesFromFileAsList
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.iterable.kotlin.write
-
-fun main()
-{
-    try {
-        val str = readString("Bir yazı giriniz:")
-
-        val lengths = loadNamesFromFileAsList("names.csv")
-            .filter{it.contains(str)}
-            .map { it.length }
-            .toList()
-
-        write(lengths)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadNamesFromFileAsList  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.console.readString  
+import org.csystem.util.io.write  
+import java.io.PrintStream  
+import java.nio.charset.StandardCharsets  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(2, args.size, "wrong number of arguments")  
+        val text = readString("Input a text:");  
+        val texts = loadNamesFromFileAsList(args[0]).filter { it.contains(text) }.toList()  
+        val stream = PrintStream(args[1], StandardCharsets.UTF_8)  
+  
+        texts.write("\n", "")  
+        texts.write(output = stream, sep = "\n", end = "")  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadNamesFromFileAsList
-import org.csystem.util.console.kotlin.readString
-
-fun main() {
-    try {
-        val text = readString("Bir yazı giriniz:")
-        val allNames = loadNamesFromFileAsList("names.csv")
-        val names = allNames
-            .filter { it.contains(text, true) }
-            .map { it.lowercase() }
-            .toList()
-
-        allNames.filter { it.contains(text, ignoreCase = true) }.forEach(::println)
-        println("--------------------------------------------------------------------")
-        names.forEach(::println)
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
-}
-```
-
->Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır Örnekte lambda fonksiyon içerisinde parametre kullanılmadığında bazı static kod analizi araçları uyarı verebilir. Bu uyarının kalkması için Lambda fonksiyon içerisindeki parametre alttire karakteri ile pas geçilecek şekilde belirtilebilir. Bu uyarı dikkate alınmasa da bir sorun oluşturmaz
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    IntArray(count) {it}.forEach { _ -> print("${Random.nextInt(100)} ") }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadNamesFromFileAsList  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.console.readString  
+import org.csystem.kotlin.util.string.randomTextEN  
+import org.csystem.util.io.write  
+import java.io.PrintStream  
+import java.nio.charset.StandardCharsets  
+import kotlin.random.Random  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(3, args.size, "wrong number of arguments")  
+        val count = args[2].toInt()  
+        val text = readString("Input a text:");  
+        val texts = loadNamesFromFileAsList(args[0]).filter { it.contains(text) }.toMutableList()  
+  
+        (1..count).forEach { _ -> texts.add(Random.randomTextEN(Random.nextInt(5, 16))) }  
+        val stream = PrintStream(args[1], StandardCharsets.UTF_8)  
+  
+        texts.write("\n", "")  
+        texts.write(output = stream, sep = "\n", end = "")  
+    } catch (_: NumberFormatException) {  
+        println("Invalid count value:")  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
 >Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    IntRange(1, count).map { Random.nextInt(100) }.toIntArray().forEach { print("$it ") }
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    IntArray(count) { Random.nextInt(100) }.forEach { print("$it ") }  
 }
 ```
 
->Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    (1..count).map { Random.nextInt(100) }.toIntArray().forEach { print("$it ") }
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.util.io.write  
+import java.io.PrintStream  
+import java.nio.charset.StandardCharsets  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    val numbers = (1..count).map { Random.nextInt(100) }.toIntArray()  
+  
+    numbers.write()  
+    numbers.write(output = PrintStream("numbers.txt", StandardCharsets.UTF_8))  
+  
+    println()  
 }
 ```
 
->Aşağıdaki örnekte count tane rasgele sayıdan oluşan dizi elde edilmiş ve dizinin elemanları ekrana basılmıştır
+>take fonksiyonu ilk n elemanı elde etmekte, drop fonksiyonu ilk n elemanın dışında kalan elemanları elde etmekte kullanılır. count fonksiyonu ise eleman sayısını verir. takeWhile fonksiyona aldığı callback'e ilişkin koşul sağlandığı sürece eleman elde etmek için kullanılır.
 
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    (0 until count).map { Random.nextInt(100) }.toIntArray().forEach { print("$it ") }
-    println()
-}
-```
-
->Aşağıdaki örnekte count tane rasgele sayı IntRange kullanılarak ekrana bastırılmıştır
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    (1..count).forEach{ _ -> print("${Random.nextInt(200)}")}
-    println()
-}
-```
-
->Aşağıdaki örnekte take ve count eklenti fonksiyonları kullanılmıştır
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
 package org.csystem.app
@@ -14657,80 +14717,105 @@ fun main()
 }
 ```
 
->Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadNamesFromFileAsList
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readString
-
-fun main()
-{
-    try {
-        val text = readString("Bir yazı giriniz:")
-        val count = readInt("Sorgudan ilk kaç tanesi atılsın:")
-        val allNames = loadNamesFromFileAsList("names.csv")
-        val names = allNames.filter { it.contains(text, ignoreCase = true) }
-            .drop(count)
-            .map { it.lowercase() }
-            .toList()
-
-        names.forEach(::println)
-        println("Tüm koşula uygun veriler toplam ${allNames.count { it.contains(text, ignoreCase = true) }} tanedir")
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadNamesFromFileAsList  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.console.readString  
+import org.csystem.util.io.write  
+import java.io.PrintStream  
+import java.nio.charset.StandardCharsets  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(3, args.size, "wrong number of arguments")  
+        val text = readString("Input a text:")  
+        val count = args[1].toInt()  
+        val allNames = loadNamesFromFileAsList(args[0])  
+        val output = PrintStream(args[2], StandardCharsets.UTF_8)  
+        val names = allNames.filter { it.contains(text, ignoreCase = true) }  
+            .take(count)  
+            .map { it.lowercase() }  
+            .toList()  
+  
+        names.write()  
+        names.write(output = output)  
+    } catch (_: NumberFormatException) {  
+        println("Invalid count value")  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
->Aşağıdaki örnekte drop ve count eklenti fonksiyonları kullanılmıştır
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadNamesFromFileAsList
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readString
-
-fun main()
-{
-    try {
-        val text = readString("Bir yazı giriniz:")
-        val count = readInt("Sorgudan son kaç tanesi atılsın:")
-        val allNames = loadNamesFromFileAsList("names.csv")
-        val names = allNames.filter { it.contains(text, ignoreCase = true) }
-            .dropLast(count)
-            .map { it.lowercase() }
-            .toList()
-
-        names.forEach(::println)
-        println("Tüm koşula uygun veriler toplam ${allNames.count { it.contains(text, ignoreCase = true) }} tanedir")
-    }
-    catch (ex: Throwable) {
-        println(ex.message)
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadNamesFromFileAsList  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.console.readString  
+import org.csystem.util.io.write  
+import java.io.PrintStream  
+import java.nio.charset.StandardCharsets  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(3, args.size, "wrong number of arguments")  
+        val text = readString("Input a text:")  
+        val count = args[1].toInt()  
+        val allNames = loadNamesFromFileAsList(args[0])  
+        val output = PrintStream(args[2], StandardCharsets.UTF_8)  
+        val names = allNames.filter { it.contains(text, ignoreCase = true) }  
+            .drop(count)  
+            .map { it.lowercase() }  
+            .toList()  
+  
+        names.write()  
+        names.write(output = output)  
+    } catch (_: NumberFormatException) {  
+        println("Invalid count value")  
+    } catch (ex: Throwable) {  
+        println(ex.message)  
+    }  
 }
 ```
 
->Aşağıdaki örnekte generateSequence fonksiyonu ile count tane rasgele sayı üretilmiştir
+XXXXXXXXXXXXXXXXXXXXXX
+##### generateSequence Fonksiyonu
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    generateSequence { Random.nextInt(1, 100) }  
+        .take(count)  
+        .forEach { print("$it ") }  
+    println()  
+}```
 
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    generateSequence { Random.nextInt(1, 100) }
-        .take(count)
-        .forEach {print("$it ")}
-    println()
+>Aşağıdaki demo örneği inceleyiniz
+>
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    println(generateSequence { readInt("Bir sayı giriniz:") }  
+        .takeWhile { it != 0 }  
+        .sum())  
 }
 ```
 
@@ -15364,7 +15449,8 @@ sealed class SealedValue<out T>(val value: T) {
 ```
 
 
->const val değişkenler:
+##### const val değişkenler
+>const val olarak bildirilen değişkenlerin özellikleri şunlardır:
 >- Değeri derleme zamanında hesaplanan değişkenlerdir (constant folding)
 >- const val değişkenlere sabit ifadesi verilmeldir. Aksi durumda error oluşur
 >- Yerel olarak bildirilemez
@@ -15769,7 +15855,7 @@ fun main()
 **Anahtar Notlar:** Yukarıda kullanılan sınıfların ve fonksiyonların son halleri [Android-Aug-2024](https://github.com/oguzkaran/Android-Aug-2024 ) repository'si içerisinde bulunmaktadır.
 
 
->JVM'de ve ART'de Bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:
+>JVM'de ve ART'de bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:
 >
 >1. __<u>Strongly reachable:</u>__ Bir nesneyi en az bir referans gösteriyorsa bu şekilde erişilebiliyordur. Bu durumda nesne garbage collector (gc) tarafından yok edilemez.
 >
@@ -16796,7 +16882,7 @@ fun main()
 **_Anahtar Notlar:_** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (13 Kasım 2023) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar __"Kotlin Coroutines"__ ile kullanılabilmektedir. Kotlin Coroutines ileride ele alınacatır.
 
 
->Executors ile thread havuzu oluşturmnak için Executors sınıfının çeşitli metotları kullanılabilmektedir. Burada ele alacağımız metotları şunlardır:
+>Executors ile thread havuzu oluşturmak için Executors sınıfının çeşitli metotları kullanılabilmektedir. Burada ele alacağımız metotları şunlardır:
 >
 >__<u>newSingleThreadExecutor:</u>__ Bu metot ile havuzda tek bir thread yaratılmış olur ve gerektiğinde kullanılabilir. Bu durumda yalnızca bir tane thread start edilebilir. İkinci bir thread'in start edilmesi durumunda diğer thread'in bitmesi beklenir. Yani havuzda aynı anda çalıştırılacak thread sayısı bir tanedir.
 >

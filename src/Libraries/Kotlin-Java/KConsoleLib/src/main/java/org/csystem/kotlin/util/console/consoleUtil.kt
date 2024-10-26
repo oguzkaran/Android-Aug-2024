@@ -1,5 +1,6 @@
 package org.csystem.kotlin.util.console
 
+import java.io.PrintStream
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
@@ -97,36 +98,28 @@ fun readBigInteger(prompt: String, errorPrompt: String = ""): BigInteger {
 fun IntArray.printArray(n: Int = -1, count: Int = this.size, sep: String = " ", end: String = "\n") {
     val fmt = "%%0%dd%%s".format(if (n < 1) 1 else n)
 
-    for (i in 0..<count)
-        print(fmt.format(this[i], sep))
-
+    (0..<count).forEach { print(fmt.format(get(it), sep)) }
     print(end)
 }
 
 fun LongArray.printArray(n: Int = -1, sep: String = " ", end: String = "\n") {
     val fmt = "%%0%dd%%s".format(if (n < 1) 1 else n)
 
-    for (v in this)
-        print(fmt.format(v, sep))
-
+    forEach { print(fmt.format(it, sep)) }
     print(end)
 }
 
 fun DoubleArray.printArray(n: Int = -1, sep: String = "\n", end: String = "") {
     val fmt = if (n < 1) "%f%s" else "%%.%df%%s".format(n)
 
-    for (v in this)
-        print(fmt.format(v, sep))
-
+    forEach { print(fmt.format(it, sep)) }
     print(end)
 }
 
 fun ShortArray.printArray(n: Int = -1, sep: String = " ", end: String = "\n") {
     val fmt = "%%0%dd%%s".format(if (n < 1) 1 else n)
 
-    for (v in this)
-        print(fmt.format(v, sep))
-
+    forEach { print(fmt.format(it, sep)) }
     print(end)
 }
 
@@ -134,39 +127,33 @@ fun ShortArray.printArray(n: Int = -1, sep: String = " ", end: String = "\n") {
 fun ByteArray.printArray(n: Int = -1, sep: String = " ", end: String = "\n") {
     val fmt = "%%0%dd%%s".format(if (n < 1) 1 else n)
 
-    for (v in this)
-        print(fmt.format(v, sep))
-
+    forEach { print(fmt.format(it, sep)) }
     print(end)
 }
 
 fun FloatArray.printArray(n: Int = -1, sep: String = "\n", end: String = "") {
     val fmt = if (n < 1) "%f%s" else "%%.%df%%s".format(n)
 
-    for (v in this)
-        print(fmt.format(v, sep))
-
+    forEach { print(fmt.format(it, sep)) }
     print(end)
 }
 
 fun BooleanArray.printArray(sep: String = "\n", end: String = "") {
-    for (v in this)
-        print("$v$sep")
-
+    forEach { print("$it$sep") }
     print(end)
 }
 
 fun CharArray.printArray(sep: String = "\n", end: String = "") {
-    for (v in this)
-        print("$v$sep")
-
+    forEach { print("$it$sep") }
     print(end)
 }
 
 fun <T> Array<T>.printArray(sep: String = "\n", end: String = "") {
-    for (v in this)
-        print("$v$sep")
-
+    forEach { print("$it$sep") }
     print(end)
 }
 
+fun <T> Iterable<T>.printIterable(sep: String = " ", end: String = "\n") {
+    forEach { print("$it$sep") }
+    print(end)
+}
