@@ -14785,8 +14785,10 @@ fun main(args: Array<String>) {
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXX
+
 ##### generateSequence Fonksiyonu
+
+>Bu fonksiyon sonsuz pipeline oluşturmak için kullanılır. Kullanımına ilişkin örnekler aşağıdaki gibidir:
 
 >Aşağıdaki demo örneği inceleyiniz
 
@@ -14803,7 +14805,28 @@ fun main() {
         .take(count)  
         .forEach { print("$it ") }  
     println()  
-}```
+}
+```
+
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.numeric.isPrime  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    generateSequence { Random.nextInt() }  
+        .filter { it.isPrime() }  
+        .take(count)  
+        .forEach { print("$it ") }  
+    println()  
+}
+```
 
 >Aşağıdaki demo örneği inceleyiniz
 >
@@ -14819,636 +14842,626 @@ fun main() {
 }
 ```
 
->Aşağıdaki örnekte 2'den başlayarak her adımda 3 katının bir fazlası olacak şekilde artırarak count tane sayı elde edilmiştir
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    generateSequence(2) {3 * it + 1}.take(count).forEach {print("$it ")}
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    generateSequence(2) { 3 * it + 1 }.take(count).forEach { print("$it ") }  
+    println()  
 }
 ```
 
 >generateSequence fonksiyonu
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main() {
-    val start = readInt("Başlangıç değerini giriniz:")
-    val end = readInt("Bitiş değerini giriniz:")
-    val step = readInt("Adım değerini giriniz:")
-
-    generateSequence(start) { it + step }.takeWhile { it < end }.forEach{print("$it ")}
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val start = readInt("Başlangıç değerini giriniz:")  
+    val step = readInt("Adım değerini giriniz:")  
+    val end = readInt("Bitiş değerini giriniz:")  
+  
+    generateSequence(start) { it + step }.takeWhile { it < end }.forEach { print("$it ") }  
+    println()  
 }
 ```
 
 >Yukarıdaki işlem aşağıdaki gibi de yapılabilir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main() {
-    val start = readInt("Başlangıç değerini giriniz:")
-    val end = readInt("Bitiş değerini giriniz:")
-    val step = readInt("Adım değerini giriniz:")
-
-    (start until end step step).forEach{print("$it ")}
-    println()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val start = readInt("Başlangıç değerini giriniz:")  
+    val step = readInt("Adım değerini giriniz:")  
+    val end = readInt("Bitiş değerini giriniz:")  
+  
+    (start..<end step step).forEach { print("$it ") }  
+    println()  
 }
 ```
 
->Aşağıdaki örnekte [-2  PI, 2  PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir
+>Aşağıdaki örnekte `[-2 * PI, 2 * PI]` aralığında ve 0.1 artım miktarında `sin` fonksiyonunun değerleri elde edilmiştir
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.math.PI
-import kotlin.math.sin
-
-fun main()
-{
-    val start = -2 * PI
-    val end = 2 * PI
-    val incValue = 0.1
-
-    generateSequence(start) { it + incValue }.takeWhile { it <= end }.map { sin(it) }.forEach(::println)
+package org.csystem.app  
+  
+import kotlin.math.PI  
+import kotlin.math.sin  
+  
+fun main() {  
+    val start = -2 * PI  
+    val end = 2 * PI  
+    val incValue = 0.1  
+  
+    generateSequence(start) { it + incValue }.takeWhile { it <= end }.map { sin(it) }.forEach(::println)  
+}
 }
 ```
 
->Aşağıdaki örnekte [-2  PI, 2  PI] aralığında ve 0.1 artım miktarında sin fonksiyonun değerleri elde edilmiştir
-
-```kotlin
-package org.csystem.app
-
-import kotlin.math.PI
-import kotlin.math.sin
-
-fun main()
-{
-    generateSequence(-2 * PI) { it + 0.1 }.takeWhile { it <= 2 * PI }.map { sin(it) }.forEach(::println)
-}
-```
 
 >generateSequence fonksiyonu
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Bir sayı giriniz:")
-
-    generateSequence ({ Random.nextInt(1, 30)}) {3 * it + 1}
-        .take(count)
-        .forEach{print("$it ")}
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val count = readInt("Bir sayı giriniz:")  
+  
+    generateSequence({ Random.nextInt(1, 30) }) { 3 * it + 1 }  
+        .take(count)  
+        .forEach { print("$it ") }  
 }
 ```
 
 >Aşağıdaki örnekte printCollatz fonksiyonunun generateSequence ile yazıldığına dikkat ediniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main() = generateSequence { readInt("Bir sayı giriniz:") }.takeWhile {it > 0}.forEach { printCollatz(it) }
-
-fun printCollatz(value: Int)
-{
-    var a = value
-
-    generateSequence(a) { a = if (a % 2 == 0) a / 2 else  3 * a + 1; a }
-        .takeWhile{a > 1}
-        .forEach{print("$it ")}
-    println(1)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() = generateSequence { readInt("Bir sayı giriniz:") }.takeWhile { it > 0 }.forEach { printCollatz(it) }  
+  
+fun printCollatz(value: Int) {  
+    var a = value  
+  
+    generateSequence(a) { a = if (a % 2 == 0) a / 2 else 3 * a + 1; a }  
+        .takeWhile { a > 1 }  
+        .forEach { print("$it ") }  
+    println(1)  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-
-fun main() = generateSequence { readInt("Bir sayı giriniz:") }.takeWhile {it > 0}.forEach { printCollatz(it) }
-
-fun printCollatz(value: Int)
-{
-    var a = value
-
-    generateSequence(a) { a = when { a % 2 == 0 -> a / 2 else ->  3 * a + 1}; a }
-        .takeWhile{a > 1}
-        .forEach{print("$it ")}
-    println(1)
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() = generateSequence { readInt("Bir sayı giriniz:") }.takeWhile { it > 0 }.forEach { printCollatz(it) }  
+  
+fun printCollatz(value: Int) {  
+    var a = value  
+  
+    generateSequence(a) {  
+        a = when {  
+            a % 2 == 0 -> a / 2  
+            else -> 3 * a + 1  
+        }; a  
+    }  
+        .takeWhile { a > 1 }  
+        .forEach { print("$it ") }  
+    println(1)  
 }
 ```
 
->Aşağıdaki hepsi birbirinden farklı count tane sayı üretilmiştir. Şüphesiz count sayısının aralıktaki toplam sayıyı aşmaması gerekir. Aşması durumunda artık üretim yapılamaz ve sonsuz döngü oluşur
+>Aşağıdaki demo örnekte hepsi birbirinden farklı count tane sayı üretilmiştir. Şüphesiz count sayısının aralıktaki toplam sayıyı aşmaması gerekir. Aşması durumunda artık üretim yapılamaz ve sonsuz döngü oluşur
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    while (true) {
-        val count = readInt("Bir sayı giriniz:")
-
-        if (count == 0)
-            break
-
-        generateSequence { Random.nextInt(1, 100) }
-            .distinct()
-            .take(count)
-            .forEach {print("$it ")}
-
-        println()
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() = generateSequence { readInt("Bir sayı giriniz:") }.takeWhile { it != 0 }.forEach { generateCallback(it) }  
+  
+fun generateCallback(count: Int) {  
+    generateSequence { Random.nextInt(1, 100) }  
+        .distinct()  
+        .take(count)  
+        .forEach { print("$it ") }  
+    println()  
 }
 ```
 
->Aşağıdaki örnekte artık tekrarlamayan sayı kalma olasılığı yoktur
+>Aşağıdaki demo örnekte artık tekrarlamayan sayı kalma olasılığı yoktur
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    while (true) {
-        val count = readInt("Bir sayı giriniz:")
-
-        if (count == 0)
-            break
-
-        generateSequence { Random.nextLong(Long.MIN_VALUE, Long.MAX_VALUE) }
-            .distinct()
-            .take(count)
-            .forEach {print("$it ")}
-
-        println()
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() = generateSequence { readInt("Bir sayı giriniz:") }.takeWhile { it != 0 }.forEach { generateCallback(it) }  
+  
+fun generateCallback(count: Int) {  
+    generateSequence {  Random.nextInt(Int.MIN_VALUE, Int.MAX_VALUE) }  
+        .distinct()  
+        .take(count)  
+        .forEach { print("$it ") }  
+    println()  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.generator.random.lottery.numeric.numericLotteryNumbers
-import org.csystem.util.array.kotlin.write
-import org.csystem.util.console.kotlin.readInt
-
-fun main() = numericLotteryNumbers(readInt("Kaç tane kupon oynamak istersiniz?")).forEach{ it.write(2) }
+package org.csystem.app  
+  
+import org.csystem.generator.random.lottery.numeric.numericLotteryNumbers  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.util.io.write  
+  
+fun main() = numericLotteryNumbers(readInt("Kaç tane kupon oynamak istersiniz?")).forEach { it.write(2) }
 ```
 
 ```kotlin
-package org.csystem.generator.random.lottery.numeric
-
-import kotlin.random.Random
-
-fun numericLotteryNumbers(count: Int, random: Random = Random) : Array<IntArray>
-{
-    return generateSequence { numericLotteryNumbers(random) }.take(count).toList().toTypedArray()
-}
-
-fun numericLotteryNumbers(random: Random = Random): IntArray
-{
-    return generateSequence { random.nextInt(1, 50) }.distinct().take(6).sorted().toList().toIntArray()
+package org.csystem.generator.random.lottery.numeric  
+  
+import kotlin.random.Random  
+  
+fun numericLotteryNumbers(count: Int, random: Random = Random): Array<IntArray> {  
+    return generateSequence { numericLotteryNumbers(random) }.take(count).toList().toTypedArray()  
+}  
+  
+fun numericLotteryNumbers(random: Random = Random): IntArray {  
+    return generateSequence { random.nextInt(1, 50) }.distinct().take(6).sorted().toList().toIntArray()  
 }
 ```
 
->`Collection<T>/MutableCollection<T>` arayüzünden `Set<T>/MutableSet<T>` arayüzü türetilmiştir. `Set<T> ve MutableSet<T>` arayüzleri matematik'teki küme kavramını temsil eden arayüzlerdir. Yani, elemanların eklenme sırasının önemi yoktur ve bir elemandan birden fazla aynı küme collection'ında olamaz
+>`Collection<T>/MutableCollection<T>` arayüzünden `Set<T>/MutableSet<T>` arayüzü türetilmiştir. `Set<T> ve MutableSet<T>` arayüzleri Matematik'teki küme kavramını temsil eden arayüzlerdir. Yani, elemanların eklenme sırasının önemi yoktur ve bir elemandan birden fazla aynı küme collection'ında olamaz
 
 >Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.iterable.kotlin.write
-
-fun main()
-{
-    val mutableSet = mutableSetOf(89, 1, 2, 3, 1, 3, 4, 5)
-
-    println(mutableSet.javaClass.name)
-    println(mutableSet.add(45))
-    println(mutableSet.add(45))
-    mutableSet.add(450)
-    write(mutableSet)
-}
-```
-
->Set tarzı collection sınıflar `Set<T>` veya `MutableSet<T>` arayüzünü desteklerler
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.iterable.kotlin.write
-
-fun main()
-{
-    val mutableSet = mutableSetOf(89, 1, 2, 3, 1, 3, 4, 5)
-
-    println(mutableSet.javaClass.name)
-    println(mutableSet.add(45))
-    println(mutableSet.add(45))
-    mutableSet.add(450)
-    write(mutableSet)
+package org.csystem.app  
+  
+import org.csystem.util.io.write  
+  
+fun main() {  
+    val mutableSet = mutableSetOf(89, 1, 2, 3, 1, 3, 4, 5)  
+  
+    println(mutableSet.javaClass.name)  
+    println(mutableSet.add(45))  
+    println(mutableSet.add(45))  
+    mutableSet.add(450)  
+    mutableSet.write(sep = " ", end = "\n")  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    val a = IntArray(Random.nextInt(100)) { Random.nextInt(10, 20) }
-
-    a.forEach { print("$it ") }
-    println()
-
-    val hasSet = a.toHashSet()
-    hasSet.forEach{print("$it ") }
-    println()
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    val a = IntArray(Random.nextInt(100)) { Random.nextInt(10, 20) }  
+  
+    a.forEach { print("$it ") }  
+    println()  
+  
+    val hasSet = a.toHashSet()  
+    hasSet.forEach { print("$it ") }  
+    println()  
 }
 ```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.random.Random
-
-fun main()
-{
-    val a = IntArray(Random.nextInt(100)) { Random.nextInt(10, 20) }
-
-    a.forEach { print("$it ") }
-    println()
-
-    val set = a.toSet()
-    set.forEach{print("$it ") }
-    println()
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+fun main() {  
+    val a = IntArray(Random.nextInt(100)) { Random.nextInt(10, 20) }  
+  
+    a.forEach { print("$it ") }  
+    println()  
+  
+    val set = a.toSet()  
+  
+    println(set.javaClass.name)  
+    set.forEach { print("$it ") }  
+    println()  
 }
 ```
 
->Set tarzı collection'larda, __"hash"__ kullananlar eşitlik kontrolü için equals ve hashCode metotlarının geri dönüş değerine bakarlar. Bu durumda programcı bir tür durumlar için bu metotları gerekirse override etmelidir.
+>Set tarzı collection'larda, **hash** kullananlar eşitlik kontrolü için equals ve hashCode metotlarının geri dönüş değerine bakarlar. Bu durumda programcı bir tür durumlar için bu metotları gerekirse override etmelidir.
 
-**_Anahtar Notlar:_** Hash code üretmek ayrı bir kavramdır ve bir çok durumda üretmenin farklı yöntemleri vardır. Aşağıdaki örnekte ürünün id değeri Int olduğundan ve aynı id'ye sahip birden fazla ürünün __"set"__ içerisinde bulunmaması gerektiği varsayımıyla düşünülmüştür.
+**Anahtar Notlar:** Hash code üretmek ayrı bir kavramdır ve bir çok durumda üretmenin farklı yöntemleri vardır. Kotlin'de hash code üretmek için Objects sınıfının hash ve hashCode metotları kullanılabilir.
+
+>Aşağıdaki demo örnekte ürünün id değeri Int olduğundan ve aynı id'ye sahip birden fazla ürünün **set** içerisinde bulunmaması gerektiği varsayımıyla düşünülmüştür. 
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsIterable
-import org.csystem.test.data.loadProductsFromFileAsSet
-
-fun main()
-{
-    try {
-        val allProducts = loadProductsFromFileAsIterable("products.csv")
-        val products = loadProductsFromFileAsSet("products.csv")
-
-        println(products.javaClass.name)
-
-        products.forEach(::println)
-        println("Count:${products.count()}")
-        println("All products Count:${allProducts.count()}")
-    }
-    catch (ex: Throwable) {
-        ex.printStackTrace()
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsIterable  
+import org.csystem.data.processing.test.loadProductsFromFileAsSet  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val allProducts = loadProductsFromFileAsIterable(args[0])  
+        val products = loadProductsFromFileAsSet(args[0])  
+  
+        println(products.javaClass.name)  
+  
+        products.forEach(::println)  
+        println("Count:${products.count()}")  
+        println("All products Count:${allProducts.count()}")  
+    } catch (ex: Throwable) {  
+        ex.printStackTrace()  
+    }  
 }
 ```
 
->TreeSet sınıfı elemanları sıralı biçimde tutar
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsTreeSet
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsTreeSet("products.csv")
-
-        products.forEach(::println)
-        println("Count: ${products.count()}")
-    }
-    catch (ex: Throwable) {
-        ex.printStackTrace()
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsIterable  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val allProducts = loadProductsFromFileAsIterable(args[0])  
+  
+        val products = allProducts.distinct().toList()  
+        products.forEach(::println)  
+        println("Count:${products.size}")  
+        println("All products Count:${allProducts.count()}")  
+    } catch (ex: Throwable) {  
+        ex.printStackTrace()  
+    }  
 }
 ```
 
->Aşağıdaki örnekte ürünler isimlerine göre ascending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır
+>TreeSet sınıfı elemanları sıralı biçimde tutar. TreeSet'e karşılaştırma kriteri verilmezse açılıma ilişkin türün `Comparable<T>` arayüzünü desteklemesi gerekir.
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsTreeSet
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsTreeSet("products.csv") {p1, p2 -> p1.name.compareTo(p2.name)}
-
-        products.forEach(::println)
-        println("Count: ${products.count()}")
-    }
-    catch (ex: Throwable) {
-        ex.printStackTrace()
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsTreeSet  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val products = loadProductsFromFileAsTreeSet(args[0])  
+  
+        products.forEach(::println)  
+        println("Count: ${products.count()}")  
+    } catch (ex: Throwable) {  
+        ex.printStackTrace()  
+    }  
 }
 ```
 
->Aşağıdaki örnekte ürünler isimlerine göre descending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır
+>Aşağıdaki demo örnekte ürünler id'lerine göre descending sıralanmıştır. Burada loadProductsFromFileAsTreeSet fonksiyonunun aldığı `Comparator<Product>` parametresi TreeSet'in ilgili ctor'una argüman olarak geçilmektedir. Yani TreeSet sıralama kriterini callback olarak almıştır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadProductsFromFileAsTreeSet
-
-fun main()
-{
-    try {
-        val products = loadProductsFromFileAsTreeSet("products.csv") {p1, p2 -> p2.name.compareTo(p1.name)}
-
-        products.forEach(::println)
-        println("Count: ${products.count()}")
-    }
-    catch (ex: Throwable) {
-        ex.printStackTrace()
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsTreeSet  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val products = loadProductsFromFileAsTreeSet(args[0]) {p1, p2 -> p2.id - p1.id}  
+  
+        products.forEach(::println)  
+        println("Count: ${products.count()}")  
+    } catch (ex: Throwable) {  
+        ex.printStackTrace()  
+    }  
 }
 ```
 
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsTreeSet  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val products = loadProductsFromFileAsTreeSet(args[0]) {p1, p2 -> p1.name.compareTo(p2.name)}  
+  
+        products.forEach(::println)  
+        println("Count: ${products.count()}")  
+    } catch (ex: Throwable) {  
+        ex.printStackTrace()  
+    }  
+}
+```
+
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadProductsFromFileAsTreeSet  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val products = loadProductsFromFileAsTreeSet(args[0]) {p1, p2 -> p2.name.compareTo(p1.name)}  
+  
+        products.forEach(::println)  
+        println("Count: ${products.count()}")  
+    } catch (ex: Throwable) {  
+        ex.printStackTrace()  
+    }  
+}
+```
 
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import java.util.*
-import kotlin.random.Random
-
-fun main()
-{
-
-    var count = readInt("Kaç tane kupon oynamak istersiniz?")
-
-    while (count-- > 0) {
-        val numbers = getNumericLotteryNumbers()
-
-        numbers.forEach { print("%02d ".format(it)) }
-        println()
-    }
-}
-
-fun getNumericLotteryNumbers(random: Random = Random) : IntArray
-{
-    val treeSet = TreeSet<Int>()
-
-    while (treeSet.size != 6)
-        treeSet.add(random.nextInt(1, 50))
-
-    return treeSet.toIntArray()
+package org.csystem.app  
+  
+  
+import org.csystem.kotlin.util.console.readInt  
+import java.util.*  
+import kotlin.random.Random  
+  
+fun main() {  
+    (1..readInt("Kaç tane kupon oynamak istersiniz?"))  
+        .forEach {getNumericLotteryNumbers().forEach {  print("%02d ".format(it)) }; println() }  
+}  
+  
+fun getNumericLotteryNumbers(random: Random = Random): IntArray {  
+    return TreeSet(generateSequence { random.nextInt(1, 50) }.distinct().take(6).toSortedSet()).toIntArray()  
 }
 ```
 
 
->`Map<K, V>/MutableMap<K, V>` arayüzü anahtara karşılık gelen değerlere ilişkin collection sınıflarının taban arayüzüdür. `Map<K, V>/MutableMap<K, V>` arayüzü hiç bir arayüzden türetilmemiştir. Bu arayüzü implemente eden sınıflar için anahtar türü `Set<K>` olarak tutulur. En çok kullanılan `HashMap<K, V>` ve `TreeMap<K, V>` sınıfları K türünü sırasıyla `HashSet<T>` ve `TreeSet<T>` olarak tutarlar
+>`Map<K, V>` ve `MutableMap<K, V>` arayüzleri anahtara karşılık gelen değerlere ilişkin collection sınıflarının taban arayüzüdür. `Map<K, V>/MutableMap<K, V>` arayüzü hiç bir arayüzden türetilmemiştir. Bu arayüzü implemente eden sınıflar için anahtar türü `Set<K>` olarak tutulur. En çok kullanılan `HashMap<K, V>` ve `TreeMap<K, V>` sınıfları K türünü sırasıyla `HashSet<T>` ve `TreeSet<T>` olarak tutarlar
 
 
->map tarzı colection'lar
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val cityMap = mutableMapOf<Int, String?>()
-
-    println(cityMap.javaClass.name)
-
-    cityMap.put(34, "istanbul")
-    cityMap.put(6, "ankara")
-
-    if (cityMap.containsKey(78))
-        println(cityMap.get(78))
-    else
-        println("Aranan il bulunamadı")
+package org.csystem.app  
+  
+fun main() {  
+    val cityMap = mutableMapOf<Int, String?>()  
+  
+    println(cityMap.javaClass.name)  
+  
+    cityMap.put(34, "istanbul")  
+    cityMap.put(6, "ankara")  
+  
+    if (cityMap.containsKey(78))  
+        println(cityMap.get(78))  
+    else  
+        println("Aranan il bulunamadı")  
 }
 ```
 
 
->map tarzı colection'lar
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    val cityMap = mutableMapOf<Int, String?>()
-
-    println(cityMap.javaClass.name)
-
-    cityMap[34] = "istanbul"
-    cityMap[6] = "ankara"
-
-    if (cityMap.containsKey(78))
-        println(cityMap[78])
-    else
-        println("Aranan il bulunamadı")
+package org.csystem.app  
+  
+fun main() {  
+    val cityMap = mutableMapOf<Int, String?>()  
+  
+    println(cityMap.javaClass.name)  
+  
+    cityMap[34] = "istanbul"  
+    cityMap[6] = "ankara"  
+  
+    if (cityMap.containsKey(78))  
+        println(cityMap[78])  
+    else  
+        println("Aranan il bulunamadı")  
 }
 ```
 
 
-> map tarzı colection'lar
+> Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadNamesFromFileAsMap
-
-fun main()
-{
-    try {
-        val namesMap = loadNamesFromFileAsMap("nameswithkeys.csv")
-
-        println("Size: ${namesMap.size}")
-
-        namesMap.keys.sortedBy { it }.forEach {print("$it -> "); namesMap[it]?.forEach { print("$it ") }; println()}
-
-        println("Size: ${namesMap.size}")
-    }
-    catch (ex: Throwable) {
-        ex.printStackTrace()
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadNamesFromFileAsMap  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val namesMap = loadNamesFromFileAsMap(args[0])  
+  
+        println("Size: ${namesMap.size}")  
+  
+        namesMap.keys  
+            .sortedBy { it }  
+            .forEach { print("$it -> "); namesMap[it]?.forEach { print("$it ") }; println() }
+    } catch (ex: Throwable) {  
+        ex.printStackTrace()  
+    }  
 }
 ```
 
 
->__map tarzı colection'lar:__ Örnekte TreeMap kullanıldığından anahtar değerlerinin sıralanması gerekmez
+>Aşağıdaki demo örnekte TreeMap kullanıldığından anahtar değerlerinin sıralanması gerekmez
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.test.data.loadNamesFromFileAsTreeMap
-
-fun main()
-{
-    try {
-        val namesMap = loadNamesFromFileAsTreeMap("nameswithkeys.csv")
-
-        println("Size: ${namesMap.size}")
-
-        namesMap.keys.forEach {print("$it -> "); namesMap[it]?.forEach { print("$it ") }; println()}
-
-        println("Size: ${namesMap.size}")
-    }
-    catch (ex: Throwable) {
-        ex.printStackTrace()
-    }
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadNamesFromFileAsTreeMap  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val namesMap = loadNamesFromFileAsTreeMap(args[0])  
+  
+        println("Size: ${namesMap.size}")  
+        namesMap.keys.forEach { print("$it -> "); namesMap[it]?.forEach { print("$it ") }; println() }  
+    } catch (ex: Throwable) {  
+        ex.printStackTrace()  
+    }  
 }
 ```
 
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.data.processing.test.loadNamesFromFileAsTreeMap  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+  
+fun main(args: Array<String>) {  
+    try {  
+        lengthEquals(1, args.size, "wrong number of arguments")  
+        val namesMap = loadNamesFromFileAsTreeMap(args[0]) {k1, k2 -> k2 - k1}  
+  
+        println("Size: ${namesMap.size}")  
+        namesMap.keys.forEach { print("$it -> "); namesMap[it]?.forEach { print("$it ") }; println() }  
+    } catch (ex: Throwable) {  
+        ex.printStackTrace()  
+    }  
+}
+```
+
+##### inline Fonksiyonlar
 
 >inline fonksiyon çağrıları byte code'a çağrı biçiminde değil doğrudan kodlarıyla birlikte yazılır. inline fonksiyonlar eğer fonksiyon parametreli ise (high order function) dışarıdan almış olduğu callback fonksiyon da inline yapılmış olur
 
 
->Aşağıdaki örneği inceleyiniz
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    10.doWork {println(it)}
-    "ankara".doWork{println(it.length)}
-    3.4.doWork(::display)
-}
-
-fun <T> display(t: T) = println(t)
-
+package org.csystem.app  
+  
+fun main() {  
+    10.doWork { println(it) }  
+    "ankara".doWork { println(it.length) }  
+    3.4.doWork(::display)  
+}  
+  
+fun <T> display(t: T) = println(t)  
+  
 inline fun <T> T.doWork(callback: (T) -> Unit) = callback(this)
 ```
 
 
->inline high order fonksiyonların callback olarak aldıkları fonksiyonların inline olmaması isteniyorsa parametre noinline olarak bildirilmelidir. Bu durumda ilgili callback fonksiyon inline olmaz, fonksiyon çağrısı byet code'a eklenir
+>inline high order fonksiyonların callback olarak aldıkları fonksiyonların inline olmaması isteniyorsa parametre noinline olarak bildirilmelidir. Bu durumda ilgili callback fonksiyon inline olmaz, byte code'a fonksiyon çağrısı eklenir eklenir
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    "ankara".doWork({it.uppercase()}) {println(it); println(it.lowercase())}
-}
-
+package org.csystem.app  
+  
+fun main() {  
+    "ankara".doWork({ it.uppercase() }) { println(it); println(it.lowercase()) }  
+}  
+  
 inline fun <T> T.doWork(block: (T) -> T, noinline callback: (T) -> Unit) = callback(block(this))
 ```
 
+##### sealed Classes
 
 >sealed bir sınıf default olarak abstract bildirilir. Dolayısıyla bu sınıf türünden nesne yaratılamaz
 
+>Aşağıdaki demo örneği inceleyiniz
 ```kotlin
-package org.csystem.app
-
-import org.csystem.tuple.SealedValue
-
-fun main()
-{
-    val sv = SealedValue(20) //error
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.tuple.SealedValue  
+  
+fun main() {  
+    val sv = SealedValue(20) //error  
 }
 ```
 
 ```kotlin
-package org.csystem.tuple
-
-sealed class SealedValue<out T>(val value: T) {
-    //...
-}
+package org.csystem.kotlin.util.tuple  
+  
+sealed class SealedValue<out T>(val value: T)
 ```
 
 
 >sealed bir sınıftan türemiş bir sınıf aynı pakette bildirilmelidir. Bu durumda sealed olarak soyutlanmış bir sınıftan doğrudan (direct) türetilmiş tüm sınıflar da aynı pakette olmalıdır
 
 ```kotlin
-package org.csystem.test
+package org.csystem.app
 
-import org.csystem.tuple.SealedValue
-
-class MySealedValue(var a: Int) : SealedValue<Int>(a) { //error
-    //...
+class MySealedValue<T>(value: T) : SealedValue<T>(value) {  //error
+  
 }
+```
+
+
+```kotlin
+package org.csystem.kotlin.util.tuple  
+  
+sealed class SealedValue<out T>(val value: T)
+```
+
+>sealed bir sınıftan türetilen bir sınıf sealed olarak bildirilmemişse, o sınıftan türetilen sınıfların aynı pakette olması gerekmez.
+
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app
+
+class MyIntValue(value: Int) : IntValue(value)
 ```
 
 ```kotlin
-package org.csystem.tuple
-
-sealed class SealedValue<out T>(val value: T) {
-    //...
-}
-```
-
-
->Aşağıdaki örnekte MySealedValue sealed olmadığından ondan türemiş sınıflar aynı pakette olmak zorunda değildir
-
-```kotlin
-package org.csystem.test
-
-import org.csystem.tuple.MySealedValue
-
-class YourSealedValue : MySealedValue() {
-    //..
-}
+package org.csystem.kotlin.util.tuple  
+  
+open class IntValue(value: Int) : SealedValue<Int>(value)
 ```
 
 ```kotlin
-package org.csystem.tuple
-
-open class MySealedValue : SealedValue<Int>(0){
-    //...
-}
+package org.csystem.kotlin.util.tuple  
+  
+sealed class SealedValue<out T>(val value: T)
 ```
-
-```kotlin
-package org.csystem.tuple
-
-sealed class SealedValue<out T>(val value: T) {
-    //...
-}
-```
-
-
 ##### const val değişkenler
 >const val olarak bildirilen değişkenlerin özellikleri şunlardır:
 >- Değeri derleme zamanında hesaplanan değişkenlerdir (constant folding)
@@ -15459,94 +15472,206 @@ sealed class SealedValue<out T>(val value: T) {
 >- object'lerin veri elemanı olabilir
 >- Fonksiyon parametre değişkenleri val olarak bildirilemeyeceğinden const val de yapılamazlar
 
+>Aşağıdaki demo örneği inceleyiniz
+
 ```kotlin
-package org.csystem.app
-
-val e = 2.71
-const val PI = 3.14
-const val E = e //error
-const val PI_SQUARE = PI * PI
-
-fun main()
-{
-    const val E = 2.71 //error
-}
-
-fun foo(const val a: Int = 23) //error
-{
-    //...
-}
-
-class Sample {
-    const val E = 2.71 //error
-}
-
-object Mample {
-    const val E = 2.71
+package org.csystem.app  
+  
+val e = 2.71  
+const val PI = 3.14  
+const val E = e //error  
+const val PI_SQUARE = PI * PI  
+  
+fun main() {  
+    const val E = 2.71 //error  
+}  
+  
+fun foo(const val a: Int = 23) //error  
+{  
+    //...  
+}  
+  
+class Sample {  
+    const val E = 2.71 //error  
+}  
+  
+object Mample {  
+    const val E = 2.71  
 }
 ```
 
+>Aşağıdaki örneği inceleyiniz
+
+```kotlin
+package org.csystem.kotlin.util.string  
+  
+import kotlin.random.Random  
+  
+private const val LETTERS_EN = "abcdefghijklmnopqrstuvwxyz"  
+private const val LETTERS_TR = "abcçdefgğhıijklmnoöprsştuüvyz"  
+private const val CAPITAL_LETTERS_EN = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  
+private const val CAPITAL_LETTERS_TR = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ"  
+private const val ALL_LETTERS_EN = LETTERS_EN + CAPITAL_LETTERS_EN  
+private const val ALL_LETTERS_TR = LETTERS_TR + CAPITAL_LETTERS_TR  
+  
+fun String.changeCase(): String {  
+    val sb = StringBuilder(this)  
+  
+    for (i in this.indices)  
+        sb[i] = when {  
+            sb[i].isUpperCase() -> sb[i].lowercaseChar()  
+            else -> sb[i].uppercaseChar()  
+        }  
+  
+    return sb.toString()  
+}  
+  
+fun String.capitalize() = if (this != "") this[0].uppercase() + this.substring(1).lowercase() else ""  
+  
+fun String.countString(s: String, ignoreCase: Boolean = false): Int {  
+    var count = 0  
+  
+    var index = -1  
+  
+    while (true) {  
+        index = this.indexOf(s, index + 1, ignoreCase)  
+  
+        if (index == -1)  
+            break  
+  
+        ++count  
+    }  
+  
+    return count  
+}  
+  
+  
+fun String.isIsogram(alphabet: String, ignoreCase: Boolean = false): Boolean {  
+    for (c in alphabet) {  
+        val i = this.indexOf(c, 0, ignoreCase)  
+  
+        if (i == -1)  
+            return false  
+  
+        if (this.indexOf(c, i + 1, ignoreCase) != -1)  
+            return false  
+    }  
+  
+    return true  
+}  
+  
+  
+fun String.isIsogramEN() = this.lowercase().isIsogram(LETTERS_EN)  
+  
+fun String.isIsogramTR() = this.lowercase().isIsogram(LETTERS_TR)  
+  
+  
+fun String.isPangram(alphabet: String, ignoreCase: Boolean = false): Boolean {  
+    for (c in alphabet)  
+        if (!this.contains(c, ignoreCase))  
+            return false  
+  
+    return true}  
+  
+fun String.isPangramEN() = this.lowercase().isPangram(LETTERS_EN)  
+  
+  
+fun String.isPangramTR() = this.lowercase().isPangram(LETTERS_TR)  
+  
+fun Random.randomText(count: Int, sourceText: String): String {  
+    val sb = StringBuilder();  
+  
+    for (i in 1..count)  
+        sb.append(sourceText[this.nextInt(sourceText.length)])  
+  
+    return sb.toString();  
+}  
+  
+fun Random.randomTextEN(count: Int) = randomText(count, ALL_LETTERS_EN)  
+  
+fun Random.randomTextTR(count: Int, random: Random = Random) = randomText(count, ALL_LETTERS_TR)  
+  
+fun Random.randomTexts(n: Int, count: Int, sourceText: String) = Array(n) { randomText(count, sourceText) }  
+  
+fun Random.randomTexts(n: Int, origin: Int, bound: Int, sourceText: String) =  
+    Array(n) { randomText(nextInt(origin, bound), sourceText) }  
+  
+fun Random.randomTextsEN(n: Int, count: Int) = randomTexts(n, count, ALL_LETTERS_EN)  
+  
+fun Random.randomTextsEN(n: Int, origin: Int, bound: Int) = Array(n) {randomTextEN(nextInt(origin, bound))}  
+  
+fun Random.randomTextsTR(n: Int, count: Int) = randomTexts(n, count, ALL_LETTERS_TR)  
+  
+fun Random.randomTextsTR(n: Int, origin: Int, bound: Int) = Array(n) {randomTextTR(nextInt(origin, bound))}
+
+//...
+```
 
 >**SAM (Single Abstract Method) interface:**   
 >
 >Bu arayüzlerin bir ve yalnız bir tane abstract metotları olmalıdır. Aksi durumda error oluşur. Bu arayüzler `fun` olarak bildirilirler. Bu kavram Java'daki **functional interface** ile uyumlu olması açısından eklenmiştir. Programcı özel bir durum yoksa Kotlin'de SAM arayüzleri yerine fonksiyon türlerini kullanmalıdır. Örnek durumu göstermek için yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    MySample.doWorkSAM(10) {it % 2 == 0}
-    MySample.doWork(10) {it % 2 == 0}
-}
-
-fun interface IIntPredicate {
-    fun test(a: Int) : Boolean
-}
-
-class MySample {
-    companion object {
-        fun doWorkSAM(a: Int, pred: IIntPredicate)
-        {
-            println("doWork(a: Int, pred: IIntPredicate)")
-            if (pred.test(a))
-                println(a)
-        }
-
-        fun doWork(a: Int, pred: (Int) -> Boolean)
-        {
-            println("doWork(a: Int, pred: (Int) -> Boolean)")
-            if (pred(a))
-                println(a)
-        }
-    }
+package org.csystem.app  
+  
+fun main() {  
+    MySample.doWorkSAM(10) { it % 2 == 0 }  
+    MySample.doWork(10) { it % 2 == 0 }  
+}  
+  
+fun interface IIntPredicate {  
+    fun test(a: Int): Boolean  
+}  
+  
+class MySample {  
+    companion object {  
+        fun doWorkSAM(a: Int, predicate: IIntPredicate) {  
+            println("doWork(a: Int, pred: IIntPredicate)")  
+            if (predicate.test(a))  
+                println(a)  
+        }  
+  
+        fun doWork(a: Int, pred: (Int) -> Boolean) {  
+            println("doWork(a: Int, pred: (Int) -> Boolean)")  
+            if (pred(a))  
+                println(a)  
+        }  
+    }  
 }
 ```
 
+#### Trailing Comma
 
->Kotlin 1.4'den itibaren virgülle ayrılan her liste tarzı ifadenin sonunda kullanılan virgül geçerlidir (trailing comma)
+>Kotlin 1.4'den itibaren virgülle ayrılan her liste tarzı ifadenin sonunda kullanılan virgül geçerlidir Buna **trailing comma** denir.
+
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-fun main()
-{
-    foo(b = 3, c = 1, a = 10,) //Since 1.4
-    val a = intArrayOf(10, 30, 20,) //Since 1.4
-    println("ankara",) //Since 1.4
-}
-
-enum class Color {
-    RED, GREEN, BLUE,  BLACK, WHITE,  //Since 1.4
-}
-
-fun foo(a: Int, b: Int, c: Int = 10,) //Since 1.4
-{
-    println("a=$a")
-    println("b=$b")
-    println("c=$c")
+package org.csystem.app  
+  
+fun main() {  
+    foo(b = 3, c = 1, a = 10,) //Since 1.4  
+    val a = intArrayOf(10, 20, 30,) //Since 1.4  
+    println("ankara",) //Since 1.4  
+}  
+  
+enum class Color {  
+    RED, GREEN, BLUE, BLACK, WHITE,  //Since 1.4  
+}  
+  
+fun foo(a: Int, b: Int, c: Int = 10,) { //Since 1.4    
+    println("a = $a")  
+    println("b = $b")  
+    println("c = $c")  
 }
 ```
+
+XXXXXXXXXXXXXXXXXXXXXXXXX
+
+##### lateinit var Property Elemanları
+
+
+##### Tarih Zaman İşlemleri Sınıflar
 
 >LocalDate sınıfı (ve tüm diğer Java 8 tarih-zaman sınıfları) geçerlilik kontrolü yapar. Bu sınıflar geçerli olmayan bilgiler için DateTimeException nesnesi fırlatır
 
@@ -15852,8 +15977,8 @@ fun main()
 }
 ```
 
-**Anahtar Notlar:** Yukarıda kullanılan sınıfların ve fonksiyonların son halleri [Android-Aug-2024](https://github.com/oguzkaran/Android-Aug-2024 ) repository'si içerisinde bulunmaktadır.
 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 >JVM'de ve ART'de bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:
 >
@@ -17381,3 +17506,5 @@ fun doJob() = runBlocking {
     printTotal(readInt("Input a number:"))
 }
 ```
+
+**Anahtar Notlar:** Yukarıda kullanılan sınıfların ve fonksiyonların son halleri [Android-Aug-2024](https://github.com/oguzkaran/Android-Aug-2024 ) repository'si içerisinde bulunmaktadır.

@@ -8,7 +8,9 @@ data class Product(
     var stock: Int = 0,
     var cost: BigDecimal = BigDecimal.ZERO,
     var price: BigDecimal = BigDecimal.ZERO
-) {
+) : Comparable<Product> {
+
+    override fun compareTo(other: Product) = id - other.id
 
     override fun hashCode(): Int = id
 

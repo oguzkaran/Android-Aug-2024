@@ -2,6 +2,13 @@ package org.csystem.kotlin.util.string
 
 import kotlin.random.Random
 
+private const val LETTERS_EN = "abcdefghijklmnopqrstuvwxyz"
+private const val LETTERS_TR = "abcçdefgğhıijklmnoöprsştuüvyz"
+private const val CAPITAL_LETTERS_EN = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+private const val CAPITAL_LETTERS_TR = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ"
+private const val ALL_LETTERS_EN = LETTERS_EN + CAPITAL_LETTERS_EN
+private const val ALL_LETTERS_TR = LETTERS_TR + CAPITAL_LETTERS_TR
+
 fun String.changeCase(): String {
     val sb = StringBuilder(this)
 
@@ -48,9 +55,10 @@ fun String.isIsogram(alphabet: String, ignoreCase: Boolean = false): Boolean {
     return true
 }
 
-fun String.isIsogramEN() = this.lowercase().isIsogram("abcdefghijklmnopqrstuvwxyz")
 
-fun String.isIsogramTR() = this.lowercase().isIsogram("abcçdefgğhıijklmnoöprsştuüvyz")
+fun String.isIsogramEN() = this.lowercase().isIsogram(LETTERS_EN)
+
+fun String.isIsogramTR() = this.lowercase().isIsogram(LETTERS_TR)
 
 
 fun String.isPangram(alphabet: String, ignoreCase: Boolean = false): Boolean {
@@ -61,10 +69,10 @@ fun String.isPangram(alphabet: String, ignoreCase: Boolean = false): Boolean {
     return true
 }
 
-fun String.isPangramEN() = this.lowercase().isPangram("abcdefghijklmnopqrstuvwxyz")
+fun String.isPangramEN() = this.lowercase().isPangram(LETTERS_EN)
 
 
-fun String.isPangramTR() = this.lowercase().isPangram("abcçdefgğhıijklmnoöprsştuüvyz")
+fun String.isPangramTR() = this.lowercase().isPangram(LETTERS_TR)
 
 fun Random.randomText(count: Int, sourceText: String): String {
     val sb = StringBuilder();
@@ -75,23 +83,19 @@ fun Random.randomText(count: Int, sourceText: String): String {
     return sb.toString();
 }
 
-fun Random.randomTextEN(count: Int) =
-    randomText(count, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+fun Random.randomTextEN(count: Int) = randomText(count, ALL_LETTERS_EN)
 
-fun Random.randomTextTR(count: Int, random: Random = Random) =
-    randomText(count, "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuüvyz")
+fun Random.randomTextTR(count: Int, random: Random = Random) = randomText(count, ALL_LETTERS_TR)
 
 fun Random.randomTexts(n: Int, count: Int, sourceText: String) = Array(n) { randomText(count, sourceText) }
 
 fun Random.randomTexts(n: Int, origin: Int, bound: Int, sourceText: String) =
     Array(n) { randomText(nextInt(origin, bound), sourceText) }
 
-fun Random.randomTextsEN(n: Int, count: Int) =
-    randomTexts(n, count, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+fun Random.randomTextsEN(n: Int, count: Int) = randomTexts(n, count, ALL_LETTERS_EN)
 
 fun Random.randomTextsEN(n: Int, origin: Int, bound: Int) = Array(n) {randomTextEN(nextInt(origin, bound))}
 
-fun Random.randomTextsTR(n: Int, count: Int) =
-    randomTexts(n, count, "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuüvyz")
+fun Random.randomTextsTR(n: Int, count: Int) = randomTexts(n, count, ALL_LETTERS_TR)
 
 fun Random.randomTextsTR(n: Int, origin: Int, bound: Int) = Array(n) {randomTextTR(nextInt(origin, bound))}

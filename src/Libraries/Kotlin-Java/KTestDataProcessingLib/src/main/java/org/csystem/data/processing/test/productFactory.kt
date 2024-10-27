@@ -25,7 +25,7 @@ fun loadProductsFromFileAsArray(path: String) = loadProductsFromFileAsIterable(p
 fun loadProductsFromFileAsSet(path: String) = loadProductsFromFileAsIterable(path).toHashSet()
 
 fun loadProductsFromFileAsTreeSet(path: String): TreeSet<Product> =
-    TreeSet<Product>(Comparator.comparing { it.id }).apply {
+    TreeSet<Product>().apply {
         loadProductsFromFileAsIterable(path).forEach { this.add(it) }
     }
 
