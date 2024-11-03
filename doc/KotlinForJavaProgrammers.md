@@ -15666,85 +15666,209 @@ fun foo(a: Int, b: Int, c: Int = 10,) { //Since 1.4
 }
 ```
 
-XXXXXXXXXXXXXXXXXXXXXXXXX
-
 ##### lateinit var Property Elemanları
 
+>Sınıfın bir property elemanına nesnenin yaratılması aşamasında değer verilmeyeceğini daha sonra verileceğini belirtmek için property elemanı **lateinit var** olarak bildirilir. lateinit var bir property elemanının temel türlerden olması geçersizdir. Değer verilmemiş bir lateinit var property elemanının kullanılması durumunda `UninitializedPropertyAccessException`nesnesi fırlatılır. lateinit var bir property elemanına değer verilip verilmediği `isInitialized` isimli bir property elemanı ile test edilebilir. isInitialized property elemanı ancak lateinit var property elemanının bildirildiği sınıf içerisinde kullanılabilir.
 
-##### Tarih Zaman İşlemleri Sınıflar
-
->LocalDate sınıfı (ve tüm diğer Java 8 tarih-zaman sınıfları) geçerlilik kontrolü yapar. Bu sınıflar geçerli olmayan bilgiler için DateTimeException nesnesi fırlatır
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
+package org.csystem.app  
+  
+  
+class A {  
+    lateinit var b: B  
+  
+    fun foo(x: Int) {  
+        b = B(x)  
+    }  
+}  
+  
+  
+class B(var x: Int) {  
+    //...  
+}  
+  
+fun main() {  
+    val a = A()  
+  
+    a.foo(20)  
+  
+    println(a.b.x)  
+}
+``` 
 
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readString
-import java.time.DateTimeException
-import java.time.LocalDate
-import java.time.Month
+>Aşağıdaki demo örnekte lateinit var property elemanı initialize edilmediği için exception oluşur
 
-fun main()
-{
-    while (true) {
-        try {
-            val day = readInt("Gün bilgisini giriniz:")
+```kotlin
+package org.csystem.app  
+  
+  
+class A {  
+    lateinit var b: B  
+  
+    fun foo(x: Int) {  
+        b = B(x)  
+    }  
+}  
+  
+  
+class B(var x: Int) {  
+    //...  
+}  
+  
+fun main() {  
+    val a = A()  
+    
+    println(a.b.x)  
+}
+```
 
-            if (day == 0)
-                break
+>Aşağıdaki demo örneği inceleyiniz
 
-            val month = Month.valueOf(readString("Ay bilgisini giriniz:JANUARY, FEBRUARY, MARCH, ..., DECEMBER:").uppercase())
-            val year = readInt("Yıl bilgisini giriniz:")
-            val date = LocalDate.of(year, month, day)
+```kotlin
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+class A {  
+    lateinit var b: B  
+  
+    fun foo(x: Int) {  
+        b = B(x)  
+    }  
+  
+    fun isInitialized() = this::b.isInitialized  
+}  
+  
+  
+class B(var x: Int) {  
+    //...  
+}  
+  
+fun main() {  
+    val a = A()  
+  
+    if (Random.nextBoolean())  
+        a.foo(20)  
+  
+    if (a.isInitialized())  
+        println(a.b.x)  
+    else  
+        println("Uninitialized object in class")  
+}
+```
 
-            println("${date.dayOfMonth}/${date.monthValue}/${date.year}")
-            println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")
-        }
-        catch (ignore: DateTimeException) {
-            println("Geçersiz tarih!...")
-        }
-        catch (ignore: IllegalArgumentException) {
-            println("Geçersiz ay bilgisi!...")
-        }
-    }
+>Yukarıdaki örnek aşağıdaki gibi de yapılabilir
 
-    println("Tekrar yapıyor musunuz?")
+```kotlin
+package org.csystem.app  
+  
+import kotlin.random.Random  
+  
+class A {  
+    lateinit var b: B  
+  
+    fun foo(x: Int) {  
+        b = B(x)  
+    }  
+}  
+  
+  
+class B(var x: Int) {  
+    //...  
+}  
+  
+fun main() {  
+    val a = A()  
+  
+    if (Random.nextBoolean())  
+        a.foo(20)  
+  
+    try {  
+        println(a.b.x)  
+    } catch (_: UninitializedPropertyAccessException) {  
+        println("Uninitialized object in class")  
+    }  
+}
+```
+
+##### Tarih-Zaman Sınıfları
+
+> Kotlin'de JavaSE'deki tarih zaman işlemlerine ilişkin türler kullanılmaktadır. JavaSE'ye Java 8 ile birlikte tarih zamam işlemlerine ilişkin daha stabil çalışan ve iyi tasarlanmış türler eklenmiştir. Java 8 öncesinde kullanılan tarih zaman işlemlerine ilişkin sınıfların bazıları stabil çalışmamakta bazıları ise stabil çalışmasına karşın iyi tasarlanmamış durumdadır. Projenin Java 8 öncesinde geliştiriliyor olması dışında artık yeni nesil tarih zaman sınıfları kullanılmalıdır. Yeni nesil bu sınıflara `Java 8 Date Time API` de denilmektedir.
+
+>Tüm tarih zaman sınıfları geçerlilik kontrolünü yapar, geçerli olmadığı durumda `DateTimeException` nesnesi fırlatırlar
+
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import org.csystem.kotlin.util.console.readString  
+import java.time.DateTimeException  
+import java.time.LocalDate  
+import java.time.Month  
+  
+fun main() {  
+    while (true) {  
+        try {  
+            val day = readInt("Gün bilgisini giriniz:")  
+  
+            if (day == 0)  
+                break  
+  
+            val month =  
+                Month.valueOf(readString("Ay bilgisini giriniz:JANUARY, FEBRUARY, MARCH, ..., DECEMBER:").uppercase())  
+            val year = readInt("Yıl bilgisini giriniz:")  
+            val date = LocalDate.of(year, month, day)  
+  
+            println("${date.dayOfMonth}/${date.monthValue}/${date.year}")  
+            println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")  
+        } catch (_: DateTimeException) {  
+            println("Geçersiz tarih!...")  
+        } catch (_: IllegalArgumentException) {  
+            println("Geçersiz ay bilgisi!...")  
+        }  
+    }  
+  
+    println("Tekrar yapıyor musunuz?")  
 }
 ```
 
 
 >LocalDate sınıfının now isimli static metodu sistemin tarih bilgisini elde etmekte kullanılır
 
+>Aşağıdaki demo örneği inceleyiniz
+
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-
-fun main()
-{
-    val date = LocalDate.now()
-
-    println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")
+package org.csystem.app  
+  
+import java.time.LocalDate  
+  
+fun main() {  
+    val date = LocalDate.now()  
+  
+    println("${date.dayOfMonth} ${date.month} ${date.year} ${date.dayOfWeek}")  
 }
 ```
 
 
->LocalDate sınıfının isAfter ve isBefore metotları ve equals metodu
+>LocalDate sınıfının isAfter ve isBefore metotları ve equals metotları
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-import java.time.Month
-
-fun main()
-{
-    val today = LocalDate.now()
-    val date = LocalDate.of(2023, Month.SEPTEMBER, 10)
-
-    println(date.isAfter(today))
-    println(today.isBefore(date))
-    println(today == date)
+package org.csystem.app  
+  
+import java.time.LocalDate  
+import java.time.Month  
+  
+fun main() {  
+    val today = LocalDate.now()  
+    val date = LocalDate.of(2024, Month.DECEMBER, 23)  
+  
+    println(date.isAfter(today))  
+    println(today.isBefore(date))  
+    println(today == date)  
 }
 ```
 
@@ -15752,43 +15876,41 @@ fun main()
 >ChronoUnit enum sınıfı ile tarih-zaman ölçümleri yapılabilir
 
 ```kotlin
-package org.csystem.app;
-
-import java.time.LocalDate
-import java.time.Month
-import java.time.temporal.ChronoUnit
-
-fun main()
-{
-    val today = LocalDate.now()
-    val date = LocalDate.of(1999, Month.AUGUST, 17)
-
-    println(ChronoUnit.DAYS.between(date, today))
-    println(ChronoUnit.YEARS.between(date, today))
-    println(ChronoUnit.MONTHS.between(date, today))
-    println(ChronoUnit.WEEKS.between(date, today))
+package org.csystem.app;  
+  
+import java.time.LocalDate  
+import java.time.Month  
+import java.time.temporal.ChronoUnit  
+  
+fun main() {  
+    val today = LocalDate.now()  
+    val date = LocalDate.of(1999, Month.AUGUST, 17)  
+  
+    println(ChronoUnit.DAYS.between(date, today))  
+    println(ChronoUnit.YEARS.between(date, today))  
+    println(ChronoUnit.MONTHS.between(date, today))  
+    println(ChronoUnit.WEEKS.between(date, today))  
 }
 ```
 
 >**_Sınıf Çalışması:_** LocalDate sınıfını kullanarak iki tarih arasındaki toplam yılı Double türden çıkartma operatörü ile hesaplayan kodları yazınız.
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-import java.time.Month
-import java.time.temporal.ChronoUnit
-
-operator fun LocalDate.minus(localDate: LocalDate) = ChronoUnit.DAYS.between(localDate, this) / 365.0
-
-fun main()
-{
-    val birthDate = LocalDate.of(1976, Month.SEPTEMBER, 10)
-    val today = LocalDate.now()
-
-    val age = today - birthDate
-
-    println("Age:$age")
+package org.csystem.app  
+  
+import java.time.LocalDate  
+import java.time.Month  
+import java.time.temporal.ChronoUnit  
+  
+operator fun LocalDate.minus(localDate: LocalDate) = ChronoUnit.DAYS.between(localDate, this) / 365.0  
+  
+fun main() {  
+    val birthDate = LocalDate.of(1976, Month.SEPTEMBER, 10)  
+    val today = LocalDate.now()  
+  
+    val age = today - birthDate  
+  
+    println("Age:$age")  
 }
 ```
 
@@ -15796,40 +15918,53 @@ fun main()
 >LocalDate sıfınının plusXXX metotları
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-
-fun main()
-{
-    val today = LocalDate.now()
-    val date = today.plusWeeks(20).plusDays(3)
-
-    println(today)
-    println(date)
+package org.csystem.app  
+  
+import java.time.LocalDate  
+  
+fun main() {  
+    val today = LocalDate.now()  
+    val date = today.plusWeeks(20).plusDays(3)  
+  
+    println(today)  
+    println(date)  
 }
 ```
 
 
+>LocalDate sınıfının minusXXX metotları
+
+```kotlin
+package org.csystem.app  
+  
+import java.time.LocalDate  
+  
+fun main() {  
+    val today = LocalDate.now()  
+    val date = today.minusWeeks(20).minusDays(3)  
+  
+    println(today)  
+    println(date)  
+}
+```
+
 >Tarih-zaman sınıflarının withXXX metotları
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-import java.time.Month
-import java.time.temporal.ChronoUnit
-
-fun main()
-{
-    val now = LocalDate.now()
-    val birthDate = LocalDate.of(1976, Month.SEPTEMBER, 10)
-    val birthDay = birthDate.withYear(now.year)
-
-    val age = ChronoUnit.DAYS.between(birthDate, now) / 365.0
-
-    println("%.20f".format(age))
-    println(birthDay)
+package org.csystem.app  
+  
+import java.time.LocalDate  
+import java.time.Month  
+import java.time.temporal.ChronoUnit  
+  
+fun main() {  
+    val now = LocalDate.now()  
+    val birthDate = LocalDate.of(1976, Month.SEPTEMBER, 10)  
+    val birthDay = birthDate.withYear(now.year)  
+    val age = ChronoUnit.DAYS.between(birthDate, now) / 365.0  
+  
+    println("%.20f".format(age))  
+    println(birthDay)  
 }
 ```
 
@@ -15837,38 +15972,33 @@ fun main()
 >LocalTime sınıfının atDate metodu
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-import java.time.LocalTime
-
-fun main()
-{
-    val currentTime = LocalTime.now()
-    val today = LocalDate.now()
-    val now = currentTime.atDate(today)
-
-    println(now)
+package org.csystem.app  
+  
+import java.time.LocalDate  
+import java.time.LocalTime  
+  
+fun main() {  
+    val currentTime = LocalTime.now()  
+    val today = LocalDate.now()  
+    val now = currentTime.atDate(today)  
+  
+    println(now)  
 }
 ```
-
 
 >LocalDate sınıfının atTime metodu
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.Month
-
-
-fun main()
-{
-    val date = LocalDate.of(2020, Month.APRIL, 12)
-    val datetime = date.atTime(LocalTime.now())
-
-    println(datetime)
+package org.csystem.app  
+  
+import java.time.LocalDate  
+import java.time.LocalTime  
+  
+fun main() {  
+    val today = LocalDate.now()  
+    val datetime = today.atTime(LocalTime.now())  
+  
+    println(datetime)  
 }
 ```
 
@@ -15876,19 +16006,18 @@ fun main()
 >LocalDateTime sınıfının toLocalDate ve toLocalTime sınıfları
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDateTime
-
-fun main()
-{
-    val now = LocalDateTime.now()
-    val date = now.toLocalDate()
-    val time = now.toLocalTime()
-
-    println(now)
-    println(date)
-    println(time)
+package org.csystem.app  
+  
+import java.time.LocalDateTime  
+  
+fun main() {  
+    val now = LocalDateTime.now()  
+    val date = now.toLocalDate()  
+    val time = now.toLocalTime()  
+  
+    println(now)  
+    println(date)  
+    println(time)  
 }
 ```
 
@@ -15896,84 +16025,151 @@ fun main()
 >DateTimeFormatter sınıfı ile tarih ve/veya zaman bilgilerinin formatlanması
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
-
-fun main()
-{
-    val now = LocalDateTime.now()
-    val today = LocalDate.now()
-    val currentTime = LocalTime.now()
-
-    println(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss a").format(now))
-    println(DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss").format(now))
-    println(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(today))
-    println(DateTimeFormatter.ofPattern("kk:mm:ss").format(currentTime))
+package org.csystem.app  
+  
+import java.time.LocalDate  
+import java.time.LocalDateTime  
+import java.time.LocalTime  
+import java.time.format.DateTimeFormatter  
+  
+fun main() {  
+    val now = LocalDateTime.now()  
+    val today = LocalDate.now()  
+    val currentTime = LocalTime.now()  
+  
+    println(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss a").format(now))  
+    println(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(now))  
+    println(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(today))  
+    println(DateTimeFormatter.ofPattern("HH:mm:ss").format(currentTime))  
 }
 ```
 
 
->LocalDate, LocalTime ve LocalDateTime sınıflarının parse metotları
+>LocalDate, LocalTime ve LocalDateTime sınıflarının parse metotları. parse metotları formatın geçerli olmaması durumunda `DateTimeParseException` nesnesi fırlatırlar
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-
-fun main()
-{
-    val today = LocalDate.now()
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-    val todayStr = formatter.format(today)
-
-    println(today)
-    println(LocalDate.parse(todayStr, formatter))
+package org.csystem.app  
+  
+import java.time.LocalDate  
+import java.time.format.DateTimeFormatter  
+  
+fun main() {  
+    val today = LocalDate.now()  
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")  
+    val todayStr = formatter.format(today)  
+  
+    println(today)  
+    println(LocalDate.parse(todayStr, formatter))  
 }
+```
+
+
+>**Sınıf Çalışması:** Komut satırı argümanı olarak `dd/MM/yyyy` formatında aldığı doğum tarihi bilgisine göre aşağıdaki mesajlardan birini basan programı yazınız:
+>1. Doğum günü ise `Doğum günününüz kutlu olsun`
+>2. Doğum günü geçmişse  `Geçmiş doğum günününüz kutlu olsun`
+>3. Doğum günü henüz gelmemişse `Doğum günününüz şimdiden kutlu olsun`
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import java.time.LocalDate  
+import java.time.format.DateTimeFormatter  
+import java.time.format.DateTimeParseException  
+import java.time.temporal.ChronoUnit  
+  
+private fun run(args: Array<String>) {  
+    lengthEquals(1, args.size, "wrong number of arguments")  
+    try {  
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")  
+        val today = LocalDate.now()  
+        val birthDate = LocalDate.parse(args[0], formatter)  
+        val birthDay = birthDate.withYear(today.year)  
+        val age = ChronoUnit.DAYS.between(birthDate, today) / 365.0  
+  
+        val message = when {  
+            today.isAfter(birthDay) -> "Geçmiş doğum gününüz kutlu olsun. Yeni yaşınız:%.2f".format(age)  
+            today.isBefore(birthDay) -> "Doğum gününüz şimdiden kutlu olsun. Yeni yaşınız:%.2f".format(age)  
+            else -> "Doğum gününüz kutlu olsun. Yeni yaşınız:%.2f".format(age)  
+        }  
+  >>
+        println(message)  
+    } catch (_: DateTimeParseException) {  
+        println("Date format must be like 29/02/2024")  
+    }  
+}  
+  
+fun main(args: Array<String>) = run(args)
 ```
 
 
 >Aşağıdaki örnekte birden fazla formatter ile işlem yapan örnek bir fonksiyon yazılmıştır. Detaylar gözardı edilmiştir. Bir kütüphane içerisine daha detaylısı eklenecektir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readString
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
-
-fun tryParse(str: String) : LocalDate?
-{
-    val formatters = arrayOf(DateTimeFormatter.ofPattern("dd-MM-yyyy"), DateTimeFormatter.ofPattern("dd/MM/yyyy"),
-        DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-
-    for (formatter in formatters) {
-        try {
-            return LocalDate.parse(str, formatter)
-        }
-        catch (ignore: DateTimeParseException) {
-
-        }
-    }
-    return null
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readString  
+import java.time.LocalDate  
+import java.time.format.DateTimeFormatter  
+import java.time.format.DateTimeParseException  
+  
+fun tryParse(str: String): LocalDate? {  
+    val formatters = arrayOf(  
+        DateTimeFormatter.ofPattern("dd-MM-yyyy"), DateTimeFormatter.ofPattern("dd/MM/yyyy"),  
+        DateTimeFormatter.ofPattern("yyyy-MM-dd")  
+    )  
+  
+    for (formatter in formatters) {  
+        try {  
+            return LocalDate.parse(str, formatter)  
+        } catch (ignore: DateTimeParseException) {  
+  
+        }  
+    }  
+    return null  
+}  
+  
+fun main() {  
+    while (true) {  
+        val str = readString("Tarih bilgisini giriniz:21/06/2023 veya 21-06-2023 veya 2023-06-21:")  
+  
+        if (str == "elma")  
+            break  
+  
+        val result = tryParse(str)  
+          
+        println(result ?: "Geçersiz tarih!...")  
+    }  
 }
+```
 
-fun main()
-{
-    while (true) {
-        val str = readString("Tarih bilgisini giriniz:21/06/2023 veya 21-06-2023 veya 2023-06-21:")
+##### Değişken Sayıda Argüman Alan Fonksiyonlar
 
-        if (str == "elma")
-            break
+>Kotlin'de değişken argüman alan fonksiyonlar (vararg functions) için parametre değişkeninde vararg anahtar sözcüğü kullanılır. vararg parametresi bir fonksiyonda son parametre olmalıdır. Bu durumda birden fazla vararg parametreli fonksiyon bildirimi geçersizdir. vararg parametreye fonksiyon içerinde dizi gibi erişilebilmektedir.
 
-        val result = tryParse(str)
-        println(if (result != null) DateTimeFormatter.ISO_DATE.format(result) else "Geçersiz tarih!...")
-    }
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+  
+fun main() {  
+    val a = readInt("Birinci sayıyı giriniz:")  
+    val b = readInt("İkinci  sayıyı giriniz:")  
+  
+    println(sum(10, a, b))  
+    println(sum(10))  
+    println(sum(10, a))  
+}  
+  
+fun sum(init: Int, vararg values: Int): Int {  
+    var total = init  
+  
+    for (v in values)  
+        total += v  
+  
+    return total  
 }
 ```
 
@@ -17197,314 +17393,5 @@ fun main()
 
 **_Anahtar Notlar:_** Thread'ler ve asenkron çalışma ilgili burada anlatılanlar dışında da pek çok detay vardır. Bazıları örnekler içerisinde ele alınacaktır.
 
-### Kotlin Coroutines:
-
->GlobalScope object'inin launch fonksiyonu ile bir couroutine yaratılabilir. coroutine'ler __"daemon thread"__ olarak çalışır. launch fonksiyonu Job türünden bir referansa geri döner. Job sınıfının join metodu ile ilgili job beklenebilir. Ancak join metodu __"suspend"__ olarak bildirilmiş bir fonksiyon içerisinde çağrılabilir. suspend fonksiyonların detayları ileride ele alınacaktır. Aşağıdaki demo örneği inceleyiniz
-
-```kotlin
-package org.csystem.app
-
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-suspend fun main()
-{
-    val count = readInt("Input count:")
-
-    val job = GlobalScope.launch {
-        for (i in 0..<count) {
-            print("%d ".format(Random.nextInt(100)))
-            delay(Random.nextLong(300, 600))
-        }
-
-        println()
-    }
-
-    println("main")
-    job.join()
-}
-```
-
-
->Aşağıdaki örnek klişeleşmiş ilk courutine örneklerindendir
-
-```kotlin
-package org.csystem.app
-
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-
-suspend fun main()
-{
-    val job = GlobalScope.launch {
-        delay(1000)
-        println("World")
-    }
-
-    print("Hello ")
-    job.join()
-}
-```
-
-
->runBlocking fonksiyonuna verilen fonksiyon sonlanana kadar (aslında içerisindeki coroutine sonlanana kadar) akış bloke olur. runBlocking fonksiyonu bir couroutine yaratır. Aşağıdaki demo örneği inceleyiniz
-
-```kotlin
-package org.csystem.app
-
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val count = readInt("Input count:")
-
-    GlobalScope.launch {
-        for (i in 1..count) {
-            print("%d ".format(Random.nextInt(100)))
-            delay(Random.nextLong(300, 700))
-        }
-
-        println("\nrandom generator coroutine ends!...")
-    }
-
-    runBlocking {
-        println("main")
-        delay(10000)
-    }
-
-    println("main ends")
-}
-```
-
-
->runBlociking fonksiyonu ile coroutine yaratılması aşağıdaki gibi de yapılabilir. Demo örnekte launch fonksiyonu ile yaratılan coroutine main thread'de yaratılmamıştır. runBlocking fonksiyonunun yarattığı coroutine içerisinde yaratılmıştır
-
-```kotlin
-package org.csystem.app
-
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main() = runBlocking {
-    val count = readInt("Input count:")
-
-    GlobalScope.launch {
-        for (i in 1..count) {
-            print("%d ".format(Random.nextInt(100)))
-            delay(Random.nextLong(300, 700))
-        }
-
-        println("\nrandom generator coroutine ends!...")
-    }
-
-    println("main")
-    delay(10000)
-    println("main ends")
-}
-```
-
-
->Aşağıdaki demo örnekte bir couroutine içerisinde başka bir coroutine yaratılmış ve runBlocking ile yaratılan coroutine doJob içerisinde yaratılan coroutine'i beklemektedir. Bu durumda derleyici ve __"Virtual Machine"__ optimize ederek coroutine sayısını dolayısıyla yaratılan thread sayısını azaltabilir
-
-```kotlin
-package org.csystem.app
-
-import kotlinx.coroutines.*
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-suspend fun main() = run().apply { println("run çağrıldı") }.join()
-
-fun doJob() = runBlocking {
-    var total = 0
-    val count = readInt("Input a number:")
-
-    val job = GlobalScope.launch {
-        for (i in 1..count) {
-            val value = Random.nextInt(100)
-            print("$value ")
-            total += value
-            delay(Random.nextLong(1, 1000))
-        }
-        println()
-    }
-
-    job.join()
-    println("Total:$total")
-}
-
-fun run() = GlobalScope.launch {
-    doJob()
-}
-```
-
-
->Aşağıdaki demo örnekte runBlocking scope içerisinde coroutine yaratılmıştır
-
-```kotlin
-package org.csystem.app
-
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-suspend fun main() = run().apply { println("run çağrıldı") }.join()
-
-fun doJob() = runBlocking {
-    var total = 0
-    val count = readInt("Input a number:")
-
-    val job = launch { //runBlocking scope: runBlocking fonksiyonunun callback fonksiyonuna ilişkin scope
-        for (i in 1..count) {
-            val value = Random.nextInt(100)
-            print("$value ")
-            total += value
-            delay(Random.nextLong(1, 1000))
-        }
-        println()
-    }
-
-    job.join()
-    println("Total:$total")
-}
-
-fun run() = GlobalScope.launch {
-    doJob()
-}
-```
-
-
->Programcı isterse coroutine scope yaratabilir. Aşağıdaki örnekte coroutineScope fonksiyonunun __"callback"__ fonksiyonu launch ile yaratılan coroutine akışı bitene kadar sonlanmaz. suspend fonksiyonlar içerisinde coroutine'e ilişkin fonksiyonlar da çağrılabilir. Aslında suspend fonksiyonlar __"duraklayabile (suspend)"__ ve __"devam edebilen (resume)"__ fonksiyonlardır. Aşağıdaki örnekte couroutineScope ile bir sonuç da elde edilmektedir
-
-```kotlin
-package org.csystem.app
-
-import kotlinx.coroutines.*
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-suspend fun main() = run().apply { println("run çağrıldı") }.join()
-
-suspend fun calculateTotal(count: Int) = coroutineScope {
-    var result = 0
-
-    launch {
-        for (i in 1..count) {
-            val value = Random.nextInt(100)
-            print("$value ")
-            result += value
-            delay(Random.nextLong(1, 1000))
-        }
-        println()
-
-    }.join()
-    result
-}
-
-fun doJob() = runBlocking {
-    val count = readInt("Input a number:")
-
-    //...
-
-    println("Total:${calculateTotal(count)}")
-}
-
-fun run() = GlobalScope.launch {
-    doJob()
-}
-```
-
-
->Yukarıdaki örnek async fonksiyonu ile await kullanarak da yapılabilir
-
-```kotlin
-package org.csystem.app
-
-import kotlinx.coroutines.*
-import org.csystem.kotlin.util.console.readInt
-import kotlin.random.Random
-
-suspend fun main() = run().apply { println("run çağrıldı") }.join()
-
-suspend fun calculateTotal(count: Int) = coroutineScope {
-    var result = 0
-    val deferred = async { //runBlocking scope: runBlocking fonksiyonunun callback fonksiyonuna ilişkin scope
-        for (i in 1..count) {
-            val value = Random.nextInt(100)
-            print("$value ")
-            result += value
-            delay(Random.nextLong(1, 1000))
-        }
-        println()
-    }
-
-    deferred.await()
-    result
-}
-
-fun doJob() = runBlocking {
-    val count = readInt("Input a number:")
-
-    //...
-
-    println("Total:${calculateTotal(count)}")
-}
-
-fun run() = GlobalScope.launch {
-    doJob()
-}
-```
-
-
->Yukarıdaki demo örnek async fonksiyonu ile await kullanılarak da yapılabilir. async fonksiyonu tipik `Deferred<y>` türünden bir interface referansına geri döner. Bu arayüzün await metodu ilgili coroutine beklenebilir. await metodu async fonksiyonuna verilen callback fonksiyonun değerine geri döner. Yani bu anlamda klasik `Future<T>` arayüzüne benzetilebilir
-
-```kotlin
-package org.csystem.app
-
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main() = doJob()
-
-suspend fun printTotal(count: Int) = coroutineScope {
-    val deferred = async {
-        var result = 0
-        for (i in 1..count) {
-            val value = Random.nextInt(100)
-            print("$value ")
-            result += value
-            delay(Random.nextLong(1, 1000))
-        }
-        println()
-        result
-    }
-
-    println("Total:${deferred.await()}:")
-}
-
-fun doJob() = runBlocking {
-    printTotal(readInt("Input a number:"))
-}
-```
 
 **Anahtar Notlar:** Yukarıda kullanılan sınıfların ve fonksiyonların son halleri [Android-Aug-2024](https://github.com/oguzkaran/Android-Aug-2024 ) repository'si içerisinde bulunmaktadır.
