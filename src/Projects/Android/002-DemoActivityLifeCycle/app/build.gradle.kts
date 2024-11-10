@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "org.csystem.app.android.firstapp"
+    namespace = "org.csystem.app.android.activitylifecycle"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "org.csystem.app.android.firstapp"
+        applicationId = "org.csystem.app.android.activitylifecycle"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -45,5 +45,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 }

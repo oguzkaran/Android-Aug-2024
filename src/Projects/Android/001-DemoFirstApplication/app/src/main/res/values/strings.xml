@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">001-DemoFirstApplication</string>
+    <string name="app_name">DemoFirstApplication</string>
+    <string name="main_activity_prompt">C and System Programmers Association</string>
+    <string name="created_prompt">Main Activity Created</string>
+    <string name="created_date_time_prompt">Create Date Time:%s</string>
 </resources>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DemoActivityLifeCycle</string>
+    <string name="main_activity_prompt">C and System Programmers Association</string>
+    <string name="on_create_message">onCreate:%s</string>
+    <string name="on_start_message">onStart:%s</string>
+    <string name="on_resume_message">onResume:%s</string>
+    <string name="on_restart_message">onRestart:%s</string>
+    <string name="on_pause_message">onPause:%s</string>
+    <string name="on_stop_message">onStop:%s</string>
+    <string name="on_destroy_message">onDestroy:%s</string>
+</resources>
