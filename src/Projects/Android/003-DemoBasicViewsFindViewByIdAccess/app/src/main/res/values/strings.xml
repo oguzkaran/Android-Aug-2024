@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DemoBasicViewsOldStyleAccess</string>
+    <string name="edit_text_username_hint">Input user name</string>
+    <string name="edit_text_password_hint">Input password</string>
+    <string name="button_login_text">Login</string>
+    <string name="button_close_text">Close</string>
+    <string name="button_clear_text">Clear</string>
+    <string name="login_prompt">Login</string>
+    <string name="close_prompt">Close</string>
+    <string name="click_title_prompt">Input information to log in</string>
+    <string name="text_view_login_title">Login</string>
+    <string name="switch_accept_text">Accept</string>
+    <string name="check_accept_message">Accept to continue</string>
+</resources>
