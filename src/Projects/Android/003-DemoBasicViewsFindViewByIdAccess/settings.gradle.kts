@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "003-DemoBasicViewsOldStyleAccess"
+rootProject.name = "DemoBasicViews"
 include(":app")
  

@@ -1,14 +1,21 @@
 <resources>
-    <string name="app_name">DemoBasicViewsOldStyleAccess</string>
+    <string name="app_name">DemoBasicViews</string>
     <string name="edit_text_username_hint">Input user name</string>
     <string name="edit_text_password_hint">Input password</string>
     <string name="button_login_text">Login</string>
     <string name="button_close_text">Close</string>
     <string name="button_clear_text">Clear</string>
+    <string name="button_register_text">Register</string>
     <string name="login_prompt">Login</string>
     <string name="close_prompt">Close</string>
     <string name="click_title_prompt">Input information to log in</string>
     <string name="text_view_login_title">Login</string>
+    <string name="text_view_register_title">Register</string>
+    <string name="text_view_management_title">Management</string>
     <string name="switch_accept_text">Accept</string>
-    <string name="check_accept_message">Accept to continue</string>
+    <string name="status_accepted_message">Accepted</string>
+    <string name="status_not_accepted_message">Not accepted</string>
+    <string name="toggle_visible_text_on">Close Login</string>
+    <string name="toggle_visible_text_off">Open Login</string>
+    <string name="checkbox_anonymous_text">Anonymous</string>
 </resources>
