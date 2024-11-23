@@ -1,21 +1,65 @@
 <resources>
+    <!-- Application strings-->
     <string name="app_name">DemoBasicViews</string>
+
+    <!-- EditTexts-->
     <string name="edit_text_username_hint">Input user name</string>
+    <string name="edit_text_name_hint">Input your name</string>
+    <string name="edit_text_email_hint">Input your email</string>
     <string name="edit_text_password_hint">Input password</string>
+
+    <!-- Buttons-->
     <string name="button_login_text">Login</string>
     <string name="button_close_text">Close</string>
     <string name="button_clear_text">Clear</string>
     <string name="button_register_text">Register</string>
+
+    <!-- Prompts-->
     <string name="login_prompt">Login</string>
     <string name="close_prompt">Close</string>
     <string name="click_title_prompt">Input information to log in</string>
+    <string name="continue_register_prompt">Continue register</string>
+    <string name="username_missing_prompt">Username can not be empty</string>
+    <string name="username_already_saved_prompt">Username already saved. You can load information</string>
+
+    <!-- TextViews-->
     <string name="text_view_login_title">Login</string>
     <string name="text_view_register_title">Register</string>
     <string name="text_view_management_title">Management</string>
+    <string name="text_view_marital_status_title">Marital Status</string>
+    <string name="text_view_last_education_degree_title">Last Education Degree</string>
+
+    <!-- Switches-->
     <string name="switch_accept_text">Accept</string>
+
+    <!-- Messages-->
     <string name="status_accepted_message">Accepted</string>
     <string name="status_not_accepted_message">Not accepted</string>
+
+    <!-- ToggleButtons-->
     <string name="toggle_visible_text_on">Close Login</string>
     <string name="toggle_visible_text_off">Open Login</string>
+
+    <!-- Checkboxes-->
     <string name="checkbox_anonymous_text">Anonymous</string>
+
+    <!-- RadioButtons and RadioGroups-->
+    <string name="radiobutton_marital_status_single">Single</string>
+    <string name="radiobutton_marital_status_married">Married</string>
+    <string name="radiobutton_marital_status_divorced">Divorced</string>
+    <string name="radiobutton_last_education_degree_primary">Primary</string>
+    <string name="radiobutton_last_education_degree_secondary">Secondary</string>
+    <string name="radiobutton_last_education_degree_bachelor">Bachelor</string>
+    <string name="radiobutton_last_education_degree_master">Master</string>
+    <string name="radiobutton_last_education_degree_phd">PhD</string>
+
+    <!-- AlertDialogs-->
+
+    <string name="alert_dialog_close_title">Alert</string>
+    <string name="alert_dialog_close_message">Save data?</string>
+    <string name="alert_dialog_close_save">Save</string>
+    <string name="alert_dialog_close_close">Close</string>
+    <string name="alert_dialog_close_cancel">Cancel</string>
+
+
 </resources>

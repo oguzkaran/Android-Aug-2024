@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
             //...
 
             Intent(this, ManagementActivity::class.java).apply { putExtra(USERNAME, username);startActivity(this) }
-
         } else
             Intent(this, ManagementActivity::class.java).apply { startActivity(this) }
     }
