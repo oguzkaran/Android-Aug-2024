@@ -7,12 +7,16 @@
     <string name="edit_text_name_hint">Input your name</string>
     <string name="edit_text_email_hint">Input your email</string>
     <string name="edit_text_password_hint">Input password</string>
+    <string name="edit_text_confirm_password_hint">Confirm password</string>
 
     <!-- Buttons-->
     <string name="button_login_text">Login</string>
     <string name="button_close_text">Close</string>
     <string name="button_clear_text">Clear</string>
     <string name="button_register_text">Register</string>
+    <string name="button_continue_text">Continue</string>
+    <string name="button_load_text">Load</string>
+    <string name="button_save_text">Save</string>
 
     <!-- Prompts-->
     <string name="login_prompt">Login</string>
@@ -21,11 +25,17 @@
     <string name="continue_register_prompt">Continue register</string>
     <string name="username_missing_prompt">Username can not be empty</string>
     <string name="username_already_saved_prompt">Username already saved. You can load information</string>
+    <string name="username_not_found_prompt">Username not found</string>
+    <string name="user_saved_successfully_prompt">User saved successfully</string>
+    <string name="user_loaded_successfully_prompt">User loaded successfully</string>
+    <string name="io_problem_occurred_prompt">IO problem occurred</string>
+    <string name="problem_occurred_prompt">Problem occurred</string>
 
     <!-- TextViews-->
     <string name="text_view_login_title">Login</string>
     <string name="text_view_register_title">Register</string>
     <string name="text_view_management_title">Management</string>
+    <string name="text_view_register_password_title">Create password for %s</string>
     <string name="text_view_marital_status_title">Marital Status</string>
     <string name="text_view_last_education_degree_title">Last Education Degree</string>
 
@@ -60,6 +70,9 @@
     <string name="alert_dialog_close_save">Save</string>
     <string name="alert_dialog_close_close">Close</string>
     <string name="alert_dialog_close_cancel">Cancel</string>
+    <string name="alert_dialog_confirm_password_title">Confirm Password</string>
+    <string name="alert_dialog_confirm_password_message">You must confirm Password</string>
+    <string name="alert_dialog_confirm_password_ok">OK</string>
 
 
 </resources>
