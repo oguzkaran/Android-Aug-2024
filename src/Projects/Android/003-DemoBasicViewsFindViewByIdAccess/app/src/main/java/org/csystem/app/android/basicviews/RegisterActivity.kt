@@ -12,18 +12,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import org.csystem.app.android.basicviews.constant.MARITAL_STATUS_TAGS
 import org.csystem.app.android.basicviews.constant.REGISTER_INFO
+import org.csystem.app.android.basicviews.constant.USERS_FORMAT
 import org.csystem.app.android.basicviews.model.RegisterInfoModel
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.nio.charset.StandardCharsets
 
-const val SAVE_REGISTER_INFO = "SAVE_REGISTER_INFO"
-const val LOAD_REGISTER_INFO = "LOAD_REGISTER_INFO"
-const val DELIMITER = ":"
+private const val SAVE_REGISTER_INFO = "SAVE_REGISTER_INFO"
+private const val LOAD_REGISTER_INFO = "LOAD_REGISTER_INFO"
+private const val DELIMITER = ":"
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var mEditTextUsername: EditText
@@ -80,8 +83,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun saveData(close: Boolean) {
-        BufferedWriter(OutputStreamWriter(openFileOutput("${mRegisterInfo.username}.txt", MODE_PRIVATE),
-            StandardCharsets.UTF_8)).use(::writeRegisterInfo)
+        BufferedWriter(OutputStreamWriter(FileOutputStream(File(filesDir,  USERS_FORMAT.format("${mRegisterInfo.username}.txt"))), StandardCharsets.UTF_8))
+            .use(::writeRegisterInfo)
 
         Log.i(SAVE_REGISTER_INFO, "User saved successfully")
         Toast.makeText(this, R.string.user_saved_successfully_prompt, Toast.LENGTH_SHORT).show()
@@ -97,7 +100,7 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.username_missing_prompt, Toast.LENGTH_LONG).show()
                 return
             }
-            val file = File(filesDir, "${mRegisterInfo.username}.txt")
+            val file = File(filesDir, USERS_FORMAT.format("${mRegisterInfo.username}.txt"))
 
             if (!file.exists())
                 saveData(close)
@@ -176,7 +179,7 @@ class RegisterActivity : AppCompatActivity() {
                 return
             }
 
-            val file = File(filesDir, "${username}.txt")
+            val file = File(filesDir, USERS_FORMAT.format("$username.txt"))
 
             if (!file.exists()) {
                 Toast.makeText(this, R.string.username_not_found_prompt, Toast.LENGTH_SHORT)
@@ -184,7 +187,7 @@ class RegisterActivity : AppCompatActivity() {
                 return
             }
 
-            BufferedReader(InputStreamReader(openFileInput("${username}.txt"), StandardCharsets.UTF_8))
+            BufferedReader(InputStreamReader(FileInputStream(File(filesDir, USERS_FORMAT.format("$username.txt"))), StandardCharsets.UTF_8))
                 .use(::loadRegisterInfo)
 
             Toast.makeText(this, R.string.user_loaded_successfully_prompt, Toast.LENGTH_SHORT).show()

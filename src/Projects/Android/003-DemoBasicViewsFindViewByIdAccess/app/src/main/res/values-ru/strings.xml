@@ -1,0 +1,81 @@
+<resources>
+    <!-- Application strings-->
+    <string name="app_name">ДемонстрационноеБазовоеПриложение</string>
+
+    <!-- EditTexts-->
+    <string name="edit_text_username_hint">Введите имя пользователя</string>
+    <string name="edit_text_name_hint">Введите ваше имя</string>
+    <string name="edit_text_email_hint">Введите ваш email</string>
+    <string name="edit_text_password_hint">Введите пароль</string>
+    <string name="edit_text_confirm_password_hint">Подтвердите пароль</string>
+
+    <!-- Buttons-->
+    <string name="button_login_text">Вход</string>
+    <string name="button_close_text">Закрыть</string>
+    <string name="button_clear_text">Удалить</string>
+    <string name="button_register_text">Зарегистрироваться</string>
+    <string name="button_continue_text">Продолжить</string>
+    <string name="button_load_text">Загрузить</string>
+    <string name="button_save_text">Сохранить</string>
+
+    <!-- Prompts-->
+    <string name="login_prompt">Вход</string>
+    <string name="close_prompt">Закрыть</string>
+    <string name="click_title_prompt">Ввести информацию для входа</string>
+    <string name="continue_register_prompt">Продолжить регистрацию</string>
+    <string name="username_missing_prompt">Имя пользователя не может быть пустым</string>
+    <string name="username_not_found_prompt">Имя пользователя не найдено</string>
+    <string name="user_saved_successfully_prompt">Пользователь успешно сохранен</string>
+    <string name="user_loaded_successfully_prompt">Загрузка прошла усешно</string>
+    <string name="user_registered_successfully_prompt">Пользователь успешно сохранен</string>
+    <string name="user_already_registered_prompt">Пользователь уже зарегистрирован</string>
+    <string name="io_problem_occurred_prompt">Возникла проблема IO</string>
+    <string name="problem_occurred_prompt">Возникла проблема</string>
+
+    <!-- TextViews-->
+    <string name="text_view_login_title">Вход</string>
+    <string name="text_view_register_title">Зарегистрироваться</string>
+    <string name="text_view_management_title">Настройки</string>
+    <string name="text_view_register_password_title">Создайте пароль для %s</string>
+    <string name="text_view_marital_status_title">Семейное положение</string>
+    <string name="text_view_last_education_degree_title">Уровень образования</string>
+
+    <!-- Switches-->
+    <string name="switch_accept_text">Принять</string>
+
+    <!-- Messages-->
+    <string name="status_accepted_message">Принято</string>
+    <string name="status_not_accepted_message">Не принято</string>
+
+    <!-- ToggleButtons-->
+    <string name="toggle_visible_text_on">Закрыть вход</string>
+    <string name="toggle_visible_text_off">Вход</string>
+
+    <!-- Checkboxes-->
+    <string name="checkbox_anonymous_text">Анонимно</string>
+
+    <!-- RadioButtons and RadioGroups-->
+    <string name="radiobutton_marital_status_single">Не женат / Не замужем</string>
+    <string name="radiobutton_marital_status_married">Женат / Замужем</string>
+    <string name="radiobutton_marital_status_divorced">В разводе</string>
+    <string name="radiobutton_last_education_degree_primary">Начальное</string>
+    <string name="radiobutton_last_education_degree_secondary">Среднее</string>
+    <string name="radiobutton_last_education_degree_bachelor">Бакалавриат</string>
+    <string name="radiobutton_last_education_degree_master">Магистратура</string>
+    <string name="radiobutton_last_education_degree_phd">Ученая степень</string>
+
+    <!-- AlertDialogs-->
+
+    <string name="alert_dialog_close_title">Внимание!</string>
+    <string name="alert_dialog_close_message">Сохранить информацию?</string>
+    <string name="alert_dialog_save">Сохранить</string>
+    <string name="alert_dialog_cancel">Отмена</string>
+    <string name="alert_dialog_close_close">Закрыть</string>
+    <string name="alert_dialog_confirm_password_title">Подтвердите пароль</string>
+    <string name="alert_dialog_confirm_password_message">Вы должны подтвердить пароль</string>
+    <string name="alert_dialog_confirm_password_ok">ОК</string>
+    <string name="alert_dialog_user_already_saved_title">Имя пользователя уже сохранено</string>
+    <string name="alert_dialog_user_already_saved_message">Пожалуйста, выберите вариант</string>
+
+
+</resources>

@@ -27,6 +27,8 @@
     <string name="username_not_found_prompt">Username not found</string>
     <string name="user_saved_successfully_prompt">User saved successfully</string>
     <string name="user_loaded_successfully_prompt">User loaded successfully</string>
+    <string name="user_registered_successfully_prompt">User registered successfully</string>
+    <string name="user_already_registered_prompt">User already registered</string>
     <string name="io_problem_occurred_prompt">IO problem occurred</string>
     <string name="problem_occurred_prompt">Problem occurred</string>
 

@@ -27,6 +27,8 @@
     <string name="username_not_found_prompt">Kullanıcı adı bulunamadı.</string>
     <string name="user_saved_successfully_prompt">Kullanıcı başarıyla kaydedildi.</string>
     <string name="user_loaded_successfully_prompt">Kullanıcı verisi getirildi.</string>
+    <string name="user_registered_successfully_prompt">Kullanıcı sisteme eklendi.</string>
+    <string name="user_already_registered_prompt">Kullanıcı sistemde kayıtlı</string>
     <string name="io_problem_occurred_prompt">Veri aktarım problemi yaşanıyor.</string>
     <string name="problem_occurred_prompt">Bir sorun oluştu.</string>
 
