@@ -1,0 +1,77 @@
+<resources>
+    <!-- Application strings-->
+    <string name="app_name">TemelGörselAraçlarDemo</string>
+
+    <!-- EditTexts-->
+    <string name="edit_text_username_hint">Kullanıcı adı belirleyiniz.</string>
+    <string name="edit_text_name_hint">Adınızı giriniz.</string>
+    <string name="edit_text_email_hint">Mail adresinizi giriniz.</string>
+    <string name="edit_text_password_hint">Şifre belirleyiniz.</string>
+    <string name="edit_text_confirm_password_hint">Şifre doğrulama</string>
+
+    <!-- Buttons-->
+    <string name="button_login_text">Giriş</string>
+    <string name="button_close_text">Kapat</string>
+    <string name="button_clear_text">Temizle</string>
+    <string name="button_register_text">Kaydet</string>
+    <string name="button_continue_text">Devam</string>
+    <string name="button_load_text">Yükle</string>
+    <string name="button_save_text">Kaydet</string>
+
+    <!-- Prompts-->
+    <string name="login_prompt">Giriş</string>
+    <string name="close_prompt">Kapat</string>
+    <string name="click_title_prompt">Lütfen Giriş yapmak için alanları doldurunuz.</string>
+    <string name="continue_register_prompt">Kayda devam et.</string>
+    <string name="username_missing_prompt">Kulanıcı adı alanı boş bırakılamaz.</string>
+    <string name="username_not_found_prompt">Kullanıcı adı bulunamadı.</string>
+    <string name="user_saved_successfully_prompt">Kullanıcı başarıyla kaydedildi.</string>
+    <string name="user_loaded_successfully_prompt">Kullanıcı verisi getirildi.</string>
+    <string name="io_problem_occurred_prompt">Veri aktarım problemi yaşanıyor.</string>
+    <string name="problem_occurred_prompt">Bir sorun oluştu.</string>
+
+    <!-- TextViews-->
+    <string name="text_view_login_title">Giriş</string>
+    <string name="text_view_register_title">Kaydol</string>
+    <string name="text_view_management_title">Yönetim Arayüzü</string>
+    <string name="text_view_register_password_title">%s için şifre oluştur.</string>
+    <string name="text_view_marital_status_title">Medeni Durum</string>
+    <string name="text_view_last_education_degree_title">Eğitim Durumu</string>
+
+    <!-- Switches-->
+    <string name="switch_accept_text">Kabul Ediyorum.</string>
+
+    <!-- Messages-->
+    <string name="status_accepted_message">Kabul Edildi.</string>
+    <string name="status_not_accepted_message">Reddedildi.</string>
+
+    <!-- ToggleButtons-->
+    <string name="toggle_visible_text_on">Giriş alanını aç.</string>
+    <string name="toggle_visible_text_off">Giriş alanını kapat.</string>
+
+    <!-- Checkboxes-->
+    <string name="checkbox_anonymous_text">Anonim</string>
+
+    <!-- RadioButtons and RadioGroups-->
+    <string name="radiobutton_marital_status_single">Bekar</string>
+    <string name="radiobutton_marital_status_married">Evli</string>
+    <string name="radiobutton_marital_status_divorced">Dul</string>
+    <string name="radiobutton_last_education_degree_primary">İlkokul</string>
+    <string name="radiobutton_last_education_degree_secondary">Lise</string>
+    <string name="radiobutton_last_education_degree_bachelor">Lisans</string>
+    <string name="radiobutton_last_education_degree_master">Yüksek Lisans</string>
+    <string name="radiobutton_last_education_degree_phd">Doktora</string>
+
+    <!-- AlertDialogs-->
+
+    <string name="alert_dialog_close_title">Uyarı</string>
+    <string name="alert_dialog_close_message">Veri kaydedilsin mi?</string>
+    <string name="alert_dialog_save">Kaydet</string>
+    <string name="alert_dialog_cancel">İptal</string>
+    <string name="alert_dialog_close_close">Kapat</string>
+    <string name="alert_dialog_confirm_password_title">Şifreyi doğrulayınız</string>
+    <string name="alert_dialog_confirm_password_message">Şifreyi doğrulamanız gerekmektedir.</string>
+    <string name="alert_dialog_confirm_password_ok">Tamam</string>
+    <string name="alert_dialog_user_already_saved_title">Bu kullanıcı adı daha önce kaydedildi</string>
+    <string name="alert_dialog_user_already_saved_message">Lütfen Seçiniz</string>
+</resources>

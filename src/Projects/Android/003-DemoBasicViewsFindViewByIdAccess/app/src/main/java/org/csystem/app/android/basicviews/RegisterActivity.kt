@@ -67,7 +67,30 @@ class RegisterActivity : AppCompatActivity() {
         bw.write("${mRegisterInfo.lastEducation}")
     }
 
-    private fun saveRegisterInfo() {
+    private fun selectOptionIfUserSaved(close: Boolean) {
+        Log.w(SAVE_REGISTER_INFO, "user already saved")
+
+        AlertDialog.Builder(this)
+            .setTitle(R.string.alert_dialog_user_already_saved_title)
+            .setMessage(R.string.alert_dialog_user_already_saved_message)
+            .setPositiveButton(R.string.alert_dialog_save) { _, _ -> saveData(close) }
+            .setNegativeButton(R.string.alert_dialog_cancel) { _, _ -> }
+            .create()
+            .show()
+    }
+
+    private fun saveData(close: Boolean) {
+        BufferedWriter(OutputStreamWriter(openFileOutput("${mRegisterInfo.username}.txt", MODE_PRIVATE),
+            StandardCharsets.UTF_8)).use(::writeRegisterInfo)
+
+        Log.i(SAVE_REGISTER_INFO, "User saved successfully")
+        Toast.makeText(this, R.string.user_saved_successfully_prompt, Toast.LENGTH_SHORT).show()
+
+        if (close)
+            finish()
+    }
+
+    private fun saveRegisterInfo(close: Boolean) {
         try {
             fillRegisterInfo()
             if (mRegisterInfo.username.isBlank()) {
@@ -76,19 +99,10 @@ class RegisterActivity : AppCompatActivity() {
             }
             val file = File(filesDir, "${mRegisterInfo.username}.txt")
 
-            if (file.exists()) {
-                Log.w(SAVE_REGISTER_INFO, "user already saved")
-
-                Toast.makeText(this, R.string.username_already_saved_prompt, Toast.LENGTH_LONG)
-                    .show()
-                return
-            }
-
-            BufferedWriter(OutputStreamWriter(openFileOutput("${mRegisterInfo.username}.txt", MODE_PRIVATE),
-                StandardCharsets.UTF_8)).use(::writeRegisterInfo)
-
-            Log.i(SAVE_REGISTER_INFO, "User saved successfully")
-            Toast.makeText(this, R.string.user_saved_successfully_prompt, Toast.LENGTH_SHORT).show()
+            if (!file.exists())
+                saveData(close)
+            else
+                selectOptionIfUserSaved(close)
         } catch (ex: IOException) {
             Log.e(SAVE_REGISTER_INFO, ex.message ?: "")
             Toast.makeText(this, R.string.io_problem_occurred_prompt, Toast.LENGTH_LONG).show()
@@ -145,9 +159,9 @@ class RegisterActivity : AppCompatActivity() {
         val dlg = AlertDialog.Builder(this)
             .setTitle(R.string.alert_dialog_close_title)
             .setMessage(R.string.alert_dialog_close_message)
-            .setPositiveButton(R.string.alert_dialog_close_save) { _, _ -> saveRegisterInfo(); finish()}
+            .setPositiveButton(R.string.alert_dialog_save) { _, _ -> saveRegisterInfo(true)}
             .setNegativeButton(R.string.alert_dialog_close_close) { _, _ -> finish()}
-            .setNeutralButton(R.string.alert_dialog_close_cancel) {_, _ -> Toast.makeText(this, R.string.continue_register_prompt, Toast.LENGTH_SHORT).show()}
+            .setNeutralButton(R.string.alert_dialog_cancel) { _, _ -> Toast.makeText(this, R.string.continue_register_prompt, Toast.LENGTH_SHORT).show()}
             .setOnCancelListener{Toast.makeText(this, R.string.continue_register_prompt, Toast.LENGTH_SHORT).show()}
             .create()
         dlg.show()
@@ -183,7 +197,5 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    fun onSaveButtonClicked(view: View) = saveRegisterInfo()
-
-
+    fun onSaveButtonClicked(view: View) = saveRegisterInfo(false)
 }
