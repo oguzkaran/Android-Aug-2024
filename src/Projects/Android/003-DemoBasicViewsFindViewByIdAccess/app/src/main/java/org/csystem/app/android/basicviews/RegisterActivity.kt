@@ -12,21 +12,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import org.csystem.app.android.basicviews.constant.MARITAL_STATUS_TAGS
 import org.csystem.app.android.basicviews.constant.REGISTER_INFO
-import org.csystem.app.android.basicviews.constant.USERS_FORMAT
+import org.csystem.app.android.basicviews.data.service.UserService
 import org.csystem.app.android.basicviews.model.RegisterInfoModel
-import java.io.BufferedReader
-import java.io.BufferedWriter
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
-import java.nio.charset.StandardCharsets
+import org.csystem.data.exception.DataServiceException
 
-private const val SAVE_REGISTER_INFO = "SAVE_REGISTER_INFO"
-private const val LOAD_REGISTER_INFO = "LOAD_REGISTER_INFO"
-private const val DELIMITER = ":"
+private const val SAVE_REGISTER_INFO_LOG_TAG = "SAVE_REGISTER_INFO"
+private const val LOAD_REGISTER_INFO_LOG_TAG = "LOAD_REGISTER_INFO"
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var mEditTextUsername: EditText
@@ -35,6 +26,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var mRadioGroupMaritalStatus: RadioGroup
     private lateinit var mRadioGroupLastEducationDegree: RadioGroup
     private lateinit var mRegisterInfo: RegisterInfoModel
+    private lateinit var mUserService: UserService
 
     private fun fillRegisterInfo() {
         val username = mEditTextUsername.text.toString()
@@ -48,30 +40,18 @@ class RegisterActivity : AppCompatActivity() {
             it.maritalStatus = maritalStatus; it.lastEducation = lastEducation }
     }
 
-    private fun loadRegisterInfo(br: BufferedReader) {
-        val str = br.readLine() ?: throw IOException()
-        val info = str.split(DELIMITER)
-
-        mEditTextName.setText(info[1])
-        mEditTextEmail.setText(info[2])
-        (mRadioGroupMaritalStatus.getChildAt(MARITAL_STATUS_TAGS.indexOf(info[3][0])) as RadioButton).isChecked = true
+    private fun loadRegisterInfo() {
+        mEditTextName.setText(mRegisterInfo.name)
+        mEditTextEmail.setText(mRegisterInfo.email)
+        (mRadioGroupMaritalStatus.getChildAt(MARITAL_STATUS_TAGS.indexOf(mRegisterInfo.maritalStatus)) as RadioButton).isChecked = true
         mRadioGroupLastEducationDegree.clearCheck()
-        val lastEducation = info[4].toInt()
 
-        if (lastEducation != 0)
-            (mRadioGroupLastEducationDegree.getChildAt(lastEducation - 1) as RadioButton).isChecked = true
-    }
-
-    private fun writeRegisterInfo(bw: BufferedWriter) {
-        bw.write("${mRegisterInfo.username}$DELIMITER")
-        bw.write("${mRegisterInfo.name}$DELIMITER")
-        bw.write("${mRegisterInfo.email}$DELIMITER")
-        bw.write("${mRegisterInfo.maritalStatus}$DELIMITER")
-        bw.write("${mRegisterInfo.lastEducation}")
+        if (mRegisterInfo.lastEducation != 0)
+            (mRadioGroupLastEducationDegree.getChildAt(mRegisterInfo.lastEducation - 1) as RadioButton).isChecked = true
     }
 
     private fun selectOptionIfUserSaved(close: Boolean) {
-        Log.w(SAVE_REGISTER_INFO, "user already saved")
+        Log.w(SAVE_REGISTER_INFO_LOG_TAG, "user already saved")
 
         AlertDialog.Builder(this)
             .setTitle(R.string.alert_dialog_user_already_saved_title)
@@ -83,10 +63,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun saveData(close: Boolean) {
-        BufferedWriter(OutputStreamWriter(FileOutputStream(File(filesDir,  USERS_FORMAT.format("${mRegisterInfo.username}.txt"))), StandardCharsets.UTF_8))
-            .use(::writeRegisterInfo)
-
-        Log.i(SAVE_REGISTER_INFO, "User saved successfully")
+        mUserService.saveUserData(mRegisterInfo)
+        Log.i(SAVE_REGISTER_INFO_LOG_TAG, "User saved successfully")
         Toast.makeText(this, R.string.user_saved_successfully_prompt, Toast.LENGTH_SHORT).show()
 
         if (close)
@@ -100,18 +78,17 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.username_missing_prompt, Toast.LENGTH_LONG).show()
                 return
             }
-            val file = File(filesDir, USERS_FORMAT.format("${mRegisterInfo.username}.txt"))
 
-            if (!file.exists())
+            if (!mUserService.isUserSaved(mRegisterInfo.username))
                 saveData(close)
             else
                 selectOptionIfUserSaved(close)
-        } catch (ex: IOException) {
-            Log.e(SAVE_REGISTER_INFO, ex.message ?: "")
-            Toast.makeText(this, R.string.io_problem_occurred_prompt, Toast.LENGTH_LONG).show()
+        } catch (ex: DataServiceException) {
+            Log.e(SAVE_REGISTER_INFO_LOG_TAG, ex.message ?: "")
+            Toast.makeText(this, R.string.data_problem_occurred_prompt, Toast.LENGTH_LONG).show()
 
         } catch (ex: Exception) {
-            Log.e(SAVE_REGISTER_INFO, ex.message, ex)
+            Log.e(SAVE_REGISTER_INFO_LOG_TAG, ex.message, ex)
             Toast.makeText(this, R.string.problem_occurred_prompt, Toast.LENGTH_LONG).show()
         }
     }
@@ -139,6 +116,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun initialize() {
+        mUserService = UserService(this)
         mRegisterInfo = RegisterInfoModel()
         initViews()
     }
@@ -179,23 +157,22 @@ class RegisterActivity : AppCompatActivity() {
                 return
             }
 
-            val file = File(filesDir, USERS_FORMAT.format("$username.txt"))
+            val ri  = mUserService.findByUsername(username)
 
-            if (!file.exists()) {
+            if (ri == null) {
                 Toast.makeText(this, R.string.username_not_found_prompt, Toast.LENGTH_SHORT)
                     .show()
                 return
             }
 
-            BufferedReader(InputStreamReader(FileInputStream(File(filesDir, USERS_FORMAT.format("$username.txt"))), StandardCharsets.UTF_8))
-                .use(::loadRegisterInfo)
-
+            mRegisterInfo = ri
+            loadRegisterInfo()
             Toast.makeText(this, R.string.user_loaded_successfully_prompt, Toast.LENGTH_SHORT).show()
-        } catch (ex: IOException) {
-            Log.e(LOAD_REGISTER_INFO, ex.message ?: "")
-            Toast.makeText(this, R.string.io_problem_occurred_prompt, Toast.LENGTH_LONG).show()
+        } catch (ex: DataServiceException) {
+            Log.e(LOAD_REGISTER_INFO_LOG_TAG, ex.message ?: "")
+            Toast.makeText(this, R.string.data_problem_occurred_prompt, Toast.LENGTH_LONG).show()
         } catch (ex: Exception) {
-            Log.e(LOAD_REGISTER_INFO, ex.message, ex)
+            Log.e(LOAD_REGISTER_INFO_LOG_TAG, ex.message, ex)
             Toast.makeText(this, R.string.problem_occurred_prompt, Toast.LENGTH_LONG).show()
         }
     }

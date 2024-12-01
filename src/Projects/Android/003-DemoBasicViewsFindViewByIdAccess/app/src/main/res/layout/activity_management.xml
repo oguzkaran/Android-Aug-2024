@@ -15,4 +15,22 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:text="@string/text_view_management_title" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_users_text"
+        android:onClick="onUsersButtonClicked"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_user_operations_text"
+        android:onClick="onUserOperationsButtonClicked"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_close_text"
+        android:onClick="onCloseButtonClicked"/>
 </LinearLayout>

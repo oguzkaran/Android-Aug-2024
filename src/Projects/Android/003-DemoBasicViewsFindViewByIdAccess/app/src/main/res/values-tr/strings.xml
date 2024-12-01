@@ -17,6 +17,8 @@
     <string name="button_continue_text">Devam</string>
     <string name="button_load_text">Yükle</string>
     <string name="button_save_text">Kaydet</string>
+    <string name="button_users_text">Kullanıcılar</string>
+    <string name="button_user_operations_text">Kullanıcı işlemleri</string>
 
     <!-- Prompts-->
     <string name="login_prompt">Giriş</string>
@@ -29,7 +31,7 @@
     <string name="user_loaded_successfully_prompt">Kullanıcı verisi getirildi.</string>
     <string name="user_registered_successfully_prompt">Kullanıcı sisteme eklendi.</string>
     <string name="user_already_registered_prompt">Kullanıcı sistemde kayıtlı</string>
-    <string name="io_problem_occurred_prompt">Veri aktarım problemi yaşanıyor.</string>
+    <string name="data_problem_occurred_prompt">Veri aktarım problemi yaşanıyor.</string>
     <string name="problem_occurred_prompt">Bir sorun oluştu.</string>
 
     <!-- TextViews-->
@@ -73,7 +75,9 @@
     <string name="alert_dialog_close_close">Kapat</string>
     <string name="alert_dialog_confirm_password_title">Şifreyi doğrulayınız</string>
     <string name="alert_dialog_confirm_password_message">Şifreyi doğrulamanız gerekmektedir.</string>
-    <string name="alert_dialog_confirm_password_ok">Tamam</string>
+    <string name="alert_dialog_ok">Tamam</string>
     <string name="alert_dialog_user_already_saved_title">Bu kullanıcı adı daha önce kaydedildi</string>
     <string name="alert_dialog_user_already_saved_message">Lütfen Seçiniz</string>
+    <string name="alert_dialog_user_login_problem_title">Giriş Problemi</string>
+    <string name="alert_dialog_user_login_problem_message">Giriş yapılamıyor</string>
 </resources>

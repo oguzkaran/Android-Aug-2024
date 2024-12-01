@@ -17,6 +17,8 @@
     <string name="button_continue_text">Продолжить</string>
     <string name="button_load_text">Загрузить</string>
     <string name="button_save_text">Сохранить</string>
+    <string name="button_users_text">пользователи</string>
+    <string name="button_user_operations_text">Действия пользователя</string>
 
     <!-- Prompts-->
     <string name="login_prompt">Вход</string>
@@ -29,7 +31,7 @@
     <string name="user_loaded_successfully_prompt">Загрузка прошла усешно</string>
     <string name="user_registered_successfully_prompt">Пользователь успешно сохранен</string>
     <string name="user_already_registered_prompt">Пользователь уже зарегистрирован</string>
-    <string name="io_problem_occurred_prompt">Возникла проблема IO</string>
+    <string name="data_problem_occurred_prompt">Возникла проблема IO</string>
     <string name="problem_occurred_prompt">Возникла проблема</string>
 
     <!-- TextViews-->
@@ -73,9 +75,11 @@
     <string name="alert_dialog_close_close">Закрыть</string>
     <string name="alert_dialog_confirm_password_title">Подтвердите пароль</string>
     <string name="alert_dialog_confirm_password_message">Вы должны подтвердить пароль</string>
-    <string name="alert_dialog_confirm_password_ok">ОК</string>
+    <string name="alert_dialog_ok">ОК</string>
     <string name="alert_dialog_user_already_saved_title">Имя пользователя уже сохранено</string>
     <string name="alert_dialog_user_already_saved_message">Пожалуйста, выберите вариант</string>
+    <string name="alert_dialog_user_login_problem_title">Проблема со входом</string>
+    <string name="alert_dialog_user_login_problem_message"> Не могу войти</string>
 
 
 </resources>

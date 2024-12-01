@@ -1,6 +1,7 @@
 package org.csystem.app.android.basicviews
 
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -33,4 +34,14 @@ class ManagementActivity : AppCompatActivity() {
         }
         initialize()
     }
+
+    fun onUsersButtonClicked(view: View) {
+
+    }
+
+    fun onUserOperationsButtonClicked(view: View) {
+
+    }
+
+    fun onCloseButtonClicked(view: View) = finish()
 }

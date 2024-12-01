@@ -17,6 +17,8 @@
     <string name="button_continue_text">Continue</string>
     <string name="button_load_text">Load</string>
     <string name="button_save_text">Save</string>
+    <string name="button_users_text">Users</string>
+    <string name="button_user_operations_text">User operations</string>
 
     <!-- Prompts-->
     <string name="login_prompt">Login</string>
@@ -29,7 +31,7 @@
     <string name="user_loaded_successfully_prompt">User loaded successfully</string>
     <string name="user_registered_successfully_prompt">User registered successfully</string>
     <string name="user_already_registered_prompt">User already registered</string>
-    <string name="io_problem_occurred_prompt">IO problem occurred</string>
+    <string name="data_problem_occurred_prompt">IO problem occurred</string>
     <string name="problem_occurred_prompt">Problem occurred</string>
 
     <!-- TextViews-->
@@ -73,9 +75,9 @@
     <string name="alert_dialog_close_close">Close</string>
     <string name="alert_dialog_confirm_password_title">Confirm Password</string>
     <string name="alert_dialog_confirm_password_message">You must confirm Password</string>
-    <string name="alert_dialog_confirm_password_ok">OK</string>
+    <string name="alert_dialog_ok">OK</string>
     <string name="alert_dialog_user_already_saved_title">Username already saved</string>
     <string name="alert_dialog_user_already_saved_message">Please select option</string>
-
-
+    <string name="alert_dialog_user_login_problem_title">Login problem</string>
+    <string name="alert_dialog_user_login_problem_message">Can not login</string>
 </resources>

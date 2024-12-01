@@ -13,10 +13,14 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.csystem.app.android.basicviews.constant.USERNAME
+import org.csystem.app.android.basicviews.data.service.UserService
+import org.csystem.app.android.basicviews.model.LoginInfoModel
+import org.csystem.data.exception.DataServiceException
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mToggleButtonOpenLogin: ToggleButton
@@ -29,17 +33,37 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private lateinit var mSwitchAccept: Switch
 
+    private lateinit var mLoginInfoModel: LoginInfoModel
+    private lateinit var mUserService: UserService
+
+    private fun fillLoginInfoModel() {
+        mLoginInfoModel = LoginInfoModel(mEditTextUsername.text.toString(), mEditTextPassword.text.toString())
+    }
+
+    private fun checkUser() =  mUserService.existsByUsernameAndPassword(mLoginInfoModel.username, mLoginInfoModel.password)
+
     private fun doLogin() {
-        mTextViewStatus.text = ""
-        if (!mCheckBoxAnonymous.isChecked) {
-            val username = mEditTextUsername.text.toString()
-            val password = mEditTextPassword.text.toString()
-
-            //...
-
-            Intent(this, ManagementActivity::class.java).apply { putExtra(USERNAME, username);startActivity(this) }
-        } else
-            Intent(this, ManagementActivity::class.java).apply { startActivity(this) }
+        try {
+            mTextViewStatus.text = ""
+            if (!mCheckBoxAnonymous.isChecked) {
+                fillLoginInfoModel()
+                if (checkUser())
+                    Intent(this, ManagementActivity::class.java)
+                        .apply { putExtra(USERNAME, mLoginInfoModel.username);startActivity(this) }
+                else
+                    AlertDialog.Builder(this)
+                        .setTitle(R.string.alert_dialog_user_login_problem_title)
+                        .setMessage(R.string.alert_dialog_user_login_problem_message)
+                        .setPositiveButton(R.string.alert_dialog_ok) { _, _ -> }
+                        .create()
+                        .show()
+            } else
+                Intent(this, ManagementActivity::class.java).apply { startActivity(this) }
+        } catch (ex: DataServiceException) {
+            Toast.makeText(this, R.string.data_problem_occurred_prompt, Toast.LENGTH_LONG).show()
+        } catch (ex: Exception) {
+            Toast.makeText(this, R.string.problem_occurred_prompt, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun loginButtonClickedCallback() {
@@ -86,6 +110,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialize() {
+        mUserService = UserService(this)
         initViews()
     }
 
