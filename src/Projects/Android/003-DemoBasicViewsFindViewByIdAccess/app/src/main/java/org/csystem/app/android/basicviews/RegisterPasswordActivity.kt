@@ -14,7 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.csystem.app.android.basicviews.constant.REGISTER_INFO
 import org.csystem.app.android.basicviews.data.service.UserService
-import org.csystem.app.android.basicviews.model.RegisterInfoModel
+import org.csystem.app.android.basicviews.model.UserInfoModel
 import org.csystem.data.exception.DataServiceException
 
 private const val USER_EXISTS_INFO_LOG_TAG = "USER_EXIST_INFO"
@@ -23,7 +23,7 @@ class RegisterPasswordActivity : AppCompatActivity() {
     private lateinit var mTextViewTitle: TextView
     private lateinit var mEditTextPassword: EditText
     private lateinit var mEditTextConfirmPassword: EditText
-    private lateinit var mRegisterInfoModel: RegisterInfoModel
+    private lateinit var mUserInfoModel: UserInfoModel
     private lateinit var mUserService: UserService
 
     private fun registerUserInfo(password: String)  {
@@ -31,8 +31,8 @@ class RegisterPasswordActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.user_already_registered_prompt, Toast.LENGTH_LONG).show()
             return
         }
-        mRegisterInfoModel.password = password
-        mUserService.registerUser(mRegisterInfoModel)
+        mUserInfoModel.password = password
+        mUserService.registerUser(mUserInfoModel)
         Toast.makeText(this, R.string.user_registered_successfully_prompt, Toast.LENGTH_LONG).show()
         finish()
     }
@@ -41,7 +41,7 @@ class RegisterPasswordActivity : AppCompatActivity() {
         var result = false
 
         try {
-            result = mUserService.existsByUsername(mRegisterInfoModel.username)
+            result = mUserService.existsByUsername(mUserInfoModel.username)
         } catch (ex: DataServiceException) {
             Log.e(USER_EXISTS_INFO_LOG_TAG, ex.message ?: "")
             Toast.makeText(this, R.string.data_problem_occurred_prompt, Toast.LENGTH_LONG).show()
@@ -55,7 +55,7 @@ class RegisterPasswordActivity : AppCompatActivity() {
 
     private fun initTextViewTitle() {
         mTextViewTitle = findViewById(R.id.registerPasswordActivityTextViewTitle)
-        mTextViewTitle.text = resources.getString(R.string.text_view_register_password_title).format(mRegisterInfoModel.username)
+        mTextViewTitle.text = resources.getString(R.string.text_view_register_password_title).format(mUserInfoModel.username)
     }
 
     private fun initViews() {
@@ -66,9 +66,9 @@ class RegisterPasswordActivity : AppCompatActivity() {
 
     private fun initialize() {
         mUserService = UserService(this)
-        mRegisterInfoModel = when {
-            Build.VERSION.SDK_INT < 33 -> intent.getSerializableExtra(REGISTER_INFO) as RegisterInfoModel
-            else -> intent.getSerializableExtra(REGISTER_INFO, RegisterInfoModel::class.java)!!
+        mUserInfoModel = when {
+            Build.VERSION.SDK_INT < 33 -> intent.getSerializableExtra(REGISTER_INFO) as UserInfoModel
+            else -> intent.getSerializableExtra(REGISTER_INFO, UserInfoModel::class.java)!!
         }
         initViews()
     }

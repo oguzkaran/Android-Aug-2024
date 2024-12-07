@@ -19,6 +19,7 @@
     <string name="button_save_text">Kaydet</string>
     <string name="button_users_text">Kullanıcılar</string>
     <string name="button_user_operations_text">Kullanıcı işlemleri</string>
+    <string name="button_load_users_text">Kullanıcıları Yükle</string>
 
     <!-- Prompts-->
     <string name="login_prompt">Giriş</string>
@@ -57,9 +58,9 @@
     <string name="checkbox_anonymous_text">Anonim</string>
 
     <!-- RadioButtons and RadioGroups-->
-    <string name="radiobutton_marital_status_single">Bekar</string>
-    <string name="radiobutton_marital_status_married">Evli</string>
-    <string name="radiobutton_marital_status_divorced">Dul</string>
+    <string name="spinner_marital_status_single">Bekar</string>
+    <string name="spinner_marital_status_married">Evli</string>
+    <string name="spinner_marital_status_divorced">Dul</string>
     <string name="radiobutton_last_education_degree_primary">İlkokul</string>
     <string name="radiobutton_last_education_degree_secondary">Lise</string>
     <string name="radiobutton_last_education_degree_bachelor">Lisans</string>

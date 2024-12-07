@@ -33,6 +33,7 @@
     <string name="user_already_registered_prompt">Пользователь уже зарегистрирован</string>
     <string name="data_problem_occurred_prompt">Возникла проблема IO</string>
     <string name="problem_occurred_prompt">Возникла проблема</string>
+    <string name="button_load_users_text">Загрузить пользователей</string>
 
     <!-- TextViews-->
     <string name="text_view_login_title">Вход</string>
@@ -57,9 +58,9 @@
     <string name="checkbox_anonymous_text">Анонимно</string>
 
     <!-- RadioButtons and RadioGroups-->
-    <string name="radiobutton_marital_status_single">Не женат / Не замужем</string>
-    <string name="radiobutton_marital_status_married">Женат / Замужем</string>
-    <string name="radiobutton_marital_status_divorced">В разводе</string>
+    <string name="spinner_marital_status_single">Не женат / Не замужем</string>
+    <string name="spinner_marital_status_married">Женат / Замужем</string>
+    <string name="spinner_marital_status_divorced">В разводе</string>
     <string name="radiobutton_last_education_degree_primary">Начальное</string>
     <string name="radiobutton_last_education_degree_secondary">Среднее</string>
     <string name="radiobutton_last_education_degree_bachelor">Бакалавриат</string>

@@ -65,34 +65,13 @@
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             android:text="@string/text_view_marital_status_title" />
-        <RadioGroup
-            android:id="@+id/registerActivityRadioGroupMaritalStatus"
+
+        <Spinner
+            android:id="@+id/registerActivitySpinnerMaritalStatus"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:checkedButton="@id/registerActivityRadioButtonSingle">
+            android:layout_height="wrap_content" />
 
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonSingle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/radiobutton_marital_status_single" />
 
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonMarried"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/radiobutton_marital_status_married" />
-
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonDivorced"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/radiobutton_marital_status_divorced" />
-        </RadioGroup>
     </LinearLayout>
 
     <LinearLayout

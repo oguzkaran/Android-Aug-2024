@@ -3,13 +3,14 @@ package org.csystem.app.android.basicviews.data.service
 import android.content.Context
 import org.csystem.app.android.basicviews.constant.USERS_FILE_PATH
 import org.csystem.app.android.basicviews.constant.USERS_FORMAT
-import org.csystem.app.android.basicviews.model.RegisterInfoModel
+import org.csystem.app.android.basicviews.model.UserInfoModel
 import org.csystem.data.exception.DataServiceException
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.EOFException
 import java.io.File
 import java.io.FileInputStream
+import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStreamReader
@@ -23,28 +24,28 @@ private const val DELIMITER = ":"
 class UserService(context: Context) {
     private val mContext = context
 
-    private fun writeRegisterInfo(bw: BufferedWriter, registerInfoModel: RegisterInfoModel) {
-        bw.write("${registerInfoModel.username}$DELIMITER")
-        bw.write("${registerInfoModel.name}$DELIMITER")
-        bw.write("${registerInfoModel.email}$DELIMITER")
-        bw.write("${registerInfoModel.maritalStatus}$DELIMITER")
-        bw.write("${registerInfoModel.lastEducation}")
+    private fun writeRegisterInfo(bw: BufferedWriter, userInfoModel: UserInfoModel) {
+        bw.write("${userInfoModel.username}$DELIMITER")
+        bw.write("${userInfoModel.name}$DELIMITER")
+        bw.write("${userInfoModel.email}$DELIMITER")
+        bw.write("${userInfoModel.maritalStatus}$DELIMITER")
+        bw.write("${userInfoModel.lastEducation}")
     }
 
-    private fun loadRegisterInfo(br: BufferedReader, username: String): RegisterInfoModel {
+    private fun loadRegisterInfo(br: BufferedReader, username: String): UserInfoModel {
         val str = br.readLine() ?: throw IOException()
         val info = str.split(DELIMITER)
 
-        return RegisterInfoModel(username, info[1], info[2], info[3][0], info[4].toInt())
+        return UserInfoModel(username, info[1], info[2], info[3][0], info[4].toInt())
     }
 
-    private fun userFilterCallback(fis: FileInputStream, predicate: (RegisterInfoModel) -> Boolean): Boolean {
+    private fun userFilterCallback(fis: FileInputStream, predicate: (UserInfoModel) -> Boolean): Boolean {
         var result = false
 
         try {
             while (true) {
                 val ois = ObjectInputStream(fis)
-                val ri = ois.readObject() as RegisterInfoModel
+                val ri = ois.readObject() as UserInfoModel
 
                 if (predicate(ri)) {
                     result = true
@@ -58,13 +59,13 @@ class UserService(context: Context) {
         return result
     }
 
-    private fun findUsersBy(fis: FileInputStream, predicate: (RegisterInfoModel) -> Boolean): List<RegisterInfoModel> {
-        val users = ArrayList<RegisterInfoModel>()
+    private fun findUsersBy(fis: FileInputStream, predicate: (UserInfoModel) -> Boolean): List<UserInfoModel> {
+        val users = ArrayList<UserInfoModel>()
 
         try {
             while (true) {
                 val ois = ObjectInputStream(fis)
-                val ri = ois.readObject() as RegisterInfoModel
+                val ri = ois.readObject() as UserInfoModel
 
                 if (predicate(ri))
                     users.add(ri)
@@ -76,9 +77,9 @@ class UserService(context: Context) {
         return users
     }
 
-    fun saveUserData(registerInfoModel: RegisterInfoModel) {
+    fun saveUserData(userInfoModel: UserInfoModel) {
         try {
-            val username = registerInfoModel.username
+            val username = userInfoModel.username
 
             BufferedWriter(
                 OutputStreamWriter(
@@ -90,13 +91,13 @@ class UserService(context: Context) {
                     ), StandardCharsets.UTF_8
                 )
             )
-                .use { writeRegisterInfo(it, registerInfoModel) }
+                .use { writeRegisterInfo(it, userInfoModel) }
         } catch (ex: IOException) {
             throw DataServiceException("UserService.saveUserData", ex)
         }
     }
 
-    fun findByUsername(username: String): RegisterInfoModel? {
+    fun findByUsername(username: String): UserInfoModel? {
         try {
             val file = File(mContext.filesDir, USERS_FORMAT.format("$username.txt"))
 
@@ -110,19 +111,35 @@ class UserService(context: Context) {
                     ), StandardCharsets.UTF_8
                 )
             ).use { loadRegisterInfo(it, username) } else null
+        } catch (_ : FileNotFoundException) {
+            return null
         } catch (ex: IOException) {
             throw DataServiceException("UserService.findByUsername", ex)
         }
     }
 
-    fun registerUser(registerInfoModel: RegisterInfoModel) {
+    fun findUsers(count: Int): List<UserInfoModel> {
+        val users = ArrayList<UserInfoModel>()
+        var n = 0
+
         try {
-            ObjectOutputStream(FileOutputStream(File(mContext.filesDir, USERS_FILE_PATH), true))
-                .use { it.writeObject(registerInfoModel) }
-            File(mContext.filesDir, USERS_FORMAT.format("${registerInfoModel.username}.txt")).delete()
-        } catch (ex: IOException) {
-            throw DataServiceException("UserService.register", ex)
+            val fis = FileInputStream(File(mContext.filesDir, USERS_FILE_PATH))
+
+            while (true) {
+                val ois = ObjectInputStream(fis)
+                val ri = ois.readObject() as UserInfoModel
+
+                if (n++ != count)
+                    users.add(ri)
+            }
+        } catch (_ : FileNotFoundException) {
+
         }
+        catch (_: EOFException) {
+
+        }
+
+        return users
     }
 
     fun isUserSaved(username: String): Boolean {
@@ -134,20 +151,33 @@ class UserService(context: Context) {
     }
 
     fun existsByUsername(username: String): Boolean {
-        try {
-            return FileInputStream(File(mContext.filesDir, USERS_FILE_PATH)).use { userFilterCallback(it) {it.username == username} }
+        return try {
+            FileInputStream(File(mContext.filesDir, USERS_FILE_PATH)).use { userFilterCallback(it) {ui -> ui.username == username} }
+        } catch (_ : FileNotFoundException) {
+            false
         } catch (ex: IOException) {
             throw DataServiceException("UserService.existsByUsername", ex)
         }
     }
 
     fun existsByUsernameAndPassword(username: String, password: String): Boolean {
-        try {
-            return FileInputStream(File(mContext.filesDir, USERS_FILE_PATH))
-                .use { userFilterCallback(it) {it.username == username && it.password == password} }
+        return try {
+            FileInputStream(File(mContext.filesDir, USERS_FILE_PATH))
+                .use { userFilterCallback(it) {ui -> ui.username == username && ui.password == password} }
+        } catch (_ : FileNotFoundException) {
+            false
         } catch (ex: IOException) {
             throw DataServiceException("UserService.existsByUsernameAndPassword", ex)
         }
     }
 
+    fun registerUser(userInfoModel: UserInfoModel) {
+        try {
+            ObjectOutputStream(FileOutputStream(File(mContext.filesDir, USERS_FILE_PATH), true))
+                .use { it.writeObject(userInfoModel) }
+            File(mContext.filesDir, USERS_FORMAT.format("${userInfoModel.username}.txt")).delete()
+        } catch (ex: IOException) {
+            throw DataServiceException("UserService.register", ex)
+        }
+    }
 }
