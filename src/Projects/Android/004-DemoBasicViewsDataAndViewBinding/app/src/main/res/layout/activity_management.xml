@@ -3,32 +3,34 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UsersActivity">
+    tools:context=".ManagementActivity">
 
     <TextView
-        android:id="@+id/usersActivityTextViewUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <EditText
-        android:id="@+id/usersActivityEditTextCount"
+        android:id="@+id/managementActivityTextViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="@string/edit_text_count_hint"/>
+        android:fontFamily="casual"
+        android:text="@string/text_view_management_title" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_users_text"
-        android:onClick="onLoadUsersButtonClicked"/>
+        android:onClick="onUsersButtonClicked"/>
 
-    <ListView
-        android:id="@+id/usersActivityListViewUsers"
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:text="@string/button_user_operations_text"
+        android:onClick="onUserOperationsButtonClicked"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_close_text"
+        android:onClick="onCloseButtonClicked"/>
 </LinearLayout>
