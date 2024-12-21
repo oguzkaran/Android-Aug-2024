@@ -1,16 +1,9 @@
 package org.csystem.app.android.basicviews
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.LinearLayout
-import android.widget.Switch
-import android.widget.TextView
 import android.widget.Toast
-import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -25,23 +18,14 @@ import org.csystem.data.exception.DataServiceException
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
-
-    private lateinit var mToggleButtonOpenLogin: ToggleButton
-    private lateinit var mLinearLayoutLoginScreen: LinearLayout
-    private lateinit var mCheckBoxAnonymous: CheckBox
-    private lateinit var mButtonLogin: Button
-    private lateinit var mTextViewStatus: TextView
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    private lateinit var mSwitchAccept: Switch
-
     private lateinit var mUserService: UserService
 
     private fun checkUser() =  mUserService.existsByUsernameAndPassword(mBinding.loginInfo!!.username, mBinding.loginInfo!!.password)
 
     private fun doLogin() {
         try {
-            mTextViewStatus.text = ""
-            if (!mCheckBoxAnonymous.isChecked) {
+            mBinding.statusText = ""
+            if (!mBinding.anonymousChecked) {
                 if (checkUser())
                     Intent(this, ManagementActivity::class.java)
                         .apply { putExtra(USERNAME, mBinding.loginInfo?.username);startActivity(this) }
@@ -61,53 +45,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginButtonClickedCallback() {
-        doLogin()
-    }
-
-    private fun acceptSwitchCheckedChangeCallback(isChecked: Boolean) {
-        mButtonLogin.isEnabled = isChecked
-        mTextViewStatus.text = if (isChecked) resources.getString(R.string.status_accepted_message) else resources.getString(R.string.status_not_accepted_message)
-    }
-
-    private fun openLoginToggleButtonCheckedChangeCallback(isChecked: Boolean) {
-        mLinearLayoutLoginScreen.visibility = if (isChecked) View.VISIBLE else View.GONE
-    }
-
-    private fun initOpenLoginToggleButton() {
-        mToggleButtonOpenLogin = findViewById(R.id.mainActivityToggleButtonOpenLogin)
-        mToggleButtonOpenLogin.setOnCheckedChangeListener{_, isChecked -> openLoginToggleButtonCheckedChangeCallback(isChecked)}
-    }
-
-    private fun initAnonymousCheckBox() {
-        mCheckBoxAnonymous = findViewById(R.id.mainActivityCheckBoxAnonymous)
-    }
-
-    private fun initLoginButton() {
-        mButtonLogin = findViewById(R.id.mainActivityButtonLogin)
-        mButtonLogin.setOnClickListener{ loginButtonClickedCallback() }
-    }
-
-    private fun initAcceptSwitch() {
-        mSwitchAccept = findViewById(R.id.mainActivitySwitchAccept)
-        mSwitchAccept.setOnCheckedChangeListener{_, isChecked -> acceptSwitchCheckedChangeCallback(isChecked)}
-    }
-
-    private fun initViews() {
-        initOpenLoginToggleButton()
-        initAnonymousCheckBox()
-        mLinearLayoutLoginScreen = findViewById<LinearLayout?>(R.id.mainActivityLinearLayoutLoginScreen).apply { visibility = View.GONE }
-
-        initLoginButton()
-        mTextViewStatus = findViewById(R.id.mainActivityTextViewStatus)
-        initAcceptSwitch()
+    private fun initModels() {
+        mBinding.activity = this
+        mBinding.loginInfo = LoginInfoModel()
+        mBinding.loginLayoutEnable = View.VISIBLE
+        mBinding.statusText = resources.getString(R.string.status_not_accepted_message)
     }
 
     private fun initBinding() {
         enableEdgeToEdge()
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        mBinding.loginInfo = LoginInfoModel()
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainActivityLinearLayoutMain)) { v, insets ->
+        initModels()
+        ViewCompat.setOnApplyWindowInsetsListener(mBinding.mainActivityLinearLayoutMain) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -117,7 +66,6 @@ class MainActivity : AppCompatActivity() {
     private fun initialize() {
         initBinding()
         mUserService = UserService(this)
-        initViews()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,31 +73,42 @@ class MainActivity : AppCompatActivity() {
         initialize()
     }
 
-    fun onCloseButtonClicked(view: View) {
-        Toast.makeText(this, R.string.close_prompt, Toast.LENGTH_LONG).show()
-        finish()
-    }
-
-    fun onClearUsernameTextButtonClicked(view: View)  {
-        mBinding.loginInfo = mBinding.loginInfo!!.copy(username = "")
-        //mBinding.mainActivityEditTextUsername.text.clear()
-    }
-
-    fun onClearPasswordTextButtonClicked(view: View) {
-        mBinding.loginInfo = mBinding.loginInfo!!.copy(password = "")
-        //mBinding.mainActivityEditTextPassword.text.clear()
-    }
-
-    fun onClearAlleButtonClicked(view: View) {
-        onClearUsernameTextButtonClicked(view)
-        onClearPasswordTextButtonClicked(view)
-    }
-
-    fun onTitleTextClicked(view: View) {
+    fun onTitleTextClicked() {
         Toast.makeText(this, R.string.click_title_prompt, Toast.LENGTH_SHORT).show()
     }
 
-    fun onRegisterButtonClicked(view: View) {
+
+    //For onClearUsernameTextButtonClicked and onClearPasswordTextButtonClicked different approaches used for demonstration
+    fun onClearUsernameTextButtonClicked() = mBinding.mainActivityEditTextUsername.text.clear()
+
+    fun onClearPasswordTextButtonClicked() {
+        mBinding.loginInfo = mBinding.loginInfo!!.copy(password = "")
+    }
+
+    fun onLoginToggleButtonCheckedChange(checked: Boolean) {
+        mBinding.loginLayoutEnable = if (checked) View.VISIBLE else View.GONE
+    }
+
+    fun onAcceptSwitchCheckedChange(checked: Boolean) {
+        mBinding.buttonLoginEnable = checked
+        mBinding.statusText = if (checked) resources.getString(R.string.status_accepted_message) else resources.getString(R.string.status_not_accepted_message)
+    }
+
+    fun onClearAllButtonClicked() {
+        onClearUsernameTextButtonClicked()
+        onClearPasswordTextButtonClicked()
+    }
+
+    fun onLoginButtonClicked() {
+        doLogin()
+    }
+
+    fun onRegisterButtonClicked() {
         Intent(this, RegisterActivity::class.java).apply { startActivity(this) }
+    }
+
+    fun onCloseButtonClicked() {
+        Toast.makeText(this, R.string.close_prompt, Toast.LENGTH_LONG).show()
+        finish()
     }
 }

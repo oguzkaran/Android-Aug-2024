@@ -3,12 +3,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="org.csystem.app.android.basicviews.model.LoginInfoModel"/>
+        <import type="org.csystem.app.android.basicviews.MainActivity"/>
         <variable name="loginInfo" type="LoginInfoModel" />
+        <variable name="activity" type="MainActivity" />
+        <variable name="buttonLoginEnable" type="boolean" />
+        <variable name="anonymousChecked" type="boolean" />
+        <variable name="loginLayoutEnable" type="int" />
+        <variable name="statusText" type="String" />
     </data>
 
-    <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mainActivityLinearLayoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,44 +20,45 @@
         tools:context=".MainActivity">
 
         <ToggleButton
-            android:id="@+id/mainActivityToggleButtonOpenLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:textOn="@string/toggle_visible_text_on"
             android:textOff="@string/toggle_visible_text_off"
+            android:onCheckedChanged="@{(_, checked) -> activity.onLoginToggleButtonCheckedChange(checked)}"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/mainActivityLinearLayoutLoginScreen"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="@{loginLayoutEnable}">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
-                android:onClick="onTitleTextClicked"
+                android:onClick="@{_ -> activity.onTitleTextClicked()}"
                 android:text="@string/text_view_login_title" />
 
             <TextView
-                android:id="@+id/mainActivityTextViewStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/status_not_accepted_message"
+                android:text="@{statusText}"
                 />
 
             <CheckBox
-                android:id="@+id/mainActivityCheckBoxAnonymous"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/checkbox_anonymous_text" />
+                android:text="@string/checkbox_anonymous_text"
+                android:checked="@={anonymousChecked}"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
 
                 <EditText
                     android:id="@+id/mainActivityEditTextUsername"
@@ -69,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/button_clear_text"
                     android:layout_weight="3"
-                    android:onClick="onClearUsernameTextButtonClicked" />
+                    android:onClick="@{_ -> activity.onClearUsernameTextButtonClicked()}" />
 
             </LinearLayout>
 
@@ -77,8 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <EditText
-                    android:id="@+id/mainActivityEditTextPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/edit_text_password_hint"
@@ -90,42 +95,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/button_clear_text"
-                    android:onClick="onClearPasswordTextButtonClicked"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:onClick="@{_ -> activity.onClearPasswordTextButtonClicked()}"/>
             </LinearLayout>
 
             <Switch
-                android:id="@+id/mainActivitySwitchAccept"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/switch_accept_text"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                tools:ignore="UseSwitchCompatOrMaterialXml"
+                android:onCheckedChanged="@{(_, checked) -> activity.onAcceptSwitchCheckedChange(checked)}"/>
 
             <Button
-                android:id="@+id/mainActivityButtonLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="@string/button_login_text" />
+                android:enabled="@{buttonLoginEnable}"
+                android:text="@string/button_login_text"
+                android:onClick="@{_ -> activity.onLoginButtonClicked()}"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_clear_text"
-                android:onClick="onClearAlleButtonClicked" />
+                android:onClick="@{_ -> activity.onClearAllButtonClicked()}"/>
         </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_register_text"
-            android:onClick="onRegisterButtonClicked"/>
+            android:onClick="@{_ -> activity.onRegisterButtonClicked()}"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_close_text"
-            android:onClick="onCloseButtonClicked" />
-
+            android:onClick="@{_ -> activity.onCloseButtonClicked()}"/>
     </LinearLayout>
 </layout>

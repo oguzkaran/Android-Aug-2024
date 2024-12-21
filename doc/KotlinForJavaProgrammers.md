@@ -16174,23 +16174,21 @@ fun sum(init: Int, vararg values: Int): Int {
 ```
 
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
 >JVM'de ve ART'de bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:
 >
->1. __<u>Strongly reachable:</u>__ Bir nesneyi en az bir referans gösteriyorsa bu şekilde erişilebiliyordur. Bu durumda nesne garbage collector (gc) tarafından yok edilemez.
+>1. **Strongly reachable:** Bir nesneyi en az bir referans gösteriyorsa bu şekilde erişilebiliyordur. Bu durumda nesne garbage collector (gc) tarafından yok edilemez.
 >
->2. __<u>Softly reachable:</u>__ __"Strongly reachable"__ olmayan fakat adresi SoftReference isimli sınıf nesne veya nesneleri içerisinde tutulan bir nesne __"soft reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler bellek ihtiyacı olduğu durumlarda yok edilirler. Aslında teknik olarak SoftReference nesnesi içerisinde tutulan adreslere ilişkin nesneler SoftReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler.
+>2. **Softly reachable:** Strongly reachable olmayan fakat adresi **SoftReference** isimli sınıf nesne veya nesneleri içerisinde tutulan bir nesne **soft reachable** erişimlidir. Bu şekilde erişime sahip nesneler bellek ihtiyacı olduğu durumlarda yok edilirler. Aslında teknik olarak SoftReference nesnesi içerisinde tutulan adreslere ilişkin nesneler SoftReference nesnesinden kopartıldıklarında garbage collected duruma gelirler.
 >
->3. __<u>Weakly reachable:</u>__ __"Strongly reachable"__ ve __"softly reachable"__ olmayan fakat adresi WeakReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"weakly reachble"__ erişimlidir. Bu şekilde erişime sahip nesneler __"garbage collected"__ olmaya adaydırlar. Aslında teknik olarak WeakReference nesnesi içerisinde tutulan adreslere ilişkin nesneler WeakReference nesnesinden kopartıldıklarında __"garbage collected"__ duruma gelirler. GC, bir nesne yalnızca WeakReference ile gösteriliyorsa o nesneyi WeakReference'dan kopartır.
+>3. **Weakly reachable:** Strongly reachable ve softly reachable olmayan fakat adresi **WeakReference** isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne **weakly reachable** erişimlidir. Bu şekilde erişime sahip nesneler garbage collected olmaya adaydırlar. Aslında teknik olarak WeakReference nesnesi içerisinde tutulan adreslere ilişkin nesneler WeakReference nesnesinden kopartıldıklarında garbage collected duruma gelirler. GC, bir nesne yalnızca WeakReference ile gösteriliyorsa o nesneyi WeakReference'dan kopartır.
 >
->4. __<u>Phantom reachable:</u>__ __"Strongly reachable"__, __"softly reachable"__ ve __"weakly reachable"__ olmayan fakat adresi, PhantomReference isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne __"phantom reachable"__ erişimlidir. Bu şekilde erişime sahip nesneler kabaca söylemek gerekirse bir kuyruğa atılır hemen yok edilmeyebilir. Yüksek seviyede pratik bir kullanımı yoktur.
+>4. **Phantom reachable:** Strongly reachable, softly reachable ve weakly reachable olmayan fakat adresi, **PhantomReference** isimli sınıf nesnesi veya nesneleri içerisinde tutulan bir nesne **phantom reachable** erişimlidir. Bu şekilde erişime sahip nesneler kabaca söylemek gerekirse bir kuyruğa atılır hemen yok edilmeyebilir. Yüksek seviyede pratik bir kullanımı yoktur.
 >
->5. __<u>Unreachable:</u>__ Yukarıdaki erişmlerin hiç birinin olmadığı artık __"garbage collected/eligible"__ duruma gelmiş nesnedir.
+>5. **Unreachable:** Yukarıdaki erişmlerin hiç birinin olmadığı artık garbage collected/eligible duruma gelmiş nesnedir.
 
-**_Anahtar Notlar:_** JVM'de genel olarak, klasik referanslara (yani referans dendiğinde) __"hard reference"__, SoftReference ile tutulan referansa __"soft reference"__, WeakReference ile tutulan referanslara __"weak reference"__ ve PhantomReference ile tutulan referansları __"phantom reference"__ da denilmektedir.
+**_Anahtar Notlar:_** JVM'de genel olarak, klasik referanslara (yani referans dendiğinde) **hard reference**, SoftReference ile tutulan referansa **soft reference**, WeakReference ile tutulan referanslara **weak reference** ve PhantomReference ile tutulan referanslara **phantom reference** da denilmektedir.
 
->Yukarıdaki anlatılanların özellikle aşağı seviyede detayları vardır. Burada ele alınmayacaktır. Özellikle Android uygulamalarında __"memory leak__" oluşumunu engellemek için WeakReference sınıfı çeşitli durumlarda çözüm olarak kullanılabilir. Bunlar kursumuzda projeler içerisinde çeşitli durumlarda kullanılmıştır
+>Yukarıdaki anlatılanların özellikle aşağı seviyede detayları vardır. Burada ele alınmayacaktır. Özellikle Android uygulamalarında **memory leak** oluşumunu engellemek için WeakReference sınıfı çeşitli durumlarda çözüm olarak kullanılabilir. Bunlar kursumuzda projeler içerisinde çeşitli durumlarda kullanılmıştır
 
 
 >Bir kütüphaneyi (.aar veya .jar olarak) Android uygulamasında kullanmak için yöntemler genel olarak şunlardır:
