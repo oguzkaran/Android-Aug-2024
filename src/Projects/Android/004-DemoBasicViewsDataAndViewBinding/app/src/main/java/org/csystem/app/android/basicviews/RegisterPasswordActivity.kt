@@ -3,27 +3,23 @@ package org.csystem.app.android.basicviews
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.databinding.DataBindingUtil
 import org.csystem.app.android.basicviews.constant.REGISTER_INFO
 import org.csystem.app.android.basicviews.data.service.UserService
+import org.csystem.app.android.basicviews.databinding.ActivityRegisterPasswordBinding
 import org.csystem.app.android.basicviews.model.UserInfoModel
 import org.csystem.data.exception.DataServiceException
 
 private const val USER_EXISTS_INFO_LOG_TAG = "USER_EXIST_INFO"
 
 class RegisterPasswordActivity : AppCompatActivity() {
-    private lateinit var mTextViewTitle: TextView
-    private lateinit var mEditTextPassword: EditText
-    private lateinit var mEditTextConfirmPassword: EditText
-    private lateinit var mUserInfoModel: UserInfoModel
+    private lateinit var mBinding: ActivityRegisterPasswordBinding
     private lateinit var mUserService: UserService
 
     private fun registerUserInfo(password: String)  {
@@ -31,8 +27,8 @@ class RegisterPasswordActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.user_already_registered_prompt, Toast.LENGTH_LONG).show()
             return
         }
-        mUserInfoModel.password = password
-        mUserService.registerUser(mUserInfoModel)
+        mBinding.userInfo?.password = password
+        mUserService.registerUser(mBinding.userInfo!!)
         Toast.makeText(this, R.string.user_registered_successfully_prompt, Toast.LENGTH_LONG).show()
         finish()
     }
@@ -41,7 +37,7 @@ class RegisterPasswordActivity : AppCompatActivity() {
         var result = false
 
         try {
-            result = mUserService.existsByUsername(mUserInfoModel.username)
+            result = mUserService.existsByUsername(mBinding.userInfo!!.username)
         } catch (ex: DataServiceException) {
             Log.e(USER_EXISTS_INFO_LOG_TAG, ex.message ?: "")
             Toast.makeText(this, R.string.data_problem_occurred_prompt, Toast.LENGTH_LONG).show()
@@ -53,44 +49,43 @@ class RegisterPasswordActivity : AppCompatActivity() {
         return result
     }
 
-    private fun initTextViewTitle() {
-        mTextViewTitle = findViewById(R.id.registerPasswordActivityTextViewTitle)
-        mTextViewTitle.text = resources.getString(R.string.text_view_register_password_title).format(mUserInfoModel.username)
-    }
-
-    private fun initViews() {
-        initTextViewTitle()
-        mEditTextPassword = findViewById(R.id.registerPasswordActivityEditTextPassword)
-        mEditTextConfirmPassword = findViewById(R.id.registerPasswordActivityEditTextConfirmPassword)
-    }
-
-    private fun initialize() {
-        mUserService = UserService(this)
-        mUserInfoModel = when {
+    private fun initModels() {
+        mBinding.activity = this
+        mBinding.userInfo = UserInfoModel()
+        mBinding.userInfo = when {
             Build.VERSION.SDK_INT < 33 -> intent.getSerializableExtra(REGISTER_INFO) as UserInfoModel
             else -> intent.getSerializableExtra(REGISTER_INFO, UserInfoModel::class.java)!!
         }
-        initViews()
+        mBinding.title = resources.getString(R.string.text_view_register_password_title).format(mBinding.userInfo!!.username)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private fun initBinding() {
         enableEdgeToEdge()
-        setContentView(R.layout.activity_register_password)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_register_password)
+        ViewCompat.setOnApplyWindowInsetsListener(mBinding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        initModels()
+    }
+
+    private fun initialize() {
+        initBinding()
+        mUserService = UserService(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         initialize()
     }
 
-    fun onRegisterButtonClicked(view: View) {
-        val password = mEditTextPassword.text.toString()
-        val confirmPassword = mEditTextConfirmPassword.text.toString()
+    fun onRegisterButtonClicked() {
+        val password = mBinding.userInfo?.password
+        val confirmPassword = mBinding.confirmPassword
 
         if (password == confirmPassword)
-            registerUserInfo(password)
+            registerUserInfo(password!!)
         else
             AlertDialog.Builder(this)
                 .setTitle(R.string.alert_dialog_confirm_password_title)
@@ -100,5 +95,5 @@ class RegisterPasswordActivity : AppCompatActivity() {
                 .show()
     }
 
-    fun onCloseButtonClicked(view: View) = finish()
+    fun onCloseButtonClicked() = finish()
 }

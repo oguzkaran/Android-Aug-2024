@@ -1,152 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".RegisterActivity">
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="org.csystem.app.android.basicviews.RegisterActivity"/>
+        <import type="org.csystem.app.android.basicviews.model.UserInfoModel"/>
+        <import type="android.widget.ArrayAdapter"/>
+        <variable name="activity" type="RegisterActivity"/>
+        <variable name="userInfo" type="UserInfoModel"/>
+        <variable name="selectedItemPosition" type="int"/>
+        <variable name="maritalStatusAdapter" type="ArrayAdapter&lt;String&gt;"/>
+        <variable name="selectedItemPosition" type="int"/>
+        <variable name="checkedRadioId" type="int"/>
+    </data>
 
     <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:layout_weight="2"
-            android:text="@string/text_view_register_title" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_load_text"
-            android:layout_weight="3"
-            android:onClick="onLoadButtonClicked"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".RegisterActivity">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_save_text"
-            android:layout_weight="3"
-            android:onClick="onSaveButtonClicked"/>
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/registerActivityEditTextUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_text_username_hint"
-        android:inputType="text"/>
-
-    <EditText
-        android:id="@+id/registerActivityEditTextName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_text_name_hint"
-        android:inputType="text"/>
-
-    <EditText
-        android:id="@+id/registerActivityEditTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_text_email_hint"
-        android:inputType="textEmailAddress"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/text_view_marital_status_title" />
-
-        <Spinner
-            android:id="@+id/registerActivitySpinnerMaritalStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
-                android:layout_weight="1"
-                android:text="@string/text_view_last_education_degree_title" />
+                android:layout_weight="2"
+                android:text="@string/text_view_register_title" />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="@string/button_clear_text"
-                android:onClick="onClearButtonClicked" />
+                android:text="@string/button_load_text"
+                android:layout_weight="3"
+                android:onClick="@{_ -> activity.onLoadButtonClicked()}"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_save_text"
+                android:layout_weight="3"
+                android:onClick="@{_ -> activity.onSaveButtonClicked()}"/>
         </LinearLayout>
-        <RadioGroup
-            android:id="@+id/registerActivityRadioGroupLastEducationDegree"
+
+        <EditText
+            android:id="@+id/registerActivityEditTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_username_hint"
+            android:inputType="text"
+            android:text="@={userInfo.username}"/>
+
+        <EditText
+            android:id="@+id/registerActivityEditTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_name_hint"
+            android:inputType="text"
+            android:text="@={userInfo.name}"/>
+
+        <EditText
+            android:id="@+id/registerActivityEditTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_email_hint"
+            android:inputType="textEmailAddress"
+            android:text="@={userInfo.email}"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonPrimary"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:tag="1"
-                android:text="@string/radiobutton_last_education_degree_primary" />
+                android:fontFamily="casual"
+                android:text="@string/text_view_marital_status_title" />
 
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonSecondary"
+            <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:tag="2"
-                android:text="@string/radiobutton_last_education_degree_secondary" />
+                android:selectedItemPosition="@={selectedItemPosition}"
+                android:adapter="@{maritalStatusAdapter}"
+                android:onItemSelected="@{(p0, p1, pos, p4) -> activity.onItemSelected(pos)}"/>
+        </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonBachelor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:tag="3"
-                android:text="@string/radiobutton_last_education_degree_bachelor" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonMaster"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:tag="4"
-                android:text="@string/radiobutton_last_education_degree_master" />
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonPhd"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="casual"
+                    android:layout_weight="1"
+                    android:text="@string/text_view_last_education_degree_title" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="@string/button_clear_text"
+                    android:onClick="@{_ -> activity.onClearButtonClicked()}" />
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/registerActivityRadioGroupLastEducationDegree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:tag="5"
-                android:text="@string/radiobutton_last_education_degree_phd" />
-        </RadioGroup>
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:tag="1"
+                    android:text="@string/radiobutton_last_education_degree_primary" />
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonSecondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:tag="2"
+                    android:text="@string/radiobutton_last_education_degree_secondary" />
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonBachelor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:tag="3"
+                    android:text="@string/radiobutton_last_education_degree_bachelor" />
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonMaster"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:tag="4"
+                    android:text="@string/radiobutton_last_education_degree_master" />
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonPhd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:tag="5"
+                    android:text="@string/radiobutton_last_education_degree_phd" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_continue_text"
+            android:onClick="@{_ -> activity.onContinueButtonClicked()}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_close_text"
+            android:onClick="@{_ -> activity.onCloseButtonClicked()}" />
     </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_continue_text"
-        android:onClick="onContinueButtonClicked"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_close_text"
-        android:onClick="onCloseButtonClicked" />
-</LinearLayout>
+</layout>

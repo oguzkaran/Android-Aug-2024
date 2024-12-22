@@ -12,6 +12,7 @@ import org.csystem.app.android.basicviews.constant.USERNAME
 
 class ManagementActivity : AppCompatActivity() {
     private lateinit var mTextViewTitle: TextView
+
     private fun initTitle() {
         mTextViewTitle = findViewById(R.id.managementActivityTextViewTitle)
         mTextViewTitle.text = intent.getStringExtra(USERNAME) ?: resources.getString(R.string.checkbox_anonymous_text)
