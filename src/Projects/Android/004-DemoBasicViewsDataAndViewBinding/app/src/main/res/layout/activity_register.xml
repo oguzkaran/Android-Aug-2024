@@ -10,7 +10,6 @@
         <variable name="userInfo" type="UserInfoModel"/>
         <variable name="selectedItemPosition" type="int"/>
         <variable name="maritalStatusAdapter" type="ArrayAdapter&lt;String&gt;"/>
-        <variable name="selectedItemPosition" type="int"/>
         <variable name="checkedRadioId" type="int"/>
     </data>
 
