@@ -1,4 +1,4 @@
-package org.csystem.data.exception;
+package org.csystem.data.service.exception;
 
 
 public class DataServiceException extends RuntimeException {
