@@ -11,6 +11,7 @@
         <variable name="selectedItemPosition" type="int"/>
         <variable name="maritalStatusAdapter" type="ArrayAdapter&lt;String&gt;"/>
         <variable name="checkedRadioId" type="int"/>
+        <variable name="title" type="String"/>
     </data>
 
     <LinearLayout
@@ -31,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:layout_weight="2"
-                android:text="@string/text_view_register_title" />
+                android:text="@{title}" />
 
             <Button
                 android:layout_width="match_parent"

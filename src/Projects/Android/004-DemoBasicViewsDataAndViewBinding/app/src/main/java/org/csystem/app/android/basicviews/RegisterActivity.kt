@@ -9,12 +9,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import org.csystem.android.library.util.datetime.DataTimeFormatterUtil
 import org.csystem.app.android.basicviews.constant.MARITAL_STATUS_TAGS
 import org.csystem.app.android.basicviews.constant.REGISTER_INFO
-import org.csystem.app.android.basicviews.data.service.UserService
 import org.csystem.app.android.basicviews.databinding.ActivityRegisterBinding
 import org.csystem.app.android.basicviews.model.UserInfoModel
+import org.csystem.app.basicviews.data.service.UserService
 import org.csystem.data.exception.DataServiceException
+import java.time.LocalDateTime
 
 private const val SAVE_REGISTER_INFO_LOG_TAG = "SAVE_REGISTER_INFO"
 private const val LOAD_REGISTER_INFO_LOG_TAG = "LOAD_REGISTER_INFO"
@@ -99,6 +101,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initModels() {
         mBinding.activity = this
+        mBinding.title = resources.getString(R.string.text_view_register_title).format(DataTimeFormatterUtil.DATETIME_FORMATTER_TR.format(LocalDateTime.now()))
         mBinding.userInfo = UserInfoModel()
         initMaritalStatusModel()
     }

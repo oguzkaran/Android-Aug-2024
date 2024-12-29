@@ -43,7 +43,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -54,4 +53,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     coreLibraryDesugaring(libs.desugar.jdk.libs)
+
+    implementation(project(":DataServiceLibrary"))
+    implementation(files("libs/DateTimeUtilLib.aar"))
+    implementation(libs.org.csystem.data)
 }

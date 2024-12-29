@@ -11,9 +11,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import org.csystem.app.android.basicviews.constant.REGISTER_INFO
-import org.csystem.app.android.basicviews.data.service.UserService
 import org.csystem.app.android.basicviews.databinding.ActivityRegisterPasswordBinding
 import org.csystem.app.android.basicviews.model.UserInfoModel
+import org.csystem.app.basicviews.data.service.UserService
 import org.csystem.data.exception.DataServiceException
 
 private const val USER_EXISTS_INFO_LOG_TAG = "USER_EXIST_INFO"

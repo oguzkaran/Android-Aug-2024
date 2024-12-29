@@ -40,7 +40,7 @@
 
     <!-- TextViews-->
     <string name="text_view_login_title">Giriş</string>
-    <string name="text_view_register_title">Kaydol</string>
+    <string name="text_view_register_title">Kaydol:%s</string>
     <string name="text_view_management_title">Yönetim Arayüzü</string>
     <string name="text_view_register_password_title">%s için şifre oluştur.</string>
     <string name="text_view_marital_status_title">Medeni Durum</string>

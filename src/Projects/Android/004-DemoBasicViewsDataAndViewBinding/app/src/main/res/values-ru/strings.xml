@@ -41,7 +41,7 @@
 
     <!-- TextViews-->
     <string name="text_view_login_title">Вход</string>
-    <string name="text_view_register_title">Зарегистрироваться</string>
+    <string name="text_view_register_title">Зарегистрироваться:%s</string>
     <string name="text_view_management_title">Настройки</string>
     <string name="text_view_register_password_title">Создайте пароль для %s</string>
     <string name="text_view_marital_status_title">Семейное положение</string>

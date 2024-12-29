@@ -11,8 +11,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import org.csystem.app.android.basicviews.constant.DEFAULT_USER_COUNT
-import org.csystem.app.android.basicviews.data.service.UserService
 import org.csystem.app.android.basicviews.model.UserModel
+import org.csystem.app.basicviews.data.service.UserService
 import org.csystem.data.exception.DataServiceException
 
 class UsersActivity : AppCompatActivity() {

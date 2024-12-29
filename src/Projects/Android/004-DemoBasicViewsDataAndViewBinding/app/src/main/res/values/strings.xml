@@ -40,7 +40,7 @@
 
     <!-- TextViews-->
     <string name="text_view_login_title">Login</string>
-    <string name="text_view_register_title">Register</string>
+    <string name="text_view_register_title">Register:%s</string>
     <string name="text_view_management_title">Management</string>
     <string name="text_view_register_password_title">Create password for %s</string>
     <string name="text_view_marital_status_title">Marital Status</string>

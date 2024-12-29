@@ -1,0 +1,111 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.databinding",
+    "module": "databinding-runtime",
+    "version": "8.7.3",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.9"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.databinding",
+          "module": "databinding-common",
+          "version": {
+            "requires": "8.7.3"
+          }
+        },
+        {
+          "group": "androidx.databinding",
+          "module": "viewbinding",
+          "version": {
+            "requires": "8.7.3"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-runtime",
+          "version": {
+            "requires": "2.6.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "databinding-runtime-8.7.3.aar",
+          "url": "databinding-runtime-8.7.3.aar",
+          "size": 60913,
+          "sha512": "bfec1be7ca58ee3699f26ac95e37ec44d8639c8b713efd97a345291a8c7efaf95a0606fa091707e482c1b8fd4bb5073b8e73b7c2889c0d56fba5aaf7604c146f",
+          "sha256": "1bd89adbf7ae61037abac30cb29efdb51b0341c8d3282a39cad485eb70efe347",
+          "sha1": "57515e400c116f6fc3d1e27c9891bd7650e907ab",
+          "md5": "4de3538e79d5aac47a9c6c50639061af"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.databinding",
+          "module": "databinding-common",
+          "version": {
+            "requires": "8.7.3"
+          }
+        },
+        {
+          "group": "androidx.databinding",
+          "module": "viewbinding",
+          "version": {
+            "requires": "8.7.3"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-runtime",
+          "version": {
+            "requires": "2.6.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "databinding-runtime-8.7.3.aar",
+          "url": "databinding-runtime-8.7.3.aar",
+          "size": 60913,
+          "sha512": "bfec1be7ca58ee3699f26ac95e37ec44d8639c8b713efd97a345291a8c7efaf95a0606fa091707e482c1b8fd4bb5073b8e73b7c2889c0d56fba5aaf7604c146f",
+          "sha256": "1bd89adbf7ae61037abac30cb29efdb51b0341c8d3282a39cad485eb70efe347",
+          "sha1": "57515e400c116f6fc3d1e27c9891bd7650e907ab",
+          "md5": "4de3538e79d5aac47a9c6c50639061af"
+        }
+      ]
+    }
+  ]
+}
