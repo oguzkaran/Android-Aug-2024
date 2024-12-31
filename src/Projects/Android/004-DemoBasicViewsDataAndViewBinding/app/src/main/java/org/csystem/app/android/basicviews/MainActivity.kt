@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import org.csystem.app.android.basicviews.constant.USERNAME
 import org.csystem.app.android.basicviews.databinding.ActivityMainBinding
-import org.csystem.app.android.basicviews.model.LoginInfoModel
+import org.csystem.app.basicviews.data.service.model.LoginInfoModel
 import org.csystem.app.basicviews.data.service.UserService
 import org.csystem.data.exception.DataServiceException
 

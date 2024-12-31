@@ -1,62 +1,53 @@
 package org.csystem.app.android.basicviews
 
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import org.csystem.app.android.basicviews.constant.DEFAULT_USER_COUNT
-import org.csystem.app.android.basicviews.model.UserModel
+import org.csystem.app.android.basicviews.databinding.ActivityUsersBinding
+import org.csystem.app.basicviews.data.service.model.UserModel
 import org.csystem.app.basicviews.data.service.UserService
 import org.csystem.data.exception.DataServiceException
 
 class UsersActivity : AppCompatActivity() {
-    private lateinit var mTextViewUser: TextView
-    private lateinit var mEditTextCount: EditText
-    private lateinit var mListViewUsers: ListView
-    private lateinit var mArrayAdapterUsers: ArrayAdapter<UserModel>
+    private lateinit var mBinding: ActivityUsersBinding
     private lateinit var mUserService: UserService
 
-    private fun itemClickListenerCallback(pos:Int) {
-        val user = mArrayAdapterUsers.getItem(pos)
 
-        Toast.makeText(this, user?.name, Toast.LENGTH_SHORT).show()
+
+
+    private fun initModels() {
+        mBinding.activity = this
+        mBinding.userText = ""
+        mBinding.countText = "0"
+        mBinding.usersAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, ArrayList<UserModel>())
     }
 
-    private fun initListViewUsers() {
-        mListViewUsers = findViewById(R.id.usersActivityListViewUsers)
-        mListViewUsers.setOnItemClickListener { _, _, pos, _ ->  itemClickListenerCallback(pos)}
-    }
-
-    private fun initViews() {
-        mTextViewUser = findViewById(R.id.usersActivityTextViewUser)
-        mEditTextCount = findViewById(R.id.usersActivityEditTextCount)
-        initListViewUsers()
+    private fun initBinding() {
+        enableEdgeToEdge()
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_users)
+        initModels()
     }
 
     private fun initialize() {
+        initBinding()
         mUserService = UserService(this)
-        initViews()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_users)
         initialize()
     }
 
-    fun onLoadUsersButtonClicked(view: View) {
+    fun onLoadUsersButtonClicked() {
         try {
-            if (this::mArrayAdapterUsers.isInitialized)
-                mArrayAdapterUsers.clear()
+            mBinding.usersAdapter!!.clear()
 
-            val countStr = mEditTextCount.text.toString()
+            val countStr = mBinding.countText!!
             var count = DEFAULT_USER_COUNT
 
             if (countStr.isNotBlank())
@@ -69,8 +60,7 @@ class UsersActivity : AppCompatActivity() {
 
             val users = mUserService.findUsers(count) // Must be asynchronous
 
-            mArrayAdapterUsers = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
-                    .apply { mListViewUsers.adapter = this }
+            mBinding.usersAdapter!!.addAll(users)
         } catch (_: NumberFormatException) {
             AlertDialog.Builder(this)
                 .setTitle(R.string.alert_dialog_user_login_problem_title)
@@ -84,5 +74,11 @@ class UsersActivity : AppCompatActivity() {
         } catch (ex: Exception) {
             Toast.makeText(this, R.string.problem_occurred_prompt, Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun onUserSelected(pos:Int) {
+        val user = mBinding.usersAdapter!!.getItem(pos)
+
+        Toast.makeText(this, user?.name, Toast.LENGTH_SHORT).show()
     }
 }

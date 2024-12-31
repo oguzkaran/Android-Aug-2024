@@ -2,9 +2,9 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <import type="org.csystem.app.android.basicviews.model.LoginInfoModel"/>
+        <import type="org.csystem.app.basicviews.data.service.model.LoginInfoModel"/>
         <import type="org.csystem.app.android.basicviews.MainActivity"/>
-        <variable name="loginInfo" type="LoginInfoModel" />
+        <variable name="loginInfo" type="org.csystem.app.basicviews.data.service.model.LoginInfoModel" />
         <variable name="activity" type="MainActivity" />
         <variable name="buttonLoginEnable" type="boolean" />
         <variable name="anonymousChecked" type="boolean" />

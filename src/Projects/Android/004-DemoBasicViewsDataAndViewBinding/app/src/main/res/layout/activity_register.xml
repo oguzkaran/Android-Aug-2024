@@ -4,10 +4,10 @@
 
     <data>
         <import type="org.csystem.app.android.basicviews.RegisterActivity"/>
-        <import type="org.csystem.app.android.basicviews.model.UserInfoModel"/>
+        <import type="org.csystem.app.basicviews.data.service.model.UserInfoModel"/>
         <import type="android.widget.ArrayAdapter"/>
         <variable name="activity" type="RegisterActivity"/>
-        <variable name="userInfo" type="UserInfoModel"/>
+        <variable name="userInfo" type="org.csystem.app.basicviews.data.service.model.UserInfoModel"/>
         <variable name="selectedItemPosition" type="int"/>
         <variable name="maritalStatusAdapter" type="ArrayAdapter&lt;String&gt;"/>
         <variable name="checkedRadioId" type="int"/>

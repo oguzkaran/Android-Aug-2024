@@ -1,4 +1,4 @@
-package org.csystem.app.android.basicviews.model
+package org.csystem.app.basicviews.data.service.model
 
 import java.time.LocalDateTime
 

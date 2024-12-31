@@ -1,9 +1,10 @@
 package org.csystem.app.basicviews.data.service
 
 import android.content.Context
-import org.csystem.app.android.basicviews.model.UserInfoModel
+import org.csystem.app.basicviews.data.service.model.UserInfoModel
 import org.csystem.app.basicviews.data.service.constant.USERS_FILE_PATH
 import org.csystem.app.basicviews.data.service.constant.USERS_FORMAT
+import org.csystem.app.basicviews.data.service.model.UserModel
 import org.csystem.data.exception.DataServiceException
 import java.io.BufferedReader
 import java.io.BufferedWriter
@@ -128,8 +129,8 @@ class UserService(context: Context) {
         }
     }
 
-    fun findUsers(count: Int): List<org.csystem.app.android.basicviews.model.UserModel> {
-        val users = ArrayList<org.csystem.app.android.basicviews.model.UserModel>()
+    fun findUsers(count: Int): List<UserModel> {
+        val users = ArrayList<UserModel>()
         var n = 0
 
         if (count <= 0)
@@ -151,7 +152,7 @@ class UserService(context: Context) {
                     break
 
                 users.add(
-                    org.csystem.app.android.basicviews.model.UserModel()
+                    UserModel()
                         .apply { username = ri.username; name = ri.name
                     email = ri.email; maritalStatus = ri.maritalStatus; lastEducation = ri.lastEducation})
             }
@@ -236,7 +237,7 @@ class UserService(context: Context) {
         }
     }
 
-    fun updateUser(user: org.csystem.app.android.basicviews.model.UserModel) {
+    fun updateUser(user: UserModel) {
         TODO("Not yet implemented")
     }
 }

@@ -13,7 +13,7 @@ import org.csystem.android.library.util.datetime.DataTimeFormatterUtil
 import org.csystem.app.android.basicviews.constant.MARITAL_STATUS_TAGS
 import org.csystem.app.android.basicviews.constant.REGISTER_INFO
 import org.csystem.app.android.basicviews.databinding.ActivityRegisterBinding
-import org.csystem.app.android.basicviews.model.UserInfoModel
+import org.csystem.app.basicviews.data.service.model.UserInfoModel
 import org.csystem.app.basicviews.data.service.UserService
 import org.csystem.data.exception.DataServiceException
 import java.time.LocalDateTime
