@@ -1,1 +1,3 @@
-/Users/oguzkaran/Documents/GitHub/Android-Aug-2024/src/Libraries/Kotlin-Java/DataUtilLib/src/main/java/org/csystem/data/exception/DataServiceException.java
+/Users/oguzkaran/Dropbox/CSD/Kurslar/JavaApp1-Nov-2023/src/Libraries/CSDLibraries/DataUtilLib/src/main/java/org/csystem/data/exception/repository/RepositoryException.java
+/Users/oguzkaran/Dropbox/CSD/Kurslar/JavaApp1-Nov-2023/src/Libraries/CSDLibraries/DataUtilLib/src/main/java/org/csystem/data/exception/service/DataServiceException.java
+/Users/oguzkaran/Dropbox/CSD/Kurslar/JavaApp1-Nov-2023/src/Libraries/CSDLibraries/DataUtilLib/src/main/java/org/csystem/data/exception/repository/ICrudRepository.java

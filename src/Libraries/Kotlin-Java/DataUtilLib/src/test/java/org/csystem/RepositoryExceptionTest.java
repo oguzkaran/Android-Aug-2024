@@ -1,8 +1,9 @@
 package org.csystem;
 
-public class SampleTest {
+public class RepositoryExceptionTest {
     public void test()
     {
     	
     }
+
 }
