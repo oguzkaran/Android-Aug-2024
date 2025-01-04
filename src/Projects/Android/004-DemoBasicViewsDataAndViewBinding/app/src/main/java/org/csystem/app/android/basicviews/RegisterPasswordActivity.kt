@@ -14,7 +14,7 @@ import org.csystem.app.android.basicviews.constant.REGISTER_INFO
 import org.csystem.app.android.basicviews.databinding.ActivityRegisterPasswordBinding
 import org.csystem.app.basicviews.data.service.model.UserInfoModel
 import org.csystem.app.basicviews.data.service.UserService
-import org.csystem.data.exception.DataServiceException
+import com.karandev.data.exception.service.DataServiceException
 
 private const val USER_EXISTS_INFO_LOG_TAG = "USER_EXIST_INFO"
 

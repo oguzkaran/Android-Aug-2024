@@ -14,7 +14,7 @@ import org.csystem.app.android.basicviews.constant.USERNAME
 import org.csystem.app.android.basicviews.databinding.ActivityMainBinding
 import org.csystem.app.basicviews.data.service.model.LoginInfoModel
 import org.csystem.app.basicviews.data.service.UserService
-import org.csystem.data.exception.DataServiceException
+import com.karandev.data.exception.service.DataServiceException
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
@@ -76,7 +76,6 @@ class MainActivity : AppCompatActivity() {
     fun onTitleTextClicked() {
         Toast.makeText(this, R.string.click_title_prompt, Toast.LENGTH_SHORT).show()
     }
-
 
     //For onClearUsernameTextButtonClicked and onClearPasswordTextButtonClicked different approaches used for demonstration
     fun onClearUsernameTextButtonClicked() = mBinding.mainActivityEditTextUsername.text.clear()

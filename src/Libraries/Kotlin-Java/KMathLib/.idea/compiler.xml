@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="GenericLib" />
+        <module name="org-csystem-kotlin-math" />
         <module name="Library-Maven" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="GenericApp" options="-parameters" />
       <module name="GenericLib" options="-parameters" />
       <module name="Library-Maven" options="-parameters" />
+      <module name="org-csystem-kotlin-math" options="-parameters" />
     </option>
   </component>
 </project>

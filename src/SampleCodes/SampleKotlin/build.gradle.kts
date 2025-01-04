@@ -8,15 +8,22 @@ version = "1.0.0"
 repositories {
     mavenLocal()
     mavenCentral()
+    maven {
+        url = uri("https://raw.github.com/oguzkaran/android-aug-2024-maven-repo/main")
+    }
+    maven {
+        url = uri("https://raw.github.com/oguzkaran/android-aug-2024-karandev-maven-repo/main")
+    }
 }
 
 dependencies {
-    implementation("org.csystem:org-csystem-kotlin-util-console:1.0.0")
-    implementation("org.csystem:org-csystem-kotlin-math:1.0.0")
-    implementation("org.csystem:org-csystem-kotlin-util:1.0.0")
-    implementation("org.csystem:org-csystem-kotlin-util-io:1.0.0")
+    implementation("org.csystem:org-csystem-kotlin-util-console:8.0.0")
+    implementation("org.csystem:org-csystem-kotlin-math:8.0.0")
+    implementation("org.csystem:org-csystem-kotlin-util:8.0.0")
+    implementation("org.csystem:org-csystem-kotlin-util-io:8.0.0")
 
-    implementation("org.csystem:org-csystem-kotlin-data-processing-test:1.0.0")
+    implementation("org.csystem:org-csystem-kotlin-data-processing-test:8.0.0")
+    implementation("com.karandev:com-karandev-data:8.0.0")
 
     testImplementation(kotlin("test"))
 }

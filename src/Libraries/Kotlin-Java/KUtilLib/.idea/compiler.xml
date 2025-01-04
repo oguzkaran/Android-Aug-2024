@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="GenericLib" />
-        <module name="KUtilLib" />
+        <module name="org-csystem-kotlin-util" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +19,7 @@
       <module name="GenericApp" options="-parameters" />
       <module name="GenericLib" options="-parameters" />
       <module name="KUtilLib" options="-parameters" />
+      <module name="org-csystem-kotlin-util" options="-parameters" />
     </option>
   </component>
 </project>

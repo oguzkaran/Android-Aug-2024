@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="KConsoleLib" />
+        <module name="org-csystem-kotlin-util-console" />
         <module name="GenericLib" />
       </profile>
     </annotationProcessing>
@@ -19,6 +19,7 @@
       <module name="GenericApp" options="-parameters" />
       <module name="GenericLib" options="-parameters" />
       <module name="KConsoleLib" options="-parameters" />
+      <module name="org-csystem-kotlin-util-console" options="-parameters" />
     </option>
   </component>
 </project>

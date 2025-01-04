@@ -8,42 +8,41 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.databinding.DataBindingUtil
 import org.csystem.app.android.basicviews.constant.USERNAME
+import org.csystem.app.android.basicviews.databinding.ActivityManagementBinding
 
 class ManagementActivity : AppCompatActivity() {
-    private lateinit var mTextViewTitle: TextView
+    private lateinit var mBinding: ActivityManagementBinding
 
-    private fun initTitle() {
-        mTextViewTitle = findViewById(R.id.managementActivityTextViewTitle)
-        mTextViewTitle.text = intent.getStringExtra(USERNAME) ?: resources.getString(R.string.checkbox_anonymous_text)
-    }
-    private fun initViews() {
-        initTitle()
+    private fun initBinding()  {
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_management)
+        mBinding.activity = this
+        mBinding.title = intent.getStringExtra(USERNAME) ?: resources.getString(R.string.checkbox_anonymous_text)
     }
 
     private fun initialize() {
-        initViews()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_management)
+        initBinding()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         initialize()
     }
 
-    fun onUsersButtonClicked(view: View) {
+    fun onUsersButtonClicked() {
         Intent(this, UsersActivity::class.java).apply { startActivity(this) }
     }
 
-    fun onUserOperationsButtonClicked(view: View) {
-
+    fun onUserOperationsButtonClicked() {
+        //...
     }
 
-    fun onCloseButtonClicked(view: View) = finish()
+    fun onCloseButtonClicked() = finish()
 }

@@ -6,35 +6,39 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import org.csystem.app.android.basicviews.constant.DEFAULT_USER_COUNT
 import org.csystem.app.android.basicviews.databinding.ActivityUsersBinding
 import org.csystem.app.basicviews.data.service.model.UserModel
 import org.csystem.app.basicviews.data.service.UserService
-import org.csystem.data.exception.DataServiceException
+import com.karandev.data.exception.service.DataServiceException
 
 class UsersActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityUsersBinding
     private lateinit var mUserService: UserService
 
-
-
-
     private fun initModels() {
         mBinding.activity = this
         mBinding.userText = ""
-        mBinding.countText = "0"
+        mBinding.countText = "10"
         mBinding.usersAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, ArrayList<UserModel>())
     }
 
     private fun initBinding() {
-        enableEdgeToEdge()
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_users)
         initModels()
     }
 
     private fun initialize() {
+        enableEdgeToEdge()
         initBinding()
+        ViewCompat.setOnApplyWindowInsetsListener(mBinding.main) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
         mUserService = UserService(this)
     }
 
@@ -79,6 +83,6 @@ class UsersActivity : AppCompatActivity() {
     fun onUserSelected(pos:Int) {
         val user = mBinding.usersAdapter!!.getItem(pos)
 
-        Toast.makeText(this, user?.name, Toast.LENGTH_SHORT).show()
+        mBinding.userText = user?.name
     }
 }

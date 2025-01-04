@@ -13,7 +13,7 @@
 
     <groupId>org.csystem</groupId>
     <artifactId>org-csystem-kotlin-util</artifactId>
-    <version>1.0.0</version>
+    <version>8.0.0</version>
     <name>org-csystem-kotlin-util</name>
 
     <properties>

@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="org-csystem-kotlin-util-io" />
         <module name="GenericLib" />
         <module name="Library-Maven" />
       </profile>
@@ -19,6 +20,7 @@
       <module name="GenericApp" options="-parameters" />
       <module name="GenericLib" options="-parameters" />
       <module name="Library-Maven" options="-parameters" />
+      <module name="org-csystem-kotlin-util-io" options="-parameters" />
     </option>
   </component>
 </project>

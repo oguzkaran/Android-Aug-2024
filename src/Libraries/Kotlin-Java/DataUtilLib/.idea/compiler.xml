@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="GenericLib" />
         <module name="org-csystem-data" />
+        <module name="Library-Maven" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -18,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="GenericApp" options="-parameters" />
       <module name="GenericLib" options="-parameters" />
+      <module name="Library-Maven" options="-parameters" />
       <module name="org-csystem-data" options="-parameters" />
     </option>
   </component>

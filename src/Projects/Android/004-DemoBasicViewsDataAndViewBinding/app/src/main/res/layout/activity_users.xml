@@ -10,16 +10,17 @@
         <variable name="usersAdapter" type="android.widget.ArrayAdapter&lt;UserModel&gt;"/>
     </data>
     <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:id="@+id/main"
         tools:context=".UsersActivity">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ems="10"
             android:text="@{userText}"/>
 
         <EditText
@@ -37,11 +38,10 @@
             android:onClick="@{_ -> activity.onLoadUsersButtonClicked()}"/>
 
         <ListView
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adapter="@{usersAdapter}"
-            android:onItemSelected="@{(p0, p1, pos, p4) -> activity.onUserSelected(pos)}"
+            android:onItemClick="@{(p0, p1, pos, p4) -> activity.onUserSelected(pos)}"
             />
     </LinearLayout>
 </layout>

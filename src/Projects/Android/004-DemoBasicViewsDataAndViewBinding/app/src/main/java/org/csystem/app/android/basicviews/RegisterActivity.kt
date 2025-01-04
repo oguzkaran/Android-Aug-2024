@@ -15,7 +15,7 @@ import org.csystem.app.android.basicviews.constant.REGISTER_INFO
 import org.csystem.app.android.basicviews.databinding.ActivityRegisterBinding
 import org.csystem.app.basicviews.data.service.model.UserInfoModel
 import org.csystem.app.basicviews.data.service.UserService
-import org.csystem.data.exception.DataServiceException
+import com.karandev.data.exception.service.DataServiceException
 import java.time.LocalDateTime
 
 private const val SAVE_REGISTER_INFO_LOG_TAG = "SAVE_REGISTER_INFO"

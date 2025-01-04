@@ -43,5 +43,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     coreLibraryDesugaring(libs.desugar.jdk.libs)
-    implementation(libs.org.csystem.data)
+    implementation(libs.com.karandev.data)
 }

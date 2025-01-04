@@ -11,37 +11,16 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.csystem</groupId>
-    <artifactId>org-csystem-data</artifactId>
-    <version>11.0.0</version>
-    <name>org-csystem-data</name>
-
-    <repositories>
-        <repository>
-            <id>javaapp1-nov-2023-maven-repo</id>
-            <url>https://raw.github.com/oguzkaran/javaapp1-nov-2023-maven-repo/main</url>
-        </repository>
-
-        <repository>
-            <id>javaapp1-nov-2023-karandev-maven-repo</id>
-            <url>https://raw.github.com/oguzkaran/javaapp1-nov-2023-karandev-maven-repo/main</url>
-        </repository>
-    </repositories>
+    <groupId>com.karandev</groupId>
+    <artifactId>com-karandev-data</artifactId>
+    <version>8.0.0</version>
+    <name>com-karandev-data</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.32</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>

@@ -5,7 +5,7 @@ import org.csystem.app.basicviews.data.service.model.UserInfoModel
 import org.csystem.app.basicviews.data.service.constant.USERS_FILE_PATH
 import org.csystem.app.basicviews.data.service.constant.USERS_FORMAT
 import org.csystem.app.basicviews.data.service.model.UserModel
-import org.csystem.data.exception.DataServiceException
+import com.karandev.data.exception.service.DataServiceException
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.EOFException
@@ -21,7 +21,6 @@ import java.io.OutputStreamWriter
 import java.nio.charset.StandardCharsets
 
 private const val DELIMITER = ":"
-
 
 class UserService(context: Context) {
     private val mContext = context

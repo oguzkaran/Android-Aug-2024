@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="GenericLib" />
+        <module name="org-csystem-kotlin-data-processing-test" />
         <module name="KDataProcessingLib" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="GenericApp" options="-parameters" />
       <module name="GenericLib" options="-parameters" />
       <module name="KDataProcessingLib" options="-parameters" />
+      <module name="org-csystem-kotlin-data-processing-test" options="-parameters" />
     </option>
   </component>
 </project>
