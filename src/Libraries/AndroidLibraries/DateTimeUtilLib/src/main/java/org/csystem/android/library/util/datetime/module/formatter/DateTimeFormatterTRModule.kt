@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.csystem.app.android.payment.application.module.datetime.annotation.DateTimeFormatterTRInterceptor
+import org.csystem.android.library.util.datetime.module.annotation.DateTimeFormatterTRInterceptor
 import java.time.format.DateTimeFormatter
 import javax.inject.Singleton
 

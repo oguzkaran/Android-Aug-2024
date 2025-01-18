@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets
 
 private const val DELIMITER = ":"
 
-class UserService(context: Context) {
+class UserService (context: Context) {
     private val mContext = context
 
     private fun writeUserInfo(bw: BufferedWriter, userInfoModel: UserInfoModel) {

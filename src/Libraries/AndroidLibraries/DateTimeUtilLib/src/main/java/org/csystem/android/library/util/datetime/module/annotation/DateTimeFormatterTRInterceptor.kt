@@ -1,4 +1,5 @@
-package org.csystem.app.android.payment.application.module.datetime.annotation
+package org.csystem.android.library.util.datetime.module.annotation
+
 
 import javax.inject.Qualifier
 
