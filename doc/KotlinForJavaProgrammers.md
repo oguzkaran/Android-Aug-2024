@@ -16215,7 +16215,7 @@ fun sum(init: Int, vararg values: Int): Int {
 >
 >Tipik olarak işletim sistemi bir thread'i bir CPU ya da çekirdeğe atar (assign). O thread belirli bir süre çalıştırılır. Sonra işletim sistemi o thread'i durdurur (bloke eder). CPU ya da çekirdeğe diğer thread'i atar. Bir thread'in CPU ya da çekirdeğe atandığında parçalı çalışma süresine **quantum time** denir. Bu sürenin çok uzun olması interactiviteyi azaltır (convoy effect). Bu sürenin çok kısa olması da birim zamanda yapılan işi (throughput) azaltır. Thread'ler arası geçiş (context switch) de maliyetli bir işlemdir. Bir process'in (aslında thread'in) state'leri aşağıdaki gibidir:
 
-![ThreadStates](./kmedia/ThreadStates.PNG)
+![ThreadStates](./kmedia/ThreadStates.png)
 
 
 >Çok thread'li işletim sistemlerinde process çalışmaya bir thread ile başlar. Buna **main/primary thread** denir. Diğer thread'ler işletim sisteminin sistem fonksiyonları (örneğin Windows API fonksiyonları, Unix/Linux sistemlerinde POSIX fonksiyonları) kullanılarak yaratılır. Java'da (dolayısıyla Kotlin'de) thread işlemleri işletim sisteminden bağımsız olarak yapılabilir. JavaSE'de thread işlemleri genel olarak aşağıdaki biçimlerde yapılabilmektedir:
