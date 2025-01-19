@@ -19,7 +19,7 @@ fun main() {
 }
 ```
 
-**_Anahtar Notlar:_** Kotlin'de bir fonksiyon fun anahtar sözcüğü ile bildirilir. Kotlin'de bir fonksiyonun geri dönüş değeri fonksiyon isminden önce yazılmaz. Bir fonksiyonun geri dönüş değeri yoksa herhangi bir geri dönüş değeri bilgisi yazılmayabilir.
+**Anahtar Notlar:** Kotlin'de bir fonksiyon fun anahtar sözcüğü ile bildirilir. Kotlin'de bir fonksiyonun geri dönüş değeri fonksiyon isminden önce yazılmaz. Bir fonksiyonun geri dönüş değeri yoksa herhangi bir geri dönüş değeri bilgisi yazılmayabilir.
 
 >Bir fonksiyonu çağıran fonksiyon (caller) ile çağrılan fonksiyon (callee) aynı pakette ise paket ismi kullanılmayabilir. Yani aynı `.kt` uzantılı dosyada bulunan veya farklı dosyada fakat aynı paket altında bulunan fonksiyonlar doğrudan çağrılabilir.
 
@@ -76,9 +76,9 @@ fun bar() : Unit {
 | Char     | 2              | `[0, 65535]`                                   |
 | Boolean  | 1              | `true, false`                                  |
 
-**_Anahtar Notlar:_** Kotlin'de temel türler (primitive/built-in/pre-defined types) sınıf ile temsil edilmiştir.
+**Anahtar Notlar:** Kotlin'de temel türler (primitive/built-in/pre-defined types) sınıf ile temsil edilmiştir.
 
-**_Anahtar Notlar:_** Kotlin'de "işaretsiz (unsigned)" tamsayı türleri de bulunur. Bunlar ileride ele alınacaktır.
+**Anahtar Notlar:** Kotlin'de "işaretsiz (unsigned)" tamsayı türleri de bulunur. Bunlar ileride ele alınacaktır.
 
 >Yerel değişken bildirimi var veya val anahtar sözcüğü ile yapılabilir. Bir değişkenin türü değişken isminden sonra `:` ile birlikte yazılır. Değişken bildirim noktasında değer verilmesi durumunda (initialization) tür yazılmayabilir.
 >
@@ -16021,7 +16021,6 @@ fun main() {
 }
 ```
 
-
 >DateTimeFormatter sınıfı ile tarih ve/veya zaman bilgilerinin formatlanması
 
 ```kotlin
@@ -16145,7 +16144,7 @@ fun main() {
 
 ##### Değişken Sayıda Argüman Alan Fonksiyonlar
 
->Kotlin'de değişken argüman alan fonksiyonlar (vararg functions) için parametre değişkeninde vararg anahtar sözcüğü kullanılır. vararg parametresi bir fonksiyonda son parametre olmalıdır. Bu durumda birden fazla vararg parametreli fonksiyon bildirimi geçersizdir. vararg parametreye fonksiyon içerinde dizi gibi erişilebilmektedir.
+>Kotlin'de değişken argüman alan fonksiyonlar (vararg functions) için parametre değişkeninde **vararg** anahtar sözcüğü kullanılır. vararg parametresi bir fonksiyonda son parametre olmalıdır. Bu durumda birden fazla vararg parametreli fonksiyon bildirimi geçersizdir. vararg parametreye fonksiyon içerinde dizi gibi erişilebilmektedir.
 
 >Aşağıdaki demo örneği inceleyiniz
 
@@ -16173,6 +16172,7 @@ fun sum(init: Int, vararg values: Int): Int {
 }
 ```
 
+##### Nesnelerin Erişilebilirlikleri
 
 >JVM'de ve ART'de bir nesne erişilebilirlik bakımından aşağıdakilerden biri biçimindedir:
 >
@@ -16186,131 +16186,142 @@ fun sum(init: Int, vararg values: Int): Int {
 >
 >5. **Unreachable:** Yukarıdaki erişmlerin hiç birinin olmadığı artık garbage collected/eligible duruma gelmiş nesnedir.
 
-**_Anahtar Notlar:_** JVM'de genel olarak, klasik referanslara (yani referans dendiğinde) **hard reference**, SoftReference ile tutulan referansa **soft reference**, WeakReference ile tutulan referanslara **weak reference** ve PhantomReference ile tutulan referanslara **phantom reference** da denilmektedir.
+**Anahtar Notlar:** JVM'de genel olarak, klasik referanslara (yani referans dendiğinde) **hard reference**, SoftReference ile tutulan referansa **soft reference**, WeakReference ile tutulan referanslara **weak reference** ve PhantomReference ile tutulan referanslara **phantom reference** da denilmektedir.
 
 >Yukarıdaki anlatılanların özellikle aşağı seviyede detayları vardır. Burada ele alınmayacaktır. Özellikle Android uygulamalarında **memory leak** oluşumunu engellemek için WeakReference sınıfı çeşitli durumlarda çözüm olarak kullanılabilir. Bunlar kursumuzda projeler içerisinde çeşitli durumlarda kullanılmıştır
 
+##### Android Kütüphane Kullanımı
 
 >Bir kütüphaneyi (.aar veya .jar olarak) Android uygulamasında kullanmak için yöntemler genel olarak şunlardır:
->1. Eğer uygulama ve kütüphane aynı proje içerisinde olarak. Buna modül kullanımı da denir
->2. Proje lokalinde doğrudan kütüphane dosyası kullanılabilir
->3. Kütüphane belirli bir uzak (remote) repository'de ise oradan kullanılabilier. Biz burada maven repository kullanacağız
+>1. Eğer uygulama ve kütüphane aynı proje içerisinde olarak. Buna modül kullanımı da denir.
+>2. Proje lokalinde doğrudan kütüphane dosyası kullanılabilir.
+>3. Kütüphane belirli bir uzak (remote) repository'de ise oradan kullanılabilier. Biz burada maven repository kullanacağız.
 
+##### Birlikte Çalışan Kodlar
 
->Birarada çalışan kodları betimlemek için pek çok terim kullanılmaktadır. Bunların arasında bağlam (context) bakımından bazı farklılıklar bulunmaktadır. Öncelikle bu terimlerin ve kavramların anlamlarını açıklayalım:
+>Birlikte çalışan kodları betimlemek için pek çok terim kullanılmaktadır. Bunların arasında bağlam (context) bakımından bazı farklılıklar bulunmaktadır. Bu terimlerin ve kavramların anlamları aşağıdaki gibi özetlenebilir:
 >
->__Concurrent Computing/Programming (Birden fazla akış ile çalışma):__ Bu terim aslında en genel olanlardandır. Birden fazla akışın kullanılarak bir işin gerçekleştirilmesini anlatır. Örneğin, çok thread’li uygulamalar tipik olarak __“concurrent programming”__ kavramı içerisinde değerlendirilebilir. Benzer biçimde parallel programlama da, dağıtık 	programlamlama da bir __“concurrent programming”__ faaliyetidir.
+>**Concurrent Computing/Programming (Birden fazla akış ile çalışma):** Bu terim aslında en genel olanlardandır. Birden fazla akışın kullanılarak bir işin gerçekleştirilmesini anlatır. Örneğin, çok thread’li uygulamalar tipik olarak concurrent programming kavramı içerisinde değerlendirilebilir. Benzer biçimde parallel programlama da, dağıtık programlamlama da bir concurrent programming faaliyetidir.
 >
->__Distributed Computing/Programming (Dağıtık Programlama):__ Bu terim ve anlattığı kavram işlerin birden fazla bilgisayara dağıtılarak birlikte gerçekleştirilmesi anlamına gelir. Terimin odaklandığı nokta söz konusu işlerin aynı makinede değil de bir ağdaki makinelerde koordineli olarak yürütülmesi sürecidir. Bugün dağıtık uygulamalar çok yaygınlaşmıştır. Şüphesiz dağıtık uygulamalar birtakım protokolleri kullanarak processler arası haberleşme yöntemleriyle koordinasyonu sağlamaktadır. Tipik olarak IP protocol ailesi tercih edilmektedir. Ancak dağıtık uygulamalar için daha yüksek seviyeli bir takım ortamlar (framework) ve kütüphaneler vardır. (Örneğin .NET’de WCF, Java’da remoting vs.) Dağıtık uygulamalar ayrı bir kategori olduğundan burada ele alınmayacaktır.
+>**Distributed Computing/Programming (Dağıtık Programlama):** Bu terim ve anlattığı kavram işlerin birden fazla bilgisayara dağıtılarak birlikte gerçekleştirilmesi anlamına gelir. Terimin odaklandığı nokta söz konusu işlerin aynı makinede değil de bir ağdaki makinelerde koordineli olarak yürütülmesi sürecidir. Bugün dağıtık uygulamalar çok yaygınlaşmıştır. Şüphesiz dağıtık uygulamalar birtakım protokolleri kullanarak process'ler arası haberleşme yöntemleriyle koordinasyonu sağlamaktadır. Tipik olarak IP protocol ailesi tercih edilmektedir. Ancak dağıtık uygulamalar için daha yüksek seviyeli bir takım ortamlar (framework) ve kütüphaneler vardır. (Örneğin .NET’de WCF, Java’da RMI (Remote Method Invocation) vs.) Dağıtık uygulamalar ayrı bir kategori olduğundan burada ele alınmayacaktır.
 >
->__Multithreaded Computing/Programming (Çok thread'li programlama):__ Bu terim aynı makinede işlerin birlikte birden 	fazla thread oluştururarak gerçekleştirilmesi anlamına gelir. Şüphesiz bu terim de aslında bir __“concurrent programming”__ şemsiyesi altında düşünülebilir.
+>**Multithreaded Computing/Programming (Çok thread'li programlama):** Bu terim aynı makinede işlerin birlikte birden fazla thread oluşturarak gerçekleştirilmesi anlamına gelir. Şüphesiz bu terim de aslında bir concurrent programming şemsiyesi altında düşünülebilir.
 >
->__Parallel Computing/Programming:__ Bu terim bir işi aynı makinede thread’lere ayırarak ve onları farklı CPU ya da 	çekirdeklere atayarak aynı anda çalıştırma gayretini anlatmaktadır. Dolayısıyla burada toplamda hızlı bir işlemin 	yapılması hedeflenir. Şüphesiz tek CPU ya da tek çekirdekli sistemlerde parallel programlama yapılamaz. Öncelikle 	parallel programlama için söz konusu sistemde birden fazla CPU ve/veya çekirdek bulunması gerekir. Hatta parallel 	programlama faaliyetinde bir süredir grafik kartlarındaki işlemcilerden de faydalanılabilmektedir.
+>**Parallel Computing/Programming:** Bu terim bir işi aynı makinede thread’lere ayırarak ve onları farklı CPU ya da çekirdeklere atayarak aynı anda çalıştırma gayretini anlatmaktadır. Dolayısıyla burada toplamda hızlı bir işlemin yapılması hedeflenir. Şüphesiz tek CPU ya da tek çekirdekli sistemlerde parallel programlama yapılamaz. Öncelikle parallel programlama için söz konusu sistemde birden fazla CPU ve/veya çekirdek bulunması gerekir. Hatta parallel programlama faaliyetinde bir süredir grafik kartlarındaki işlemcilerden de faydalanılabilmektedir.
+
+##### Process ve Thread Kavramları
+
+>Program terimi uygulamanın genel olarak çalışabilir veya çalıştırılabilir dosyasına verilen isimdir. İşletim sistemi düzeyinde çalışan programa **process** denir. Modern sistemlerde process'ler biraz ondan biraz bundan tekniğiyle çalıştırır. Process'lerin (aslında thread'lerin) işletim sistemi tarafından CPU ya da çekirdekler üzerinde çalıştırılmasına **çizelgeleme (scheduling)** denilmektedir. Thread aslında process'lerin ayrı akışlarını belirtir.
+>
+>Tipik olarak işletim sistemi bir thread'i bir CPU ya da çekirdeğe atar (assign). O thread belirli bir süre çalıştırılır. Sonra işletim sistemi o thread'i durdurur (bloke eder). CPU ya da çekirdeğe diğer thread'i atar. Bir thread'in CPU ya da çekirdeğe atandığında parçalı çalışma süresine **quantum time** denir. Bu sürenin çok uzun olması interactiviteyi azaltır (convoy effect). Bu sürenin çok kısa olması da birim zamanda yapılan işi (throughput) azaltır. Thread'ler arası geçiş (context switch) de maliyetli bir işlemdir. Bir process'in (aslında thread'in) state'leri aşağıdaki gibidir:
+
+![Class Diagram](./kmedia/ThreadStates.PNG)
 
 
-
->Program terimi uygulamanın genel olarak çalışabilir veya çalıştırılabilir dosyasına verilen isimdir. İşletim sistemi düzeyinde çalışan programa __"process"__ denir. Modern sistemlerde process'ler biraz ondan biraz bundan tekniğiyle çalıştırır. Process'lerin (aslında thread'lerin) işletim sistemi tarafından CPU ya da çekirdekler üzerinde çalıştırılmasına __"çizelgeleme (scheduling)"__ denilmektedir. Thread aslında process'lerin ayrı akışlarını belirtir.
+>Çok thread'li işletim sistemlerinde process çalışmaya bir thread ile başlar. Buna **main/primary thread** denir. Diğer thread'ler işletim sisteminin sistem fonksiyonları (örneğin Windows API fonksiyonları, Unix/Linux sistemlerinde POSIX fonksiyonları) kullanılarak yaratılır. Java'da (dolayısıyla Kotlin'de) thread işlemleri işletim sisteminden bağımsız olarak yapılabilir. JavaSE'de thread işlemleri genel olarak aşağıdaki biçimlerde yapılabilmektedir:
+>    1. Thread sınıfından türetme yaparak.
+>    2. Runnable arayüzünü implemente ederek.
+>    3. Executor'lar kullanarak.
 >
->Tipik olarak işletim sistemi bir thread'i bir CPU ya da çekirdeğe atar (assign). O thread brlirli bir süre çalıştırılır. Sonra işletim sistemi o thread'i durdurur (bloke eder). CPU ya da çekirdeğe diğer thread'i atar. Bir thread'in CPU ya da çekirdeğe atandığında parçalı çalışma süresine __"quantum time"__ denir. Bu sürenin çok uzun olması interactiviteyi azaltır (convoy effect). Bu sürenin çok kısa olması da birim zamanda yapılan işi (throughput) azaltır. Thread'ler arası geçiş (context switch) de maliyetli bir işlemdir.
->
->Çok thread'li işletim sistemlerinde process çalışmaya bir thread ile başlar. Buna __"main/primary thread"__ denir. Diğer thread'ler işletim sisteminin sistem fonksiyonları (örneğin Windows API fonksiyonları, Unix/Linux sistemlerinde POSIX fonksiyonları) kullanılarak yaratılır. Java'da (dolayısıyla Kotlin'de) thread işlemleri işletim sisteminden bağımsız olarak yapılabilir. JavaSE'de thread işlemleri genel olarak şu kategorilere ayrılarak yapılabilir:
->    1. Thread sınıfından türetme yaparak
->    2. Runnable arayüzünü implemente ederrek
->    3. Executor'lar kullanarak
-
-**_Anahtar Notlar:_** Java'nın ilerleyen sürümlerinde Virtual Thread'ler de eklenmiştir. Burada belirli ölçüde ele alınacaktır.
-
 >Android dünyasında thread'ler ile çalışmanın başka yöntemleri de vardır.
 >
->Neden thread kullanalım? Bu sorunun cevabı domain'e göre değişiklik gösterebilse de genel olarakl şu maddelerle özetlenebilir:
->   - Thread'ler arka plan olayları izlemek için idealdir. Örneğin programcı hem bir işi yapıp hem de ekranın sağ üst köşesinde o anki saniyeler mertebesinde göstermek isteyebilir. Bu durumda pencerenin işlemleri devam ederken aynı zamanda başka bir thread de sistemden o anki tarih-zaman bilgisini alarak pencerenin sağ üst köşesinde gösterebilir. Bu durumda pencerenin ana akışı devam ederken tarih-zamana ilişkin işlemde asenkron olarak yapılmış olur. Bu anlamda thread'ler Graphical User Interface (GUI) uygulamalarında genel olarak gerekmektedir.
+>Neden thread kullanalım? Bu sorunun cevabı domain'e göre değişiklik gösterebilse de genel olarak şu maddelerle özetlenebilir:
+>   - Thread'ler arka plan olayları izlemek için idealdir. Örneğin programcı hem bir işi yapıp hem de ekranın sağ üst köşesinde o anki tarih-zaman bilgisini saniyeler mertebesinde göstermek isteyebilir. Bu durumda pencerenin işlemleri devam ederken aynı zamanda başka bir thread de sistemden o anki tarih-zaman bilgisini alarak pencerenin sağ üst köşesinde gösterebilir. Bu durumda pencerenin ana akışı devam ederken tarih-zamana ilişkin işlemde asenkron olarak yapılmış olur. Bu anlamda thread'ler Graphical User Interface (GUI) uygulamalarında genel olarak gerekmektedir.
 >
->   - Thread'ler bir programı hızlandırmak için kullanılabilir. Programcı çok thread kullanarak daha fazla CPU zamanı elde edebilir
+>   - Thread'ler bir programı hızlandırmak için kullanılabilir. Programcı çok thread kullanarak daha fazla CPU zamanı elde edebilir.
 >
->   - Thread'ler blokeli IO işlemlerinde yoğun olarak kullanılmaktadır. Yani bir IO iişlemi başlatıldığında belli bir süre bloke oluşabilir. Bu durumda diğer işlemlerin de yapılabilmesi için bloke akışın diğer akışlardan ayrılması yani başka bir thread'de yapılması gerekir
+>   - Thread'ler blokeli IO işlemlerinde yoğun olarak kullanılmaktadır. Yani bir IO işlemi başlatıldığında belli bir süre bloke oluşabilir. Bu durumda diğer işlemlerin de yapılabilmesi için bloke akışın diğer akışlardan ayrılması yani başka bir thread'de yapılması gerekir.
 >
 >   - Thread'ler paralel programlamada (parallel computig/programming) mecburen kullanılmaktadır.
 >
 >JavaSE'de thread işlemlerine yönelik en temel sınıf Thread sınıfıdır. Thread sınıfının start metodu ile thread başlatılır (yaratılır). Programcı Thread sınıfından türetme yaparak run sanal metodunu override eder. run metodu yaratılan thread'e ilişkin akıştır.
 
-**_Anahtar Notlar:_** Java'da thread'lern ketegori olarak ikiye ayrılır: Daemon threadler, Non-daemon threadler. Bir thread default olarak bu özellikleri yaratıldığı thread'den alır. main thread non-daemon bir thread'dir. Bu sebeple aşağıdaki örnekte main metodunun bitmiş olmasına karşılık yaratılan thread'ler devam etmektedir.
+**Anahtar Notlar:** Java'da thread'lern kategori olarak ikiye ayrılır: **Daemon thread'ler, Non-daemon thread'ler.** Bir thread default olarak bu özellikleri yaratıldığı thread'den alır. main thread non-daemon bir thread'dir.
 
-**_Anahtar Notlar:_** Bir thread'i temsil eden Thread nesnesine ilişkin referans o thread içerisinde Thread sınıfının currentThread static metodu ile elde edilebilir. Thread sınıfının, thread'e özgü pek çok bilgisine yönelik metotları vardır. Örneğin getName metodu (Kotlin'de name property elemanı) thread'in ismine geri döner. Her thread'in bir ismi vardır. Programcı bir isim vermese bile otomatik olarak isim verilir. main thread'in ismi genel olarak main'dir. Thread sınıfının isDaemon metodu (Kotlin'de isDaemon property elemanı) thread'in deamon olup olmadığı bilgisini döndürür. Ayrıca bu metodun bir de mutator'ı vardır. İleride ele alınacaktır.
+**Anahtar Notlar:** Bir thread'i temsil eden Thread nesnesine ilişkin referans o thread içerisinde Thread sınıfının **currentThread** static metodu ile elde edilebilir. Thread sınıfının, thread'e özgü pek çok bilgisine yönelik metotları vardır. Örneğin getName metodu (Kotlin'de name property elemanı) thread'in ismine geri döner. Her thread'in bir ismi vardır. Programcı bir isim vermese bile otomatik olarak isim verilir. main thread'in ismi genel olarak main'dir. Thread sınıfının isDaemon metodu (Kotlin'de isDaemon property elemanı) thread'in deamon olup olmadığı bilgisini döndürür. Ayrıca bu metodun bir de mutator'ı vardır. İleride ele alınacaktır.
 
-**_Anahtar Notlar:_** Thread sınıfının sleep static metodu aldığı milisaniye değeri kadar thread'i bloke eder. Bu metot InterruptedException fırlatabilir. Bu exception checked bir exception'dır. Tabii ki Kotlin'de bunun bir önemi yoktur. sleep metodunun fırlattığı bu exception ileride ele alınacaktır.
+**Anahtar Notlar:** Thread sınıfının sleep static metodu aldığı milisaniye değeri kadar thread'i bloke eder. Bu metot InterruptedException fırlatabilir. Bu exception checked bir exception'dır. Tabii ki Kotlin'de bunun bir önemi yoktur. sleep metodunun fırlattığı bu exception ileride ele alınacaktır.
 
 >Aşağıdaki basit örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import kotlin.random.Random
-
-fun main()
-{
-    val t = MyThread(readInt("Bir sayı giriniz:"))
-
-    t.start()
-    println("main ends!...")
-}
-
-class MyThread(private val mCount: Int, private val mRandom: Random = Random) : Thread() {
-    override fun run()
-    {
-        for (i in 0..<mCount)  {
-            val value = mRandom.nextInt(0, 100)
-
-            print("%02d ".format(value))
-            sleep(mRandom.nextLong(500, 2000))
-        }
-
-        println()
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readInt  
+import kotlin.random.Random  
+  
+fun main() {  
+    val t = MyThread(readInt("Bir sayı giriniz:"))  
+  
+    t.start()  
+    println("main ends!...")  
+}  
+  
+class MyThread(private val mCount: Int, private val mRandom: Random = Random) : Thread() {  
+    override fun run() {  
+        for (i in 0..<mCount) {  
+            val value = mRandom.nextInt(0, 100)  
+  
+            print("%02d ".format(value))  
+            sleep(mRandom.nextLong(500, 2000))  
+        }  
+  
+        println()  
+    }  
 }
 ```
 
 
->Bir thread başka bir yarattığında hangi thread'in önce çizelmeye gireceği o anki duruma bağlıdır. Yani hangisinin önce çizelgelemeye gireceği belirsizdir. (Hatta ayrı CPU ya da çekirdekte olurlarsa gerçekten aynı anda da çizelgelemeye girebilirler). Thread'lerin stack alanları birbirinden ayrıdır. Ancak heap alanı ortaktır. Dolayısıyla aynı nesne üzerinde birden fazla thread'in işlem yapması durumunda bir takım problemler söz konusu olabilmektedir. Bu problemlere tipik olan senkronizsyon problemleri denir. İleride bir takım senkronizasyon problemleri ve çözümleri uygulamalar içerisinde ele alınacaktır. Aşağıdaki örneği inceleyiniz
+>Bir thread başka bir yarattığında hangi thread'in önce çizelmeye gireceği o anki duruma bağlıdır. Yani hangisinin önce çizelgelemeye gireceği belirsizdir. (Hatta ayrı CPU ya da çekirdekte olurlarsa gerçekten aynı anda da çizelgelemeye girebilirler). **Thread'lerin stack alanları birbirinden ayrıdır. Ancak heap alanı ortaktır.** Dolayısıyla aynı nesne üzerinde birden fazla thread'in işlem yapması durumunda bir takım problemler söz konusu olabilmektedir. Bu problemlere tipik olarak senkronizasyon problemleri denir. İleride bir takım senkronizasyon problemleri ve çözümleri uygulamalar içerisinde ele alınacaktır. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readLong
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.string.kotlin.getRandomTextEN
-import java.io.*
-import java.nio.charset.StandardCharsets
-import kotlin.random.Random
-
-fun main()
-{
-    val basePath = readString("Input base path:")
-    val count = readInt("Input files count:")
-    val dataCount = readLong("Input count per each:")
-
-    (1..count).forEach {TextGeneratorThread(dataCount, File("$basePath-${it}.txt").absolutePath).apply { start() }}
-}
-
-class TextGeneratorThread(private val mCount: Long, private val mPath: String, private val mMin: Int = 5, private val mBound: Int = 11, private val mRandom: Random = Random) : Thread() {
-
-    private fun generateCallback(fos: FileOutputStream)
-    {
-        BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
-            (0..<mCount).forEach { _ -> bw.write("${mRandom.getRandomTextEN(mRandom.nextInt(mMin, mBound))}\r\n") }
-        }
-    }
-
-    override fun run()
-    {
-        try {
-            FileOutputStream(mPath).use {generateCallback(it)}
-        }
-        catch (ex: IOException) {
-            println("IO Problem:${ex.message}")
-        }
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.string.randomTextEN  
+import java.io.*  
+import java.nio.charset.StandardCharsets  
+import kotlin.random.Random  
+  
+fun main(args: Array<String>) = runApplication(args)  
+  
+private fun runApplication(args: Array<String>) {  
+    lengthEquals(3, args.size, "wrong number of arguments")  
+    try {  
+        val basePath = args[0]  
+        val count = args[1].toInt()  
+        val dataCount = args[2].toLong()  
+  
+        (1..count).forEach {  
+            TextGeneratorThread(  
+                dataCount,  
+                File("$basePath-${it}.txt").absolutePath  
+            ).apply { start() }  
+        }    } catch (_: NumberFormatException) {  
+        println("Invalid Values")  
+    }  
+}  
+  
+class TextGeneratorThread(  
+    private val mCount: Long,  
+    private val mPath: String,  
+    private val mMin: Int = 5,  
+    private val mBound: Int = 11,  
+    private val mRandom: Random = Random  
+) : Thread() {  
+  
+    private fun generateCallback(fos: FileOutputStream) {  
+        BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->  
+            (0..<mCount).forEach { _ -> bw.write("${mRandom.randomTextEN(mRandom.nextInt(mMin, mBound))}\r\n") }  
+        }    }  
+  
+    override fun run() {  
+        try {  
+            FileOutputStream(mPath).use { generateCallback(it) }  
+        } catch (ex: IOException) {  
+            println("IO Problem:${ex.message}")  
+        }  
+    }  
 }
 ```
 
@@ -16318,47 +16329,49 @@ class TextGeneratorThread(private val mCount: Long, private val mPath: String, p
 >JavaSE'de Runnable arayüzünü implemente ederek de thread oluşturulabilir. Bu durumda Thread sınıfının Runnable parametreli ctor'ları kullanılır
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readLong
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.string.kotlin.getRandomTextEN
-import java.io.*
-import java.nio.charset.StandardCharsets
-import kotlin.random.Random
-
-fun main()
-{
-    val basePath = readString("Input base path:")
-    val count = readInt("Input files count:")
-    val dataCount = readLong("Input count per each:")
-
-    File(basePath).parentFile.mkdirs()
-
-    (1..count).forEach {TextGeneratorThread(dataCount, File("$basePath-${it}.txt").absolutePath)
-        .apply { Thread(this).apply { start() } }}
-}
-
-class TextGeneratorThread(private val mCount: Long, private val mPath: String, private val mMin: Int = 5,
-                          private val mBound: Int = 11, private val mRandom: Random = Random) : Runnable {
-
-    private fun generateCallback(fos: FileOutputStream)
-    {
-        BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
-            (0..<mCount).forEach { _ -> bw.write("${mRandom.getRandomTextEN(mRandom.nextInt(mMin, mBound))}\r\n") }
-        }
-    }
-
-    override fun run()
-    {
-        try {
-            FileOutputStream(mPath).use {generateCallback(it)}
-        }
-        catch (ex: IOException) {
-            println("IO Problem:${ex.message}")
-        }
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.string.randomTextEN  
+import java.io.*  
+import java.nio.charset.StandardCharsets  
+import kotlin.random.Random  
+  
+fun main(args: Array<String>) = runApplication(args)  
+  
+private fun runApplication(args: Array<String>) {  
+    lengthEquals(3, args.size, "wrong number of arguments")  
+    try {  
+        val basePath = args[0]  
+        val count = args[1].toInt()  
+        val dataCount = args[2].toLong()  
+  
+        (1..count).forEach {Thread(TextGeneratorThread(dataCount, File("$basePath-${it}.txt").absolutePath)).start() }  
+    } catch (_: NumberFormatException) {  
+        println("Invalid Values")  
+    }  
+}  
+  
+class TextGeneratorThread(  
+    private val mCount: Long,  
+    private val mPath: String,  
+    private val mMin: Int = 5,  
+    private val mBound: Int = 11,  
+    private val mRandom: Random = Random  
+) : Runnable {  
+  
+    private fun generateCallback(fos: FileOutputStream) {  
+        BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->  
+            (0..<mCount).forEach { _ -> bw.write("${mRandom.randomTextEN(mRandom.nextInt(mMin, mBound))}\r\n") }  
+        }    }  
+  
+    override fun run() {  
+        try {  
+            FileOutputStream(mPath).use { generateCallback(it) }  
+        } catch (ex: IOException) {  
+            println("IO Problem:${ex.message}")  
+        }  
+    }  
 }
 ```
 
@@ -16366,117 +16379,109 @@ class TextGeneratorThread(private val mCount: Long, private val mPath: String, p
 >Runnable Java'da functional interface olduğundan Kotlin'de de lambda fonksiyonlar ile kullanılabilir
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readLong
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.string.kotlin.getRandomTextEN
-import java.io.*
-import java.nio.charset.StandardCharsets
-import kotlin.random.Random
-
-private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
-{
-    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
-        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
-    }
-}
-
-
-fun main()
-{
-    val basePath = readString("Input base path:")
-    val count = readInt("Input files count:")
-    val dataCount = readLong("Input count per each:")
-
-    File(basePath).parentFile.mkdirs()
-
-    (1..count).forEach {Thread{ generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) }
-        .apply { start() }}
-}
-
-fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
-{
-    try {
-        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
-    }
-    catch (ex: IOException) {
-        println("IO Problem:${ex.message}")
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.string.randomTextEN  
+import java.io.*  
+import java.nio.charset.StandardCharsets  
+import kotlin.random.Random  
+  
+fun main(args: Array<String>) = runApplication(args)  
+  
+private fun runApplication(args: Array<String>) {  
+    lengthEquals(3, args.size, "wrong number of arguments")  
+    try {  
+        val basePath = args[0]  
+        val count = args[1].toInt()  
+        val dataCount = args[2].toLong()  
+  
+        (1..count).forEach {  
+            Thread { generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) }  
+                .apply { start() }  
+        }    } catch (_: NumberFormatException) {  
+        println("Invalid Values")  
+    }  
+}  
+  
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int) {  
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->  
+        (0..<count).forEach { _ -> bw.write("${random.randomTextEN(random.nextInt(min, bound))}\r\n") }  
+    }}  
+  
+fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random) {  
+    try {  
+        FileOutputStream(path).use { generateCallback(it, count, random, min, bound) }  
+    } catch (ex: IOException) {  
+        println("IO Problem:${ex.message}")  
+    }  
 }
 ```
 
->Kotlin'de yukarıdaki işlemler için thread isimli bir fonksiyon eklenmiştir. Kotlin'de yukarıdaki işlemler için özel bir durum yoksa bu fonksiyonun kullanılması tavsiye edilir. Aşağıdaki örneği inceleyiniz
+>Kotlin'de yukarıdaki işlemler için thread isimli global bir fonksiyon eklenmiştir. Kotlin'de yukarıdaki işlemler için özel bir durum yoksa bu fonksiyonun kullanılması tavsiye edilir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readLong
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.string.kotlin.getRandomTextEN
-import java.io.*
-import java.nio.charset.StandardCharsets
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
-{
-    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
-        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
-    }
-}
-
-fun main()
-{
-    val basePath = readString("Input base path:")
-    val count = readInt("Input files count:")
-    val dataCount = readLong("Input count per each:")
-
-    File(basePath).parentFile.mkdirs()
-
-    (1..count).forEach {thread{generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11)}}
-}
-
-fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
-{
-    try {
-        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
-    }
-    catch (ex: IOException) {
-        println("IO Problem:${ex.message}")
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.string.randomTextEN  
+import java.io.*  
+import java.nio.charset.StandardCharsets  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main(args: Array<String>) = runApplication(args)  
+  
+private fun runApplication(args: Array<String>) {  
+    lengthEquals(3, args.size, "wrong number of arguments")  
+    try {  
+        val basePath = args[0]  
+        val count = args[1].toInt()  
+        val dataCount = args[2].toLong()  
+  
+        (1..count).forEach { thread { generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) } }  
+    } catch (_: NumberFormatException) {  
+        println("Invalid Values")  
+    }  
+}  
+  
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int) {  
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->  
+        (0..<count).forEach { _ -> bw.write("${random.randomTextEN(random.nextInt(min, bound))}\r\n") }  
+    }}  
+  
+fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random) {  
+    try {  
+        FileOutputStream(path).use { generateCallback(it, count, random, min, bound) }  
+    } catch (ex: IOException) {  
+        println("IO Problem:${ex.message}")  
+    }  
 }
 ```
 
 
->Java'da zamanlayıcı işlemleri için periyodik olarak arka planda bir iş yapmak için kullanılan temel sınıflardan biri Timer sınıfıdır. Timer sınıfı periyodik işlem için arka planda bir thread yaratır. Timer sınıfının scheduleXXX metotları TimerTask abstract sınıfı türünden aldıkları referansa ilişkin nesnenin run metodunu polymorfik olarak her periyotta çağrırırlar. schedule metotlarının farkları ve bazı detayları burada ele alınmayacaktır. Timer sınıfı Android uygulamalarında da timer olarak kullanılabilir. Bir timer nesnesi ile bir schedule yapılabilir. Bir timer cancel isimli metodu ile sonlandırılabilir. Aşağıdaki örneği inceleyiniz
+>Java'da zamanlayıcı (timer/interval) işlemleri için periyodik olarak arka planda bir iş yapmak için kullanılan temel sınıflardan biri `Timer` sınıfıdır. Timer sınıfı periyodik işlem için arka planda bir thread yaratır. Timer sınıfının `scheduleXXX` metotları `TimerTask` abstract sınıfı türünden aldıkları referansa ilişkin nesnenin run metodunu polimorfik olarak her periyotta çağırırlar. `schedule` metotlarının farkları ve bazı detayları burada ele alınmayacaktır. Timer sınıfı Android uygulamalarında da timer olarak kullanılabilir. Bir timer nesnesi ile bir kez schedule yapılabilir. Bir timer `cancel` isimli metodu ile sonlandırılabilir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Timer
-import java.util.TimerTask
-
-private fun createTimerTask(formatter: DateTimeFormatter) : TimerTask
-{
-    return object: TimerTask() {
-        override fun run()
-        {
-            print("%s\r".format(formatter.format(LocalDateTime.now())))
-        }
-    }
-}
-
-fun main()
-{
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
-    val timer = Timer()
-
-    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)
+package org.csystem.app  
+  
+import java.time.LocalDateTime  
+import java.time.format.DateTimeFormatter  
+import java.util.*  
+  
+private fun createTimerTask(formatter: DateTimeFormatter): TimerTask {  
+    return object : TimerTask() {  
+        override fun run() {  
+            print("%s\r".format(formatter.format(LocalDateTime.now())))  
+        }  
+    }  
+}  
+  
+fun main() {  
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")  
+    val timer = Timer()  
+  
+    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)  
 }
 ```
 
@@ -16484,57 +16489,53 @@ fun main()
 >Thread sınıfının sleep static metodu parametresi ile aldığı milisaniye değeri boyunca thread'i bloke eder. Yukarıdaki örnek sleep metodu ile aşağıdaki gibi de yapılabilir. Şüphesiz timer kullanımı daha iyidir
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-
-fun main()
-{
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
-
-    while (true) {
-        print("%s\r".format(formatter.format(LocalDateTime.now())))
-        Thread.sleep(1000)
-    }
+package org.csystem.app  
+  
+import java.time.LocalDateTime  
+import java.time.format.DateTimeFormatter  
+  
+fun main() {  
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")  
+  
+    while (true) {  
+        print("%s\r".format(formatter.format(LocalDateTime.now())))  
+        Thread.sleep(1000)  
+    }  
 }
 ```
 
 
->Bir thread non-daemon veya daemon olarak yaratılabilir. Bu özellik default olarak o thread'i yaratan thread'den alınır. Yani thread'i yaratan thread, non-daemon ise thread non-daemon olur. main/primary thread non-daemon'dır. Non-daemon thread'lere foreground thread, daemon thread'lere ise background thread de denilmektedir. Bir thread'in daemon olup olmadığı bilgisi isDaemon metodu ile (Kotlin'de isDaemon property elemanı ile) elde edilebilir. Ayrıca thread'in daemon özelliği setDaemon metodu ile (Kotlin'de yine isDaemon property elemanı ile) yaratılmadan önce belirlenebilir. Bir thread'in daemon özelliği thread start edildikten sonra değiştirilmeye çalışılırsa exception oluşur.
+>Bir thread non-daemon veya daemon olarak yaratılabilir. Bu özellik default olarak o thread'i yaratan thread'den alınır. Yani thread'i yaratan thread non-daemon ise thread non-daemon olur. main/primary thread non-daemon'dır. Non-daemon thread'lere **foreground thread**, daemon thread'lere ise **background thread** de denilmektedir. Bir thread'in daemon olup olmadığı bilgisi isDaemon metodu ile (Kotlin'de isDaemon property elemanı ile) elde edilebilir. Ayrıca thread'in daemon özelliği setDaemon metodu ile (Kotlin'de yine isDaemon property elemanı ile) start edilmeden önce belirlenebilir. Bir thread'in daemon özelliği thread start edildikten sonra değiştirilmeye çalışılırsa exception oluşur.
 >
-><u>Non-daemon ve daemon thread'leri anlamak için en basit cümle şudur:</u> "Bir process içerisinde son non-daemon thread de sonlandığında tüm deemon thread'ler sonlanır". Programcı bu basit cümleyi düşünerek bir thread'in daemon veya non-daemon olup olmayacağına domain'e göre karar verir
-
+>**Non-daemon ve daemon thread'leri anlamak için en basit cümle şudur: Bir process içerisinde son non-daemon thread de sonlandığında tüm deemon thread'ler sonlanır**. Programcı bu basit cümleyi düşünerek bir thread'in daemon veya non-daemon olup olmayacağına domain'e göre karar verir
 
 >Aşağıdaki örnekte main thread içerisinde yaratılan thread non-daemon'dır
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun main()
-{
-    val self = Thread.currentThread();
-
-    thread(block = ::runDemoThread, name = "My thread")
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-}
-
-fun runDemoThread()
-{
-    val self = Thread.currentThread();
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-
-    for (i in 1..10) {
-        print("${Random.nextInt(0, 100)} ")
-        Thread.sleep(Random.nextLong(500, 2001))
-    }
-
-    println()
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main() {  
+    val self = Thread.currentThread();  
+  
+    (1..10).forEach {thread(block = ::runDemoThread, name = "My thread-$it") }  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+}  
+  
+fun runDemoThread() {  
+    val self = Thread.currentThread();  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+  
+    for (i in 1..10) {  
+        print("${Random.nextInt(0, 100)} ")  
+        Thread.sleep(Random.nextLong(500, 2001))  
+    }  
+  
+    println()  
 }
 ```
 
@@ -16542,34 +16543,30 @@ fun runDemoThread()
 >Aşağıdaki örnekte main thread içerisinde yaratılan thread daemın'dır. Örnekte main thread sonlandığında, process içerisinde hiç non-daemon thread kalmadığından diğer daemon thread de sonlandırılır. Bu durumda process sonlanmış olur
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun main()
-{
-    val self = Thread.currentThread();
-
-    thread(block = ::runDemoThread, name = "My thread", isDaemon = true)
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-    Thread.sleep(2000)
-}
-
-
-fun runDemoThread()
-{
-    val self = Thread.currentThread();
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-
-    for (i in 1..10) {
-        print("${Random.nextInt(0, 100)} ")
-        Thread.sleep(Random.nextLong(500, 2001))
-    }
-
-    println()
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main() {  
+    val self = Thread.currentThread();  
+  
+    (1..10).forEach {thread(block = ::runDemoThread, name = "My thread-$it", isDaemon = true) }  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+}  
+  
+fun runDemoThread() {  
+    val self = Thread.currentThread();  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+  
+    for (i in 1..10) {  
+        print("${Random.nextInt(0, 100)} ")  
+        Thread.sleep(Random.nextLong(500, 2001))  
+    }  
+  
+    println()  
 }
 ```
 
@@ -16577,29 +16574,26 @@ fun runDemoThread()
 >Timer sınıfının ilgili ctor'u ile Timer'ın da daemon özelliği belirlenebilir. Şüphesi bu işlemin schedule edilmeden yapılması gerekir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Timer
-import java.util.TimerTask
-
-private fun createTimerTask(formatter: DateTimeFormatter) : TimerTask
-{
-    return object: TimerTask() {
-        override fun run()
-        {
-            print("%s\r".format(formatter.format(LocalDateTime.now())))
-        }
-    }
-}
-
-fun main()
-{
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
-    val timer = Timer(true)
-
-    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)
+package org.csystem.app  
+  
+import java.time.LocalDateTime  
+import java.time.format.DateTimeFormatter  
+import java.util.*  
+  
+private fun createTimerTask(formatter: DateTimeFormatter): TimerTask {  
+    return object : TimerTask() {  
+        override fun run() {  
+            print("%s\r".format(formatter.format(LocalDateTime.now())))  
+        }  
+    }  
+}  
+  
+fun main() {  
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")  
+    val timer = Timer(true)  
+  
+    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)  
+    Thread.sleep(3000)  
 }
 ```
 
@@ -16607,149 +16601,140 @@ fun main()
 >Thread'in daemon özelliğinin thread yaratıldıktan sonra değiştirilmesi durumunda exception oluşur
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun main()
-{
-    val self = Thread.currentThread()
-
-    thread(block = ::runDemoThread, name = "My thread")
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-}
-
-fun runDemoThread()
-{
-    val self = Thread.currentThread()
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-
-    self.isDaemon = !self.isDaemon
-
-    for (i in 1..10) {
-        print("${Random.nextInt(0, 100)} ")
-        Thread.sleep(Random.nextLong(500, 2001))
-    }
-
-    println()
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main() {  
+    val self = Thread.currentThread()  
+  
+    thread(block = ::runDemoThread, name = "My thread")  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+}  
+  
+fun runDemoThread() {  
+    val self = Thread.currentThread()  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+  
+    self.isDaemon = !self.isDaemon  
+  
+    for (i in 1..10) {  
+        print("${Random.nextInt(0, 100)} ")  
+        Thread.sleep(Random.nextLong(500, 2001))  
+    }  
+  
+    println()  
 }
 ```
 
 
->Bir thread başka bir thread'i bekleyebilir. Bunun için thread sınıfının join metodu kullanılır. join metodunun parametresiz overload'u thread'in sonlanması bekler. Thread sonlandığında join çağrısı da bitmiş olur. join metodunun parametreşli overload'lar en fazla ne kadar bekleyeceği süreyi alır. Bu süre içerisinde thread sonlanırsa join'de çağrısı da soınlanır. Bu süre içerisinde beklenen thread sonlanmazsa join yine sonlanır
+>Bir thread başka bir thread'i bekleyebilir. Bunun için thread sınıfının join metodu kullanılır. join metodunun parametresiz overload'u thread'in sonlanmasını bekler. Thread sonlandığında join çağrısı da bitmiş olur. `join` metodunun parametreli overload'ları en fazla ne kadar bekleyeceği süreyi alır. Bu süre içerisinde thread sonlanırsa join'de çağrısı da soınlanır. Bu süre içerisinde beklenen thread sonlanmazsa join yine sonlanır
 
-
->Aşağıdaki örneği inceleyiniz
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun main()
-{
-    val self = Thread.currentThread()
-    val t = thread(block = ::runDemoThread, name = "My thread")
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-    t.join()
-    println("main thread ends!...")
-}
-
-fun runDemoThread()
-{
-    val self = Thread.currentThread();
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-
-    for (i in 1..10) {
-        print("${Random.nextInt(0, 100)} ")
-        Thread.sleep(Random.nextLong(500, 2001))
-    }
-
-    println()
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main() {  
+    val self = Thread.currentThread()  
+    val t = thread(block = ::runDemoThread, name = "My thread")  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+    t.join()  
+    println("main thread ends!...")  
+}  
+  
+fun runDemoThread() {  
+    val self = Thread.currentThread();  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+  
+    for (i in 1..10) {  
+        print("${Random.nextInt(0, 100)} ")  
+        Thread.sleep(Random.nextLong(500, 2001))  
+    }  
+  
+    println()  
 }
 ```
 
 
->Aşağıdaki örneği inceleyiniz
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun main()
-{
-    val self = Thread.currentThread()
-
-    val ms = Random.nextLong(5000, 25000)
-
-    println("Maximum wait value in millisecond:$ms")
-    val t = thread(block = ::runDemoThread, name = "My thread")
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-
-    t.join(ms)
-    println("main thread ends!...")
-}
-
-fun runDemoThread()
-{
-    val self = Thread.currentThread();
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-
-    for (i in 1..10) {
-        print("${Random.nextInt(0, 100)} ")
-        Thread.sleep(Random.nextLong(500, 2001))
-    }
-
-    println()
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main() {  
+    val self = Thread.currentThread()  
+  
+    val ms = Random.nextLong(5000, 25000)  
+  
+    println("Maximum wait value in millisecond:$ms")  
+    val t = thread(block = ::runDemoThread, name = "My thread")  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+  
+    t.join(ms)  
+    println("main thread ends!...")  
+}  
+  
+fun runDemoThread() {  
+    val self = Thread.currentThread();  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+  
+    for (i in 1..10) {  
+        print("${Random.nextInt(0, 100)} ")  
+        Thread.sleep(Random.nextLong(500, 2001))  
+    }  
+  
+    println()  
 }
 ```
 
 
->Aşağıdaki örneği inceleyiniz
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun main()
-{
-    val self = Thread.currentThread()
-
-    val ms = Random.nextLong(5000, 25000)
-
-    println("Maximum wait value in millisecond:$ms")
-    val t = thread(block = ::runDemoThread, name = "My thread", isDaemon = true)
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-
-    t.join()
-    println("main thread ends!...")
-}
-
-fun runDemoThread()
-{
-    val self = Thread.currentThread();
-
-    println("Name:${self.name}, ${if (self.isDaemon)  "Daemon" else "Non daemon"}")
-
-    for (i in 1..10) {
-        print("${Random.nextInt(0, 100)} ")
-        Thread.sleep(Random.nextLong(500, 2001))
-    }
-
-    println()
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main() {  
+    val self = Thread.currentThread()  
+  
+    val ms = Random.nextLong(5000, 25000)  
+  
+    println("Maximum wait value in millisecond:$ms")  
+    val t = thread(block = ::runDemoThread, name = "My thread", isDaemon = true)  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+  
+    t.join(ms)  
+    println("main thread ends!...")  
+}  
+  
+fun runDemoThread() {  
+    val self = Thread.currentThread();  
+  
+    println("Name:${self.name}, ${if (self.isDaemon) "Daemon" else "Non daemon"}")  
+  
+    for (i in 1..10) {  
+        print("${Random.nextInt(0, 100)} ")  
+        Thread.sleep(Random.nextLong(500, 2001))  
+    }  
+  
+    println()  
 }
 ```
 
@@ -16757,45 +16742,44 @@ fun runDemoThread()
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readLong
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.string.kotlin.getRandomTextEN
-import java.io.*
-import java.nio.charset.StandardCharsets
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
-{
-    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
-        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
-    }
-}
-
-fun main()
-{
-    val basePath = readString("Input base path:")
-    val count = readInt("Input files count:")
-    val dataCount = readLong("Input count per each:")
-
-    File(basePath).parentFile.mkdirs()
-    Array(count) {thread(start = false){generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11)}}
-        .onEach { it.start() }.onEach { it.join() }
-
-    println("All files generated successfully")
-}
-
-fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
-{
-    try {
-        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
-    }
-    catch (ex: IOException) {
-        println("IO Problem:${ex.message}")
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.string.randomTextEN  
+import java.io.*  
+import java.nio.charset.StandardCharsets  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main(args: Array<String>) = runApplication(args)  
+  
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int) {  
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->  
+        (0..<count).forEach { _ -> bw.write("${random.randomTextEN(random.nextInt(min, bound))}\r\n") }  
+    }}  
+  
+private fun runApplication(args: Array<String>) {  
+    lengthEquals(3, args.size, "wrong number of arguments")  
+    try {  
+        val basePath = args[0]  
+        val count = args[1].toInt()  
+        val dataCount = args[2].toLong()  
+  
+        Array(count) { thread(start = false) { generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) } }  
+            .onEach { it.start() }.onEach { it.join() }  
+  
+        println("All files generated successfully")  
+    } catch (_: NumberFormatException) {  
+        println("Invalid Values")  
+    }  
+}  
+  
+private fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random) {  
+    try {  
+        FileOutputStream(path).use { generateCallback(it, count, random, min, bound) }  
+    } catch (ex: IOException) {  
+        println("IO Problem:${ex.message}")  
+    }  
 }
 ```
 
@@ -16803,108 +16787,40 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 >Bir timer'ı durdurmak için cancel fonksiyonu kullanılır. cancel fonksiyonu timer fonksiyonunu o an sonlandırmaz. Fonksiyon hangi durumda olursa olsun çalışmasına devam eder. Timer durdurulur
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readString
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Timer
-import java.util.TimerTask
-
-private fun createTimerTask(formatter: DateTimeFormatter) : TimerTask
-{
-    return object: TimerTask() {
-        override fun run()
-        {
-            print("%s\r".format(formatter.format(LocalDateTime.now())))
-        }
-    }
-}
-
-fun main()
-{
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
-    val timer = Timer()
-
-    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)
-    readString("Çıkmak için enter tuşuna basınız\n");
-    timer.cancel()
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readString  
+import java.time.LocalDateTime  
+import java.time.format.DateTimeFormatter  
+import java.util.*  
+  
+private fun createTimerTask(formatter: DateTimeFormatter): TimerTask {  
+    return object : TimerTask() {  
+        override fun run() {  
+            print("%s\r".format(formatter.format(LocalDateTime.now())))  
+        }  
+    }  
+}  
+  
+fun main() {  
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")  
+    val timer = Timer()  
+  
+    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)  
+    readString("Çıkmak için enter tuşuna basınız\n");  
+    timer.cancel()  
 }
 ```
 
->**_Sınıf Çalışması:_** Klavyeden 'b' girildiğinde saat:dakika:saniye biçiminde bir sayaç başlatan ve 'd' girildiğinde sayacı durduran uygulamayı yazınız. Program 'ç' girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılamayacaktır. Sayaç çalışıyorken b'ye tekrar basılırsa herhangi bir şey yapılmayacaktır.
+>**Sınıf Çalışması:** Klavyeden 'b' girildiğinde saat:dakika:saniye biçiminde bir sayaç başlatan ve 'd' girildiğinde sayacı durduran uygulamayı yazınız. Program 'ç' girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılmayacaktır. Sayaç çalışıyorken b'ye tekrar basılırsa herhangi bir şey yapılmayacaktır. Sayaç kaldığı yerden devam edecektir
 
 ```kotlin
-package org.csystem.app
 
-import org.csystem.util.console.kotlin.readChar
-import java.util.*
-import kotlin.system.exitProcess
-
-private fun createTimerTask() : TimerTask
-{
-    var seconds = 0L
-
-    return object: TimerTask() {
-        override fun run()
-        {
-            printDuration(seconds++)
-        }
-    }
-}
-
-private fun printDuration(seconds: Long)
-{
-    val hour = seconds / 60 / 60
-    val minute = seconds / 60 % 60
-    val second = seconds % 60
-
-    print("%02d:%02d:%02d\r".format(hour, minute, second))
-}
-
-private fun readCharProc()
-{
-    while (true) {
-        val ch = readChar()
-
-        clearScreen()
-
-        if (ch == 'b')
-            break
-
-        if (ch == 'd')
-            exitProcess(0);
-    }
-}
-
-fun clearScreen()
-{
-    for (i in 1..26)
-        println()
-}
-
-private fun runApp()
-{
-    var flag = false
-
-    while (true) {
-        readCharProc()
-
-        if (flag)
-            continue
-
-        val timer = Timer()
-
-        println("Press d to stop chronometer!...")
-        timer.scheduleAtFixedRate(createTimerTask(), 0, 1000)
-        flag = true
-    }
-}
-
-fun main() = runApp()
 ```
 
->__Thread'lerin sonlandırılması:__ Bir thread aşağıdaki durumlardan biri gerçekleştiğinde sonlanır:
+##### Thread'lerin Sonlandırılması
+
+>Bir thread aşağıdaki durumlardan biri gerçekleştiğinde sonlanır:
 >- Thread akışına ilişkin fonksiyonun sonlanması durumunda. Şüphesiz en normal durum budur.
 >
 >- Thread daemon bir thread ise, thread'in ait olduğıu process içerisindeki non-daemon thread'ler sonlandığında
@@ -17195,19 +17111,17 @@ fun main()
 }
 ```
 
-
 >Thread yaratılması işletim düzeyinde bir takım alt seviye işlemlerin yapılmasına yol açmaktadır. Bazı uygulamalarda çok fazla thread'in aynı zamanda yaratılması gerekebilmektedir. Örneğin multi-client bir server herhangi bir client'ın işlemi devam ederken başka bir client gelmesi durumunda da hizmet verebilmesi için her client'ın bağlantısından sonra o client için bir thread açmalıdır. İşte böyle bir durumda çok fazla client'ın bağlantı yapmaya çalışması, thread yaratılırken aşağı seviyeli işlemler dolayısıyla belirli bir yavaşlığa sebep olabilir. Bu gibi örnekler ileride yapılacaktır. İşte bu durumlarda işlemlerin hızlı bir biçimde yapılabilmesi için işletim sistemlerinin desteklediği bazı yöntemler bulunmaktadır. Bu yöntemler işletim sistemlerine değişiklik gösterebilmektedir. İşte Java 5 ile bu gibi durumlara yönelik işlemleri yapan sınıflar ve metotlar içereen __"executors"__ eklenmiştir. Executors ile tipik olarak thread havuzları (thread pool) oluşturulabilmektedir. Thread havuzları önceden yaratılmış thread'ler gerektiğinde start edilebilmektedir. Yani yukarıda anlatılan thread yaratma maliyeti daha işin başında yapılmaktadır. Bu durumda aşağı seviyeli (süphesi yüksek seviyeli de) thread yaratma maliyeti minimalize edilmiş olur. Şüphesiz executors bu işlemi en nihayetinde işletim sisteminin sağladığı yöntemler ile yapmaktadır. Ancak şüphesi bu Java/Android programcısını ilgilendirmemektedir. Java programcısı açısından çoğu durumda klasik thread yerine executors kullanımı tercih edilmelidir. O zaman Thread sınıfına neden ihtiyaç vardır? Şüphesiz basit bazı thread işlemleri yani yukarıdaki gibi thread yaratmanın maliyetinin önemli olmadığı durumlarda özellikle Kotlin ile kullanımı çok basit olduğundan klasik thread tercih edilebilir. Ayrıca Thread sınıfının çeşitli metotları thread havuzlarında da kullanılabilmektedir. Şüphesiz thread havuzlarından alında thread'ler de Java anlamında birer Thread'dir. Kısaca programcı açısından thread havuzları da arka planda Thead sınıfını kullanıyor olarak düşünülebilir. Executors çok geniş bir kütüphanedir ve pek çok işleme yönelik metotları ve sınıfları vardır. Burada yalnızca thread havuzlarının fixed ve cached olanları ele alınacaktır. Bir thread havuzu da ayrı bir thread'dir.
 
-**_Anahtar Notlar:_** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (13 Kasım 2023) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar __"Kotlin Coroutines"__ ile kullanılabilmektedir. Kotlin Coroutines ileride ele alınacatır.
-
+**Anahtar Notlar:** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (18 Ocak 2025) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar __"Kotlin Coroutines"__ ile sağlanabilmektedir. Kotlin Coroutines ileride ele alınacaktır.
 
 >Executors ile thread havuzu oluşturmak için Executors sınıfının çeşitli metotları kullanılabilmektedir. Burada ele alacağımız metotları şunlardır:
 >
->__<u>newSingleThreadExecutor:</u>__ Bu metot ile havuzda tek bir thread yaratılmış olur ve gerektiğinde kullanılabilir. Bu durumda yalnızca bir tane thread start edilebilir. İkinci bir thread'in start edilmesi durumunda diğer thread'in bitmesi beklenir. Yani havuzda aynı anda çalıştırılacak thread sayısı bir tanedir.
+>**newSingleThreadExecutor:** Bu metot ile havuzda tek bir thread yaratılmış olur ve gerektiğinde kullanılabilir. Bu durumda yalnızca bir tane thread start edilebilir. İkinci bir thread'in start edilmesi durumunda diğer thread'in bitmesi beklenir. Yani havuzda aynı anda çalıştırılacak thread sayısı bir tanedir.
 >
->__<u>newFixedThreadPool:</u>__ Bu metot ile n tane thread yaratılmış olur. Burada n tane thread running durumundayken n + 1 ve yukarındaki thread'ler start (execute/submit) edildiğinde havuzdaki diğer threadlerin birmesini beklerler.Yani havuzda aynı anda çalıştırılacak thread sayısı n tanedir. Bu metodun bu n sayısını parametre olarak alan overload'u vardır.
+>**newFixedThreadPool:** Bu metot ile n tane thread yaratılmış olur. Burada n tane thread running durumundayken n + 1 ve yukarındaki thread'ler start (execute/submit) edildiğinde havuzdaki diğer threadlerin birmesini beklerler.Yani havuzda aynı anda çalıştırılacak thread sayısı n tanedir. Bu metodun bu n sayısını parametre olarak alan overload'u vardır.
 >
->__<u>newCachedThreadPool:</u>__ Bu metot ile teorik olarak istenildiği kadar thread havuzdan kullanılabilmektedir. Bu işlemi etkin bir şekilde yapacağını garanti eder. Şüphesiz, aynı anda çalışan thread sayısının işletim sistemi düzeyinde bir limiti vardır.
+>**newCachedThreadPool:** Bu metot ile teorik olarak istenildiği kadar thread havuzdan kullanılabilmektedir. Bu işlemi etkin bir şekilde yapacağını garanti eder. Şüphesiz, aynı anda çalışan thread sayısının işletim sistemi düzeyinde bir limiti vardır.
 >
 >Bu metotlar ExecutorService arayüz referansına geri dönerler. Bu üç metodun da kullanımına programcı senaryosuna göre karar verir. Eğer tek bir thread sürekli kullanılacaksa bu durumda newFixedThreadPool(1) çağrısı yerine newSingleThreadExecutor() çağrısı yapılması tavsiye edilir. Genel olarak thread havuzu ile işlemler bittiğinde thread havuzuna ilişkin thread'in de sonlandırılması gerekir. Bu da ExecutorService arayüzünün shutdown metodu ile yapılabilir. shutdown metodu da asenkron olarak çalışır yani metot thread havuzu sonlanmadan sonlanır.. Çağrıldığında eğer running durumda thread'ler varsa thread havuzu bu thread'ler bitinceye kadar yok edilmez. Ancak yeni bir thread start edilemez. ExecutorService ile bir thread start etmek için tipik olarak iki tane metot kullanılır: execute, submit. Bu metotlar adıkları callback'ler ile thread start ederler. execute metodunun geri dönüş değeri yoktur. sumbit metodunun geri dönüş değeri `Future<T>` arayüzü türündendir. Bu arayüz submit edilen threaad'i temsil eder. `Future<T>` arayüzünün get metotları ile thread beklenebilir hatta submit metodunubn `Callable<T>` parmetreli overload'u kullanılarak thread'deb sonuç elde edilebilir. `Future<T>` arayüzünün cancel isimli metodu ile thread cancel edilebilir. cancel metodu istenirse interrupt flag değerini set edebilir. `Future<T>` kullanımı örneklerle ele alınacaktır.
 
@@ -17389,7 +17303,30 @@ fun main()
 ```
 
 
-**_Anahtar Notlar:_** Thread'ler ve asenkron çalışma ilgili burada anlatılanlar dışında da pek çok detay vardır. Bazıları örnekler içerisinde ele alınacaktır.
+**Anahtar Notlar:** Thread'ler ve asenkron çalışma ilgili burada anlatılanlar dışında da pek çok detay vardır. Bazıları örnekler içerisinde ele alınacaktır.
 
+##### Yazılımda Test Süreçleri
+
+>Yazılımda test süreçleri ürün geliştirmenin önemli bir aşamasını oluşturmaktadır. Bazı yazılımlarda, ürünün herşeyiyle doğru olması kritik öneme sahip olabilmektedir. Bazı yazılımlarda hata toleransları olabilir. Gerektiğinde düzeltilebilir.*
+>
+>*Eskiden yazılım geliştirmede test süreçleri lüks olarak değerlendiriliyordu. Bu nedenle yalnızca büyük firmalar test bölümleri barındırıyorlardı. Ancak günümüzde yazılımda kalite (software quality) bilinci daha fazla artmış ve test süreçleri daha bilinir ve kullanılır hale gelmiştir.*
+>
+>Yazılımda test süreçleri için çeşitli stratejiler kullanılabilmektedir. Test işlemi en aşağı düzeyde programcının kendi yazdığı kodları test etmesi ile başlar. Buna "birim testi (unit testing)" denir. Programcı genel olarak, yazmış olduğu bir metodun doğru çalışıp çalışmadığını test eder (duruma göre "etmelidir"). İşte burada bir metot bir "birim (unit)" olarak düşünülür. Bir yazılımda aslında parçalar bir araya getirilir. Yani metotlar çağrılarak yazılım geliştirilir. Bu bir araya getirme işlemi sonucunda genellikle parçalar yeniden test edilir. Buna da "entegrasyon testi (integration testing)" denilmektedir. Yazılımın önemli parçalarına "modül (module)" denir. Modüller de ayrı ayrı test edilebilir. Buna da "modül testi (module testing)" denir. Nihayet ürün oluşturulur ve bir bütün olarak test edilir. Genellikle bu testlere "kabul testleri (acceptance testing)" denir. Ürün bir bütün olarak önce kurum içerisinde test bölümleri tarafından test edilir. Genellikle bu testlere "alfa testi (alpha testing)" denir. Sonra ürün seçilmiş bazı son kullanıcılara dağıtılır ve gerçek hayat testine sokulur. Buna genellikle "beta testi (beta testing)" denir.
+>
+>Birim testi için pratikte şu 3 yaklaşımdan biri uygulanır:
+>- Hiç birim testi yapmamak: Bu durum yazılım geliştirmede tavsiye edilmese de bir takım özel sebeplerden dolayı firmalar tarafından uygulanabilmektedir. Örneğin geliştirici ekibin sayı olarak azlığı, projenin deadline'ının kısa olması, rakip firmalardan önce ürünü çıkarma kaygısı vb. durumlarda karşılaşılabilmektedir. Buradaki yaklaşım programcının hiç test yapmaması değil, programcıdan bir test beklentisi olmaması ya da özellikle test yapmasının istenmemesi gibi düşünülebilir. Şüphesiz programcı geliştirme sürecinde belirli ölçüde test yapacaktır.
+>- Katı katıya birim testi yapmak: Bu durumda neredeyse her birim test edilir. Örneğin bir metodun basit ya da karmaşık olmasına bakılmaksızın birim testi yapılır. Bu durumda zaman kaybı olmaması için birim testi yapan programcıların ayrı olması ideal bir durumdur. Şüphesiz herhangi bir zaman kısıtı yoksa ya da zaman çok uzunsa da uygulanabilir.
+>- Gereken birimler için birim testi yapmak: Aslında görünürde en ideal durum budur. Görece basit birimler test edilmez ya da detaylı olarak test edilmez. Bu durumda hangi birimlerin test edileceğinin, hangi birimlerin belirli ölçüde test edileceğinin, hangi birimlerin test edilmeyeceğinin belirlenmesi önemlidir. Bu da geliştiriciler ve yöneticiler açısından tecrübe gerektirebilir.
+>
+>Birim testleri genel olarak iki şekilde yapılır: manuel birim testleri, bazı araçlar ile otomatik olarak yapılan birim testleri. Pratikte duruma göre ikisi de tercih edilebilse de otomatik araçlar ile yapılan testler belirli ölçüde testi yapan programcının gereksiz kodları yazmasını engellediğinden daha çok tercih edilir. Hatta bazı firmalar kendi birim testi araçlarını da yazarlar.
+>
+>Java'da temel birim testi aracı "JUnit" olsa da Spring gibi popüler framework'lere ait olan ya da olmayan bir çok farklı araç da söz konusudur. Birim testleri IDE programlar ve build araçları ile daha kullanışlı hale gelir. Aslında bu araçların temel amacı birim testini yapan programcının test işlemini mümkün olduğunca otomatize etmektir. Bu araçlar ile çoğıu durumda her zaman yazılması gereken kodlar programcıya bırakılmaz. Bu durumda programcı için önemli olan yani odaklanması gereken test senaryolarını belirlemek ve yazmaktır. Bu senaryolar için her zaman genel olan durumlar söylenemez. Test edilecek birimin ne olduğuna göre, nasıl test edileceğine göre vb. durumlar için değişiklik gösterebilir.
+>
+>Birim test araçlarının çoğunda kullanılan genel bazı terimler vardır: **setup, teardown, input, expected, actual vb.**
+
+**Anahtar Notlar:** Test işlemlerinde karşılaştığımız önemli iki terim vardır: **Verification & Validation (V&V)**. Verification, yazılmış olan kodun doğru çalışmasıdır. Validation kodun doğru işi yapmasıdır.
 
 **Anahtar Notlar:** Yukarıda kullanılan sınıfların ve fonksiyonların son halleri [Android-Aug-2024](https://github.com/oguzkaran/Android-Aug-2024 ) repository'si içerisinde bulunmaktadır.
+
+
+
