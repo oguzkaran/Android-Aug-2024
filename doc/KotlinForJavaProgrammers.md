@@ -16812,97 +16812,96 @@ fun main() {
 }
 ```
 
->**Sınıf Çalışması:** Klavyeden 'b' girildiğinde saat:dakika:saniye biçiminde bir sayaç başlatan ve 'd' girildiğinde sayacı durduran uygulamayı yazınız. Program 'ç' girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılmayacaktır. Sayaç çalışıyorken b'ye tekrar basılırsa herhangi bir şey yapılmayacaktır. Sayaç kaldığı yerden devam edecektir
+SSSSSSSSSSSSSSSSSSSSSSS
+
+>**Sınıf Çalışması:** Klavyeden `b` girildiğinde `saat:dakika:saniye` biçiminde bir sayaç başlatan ve `e` girildiğinde sayacı durduran uygulamayı yazınız. Program `q` girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılmayacaktır. Sayaç çalışıyorken  tekrar `s` basılırsa herhangi bir şey yapılmayacaktır. Sayaç her 's' işleminde kaldığı yerden devam edecektir.
 
 ```kotlin
 
 ```
 
-##### Thread'lerin Sonlandırılması
+##### Thread'lerin Sonlanması
 
 >Bir thread aşağıdaki durumlardan biri gerçekleştiğinde sonlanır:
->- Thread akışına ilişkin fonksiyonun sonlanması durumunda. Şüphesiz en normal durum budur.
+>- Thread akışına ilişkin fonksiyonun sonlanması durumunda sonlanır. Şüphesiz en normal durum budur.
 >
->- Thread daemon bir thread ise, thread'in ait olduğıu process içerisindeki non-daemon thread'ler sonlandığında
+>- Thread daemon bir thread ise, thread'in ait olduğu process içerisindeki non-daemon thread'ler sonlandığında sonlanır.
 >
->- Process sonlandırıldığında. Bu durum,dışarıdan yapılabileceği gibi process içerisinde herhangi bir akışta System.exit veya Kotlin'de exitProcess fonksiyonları çağrıldığında process sonlandığı için tüm thread'ler de sonlanır
+>- Process sonlandırıldığında sonlanır. Örneğin, Java için`System.exit` veya Kotlin için `exitProcess` fonksiyonları herhangi bir noktada çağrıldığında process sonlanacağı için tüm thread'ler de sonlanır.
 >
 >- Thread içerisinde bir exception oluşursa ve yakalanamazsa ilgili thread sonlanır
 >
->Dikkat edilirse bir thread'i doğrudan sonlandırmaya ilişkin bir fonksiyon yoktur. Aslında Thread sınıfının stop isimli bir fonksiyonu başlangıçta bu iş tasarlanmıştı. Ancak bir thread'i doğrudan sonlandırmanın kritik işlemlerde çeşitli problemlere yol açabileceği dolayısıyla bu metot deprecated yapıldı. Hatta bir çok sistemde çalışmamaktadır. Peki programcı bir thread'i başka bir thread içerisinden sonlandırmayı nasıl yapacaktır? Bu durumda ilk akla gelen bir flag değerinin diğer thread'den değpiştirilerek ilgili thread'in bu flag değerine göre sonlandırılmasını sağlamak biçiminde olabilir. Bu yöntemin üç tane tipik problemi olabilir: 1. flag değerinin değiştirilmesi birden fazla makine komutu ile yapıldığında değiştirildiği anda hemen diğer akış tarafından görülemeyebilir. Bu durumda bu işlemin atomic bir biçimde yapılması gerekir
+>**Dikkat edilirse bir thread'i doğrudan sonlandırmaya ilişkin bir fonksiyon yoktur.** Aslında Thread sınıfının stop isimli bir fonksiyonu başlangıçta bu iş tasarlanmıştı. Ancak bir thread'i doğrudan sonlandırmanın kritik işlemlerde çeşitli problemlere yol açabileceği dolayısıyla bu metot deprecated yapıldı. Hatta bir çok sistemde şu anda çalışmamaktadır. Peki programcı bir thread'i başka bir thread içerisinden sonlandırmayı nasıl yapacaktır? Bu durumda ilk akla gelen bir flag değerinin diğer thread'den değiştirilerek ilgili thread'in bu flag değerine göre sonlandırılmasını sağlamak biçiminde olabilir. Bu yöntemin üç tane tipik problemi olabilir: 
+> - flag değerinin değiştirilmesi birden fazla makine komutu ile yapıldığında değiştirildiği anda hemen diğer akış tarafından görülemeyebilir. Bu durumda bu işlemin **atomic** bir biçimde yapılması gerekir
 >
->2. Thread örneğin join yada sleep gibi thread'i bloke eden bir fonksiyon içerisindeyse bu durumda bloke olduğıu sürece flag değerinin değiştiğini anlayamaz
+>- İlgili thread, örneğin `join` yada `sleep` gibi thread'i bloke eden bir fonksiyon içerisindeyse bu durumda bloke olduğu sürece flag değerinin değiştiğini anlayamaz
 >
->3. Derleyiciler genel olarak optimizasyonlarını uygulamanın multi threaded olabileceğine yönelik yapmazlar. Sanki uygulama single threaded bir uygulamaymış gibi yaparlar. Bu durumda bir değişkenin değerinin değişmediği ama kullanılşdığı bir akış için değerinin daha hızlı erişilebildiğinden register'larda saklayabilirler. Bu durumda o değişkenin değeri başka bir thread'de değiştirildiğinde diğer akışta değişiklik farkedilemez. Aslında bu problem yalnızca thread sonlandırmada çıkmaz. Aslında thread sonlandırma zaten programcının tuttuğu diğeriyle genel olarak yapılmadığından, sonlandırma senaryolarında böylesi bir durum oluşmaz.
+>- Derleyiciler genel olarak optimizasyonlarını uygulamanın multi threaded olabileceğine yönelik yapmazlar. Sanki uygulama single threaded bir uygulamaymış gibi yaparlar. Bu durumda bir değişkenin değerinin değişmediği ama kullanıldığı bir akış için, değere daha hızlı erişilebildiğinden register'larda saklayabilirler. Bu durumda o değişkenin değeri başka bir thread'de değiştirildiğinde diğer akışta değişiklik fark edilemez. Aslında bu problem yalnızca thread sonlandırmada çıkmaz. 
 >
->Aslında bir thread'in interrupt flag denilen bir flag değeri vardır ve bu flag değeri thread başlatığında mantıksal false değerinde yani reset durumundadır. Thread sınıfının interrupt metodu interrupt flag değerini set eder yani mantıksal true değerine çeker. Bu işlem atomic bir biçimde yapılır. Yani bu set/reset işlemi bitene kadar o flag değerine yönelik araya hiç bir işlem giremez. sleep, join gibi Thread'i bloke eden fonksiyonlar bloke durumdayken interrupt flag değeri set edilirse InterruptedException fırlatırlar ve interrupt flag değerini reset ederler. Ayrıca Thread sınıfının static interrupted ve non-static isInterrupted isimli iki fonksiyonu ile interrup flag değerinin set edilip edilmediği test edilebilir. Bu iki metodun static ve non-static olmaları dışında farkı ileride ele alınacaktır.
+>Aslında bir thread'in `interrupt flag` denilen bir flag değeri vardır ve bu flag değeri thread başlatıldığında mantıksal false değerinde yani `reset` durumundadır. Thread sınıfının `interrupt` metodu interrupt flag değerini set eder yani mantıksal true değerine çeker. Bu işlem atomic bir biçimde yapılır. Yani bu `set veya reset` işlemi bitene kadar o flag değerine yönelik araya hiç bir işlem giremez. `sleep, join` gibi thread kavramına özgü, thread'i bloke eden fonksiyonlar bloke durumdayken interrupt flag değeri set edilirse veya interrupt flag değeri set edilmişken bu fonksiyonlara akış girerse, `InterruptedException` fırlatırlar ve **interrupt flag değerini reset ederler.** Ayrıca Thread sınıfının static `interrupted` ve non-static `isInterrupted` isimli iki fonksiyonu (Kotlin'de isInterrupted property elemanı) ile interrupt flag değerinin set edilip edilmediği test edilebilir. Bu iki metodun static ve non-static olmaları dışında farkı ileride ele alınacaktır.
 
-**_Anahtar Notlar:_** Üçüncü madde için flag değeri sınıfın veri elemanı olarak kullanılıyorsa Java'da volatile anahtar sözcüğü ile, Kotlin'de property elemanı Volatile annotation'ı ile işeretlenirse flag değeri thread de görülebilir. volatile bir veri elemanı derleyiciye sen bunu optimizasyon amaçlı registerda bekletme her zaman ve her akışsa memory'den kullan isteğidir. Derleyici bazı durumlarda yine de optimizasyon yapabilir. Ancak aşağıdaki gibi bir durumda derleyici volatile olması derleyiciye optimizasyon yaptırmayacaktır. Bu problem __"volatile"__ kullanmadan da çözülebilir. Örneği Volatie annotagtion'ını kaldırarak da çalıştırıp sonuçları gözlemleyiniz. Örnek durumu göstermek için yazılmıştır.
+**Anahtar Notlar:** Yukarıdaki üçüncü madde için flag değeri sınıfın veri elemanı olarak kullanılıyorsa Java'da `volatile` anahtar sözcüğü ile, Kotlin'de property elemanı `Volatile` annotation'ı ile işeretlenirse flag değeri thread de görülebilir. volatile bir veri elemanı derleyiciye sen bunu optimizasyon amaçlı register' da bekletme her zaman ve her akışda memory'den kullan isteğidir. Derleyici bazı durumlarda yine de optimizasyon yapabilir. Ancak aşağıdaki gibi bir durumda veri elemanının volatile olması derleyiciye optimizasyon yaptırmayabilecektir. Bu problem __"volatile"__ kullanmadan da çözülebilir. 
+
+>Aşağıdaki demo örneği, Volatie annotation'ını kaldırarak da çalıştırıp sonuçları gözlemleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-class MyThread {
-    @Volatile
-    private var mFlag = true
-
-    private fun threadCallback()
-    {
-        var sum = 0
-
-        while (mFlag)
-            sum += Random.nextInt()
-
-        //...
-    }
-
-    fun run()
-    {
-        val t = thread(block = ::threadCallback)
-
-        t.join(1000)
-        mFlag = false
-    }
-}
-
-fun main()
-{
-    MyThread().apply {run()}
-}
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+class MyThread {  
+    @Volatile  
+    private var mFlag = false  
+  
+    private fun threadCallback() {  
+        var sum = 0  
+  
+        while (!mFlag) {  
+            sum += Random.nextInt()  
+            //...  
+        }  
+  
+    }  
+  
+    fun run() {  
+        val t = thread(block = ::threadCallback)  
+  
+        t.join(1000)  
+        mFlag = true  
+        println("main thread ends")  
+    }  
+}  
+  
+fun main() = MyThread().apply { run() }  
 ```
 
 
 >Aşağıdaki örnekte thread sleep ile bloke durumdayken interrupt flag değeri set edilmiş ve InterruptedException fırlatılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun threadCallback()
-{
-    var sum = 0L
-
-    try {
-        while (true) {
-            val value = Random.nextInt()
-            println(value)
-            sum += value
-            Thread.sleep(100)
-        }
-    }
-    catch (_: InterruptedException) {
-        println("Sum = $sum")
-    }
-}
-
-fun main()
-{
-    thread(block = ::threadCallback).apply { join(3000); interrupt()}
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun threadCallback() {  
+    var sum = 0L  
+  
+    try {  
+        while (true) {  
+            val value = Random.nextInt()  
+            println(value)  
+            sum += value  
+            Thread.sleep(100)  
+        }  
+    } catch (_: InterruptedException) {  
+        println("Sum = $sum")  
+    }  
+}  
+  
+fun main() {  
+    thread(block = ::threadCallback).apply { join(3000); interrupt() }  
 }
 ```
 
@@ -16910,74 +16909,92 @@ fun main()
 >sleep (aynı zamanda join) fonksiyonu interrupt flag değerini set edilmişse reset duruma getirir. Örnek durumu göstermek için aşağıdaki gibi yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun threadCallback()
-{
-    var sum = 0L
-
-    try {
-        while (true) {
-            val value = Random.nextInt()
-            println(value)
-            sum += value
-            Thread.sleep(100)
-        }
-    }
-    catch (_: InterruptedException) {
-        println("Sum first = $sum")
-    }
-
-    try {
-        while (true) {
-            Thread.sleep(100)
-            val value = Random.nextInt()
-            println(value)
-            sum += value
-        }
-    }
-    catch (_: InterruptedException) {
-        println("Sum last = $sum")
-    }
-}
-
-fun main()
-{
-    thread(block = ::threadCallback).apply { join(3000); interrupt(); join(1000); interrupt()}
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun threadCallback() {  
+    var sum = 0L  
+  
+    try {  
+        while (true) {  
+            val value = Random.nextInt()  
+            println(value)  
+            sum += value  
+            Thread.sleep(100)  
+        }  
+    } catch (_: InterruptedException) {  
+        println("Sum first = $sum")  
+    }  
+  
+    try {  
+        while (true) {  
+            Thread.sleep(100)  
+            val value = Random.nextInt()  
+            println(value)  
+            sum += value  
+        }  
+    } catch (_: InterruptedException) {  
+        println("Sum last = $sum")  
+    }  
+}  
+  
+fun main() {  
+    thread(block = ::threadCallback).apply { join(3000); interrupt(); join(2000); interrupt() }  
 }
 ```
 
 
->Aşağıdaki örnekte interrupt flag değerinin set veye reset olma durumuna duyarlı herhangi bir fonksiyon çağrılmadığından thread sonlanmaz. Fonksiyonda try expression statement kullanılmasa durum aynıdır
+>Aşağıdaki örnekte interrupt flag değerinin set veya reset olma durumuna duyarlı herhangi bir fonksiyon çağrılmadığından thread sonlanmaz. Fonksiyonda try expression statement kullanılmasa da durum aynıdır
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun threadCallback()
-{
-    var sum = 0L
-
-    try {
-        while (true) {
-            val value = Random.nextInt()
-            println(value)
-            sum += value
-        }
-    }
-    catch (_: InterruptedException) {
-        println("Sum = $sum")
-    }
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun threadCallback() {  
+    var sum = 0L  
+  
+    try {  
+        while (true) {  
+            val value = Random.nextInt()  
+            println(value)  
+            sum += value  
+        }  
+    } catch (_: InterruptedException) {  
+        println("Sum = $sum")  
+    }  
+}  
+  
+fun main() {  
+    thread(block = ::threadCallback).apply { join(3000); interrupt(); }  
 }
+```
 
-fun main()
-{
-    thread(block = ::threadCallback).apply { join(3000); interrupt();}
+>Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır
+
+```kotlin
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun threadCallback() {  
+    var sum = 0L  
+  
+    while (!Thread.interrupted()) {  
+        val value = Random.nextInt()  
+        println(value)  
+        sum += value  
+    }  
+  
+    println("Sum = $sum")  
+}  
+  
+fun main() {  
+    thread(block = ::threadCallback).apply { join(3000); interrupt(); }  
 }
 ```
 
@@ -16985,190 +17002,157 @@ fun main()
 >Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun threadCallback()
-{
-    var sum = 0L
-
-    while (!Thread.interrupted()) {
-        val value = Random.nextInt()
-        println(value)
-        sum += value
-    }
-
-    println("Sum = $sum")
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun threadCallback() {  
+    val self = Thread.currentThread()  
+    var sum = 0L  
+  
+    while (!self.isInterrupted) {  
+        val value = Random.nextInt()  
+        println(value)  
+        sum += value  
+    }  
+  
+    println("Sum = $sum")  
+}  
+  
+fun main() {  
+    thread(block = ::threadCallback).apply { join(3000); interrupt(); }  
 }
+```
 
-fun main()
-{
-    thread(block = ::threadCallback).apply { join(3000); interrupt();}
+>Yukarıdaki iki örnek farklı fonksiyonlar kullanılmasına karşın işi yapmaktadır. Peki, `ìnterrupted` ve `isInterrupted` metotlarının farkı nedir? interrupted metodu interrupt flag değerini set durumundan reset durumuna çeker, isInterrupted metodu interrupt flag değerini set durumundan reset duruma çekmez. 
+
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun threadCallback() {  
+    val self = Thread.currentThread()  
+    var sum = 0L  
+  
+    while (!self.isInterrupted) {  
+        val value = Random.nextInt()  
+        println(value)  
+        sum += value  
+    }  
+  
+    println("Sum first = $sum")  
+  
+    while (!self.isInterrupted) {  
+        val value = Random.nextInt()  
+        println(value)  
+        sum += value  
+    }  
+  
+    println("Sum last = $sum")  
+}  
+  
+fun main() {  
+    thread(block = ::threadCallback).apply { join(3000); interrupt(); join(1000); interrupt() }  
+}
+```
+
+>Aşağıdaki demo örneği inceleyiniz
+
+```kotlin
+package org.csystem.app  
+  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun threadCallback() {  
+    val self = Thread.currentThread()  
+    var sum = 0L  
+  
+    while (!Thread.interrupted()) {  
+        val value = Random.nextInt()  
+        println(value)  
+        sum += value  
+    }  
+  
+    println("Sum first = $sum")  
+  
+    while (!self.isInterrupted) {  
+        val value = Random.nextInt()  
+        println(value)  
+        sum += value  
+    }  
+  
+    println("Sum last = $sum")  
+}  
+  
+fun main() {  
+    thread(block = ::threadCallback).apply { join(1000); interrupt(); join(1000); interrupt() }  
 }
 ```
 
 
->Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır
+##### Executors
+
+>Thread yaratılması işletim düzeyinde bir takım alt seviye işlemlerin yapılmasına yol açmaktadır. Bazı uygulamalarda çok fazla thread'in beraber yaratılması gerekebilmektedir. Örneğin multi-client bir server herhangi bir client'ın işlemi devam ederken başka bir client gelmesi durumunda da hizmet verebilmesi için her client'ın bağlantısından sonra o client için bir thread açmalıdır. İşte böyle bir durumda çok fazla client'ın bağlantı yapmaya çalışması, thread yaratılırken aşağı seviyeli işlemler dolayısıyla belirli bir yavaşlığa sebep olabilir. Bu gibi örnekler ileride yapılacaktır. İşte böyle durumlarda bu maliyet için işletim sistemlerinin bazı yöntemleri bulunur. Bu yöntemler işletim sistemlerine göre değişiklik gösterebilmektedir. İşte Java 5 ile bu gibi durumlara yönelik işlemleri yapan sınıfları ve metotları içeren **executors** eklenmiştir. Executors ile tipik olarak **thread havuzları (thread pools)** oluşturulabilmektedir. Thread havuzları ile önceden yaratılmış thread'ler gerektiğinde start edilebilmektedir. Yani yukarıda anlatılan thread yaratma maliyeti daha işin başında yapılmaktadır. Bu durumda aşağı seviyeli (süphesiz yüksek seviyeli de) thread yaratma maliyeti minimalize edilmiş olur. Şüphesiz executors bu işlemi en nihayetinde işletim sisteminin sağladığı yöntemler ile yapmaktadır. Bu yöntemler Java/Android programcısını doğrudan ilgilendirmemektedir. Java programcısı açısından çoğu durumda klasik thread yerine executors kullanımı tercih edilmelidir. O zaman Thread sınıfına neden ihtiyaç vardır? Şüphesiz basit bazı thread işlemleri yani yukarıdaki gibi thread yaratmanın maliyetinin önemli olmadığı durumlarda özellikle Kotlin ile kullanımı çok basit olduğundan klasik thread tercih edilebilir. Ayrıca Thread sınıfının çeşitli metotları thread havuzlarında da kullanılabilmektedir. Şüphesiz thread havuzlarından alınan thread'ler de Java anlamında birer Thread'dir. Kısaca programcı açısından thread havuzları da arka planda Thread sınıfını kullanıyor olarak düşünülebilir. Executors çok geniş bir kütüphanedir ve pek çok işleme yönelik metotları ve sınıfları vardır. Burada yalnızca thread havuzlarının fixed ve cached olanları ele alınacaktır. Ayrıca scheduler (timer) işlemleri yapan sınıf da ele alınacaktır. Bir thread havuzu da ayrı bir thread'dir.
+
+**Anahtar Notlar:** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (25 Ocak 2025) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar **Kotlin Coroutines** ile sağlanabilmektedir. Kotlin Coroutines ileride ele alınacaktır.
+
+>Executors ile thread havuzu oluşturmak için `Executors` sınıfının çeşitli static (factory) metotları kullanılabilmektedir. Burada ele alacağımız metotları şunlardır:
+>
+>**newSingleThreadExecutor:** Bu metot ile havuzda tek bir thread yaratılmış olur ve gerektiğinde kullanılabilir. Bu durumda yalnızca bir tane thread başlatılabilir. İkinci bir thread'in başlatılması durumunda diğer thread'in bitmesi beklenir. Yani havuzda aynı anda çalıştırılacak thread sayısı bir tanedir.
+>
+>**newFixedThreadPool:** Bu metot ile n tane thread yaratılmış olur. Burada n tane thread running durumundayken n + 1 ve yukarındaki thread'ler başlatılıdğında havuzdaki diğer threadlerin bitmesi beklenir. Yani havuzda aynı anda çalıştırılacak thread sayısı n tanedir. Bu metodun bu n sayısını parametre olarak alan overload'u vardır.
+>
+>**newCachedThreadPool:** Bu metot ile teorik olarak istenildiği kadar thread havuzdan kullanılabilmektedir. Bu işlemi etkin bir şekilde yapacağını garanti eder. Şüphesiz, aynı anda yaratılmış thread sayısının işletim sistemi düzeyinde bir limiti vardır.
+>
+>Bu metotlar ExecutorService arayüz referansına geri dönerler. Bu üç metodun da kullanımına programcı senaryosuna göre karar verir. Eğer tek bir thread sürekli kullanılacaksa bu durumda `newFixedThreadPool(1)` çağrısı yerine `newSingleThreadExecutor()` çağrısı yapılması tavsiye edilir. Aslında thread havuzu da bir thread yardımıyla yönetilir. Genel olarak thread havuzu ile işlemler bittiğinde thread havuzuna ilişkin thread'in de sonlandırılması gerekir. Bu da ExecutorService arayüzünün **shutdown** metodu ile yapılabilir. shutdown metodu da asenkron olarak çalışır yani metot thread havuzu sonlanmadan sonlanır. Çağrıldığında eğer running durumda thread'ler varsa thread havuzu bu thread'ler sonlanıncaya kadar yok edilmez. Ancak yeni bir thread start edilemez. ExecutorService ile bir thread start etmek için tipik olarak iki tane metot kullanılır: **execute, submit**. Bu metotlar aldıkları callback'ler ile thread'i başlamasını tetiklerler. execute metodunun geri dönüş değeri yoktur. submit metodunun geri dönüş değeri `Future<T>` arayüzü türündendir. Bu arayüz submit edilen threaad'i temsil eder. `Future<T>` arayüzünün get metotları ile thread beklenebilir hatta submit metodunun `Callable<T>` parmetreli overload'u kullanılarak thread'den sonuç elde edilebilir. `Future<T>` arayüzünün **cancel** isimli metodu ile thread cancel edilebilir. cancel metodu istenirse interrupt flag değerini set edebilir. `Future<T>` kullanımı örneklerle ele alınacaktır.
+
+>Aşağıdaki örnekte fixed thread pool kullanılmıştır
 
 ```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun threadCallback()
-{
-    val self = Thread.currentThread()
-    var sum = 0L
-
-    while (!self.isInterrupted) {
-        val value = Random.nextInt()
-        println(value)
-        sum += value
-    }
-
-    println("Sum = $sum")
-}
-
-fun main()
-{
-    thread(block = ::threadCallback).apply { join(3000); interrupt();}
-}
-```
-
-
->isInterrupted metodu interrupt flag değerini set durumundan reset duruma çekmez. Aşağıdaki demo örneği inceleyiniz
-
-```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun threadCallback()
-{
-    val self = Thread.currentThread()
-    var sum = 0L
-
-    while (!self.isInterrupted) {
-        val value = Random.nextInt()
-        println(value)
-        sum += value
-    }
-
-    println("Sum first = $sum")
-
-    while (!self.isInterrupted) {
-        val value = Random.nextInt()
-        println(value)
-        sum += value
-    }
-
-    println("Sum last = $sum")
-}
-
-fun main()
-{
-    thread(block = ::threadCallback).apply { join(3000); interrupt(); join(1000); interrupt()}
-}
-```
-
->interrupted metodu interrupt flag değerini set durumundan reset duruma çeker. Aşağıdaki demo örneği inceleyiniz
-
-```kotlin
-package org.csystem.app
-
-import kotlin.concurrent.thread
-import kotlin.random.Random
-
-fun threadCallback()
-{
-    val self = Thread.currentThread()
-    var sum = 0L
-
-    while (!Thread.interrupted()) {
-        val value = Random.nextInt()
-        println(value)
-        sum += value
-    }
-
-    println("Sum first = $sum")
-
-    while (!self.isInterrupted) {
-        val value = Random.nextInt()
-        println(value)
-        sum += value
-    }
-
-    println("Sum last = $sum")
-}
-
-fun main()
-{
-    thread(block = ::threadCallback).apply { join(3000); interrupt(); join(1000); interrupt()}
-}
-```
-
->Thread yaratılması işletim düzeyinde bir takım alt seviye işlemlerin yapılmasına yol açmaktadır. Bazı uygulamalarda çok fazla thread'in aynı zamanda yaratılması gerekebilmektedir. Örneğin multi-client bir server herhangi bir client'ın işlemi devam ederken başka bir client gelmesi durumunda da hizmet verebilmesi için her client'ın bağlantısından sonra o client için bir thread açmalıdır. İşte böyle bir durumda çok fazla client'ın bağlantı yapmaya çalışması, thread yaratılırken aşağı seviyeli işlemler dolayısıyla belirli bir yavaşlığa sebep olabilir. Bu gibi örnekler ileride yapılacaktır. İşte bu durumlarda işlemlerin hızlı bir biçimde yapılabilmesi için işletim sistemlerinin desteklediği bazı yöntemler bulunmaktadır. Bu yöntemler işletim sistemlerine değişiklik gösterebilmektedir. İşte Java 5 ile bu gibi durumlara yönelik işlemleri yapan sınıflar ve metotlar içereen __"executors"__ eklenmiştir. Executors ile tipik olarak thread havuzları (thread pool) oluşturulabilmektedir. Thread havuzları önceden yaratılmış thread'ler gerektiğinde start edilebilmektedir. Yani yukarıda anlatılan thread yaratma maliyeti daha işin başında yapılmaktadır. Bu durumda aşağı seviyeli (süphesi yüksek seviyeli de) thread yaratma maliyeti minimalize edilmiş olur. Şüphesiz executors bu işlemi en nihayetinde işletim sisteminin sağladığı yöntemler ile yapmaktadır. Ancak şüphesi bu Java/Android programcısını ilgilendirmemektedir. Java programcısı açısından çoğu durumda klasik thread yerine executors kullanımı tercih edilmelidir. O zaman Thread sınıfına neden ihtiyaç vardır? Şüphesiz basit bazı thread işlemleri yani yukarıdaki gibi thread yaratmanın maliyetinin önemli olmadığı durumlarda özellikle Kotlin ile kullanımı çok basit olduğundan klasik thread tercih edilebilir. Ayrıca Thread sınıfının çeşitli metotları thread havuzlarında da kullanılabilmektedir. Şüphesiz thread havuzlarından alında thread'ler de Java anlamında birer Thread'dir. Kısaca programcı açısından thread havuzları da arka planda Thead sınıfını kullanıyor olarak düşünülebilir. Executors çok geniş bir kütüphanedir ve pek çok işleme yönelik metotları ve sınıfları vardır. Burada yalnızca thread havuzlarının fixed ve cached olanları ele alınacaktır. Bir thread havuzu da ayrı bir thread'dir.
-
-**Anahtar Notlar:** Java 21 ile birlikte Java'ya __"Virtual Thread"__ denilen bir kavram da eklenmiştir. Virtual Thread'ler ile bazı thread işlemleri hızlandırılmıştır. Android dünyasında henüz (18 Ocak 2025) tam anlamıyla kullanılamamaktadır. Ancak Kotlin'de Virtual Thread'lerin de eklenme sebebine ilişkin avantajlar __"Kotlin Coroutines"__ ile sağlanabilmektedir. Kotlin Coroutines ileride ele alınacaktır.
-
->Executors ile thread havuzu oluşturmak için Executors sınıfının çeşitli metotları kullanılabilmektedir. Burada ele alacağımız metotları şunlardır:
->
->**newSingleThreadExecutor:** Bu metot ile havuzda tek bir thread yaratılmış olur ve gerektiğinde kullanılabilir. Bu durumda yalnızca bir tane thread start edilebilir. İkinci bir thread'in start edilmesi durumunda diğer thread'in bitmesi beklenir. Yani havuzda aynı anda çalıştırılacak thread sayısı bir tanedir.
->
->**newFixedThreadPool:** Bu metot ile n tane thread yaratılmış olur. Burada n tane thread running durumundayken n + 1 ve yukarındaki thread'ler start (execute/submit) edildiğinde havuzdaki diğer threadlerin birmesini beklerler.Yani havuzda aynı anda çalıştırılacak thread sayısı n tanedir. Bu metodun bu n sayısını parametre olarak alan overload'u vardır.
->
->**newCachedThreadPool:** Bu metot ile teorik olarak istenildiği kadar thread havuzdan kullanılabilmektedir. Bu işlemi etkin bir şekilde yapacağını garanti eder. Şüphesiz, aynı anda çalışan thread sayısının işletim sistemi düzeyinde bir limiti vardır.
->
->Bu metotlar ExecutorService arayüz referansına geri dönerler. Bu üç metodun da kullanımına programcı senaryosuna göre karar verir. Eğer tek bir thread sürekli kullanılacaksa bu durumda newFixedThreadPool(1) çağrısı yerine newSingleThreadExecutor() çağrısı yapılması tavsiye edilir. Genel olarak thread havuzu ile işlemler bittiğinde thread havuzuna ilişkin thread'in de sonlandırılması gerekir. Bu da ExecutorService arayüzünün shutdown metodu ile yapılabilir. shutdown metodu da asenkron olarak çalışır yani metot thread havuzu sonlanmadan sonlanır.. Çağrıldığında eğer running durumda thread'ler varsa thread havuzu bu thread'ler bitinceye kadar yok edilmez. Ancak yeni bir thread start edilemez. ExecutorService ile bir thread start etmek için tipik olarak iki tane metot kullanılır: execute, submit. Bu metotlar adıkları callback'ler ile thread start ederler. execute metodunun geri dönüş değeri yoktur. sumbit metodunun geri dönüş değeri `Future<T>` arayüzü türündendir. Bu arayüz submit edilen threaad'i temsil eder. `Future<T>` arayüzünün get metotları ile thread beklenebilir hatta submit metodunubn `Callable<T>` parmetreli overload'u kullanılarak thread'deb sonuç elde edilebilir. `Future<T>` arayüzünün cancel isimli metodu ile thread cancel edilebilir. cancel metodu istenirse interrupt flag değerini set edebilir. `Future<T>` kullanımı örneklerle ele alınacaktır.
-
-
->Aşağıdaki örnkte fixed thread pool kullanılmıştır
-
-```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readLong
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.string.kotlin.getRandomTextEN
-import java.io.*
-import java.nio.charset.StandardCharsets
-import java.util.concurrent.Executors
-import kotlin.random.Random
-
-private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
-{
-    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
-        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
-    }
-}
-
-fun main()
-{
-    val basePath = readString("Input base path:")
-    val count = readInt("Input files count:")
-    val dataCount = readLong("Input count per each:")
-    val threadPool = Executors.newFixedThreadPool(count)
-
-    File(basePath).parentFile.mkdirs()
-
-    (1..count).forEach { threadPool.execute{ generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) }}
-
-    threadPool.shutdown()
-}
-
-fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
-{
-    try {
-        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
-    }
-    catch (ex: IOException) {
-        println("IO Problem:${ex.message}")
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.string.randomTextEN  
+import java.io.*  
+import java.nio.charset.StandardCharsets  
+import java.util.concurrent.Executors  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main(args: Array<String>) = runApplication(args)  
+  
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int) {  
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->  
+        (0..<count).forEach { _ -> bw.write("${random.randomTextEN(random.nextInt(min, bound))}\r\n") }  
+    }}  
+  
+private fun runApplication(args: Array<String>) {  
+    lengthEquals(3, args.size, "wrong number of arguments")  
+    try {  
+        val basePath = args[0]  
+        val count = args[1].toInt()  
+        val dataCount = args[2].toLong()  
+        val threadPool = Executors.newFixedThreadPool(count)  
+  
+        Array(count) { threadPool.execute { generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) } }  
+        threadPool.shutdown()  
+    } catch (_: NumberFormatException) {  
+        println("Invalid Values")  
+    }  
+}  
+  
+private fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random) {  
+    try {  
+        FileOutputStream(path).use { generateCallback(it, count, random, min, bound) }  
+    } catch (ex: IOException) {  
+        println("IO Problem:${ex.message}")  
+    }  
 }
 ```
 
@@ -17176,135 +17160,153 @@ fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, rando
 >Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import org.csystem.util.console.kotlin.readInt
-import org.csystem.util.console.kotlin.readLong
-import org.csystem.util.console.kotlin.readString
-import org.csystem.util.string.kotlin.getRandomTextEN
-import java.io.*
-import java.nio.charset.StandardCharsets
-import java.util.concurrent.Executors
-import java.util.concurrent.Future
-import kotlin.random.Random
-
-private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int)
-{
-    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->
-        (0..<count).forEach { _ -> bw.write("${random.getRandomTextEN(random.nextInt(min, bound))}\r\n") }
-    }
-}
-
-fun main()
-{
-    val basePath = readString("Input base path:")
-    val count = readInt("Input files count:")
-    val dataCount = readLong("Input count per each:")
-    val threadPool = Executors.newFixedThreadPool(count)
-
-    File(basePath).parentFile.mkdirs()
-
-    Array<Future<*>>(count) {threadPool.submit{ generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) }}
-        .onEach { it.get() }
-
-    println("All files created successfully")
-    threadPool.shutdown()
-}
-
-fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random)
-{
-    try {
-        FileOutputStream(path).use {generateCallback(it, count, random, min, bound)}
-    }
-    catch (ex: IOException) {
-        println("IO Problem:${ex.message}")
-    }
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.string.randomTextEN  
+import java.io.*  
+import java.nio.charset.StandardCharsets  
+import java.util.concurrent.Executors  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main(args: Array<String>) = runApplication(args)  
+  
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int) {  
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->  
+        (0..<count).forEach { _ -> bw.write("${random.randomTextEN(random.nextInt(min, bound))}\r\n") }  
+    }}  
+  
+private fun runApplication(args: Array<String>) {  
+    lengthEquals(3, args.size, "wrong number of arguments")  
+    try {  
+        val basePath = args[0]  
+        val count = args[1].toInt()  
+        val dataCount = args[2].toLong()  
+        val threadPool = Executors.newFixedThreadPool(count)  
+  
+        Array(count) { threadPool.submit { generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) } }  
+            .onEach { it.get() }  
+  
+        println("All files creates successfully")  
+        threadPool.shutdown()  
+    } catch (_: NumberFormatException) {  
+        println("Invalid Values")  
+    }  
+}  
+  
+private fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random) {  
+    try {  
+        FileOutputStream(path).use { generateCallback(it, count, random, min, bound) }  
+    } catch (ex: IOException) {  
+        println("IO Problem:${ex.message}")  
+    }  
 }
 ```
 
 
->Executors ile scheduler da oluşturulabilmektedir. Bunun için tipik olarak newScheduledThreadBool metodu kullanılmaktadır. Scheduler ile bir timer veya timout oluşturulabilmektedir. Bu metot ExecutorService arayüzünden türetilmiş ScheduledExecutorService arayüz referansına geri döner. Bu arayüz referansına ilişkin metotlar çağrılarak timer veya timeout oluşturulabilir. Aşağıdaki örneği inceleyiniz
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
-
-fun main()
-{
-    val pool = Executors.newScheduledThreadPool(1)
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
-
-    pool.scheduleAtFixedRate({print("%s\r".format(formatter.format(LocalDateTime.now())))}, 0L, 1, TimeUnit.SECONDS);
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.commandline.lengthEquals  
+import org.csystem.kotlin.util.string.randomTextEN  
+import java.io.*  
+import java.nio.charset.StandardCharsets  
+import java.util.concurrent.Executors  
+import kotlin.concurrent.thread  
+import kotlin.random.Random  
+  
+fun main(args: Array<String>) = runApplication(args)  
+  
+private fun generateCallback(fos: FileOutputStream, count: Long, random: Random, min: Int, bound: Int) {  
+    BufferedWriter(OutputStreamWriter(fos, StandardCharsets.UTF_8)).use { bw ->  
+        (0..<count).forEach { _ -> bw.write("${random.randomTextEN(random.nextInt(min, bound))}\r\n") }  
+    }}  
+  
+private fun runApplication(args: Array<String>) {  
+    lengthEquals(3, args.size, "wrong number of arguments")  
+    try {  
+        val basePath = args[0]  
+        val count = args[1].toInt()  
+        val dataCount = args[2].toLong()  
+        val threadPool = Executors.newFixedThreadPool(count)  
+  
+        val threads = Array(count) { threadPool.submit { generateTextsCallback(dataCount, File("$basePath-${it}.txt").absolutePath, 5, 11) } }  
+  
+        threadPool.shutdown()  
+  
+        println("Thread pool is shutting down")  
+  
+        threads.forEach { it.get() }  
+  
+        println("All files creates successfully")  
+  
+    } catch (_: NumberFormatException) {  
+        println("Invalid Values")  
+    }  
+}  
+  
+private fun generateTextsCallback(count: Long, path: String, min: Int, bound: Int, random: Random = Random) {  
+    try {  
+        FileOutputStream(path).use { generateCallback(it, count, random, min, bound) }  
+    } catch (ex: IOException) {  
+        println("IO Problem:${ex.message}")  
+    }  
 }
 ```
 
 
->scheduleXXX metotları `SheduledFuture<T>` interface referansına geri dönerler. Bu durumda ilgili scheduler yönetilebilir. Aşağıdaki örneği inceleyiniz
+>Executors ile scheduler da oluşturulabilmektedir. Bunun için tipik olarak newScheduledThreadPool static (factory) metodu kullanılmaktadır. Scheduler ile bir timer veya timeout oluşturulabilmektedir. Bu metot ExecutorService arayüzünden türetilmiş `ScheduledExecutorService` arayüz referansına geri döner. Bu arayüz referansına ilişkin metotlar çağrılarak timer veya timeout oluşturulabilir. Aşağıdaki örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
-
-fun main()
-{
-    val pool = Executors.newScheduledThreadPool(1)
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
-
-    val future = pool.scheduleAtFixedRate({print("%s\r".format(formatter.format(LocalDateTime.now())))}, 0L, 1, TimeUnit.SECONDS)
-
-    try {
-        future.get(3, TimeUnit.SECONDS)
-    }
-    catch (_: TimeoutException) {
-        future.cancel(false)
-    }
-
-    pool.shutdown()
+package org.csystem.app  
+  
+import java.time.LocalDateTime  
+import java.time.format.DateTimeFormatter  
+import java.util.concurrent.Executors  
+import java.util.concurrent.TimeUnit  
+  
+fun main() {  
+    val pool = Executors.newScheduledThreadPool(1)  
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")  
+  
+    pool.scheduleAtFixedRate({ print("%s\r".format(formatter.format(LocalDateTime.now()))) }, 0L, 1, TimeUnit.SECONDS);  
 }
 ```
 
+>scheduleXXX metotları `SheduledFuture<T>` interface referansına geri dönerler. Bu durumda ilgili scheduler yönetilebilir. scheduleXXX metotları çağrıldıktan sonra shutdown metodunun çağrılması durumunda, scheduler'da sonlanır. submit veya execute kullanıldığında shutdown işleminin ilgili thread'lerin sonlanmasını beklediğini anımsayınız
 
->scheduleXXX metotları çağrıldıktan sonra shutdown metodunun çağrılmasın durumunda, scheuler'da sonlanır. submit veya execute kullanıldığında shutdown işleminin ilgili thread'lerin sonlanmasını beklediğini anımsayınız
+>Aşağıdaki demo örneği inceleyiniz
 
 ```kotlin
-package org.csystem.app
-
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
-
-fun main()
-{
-    val pool = Executors.newScheduledThreadPool(1)
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
-
-    val future = pool.scheduleAtFixedRate({print("%s\r".format(formatter.format(LocalDateTime.now())))}, 0L, 1, TimeUnit.SECONDS)
-
-    try {
-        future.get(3, TimeUnit.SECONDS)
-    }
-    catch (_: TimeoutException) {
-        future.cancel(false)
-    }
-
-    pool.shutdown()
+package org.csystem.app  
+  
+import java.time.LocalDateTime  
+import java.time.format.DateTimeFormatter  
+import java.util.concurrent.Executors  
+import java.util.concurrent.TimeUnit  
+import java.util.concurrent.TimeoutException  
+  
+fun main() {  
+    val pool = Executors.newScheduledThreadPool(1)  
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")  
+  
+    val future = pool.scheduleAtFixedRate({ print("%s\r".format(formatter.format(LocalDateTime.now()))) }, 0L, 1, TimeUnit.SECONDS)  
+  
+    try {  
+        future.get(3, TimeUnit.SECONDS)  
+    } catch (_: TimeoutException) {  
+        future.cancel(false)  
+    }  
+  
+    pool.shutdown()  
 }
 ```
 
 
 **Anahtar Notlar:** Thread'ler ve asenkron çalışma ilgili burada anlatılanlar dışında da pek çok detay vardır. Bazıları örnekler içerisinde ele alınacaktır.
-
 ##### Yazılımda Test Süreçleri
 
 >Yazılımda test süreçleri ürün geliştirmenin önemli bir aşamasını oluşturmaktadır. Bazı yazılımlarda, ürünün herşeyiyle doğru olması kritik öneme sahip olabilmektedir. Bazı yazılımlarda hata toleransları olabilir. Gerektiğinde düzeltilebilir.*

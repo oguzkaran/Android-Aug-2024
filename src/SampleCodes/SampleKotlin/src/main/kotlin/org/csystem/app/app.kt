@@ -1,23 +1,22 @@
 package org.csystem.app
 
-import org.csystem.kotlin.util.console.readString
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
-
-private fun createTimerTask(formatter: DateTimeFormatter): TimerTask {
-    return object : TimerTask() {
-        override fun run() {
-            print("%s\r".format(formatter.format(LocalDateTime.now())))
-        }
-    }
-}
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 
 fun main() {
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
-    val timer = Timer()
+    val pool = Executors.newScheduledThreadPool(1)
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
 
-    timer.scheduleAtFixedRate(createTimerTask(formatter), 0, 1000)
-    readString("Çıkmak için enter tuşuna basınız\n");
-    timer.cancel()
+    val future = pool.scheduleAtFixedRate({ print("%s\r".format(formatter.format(LocalDateTime.now()))) }, 0L, 1, TimeUnit.SECONDS)
+
+    try {
+        future.get(3, TimeUnit.SECONDS)
+    } catch (_: TimeoutException) {
+        future.cancel(false)
+    }
+
+    pool.shutdown()
 }
