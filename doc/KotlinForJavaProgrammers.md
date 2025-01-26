@@ -16812,12 +16812,83 @@ fun main() {
 }
 ```
 
-SSSSSSSSSSSSSSSSSSSSSSS
-
->**Sınıf Çalışması:** Klavyeden `b` girildiğinde `saat:dakika:saniye` biçiminde bir sayaç başlatan ve `e` girildiğinde sayacı durduran uygulamayı yazınız. Program `q` girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılmayacaktır. Sayaç çalışıyorken  tekrar `s` basılırsa herhangi bir şey yapılmayacaktır. Sayaç her 's' işleminde kaldığı yerden devam edecektir.
+>**Sınıf Çalışması:** Klavyeden `b` girildiğinde `saat:dakika:saniye` biçiminde bir sayaç başlatan ve `e` girildiğinde sayacı durduran uygulamayı yazınız. Program `q` girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılmayacaktır. Sayaç çalışıyorken  tekrar `b` basılırsa herhangi bir şey yapılmayacaktır. Sayaç her 'b' işleminde kaldığı yerden devam edecektir.
 
 ```kotlin
-
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readChar  
+import java.util.Timer  
+import java.util.TimerTask  
+import kotlin.system.exitProcess  
+  
+class CounterApplication(seconds: Long = 0) {  
+    private var mSeconds: Long = seconds  
+    private var mTimer: Timer? = null  
+    private var mFlag  = false  
+  
+    private fun  createTimerTask(): TimerTask {  
+        return object : TimerTask() {  
+            override fun run() {  
+                printDuration()  
+                ++mSeconds  
+            }  
+        }  
+    }  
+  
+    private fun clearScreen() {  
+        for (i in 1..26)  
+            println()  
+    }  
+  
+    private fun printDuration() {  
+        val hour = mSeconds / 60 / 60  
+        val minute = mSeconds / 60 % 60  
+        val second = mSeconds % 60  
+  
+        print("$hour:$minute:$second\r")  
+    }  
+  
+    private fun readCharProc() {  
+        while (true) {  
+            val c = readChar("")  
+  
+            clearScreen()  
+  
+            if (c == 'b')  
+                break  
+  
+            if (c == 'e') {  
+                mTimer?.cancel()  
+                mTimer = null  
+                mFlag = false  
+                continue            }  
+  
+            if (c == 'q')  
+                exitProcess(0)  
+        }  
+    }  
+  
+    fun run() {  
+        while (true) {  
+            readCharProc()  
+  
+            if (mFlag)  
+                continue  
+  
+            mTimer = Timer()  
+            println("Press 'e' to stop, 'q' to quit")  
+            mTimer?.scheduleAtFixedRate(createTimerTask(), 0L, 1000L)  
+            mFlag = true  
+        }  
+    }  
+}  
+  
+private fun runApplication() {  
+    CounterApplication().run()  
+}  
+  
+fun main() = runApplication()
 ```
 
 ##### Thread'lerin Sonlanması
@@ -17305,13 +17376,86 @@ fun main() {
 }
 ```
 
+>**Sınıf Çalışması:** Klavyeden `b` girildiğinde `saat:dakika:saniye` biçiminde bir sayaç başlatan ve `e` girildiğinde sayacı durduran uygulamayı yazınız. Program `q` girildiğinde sonlanacaktır. Bu karakterler dışında değer girilmesi durumunda hiç bir şey yapılmayacaktır. Sayaç çalışıyorken  tekrar `b` basılırsa herhangi bir şey yapılmayacaktır. Sayaç her 'b' işleminde kaldığı yerden devam edecektir.
+
+```kotlin
+package org.csystem.app  
+  
+import org.csystem.kotlin.util.console.readChar  
+import java.util.*  
+import java.util.concurrent.Executors  
+import java.util.concurrent.ScheduledExecutorService  
+import java.util.concurrent.ScheduledFuture  
+import java.util.concurrent.TimeUnit  
+import kotlin.system.exitProcess  
+  
+class CounterApplication(seconds: Long = 0) {  
+    private var mSeconds: Long = seconds  
+    private var mScheduledFuture: ScheduledFuture<*>? = null  
+    private var mFlag  = false  
+    private var mScheduler: ScheduledExecutorService = Executors.newScheduledThreadPool(1)  
+  
+    private fun clearScreen() {  
+        for (i in 1..26)  
+            println()  
+    }  
+  
+    private fun printDuration() {  
+        val hour = mSeconds / 60 / 60  
+        val minute = mSeconds / 60 % 60  
+        val second = mSeconds % 60  
+  
+        print("$hour:$minute:$second\r")  
+    }  
+  
+    private fun readCharProc() {  
+        while (true) {  
+            val c = readChar("")  
+  
+            clearScreen()  
+  
+            if (c == 'b')  
+                break  
+  
+            if (c == 'e') {  
+                mScheduledFuture?.cancel(false)  
+                mScheduledFuture = null  
+                mFlag = false  
+                continue            }  
+  
+            if (c == 'q')  
+                exitProcess(0)  
+        }  
+    }  
+  
+    fun run() {  
+        while (true) {  
+            readCharProc()  
+  
+            if (mFlag)  
+                continue  
+  
+  
+            println("Press 'e' to stop, 'q' to quit")  
+            mScheduledFuture = mScheduler.scheduleAtFixedRate({  printDuration(); ++mSeconds} , 0, 1, TimeUnit.SECONDS)  
+            mFlag = true  
+        }  
+    }  
+}  
+  
+private fun runApplication() {  
+    CounterApplication().run()  
+}  
+  
+fun main() = runApplication()
+```
 
 **Anahtar Notlar:** Thread'ler ve asenkron çalışma ilgili burada anlatılanlar dışında da pek çok detay vardır. Bazıları örnekler içerisinde ele alınacaktır.
 ##### Yazılımda Test Süreçleri
 
->Yazılımda test süreçleri ürün geliştirmenin önemli bir aşamasını oluşturmaktadır. Bazı yazılımlarda, ürünün herşeyiyle doğru olması kritik öneme sahip olabilmektedir. Bazı yazılımlarda hata toleransları olabilir. Gerektiğinde düzeltilebilir.*
+>Yazılımda test süreçleri ürün geliştirmenin önemli bir aşamasını oluşturmaktadır. Bazı yazılımlarda, ürünün her şeyiyle doğru olması kritik öneme sahip olabilmektedir. Bazı yazılımlarda hata toleransları olabilir. Gerektiğinde düzeltilebilir.
 >
->*Eskiden yazılım geliştirmede test süreçleri lüks olarak değerlendiriliyordu. Bu nedenle yalnızca büyük firmalar test bölümleri barındırıyorlardı. Ancak günümüzde yazılımda kalite (software quality) bilinci daha fazla artmış ve test süreçleri daha bilinir ve kullanılır hale gelmiştir.*
+>Eskiden yazılım geliştirmede test süreçleri lüks olarak değerlendiriliyordu. Bu nedenle yalnızca büyük firmalar test bölümleri barındırıyorlardı. Ancak günümüzde yazılımda kalite (software quality) bilinci daha fazla artmış ve test süreçleri daha bilinir ve kullanılır hale gelmiştir.
 >
 >Yazılımda test süreçleri için çeşitli stratejiler kullanılabilmektedir. Test işlemi en aşağı düzeyde programcının kendi yazdığı kodları test etmesi ile başlar. Buna "birim testi (unit testing)" denir. Programcı genel olarak, yazmış olduğu bir metodun doğru çalışıp çalışmadığını test eder (duruma göre "etmelidir"). İşte burada bir metot bir "birim (unit)" olarak düşünülür. Bir yazılımda aslında parçalar bir araya getirilir. Yani metotlar çağrılarak yazılım geliştirilir. Bu bir araya getirme işlemi sonucunda genellikle parçalar yeniden test edilir. Buna da "entegrasyon testi (integration testing)" denilmektedir. Yazılımın önemli parçalarına "modül (module)" denir. Modüller de ayrı ayrı test edilebilir. Buna da "modül testi (module testing)" denir. Nihayet ürün oluşturulur ve bir bütün olarak test edilir. Genellikle bu testlere "kabul testleri (acceptance testing)" denir. Ürün bir bütün olarak önce kurum içerisinde test bölümleri tarafından test edilir. Genellikle bu testlere "alfa testi (alpha testing)" denir. Sonra ürün seçilmiş bazı son kullanıcılara dağıtılır ve gerçek hayat testine sokulur. Buna genellikle "beta testi (beta testing)" denir.
 >

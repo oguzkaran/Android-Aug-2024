@@ -36,12 +36,12 @@ object Console {
     }
 
     @JvmStatic
-    fun readDouble(prompt: String, errorPrompt: String = ""): Double {
+    fun readDouble(prompt: String, errorPrompt: String = "", end: String): Double {
         while (true) {
             try {
-                return readWithPrompt(prompt).toDouble()
+                return readWithPrompt("$prompt$end").toDouble()
             } catch (e: NumberFormatException) {
-                print(errorPrompt)
+                print("$errorPrompt$end")
             }
         }
     }
@@ -90,6 +90,18 @@ object Console {
             }
 
             return result;
+        }
+    }
+
+    @JvmStatic
+    fun readChar(prompt: String, errorPrompt: String = "", end: String = ""): Char {
+        while (true) {
+            val str = readString("$prompt$end")
+
+            if (str.length == 1)
+                return str[0]
+
+            print("$errorPrompt$end")
         }
     }
 

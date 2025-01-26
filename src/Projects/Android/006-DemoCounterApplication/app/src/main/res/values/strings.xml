@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DemoCounterApplication</string>
+    <string name="start_text">Start</string>
+    <string name="stop_text">Stop</string>
+</resources>

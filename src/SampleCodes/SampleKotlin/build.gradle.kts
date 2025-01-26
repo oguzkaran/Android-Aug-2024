@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.csystem:org-csystem-kotlin-util-console:8.0.0")
+    implementation("org.csystem:org-csystem-kotlin-util-console:8.1.1")
     implementation("org.csystem:org-csystem-kotlin-math:8.0.0")
     implementation("org.csystem:org-csystem-kotlin-util:8.0.0")
     implementation("org.csystem:org-csystem-kotlin-util-io:8.0.0")

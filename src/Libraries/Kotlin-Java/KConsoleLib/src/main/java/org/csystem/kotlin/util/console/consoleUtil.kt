@@ -62,7 +62,9 @@ fun readBoolean(prompt: String, errorPrompt: String = ""): Boolean {
     }
 }
 
-fun readString(prompt: String) = Console.readWithPrompt(prompt)
+fun readChar(prompt: String, errorPrompt: String = "", end: String = "") = Console.readChar(prompt, errorPrompt, end)
+
+fun readString(prompt: String) = Console.readString(prompt)
 
 
 fun readBigDecimal(prompt: String, errorPrompt: String = ""): BigDecimal {

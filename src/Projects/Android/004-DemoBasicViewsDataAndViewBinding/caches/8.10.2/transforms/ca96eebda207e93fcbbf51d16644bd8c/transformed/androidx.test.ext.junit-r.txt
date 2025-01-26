@@ -1,3 +1,0 @@
-androidx.test.ext.junit
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
