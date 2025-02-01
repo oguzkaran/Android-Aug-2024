@@ -24,4 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "006-DemoCounterApplication"
 include(":app")
- 
+include(":CounterDataServiceLib")

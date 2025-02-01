@@ -1,6 +1,6 @@
 Yapılacaklar:
-- MainActivity içerisinde bir TextView'da o ankli tarih zaman bilgisini saniye mertebesinde gösteriniz. Formatı dilediğiniz gibi belileyebilirsiniz.
-- DatTimeUtilLib kütüphanesini kullanınız.
-- MainActivity içerisinde bir Reset buttonu oluşturunuz. Bu buttona basıldığında sayaç değerini sıfırlayınız. Sıfırlanmadan önceki saniye değeri bir dosyada saklayanız.
-- Dosyada sadece en son saklanan değer tutulacaktır.
-- MaimActivity iiçerisinde Load button oluşturunuz. Bu buttona basıldığında son saklanan saniye değeri yüklenecektir.
+- RemoveAll buttonuna basıldığında bir AlertDialog ile silmek isteyip istemediği sorulacaktır. Aynı durumu Reset buttonu için de yappınız
+- Kaydedilen saniye sayısı en fazla 20 olacak şekilde programı düzenleyiniz. Kaydedilen saniye saniye limit dolduğunda kullanıcı uyaran bir AlertDialog çıkartınız.
+- Reset buttonu için yapılan işlemleri MainActivity tarafında asenkron hale getiriniz.
+- MainActivity içerisinde LoadAll buttonu oluşturunuz. Bu buttona basıldığında bir listview içerisinde tüm kayıtlı saniyeler gösterilecektir. Kullanıcı ilgili saniyeyi seçip
+Load buttonuna bastığında seçilen saniye yüklenecektir
