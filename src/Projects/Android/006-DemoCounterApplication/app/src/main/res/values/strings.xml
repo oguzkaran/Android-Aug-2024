@@ -6,4 +6,12 @@
     <string name="button_load_text">Load</string>
     <string name="button_load_all_text">Load All</string>
     <string name="button_remove_all_text">Remove All</string>
+    <string name="alert_dialog_remove_all_title">Remove All Alert</string>
+    <string name="alert_dialog_remove_all_message">Are you sure to remove all the saved seconds?</string>
+    <string name="alert_dialog_remove_all_positive_button_text">Yes</string>
+    <string name="alert_dialog_remove_all_negative_button_text">No</string>
+
+    <string name="alert_dialog_reset_title">Alert</string>
+    <string name="alert_dialog_reset_message">You can not save any seconds because of the limit value!!</string>
+    <string name="alert_dialog_reset_positive_button_text">Ok</string>
 </resources>

@@ -2,6 +2,7 @@ package org.csystem.app.android.app.counter
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,8 +19,6 @@ import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Named
-
-private const val SECONDS_LIMIT = 20
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var counterDataService: CounterDataService
 
     private fun loadSecondsThreadCallback() {
-        val seconds = counterDataService.findSecondsByCount(SECONDS_LIMIT)
+        val seconds = counterDataService.findAll()
 
         //...
     }
@@ -58,6 +57,23 @@ class MainActivity : AppCompatActivity() {
         val now = LocalDateTime.now()
 
         mBinding.dateTimeText = datetimeFormatter.format(now)
+    }
+    private fun showAlertForReset() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.alert_dialog_reset_title)
+            .setMessage(R.string.alert_dialog_reset_message)
+            .setPositiveButton(R.string.alert_dialog_reset_positive_button_text) { _, _ ->  }
+            .show()
+    }
+
+    private fun resetCallback() {
+        if (!counterDataService.saveSeconds(if (mSeconds == 0L) mSeconds else mSeconds - 1)) {
+            runOnUiThread { showAlertForReset() }
+            return
+        }
+        mSeconds = 0
+        mBinding.counterText = "0:0:0"
+        runOnUiThread { mBinding.mainActivityTextViewCounter.text = mBinding.counterText }
     }
 
     private fun startDateTimeScheduler() {
@@ -136,13 +152,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onResetButtonClicked() {
-        counterDataService.saveSeconds(mSeconds - 1)
-        mSeconds = 0
-        mBinding.counterText = "0:0:0"
-        mBinding.mainActivityTextViewCounter.text = mBinding.counterText
+        threadPool.execute{ resetCallback() }
     }
 
     fun onRemoveAllButtonClicked() {
-        threadPool.execute{ counterDataService.removeAll() }
+        AlertDialog.Builder(this)
+            .setTitle(R.string.alert_dialog_remove_all_title)
+            .setMessage(R.string.alert_dialog_remove_all_message)
+            .setPositiveButton(R.string.alert_dialog_remove_all_positive_button_text) { _, _ -> threadPool.execute{ counterDataService.removeAll() } }
+            .setNegativeButton(R.string.alert_dialog_remove_all_negative_button_text) { _, _ -> }
+            .show()
     }
 }

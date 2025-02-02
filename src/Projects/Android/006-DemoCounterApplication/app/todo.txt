@@ -1,6 +1,4 @@
 Yapılacaklar:
-- RemoveAll buttonuna basıldığında bir AlertDialog ile silmek isteyip istemediği sorulacaktır. Aynı durumu Reset buttonu için de yappınız
-- Kaydedilen saniye sayısı en fazla 20 olacak şekilde programı düzenleyiniz. Kaydedilen saniye saniye limit dolduğunda kullanıcı uyaran bir AlertDialog çıkartınız.
-- Reset buttonu için yapılan işlemleri MainActivity tarafında asenkron hale getiriniz.
+- MainActivity içerisinde Confgure isimli bir button oluşturunuz. Bu button!a basıldığında bir activity açılacaktır. Bu activity içerisinde kullanıcıdan bir saniye limiti alınacaktır ve set edilecektir.
 - MainActivity içerisinde LoadAll buttonu oluşturunuz. Bu buttona basıldığında bir listview içerisinde tüm kayıtlı saniyeler gösterilecektir. Kullanıcı ilgili saniyeyi seçip
-Load buttonuna bastığında seçilen saniye yüklenecektir
+Load buttonuna bastığında seçilen saniye yüklenecektir.
