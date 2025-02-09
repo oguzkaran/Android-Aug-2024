@@ -1,4 +1,7 @@
 Yapılacaklar:
-- MainActivity içerisinde Confgure isimli bir button oluşturunuz. Bu button!a basıldığında bir activity açılacaktır. Bu activity içerisinde kullanıcıdan bir saniye limiti alınacaktır ve set edilecektir.
-- MainActivity içerisinde LoadAll buttonu oluşturunuz. Bu buttona basıldığında bir listview içerisinde tüm kayıtlı saniyeler gösterilecektir. Kullanıcı ilgili saniyeyi seçip
-Load buttonuna bastığında seçilen saniye yüklenecektir.
+- Kullanıcı listview'da ilgili saniye değerine tıkladığında seçilen saniye yüklenecektir. O anki saniye değeri kaydedilecektir. Eğer limit yetersizse kullanıcıya sorulacak ve duruma göre kaydedilmeden
+load işlemi yapılabiliecektir. Limit yeterli ise doğrudan kaydedilip kullanıcıya bilgilendirme yapılacaktır
+
+- Geri kalan exception handling kodlarını yazınız
+
+- (Oğuz) Kullanıcı ilgili saniyeyi seçip Load buttonuna bastığında seçilen saniye yüklenecektir

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="org.csystem.app.android.app.counter.LimitConfigurationActivity"/>
+        <variable name="limitValue" type="String"/>
+        <variable name="activity" type="LimitConfigurationActivity"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".LimitConfigurationActivity">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edittext_limit_hint"
+            android:inputType="number"
+            android:text="@={limitValue}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_save_text"
+                android:onClick="@{() -> activity.onSaveButtonClicked()}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_no_limit_text"
+                android:onClick="@{() -> activity.onNoLimitButtonClicked()}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_close_text"
+                android:onClick="@{() -> activity.onCloseButtonClicked()}" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

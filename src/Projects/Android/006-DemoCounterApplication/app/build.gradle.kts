@@ -63,6 +63,8 @@ dependencies {
     implementation(libs.org.csystem.android.datetime)
 
     implementation(project(":CounterDataServiceLib"))
+
+    implementation(libs.com.karandev.data)
 }
 
 kapt {

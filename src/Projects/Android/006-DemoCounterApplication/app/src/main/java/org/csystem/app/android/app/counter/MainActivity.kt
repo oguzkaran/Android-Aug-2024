@@ -1,12 +1,16 @@
 package org.csystem.app.android.app.counter
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
+import com.karandev.data.exception.service.DataServiceException
 import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.library.util.datetime.module.annotation.DateTimeFormatterTRInterceptor
 import org.csystem.app.android.app.counter.data.service.CounterDataService
@@ -48,9 +52,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var counterDataService: CounterDataService
 
     private fun loadSecondsThreadCallback() {
-        val seconds = counterDataService.findAll()
-
-        //...
+        try {
+            val seconds = counterDataService.findAll()
+            runOnUiThread { mBinding.adapter?.clear(); mBinding.adapter?.addAll(seconds) }
+        }
+        catch (ex: DataServiceException) {
+            runOnUiThread { Toast.makeText(this, R.string.message_io_problem, Toast.LENGTH_LONG).show() }
+        }
     }
 
     private fun dateTimeSchedulerCallback() {
@@ -58,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         mBinding.dateTimeText = datetimeFormatter.format(now)
     }
+
     private fun showAlertForReset() {
         AlertDialog.Builder(this)
             .setTitle(R.string.alert_dialog_reset_title)
@@ -104,6 +113,7 @@ class MainActivity : AppCompatActivity() {
         mBinding.startStopButtonText = resources.getString(R.string.start_text)
         mBinding.counterText = "0:0:0"
         mBinding.dateTimeText = ""
+        mBinding.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, mutableListOf<String>())
     }
 
     private fun initialize() {
@@ -130,6 +140,19 @@ class MainActivity : AppCompatActivity() {
         mDateTimeScheduledFuture.cancel(false)
     }
 
+    fun onConfigureButtonClicked() {
+        mBinding.adapter?.clear()
+        Intent(this, LimitConfigurationActivity::class.java).apply { startActivity(this) }
+    }
+
+    fun onLoadButtonClicked() {
+        TODO("Not yet implemented")
+    }
+
+    fun onLoadAllButtonClicked() {
+        threadPool.execute{ loadSecondsThreadCallback() }
+    }
+
     fun onStartStopButtonClicked() {
         if (mStartedFlag) {
             mBinding.startStopButtonText = resources.getString(R.string.start_text)
@@ -143,19 +166,13 @@ class MainActivity : AppCompatActivity() {
         mStartedFlag = !mStartedFlag
     }
 
-    fun onLoadButtonClicked() {
-        //Saniyeyi yükle
-    }
-
-    fun onLoadAllButtonClicked() {
-        threadPool.execute{ loadSecondsThreadCallback() }
-    }
-
     fun onResetButtonClicked() {
+        mBinding.adapter?.clear()
         threadPool.execute{ resetCallback() }
     }
 
     fun onRemoveAllButtonClicked() {
+        mBinding.adapter?.clear()
         AlertDialog.Builder(this)
             .setTitle(R.string.alert_dialog_remove_all_title)
             .setMessage(R.string.alert_dialog_remove_all_message)

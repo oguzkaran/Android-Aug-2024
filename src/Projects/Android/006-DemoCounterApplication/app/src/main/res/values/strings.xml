@@ -2,16 +2,24 @@
     <string name="app_name">DemoCounterApplication</string>
     <string name="start_text">Start</string>
     <string name="stop_text">Stop</string>
+    <string name="button_save_text">Save</string>
+    <string name="button_close_text">Close</string>
+    <string name="button_configure_text">Configure</string>
+    <string name="button_no_limit_text">No Limit</string>
     <string name="button_reset_text">Reset</string>
     <string name="button_load_text">Load</string>
     <string name="button_load_all_text">Load All</string>
     <string name="button_remove_all_text">Remove All</string>
+    <string name="edittext_limit_hint">Input hint value</string>
     <string name="alert_dialog_remove_all_title">Remove All Alert</string>
     <string name="alert_dialog_remove_all_message">Are you sure to remove all the saved seconds?</string>
     <string name="alert_dialog_remove_all_positive_button_text">Yes</string>
     <string name="alert_dialog_remove_all_negative_button_text">No</string>
-
     <string name="alert_dialog_reset_title">Alert</string>
     <string name="alert_dialog_reset_message">You can not save any seconds because of the limit value!!</string>
-    <string name="alert_dialog_reset_positive_button_text">Ok</string>
+    <string name="alert_dialog_reset_positive_button_text">OK</string>
+
+    <string name="message_invalid_value">Invalid value</string>
+
+    <string name="message_io_problem">IO problem occurred</string>
 </resources>

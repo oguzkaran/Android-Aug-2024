@@ -4,10 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="org.csystem.app.android.app.counter.MainActivity" />
+        <import type="android.widget.ArrayAdapter" />
         <variable name="startStopButtonText" type="String" />
         <variable name="activity" type="MainActivity" />
         <variable name="counterText" type="String" />
         <variable name="dateTimeText" type="String" />
+        <variable name="adapter" type="ArrayAdapter&lt;String&gt;" />
     </data>
 
     <LinearLayout
@@ -35,9 +37,14 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/button_configure_text"
+            android:onClick="@{() -> activity.onConfigureButtonClicked()}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/button_load_text"
             android:onClick="@{() -> activity.onLoadButtonClicked()}" />
-
 
         <Button
             android:layout_width="match_parent"
@@ -65,7 +72,9 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:adapter="@{adapter}"
+            />
 
 
     </LinearLayout>

@@ -48,6 +48,7 @@ dependencies {
     kapt(libs.hilt.android.compiler)
 
     implementation(libs.org.csystem.android.datetime)
+    implementation(libs.com.karandev.data)
 }
 
 kapt {
