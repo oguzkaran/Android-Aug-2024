@@ -1,3 +1,0 @@
-androidx.test.espresso.core
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
