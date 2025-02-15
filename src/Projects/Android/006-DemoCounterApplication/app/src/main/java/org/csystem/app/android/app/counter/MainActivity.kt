@@ -51,9 +51,56 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var counterDataService: CounterDataService
 
-    private fun loadSecondsThreadCallback() {
+    private fun getSecondByRecord(str: String): Long {
+        val info = str.split('@')
+
+        return info[0].toLong()
+    }
+
+    private fun showAlertForLimit(second: Long) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.alert_dialog_limit_title)
+            .setMessage(R.string.alert_dialog_limit_message)
+            .setPositiveButton(R.string.alert_dialog_limit_save_and_load) { _, _ -> saveAndLoadCallback(second); loadSeconds()}
+            .setNegativeButton(R.string.alert_dialog_limit_load_without_save) { _, _ -> loadSecondInUIThread(second); loadSeconds()}
+            .setNeutralButton(R.string.alert_dialog_cancel) { _, _ -> }
+            .show()
+    }
+
+    private fun saveAndLoadCallback(second: Long) {
+        counterDataService.save(mSeconds)
+        loadSecond(second)
+    }
+
+    private fun loadSecondInUIThread(second: Long) {
+        mSeconds = second
+        setCounters()
+    }
+
+    private fun loadSecond(second: Long) {
+        mSeconds = second
+        schedulerCallback()
+    }
+
+    private fun loadSecondThreadCallback(record: String) {
         try {
-            val seconds = counterDataService.findAll()
+            val second = getSecondByRecord(record)
+
+            if (counterDataService.saveSecond(mSeconds)) {
+                loadSecond(second)
+                loadSeconds()
+            }
+            else
+                runOnUiThread { showAlertForLimit(second) }
+        }
+        catch (ex: DataServiceException) {
+            runOnUiThread { Toast.makeText(this, R.string.message_io_problem, Toast.LENGTH_LONG).show() }
+        }
+    }
+
+    private fun loadSeconds() {
+        try {
+            val seconds = counterDataService.findAll() //Burada demo olarak hepsi okundu. Senaryoya göre parça parça okunabilir.
             runOnUiThread { mBinding.adapter?.clear(); mBinding.adapter?.addAll(seconds) }
         }
         catch (ex: DataServiceException) {
@@ -76,7 +123,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetCallback() {
-        if (!counterDataService.saveSeconds(if (mSeconds == 0L) mSeconds else mSeconds - 1)) {
+        if (!counterDataService.saveSecond(if (mSeconds == 0L) mSeconds else mSeconds - 1)) {
             runOnUiThread { showAlertForReset() }
             return
         }
@@ -94,13 +141,27 @@ class MainActivity : AppCompatActivity() {
         val minute = mSeconds / 60 % 60
         val second = mSeconds % 60
 
+        setCounterText1InUIThread(hour, minute, second)
+        setCounterText2(hour, minute, second)
+        ++mSeconds
+    }
+
+    private fun setCounters() {
+        val hour = mSeconds / 60 / 60
+        val minute = mSeconds / 60 % 60
+        val second = mSeconds % 60
+
         setCounterText1(hour, minute, second)
         setCounterText2(hour, minute, second)
         ++mSeconds
     }
 
-    private fun setCounterText1(hour: Long, minute: Long, second: Long) {
+    private fun setCounterText1InUIThread(hour: Long, minute: Long, second: Long) {
         runOnUiThread { "$hour:$minute:$second".apply { mBinding.mainActivityTextViewCounter.text = this } }
+    }
+
+    private fun setCounterText1(hour: Long, minute: Long, second: Long) {
+        "$hour:$minute:$second".apply { mBinding.mainActivityTextViewCounter.text = this }
     }
 
     private fun setCounterText2(hour: Long, minute: Long, second: Long) {
@@ -113,7 +174,7 @@ class MainActivity : AppCompatActivity() {
         mBinding.startStopButtonText = resources.getString(R.string.start_text)
         mBinding.counterText = "0:0:0"
         mBinding.dateTimeText = ""
-        mBinding.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, mutableListOf<String>())
+        mBinding.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, mutableListOf<String>())
     }
 
     private fun initialize() {
@@ -146,11 +207,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onLoadButtonClicked() {
-        TODO("Not yet implemented")
+        val pos = mBinding.mainActivityListViewSeconds.checkedItemPosition
+
+        if (pos != -1) {
+            val record = mBinding.adapter!!.getItem(mBinding.mainActivityListViewSeconds.checkedItemPosition)!!
+
+            threadPool.execute { loadSecondThreadCallback(record) }
+        }
     }
 
     fun onLoadAllButtonClicked() {
-        threadPool.execute{ loadSecondsThreadCallback() }
+        threadPool.execute{ loadSeconds() }
     }
 
     fun onStartStopButtonClicked() {

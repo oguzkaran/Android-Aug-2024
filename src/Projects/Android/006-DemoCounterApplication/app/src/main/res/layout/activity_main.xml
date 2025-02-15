@@ -71,9 +71,11 @@
             android:onClick="@{() -> activity.onRemoveAllButtonClicked()}" />
 
         <ListView
+            android:id="@+id/mainActivityListViewSeconds"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adapter="@{adapter}"
+            android:choiceMode="singleChoice"
             />
 
 

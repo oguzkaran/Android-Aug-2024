@@ -1,7 +1,2 @@
 Yapılacaklar:
-- Kullanıcı listview'da ilgili saniye değerine tıkladığında seçilen saniye yüklenecektir. O anki saniye değeri kaydedilecektir. Eğer limit yetersizse kullanıcıya sorulacak ve duruma göre kaydedilmeden
-load işlemi yapılabiliecektir. Limit yeterli ise doğrudan kaydedilip kullanıcıya bilgilendirme yapılacaktır
-
 - Geri kalan exception handling kodlarını yazınız
-
-- (Oğuz) Kullanıcı ilgili saniyeyi seçip Load buttonuna bastığında seçilen saniye yüklenecektir

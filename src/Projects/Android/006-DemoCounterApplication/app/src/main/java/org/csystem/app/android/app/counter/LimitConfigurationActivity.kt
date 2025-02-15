@@ -35,10 +35,21 @@ class LimitConfigurationActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadLimitCallback() {
+        val limitValue = counterDataService.getLimit()
+
+        mBinding.limitValue =
+            if (limitValue != CounterDataService.UNLIMITED) limitValue.toString() else ""
+    }
+
     private fun initBinding() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_limit_configuration)
-        mBinding.limitValue = "0"
         mBinding.activity = this
+        loadLimit()
+    }
+
+    private fun loadLimit() {
+        threadPool.execute { loadLimitCallback() }
     }
 
     private fun initialize() {

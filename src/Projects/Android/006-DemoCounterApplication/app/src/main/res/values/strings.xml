@@ -19,6 +19,13 @@
     <string name="alert_dialog_reset_message">You can not save any seconds because of the limit value!!</string>
     <string name="alert_dialog_reset_positive_button_text">OK</string>
 
+    <string name="alert_dialog_limit_title">Alert</string>
+    <string name="alert_dialog_limit_message">You can not save any seconds because of the limit value!!</string>
+    <string name="alert_dialog_limit_save_and_load">Save and Load</string>
+    <string name="alert_dialog_limit_load_without_save">Load without Save</string>
+
+    <string name="alert_dialog_cancel">Cancel</string>
+
     <string name="message_invalid_value">Invalid value</string>
 
     <string name="message_io_problem">IO problem occurred</string>
