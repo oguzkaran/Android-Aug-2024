@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="org.csystem.app.android.app.randomgenerator.MainActivity"/>
+        <variable name="activity" type="MainActivity" />
+        <variable name="count" type="String" />
+        <variable name="text" type="String" />
+        <variable name="enable" type="boolean" />
+    </data>
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edittext_count_hint"
+            android:text="@={count}"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_generate_text"
+            android:enabled="@{enable}"
+            android:onClick="@{() -> activity.onGenerateButtonClicked()}"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{text}" />
+    </LinearLayout>
+</layout>
+

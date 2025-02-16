@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DemoRandomGenerator</string>
+    <string name="edittext_count_hint">Input count</string>
+    <string name="button_generate_text">Generate</string>
+    <string name="end_of_generation_message">Generation ended</string>
+    <string name="invalid_number_message">Invalid Number</string>
+</resources>

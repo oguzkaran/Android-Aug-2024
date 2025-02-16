@@ -1,0 +1,9 @@
+Yapılacaklar
+
+- Üretilen text'ler aralarında - karakteri ile ayrılmış bir biçimde TextView'da gösterilecektir. Son yazıdan sonra - karakteri olmayacaktır.
+- Bir save button'u oluşturunuz. save button'una basıldığında üretilmiş olan text'ler oluşturulan birleştirilmiş yazı bir satır
+olarak dosyaya eklenecektir. Dosyanın maximum boyutu default olarak 1MB olacaktır. Ayrıca bir configurasyon activity'si ile
+belirlenebilecektir.
+- Eklenecek yazının dosyanın boyutunu geçip geçmeyeceği eklenmeden önce hesaplanacaktır. Boyutun geçmesi durumunda bir alert dialog ile kullanıcıya bilgi verilecek ve yine eklemek isteyip istemeyeceği sorulacaktır
+- Konfigurasyon activity'sinde dosyanın boyutu bi spinner'dan seçilecek birime göre belirlenebilecektir. (KB, MB, GB)
+- Konfigurasyon activity'sinde ayrıca No Limit bir button ile dosya limitsiz hale getirilebilecektir.

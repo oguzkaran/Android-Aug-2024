@@ -51,6 +51,16 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var counterDataService: CounterDataService
 
+    private fun removeAllCallback() {
+        try {
+            counterDataService.removeAll()
+            runOnUiThread {  mBinding.adapter?.clear() }
+        }
+        catch (ex: DataServiceException) {
+            runOnUiThread { Toast.makeText(this, R.string.message_data_problem, Toast.LENGTH_LONG).show() }
+        }
+    }
+
     private fun getSecondByRecord(str: String): Long {
         val info = str.split('@')
 
@@ -66,7 +76,6 @@ class MainActivity : AppCompatActivity() {
             .setNeutralButton(R.string.alert_dialog_cancel) { _, _ -> }
             .show()
     }
-
     private fun saveAndLoadCallback(second: Long) {
         counterDataService.save(mSeconds)
         loadSecond(second)
@@ -94,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread { showAlertForLimit(second) }
         }
         catch (ex: DataServiceException) {
-            runOnUiThread { Toast.makeText(this, R.string.message_io_problem, Toast.LENGTH_LONG).show() }
+            runOnUiThread { Toast.makeText(this, R.string.message_data_problem, Toast.LENGTH_LONG).show() }
         }
     }
 
@@ -104,7 +113,7 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread { mBinding.adapter?.clear(); mBinding.adapter?.addAll(seconds) }
         }
         catch (ex: DataServiceException) {
-            runOnUiThread { Toast.makeText(this, R.string.message_io_problem, Toast.LENGTH_LONG).show() }
+            runOnUiThread { Toast.makeText(this, R.string.message_data_problem, Toast.LENGTH_LONG).show() }
         }
     }
 
@@ -123,36 +132,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetCallback() {
-        if (!counterDataService.saveSecond(if (mSeconds == 0L) mSeconds else mSeconds - 1)) {
-            runOnUiThread { showAlertForReset() }
-            return
+        try {
+            if (!counterDataService.saveSecond(if (mSeconds == 0L) mSeconds else mSeconds - 1)) {
+                runOnUiThread { showAlertForReset() }
+                return
+            }
+            mSeconds = 0
+            mBinding.counterText = "0:0:0"
+            runOnUiThread { mBinding.mainActivityTextViewCounter.text = mBinding.counterText }
+        } catch (ex: DataServiceException) {
+            runOnUiThread { Toast.makeText(this, R.string.message_data_problem, Toast.LENGTH_LONG).show() }
         }
-        mSeconds = 0
-        mBinding.counterText = "0:0:0"
-        runOnUiThread { mBinding.mainActivityTextViewCounter.text = mBinding.counterText }
     }
 
     private fun startDateTimeScheduler() {
         mDateTimeScheduledFuture = dateTimeScheduledThreadPool.scheduleWithFixedDelay({dateTimeSchedulerCallback()}, 0L, 1L, TimeUnit.SECONDS)
     }
 
-    private fun schedulerCallback() {
+    private fun schedulerCallback() = doCounter{ h, m, s -> setCounterText1InUIThread(h, m, s);  setCounterText2(h, m, s) }
+    private fun setCounters() = doCounter{ h, m, s -> setCounterText1(h, m, s); setCounterText2(h, m, s) }
+
+    private fun doCounter(block: (Long, Long, Long) -> Unit) {
         val hour = mSeconds / 60 / 60
         val minute = mSeconds / 60 % 60
         val second = mSeconds % 60
 
-        setCounterText1InUIThread(hour, minute, second)
-        setCounterText2(hour, minute, second)
-        ++mSeconds
-    }
-
-    private fun setCounters() {
-        val hour = mSeconds / 60 / 60
-        val minute = mSeconds / 60 % 60
-        val second = mSeconds % 60
-
-        setCounterText1(hour, minute, second)
-        setCounterText2(hour, minute, second)
+        block(hour, minute, second)
         ++mSeconds
     }
 
@@ -209,7 +214,7 @@ class MainActivity : AppCompatActivity() {
     fun onLoadButtonClicked() {
         val pos = mBinding.mainActivityListViewSeconds.checkedItemPosition
 
-        if (pos != -1) {
+        if (pos < mBinding.adapter!!.count && pos != -1) {
             val record = mBinding.adapter!!.getItem(mBinding.mainActivityListViewSeconds.checkedItemPosition)!!
 
             threadPool.execute { loadSecondThreadCallback(record) }
@@ -239,11 +244,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onRemoveAllButtonClicked() {
-        mBinding.adapter?.clear()
         AlertDialog.Builder(this)
             .setTitle(R.string.alert_dialog_remove_all_title)
             .setMessage(R.string.alert_dialog_remove_all_message)
-            .setPositiveButton(R.string.alert_dialog_remove_all_positive_button_text) { _, _ -> threadPool.execute{ counterDataService.removeAll() } }
+            .setPositiveButton(R.string.alert_dialog_remove_all_positive_button_text) { _, _ -> threadPool.execute{ removeAllCallback() } }
             .setNegativeButton(R.string.alert_dialog_remove_all_negative_button_text) { _, _ -> }
             .show()
     }
