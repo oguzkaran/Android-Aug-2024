@@ -152,10 +152,9 @@ fun Random.randomTextEN(count: Int) = randomText(count, ALL_LETTERS_EN)
  * Extension function to generate a random text of a given length using the Turkish alphabet.
  *
  * @param count The length of the random text.
- * @param random The random instance to use.
  * @return A random text of the given length.
  */
-fun Random.randomTextTR(count: Int, random: Random = Random) = randomText(count, ALL_LETTERS_TR)
+fun Random.randomTextTR(count: Int) = randomText(count, ALL_LETTERS_TR)
 
 /**
  * Extension function to generate an array of random texts.

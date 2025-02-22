@@ -1,0 +1,174 @@
+{
+  "main": {
+    "id": "0f9508d733f35590",
+    "type": "split",
+    "children": [
+      {
+        "id": "39c17a2812bf3a10",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4bb341e3a3622520",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "KotlinForJavaProgrammers.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "KotlinForJavaProgrammers"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ff55dd9237172c28",
+    "type": "split",
+    "children": [
+      {
+        "id": "61b3611355af1ce0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fd7806a865b6889c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "0f17a56553a75603",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "9e7341cdc0aa61dc",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "f07ec7c10dcaf359",
+    "type": "split",
+    "children": [
+      {
+        "id": "1b224dde28a84d20",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a08ab52e7f6fe1c3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "KotlinForJavaProgrammers.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for KotlinForJavaProgrammers"
+            }
+          },
+          {
+            "id": "5fa33bc1ec4c6b1b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "KotlinForJavaProgrammers.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from KotlinForJavaProgrammers"
+            }
+          },
+          {
+            "id": "bce8adff7f6b2cd2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "7dedd33b478d2da2",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "KotlinForJavaProgrammers.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of KotlinForJavaProgrammers"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "4bb341e3a3622520",
+  "lastOpenFiles": []
+}

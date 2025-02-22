@@ -1,0 +1,169 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.android.tools.utp",
+    "module": "android-device-provider-ddmlib",
+    "version": "31.8.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "android-device-provider-ddmlib-31.8.1.jar",
+          "url": "android-device-provider-ddmlib-31.8.1.jar",
+          "size": 62024,
+          "sha512": "862682805abb68cc6d3d52a0d8db6fb2ac28479d82a2837a1184195588506e789e9aa70dd7fb8a9724f9fc6f1aa9cdcb0d7eca85d730b52d69893c218cfa454f",
+          "sha256": "0c6084e91a3db473136088e5bc638116f85b8fd72201bb7c551dbc4de5d64688",
+          "sha1": "969e8d8ed28b5a37370b2789e4b1ecb9435bd51d",
+          "md5": "77b03cbf8129d1af94e1e1003fd0eded"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.android.tools",
+          "module": "common",
+          "version": {
+            "requires": "31.8.1"
+          }
+        },
+        {
+          "group": "com.android.tools.ddms",
+          "module": "ddmlib",
+          "version": {
+            "requires": "31.8.1"
+          }
+        },
+        {
+          "group": "com.google.protobuf",
+          "module": "protobuf-java",
+          "version": {
+            "requires": "3.22.3"
+          }
+        },
+        {
+          "group": "com.android.tools.utp",
+          "module": "android-device-provider-ddmlib-proto",
+          "version": {
+            "requires": "31.8.1"
+          }
+        },
+        {
+          "group": "com.android.tools.utp",
+          "module": "android-device-provider-profile",
+          "version": {
+            "requires": "31.8.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "2.0.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.6.4"
+          }
+        },
+        {
+          "group": "com.google.testing.platform",
+          "module": "core-proto",
+          "version": {
+            "requires": "0.0.9-alpha02"
+          }
+        },
+        {
+          "group": "com.google.testing.platform",
+          "module": "android-device-provider-local",
+          "version": {
+            "requires": "0.0.9-alpha02"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "android-device-provider-ddmlib-31.8.1.jar",
+          "url": "android-device-provider-ddmlib-31.8.1.jar",
+          "size": 62024,
+          "sha512": "862682805abb68cc6d3d52a0d8db6fb2ac28479d82a2837a1184195588506e789e9aa70dd7fb8a9724f9fc6f1aa9cdcb0d7eca85d730b52d69893c218cfa454f",
+          "sha256": "0c6084e91a3db473136088e5bc638116f85b8fd72201bb7c551dbc4de5d64688",
+          "sha1": "969e8d8ed28b5a37370b2789e4b1ecb9435bd51d",
+          "md5": "77b03cbf8129d1af94e1e1003fd0eded"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "android-device-provider-ddmlib-31.8.1-javadoc.jar",
+          "url": "android-device-provider-ddmlib-31.8.1-javadoc.jar",
+          "size": 261,
+          "sha512": "fc6bcc7c5dfc4695005df9b56fc0171cc06db3254582edd5f3465932ff525377115bbb3ed572b6680e3d5761f78f12fd059d9281179b1f93d9c1c98ea7184e59",
+          "sha256": "4f28d3c1524d65aecdb5d2517ebe79d8d5303cde619a52f08f4c091988d84da5",
+          "sha1": "712fede6dc94583ff8ac8584d849da7883ff86cb",
+          "md5": "fefa9d04362b00955f95d2c537aa5d06"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "android-device-provider-ddmlib-31.8.1-sources.jar",
+          "url": "android-device-provider-ddmlib-31.8.1-sources.jar",
+          "size": 11073,
+          "sha512": "67526f70f9f317ad5d19d4c4b833073450ffa42e5dfe0f528394eca236286c000ce176af1e84418db815145f03fbeca627346a88d3ad7d949f390027dc9f6d73",
+          "sha256": "5cd1cb25c700f4e69e876d4c9e818bbb7d7cdf67ccbcb5a4d688b03d278c9021",
+          "sha1": "84e4c127f2e950308f8a9e260094265960f6c79e",
+          "md5": "c00e15ecad8f0810967cb2baeb93cd04"
+        }
+      ]
+    }
+  ]
+}

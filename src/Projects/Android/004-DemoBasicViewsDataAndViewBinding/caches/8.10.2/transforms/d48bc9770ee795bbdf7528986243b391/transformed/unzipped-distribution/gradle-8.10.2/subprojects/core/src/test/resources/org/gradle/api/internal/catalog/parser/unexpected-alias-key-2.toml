@@ -1,4 +1,0 @@
-[libraries.guava]
-group = "com.google.guava"
-name = "guava"
-invalid = '18'
