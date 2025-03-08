@@ -1,0 +1,3 @@
+com.karandev.data.exception.repository.ICrudRepository
+com.karandev.data.exception.repository.RepositoryException
+com.karandev.data.exception.service.DataServiceException

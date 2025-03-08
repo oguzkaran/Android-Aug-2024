@@ -1,0 +1,80 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.google.devtools.ksp",
+    "module": "symbol-processing-gradle-plugin",
+    "version": "2.0.21-1.0.27",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "symbol-processing-gradle-plugin-2.0.21-1.0.27.jar",
+          "url": "symbol-processing-gradle-plugin-2.0.21-1.0.27.jar",
+          "size": 197561,
+          "sha512": "7db82fb4bba91b8fc1ba20fedc4631874a539916ede8285fa08cd98bbb862d92db9278d96f1c809c92047d2a654412d88773730593d984ae8cccfe2c24ed0d72",
+          "sha256": "8f078f289bb64571800814b524f9a7158c628fbd328fabf7acb82aa402f75fbd",
+          "sha1": "3f06bbf6ffb341f7d6e528cb4ab6df559a512852",
+          "md5": "dcb3cc94a742df20aba19050bcb0a6dc"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.devtools.ksp",
+          "module": "symbol-processing-api",
+          "version": {
+            "requires": "2.0.21-1.0.27"
+          }
+        },
+        {
+          "group": "com.google.devtools.ksp",
+          "module": "symbol-processing-common-deps",
+          "version": {
+            "requires": "2.0.21-1.0.27"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "symbol-processing-gradle-plugin-2.0.21-1.0.27.jar",
+          "url": "symbol-processing-gradle-plugin-2.0.21-1.0.27.jar",
+          "size": 197561,
+          "sha512": "7db82fb4bba91b8fc1ba20fedc4631874a539916ede8285fa08cd98bbb862d92db9278d96f1c809c92047d2a654412d88773730593d984ae8cccfe2c24ed0d72",
+          "sha256": "8f078f289bb64571800814b524f9a7158c628fbd328fabf7acb82aa402f75fbd",
+          "sha1": "3f06bbf6ffb341f7d6e528cb4ab6df559a512852",
+          "md5": "dcb3cc94a742df20aba19050bcb0a6dc"
+        }
+      ]
+    }
+  ]
+}

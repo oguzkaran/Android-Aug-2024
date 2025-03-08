@@ -1,0 +1,144 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.paging",
+    "module": "paging-common",
+    "version": "3.1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.3-rc-1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.arch.core",
+          "module": "core-common",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "paging-common-3.1.1.jar",
+          "url": "paging-common-3.1.1.jar",
+          "size": 690184,
+          "sha512": "7d2f88c22bb2d956f4bb6b47da46ef77d91fc15a4f8a0cefad75e373f9859f9d05903062fcb80711a74d682987212aee82f83f4ccbb5a31d0f509eab4a48c851",
+          "sha256": "176cfe1547787ce8b2d4d4d2263fced5549e1c894382fc2ef9ad81152c814431",
+          "sha1": "586d234381652d6107a0cb5754bd29c0a6807fbe",
+          "md5": "cf240abbeb21cdf1ed9bd1a5001405a7"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.arch.core",
+          "module": "core-common",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.5.31"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "paging-common-3.1.1.jar",
+          "url": "paging-common-3.1.1.jar",
+          "size": 690184,
+          "sha512": "7d2f88c22bb2d956f4bb6b47da46ef77d91fc15a4f8a0cefad75e373f9859f9d05903062fcb80711a74d682987212aee82f83f4ccbb5a31d0f509eab4a48c851",
+          "sha256": "176cfe1547787ce8b2d4d4d2263fced5549e1c894382fc2ef9ad81152c814431",
+          "sha1": "586d234381652d6107a0cb5754bd29c0a6807fbe",
+          "md5": "cf240abbeb21cdf1ed9bd1a5001405a7"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "paging-common-3.1.1-sources.jar",
+          "url": "paging-common-3.1.1-sources.jar",
+          "size": 140614,
+          "sha512": "edd18d45c5030e362ca8c50c092b9149229f6c2d81c22b3501a6e6145296d13325d3e65d6a841b807188e59373a5277da8a8b8041ede3c02469b2e9cbdea0223",
+          "sha256": "ffb2ac6470f0f9c209f5e4adc5f9b5b4e6dea40107199ddd0c90fa1c5030afe7",
+          "sha1": "f26464d11825edbdd9f38adb1cccd552eec25756",
+          "md5": "433d7a79daec979edd3162d6d0d1c376"
+        }
+      ]
+    }
+  ]
+}

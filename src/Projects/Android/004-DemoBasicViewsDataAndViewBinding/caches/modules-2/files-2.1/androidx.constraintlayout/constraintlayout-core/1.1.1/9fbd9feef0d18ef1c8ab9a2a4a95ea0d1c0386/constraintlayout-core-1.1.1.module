@@ -1,0 +1,117 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.constraintlayout",
+    "module": "constraintlayout-core",
+    "version": "1.1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.8.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "constraintlayout-core-1.1.1.jar",
+          "url": "constraintlayout-core-1.1.1.jar",
+          "size": 585546,
+          "sha512": "c4cbd8b8f895562b6397bb418fd0893d459dd1e35f2d9362646e34ceace6e7d34e98e41927f64d256d8d66d6dafa6854203cd830959b47db06a2df827ef58d8f",
+          "sha256": "3c2054328328831eb6e69b4014f6ef9faa117fd4b811929f3a91d3db375f2c02",
+          "sha1": "f7ab6170b99b9421bd4942846426ff820b552f7d",
+          "md5": "688b29c6a7335bbd1e20b0473e45b4d1"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.8.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "constraintlayout-core-1.1.1.jar",
+          "url": "constraintlayout-core-1.1.1.jar",
+          "size": 585546,
+          "sha512": "c4cbd8b8f895562b6397bb418fd0893d459dd1e35f2d9362646e34ceace6e7d34e98e41927f64d256d8d66d6dafa6854203cd830959b47db06a2df827ef58d8f",
+          "sha256": "3c2054328328831eb6e69b4014f6ef9faa117fd4b811929f3a91d3db375f2c02",
+          "sha1": "f7ab6170b99b9421bd4942846426ff820b552f7d",
+          "md5": "688b29c6a7335bbd1e20b0473e45b4d1"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "constraintlayout-core-1.1.1-sources.jar",
+          "url": "constraintlayout-core-1.1.1-sources.jar",
+          "size": 361181,
+          "sha512": "643afe42fe9fe82b54775ef88d0649b9989ac10ad25a0d9d66b8a7973f01a1e7cc2e47278c41dc214e87df3a23a9e4a019fbc8cee4723be5c27dd178f72c5858",
+          "sha256": "3b571364e690f0548dc91a2a964d1fc4d96cde8f7e41ec058f2481f67184f1e6",
+          "sha1": "0d9e0819e39ec9c06ed4530ebea309b06a3c7a42",
+          "md5": "4edd0a1a4db37c992b6786f5bf040756"
+        }
+      ]
+    },
+    {
+      "name": "libraryVersionMetadata",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.usage": "library-version-metadata"
+      },
+      "files": [
+        {
+          "name": "constraintlayout-core-1.1.1-versionMetadata.json",
+          "url": "constraintlayout-core-1.1.1-versionMetadata.json",
+          "size": 185714,
+          "sha512": "16632bfca3bfe37c3f307edf6bf5e7202aab90c2b6316de6410b86e899e2807f70f36ba53983408946dd05bde0908faa7d782bf1f1e86fd5f4ee807254091422",
+          "sha256": "de533bd49a09c3fdf4ae5c052c3ac7ddece6b95b7df592698232e8a14fc11668",
+          "sha1": "6411db536e829da10702416d4c7942f9713ddb46",
+          "md5": "5d9709dad984a9cd1fb4ef9f2a9349a8"
+        }
+      ]
+    }
+  ]
+}

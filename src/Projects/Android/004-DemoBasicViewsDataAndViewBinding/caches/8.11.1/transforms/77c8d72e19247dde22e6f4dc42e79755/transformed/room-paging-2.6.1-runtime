@@ -1,0 +1,8 @@
+androidx.room.paging.LimitOffsetPagingSource
+androidx.room.paging.LimitOffsetPagingSource$initialLoad$2
+androidx.room.paging.LimitOffsetPagingSource$initialLoad$2$1
+androidx.room.paging.LimitOffsetPagingSource$load$2
+androidx.room.paging.LimitOffsetPagingSource$nonInitialLoad$loadResult$1
+androidx.room.paging.LimitOffsetPagingSource$observer$1
+androidx.room.paging.util.RoomPagingUtilKt
+androidx.room.paging.util.ThreadSafeInvalidationObserver

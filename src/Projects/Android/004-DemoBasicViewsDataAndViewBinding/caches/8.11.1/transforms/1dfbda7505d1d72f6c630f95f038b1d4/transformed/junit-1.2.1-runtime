@@ -1,0 +1,6 @@
+androidx.test.ext.junit.rules.ActivityScenarioRule
+androidx.test.ext.junit.rules.ActivityScenarioRule$Supplier
+androidx.test.ext.junit.rules.AppComponentFactoryRule
+androidx.test.ext.junit.rules.DeleteFilesRule
+androidx.test.ext.junit.rules.DeleteFilesRule$1
+androidx.test.ext.junit.runners.AndroidJUnit4

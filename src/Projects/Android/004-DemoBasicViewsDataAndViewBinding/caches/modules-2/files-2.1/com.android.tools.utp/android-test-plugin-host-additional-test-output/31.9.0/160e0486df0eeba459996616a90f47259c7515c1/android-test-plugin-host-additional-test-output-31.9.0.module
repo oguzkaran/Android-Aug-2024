@@ -1,0 +1,148 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.android.tools.utp",
+    "module": "android-test-plugin-host-additional-test-output",
+    "version": "31.9.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.11.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "android-test-plugin-host-additional-test-output-31.9.0.jar",
+          "url": "android-test-plugin-host-additional-test-output-31.9.0.jar",
+          "size": 29976,
+          "sha512": "77aa37d72bf0f99b115574efed81157d64947d2aaa3afaa87e884389d1e17ba15b93abba7ae8b774d728f0aa655437fe3255eeefc77b792205e330d06f735340",
+          "sha256": "bb875d7f5006e362c9c6efdd24ac1476f54a89f4fafb2ea245440b3fd2cf9955",
+          "sha1": "f0535a1f379985aec6ff5ed0bfaeb58ff1ea43c4",
+          "md5": "3d44711498163d68d913e77658263bfe"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.android.tools",
+          "module": "common",
+          "version": {
+            "requires": "31.9.0"
+          }
+        },
+        {
+          "group": "com.android.tools.utp",
+          "module": "utp-common",
+          "version": {
+            "requires": "31.9.0"
+          }
+        },
+        {
+          "group": "com.android.tools.utp",
+          "module": "android-test-plugin-host-additional-test-output-proto",
+          "version": {
+            "requires": "31.9.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "com.google.protobuf",
+          "module": "protobuf-java",
+          "version": {
+            "requires": "3.22.3"
+          }
+        },
+        {
+          "group": "com.google.testing.platform",
+          "module": "android-device-provider-local",
+          "version": {
+            "requires": "0.0.9-alpha03"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "android-test-plugin-host-additional-test-output-31.9.0.jar",
+          "url": "android-test-plugin-host-additional-test-output-31.9.0.jar",
+          "size": 29976,
+          "sha512": "77aa37d72bf0f99b115574efed81157d64947d2aaa3afaa87e884389d1e17ba15b93abba7ae8b774d728f0aa655437fe3255eeefc77b792205e330d06f735340",
+          "sha256": "bb875d7f5006e362c9c6efdd24ac1476f54a89f4fafb2ea245440b3fd2cf9955",
+          "sha1": "f0535a1f379985aec6ff5ed0bfaeb58ff1ea43c4",
+          "md5": "3d44711498163d68d913e77658263bfe"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "android-test-plugin-host-additional-test-output-31.9.0-javadoc.jar",
+          "url": "android-test-plugin-host-additional-test-output-31.9.0-javadoc.jar",
+          "size": 261,
+          "sha512": "f6e135e1f2eeabd4b1063d7a828fc9896e3f39b91a4c4a9e6bc234593ebe05bf7b71099df824ce41d5037e87576959943b8eb0d0cbba280a8bcd4db0129e79ee",
+          "sha256": "97e35aebc9c28ffb18c923750524de9d79137adfe50a7a80b39eb239c8060480",
+          "sha1": "565871d8402cfa98152503d26d69949f07df4c87",
+          "md5": "1fb93cfd2f23b77faf823f3eecbb0271"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "android-test-plugin-host-additional-test-output-31.9.0-sources.jar",
+          "url": "android-test-plugin-host-additional-test-output-31.9.0-sources.jar",
+          "size": 6676,
+          "sha512": "9162350381849f4a6e9e85f51c6808f10605e453f636929d1c2fb5ba8f7a94da16dcd0efd02fa737785210b1e062e2654769195d0429dc402659feed12cfe39d",
+          "sha256": "ef09c9c1229eedf2fb125268ed40b02a90220ed95061bbc42b6874e476d5c635",
+          "sha1": "281aa0f35a985635f3daa7f6bf3426d63241d183",
+          "md5": "f03ee96688d8323189b85af8b2bcd325"
+        }
+      ]
+    }
+  ]
+}

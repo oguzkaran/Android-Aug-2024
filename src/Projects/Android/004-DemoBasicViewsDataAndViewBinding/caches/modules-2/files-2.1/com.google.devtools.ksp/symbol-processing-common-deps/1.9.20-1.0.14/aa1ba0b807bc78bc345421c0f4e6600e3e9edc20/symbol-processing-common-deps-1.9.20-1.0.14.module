@@ -1,0 +1,82 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.google.devtools.ksp",
+    "module": "symbol-processing-common-deps",
+    "version": "1.9.20-1.0.14",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "symbol-processing-common-deps-1.9.20-1.0.14.jar",
+          "url": "symbol-processing-common-deps-1.9.20-1.0.14.jar",
+          "size": 12828,
+          "sha512": "119c3a6818f6c89db934b7520ba794130a6b811ad970ddb6f8144e604322580cf3d7a8a205a04caa04e83934a5d8065101db3eb04b0ea7dc17a35fda061b6802",
+          "sha256": "6462be878c3f1e72fe3361b4f4e6f4ac7e75caca3e1cfd32668834ca86bbacb8",
+          "sha1": "8288ca922a45185e91fd796fe24948b0d4fdef78",
+          "md5": "e7d22e1dfab3c39fb0b60f17cb2cc014"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "symbol-processing-common-deps-1.9.20-1.0.14.jar",
+          "url": "symbol-processing-common-deps-1.9.20-1.0.14.jar",
+          "size": 12828,
+          "sha512": "119c3a6818f6c89db934b7520ba794130a6b811ad970ddb6f8144e604322580cf3d7a8a205a04caa04e83934a5d8065101db3eb04b0ea7dc17a35fda061b6802",
+          "sha256": "6462be878c3f1e72fe3361b4f4e6f4ac7e75caca3e1cfd32668834ca86bbacb8",
+          "sha1": "8288ca922a45185e91fd796fe24948b0d4fdef78",
+          "md5": "e7d22e1dfab3c39fb0b60f17cb2cc014"
+        }
+      ]
+    }
+  ]
+}

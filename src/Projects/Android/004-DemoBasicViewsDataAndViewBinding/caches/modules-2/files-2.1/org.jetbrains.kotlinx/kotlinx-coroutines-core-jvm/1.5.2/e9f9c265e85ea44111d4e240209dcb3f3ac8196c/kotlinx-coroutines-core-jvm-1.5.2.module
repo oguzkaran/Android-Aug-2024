@@ -1,0 +1,90 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlinx-coroutines-core/1.5.2/kotlinx-coroutines-core-1.5.2.module",
+    "group": "org.jetbrains.kotlinx",
+    "module": "kotlinx-coroutines-core",
+    "version": "1.5.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.3",
+      "buildId": "aa4ctwign5bgbgnn6ch7nslzle"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.30"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.5.30"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlinx-coroutines-core-jvm-1.5.2.jar",
+          "url": "kotlinx-coroutines-core-jvm-1.5.2.jar",
+          "size": 1481065,
+          "sha512": "23707de520e7923fe64a5e9d81399fc1f5c843e24c44f9a2fd1ffb1d34dc280d296c84143a3833494eca087510f58a74e20a5c548d28edcfa21cac09b0646d2a",
+          "sha256": "2314c48aa1a39c05c11f3b385cdf3c56b1745f064314e4feabecebc1572b3ac1",
+          "sha1": "f4cc07a50437659e0043e7da762809a46932b6a0",
+          "md5": "0650bc198025a13bbb72885bdc297b7e"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.30"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-common",
+          "version": {
+            "requires": "1.5.30"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlinx-coroutines-core-jvm-1.5.2.jar",
+          "url": "kotlinx-coroutines-core-jvm-1.5.2.jar",
+          "size": 1481065,
+          "sha512": "23707de520e7923fe64a5e9d81399fc1f5c843e24c44f9a2fd1ffb1d34dc280d296c84143a3833494eca087510f58a74e20a5c548d28edcfa21cac09b0646d2a",
+          "sha256": "2314c48aa1a39c05c11f3b385cdf3c56b1745f064314e4feabecebc1572b3ac1",
+          "sha1": "f4cc07a50437659e0043e7da762809a46932b6a0",
+          "md5": "0650bc198025a13bbb72885bdc297b7e"
+        }
+      ]
+    }
+  ]
+}
