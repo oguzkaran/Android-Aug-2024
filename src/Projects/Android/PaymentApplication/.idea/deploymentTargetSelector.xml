@@ -8,6 +8,9 @@
       <SelectionState runConfigName="findAll_whenCalled_thenSizeSuccessful()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="PaymentLocalRepositoryHelperTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

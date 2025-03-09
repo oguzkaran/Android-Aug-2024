@@ -30,3 +30,4 @@ dependencyResolutionManagement {
 rootProject.name = "PaymentApplication"
 include(":app")
 include(":PaymentRepositorySqliteLib")
+include(":PaymentRepositoryDataServiceLib")

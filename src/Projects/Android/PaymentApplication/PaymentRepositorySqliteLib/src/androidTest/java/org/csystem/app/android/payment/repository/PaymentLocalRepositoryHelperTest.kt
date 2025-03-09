@@ -1,27 +1,33 @@
 package org.csystem.app.android.payment.repository
 
 import androidx.room.Room
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import org.csystem.app.android.payment.repository.dal.PaymentLocalRepositoryHelper
 import org.csystem.app.android.payment.repository.db.PaymentLocalDatabase
+import org.csystem.app.android.payment.repository.entity.Category
 import org.csystem.app.android.payment.repository.entity.Product
-
+import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
-import org.junit.Before
 import java.io.File
 
 @RunWith(AndroidJUnit4::class)
 class PaymentLocalRepositoryHelperTest {
     private lateinit var mHelper: PaymentLocalRepositoryHelper
 
+    private fun insertCategories() {
+        mHelper.saveCategory(Category(description = "cat-1"))
+        mHelper.saveCategory(Category(description = "cat-2"))
+        mHelper.saveCategory(Category(description = "cat-3"))
+    }
+
     private fun deleteDatabase() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
-        File(appContext.dataDir, "databases").listFiles().forEach { it.delete() }
+        File(appContext.dataDir, "databases").listFiles()!!.forEach { it.delete() }
+        insertCategories()
     }
 
     @Before
@@ -31,21 +37,39 @@ class PaymentLocalRepositoryHelperTest {
             .allowMainThreadQueries()
             .build()
 
-        mHelper = PaymentLocalRepositoryHelper(db.productDao())
+        mHelper = PaymentLocalRepositoryHelper(db)
+        insertCategories()
     }
 
 
     @Test
     fun findAll_whenCalled_thenSizeSuccessful() {
-        mHelper.saveProduct(Product(code = "test-1", name = "Test Product 1", unitPrice = 100.0))
-        mHelper.saveProduct(Product(code = "test-2", name = "Test Product 2", unitPrice = 100.0))
-        mHelper.saveProduct(Product(code = "test-3", name = "Test Product 2", unitPrice = 100.0))
+        mHelper.saveProduct(Product(code = "test-1", name = "Test Product 1", categoryId = 1, unitPrice = 100.0))
+        mHelper.saveProduct(Product(code = "test-2", name = "Test Product 2", categoryId = 2, unitPrice = 100.0))
+        mHelper.saveProduct(Product(code = "test-3", name = "Test Product 3", categoryId = 3, unitPrice = 100.0))
 
         val expectedSize = 3
 
         val products = mHelper.findAllProducts()
 
         assertEquals(expectedSize, products.size)
+        deleteDatabase()
+    }
+
+    @Test
+    fun save_whenCalled_thenUpdate() {
+        mHelper.saveProduct(Product(code = "test-1", name = "Test Product 1", categoryId = 1, unitPrice = 100.0))
+        mHelper.saveProduct(Product(code = "test-2", name = "Test Product 2", categoryId = 2, unitPrice = 100.0))
+        mHelper.saveProduct(Product(code = "test-3", name = "Test Product 3", categoryId = 3, unitPrice = 100.0))
+
+        var product = Product(code = "test-3", name = "Test Product 3-updated", categoryId = 3, unitPrice = 300.0)
+
+        mHelper.saveProduct(product)
+
+        product = mHelper.findByProductCode("test-3")
+
+        assertEquals("Test Product 3-updated", product.name)
+        assertEquals(300.0, product.unitPrice, 0.00001)
         deleteDatabase()
     }
 }
