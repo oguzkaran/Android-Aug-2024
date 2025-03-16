@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- This module was also published with a richer model, Gradle metadata,  -->
+  <!-- which should be used instead. Do not delete the following line which  -->
+  <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
+  <!-- that they should prefer consuming it instead. -->
+  <!-- do_not_remove: published-with-gradle-metadata -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.gradle</groupId>
+  <artifactId>develocity-gradle-plugin</artifactId>
+  <version>3.18.2</version>
+  <name>Develocity Gradle Plugin</name>
+  <description>Gradle plugin for Develocity installations that provides Build Insights, Build Caching, Predictive Test Selection, and Test Distribution for Gradle builds. Alternatively, Build Insights can be captured and viewed for free at scans.gradle.com and Build Caching can be used for free locally. See https://gradle.com for more information on Develocity.</description>
+  <url>https://docs.gradle.com/develocity/gradle-plugin</url>
+  <licenses>
+    <license>
+      <name>Gradle Terms of Use</name>
+      <url>https://gradle.com/help/legal-terms-of-use</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>The Gradle team</name>
+      <organization>Gradle Inc.</organization>
+      <organizationUrl>https://gradle.com</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>https://gradle.com</connection>
+    <developerConnection>https://gradle.com</developerConnection>
+    <url>https://gradle.com</url>
+  </scm>
+</project>

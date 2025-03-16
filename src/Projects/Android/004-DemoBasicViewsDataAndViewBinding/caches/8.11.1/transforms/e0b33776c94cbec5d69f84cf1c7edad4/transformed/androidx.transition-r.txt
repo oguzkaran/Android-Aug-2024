@@ -1,0 +1,14 @@
+androidx.transition
+id ghost_view
+id ghost_view_holder
+id parent_matrix
+id save_non_transition_alpha
+id save_overlay_view
+id transition_clip
+id transition_current_scene
+id transition_image_transform
+id transition_layout_save
+id transition_pause_alpha
+id transition_position
+id transition_scene_layoutid_cache
+id transition_transform

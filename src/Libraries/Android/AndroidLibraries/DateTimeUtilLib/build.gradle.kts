@@ -1,8 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-kapt")
+    kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -47,6 +48,11 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.paging)
+    implementation(libs.org.csystem.util.datetime)
 }
 
 kapt {

@@ -11,6 +11,9 @@
       <SelectionState runConfigName="PaymentLocalRepositoryHelperTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="findPaymentInfoByDate_whenCalled_thenSizeSuccessful()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

@@ -23,5 +23,4 @@ import java.time.LocalDateTime
 data class PaymentToProduct (@ColumnInfo(name = "product_code") var productCode: String = "",
                              @ColumnInfo(name = "payment_id") var paymentId: Long = 0,
                              @ColumnInfo(name = "unit_price") var unitPrice: Double = 0.0,
-                             var amount: Double = 0.0,
-                             @Ignore var dateTime: LocalDateTime = LocalDateTime.now())
+                             var amount: Double = 0.0)

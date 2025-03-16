@@ -50,6 +50,9 @@ dependencies {
     kapt(libs.hilt.android.compiler)
 
     implementation(libs.com.karandev.data)
+
+    implementation(libs.mapstruct)
+    kapt(libs.mapstruct.processor)
 }
 
 kapt {

@@ -56,6 +56,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(project(":PaymentRepositorySqliteLib"))
+    implementation(project(":PaymentRepositoryDataServiceLib"))
+
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)

@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.androidx.room.paging)
 
     implementation(libs.com.karandev.data)
+    implementation(libs.org.csystem.util.datetime)
+    implementation(libs.org.csystem.android.datetime)
 }
 
 kapt {

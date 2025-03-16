@@ -8,9 +8,12 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
+mapstruct = "1.6.3"
 material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
+orgCsystemAndroidDatetime = "11.0.0"
+orgCsystemUtilDatetime = "8.0.0"
 roomRuntime = "2.6.1"
 comKarandevData = "8.0.0"
 
@@ -26,10 +29,14 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 com-karandev-data = { module = "com.karandev:com-karandev-data", version.ref = "comKarandevData" }
+org-csystem-android-datetime = { module = "org.csystem.android:org-csystem-android-datetime", version.ref = "orgCsystemAndroidDatetime" }
+org-csystem-util-datetime = { module = "org.csystem:org-csystem-util-datetime", version.ref = "orgCsystemUtilDatetime" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
