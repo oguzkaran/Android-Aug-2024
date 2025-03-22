@@ -1,3 +1,0 @@
-androidx.test.core
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme

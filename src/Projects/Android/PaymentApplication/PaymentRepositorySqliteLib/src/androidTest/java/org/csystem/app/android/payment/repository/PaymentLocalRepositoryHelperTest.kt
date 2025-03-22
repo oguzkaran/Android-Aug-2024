@@ -15,6 +15,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.Month
 
 @RunWith(AndroidJUnit4::class)
 class PaymentLocalRepositoryHelperTest {
@@ -102,7 +104,23 @@ class PaymentLocalRepositoryHelperTest {
 
         mHelper.savePayment(info1, info2, info3)
         val expectedSize = 3
-        val today = LocalDate.now();
+        val today = LocalDate.now()
+        val products = mHelper.findPaymentInfoByDate(today)
+
+        assertEquals(expectedSize, products.size)
+        deleteDatabase()
+    }
+
+    @Test
+    fun findPaymentInfoByDate_whenCalled_thenNotFound() {
+        insertProducts()
+        var info1 = ProductPaymentInfo(code = "test-1", unitPrice = 100.0, 10.0)
+        var info2 = ProductPaymentInfo(code = "test-2", unitPrice = 300.0, 5.6)
+        var info3 = ProductPaymentInfo(code = "test-3", unitPrice = 300.0, 5.6)
+
+        mHelper.savePayment(LocalDateTime.of(2024, Month.SEPTEMBER, 5, 17, 13, 56), info1, info2, info3)
+        val expectedSize = 0
+        val today = LocalDate.now()
         val products = mHelper.findPaymentInfoByDate(today)
 
         assertEquals(expectedSize, products.size)

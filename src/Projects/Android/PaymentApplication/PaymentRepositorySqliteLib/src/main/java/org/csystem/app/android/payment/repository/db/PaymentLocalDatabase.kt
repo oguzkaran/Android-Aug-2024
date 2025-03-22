@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import org.csystem.android.library.util.datetime.converter.DateTimeToMillisecondsConverter
-import org.csystem.android.library.util.datetime.converter.LocalDateTimeToLocalDate
+import org.csystem.app.android.payment.repository.converter.DateToMillisecondsConverter
 import org.csystem.app.android.payment.repository.dao.ICategoryDao
 import org.csystem.app.android.payment.repository.dao.IPaymentDao
 import org.csystem.app.android.payment.repository.dao.IPaymentToProductDao
@@ -15,7 +15,7 @@ import org.csystem.app.android.payment.repository.entity.PaymentToProduct
 import org.csystem.app.android.payment.repository.entity.Product
 
 @Database(entities = [Product::class, Category::class, Payment::class, PaymentToProduct::class], version = 1)
-@TypeConverters(DateTimeToMillisecondsConverter::class, LocalDateTimeToLocalDate::class)
+@TypeConverters(DateTimeToMillisecondsConverter::class, DateToMillisecondsConverter::class)
 abstract class PaymentLocalDatabase : RoomDatabase() {
     abstract fun productDao(): IProductDao
     abstract fun categoryDao(): ICategoryDao

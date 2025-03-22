@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Created-By: Maven JAR Plugin 3.3.0
-Build-Jdk-Spec: 23
-Implementation-Title: org-csystem-util-datetime
-Implementation-Version: 8.0.0
-

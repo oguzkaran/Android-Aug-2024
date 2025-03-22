@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct-parent</artifactId>
+    <version>1.6.3</version>
+    <relativePath>../parent/pom.xml</relativePath>
+  </parent>
+  <groupId>org.mapstruct</groupId>
+  <artifactId>mapstruct-processor</artifactId>
+  <version>1.6.3</version>
+  <name>MapStruct Processor</name>
+  <description>An annotation processor for generating type-safe bean mappers</description>
+  <url>https://mapstruct.org/mapstruct-processor/</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>gunnarmorling</id>
+      <name>Gunnar Morling</name>
+      <email>gunnar@mapstruct.org</email>
+      <url>https://www.morling.dev/</url>
+    </developer>
+    <developer>
+      <id>filiphr</id>
+      <name>Filip Hrisafov</name>
+      <url>https://github.com/filiphr/</url>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git://github.com/mapstruct/mapstruct.git/mapstruct-processor</connection>
+    <developerConnection>scm:git:git@github.com:mapstruct/mapstruct.git/mapstruct-processor</developerConnection>
+    <url>https://github.com/mapstruct/mapstruct/mapstruct-processor/</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>1.6.3</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.sun.activation</groupId>
+          <artifactId>jakarta.activation</artifactId>
+        </exclusion>
+      </exclusions>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.1</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.activation</groupId>
+          <artifactId>javax.activation-api</artifactId>
+        </exclusion>
+      </exclusions>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+  <profiles>
+    <profile>
+      <id>jdk-11-or-newer</id>
+      <dependencies>
+        <dependency>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+          <version>2.3.1</version>
+          <scope>provided</scope>
+          <exclusions>
+            <exclusion>
+              <groupId>javax.activation</groupId>
+              <artifactId>javax.activation-api</artifactId>
+            </exclusion>
+          </exclusions>
+          <optional>true</optional>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+</project>

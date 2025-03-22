@@ -9,6 +9,7 @@ import org.csystem.app.android.payment.repository.entity.Payment
 import org.csystem.app.android.payment.repository.entity.PaymentToProduct
 import org.csystem.app.android.payment.repository.entity.Product
 import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 class PaymentLocalRepositoryHelper @Inject constructor(paymentLocalDatabase: PaymentLocalDatabase) {
@@ -46,13 +47,25 @@ class PaymentLocalRepositoryHelper @Inject constructor(paymentLocalDatabase: Pay
      */
     @Transaction
     fun savePayment(vararg info: ProductPaymentInfo) {
+       try {
+           var id = mPaymentDao.save(Payment())
+
+           info.forEach { mPaymentToProductDao.save(PaymentToProduct(it.code, id, it.unitPrice, it.amount)) }
+
+       } catch (ex: RuntimeException) {
+           throw RepositoryException("PaymentLocalRepositoryHelper.savePayment", ex)
+       }
+    }
+
+    @Transaction
+    fun savePayment(dateTime: LocalDateTime, vararg info: ProductPaymentInfo, ) {
         try {
-            var id = mPaymentDao.save(Payment())
+            var id = mPaymentDao.save(Payment(dateTime = dateTime))
 
             info.forEach { mPaymentToProductDao.save(PaymentToProduct(it.code, id, it.unitPrice, it.amount)) }
 
         } catch (ex: RuntimeException) {
-            throw RepositoryException("PaymentLocalRepositoryHelper.saveProduct", ex)
+            throw RepositoryException("PaymentLocalRepositoryHelper.savePayment", ex)
         }
     }
 
