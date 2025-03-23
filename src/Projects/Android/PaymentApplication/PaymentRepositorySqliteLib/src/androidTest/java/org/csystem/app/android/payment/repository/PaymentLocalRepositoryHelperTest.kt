@@ -5,8 +5,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.csystem.app.android.payment.repository.dal.PaymentLocalRepositoryHelper
 import org.csystem.app.android.payment.repository.db.PaymentLocalDatabase
-import org.csystem.app.android.payment.repository.dto.ProductPaymentInfo
 import org.csystem.app.android.payment.repository.entity.Category
+import org.csystem.app.android.payment.repository.entity.PaymentToProduct
 import org.csystem.app.android.payment.repository.entity.Product
 import org.junit.Assert.assertEquals
 import org.junit.Assert.fail
@@ -82,11 +82,11 @@ class PaymentLocalRepositoryHelperTest {
     fun savePaymentInfo_whenCalled() {
         try {
             insertProducts()
-            var info1 = ProductPaymentInfo(code = "test-1", unitPrice = 100.0, 10.0)
-            var info2 = ProductPaymentInfo(code = "test-2", unitPrice = 300.0, 5.6)
+            var ptp1 = PaymentToProduct(productCode = "test-1", unitPrice = 100.0, amount = 10.0)
+            var ptp2 = PaymentToProduct(productCode = "test-2", unitPrice = 300.0, amount = 5.6)
 
 
-            mHelper.savePayment(info1, info2)
+            mHelper.savePayment(ptp1, ptp2)
         } catch (ex: Exception) {
             fail("Unexpected exception:${ex.message}")
         }
@@ -98,11 +98,11 @@ class PaymentLocalRepositoryHelperTest {
     @Test
     fun findPaymentInfoByDate_whenCalled_thenSizeSuccessful() {
         insertProducts()
-        var info1 = ProductPaymentInfo(code = "test-1", unitPrice = 100.0, 10.0)
-        var info2 = ProductPaymentInfo(code = "test-2", unitPrice = 300.0, 5.6)
-        var info3 = ProductPaymentInfo(code = "test-3", unitPrice = 300.0, 5.6)
+        var ptp1 = PaymentToProduct(productCode = "test-1", unitPrice = 100.0, amount = 10.0)
+        var ptp2 = PaymentToProduct(productCode = "test-2", unitPrice = 300.0, amount = 5.6)
+        var ptp3 = PaymentToProduct(productCode = "test-3", unitPrice = 300.0, amount = 5.6)
 
-        mHelper.savePayment(info1, info2, info3)
+        mHelper.savePayment(ptp1, ptp2, ptp3)
         val expectedSize = 3
         val today = LocalDate.now()
         val products = mHelper.findPaymentInfoByDate(today)
@@ -114,11 +114,11 @@ class PaymentLocalRepositoryHelperTest {
     @Test
     fun findPaymentInfoByDate_whenCalled_thenNotFound() {
         insertProducts()
-        var info1 = ProductPaymentInfo(code = "test-1", unitPrice = 100.0, 10.0)
-        var info2 = ProductPaymentInfo(code = "test-2", unitPrice = 300.0, 5.6)
-        var info3 = ProductPaymentInfo(code = "test-3", unitPrice = 300.0, 5.6)
+        var ptp1 = PaymentToProduct(productCode = "test-1", unitPrice = 100.0, amount = 10.0)
+        var ptp2 = PaymentToProduct(productCode = "test-2", unitPrice = 300.0, amount = 5.6)
+        var ptp3 = PaymentToProduct(productCode = "test-3", unitPrice = 300.0, amount = 5.6)
 
-        mHelper.savePayment(LocalDateTime.of(2024, Month.SEPTEMBER, 5, 17, 13, 56), info1, info2, info3)
+        mHelper.savePayment(LocalDateTime.of(2024, Month.SEPTEMBER, 5, 17, 13, 56), ptp1, ptp2, ptp3)
         val expectedSize = 0
         val today = LocalDate.now()
         val products = mHelper.findPaymentInfoByDate(today)

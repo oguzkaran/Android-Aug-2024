@@ -55,7 +55,7 @@ dependencies {
 
     implementation(libs.com.karandev.data)
     implementation(libs.org.csystem.util.datetime)
-    implementation(libs.org.csystem.android.datetime)
+    implementation(libs.org.csystem.android.util.datetime)
 }
 
 kapt {

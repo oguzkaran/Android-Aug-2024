@@ -10,6 +10,14 @@
       </SelectionState>
       <SelectionState runConfigName="PaymentLocalRepositoryHelperTest">
         <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2025-03-23T06:38:49.237059Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/oguzkaran/.android/avd/Pixel_XL_API_25.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="findPaymentInfoByDate_whenCalled_thenSizeSuccessful()">
         <option name="selectionMode" value="DROPDOWN" />

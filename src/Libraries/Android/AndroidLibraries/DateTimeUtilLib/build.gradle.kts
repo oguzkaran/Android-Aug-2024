@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "org.csystem.android.library.util.datetime"
+    namespace = "org.csystem.android.util.datetime"
     compileSdk = 35
 
     defaultConfig {
