@@ -14,7 +14,7 @@
 
     <groupId>org.csystem</groupId>
     <artifactId>org-csystem-util-datetime</artifactId>
-    <version>8.0.0</version>
+    <version>8.1.0</version>
 
     <properties>
         <java.version>11</java.version>
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
