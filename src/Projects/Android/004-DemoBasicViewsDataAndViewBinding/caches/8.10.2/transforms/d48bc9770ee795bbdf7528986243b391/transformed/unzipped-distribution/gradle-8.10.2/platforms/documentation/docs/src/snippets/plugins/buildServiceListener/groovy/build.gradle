@@ -1,9 +1,0 @@
-plugins {
-    id('org.gradle.sample.taskevents')
-}
-
-tasks.register("hello") {
-    doLast {
-        println("Hello!")
-    }
-}

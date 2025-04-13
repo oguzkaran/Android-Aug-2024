@@ -1,3 +1,0 @@
-include 'subproject'
-
-rootProject.name = 'test'

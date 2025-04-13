@@ -1,9 +1,0 @@
-plugins {
-    id 'java-library'
-}
-
-// tag::create-configurations[]
-configurations {
-    myCustomConfiguration.extendsFrom(implementation)
-}
-// end::create-configurations[]

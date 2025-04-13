@@ -1,6 +1,0 @@
-// tag::use-plugin[]
-plugins {
-    id 'application'
-    id('GreetingPlugin')
-}
-// end::use-plugin[]
