@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RandomUsers</string>
+    <string name="button_get_users">GET USERS</string>
+    <string name="edittext_count_hint">GET USERS</string>
+    <string name="message_invalid_value">Invalid Value</string>
+    <string name="message_positive">Value must be positive</string>
+    <string name="imageview_picture_content_description">Picture of a user</string>
+</resources>

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dagger.hilt.android.AndroidEntryPoint
+import org.csystem.app.android.postalcodesearch.api.geonames.constant.STATUS_OK
 import org.csystem.app.android.postalcodesearch.api.geonames.dto.PostalCodes
 import org.csystem.app.android.postalcodesearch.api.geonames.service.IPostalCodeService
 import retrofit2.Call
@@ -24,13 +25,15 @@ class MainActivity : AppCompatActivity() {
         return object: Callback<PostalCodes> {
             override fun onResponse(call: Call<PostalCodes?>, response: Response<PostalCodes?>) {
                 Log.i("Response:", response.raw().toString())
-                if (response.code() != 200) {
+                if (response.code() != STATUS_OK) {
                     Log.e("Status", response.code().toString())
                     Toast.makeText(this@MainActivity, "Unsuccessful operation", Toast.LENGTH_LONG).show()
                     return
                 }
 
+                //Log headers
                 response.headers().names().forEach { Log.i("Header", it) }
+
                 if (response.body()?.postalCodes == null) {
                     Toast.makeText(this@MainActivity, "Limit exhausted", Toast.LENGTH_LONG).show()
                     return
