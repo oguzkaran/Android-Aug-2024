@@ -45,7 +45,6 @@ class LimitConfigurationActivity : AppCompatActivity() {
     private fun initBinding() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_limit_configuration)
         mBinding.activity = this
-        //mBinding.limitValue = "10"
         loadLimit()
     }
 
