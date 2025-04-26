@@ -39,12 +39,13 @@ class LimitConfigurationActivity : AppCompatActivity() {
         val limitValue = counterDataService.getLimit()
 
         mBinding.limitValue =
-            if (limitValue != CounterDataService.UNLIMITED) limitValue.toString() else ""
+            if (limitValue != CounterDataService.UNLIMITED) limitValue.toString() else "10"
     }
 
     private fun initBinding() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_limit_configuration)
         mBinding.activity = this
+        //mBinding.limitValue = "10"
         loadLimit()
     }
 

@@ -13,6 +13,8 @@ import androidx.databinding.DataBindingUtil
 import com.karandev.data.exception.service.DataServiceException
 import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.library.util.datetime.module.annotation.DateTimeFormatterTRInterceptor
+import org.csystem.android.library.util.datetime.module.local.CurrentLocalDateModule
+import org.csystem.android.library.util.datetime.module.local.CurrentLocalDateTimeModule
 import org.csystem.app.android.app.counter.data.service.CounterDataService
 import org.csystem.app.android.app.counter.databinding.ActivityMainBinding
 import java.time.LocalDateTime
@@ -118,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dateTimeSchedulerCallback() {
-        val now = LocalDateTime.now()
+        val now = CurrentLocalDateTimeModule.provideLocalDateTime()
 
         mBinding.dateTimeText = datetimeFormatter.format(now)
     }
