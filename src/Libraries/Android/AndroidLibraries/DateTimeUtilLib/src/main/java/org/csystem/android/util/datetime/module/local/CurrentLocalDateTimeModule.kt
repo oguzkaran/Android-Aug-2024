@@ -1,7 +1,5 @@
 package org.csystem.android.util.datetime.module.local
 
-package org.csystem.android.util.datetime.module.local
-
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
