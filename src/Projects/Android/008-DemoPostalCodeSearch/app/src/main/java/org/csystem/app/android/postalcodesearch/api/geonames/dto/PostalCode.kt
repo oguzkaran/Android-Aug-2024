@@ -21,4 +21,6 @@ data class PostalCode(
     val placeName: String,
     @SerializedName("lat")
     val lat: Double
-)
+) {
+    override fun toString() = placeName
+}

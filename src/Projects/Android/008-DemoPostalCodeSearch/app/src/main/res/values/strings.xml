@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PostalCodeSearch</string>
+    <string name="button_get_places_text">GET PLACES</string>
+    <string name="edittext_postalcode_hint">Input postal code</string>
 </resources>

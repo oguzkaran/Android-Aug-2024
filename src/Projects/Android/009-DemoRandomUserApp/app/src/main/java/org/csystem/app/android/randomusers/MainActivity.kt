@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBinding() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        mBinding.count = "10"
+        mBinding.count = 10
         mBinding.activity = this
         mBinding.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, ArrayList<RandomUser>())
     }
@@ -78,16 +78,15 @@ class MainActivity : AppCompatActivity() {
     fun onGetUsersButtonClicked() {
         try {
             mBinding.adapter?.clear()
-            val count = mBinding.count!!.toInt()
-            if (count <= 0) {
-                Toast.makeText(this, R.string.message_positive, Toast.LENGTH_LONG).show()
-                return
-            }
+            val count = mBinding.count
+            if (count <= 0)
+                throw NumberFormatException("Invalid value")
 
-            randomUserService.findUser(count).enqueue(findRandomUserCallback())
+            randomUserService.findUser().enqueue(findRandomUserCallback())
 
-        } catch (_: NumberFormatException) {
-            Toast.makeText(this, R.string.message_invalid_value, Toast.LENGTH_LONG).show()
+        } catch (ex: NumberFormatException) {
+            Log.e("NumberFormatException", ex.message!!)
+            Toast.makeText(this, R.string.message_positive, Toast.LENGTH_LONG).show()
         }
     }
 

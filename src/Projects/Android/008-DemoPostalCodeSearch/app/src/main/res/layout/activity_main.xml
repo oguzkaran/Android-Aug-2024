@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="org.csystem.app.android.postalcodesearch.MainActivity"/>
+        <import type="org.csystem.app.android.postalcodesearch.api.geonames.dto.PostalCode"/>
+        <import type="android.widget.ArrayAdapter"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable name="activity" type="MainActivity" />
+        <variable name="postalCode" type="String" />
+        <variable name="adapter" type="ArrayAdapter&lt;PostalCode&gt;" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="@string/edittext_postalcode_hint"
+            android:text="@={postalCode}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_get_places_text"
+            android:onClick = "@{() -> activity.onGetPlacesButtonClicked()}"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adapter="@{adapter}"
+            android:onItemClick="@{(p0, p1, pos, p4) -> activity.onPlaceClicked(pos)}"/>
+    </LinearLayout>
+</layout>

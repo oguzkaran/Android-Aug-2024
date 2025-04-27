@@ -8,4 +8,6 @@ import retrofit2.http.Query
 interface IRandomUserService {
     @GET("/")
     fun findUser(@Query("results") count: Int): Call<RandomUserInfo>
+    @GET("/")
+    fun findUser(): Call<RandomUserInfo>
 }

@@ -6,9 +6,10 @@
         <import type="org.csystem.app.android.randomusers.MainActivity"/>
         <import type="org.csystem.app.android.randomusers.api.me.dto.RandomUser"/>
         <import type="android.widget.ArrayAdapter"/>
+        <import type="org.csystem.app.android.randomusers.databinding.converter.CountToStringConverter"/>
 
         <variable name="activity" type="MainActivity" />
-        <variable name="count" type="String" />
+        <variable name="count" type="int" />
         <variable name="adapter" type="ArrayAdapter&lt;RandomUser&gt;" />
     </data>
 
@@ -25,7 +26,7 @@
             android:ems="10"
             android:inputType="number"
             android:hint="@string/edittext_count_hint"
-            android:text="@={count}"/>
+            android:text="@={CountToStringConverter.INSTANCE.toString(count)}"/>
 
         <Button
             android:layout_width="match_parent"
