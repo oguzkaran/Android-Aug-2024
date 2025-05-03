@@ -1,6 +1,7 @@
 package org.csystem.app.android.postalcodesearch.api.geonames.dto
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class PostalCode(
     @SerializedName("adminCode2")
@@ -21,6 +22,6 @@ data class PostalCode(
     val placeName: String,
     @SerializedName("lat")
     val lat: Double
-) {
+): Serializable {
     override fun toString() = placeName
 }

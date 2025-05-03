@@ -1,14 +1,12 @@
 package org.csystem.app.android.postalcodesearch
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
@@ -17,11 +15,11 @@ import org.csystem.app.android.postalcodesearch.api.geonames.constant.STATUS_OK
 import org.csystem.app.android.postalcodesearch.api.geonames.dto.PostalCode
 import org.csystem.app.android.postalcodesearch.api.geonames.dto.PostalCodes
 import org.csystem.app.android.postalcodesearch.api.geonames.service.IPostalCodeService
+import org.csystem.app.android.postalcodesearch.constant.POSTAL_CODE
 import org.csystem.app.android.postalcodesearch.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.net.URI
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -74,7 +72,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,9 +87,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onPlaceClicked(pos: Int) {
         val postalCode = mBinding.adapter!!.getItem(pos)!!
-        val latitude = postalCode.lat
-        val longitude = postalCode.lng
 
-        Intent(Intent.ACTION_VIEW).apply { data = "geo:$latitude, ${longitude}?z=13".toUri(); startActivity(this) }
+        Intent(this, PlaceActivity::class.java).apply { putExtra(POSTAL_CODE, postalCode); startActivity(this) }
     }
 }

@@ -2,7 +2,6 @@ package org.csystem.app.android.app.counter.data.service
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
-import org.csystem.android.library.util.datetime.module.annotation.DateTimeFormatterTRInterceptor
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.FileNotFoundException
@@ -13,6 +12,7 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.karandev.data.exception.service.DataServiceException
+import org.csystem.android.util.datetime.annotation.DateTimeFormatterTRInterceptor
 import java.io.File
 
 private const val FILE_NAME = "counter.txt"

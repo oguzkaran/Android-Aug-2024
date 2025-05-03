@@ -28,7 +28,7 @@ object CurrentDateTimeUtil {
      */
     @Provides
     @CurrentLocalDateInterceptor
-    fun provideLocalDate(): LocalDate = LocalDate.now()
+    fun localDate(): LocalDate = LocalDate.now()
 
     /**
      * Provides the current `LocalDateTime` instance.
@@ -38,7 +38,7 @@ object CurrentDateTimeUtil {
      */
     @Provides
     @CurrentLocalDateTimeInterceptor
-    fun provideLocalDateTime(): LocalDateTime = LocalDateTime.now()
+    fun localDateTime(): LocalDateTime = LocalDateTime.now()
 
     /**
      * Provides the current `LocalTime` instance.
@@ -48,5 +48,5 @@ object CurrentDateTimeUtil {
      */
     @Provides
     @CurrentLocalTimeInterceptor
-    fun provideLocalTime(): LocalTime = LocalTime.now()
+    fun localTime(): LocalTime = LocalTime.now()
 }

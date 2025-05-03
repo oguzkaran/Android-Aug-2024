@@ -12,8 +12,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.karandev.data.exception.service.DataServiceException
 import dagger.hilt.android.AndroidEntryPoint
-import org.csystem.android.library.util.datetime.module.annotation.DateTimeFormatterTRInterceptor
-import org.csystem.android.library.util.datetime.module.local.CurrentLocalDateTimeModule
+import org.csystem.android.util.datetime.annotation.DateTimeFormatterTRInterceptor
+import org.csystem.android.util.datetime.module.local.CurrentDateTimeUtil
 import org.csystem.app.android.app.counter.data.service.CounterDataService
 import org.csystem.app.android.app.counter.databinding.ActivityMainBinding
 import java.time.format.DateTimeFormatter
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             counterDataService.removeAll()
             runOnUiThread {  mBinding.adapter?.clear() }
         }
-        catch (ex: DataServiceException) {
+        catch (_: DataServiceException) {
             runOnUiThread { Toast.makeText(this, R.string.message_data_problem, Toast.LENGTH_LONG).show() }
         }
     }
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             else
                 runOnUiThread { showAlertForLimit(second) }
         }
-        catch (ex: DataServiceException) {
+        catch (_: DataServiceException) {
             runOnUiThread { Toast.makeText(this, R.string.message_data_problem, Toast.LENGTH_LONG).show() }
         }
     }
@@ -112,13 +112,13 @@ class MainActivity : AppCompatActivity() {
             val seconds = counterDataService.findAll() //Burada demo olarak hepsi okundu. Senaryoya göre parça parça okunabilir.
             runOnUiThread { mBinding.adapter?.clear(); mBinding.adapter?.addAll(seconds) }
         }
-        catch (ex: DataServiceException) {
+        catch (_: DataServiceException) {
             runOnUiThread { Toast.makeText(this, R.string.message_data_problem, Toast.LENGTH_LONG).show() }
         }
     }
 
     private fun dateTimeSchedulerCallback() {
-        val now = CurrentLocalDateTimeModule.provideLocalDateTime()
+        val now = CurrentDateTimeUtil.localDateTime()
 
         mBinding.dateTimeText = datetimeFormatter.format(now)
     }
@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity() {
             mSeconds = 0
             mBinding.counterText = "0:0:0"
             runOnUiThread { mBinding.mainActivityTextViewCounter.text = mBinding.counterText }
-        } catch (ex: DataServiceException) {
+        } catch (_: DataServiceException) {
             runOnUiThread { Toast.makeText(this, R.string.message_data_problem, Toast.LENGTH_LONG).show() }
         }
     }

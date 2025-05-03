@@ -1,0 +1,13 @@
+androidx.fragment
+anim fragment_fast_out_extra_slow_in
+animator fragment_close_enter
+animator fragment_close_exit
+animator fragment_fade_enter
+animator fragment_fade_exit
+animator fragment_open_enter
+animator fragment_open_exit
+id fragment_container_view_tag
+id special_effects_controller_view_tag
+id visible_removing_fragment_view_tag
+styleable Fragment android_id android_name android_tag
+styleable FragmentContainerView android_name android_tag

@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:hint="@string/edittext_postalcode_hint"
+            android:hint="@string/edittext_postal_code_hint"
             android:text="@={postalCode}"/>
 
         <Button

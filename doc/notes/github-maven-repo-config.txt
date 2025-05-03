@@ -4,7 +4,8 @@ git clone https://github.com/oguzkaran/android-aug-2024-karandev-maven-repo
 git config --global user.email "your email"
 
 mvn install:install-file -DgroupId=org.csystem.android -DartifactId=org-csystem-android-datetime -Dversion=9.0.0 -Dfile=../jars/org-csystem-android-datetime-9.0.0.aar -Dpackaging=aar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
-mvn install:install-file -DgroupId=org.csystem.android -DartifactId=org-csystem-android-util-datetime -Dversion=12.0.0 -Dfile=../jars/org-csystem-android-util-datetime-12.0.0.aar -Dpackaging=aar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
+mvn install:install-file -DgroupId=org.csystem.android -DartifactId=org-csystem-android-util-datetime -Dversion=13.0.0 -Dfile=../jars/org-csystem-android-util-datetime-13.0.0.aar -Dpackaging=aar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
+mvn install:install-file -DgroupId=org.csystem.android -DartifactId=org-csystem-android-util-datetime -Dversion=13.0.0 -Dfile=../jars/org-csystem-android-util-datetime-13.0.0.aar -Dpackaging=aar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
 
 
 mvn install:install-file -DgroupId=com.karandev -DartifactId=com-karandev-data -Dversion=8.0.0 -Dfile=../jars/com-karandev-data-8.0.0.jar -Dpackaging=jar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
@@ -17,7 +18,7 @@ mvn install:install-file -DgroupId=org.csystem -DartifactId=org-csystem-kotlin-u
 
 mvn install:install-file -DgroupId=org.csystem -DartifactId=org-csystem-util-datetime -Dversion=8.0.0 -Dfile=../jars/org-csystem-util-datetime-8.0.0.jar -Dpackaging=jar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
 
-git add -A . && git commit -m "released version 12.0.0" --> dilerseniz bu kısımdan sonra github desktop ile daha kolay yapılabilir
+git add -A . && git commit -m "released version 13.0.0" --> dilerseniz bu kısımdan sonra github desktop ile daha kolay yapılabilir
 
 url -> 'https://raw.github.com/<github usernama>/<github repository name>/<branch name>that is configured for maven repo>/<branch name default main>'
 

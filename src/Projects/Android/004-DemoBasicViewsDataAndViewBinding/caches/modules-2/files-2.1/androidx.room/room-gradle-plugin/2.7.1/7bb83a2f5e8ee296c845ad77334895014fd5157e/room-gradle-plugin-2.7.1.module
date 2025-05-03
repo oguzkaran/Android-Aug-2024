@@ -1,0 +1,488 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.room",
+    "module": "room-gradle-plugin",
+    "version": "2.7.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.12",
+      "buildId:": "13368038"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        }
+      ],
+      "files": [
+        {
+          "name": "room-gradle-plugin-2.7.1.jar",
+          "url": "room-gradle-plugin-2.7.1.jar",
+          "size": 105617,
+          "sha512": "6cfe00268f234a379f20f41c53358858335fb47d563e6fbe012baa4437323bf2864a71d45bc0e7c17cc4a962ce199a6039b5f67a42636e27435bf12f263e7ff4",
+          "sha256": "5864034b2f09a7c6aa6de293618a5b3bcf7bd3983d792c166514de47a84a1a8d",
+          "sha1": "ae3bf0115f4aefd54acbe90bc9e04b1569df2c4a",
+          "md5": "8d897aef7729d5cdf8ef750d8c48f274"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.8.22"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        }
+      ],
+      "files": [
+        {
+          "name": "room-gradle-plugin-2.7.1.jar",
+          "url": "room-gradle-plugin-2.7.1.jar",
+          "size": 105617,
+          "sha512": "6cfe00268f234a379f20f41c53358858335fb47d563e6fbe012baa4437323bf2864a71d45bc0e7c17cc4a962ce199a6039b5f67a42636e27435bf12f263e7ff4",
+          "sha256": "5864034b2f09a7c6aa6de293618a5b3bcf7bd3983d792c166514de47a84a1a8d",
+          "sha1": "ae3bf0115f4aefd54acbe90bc9e04b1569df2c4a",
+          "md5": "8d897aef7729d5cdf8ef750d8c48f274"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.7.1"
+          },
+          "reason": "room-gradle-plugin is in atomic group androidx.room"
+        }
+      ],
+      "files": [
+        {
+          "name": "room-gradle-plugin-2.7.1-sources.jar",
+          "url": "room-gradle-plugin-2.7.1-sources.jar",
+          "size": 20573,
+          "sha512": "10a36e712364a879a383555569683df4b53e098b82538d8401d4b15e45cc48a723c937799b4b4e513a2fa362d19c246f105730b4a79de6f8fdf38a8c0276522e",
+          "sha256": "0334d3b260aa15e482e5d4a988d4bb8e61a4d702bfe2606448e856873fd6fcf2",
+          "sha1": "6992f073ed60d163da95cd7ea9c1b32d5fd114e6",
+          "md5": "5fae0b4f20d37ea68d7d1b8b23e34e62"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlinpoet/1.17.0/kotlinpoet-1.17.0.module",
+    "group": "com.squareup",
+    "module": "kotlinpoet",
+    "version": "1.17.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.24"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlinpoet-jvm-1.17.0.jar",
+          "url": "kotlinpoet-jvm-1.17.0.jar",
+          "size": 357370,
+          "sha512": "81d0534e486337452314de8648c021f713eb2228f7fed87fe769bc1b43c6414ea0b4a49ab4dc855029ad228ab0d73dbc558700731fcd9c2e3daf5593a275bd93",
+          "sha256": "3133d4f48ce77766a6a8cc2e555d89164dfcefbd372f4ff43f89a7fed3586910",
+          "sha1": "9a561edf59d8dd2f39da2c9f7d33f12465b690f5",
+          "md5": "71be1d33db4fc0494a7f01e2cad99e43"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.24"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-reflect",
+          "version": {
+            "requires": "1.9.24"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlinpoet-jvm-1.17.0.jar",
+          "url": "kotlinpoet-jvm-1.17.0.jar",
+          "size": 357370,
+          "sha512": "81d0534e486337452314de8648c021f713eb2228f7fed87fe769bc1b43c6414ea0b4a49ab4dc855029ad228ab0d73dbc558700731fcd9c2e3daf5593a275bd93",
+          "sha256": "3133d4f48ce77766a6a8cc2e555d89164dfcefbd372f4ff43f89a7fed3586910",
+          "sha1": "9a561edf59d8dd2f39da2c9f7d33f12465b690f5",
+          "md5": "71be1d33db4fc0494a7f01e2cad99e43"
+        }
+      ]
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "kotlinpoet-jvm-1.17.0-sources.jar",
+          "url": "kotlinpoet-jvm-1.17.0-sources.jar",
+          "size": 87080,
+          "sha512": "13c4084cf18df79cc9531e92e292bf94e31ae49d6c12c0c609700c1dd96317992c98b091fe24f178f728daa85665392d9c4d5519af9a368ec8d56a6750d86e85",
+          "sha256": "224681796609279c91775be86a1a96404404e90a8860e29aa2c0be885dc112ba",
+          "sha1": "a32a3b79aed604c5526407dcd946316f2853cc40",
+          "md5": "c04dc11c7e0d5ce0ae7355065cb4fa65"
+        }
+      ]
+    }
+  ]
+}

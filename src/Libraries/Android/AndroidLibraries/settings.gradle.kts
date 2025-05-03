@@ -26,3 +26,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidLibraries"
 include(":DateTimeUtilLib")
+include(":MapUtilLib")

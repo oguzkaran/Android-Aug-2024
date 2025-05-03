@@ -64,6 +64,8 @@ dependencies {
     implementation(libs.converter.gson)
     // Gson
     implementation(libs.gson)
+
+    implementation(libs.org.csystem.android.util.map)
 }
 
 // Allow references to generated code
