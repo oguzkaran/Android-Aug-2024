@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             if (count <= 0)
                 throw NumberFormatException("Invalid value")
 
-            randomUserService.findUser().enqueue(findRandomUserCallback())
+            randomUserService.findUser(count).enqueue(findRandomUserCallback())
 
         } catch (ex: NumberFormatException) {
             Log.e("NumberFormatException", ex.message!!)

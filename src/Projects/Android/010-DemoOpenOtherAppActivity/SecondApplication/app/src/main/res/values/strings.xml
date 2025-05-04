@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SecondApplication</string>
+    <string name="button_send_text">Send</string>
+    <string name="chooser_title">Make Upper</string>
+</resources>

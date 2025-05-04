@@ -109,4 +109,43 @@ public final class MapUtil {
     {
         chooseAndShowOnMap(context, latitude, longitude, zoom, context.getString(titleResId));
     }
+
+    /**
+     * Opens a chooser dialog to select a map application and show the specified location with a zoom level.
+     *
+     * @param context   the context to use for starting the activity
+     * @param latitude  the latitude of the location
+     * @param longitude the longitude of the location
+     * @param zoom      the zoom level for the map
+     * @param title     the title for the chooser dialog
+     * @param isNewTask a boolean indicating whether the chooser activity should be started in a new task
+     */
+    public static void chooseAndShowOnMap(Context context, double latitude, double longitude, int zoom, String title, boolean isNewTask)
+    {
+        var intent = new Intent(Intent.ACTION_VIEW);
+        var uriStr = String.format(Locale.getDefault(), "geo:%f, %f?z=%d", latitude, longitude, zoom);
+
+        intent.setData(Uri.parse(uriStr));
+        var chooserIntent = Intent.createChooser(intent, title);
+
+        if (isNewTask)
+            chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        context.startActivity(chooserIntent);
+    }
+
+    /**
+     * Opens a chooser dialog to select a map application and show the specified location with a zoom level.
+     *
+     * @param context   the context to use for starting the activity
+     * @param latitude  the latitude of the location
+     * @param longitude the longitude of the location
+     * @param zoom      the zoom level for the map
+     * @param titleResId the resource ID of the title for the chooser dialog
+     * @param isNewTask a boolean indicating whether the chooser activity should be started in a new task
+     */
+    public static void chooseAndShowOnMap(Context context, double latitude, double longitude, int zoom, int titleResId, boolean isNewTask)
+    {
+        chooseAndShowOnMap(context, latitude, longitude, zoom, context.getString(titleResId), isNewTask);
+    }
 }
