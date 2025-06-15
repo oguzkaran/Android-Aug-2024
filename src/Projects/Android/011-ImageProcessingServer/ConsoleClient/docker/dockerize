@@ -1,0 +1,4 @@
+cp ../build/libs/Application-Gradle-Kotlin-1.0.0.jar app.jar
+
+docker build --tag=sample-app:1.0.0 .
+
