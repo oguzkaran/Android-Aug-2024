@@ -1,0 +1,6 @@
+org/csystem/image/OpenCVUtilBinaryTest.class
+org/csystem/image/OpenCVUtilRotateTest.class
+org/csystem/image/OpenCVUtilGrayScaleTest.class
+org/csystem/image/OpenCVUtilIsGrayScaleTest.class
+org/csystem/image/OpenCVUtilIsBinaryTest.class
+org/csystem/image/OpenCVUtilEqualsTest.class

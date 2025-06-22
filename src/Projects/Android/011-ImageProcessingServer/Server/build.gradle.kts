@@ -38,8 +38,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-
-	implementation("org.openpnp:opencv:4.9.0-0")
+	implementation("org.csystem:org-csystem-imageprocessing:8.0.0")
 }
 
 tasks.withType<Test> {

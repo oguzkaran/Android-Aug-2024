@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
+import java.nio.ByteBuffer;
 
 @Component
 @Slf4j
@@ -17,20 +17,52 @@ public class Client {
     @Value("${server.imageprocessing.port}")
     private int m_port;
 
+    private int readInt(InputStream is) throws IOException
+    {
+        byte [] bytes = new byte[Integer.BYTES];
+
+        if (is.read(bytes) != Integer.BYTES)
+            throw new IOException("Invalid data length");
+
+        return ByteBuffer.wrap(bytes).getInt(0);
+    }
+
+    private void sendImage(Socket socket, int bufSize) throws IOException
+    {
+        var os = socket.getOutputStream();
+        var bw = new BufferedWriter(new OutputStreamWriter(os));
+        var path = "images/x.jpeg";
+
+        //bw.write("red-kit.jpeg\r\n");
+        //bw.flush();
+        byte [] buffer = new byte[bufSize];
+
+        try (var fis = new FileInputStream(path)) {
+            int len;
+
+            int total = 0;
+
+            while ((len = fis.read(buffer)) != -1) {
+                log.info("Len:{}", len);
+                total += len;
+                os.write(buffer, 0, len);
+            }
+
+            os.flush();
+            log.info("Total len:{}", total);
+        }
+    }
+
     public void run()
     {
         try (var socket = new Socket(m_host, m_port)) {
             log.info("Connected to {}:{}", m_host, m_port);
-            var br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            var bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            var str = "Bugün hava çok güzel. Çok çok güzel";
-            var s = "çok";
+            var is = socket.getInputStream();
+            var bufSize = readInt(is);
 
-            bw.write("%s\r\n".formatted(str));
-            bw.flush();
-            var upperStr = br.readLine();
+            log.info("Buffer size: {}", bufSize);
 
-            log.info("Upper: {}", upperStr);
+            sendImage(socket, bufSize);
         }
         catch (IOException ex) {
             log.error("IO Problem occurred:{}",  ex.getMessage());
