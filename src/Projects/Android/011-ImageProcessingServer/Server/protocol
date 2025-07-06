@@ -1,0 +1,34 @@
+send buffer size
+    - send int as byte array
+
+send maximum buffer count
+    - send int as byte array,
+
+send maximum filename length
+    - send int as byte array
+
+receive filename length
+     - receive filename length in byte array as int
+
+ if filename length is greater than zero and less or equal than maximum filename length then
+        - send status 0 as byte array
+        - receive filename in byte array as String
+                - if filename data size is not equal to filename length
+                       - send status 2 as int
+                else
+                    - create the path
+   else
+        - send status 1 as byte array
+
+
+if path is created
+    - receive buffer count as int
+    if count is greater than zero and count is less than maximum buffer count then
+        - send status 0 as byte array
+        - receive data for count times
+        - save image
+    else
+        - send status 3 as byte array
+
+if image saved
+    -

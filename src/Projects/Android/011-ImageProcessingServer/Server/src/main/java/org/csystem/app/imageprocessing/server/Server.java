@@ -1,22 +1,27 @@
 package org.csystem.app.imageprocessing.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.csystem.app.imageprocessing.server.constant.StatusCode;
 import org.csystem.image.OpenCVUtil;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutorService;
 import java.util.stream.IntStream;
+import static org.csystem.app.imageprocessing.server.constant.ImageProcessingCode.*;
 
 @Component
 @Slf4j
 public class Server {
+    private final ApplicationContext m_applicationContext;
     private final ExecutorService m_executorService;
     private final DateTimeFormatter m_formatter;
 
@@ -29,8 +34,40 @@ public class Server {
     @Value("${app.image.transmission.maxbufcount}")
     private int m_maxBufferCount;
 
+    @Value("${app.image.transmission.maxfilenamelength}")
+    private int m_maxFilenameLength;
+
     @Value("${app.image.directory}")
     private String m_imagesPath;
+
+    private void doGrayScale(Socket socket, String path)
+    {
+        OpenCVUtil.grayScale(path, path + "gs.jpeg");
+        //..
+    }
+
+    private void doBinary(Socket socket, String path) throws IOException
+    {
+        var threshold = readInt(socket.getInputStream());
+
+        OpenCVUtil.binary(path, path + "bin.jpeg", threshold);
+        //..
+    }
+
+    private void doUnsupported(Socket socket)
+    {
+        //...
+    }
+
+    private void doImageProcessing(Socket socket, String path) throws IOException
+    {
+        switch (readInt(socket.getInputStream())) {
+            case GRAY_SCALE -> doGrayScale(socket, path);
+            case BINARY ->  doBinary(socket, path);
+            //...
+            default -> doUnsupported(socket);
+        }
+    }
 
     private void saveImageData(FileOutputStream fos, byte [] buffer, int len)
     {
@@ -52,27 +89,75 @@ public class Server {
         }
     }
 
-    private void readAndSaveImage(Socket socket, byte [] buffer) throws IOException
+    private String readFilename(Socket socket) throws IOException
     {
-        var br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        var filename = br.readLine();
+        var is = socket.getInputStream();
+        var os = socket.getOutputStream();
+        var filenameDataLength = readInt(is);
+
+        if (filenameDataLength <= 0 || filenameDataLength > m_maxFilenameLength) {
+            log.info("File name length is greater than max file name length:{}",  m_maxFilenameLength);
+            writeInt(os, StatusCode.STATUS_FILENAME_LENGTH_ERROR);
+            return "";
+        }
+
+        log.info("File name length: {}",  filenameDataLength);
+        writeInt(os, StatusCode.STATUS_SUCCESS);
+
+        var bytes = new byte[filenameDataLength];
+
+        if (is.read(bytes) != filenameDataLength) {
+            log.info("File name receive length error" );
+            writeInt(os, StatusCode.STATUS_FILENAME_LENGTH_RECEIVE_ERROR);
+            return "";
+        }
+
+        log.info("Receive file name successfully completed");
+        writeInt(os, StatusCode.STATUS_SUCCESS);
+
+        return new String(bytes, StandardCharsets.UTF_8);
+    }
+
+    private String getImagePath(Socket socket,String filename)
+    {
         var extension = filename.substring(filename.lastIndexOf('.') + 1);
 
-        var path = "%s/%s-%s-%s.%s".formatted(m_imagesPath, filename,
+        return "%s/%s-%s-%s.%s".formatted(m_imagesPath, filename,
                 socket.getInetAddress().getHostAddress(), m_formatter.format(LocalDateTime.now()), extension);
+    }
+
+    private String readAndSaveImage(Socket socket, byte [] buffer) throws IOException
+    {
+        var filename = readFilename(socket);
+
+        if (filename.isEmpty())
+            return "";
+
+        var path = getImagePath(socket,filename);
+        var bufCount = readInt(socket.getInputStream());
+
+        if (bufCount <= 0 || bufCount > m_maxBufferCount) {
+            log.info("Buffer count is greater than max file name length:{}",  m_maxBufferCount);
+            writeInt(socket.getOutputStream(), StatusCode.STATUS_BUFFER_COUNT_LIMIT_RECEIVE_ERROR);
+            return "";
+        }
+
+        writeInt(socket.getOutputStream(), StatusCode.STATUS_SUCCESS);
 
         try (var fos = new FileOutputStream(path)) {
             IntStream.generate(() -> readDataCallback(socket, buffer))
                     .takeWhile(len -> len != -1)
+                    .limit(bufCount)
                     .forEach(len -> saveImageData(fos, buffer, len));
         }
 
-        OpenCVUtil.grayScale(path, path + "gs.jpeg");
+
+        return path;
     }
 
     private int readInt(InputStream is) throws IOException
     {
-        byte [] bytes = new byte[Integer.BYTES];
+        var bytes = m_applicationContext.getBean(byte[].class);
 
         if (is.read(bytes) != Integer.BYTES)
             throw new IOException("Invalid data length");
@@ -80,14 +165,31 @@ public class Server {
         return ByteBuffer.wrap(bytes).getInt(0);
     }
 
+    private void writeInt(OutputStream os, int val) throws IOException
+    {
+        var bytes = ByteBuffer.allocate(Integer.BYTES).putInt(val).array();
+
+        os.write(bytes);
+    }
+
+    private void sendInitialInfo(OutputStream os) throws IOException
+    {
+        writeInt(os, m_bufferSize);
+        writeInt(os, m_maxBufferCount);
+        writeInt(os, m_maxFilenameLength);
+    }
+
     private void handleClient(Socket socket)
     {
         try (socket) {
             log.info("Client connected from {}:{}", socket.getInetAddress().getHostAddress(), socket.getPort());
             var os = socket.getOutputStream();
-            var bufSizeData = ByteBuffer.allocate(Integer.BYTES).putInt(m_bufferSize).array();
-            os.write(bufSizeData);
-            readAndSaveImage(socket, new byte[m_bufferSize]);
+
+            sendInitialInfo(os);
+            var path = readAndSaveImage(socket, new byte[m_bufferSize]);
+
+            if (!path.isEmpty())
+                doImageProcessing(socket, path);
         }
         catch (IOException ex) {
             log.error("IO Problem occurred while client connected:{}",  ex.getMessage());
@@ -97,10 +199,11 @@ public class Server {
         }
     }
 
-    public Server(ExecutorService executorService, DateTimeFormatter formatter)
+    public Server(ExecutorService executorService, DateTimeFormatter formatter, ApplicationContext applicationContext)
     {
         m_executorService = executorService;
         m_formatter = formatter;
+        m_applicationContext = applicationContext;
     }
 
     public void start()
