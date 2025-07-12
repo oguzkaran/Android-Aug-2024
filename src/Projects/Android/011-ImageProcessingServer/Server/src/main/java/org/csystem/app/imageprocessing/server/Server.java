@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
@@ -16,7 +19,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutorService;
 import java.util.stream.IntStream;
-import static org.csystem.app.imageprocessing.server.constant.ImageProcessingCode.*;
+
+import static org.csystem.app.imageprocessing.server.constant.ImageProcessingCode.BINARY;
+import static org.csystem.app.imageprocessing.server.constant.ImageProcessingCode.GRAY_SCALE;
 
 @Component
 @Slf4j
@@ -28,14 +33,17 @@ public class Server {
     @Value("${app.server.port}")
     private int m_port;
 
+    @Value("${app.client.socket.timeout}")
+    private int m_socketTimeout;
+
     @Value("${app.image.transmission.bufsize}")
     private int m_bufferSize;
 
     @Value("${app.image.transmission.maxbufcount}")
     private int m_maxBufferCount;
 
-    @Value("${app.image.transmission.maxfilenamelength}")
-    private int m_maxFilenameLength;
+    @Value("${app.image.transmission.maxfilenamedatalength}")
+    private int m_maxFilenameDataLength;
 
     @Value("${app.image.directory}")
     private String m_imagesPath;
@@ -43,7 +51,7 @@ public class Server {
     private void doGrayScale(Socket socket, String path)
     {
         OpenCVUtil.grayScale(path, path + "gs.jpeg");
-        //..
+        //...
     }
 
     private void doBinary(Socket socket, String path) throws IOException
@@ -51,7 +59,7 @@ public class Server {
         var threshold = readInt(socket.getInputStream());
 
         OpenCVUtil.binary(path, path + "bin.jpeg", threshold);
-        //..
+        //...
     }
 
     private void doUnsupported(Socket socket)
@@ -95,9 +103,9 @@ public class Server {
         var os = socket.getOutputStream();
         var filenameDataLength = readInt(is);
 
-        if (filenameDataLength <= 0 || filenameDataLength > m_maxFilenameLength) {
-            log.info("File name length is greater than max file name length:{}",  m_maxFilenameLength);
-            writeInt(os, StatusCode.STATUS_FILENAME_LENGTH_ERROR);
+        if (filenameDataLength <= 0 || filenameDataLength > m_maxFilenameDataLength) {
+            log.info("File name data length must be positive and less than {}", m_maxFilenameDataLength);
+            writeInt(os, StatusCode.STATUS_FILENAME_DATA_LENGTH_ERROR);
             return "";
         }
 
@@ -107,15 +115,17 @@ public class Server {
         var bytes = new byte[filenameDataLength];
 
         if (is.read(bytes) != filenameDataLength) {
-            log.info("File name receive length error" );
+            log.info("File name receive length error:{}", filenameDataLength);
             writeInt(os, StatusCode.STATUS_FILENAME_LENGTH_RECEIVE_ERROR);
             return "";
         }
 
-        log.info("Receive file name successfully completed");
+        var filename = new String(bytes, StandardCharsets.UTF_8);
+
+        log.info("Receive file name successfully completed:{}", filename);
         writeInt(os, StatusCode.STATUS_SUCCESS);
 
-        return new String(bytes, StandardCharsets.UTF_8);
+        return filename;
     }
 
     private String getImagePath(Socket socket,String filename)
@@ -129,15 +139,11 @@ public class Server {
     private String readAndSaveImage(Socket socket, byte [] buffer) throws IOException
     {
         var filename = readFilename(socket);
-
-        if (filename.isEmpty())
-            return "";
-
-        var path = getImagePath(socket,filename);
+        var path = getImagePath(socket, filename);
         var bufCount = readInt(socket.getInputStream());
 
         if (bufCount <= 0 || bufCount > m_maxBufferCount) {
-            log.info("Buffer count is greater than max file name length:{}",  m_maxBufferCount);
+            log.info("Buffer count must be positive and less than {}",  m_maxBufferCount);
             writeInt(socket.getOutputStream(), StatusCode.STATUS_BUFFER_COUNT_LIMIT_RECEIVE_ERROR);
             return "";
         }
@@ -150,7 +156,6 @@ public class Server {
                     .limit(bufCount)
                     .forEach(len -> saveImageData(fos, buffer, len));
         }
-
 
         return path;
     }
@@ -172,24 +177,25 @@ public class Server {
         os.write(bytes);
     }
 
-    private void sendInitialInfo(OutputStream os) throws IOException
+    private void sendInitialInfo(Socket socket) throws IOException
     {
+        var os = socket.getOutputStream();
+
         writeInt(os, m_bufferSize);
         writeInt(os, m_maxBufferCount);
-        writeInt(os, m_maxFilenameLength);
+        writeInt(os, m_maxFilenameDataLength);
     }
 
     private void handleClient(Socket socket)
     {
         try (socket) {
+            socket.setSoTimeout(m_socketTimeout);
             log.info("Client connected from {}:{}", socket.getInetAddress().getHostAddress(), socket.getPort());
-            var os = socket.getOutputStream();
 
-            sendInitialInfo(os);
+            sendInitialInfo(socket);
             var path = readAndSaveImage(socket, new byte[m_bufferSize]);
 
-            if (!path.isEmpty())
-                doImageProcessing(socket, path);
+            doImageProcessing(socket, path);
         }
         catch (IOException ex) {
             log.error("IO Problem occurred while client connected:{}",  ex.getMessage());
@@ -208,7 +214,7 @@ public class Server {
 
     public void start()
     {
-        log.info("Starting server on port {}", m_port);
+        log.info("Image processing server started on port {}", m_port);
 
         try (var serverSocket = new ServerSocket(m_port)) {
             while (true) {

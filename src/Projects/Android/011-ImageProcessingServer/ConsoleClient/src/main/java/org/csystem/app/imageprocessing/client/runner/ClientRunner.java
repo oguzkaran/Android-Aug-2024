@@ -5,8 +5,6 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.concurrent.ExecutorService;
-
 @Configuration
 public class ClientRunner implements ApplicationRunner {
     private final Client m_client;
