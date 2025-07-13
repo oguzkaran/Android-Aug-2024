@@ -119,6 +119,50 @@ public class Client {
         }
     }
 
+    private void grayScaleProc(Socket socket)
+    {
+        //...
+    }
+
+    private void binaryProc(Socket socket) throws IOException
+    {
+        writeInt(socket.getOutputStream(), 128);
+        //...
+    }
+
+    private void unsupportedOperationProc(Socket socket) throws IOException
+    {
+        var is = socket.getInputStream();
+
+        var bytes = new byte[Integer.BYTES];
+
+        if (is.read(bytes) != Integer.BYTES) {
+            log.error("Invalid data length");
+            return;
+        }
+
+        var code = ByteBuffer.wrap(bytes).getInt();
+
+        log.error("Unsupported operation code: {}", code);
+    }
+
+    private void doOperation(Socket socket) throws IOException
+    {
+        var os = socket.getOutputStream();
+        var is = socket.getInputStream();
+        var operationCode = m_randomGenerator.nextInt(0, 3);
+
+        log.info("Operation code: {}", operationCode);
+
+        writeInt(os, operationCode);
+
+        switch (operationCode) {
+            case 1 -> grayScaleProc(socket);
+            case 2 -> binaryProc(socket);
+            default -> unsupportedOperationProc(socket);
+        }
+    }
+
     public Client(RandomGenerator randomGenerator)
     {
         m_randomGenerator = randomGenerator;
@@ -129,7 +173,6 @@ public class Client {
         try (var socket = new Socket(m_host, m_port)) {
             log.info("Console client connected to {}:{}", m_host, m_port);
             var is = socket.getInputStream();
-            var os = socket.getOutputStream();
             var bufSize = readInt(is);
             var maxBufCount = readInt(is);
             var maxFilenameDataLength = readInt(is);
@@ -137,16 +180,7 @@ public class Client {
             log.info("Buffer size: {}, Maximum buffer count: {}, Maximum filename data length:{}", bufSize, maxBufCount, maxFilenameDataLength);
 
             sendImage(socket, bufSize);
-            var operationCode = m_randomGenerator.nextInt(1, 3);
-
-            log.info("Operation code: {}", operationCode);
-
-            writeInt(os, operationCode);
-
-            switch (operationCode) {
-                case 1 -> {}
-                case 2 -> {writeInt(os, 128);}
-            }
+            doOperation(socket);
         }
         catch (IOException ex) {
             log.error("IO Problem occurred:{}",  ex.getMessage());

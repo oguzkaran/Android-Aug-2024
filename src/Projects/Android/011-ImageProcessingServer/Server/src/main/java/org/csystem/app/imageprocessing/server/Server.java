@@ -1,6 +1,7 @@
 package org.csystem.app.imageprocessing.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.csystem.app.imageprocessing.server.constant.ImageProcessingCode;
 import org.csystem.app.imageprocessing.server.constant.StatusCode;
 import org.csystem.image.OpenCVUtil;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,23 +49,27 @@ public class Server {
     @Value("${app.image.directory}")
     private String m_imagesPath;
 
-    private void doGrayScale(Socket socket, String path)
+    private void doGrayScale(Socket socket, String path) throws IOException
     {
         OpenCVUtil.grayScale(path, path + "gs.jpeg");
         //...
+
+        //writeInt(socket.getOutputStream(), StatusCode.STATUS_SUCCESS);
     }
 
     private void doBinary(Socket socket, String path) throws IOException
     {
         var threshold = readInt(socket.getInputStream());
 
-        OpenCVUtil.binary(path, path + "bin.jpeg", threshold);
+        OpenCVUtil.binary(path, path + "bin.jpeg", threshold); //redkit-xxxxxx-gs.jpeg
         //...
+
+        //writeInt(socket.getOutputStream(), StatusCode.STATUS_SUCCESS);
     }
 
-    private void doUnsupported(Socket socket)
+    private void doUnsupported(Socket socket) throws IOException
     {
-        //...
+        socket.getOutputStream().write(ByteBuffer.allocate(Integer.BYTES).putInt(ImageProcessingCode.UNSUPPORTED).array());
     }
 
     private void doImageProcessing(Socket socket, String path) throws IOException
@@ -131,8 +136,9 @@ public class Server {
     private String getImagePath(Socket socket,String filename)
     {
         var extension = filename.substring(filename.lastIndexOf('.') + 1);
+        var name = filename.substring(0, filename.lastIndexOf('.'));
 
-        return "%s/%s-%s-%s.%s".formatted(m_imagesPath, filename,
+        return "%s/%s-%s-%s.%s".formatted(m_imagesPath, name,
                 socket.getInetAddress().getHostAddress(), m_formatter.format(LocalDateTime.now()), extension);
     }
 
