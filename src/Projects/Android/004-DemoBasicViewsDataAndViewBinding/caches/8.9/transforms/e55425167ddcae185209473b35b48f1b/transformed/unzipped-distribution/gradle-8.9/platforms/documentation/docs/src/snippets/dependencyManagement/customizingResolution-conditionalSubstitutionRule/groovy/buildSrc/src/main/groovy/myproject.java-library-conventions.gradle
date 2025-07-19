@@ -1,7 +1,0 @@
-plugins {
-    id 'java-library'
-}
-
-repositories {
-    ivy { url rootProject.layout.projectDirectory.dir("repo") }
-}

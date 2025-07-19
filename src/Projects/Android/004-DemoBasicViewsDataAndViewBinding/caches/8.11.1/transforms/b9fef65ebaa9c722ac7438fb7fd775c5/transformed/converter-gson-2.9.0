@@ -1,4 +1,0 @@
-retrofit2.converter.gson.GsonConverterFactory
-retrofit2.converter.gson.GsonRequestBodyConverter
-retrofit2.converter.gson.GsonResponseBodyConverter
-retrofit2.converter.gson.package-info
