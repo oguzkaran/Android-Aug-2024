@@ -1,12 +1,12 @@
 package org.csystem.app.imageprocessing.client;
 
+import com.karandev.util.net.TcpUtil;
+import com.karandev.util.net.exception.NetworkException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.net.Socket;
 import java.nio.ByteBuffer;
@@ -23,32 +23,13 @@ public class Client {
     @Value("${server.imageprocessing.port}")
     private int m_port;
 
-    private int readInt(InputStream is) throws IOException
+    private int sendFilename(Socket socket, String filename)
     {
-        byte [] bytes = new byte[Integer.BYTES];
-
-        if (is.read(bytes) != Integer.BYTES)
-            throw new IOException("Invalid data length");
-
-        return ByteBuffer.wrap(bytes).getInt(0);
-    }
-
-    private void writeInt(OutputStream os, int val) throws IOException
-    {
-        var bytes = ByteBuffer.allocate(Integer.BYTES).putInt(val).array();
-
-        os.write(bytes);
-    }
-
-    private int sendFilename(Socket socket, String filename) throws IOException
-    {
-        var os = socket.getOutputStream();
-        var is = socket.getInputStream();
         var filenameBytes = filename.getBytes(StandardCharsets.UTF_8);
 
-        writeInt(os, filenameBytes.length);
+        TcpUtil.sendInt(socket, filenameBytes.length);
 
-        var status = readInt(is);
+        var status = TcpUtil.receiveInt(socket);
 
         log.info("Filename length status: {}", status);
 
@@ -57,9 +38,9 @@ public class Client {
             return status;
         }
 
-        os.write(filenameBytes);
+        TcpUtil.send(socket, filenameBytes);
 
-        status = readInt(is);
+        status = TcpUtil.receiveInt(socket);
 
         log.info("Filename status: {}", status);
 
@@ -72,15 +53,13 @@ public class Client {
         return status;
     }
 
-    private int sendBuffCount(Socket socket, long length, int bufSize) throws IOException
+    private int sendBuffCount(Socket socket, long length, int bufSize)
     {
-        var os = socket.getOutputStream();
-        var is = socket.getInputStream();
         var bufCount = (int)(length / bufSize) + (length % bufSize != 0 ? 1 : 0);
 
         log.info("Sending buffer count: {}", bufCount);
-        writeInt(os, bufCount);
-        var status = readInt(is);
+        TcpUtil.sendInt(socket, bufCount);
+        var status = TcpUtil.receiveInt(socket);
 
         if (status != 0) {
             log.error("Sending buffer count error: {}", status);
@@ -93,7 +72,6 @@ public class Client {
 
     private void sendImage(Socket socket, int bufSize) throws IOException
     {
-        var os = socket.getOutputStream();
         var path = "images/red-kit.jpeg";
 
         if (sendFilename(socket, "red-kit.jpeg") != 0)
@@ -111,10 +89,9 @@ public class Client {
             while ((len = raf.read(buffer)) != -1) {
                 log.info("Len:{}", len);
                 total += len;
-                os.write(buffer, 0, len);
+                TcpUtil.send(socket, buffer, 0, len);
             }
 
-            os.flush();
             log.info("Total len:{}", total);
         }
     }
@@ -124,19 +101,17 @@ public class Client {
         //...
     }
 
-    private void binaryProc(Socket socket) throws IOException
+    private void binaryProc(Socket socket)
     {
-        writeInt(socket.getOutputStream(), 128);
+        TcpUtil.sendInt(socket, 128);
         //...
     }
 
-    private void unsupportedOperationProc(Socket socket) throws IOException
+    private void unsupportedOperationProc(Socket socket)
     {
-        var is = socket.getInputStream();
-
         var bytes = new byte[Integer.BYTES];
 
-        if (is.read(bytes) != Integer.BYTES) {
+        if (TcpUtil.receive(socket, bytes) != Integer.BYTES) {
             log.error("Invalid data length");
             return;
         }
@@ -148,13 +123,11 @@ public class Client {
 
     private void doOperation(Socket socket) throws IOException
     {
-        var os = socket.getOutputStream();
-        var is = socket.getInputStream();
         var operationCode = m_randomGenerator.nextInt(0, 3);
 
         log.info("Operation code: {}", operationCode);
 
-        writeInt(os, operationCode);
+        TcpUtil.sendInt(socket, operationCode);
 
         switch (operationCode) {
             case 1 -> grayScaleProc(socket);
@@ -172,10 +145,9 @@ public class Client {
     {
         try (var socket = new Socket(m_host, m_port)) {
             log.info("Console client connected to {}:{}", m_host, m_port);
-            var is = socket.getInputStream();
-            var bufSize = readInt(is);
-            var maxBufCount = readInt(is);
-            var maxFilenameDataLength = readInt(is);
+            var bufSize = TcpUtil.receiveInt(socket);
+            var maxBufCount = TcpUtil.receiveInt(socket);
+            var maxFilenameDataLength = TcpUtil.receiveInt(socket);
 
             log.info("Buffer size: {}, Maximum buffer count: {}, Maximum filename data length:{}", bufSize, maxBufCount, maxFilenameDataLength);
 
@@ -184,6 +156,9 @@ public class Client {
         }
         catch (IOException ex) {
             log.error("IO Problem occurred:{}",  ex.getMessage());
+        }
+        catch (NetworkException ex) {
+            log.error("Network Problem occurred:{}",  ex.getMessage());
         }
         catch (Exception ex) {
             log.error("Problem occurred:{}",  ex.getMessage());

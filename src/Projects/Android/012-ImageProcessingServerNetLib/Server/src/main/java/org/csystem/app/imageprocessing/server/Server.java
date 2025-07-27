@@ -1,20 +1,18 @@
 package org.csystem.app.imageprocessing.server;
 
+import com.karandev.util.net.TcpUtil;
+import com.karandev.util.net.exception.NetworkException;
 import lombok.extern.slf4j.Slf4j;
 import org.csystem.app.imageprocessing.server.constant.ImageProcessingCode;
 import org.csystem.app.imageprocessing.server.constant.StatusCode;
 import org.csystem.image.OpenCVUtil;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +25,6 @@ import static org.csystem.app.imageprocessing.server.constant.ImageProcessingCod
 @Component
 @Slf4j
 public class Server {
-    private final ApplicationContext m_applicationContext;
     private final ExecutorService m_executorService;
     private final DateTimeFormatter m_formatter;
 
@@ -49,7 +46,7 @@ public class Server {
     @Value("${app.image.directory}")
     private String m_imagesPath;
 
-    private void doGrayScale(Socket socket, String path) throws IOException
+    private void doGrayScale(Socket socket, String path)
     {
         OpenCVUtil.grayScale(path, path + "gs.jpeg");
         //...
@@ -57,9 +54,9 @@ public class Server {
         //writeInt(socket.getOutputStream(), StatusCode.STATUS_SUCCESS);
     }
 
-    private void doBinary(Socket socket, String path) throws IOException
+    private void doBinary(Socket socket, String path)
     {
-        var threshold = readInt(socket.getInputStream());
+        var threshold = TcpUtil.receiveInt(socket);
 
         OpenCVUtil.binary(path, path + "bin.jpeg", threshold); //redkit-xxxxxx-gs.jpeg
         //...
@@ -67,14 +64,14 @@ public class Server {
         //writeInt(socket.getOutputStream(), StatusCode.STATUS_SUCCESS);
     }
 
-    private void doUnsupported(Socket socket) throws IOException
+    private void doUnsupported(Socket socket)
     {
-        socket.getOutputStream().write(ByteBuffer.allocate(Integer.BYTES).putInt(ImageProcessingCode.UNSUPPORTED).array());
+        TcpUtil.sendInt(socket, ImageProcessingCode.UNSUPPORTED);
     }
 
     private void doImageProcessing(Socket socket, String path) throws IOException
     {
-        switch (readInt(socket.getInputStream())) {
+        switch (TcpUtil.receiveInt(socket)) {
             case GRAY_SCALE -> doGrayScale(socket, path);
             case BINARY ->  doBinary(socket, path);
             //...
@@ -95,40 +92,38 @@ public class Server {
     public int readDataCallback(Socket socket, byte[] buffer)
     {
         try {
-            return socket.getInputStream().read(buffer);
+            return TcpUtil.receive(socket, buffer);
         }
         catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    private String readFilename(Socket socket) throws IOException
+    private String readFilename(Socket socket)
     {
-        var is = socket.getInputStream();
-        var os = socket.getOutputStream();
-        var filenameDataLength = readInt(is);
+        var filenameDataLength = TcpUtil.receiveInt(socket);
 
         if (filenameDataLength <= 0 || filenameDataLength > m_maxFilenameDataLength) {
             log.info("File name data length must be positive and less than {}", m_maxFilenameDataLength);
-            writeInt(os, StatusCode.STATUS_FILENAME_DATA_LENGTH_ERROR);
+            TcpUtil.sendInt(socket, StatusCode.STATUS_FILENAME_DATA_LENGTH_ERROR);
             return "";
         }
 
         log.info("File name length: {}",  filenameDataLength);
-        writeInt(os, StatusCode.STATUS_SUCCESS);
+        TcpUtil.sendInt(socket, StatusCode.STATUS_SUCCESS);
 
         var bytes = new byte[filenameDataLength];
 
-        if (is.read(bytes) != filenameDataLength) {
+        if (TcpUtil.receive(socket, bytes) != filenameDataLength) {
             log.info("File name receive length error:{}", filenameDataLength);
-            writeInt(os, StatusCode.STATUS_FILENAME_LENGTH_RECEIVE_ERROR);
+            TcpUtil.sendInt(socket, StatusCode.STATUS_FILENAME_LENGTH_RECEIVE_ERROR);
             return "";
         }
 
         var filename = new String(bytes, StandardCharsets.UTF_8);
 
         log.info("Receive file name successfully completed:{}", filename);
-        writeInt(os, StatusCode.STATUS_SUCCESS);
+        TcpUtil.sendInt(socket, StatusCode.STATUS_SUCCESS);
 
         return filename;
     }
@@ -146,15 +141,15 @@ public class Server {
     {
         var filename = readFilename(socket);
         var path = getImagePath(socket, filename);
-        var bufCount = readInt(socket.getInputStream());
+        var bufCount = TcpUtil.receiveInt(socket);
 
         if (bufCount <= 0 || bufCount > m_maxBufferCount) {
             log.info("Buffer count must be positive and less than {}",  m_maxBufferCount);
-            writeInt(socket.getOutputStream(), StatusCode.STATUS_BUFFER_COUNT_LIMIT_RECEIVE_ERROR);
+            TcpUtil.sendInt(socket, StatusCode.STATUS_BUFFER_COUNT_LIMIT_RECEIVE_ERROR);
             return "";
         }
 
-        writeInt(socket.getOutputStream(), StatusCode.STATUS_SUCCESS);
+        TcpUtil.sendInt(socket, StatusCode.STATUS_SUCCESS);
 
         try (var fos = new FileOutputStream(path)) {
             IntStream.generate(() -> readDataCallback(socket, buffer))
@@ -166,30 +161,12 @@ public class Server {
         return path;
     }
 
-    private int readInt(InputStream is) throws IOException
-    {
-        var bytes = m_applicationContext.getBean(byte[].class);
-
-        if (is.read(bytes) != Integer.BYTES)
-            throw new IOException("Invalid data length");
-
-        return ByteBuffer.wrap(bytes).getInt(0);
-    }
-
-    private void writeInt(OutputStream os, int val) throws IOException
-    {
-        var bytes = ByteBuffer.allocate(Integer.BYTES).putInt(val).array();
-
-        os.write(bytes);
-    }
 
     private void sendInitialInfo(Socket socket) throws IOException
     {
-        var os = socket.getOutputStream();
-
-        writeInt(os, m_bufferSize);
-        writeInt(os, m_maxBufferCount);
-        writeInt(os, m_maxFilenameDataLength);
+        TcpUtil.sendInt(socket, m_bufferSize);
+        TcpUtil.sendInt(socket, m_maxBufferCount);
+        TcpUtil.sendInt(socket, m_maxFilenameDataLength);
     }
 
     private void handleClient(Socket socket)
@@ -204,18 +181,20 @@ public class Server {
             doImageProcessing(socket, path);
         }
         catch (IOException ex) {
-            log.error("IO Problem occurred while client connected:{}",  ex.getMessage());
+            log.error("IO Problem occurred:{}",  ex.getMessage());
+        }
+        catch (NetworkException ex) {
+            log.error("Network Problem occurred:{}",  ex.getMessage());
         }
         catch (Exception ex) {
             log.error("Problem occurred while client connected:{}",  ex.getMessage());
         }
     }
 
-    public Server(ExecutorService executorService, DateTimeFormatter formatter, ApplicationContext applicationContext)
+    public Server(ExecutorService executorService, DateTimeFormatter formatter)
     {
         m_executorService = executorService;
         m_formatter = formatter;
-        m_applicationContext = applicationContext;
     }
 
     public void start()

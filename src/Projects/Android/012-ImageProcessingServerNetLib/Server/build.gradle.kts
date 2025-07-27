@@ -39,6 +39,7 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
 	implementation("org.csystem:org-csystem-imageprocessing:8.0.0")
+	implementation("com.karandev:com-karandev-net:8.0.0")
 }
 
 tasks.withType<Test> {
