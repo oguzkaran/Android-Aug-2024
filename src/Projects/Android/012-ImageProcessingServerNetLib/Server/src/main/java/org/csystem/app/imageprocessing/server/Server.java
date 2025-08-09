@@ -120,10 +120,11 @@ public class Server {
             return "";
         }
 
+        TcpUtil.sendInt(socket, StatusCode.STATUS_SUCCESS);
+
         var filename = new String(bytes, StandardCharsets.UTF_8);
 
-        log.info("Receive file name successfully completed:{}", filename);
-        TcpUtil.sendInt(socket, StatusCode.STATUS_SUCCESS);
+        log.info("Filename received successfully:{}", filename);
 
         return filename;
     }
@@ -149,11 +150,13 @@ public class Server {
             return "";
         }
 
+        log.info("Buffer count:{}", bufCount);
+
         TcpUtil.sendInt(socket, StatusCode.STATUS_SUCCESS);
 
         try (var fos = new FileOutputStream(path)) {
             IntStream.generate(() -> readDataCallback(socket, buffer))
-                    .takeWhile(len -> len != -1)
+                    //.takeWhile(len -> len != -1)
                     .limit(bufCount)
                     .forEach(len -> saveImageData(fos, buffer, len));
         }
@@ -178,7 +181,7 @@ public class Server {
             sendInitialInfo(socket);
             var path = readAndSaveImage(socket, new byte[m_bufferSize]);
 
-            doImageProcessing(socket, path);
+            //doImageProcessing(socket, path);
         }
         catch (IOException ex) {
             log.error("IO Problem occurred:{}",  ex.getMessage());

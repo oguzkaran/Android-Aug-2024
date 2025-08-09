@@ -49,7 +49,7 @@ public class Client {
             return status;
         }
 
-        log.info("Send filename Status: {}", status);
+        log.info("Filename sent successfully");
         return status;
     }
 
@@ -67,6 +67,8 @@ public class Client {
         }
 
         log.info("Send buffer count status: {}", status);
+
+
         return status;
     }
 
@@ -77,12 +79,11 @@ public class Client {
         if (sendFilename(socket, "red-kit.jpeg") != 0)
             return;
 
-        var buffer = new byte[bufSize];
-
         try (var raf = new RandomAccessFile(path, "r")) {
             if (sendBuffCount(socket, raf.length(), bufSize) != 0)
                 return;
 
+            var buffer = new byte[bufSize];
             int len;
             int total = 0;
 
@@ -152,7 +153,7 @@ public class Client {
             log.info("Buffer size: {}, Maximum buffer count: {}, Maximum filename data length:{}", bufSize, maxBufCount, maxFilenameDataLength);
 
             sendImage(socket, bufSize);
-            doOperation(socket);
+            //doOperation(socket);
         }
         catch (IOException ex) {
             log.error("IO Problem occurred:{}",  ex.getMessage());

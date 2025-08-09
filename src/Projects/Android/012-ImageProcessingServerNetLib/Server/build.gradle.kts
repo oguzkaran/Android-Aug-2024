@@ -20,13 +20,7 @@ configurations {
 repositories {
 	mavenCentral()
 	mavenLocal()
-	maven {
-		url = uri("https://raw.github.com/oguzkaran/javaapp2-jan-2024-maven-repo/main")
-	}
 
-	maven {
-		url = uri("https://raw.github.com/oguzkaran/javaapp2-jan-2024-karandev-maven-repo/main")
-	}
 }
 
 dependencies {
@@ -39,7 +33,7 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
 	implementation("org.csystem:org-csystem-imageprocessing:8.0.0")
-	implementation("com.karandev:com-karandev-net:8.0.0")
+	implementation("com.karandev:com-karandev-net:1.0.0-hotfix")
 }
 
 tasks.withType<Test> {
