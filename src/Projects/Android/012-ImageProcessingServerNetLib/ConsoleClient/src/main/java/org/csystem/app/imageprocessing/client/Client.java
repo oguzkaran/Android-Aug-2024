@@ -153,7 +153,7 @@ public class Client {
             log.info("Buffer size: {}, Maximum buffer count: {}, Maximum filename data length:{}", bufSize, maxBufCount, maxFilenameDataLength);
 
             sendImage(socket, bufSize);
-            //doOperation(socket);
+            doOperation(socket);
         }
         catch (IOException ex) {
             log.error("IO Problem occurred:{}",  ex.getMessage());

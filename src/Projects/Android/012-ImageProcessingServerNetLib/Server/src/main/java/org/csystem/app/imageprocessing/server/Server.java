@@ -156,7 +156,7 @@ public class Server {
 
         try (var fos = new FileOutputStream(path)) {
             IntStream.generate(() -> readDataCallback(socket, buffer))
-                    //.takeWhile(len -> len != -1)
+                     //.takeWhile(len -> len != -1)
                     .limit(bufCount)
                     .forEach(len -> saveImageData(fos, buffer, len));
         }
@@ -181,7 +181,7 @@ public class Server {
             sendInitialInfo(socket);
             var path = readAndSaveImage(socket, new byte[m_bufferSize]);
 
-            //doImageProcessing(socket, path);
+            doImageProcessing(socket, path);
         }
         catch (IOException ex) {
             log.error("IO Problem occurred:{}",  ex.getMessage());
