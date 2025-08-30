@@ -20,7 +20,7 @@ mvn install:install-file -DgroupId=org.csystem -DartifactId=org-csystem-util-dat
 
 git add -A . && git commit -m "released version 13.0.0" --> dilerseniz bu kısımdan sonra github desktop ile daha kolay yapılabilir
 
-url -> 'https://raw.github.com/<github usernama>/<github repository name>/<branch name>that is configured for maven repo>/<branch name default main>'
+url -> 'https://raw.github.com/<github username>/<github repository name>/<branch name>that is configured for maven repo>/<branch name default main>'
 
 url -> 'https://raw.github.com/oguzkaran/android-aug-2024-maven-repo/main'
 url -> 'https://raw.github.com/oguzkaran/android-aug-2024-karandev-maven-repo/main'
