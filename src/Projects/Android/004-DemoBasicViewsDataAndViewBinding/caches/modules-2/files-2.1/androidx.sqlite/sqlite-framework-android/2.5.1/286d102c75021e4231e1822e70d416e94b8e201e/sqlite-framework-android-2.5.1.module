@@ -1,0 +1,245 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../sqlite-framework/2.5.1/sqlite-framework-2.5.1.module",
+    "group": "androidx.sqlite",
+    "module": "sqlite-framework",
+    "version": "2.5.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.12",
+      "buildId:": "13417184"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.8.1"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.5.1"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-bundled",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-ktx",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        }
+      ],
+      "files": [
+        {
+          "name": "sqlite-framework-release.aar",
+          "url": "sqlite-framework-android-2.5.1.aar",
+          "size": 50437,
+          "sha512": "bf876a161ea33bad50f967c420f59dbeb86eb1edc178cfa036b2149e8d0463bac75fb55b207981bdb5a090d446dbc05166733da0f7e1fd10a8d313794104f7ce",
+          "sha256": "fb2cbae463280caa382e13cafc22e7ae76564f22bdb352a1b01fdf7069f11d72",
+          "sha1": "bb7d57c19e68f1930702cbba284ded661422a8f1",
+          "md5": "7998d341e6480afbf498efc1ffb4791f"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.8.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-bundled",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-ktx",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sqlite-framework-release.aar",
+          "url": "sqlite-framework-android-2.5.1.aar",
+          "size": 50437,
+          "sha512": "bf876a161ea33bad50f967c420f59dbeb86eb1edc178cfa036b2149e8d0463bac75fb55b207981bdb5a090d446dbc05166733da0f7e1fd10a8d313794104f7ce",
+          "sha256": "fb2cbae463280caa382e13cafc22e7ae76564f22bdb352a1b01fdf7069f11d72",
+          "sha1": "bb7d57c19e68f1930702cbba284ded661422a8f1",
+          "md5": "7998d341e6480afbf498efc1ffb4791f"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "fake-sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-bundled",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-ktx",
+          "version": {
+            "requires": "2.5.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        }
+      ],
+      "files": [
+        {
+          "name": "sqlite-framework-android-2.5.1-sources.jar",
+          "url": "sqlite-framework-android-2.5.1-sources.jar",
+          "size": 21425,
+          "sha512": "3eee3cbf5e5076424bbd3a2bdbab307fcc235f8a987a4c36cabc7f79d804659cd8748497688c9c49fdeaa6186fc5ee19bd841c6e03cf931675cfc8fca4b0b948",
+          "sha256": "dd94ec94171ec0290dec01da092ce678dbe862895f55bbe4700e366ba6a07b14",
+          "sha1": "3a293f344647e2dcf33692e3373580ffe46c1234",
+          "md5": "8196414cd7e3e35eb362de844e9b68a5"
+        }
+      ]
+    }
+  ]
+}

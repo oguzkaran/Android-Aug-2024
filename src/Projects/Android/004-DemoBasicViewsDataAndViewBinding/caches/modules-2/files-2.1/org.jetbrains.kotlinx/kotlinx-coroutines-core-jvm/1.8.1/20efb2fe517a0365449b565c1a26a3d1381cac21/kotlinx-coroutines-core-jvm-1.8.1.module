@@ -1,0 +1,135 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../kotlinx-coroutines-core/1.8.1/kotlinx-coroutines-core-1.8.1.module",
+    "group": "org.jetbrains.kotlinx",
+    "module": "kotlinx-coroutines-core",
+    "version": "1.8.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.5"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains",
+          "module": "annotations",
+          "version": {
+            "requires": "23.0.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-bom",
+          "version": {
+            "requires": "1.8.1"
+          },
+          "attributes": {
+            "org.gradle.category": "platform"
+          },
+          "endorseStrictVersions": true
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlinx-coroutines-core-jvm-1.8.1.jar",
+          "url": "kotlinx-coroutines-core-jvm-1.8.1.jar",
+          "size": 1546991,
+          "sha512": "75438ba95e596280363f60007fc4586e3341c679b628c3ec7f393f8d44acf44ea74f4399de27dce40cd2c5bc6394f47cfb6949f777a32867f9b967a83af6b52f",
+          "sha256": "f3d4f5de1c391bbcc20f3b3435ccbac013521e76b6902d7d59635ec15c1f797e",
+          "sha1": "00bb0e192bd7c2b6b8217440d36e9758e377e450",
+          "md5": "c477c52e713d7633276652efdcaee272"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains",
+          "module": "annotations",
+          "version": {
+            "requires": "23.0.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-bom",
+          "version": {
+            "requires": "1.8.1"
+          },
+          "attributes": {
+            "org.gradle.category": "platform"
+          },
+          "endorseStrictVersions": true
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlinx-coroutines-core-jvm-1.8.1.jar",
+          "url": "kotlinx-coroutines-core-jvm-1.8.1.jar",
+          "size": 1546991,
+          "sha512": "75438ba95e596280363f60007fc4586e3341c679b628c3ec7f393f8d44acf44ea74f4399de27dce40cd2c5bc6394f47cfb6949f777a32867f9b967a83af6b52f",
+          "sha256": "f3d4f5de1c391bbcc20f3b3435ccbac013521e76b6902d7d59635ec15c1f797e",
+          "sha1": "00bb0e192bd7c2b6b8217440d36e9758e377e450",
+          "md5": "c477c52e713d7633276652efdcaee272"
+        }
+      ]
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "kotlinx-coroutines-core-jvm-1.8.1-sources.jar",
+          "url": "kotlinx-coroutines-core-jvm-1.8.1-sources.jar",
+          "size": 391402,
+          "sha512": "67422cc79649ee8f552d68f82f89d5416103fc03a85fd258732e3f66bfd26cb0579414b4225f5b174fb85882cd01f2115a157ce567a5cab286fc365248e9b551",
+          "sha256": "737e71610738eb308ae4caa9d352c963df7c25efed7ca176de3a35a2141bed92",
+          "sha1": "de8e46286026b0249acd5db040effcae1188c6e9",
+          "md5": "6673fdc6e2d15650e53bf67320ff87fe"
+        }
+      ]
+    }
+  ]
+}

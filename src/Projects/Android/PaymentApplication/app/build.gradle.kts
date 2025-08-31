@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -7,12 +9,12 @@ plugins {
 
 android {
     namespace = "org.csystem.app.android.payment"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "org.csystem.app.android.payment"
         minSdk = 25
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -34,9 +36,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
     }
+
 
     dataBinding.enable = true
 

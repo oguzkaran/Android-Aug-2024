@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="org.csystem.app.random.text.client.MainActivity"/>
+        <import type="org.csystem.app.random.text.client.viewmodel.ServerInfo"/>
+        <variable name="serverInfo" type="ServerInfo"/>
+        <variable name="activity" type="MainActivity"/>
+    </data>
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_host_hint"
+            android:text="@={serverInfo.host}"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_port_hint"
+            android:text="@={serverInfo.port}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_start_text"
+            android:onClick="@{() -> activity.onStartButtonClicked()}"/>
+    </LinearLayout>
+</layout>
