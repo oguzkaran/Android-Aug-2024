@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="org.csystem.app.random.text.client.viewmodel.ServerParam"/>
+        <import type="org.csystem.app.random.text.client.RandomTextActivity"/>
+        <import type="android.widget.ArrayAdapter"/>
+
+        <variable name="activity" type="RandomTextActivity" />
+        <variable name="serverParam" type="ServerParam" />
+        <variable name="adapter" type="ArrayAdapter&lt;String&gt;" />
+    </data>
+
     <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".RandomTextActivity">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_count_hint"
+            android:text="@={serverParam.count}"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_min_length_hint"
+            android:text="@={serverParam.minLength}"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_max_length_hint"
+            android:text="@={serverParam.maxLength}"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_get_text"
+            android:onClick="@{() -> activity.onGetButtonClicked()}"
+            />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adapter="@{adapter}"
+            />
 
     </LinearLayout>
 </layout>

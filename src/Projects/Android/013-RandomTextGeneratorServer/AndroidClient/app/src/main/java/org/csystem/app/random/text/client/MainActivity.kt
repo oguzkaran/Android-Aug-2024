@@ -1,13 +1,16 @@
 package org.csystem.app.random.text.client
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
+import org.csystem.app.random.text.client.constant.SERVER_INFO_KEY
 import org.csystem.app.random.text.client.databinding.ActivityMainBinding
 import org.csystem.app.random.text.client.viewmodel.ServerInfo
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
@@ -15,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private fun initBinding() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mBinding.activity = this
-        mBinding.serverInfo = ServerInfo("192.168.1.100", "50500")
+        mBinding.serverInfo = ServerInfo()
     }
 
     private fun initialize() {
@@ -34,6 +37,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onStartButtonClicked() {
-
+        Intent(this, RandomTextActivity::class.java).apply {
+            putExtra(SERVER_INFO_KEY, mBinding.serverInfo)
+            startActivity(this)
+        }
     }
 }

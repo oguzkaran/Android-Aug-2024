@@ -2,5 +2,11 @@
     <string name="app_name">AndroidClient</string>
     <string name="edit_text_host_hint">Input server host</string>
     <string name="edit_text_port_hint">Input server port</string>
-    <string name="button_start_text">Start</string>
+    <string name="edit_text_count_hint">Input count</string>
+    <string name="edit_text_min_length_hint">Input minimum length</string>
+    <string name="edit_text_max_length_hint">Input maximum length</string>
+    <string name="button_start_text">START</string>
+    <string name="button_get_text">GET</string>
+
+    <string name="not_number_message">must be a number</string>
 </resources>
