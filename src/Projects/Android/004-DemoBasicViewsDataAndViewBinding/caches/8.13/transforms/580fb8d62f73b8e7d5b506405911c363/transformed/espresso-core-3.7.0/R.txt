@@ -1,0 +1,2 @@
+int style WhiteBackgroundDialogTheme 0x00000000
+int style WhiteBackgroundTheme 0x00000000

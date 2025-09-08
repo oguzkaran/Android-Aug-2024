@@ -1,0 +1,129 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.android.tools.build",
+    "module": "gradle-settings-api",
+    "version": "8.13.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.13"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle-common-api",
+          "version": {
+            "requires": "8.13.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-settings-api-8.13.0.jar",
+          "url": "gradle-settings-api-8.13.0.jar",
+          "size": 10057,
+          "sha512": "1f028a49a538e1bc7612eecfef7c25963173e11fb60e2ed1800c70b9d22b2d959e645aa3c20ad5ad061fe25f7c1d17ed9bb7221cc31a11e05cdc1bfadb790ada",
+          "sha256": "0bb43c883d33719252e942b2a0a711e480a254237cfdf313e5343aa8ad2d2a5d",
+          "sha1": "bbe6dd6ad7570e6c7238efc0c0e41a9b1e25f4be",
+          "md5": "18e1e9ff1a9edf375a0e477c65830495"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.0"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle-common-api",
+          "version": {
+            "requires": "8.13.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-settings-api-8.13.0.jar",
+          "url": "gradle-settings-api-8.13.0.jar",
+          "size": 10057,
+          "sha512": "1f028a49a538e1bc7612eecfef7c25963173e11fb60e2ed1800c70b9d22b2d959e645aa3c20ad5ad061fe25f7c1d17ed9bb7221cc31a11e05cdc1bfadb790ada",
+          "sha256": "0bb43c883d33719252e942b2a0a711e480a254237cfdf313e5343aa8ad2d2a5d",
+          "sha1": "bbe6dd6ad7570e6c7238efc0c0e41a9b1e25f4be",
+          "md5": "18e1e9ff1a9edf375a0e477c65830495"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "gradle-settings-api-8.13.0-javadoc.jar",
+          "url": "gradle-settings-api-8.13.0-javadoc.jar",
+          "size": 261,
+          "sha512": "afa4fe7b0a211d3fd40673e3974505e4995159e1db7b5d2c8853df76dd93277fd30f98aa8208797c93c04601b97215333d14567567fd19810c46501dc51cd165",
+          "sha256": "11812c1f97506d6061a92fc91df4d2e7ca9b0c443748bb31ed05cb8f0e8c79ee",
+          "sha1": "63fc36e8d3362288d35884893996bdaa0f79a346",
+          "md5": "f318bd36ce9e955581cd09d620a3fd8a"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "gradle-settings-api-8.13.0-sources.jar",
+          "url": "gradle-settings-api-8.13.0-sources.jar",
+          "size": 9560,
+          "sha512": "4a569afe4c803668140d1ebd68a38c84a0a5ee93834f543d7a84fe402988cb71418dd631138eb5dce77fa40f1f1fd4b507635b08ccde450ed17aaa601fce9cc7",
+          "sha256": "360e9b031be8594bd1e7b725351125123f3582a28f0f7b3e9bc858e74df5af1f",
+          "sha1": "5d87c2ba10f9bceab9ea77636f42af1352f19f40",
+          "md5": "abdd0877e612861053bf034fb45557bc"
+        }
+      ]
+    }
+  ]
+}

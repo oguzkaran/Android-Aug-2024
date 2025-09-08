@@ -1,0 +1,866 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.graphics",
+    "module": "graphics-shapes",
+    "version": "1.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.8"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidxSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "androidx-multiplatform-docs"
+      },
+      "files": [
+        {
+          "name": "graphics-shapes-1.0.1-multiplatform-sources.jar",
+          "url": "graphics-shapes-1.0.1-multiplatform-sources.jar",
+          "size": 50094,
+          "sha512": "33ab7f5a5dbfb71f3414802f9bb23bf16b3bd5959de27ffb90de44355661d99ddd73a2ec3acc73c175b8c0c966faa0ad1f4e5931743fb0d813a676054cefa2a0",
+          "sha256": "6d4a6cd9e00c4cd8d787b354a1df05e6e9adc57e149c7af4bb972990fda6ddf4",
+          "sha1": "045f85a0db54ed4a4d9746e87e0e87e9d6b4d7a2",
+          "md5": "15783f8f081507f44ee560ce40854488"
+        }
+      ]
+    },
+    {
+      "name": "libraryVersionMetadata",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.usage": "library-version-metadata"
+      },
+      "files": [
+        {
+          "name": "apiLevels.json",
+          "url": "graphics-shapes-1.0.1-versionMetadata.json",
+          "size": 10874,
+          "sha512": "bee08abc0adc51ad472113d1ea0c7c5cd0bad4ccb0bff2323ec9c857275a4eda9c4ae92ac8878042141619054a4d32a9995deecc2ae865782bcc3ff5555562a9",
+          "sha256": "aae36984d877b1d8413faee61de5a917e9dc3dadefff0c15f405a02aaa07000d",
+          "sha1": "9a809bf2ff914f00b6ee8bde0518bb019895f5e1",
+          "md5": "ab0a76d90376c7089aaaaa83896d7884"
+        }
+      ]
+    },
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.8.1"
+          }
+        },
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.4.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.8.22"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "graphics-shapes-metadata-1.0.1.jar",
+          "url": "graphics-shapes-1.0.1.jar",
+          "size": 16269,
+          "sha512": "92856c58e4843af0b670618fee551778eb224ad1ae4ceef1b803ef421e3500633a2b0dbb33ee6096d4cdbd5458e60e6b458960c0dcdbe80153f27595aaea9a5a",
+          "sha256": "0f73b1ddaea78908c5dae31a8de3d76777e583d232bb86caea6f4e0d9c0f28e9",
+          "sha1": "fdce46a9d3be84ad956502e3d28c8b272c0eb713",
+          "md5": "7478f205c78fe12789c2e6817a4e9b3e"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "graphics-shapes-kotlin-1.0.1-sources.jar",
+          "url": "graphics-shapes-1.0.1-sources.jar",
+          "size": 47849,
+          "sha512": "799f033faf81a8d905106bd760e628ca44c700ad37db34add4f17c260d5837bdcc99de12aa812905fd02da795aaae0dacd5e9142408b1dfc309f02a6950721a9",
+          "sha256": "80389b7bbb3447bb8a35e92eb9a04c027ee07d9c2f490a153733a908845ee241",
+          "sha1": "1b4067f391b0181bc9ccbd162e5746e882ea1e91",
+          "md5": "79593c14105ccf288636a5c8bfa4daa8"
+        }
+      ]
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-android/1.0.1/graphics-shapes-android-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-android",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-android/1.0.1/graphics-shapes-android-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-android",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "fake-sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-android/1.0.1/graphics-shapes-android-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-android",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "desktopApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-desktop/1.0.1/graphics-shapes-desktop-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-desktop",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "desktopRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-desktop/1.0.1/graphics-shapes-desktop-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-desktop",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "desktopSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-desktop/1.0.1/graphics-shapes-desktop-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-desktop",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-iosarm64/1.0.1/graphics-shapes-iosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-iosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-iosarm64/1.0.1/graphics-shapes-iosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-iosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-iosarm64/1.0.1/graphics-shapes-iosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-iosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-iossimulatorarm64/1.0.1/graphics-shapes-iossimulatorarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-iossimulatorarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-iossimulatorarm64/1.0.1/graphics-shapes-iossimulatorarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-iossimulatorarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-iossimulatorarm64/1.0.1/graphics-shapes-iossimulatorarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-iossimulatorarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-iosx64/1.0.1/graphics-shapes-iosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-iosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "iosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-iosx64/1.0.1/graphics-shapes-iosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-iosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-iosx64/1.0.1/graphics-shapes-iosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-iosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "linuxArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-linuxarm64/1.0.1/graphics-shapes-linuxarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-linuxarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "linuxArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-linuxarm64/1.0.1/graphics-shapes-linuxarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-linuxarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "linuxX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-linuxx64/1.0.1/graphics-shapes-linuxx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-linuxx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "linuxX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-linuxx64/1.0.1/graphics-shapes-linuxx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-linuxx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-macosarm64/1.0.1/graphics-shapes-macosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-macosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "macosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-macosarm64/1.0.1/graphics-shapes-macosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-macosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-macosarm64/1.0.1/graphics-shapes-macosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-macosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "macosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-macosx64/1.0.1/graphics-shapes-macosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-macosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "macosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-macosx64/1.0.1/graphics-shapes-macosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-macosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "macosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-macosx64/1.0.1/graphics-shapes-macosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-macosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "tvosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-tvosarm64/1.0.1/graphics-shapes-tvosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-tvosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "tvosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-tvosarm64/1.0.1/graphics-shapes-tvosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-tvosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "tvosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-tvosarm64/1.0.1/graphics-shapes-tvosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-tvosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-tvossimulatorarm64/1.0.1/graphics-shapes-tvossimulatorarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-tvossimulatorarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-tvossimulatorarm64/1.0.1/graphics-shapes-tvossimulatorarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-tvossimulatorarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-tvossimulatorarm64/1.0.1/graphics-shapes-tvossimulatorarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-tvossimulatorarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "tvosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-tvosx64/1.0.1/graphics-shapes-tvosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-tvosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "tvosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-tvosx64/1.0.1/graphics-shapes-tvosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-tvosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "tvosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-tvosx64/1.0.1/graphics-shapes-tvosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-tvosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchosarm32/1.0.1/graphics-shapes-watchosarm32-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchosarm32",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosArm32SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchosarm32/1.0.1/graphics-shapes-watchosarm32-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchosarm32",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchosarm32/1.0.1/graphics-shapes-watchosarm32-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchosarm32",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchosarm64/1.0.1/graphics-shapes-watchosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchosarm64/1.0.1/graphics-shapes-watchosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchosarm64/1.0.1/graphics-shapes-watchosarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchosarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchossimulatorarm64/1.0.1/graphics-shapes-watchossimulatorarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchossimulatorarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchossimulatorarm64/1.0.1/graphics-shapes-watchossimulatorarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchossimulatorarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchossimulatorarm64/1.0.1/graphics-shapes-watchossimulatorarm64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchossimulatorarm64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchosx64/1.0.1/graphics-shapes-watchosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchosx64/1.0.1/graphics-shapes-watchosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchosx64",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "name": "watchosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../graphics-shapes-watchosx64/1.0.1/graphics-shapes-watchosx64-1.0.1.module",
+        "group": "androidx.graphics",
+        "module": "graphics-shapes-watchosx64",
+        "version": "1.0.1"
+      }
+    }
+  ]
+}
