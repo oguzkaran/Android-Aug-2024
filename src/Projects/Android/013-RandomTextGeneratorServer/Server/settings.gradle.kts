@@ -1,1 +1,1 @@
-rootProject.name = "Server"
+rootProject.name = "RandomTextGeneratorServer"

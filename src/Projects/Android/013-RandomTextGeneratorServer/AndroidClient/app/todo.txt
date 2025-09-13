@@ -1,6 +1,0 @@
-- DataBind, temel türler için yapılacaktır
-- Server'a bağlanan thread, thread havuzundan alınacaktır. Thread havuzu activity'ye hilt ile inject edilecektir
-- "Save if needed" checkbox'ı eklenecektir
-- Bu checkbox seçili olduğundan bir edittext açılacak ve edittext içerisinde ListView içersinde olabilecek maximum sayı yazılacaktır
-- CheckBox seçili ise ve listview içerisindeki veri sayısı limite ulşmışsa internal bir memory'de bir dosyanın sonuna kayıt yapılacak ve listview clear edilip devam edilecektir
-- CheckBox seçili değilse litview doğrudan clear edilecektir.

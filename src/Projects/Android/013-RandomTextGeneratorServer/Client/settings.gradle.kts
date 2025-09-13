@@ -1,1 +1,1 @@
-rootProject.name = "Client"
+rootProject.name = "ConsoleClient"

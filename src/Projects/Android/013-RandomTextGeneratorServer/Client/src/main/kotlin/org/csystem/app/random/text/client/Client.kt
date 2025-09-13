@@ -20,24 +20,33 @@ class Client(private val mThreadPool: ExecutorService) {
     private val mServerHost = ""
 
     fun start() {
+
+
         try {
-            val count = readLong("Input count:", "Invalid value!...")
-            val min = readInt("Input min:", "Invalid value!...")
-            val max = readInt("Input max:", "Invalid value!...")
+            while (true) {
+                val count = readLong("Input count:", "Invalid value!...")
 
-            Socket(mServerHost, mServerPort).use {s ->
-                TcpUtil.sendLong(s, count)
-                TcpUtil.sendInt(s, min)
-                TcpUtil.sendInt(s, max)
+                if (count <= 0)
+                    break
+                val min = readInt("Input min:", "Invalid value!...")
+                val max = readInt("Input max:", "Invalid value!...")
 
-                val statusCode = TcpUtil.receiveInt(s)
-                mLogger.info("Result:{}", statusCode)
+                Socket(mServerHost, mServerPort).use { s ->
+                    TcpUtil.sendLong(s, count)
+                    TcpUtil.sendInt(s, min)
+                    TcpUtil.sendInt(s, max)
 
-                if (statusCode == 0)
-                    generateSequence(0) {it + 1}.takeWhile { it < count }.forEach { _ -> println(TcpUtil.receiveStringViaLength(s)) }
+                    val statusCode = TcpUtil.receiveInt(s)
+                    mLogger.info("Result:{}", statusCode)
+
+                    if (statusCode == 0)
+                        generateSequence(0) { it + 1 }.takeWhile { it < count }
+                            .forEach { _ -> println(TcpUtil.receiveStringViaLength(s)) }
+                }
             }
         } catch (e: Exception) {
             mLogger.error("Error occurred: {}", e.message)
         }
+
     }
 }
