@@ -10,9 +10,9 @@ import java.util.Locale;
  * Utility class for handling map-related operations.
  */
 public final class MapUtil {
-    // Private constructor to prevent instantiation
     private MapUtil()
     {
+        throw new UnsupportedOperationException("Cannot create an instance of MapUtil");
     }
 
     /**

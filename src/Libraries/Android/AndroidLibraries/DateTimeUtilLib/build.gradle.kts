@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "org.csystem.android.util.datetime"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
