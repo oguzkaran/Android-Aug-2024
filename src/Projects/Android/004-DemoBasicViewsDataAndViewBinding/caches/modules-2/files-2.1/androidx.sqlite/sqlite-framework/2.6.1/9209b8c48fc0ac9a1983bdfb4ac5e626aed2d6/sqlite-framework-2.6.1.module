@@ -1,0 +1,1027 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.sqlite",
+    "module": "sqlite-framework",
+    "version": "2.6.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.0.0",
+      "buildId:": "14087977"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.8.1"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.6.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-bundled",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-ktx",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "sqlite-framework-metadata-2.6.1.jar",
+          "url": "sqlite-framework-2.6.1.jar",
+          "size": 37880,
+          "sha512": "b40df767feb1081ba050f1e08f67c4b0856250dc4a8ea405eaaafbe5b96e08a5709afa1fa85aaf11401771e20b873e2b395e2960d57f20c234dd2eb1fec0ad98",
+          "sha256": "6decccb77d31858b1609797d50832beacf7bb4c14e8cfd0ef2ca464ca4f3539e",
+          "sha1": "29749429976136c5773c1f5d06004cf652862256",
+          "md5": "38387c3244ca469f1a0067a31e69d013"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-bundled",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-ktx",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        }
+      ],
+      "files": [
+        {
+          "name": "sqlite-framework-kotlin-2.6.1-sources.jar",
+          "url": "sqlite-framework-2.6.1-sources.jar",
+          "size": 11642,
+          "sha512": "52d1ee84def4b3060c2fc0e93592da440ae52bdbf5cc842b0001d3856cad09f9f05f7063bf06f7777218a0cac144f077910f12bc571fae7c3fd8163f6a851825",
+          "sha256": "00d017faa9e9e6d2faeca22dd7e7598250cf1227894a11869dcc983f3b46d14c",
+          "sha1": "ba01bc389204900a44ec3c2ee351dadecb45ab8a",
+          "md5": "ec5eb8260aec879006a0798ea49e701f"
+        }
+      ]
+    },
+    {
+      "name": "androidxSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "androidx-multiplatform-docs"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-bundled",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-ktx",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        }
+      ],
+      "files": [
+        {
+          "name": "sqlite-framework-2.6.1-multiplatform-sources.jar",
+          "url": "sqlite-framework-2.6.1-multiplatform-sources.jar",
+          "size": 32734,
+          "sha512": "c2b35f2252a16566702620e3b293f13a8829c433ff98f5ee96acbe3cfa52ced4dbde402c90f59d5856bbe86fca4b8e3ebe2a444f85dce88e584309fc59000036",
+          "sha256": "4a2d5f0daeffe667250dc39633e34db95d7ff0a20d1cdd89402ac86d6543ad26",
+          "sha1": "5319cf3595742b4aff7eb7bfd6161177d231cf06",
+          "md5": "ed0b16ec3589051278881c57df2eab61"
+        }
+      ]
+    },
+    {
+      "name": "libraryVersionMetadata",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.usage": "library-version-metadata"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-bundled",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-ktx",
+          "version": {
+            "requires": "2.6.1"
+          },
+          "reason": "sqlite-framework is in atomic group androidx.sqlite"
+        }
+      ],
+      "files": [
+        {
+          "name": "apiLevels.json",
+          "url": "sqlite-framework-2.6.1-versionMetadata.json",
+          "size": 1062,
+          "sha512": "fbbf7145691e1472ab760f1fa37e18a9ccfb5849164855d3c532d3213513d622ea1c318e83d8af7fb76db76b5b4e753255fd67f22d6d92d2bef5c7d8e0a157b1",
+          "sha256": "0ffe7150331d2da375dc52e19fc2aff5e317a87f4770b793428ad34afbdbcb94",
+          "sha1": "8c42b5301ecae79adf738ac1fa15f8b7b8ec9199",
+          "md5": "c81c7138fa0d4a8b65ec7541553b7d17"
+        }
+      ]
+    },
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-android/2.6.1/sqlite-framework-android-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-android",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-android/2.6.1/sqlite-framework-android-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-android",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "androidSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-android/2.6.1/sqlite-framework-android-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-android",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-iosarm64/2.6.1/sqlite-framework-iosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-iosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-iosarm64/2.6.1/sqlite-framework-iosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-iosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-iosarm64/2.6.1/sqlite-framework-iosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-iosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-iossimulatorarm64/2.6.1/sqlite-framework-iossimulatorarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-iossimulatorarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-iossimulatorarm64/2.6.1/sqlite-framework-iossimulatorarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-iossimulatorarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-iossimulatorarm64/2.6.1/sqlite-framework-iossimulatorarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-iossimulatorarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-iosx64/2.6.1/sqlite-framework-iosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-iosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "iosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-iosx64/2.6.1/sqlite-framework-iosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-iosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-iosx64/2.6.1/sqlite-framework-iosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-iosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "linuxArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-linuxarm64/2.6.1/sqlite-framework-linuxarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-linuxarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "linuxArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-linuxarm64/2.6.1/sqlite-framework-linuxarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-linuxarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "linuxX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-linuxx64/2.6.1/sqlite-framework-linuxx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-linuxx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "linuxX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-linuxx64/2.6.1/sqlite-framework-linuxx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-linuxx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-macosarm64/2.6.1/sqlite-framework-macosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-macosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "macosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-macosarm64/2.6.1/sqlite-framework-macosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-macosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-macosarm64/2.6.1/sqlite-framework-macosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-macosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "macosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-macosx64/2.6.1/sqlite-framework-macosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-macosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "macosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-macosx64/2.6.1/sqlite-framework-macosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-macosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "macosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-macosx64/2.6.1/sqlite-framework-macosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-macosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "tvosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-tvosarm64/2.6.1/sqlite-framework-tvosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-tvosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "tvosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-tvosarm64/2.6.1/sqlite-framework-tvosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-tvosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "tvosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-tvosarm64/2.6.1/sqlite-framework-tvosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-tvosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-tvossimulatorarm64/2.6.1/sqlite-framework-tvossimulatorarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-tvossimulatorarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-tvossimulatorarm64/2.6.1/sqlite-framework-tvossimulatorarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-tvossimulatorarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-tvossimulatorarm64/2.6.1/sqlite-framework-tvossimulatorarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-tvossimulatorarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "tvosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-tvosx64/2.6.1/sqlite-framework-tvosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-tvosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "tvosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-tvosx64/2.6.1/sqlite-framework-tvosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-tvosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "tvosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-tvosx64/2.6.1/sqlite-framework-tvosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-tvosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosarm32/2.6.1/sqlite-framework-watchosarm32-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosarm32",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosArm32SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosarm32/2.6.1/sqlite-framework-watchosarm32-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosarm32",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosarm32/2.6.1/sqlite-framework-watchosarm32-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosarm32",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosarm64/2.6.1/sqlite-framework-watchosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosarm64/2.6.1/sqlite-framework-watchosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosarm64/2.6.1/sqlite-framework-watchosarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosDeviceArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_device_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosdevicearm64/2.6.1/sqlite-framework-watchosdevicearm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosdevicearm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosDeviceArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_device_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosdevicearm64/2.6.1/sqlite-framework-watchosdevicearm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosdevicearm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosDeviceArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_device_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosdevicearm64/2.6.1/sqlite-framework-watchosdevicearm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosdevicearm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchossimulatorarm64/2.6.1/sqlite-framework-watchossimulatorarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchossimulatorarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchossimulatorarm64/2.6.1/sqlite-framework-watchossimulatorarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchossimulatorarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchossimulatorarm64/2.6.1/sqlite-framework-watchossimulatorarm64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchossimulatorarm64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosx64/2.6.1/sqlite-framework-watchosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosx64/2.6.1/sqlite-framework-watchosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosx64",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "name": "watchosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../sqlite-framework-watchosx64/2.6.1/sqlite-framework-watchosx64-2.6.1.module",
+        "group": "androidx.sqlite",
+        "module": "sqlite-framework-watchosx64",
+        "version": "2.6.1"
+      }
+    }
+  ]
+}

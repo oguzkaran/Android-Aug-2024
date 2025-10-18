@@ -1,0 +1,1560 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.room",
+    "module": "room-runtime",
+    "version": "2.8.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.0.0",
+      "buildId:": "14169401"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.9.1"
+          }
+        },
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.8.2"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.6.1"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-framework",
+          "version": {
+            "requires": "2.6.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.27.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.8.1"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        }
+      ],
+      "files": [
+        {
+          "name": "room-runtime-metadata-2.8.2.jar",
+          "url": "room-runtime-2.8.2.jar",
+          "size": 55418,
+          "sha512": "34df761be52527881bfbaab744c6efceb076a94d0f2c49a22dff6c95e937cbb5980561a54d0d30c58e0d2e706d15fb240ea2d93aa5d9cbf78ec8a9d3225395b9",
+          "sha256": "3c9e5ffd0f50c55c5b0f9be394152508180b03eb2d6d711a04ea8ff36b586772",
+          "sha1": "8c2cccffcdc35478ec3ac7d2cd3923ca23ce9067",
+          "md5": "2741b655780b969e68fee6d673aa90f6"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        }
+      ],
+      "files": [
+        {
+          "name": "room-runtime-kotlin-2.8.2-sources.jar",
+          "url": "room-runtime-2.8.2-sources.jar",
+          "size": 104395,
+          "sha512": "9f976c8f054bbc20ee2011e08c1340a2b921805e45f1431c8e8996d898ab7d07f8f9875af4d17e175f0f8846e1dc3d3605a51d575c487c41e5dfa3a382ddde26",
+          "sha256": "71caa0fa1a3dc985f0da5a38559e5ef88f7c4cce1563e28895d67320cfdd6557",
+          "sha1": "804c008fbbc35e7beae052f0d8aa1b92bba67ab6",
+          "md5": "eeecdd5ca947e22fc1f3b75514b2edc9"
+        }
+      ]
+    },
+    {
+      "name": "androidxSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "androidx-multiplatform-docs"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        }
+      ],
+      "files": [
+        {
+          "name": "room-runtime-2.8.2-multiplatform-sources.jar",
+          "url": "room-runtime-2.8.2-multiplatform-sources.jar",
+          "size": 213164,
+          "sha512": "827b386d2de6672d539554b184fe366d386b368644761992e62e8344ccaa8f22d6aebf1aaaa86006cac7882f7e37188930e7c7b0aec807fc2282a41d0b6562cf",
+          "sha256": "9a98d18d9b3957db5402aab88e775eef5c3d9f77232006ea34b09b447c88f588",
+          "sha1": "f61da46595203922fdbd0eb5192e4b275888e25c",
+          "md5": "2780744aa093e1bae44667fe653d6f71"
+        }
+      ]
+    },
+    {
+      "name": "libraryVersionMetadata",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.usage": "library-version-metadata"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-runtime is in atomic group androidx.room"
+        }
+      ],
+      "files": [
+        {
+          "name": "apiLevels.json",
+          "url": "room-runtime-2.8.2-versionMetadata.json",
+          "size": 15680,
+          "sha512": "656f9ce3312cfabb94557da46c3e827cf680fa5917c559cee2e412c898a62a2c2b5f6d89c3e1bf5a48ad274aea0632b2503fd0fabf0d111aa2f1642434967498",
+          "sha256": "de0be33b36260c550c0eb0baaa556842394a80cd741aa2bbc81c823240f4b5a0",
+          "sha1": "6a317b2295257295f768bb3c709caad264f06f6b",
+          "md5": "e6553c48fcbc90e1c91afb2691142b98"
+        }
+      ]
+    },
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../room-runtime-android/2.8.2/room-runtime-android-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-android",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../room-runtime-android/2.8.2/room-runtime-android-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-android",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "androidSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../room-runtime-android/2.8.2/room-runtime-android-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-android",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-iosarm64/2.8.2/room-runtime-iosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-iosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-iosarm64/2.8.2/room-runtime-iosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-iosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-iosarm64/2.8.2/room-runtime-iosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-iosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-iossimulatorarm64/2.8.2/room-runtime-iossimulatorarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-iossimulatorarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-iossimulatorarm64/2.8.2/room-runtime-iossimulatorarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-iossimulatorarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-iossimulatorarm64/2.8.2/room-runtime-iossimulatorarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-iossimulatorarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-iosx64/2.8.2/room-runtime-iosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-iosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "iosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-iosx64/2.8.2/room-runtime-iosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-iosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-iosx64/2.8.2/room-runtime-iosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-iosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../room-runtime-jvm/2.8.2/room-runtime-jvm-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-jvm",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../room-runtime-jvm/2.8.2/room-runtime-jvm-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-jvm",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../room-runtime-jvm/2.8.2/room-runtime-jvm-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-jvm",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "linuxArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-linuxarm64/2.8.2/room-runtime-linuxarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-linuxarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "linuxArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-linuxarm64/2.8.2/room-runtime-linuxarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-linuxarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "linuxX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-linuxx64/2.8.2/room-runtime-linuxx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-linuxx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "linuxX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "linux_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-linuxx64/2.8.2/room-runtime-linuxx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-linuxx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-macosarm64/2.8.2/room-runtime-macosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-macosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "macosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-macosarm64/2.8.2/room-runtime-macosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-macosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-macosarm64/2.8.2/room-runtime-macosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-macosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "macosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-macosx64/2.8.2/room-runtime-macosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-macosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "macosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-macosx64/2.8.2/room-runtime-macosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-macosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "macosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-macosx64/2.8.2/room-runtime-macosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-macosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "tvosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-tvosarm64/2.8.2/room-runtime-tvosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-tvosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "tvosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-tvosarm64/2.8.2/room-runtime-tvosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-tvosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "tvosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-tvosarm64/2.8.2/room-runtime-tvosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-tvosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-tvossimulatorarm64/2.8.2/room-runtime-tvossimulatorarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-tvossimulatorarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-tvossimulatorarm64/2.8.2/room-runtime-tvossimulatorarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-tvossimulatorarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "tvosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-tvossimulatorarm64/2.8.2/room-runtime-tvossimulatorarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-tvossimulatorarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "tvosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-tvosx64/2.8.2/room-runtime-tvosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-tvosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "tvosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-tvosx64/2.8.2/room-runtime-tvosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-tvosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "tvosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "tvos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-tvosx64/2.8.2/room-runtime-tvosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-tvosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosArm32ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosarm32/2.8.2/room-runtime-watchosarm32-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosarm32",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosArm32SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosarm32/2.8.2/room-runtime-watchosarm32-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosarm32",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosArm32MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm32",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosarm32/2.8.2/room-runtime-watchosarm32-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosarm32",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosarm64/2.8.2/room-runtime-watchosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosarm64/2.8.2/room-runtime-watchosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosarm64/2.8.2/room-runtime-watchosarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosDeviceArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_device_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosdevicearm64/2.8.2/room-runtime-watchosdevicearm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosdevicearm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosDeviceArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_device_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosdevicearm64/2.8.2/room-runtime-watchosdevicearm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosdevicearm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosDeviceArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_device_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosdevicearm64/2.8.2/room-runtime-watchosdevicearm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosdevicearm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchossimulatorarm64/2.8.2/room-runtime-watchossimulatorarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchossimulatorarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchossimulatorarm64/2.8.2/room-runtime-watchossimulatorarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchossimulatorarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchossimulatorarm64/2.8.2/room-runtime-watchossimulatorarm64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchossimulatorarm64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosx64/2.8.2/room-runtime-watchosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosx64/2.8.2/room-runtime-watchosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosx64",
+        "version": "2.8.2"
+      }
+    },
+    {
+      "name": "watchosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "watchos_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../room-runtime-watchosx64/2.8.2/room-runtime-watchosx64-2.8.2.module",
+        "group": "androidx.room",
+        "module": "room-runtime-watchosx64",
+        "version": "2.8.2"
+      }
+    }
+  ]
+}

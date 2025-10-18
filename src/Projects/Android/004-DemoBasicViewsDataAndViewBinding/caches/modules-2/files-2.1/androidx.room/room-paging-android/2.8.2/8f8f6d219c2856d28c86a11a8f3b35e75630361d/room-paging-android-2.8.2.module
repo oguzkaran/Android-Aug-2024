@@ -1,0 +1,553 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../room-paging/2.8.2/room-paging-2.8.2.module",
+    "group": "androidx.room",
+    "module": "room-paging",
+    "version": "2.8.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.0.0",
+      "buildId:": "14169401"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.paging",
+          "module": "paging-common",
+          "version": {
+            "requires": "3.3.2"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.8.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "room-paging.aar",
+          "url": "room-paging-android-2.8.2.aar",
+          "size": 43167,
+          "sha512": "c90dd198fdf284860d1a9b8bf68769903b14445344956679d5a9b0a40d280b8e1484ece59741e5e2db2494217a17b2913c6a140ca5347c5ce112d2c1fdd25ebc",
+          "sha256": "6afcc161d2afcc0fc3612cd4e7259495861f53c2ac7cbf1427b656b706ca8733",
+          "sha1": "04c3ff14b8e46e3618494ae5d1e436075548d0fd",
+          "md5": "d1a3a539aadbf02a511b734256c9a452"
+        }
+      ]
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.paging",
+          "module": "paging-common",
+          "version": {
+            "requires": "3.3.2"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.8.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "room-paging.aar",
+          "url": "room-paging-android-2.8.2.aar",
+          "size": 43167,
+          "sha512": "c90dd198fdf284860d1a9b8bf68769903b14445344956679d5a9b0a40d280b8e1484ece59741e5e2db2494217a17b2913c6a140ca5347c5ce112d2c1fdd25ebc",
+          "sha256": "6afcc161d2afcc0fc3612cd4e7259495861f53c2ac7cbf1427b656b706ca8733",
+          "sha1": "04c3ff14b8e46e3618494ae5d1e436075548d0fd",
+          "md5": "d1a3a539aadbf02a511b734256c9a452"
+        }
+      ]
+    },
+    {
+      "name": "androidSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-paging is in atomic group androidx.room"
+        }
+      ],
+      "files": [
+        {
+          "name": "room-paging-android-2.8.2-sources.jar",
+          "url": "room-paging-android-2.8.2-sources.jar",
+          "size": 16436,
+          "sha512": "4950531ef19259d9f16f9fef7c04b66f8610f15611144b5cc37bec9056582fe52259fbc6c769035e8f72f880cb9c35f2b30f3cce0334d792a9e8bb35ed39ce70",
+          "sha256": "6ca9463aefd972b31cd91e532f13f2c9777d2e99bd06a8c733addbc84de86464",
+          "sha1": "92f74a5690bbb7488f3572ea6346cd9966035516",
+          "md5": "35dea417420281ba72025d34ed425272"
+        }
+      ]
+    }
+  ]
+}

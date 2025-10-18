@@ -35,22 +35,12 @@ public final class FileObserverUtil {
 
     public static FileObserver createFileObserver(File path, int mask, IEventCallback callback)
     {
-        return Build.VERSION.SDK_INT < 29 ? createFileObserverBeforeSDK29(path, mask, callback)
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q ? createFileObserverBeforeSDK29(path, mask, callback)
                 : createFileObserverSDK29Plus(path, mask, callback);
-    }
-
-    public static FileObserver createFileObserver(String path, int mask, IEventCallback callback)
-    {
-        return createFileObserver(new File(path), mask, callback);
     }
 
     public static FileObserver createFileObserver(File path, IEventCallback callback)
     {
         return createFileObserver(path, FileObserver.ALL_EVENTS, callback);
-    }
-
-    public static FileObserver createFileObserver(String path, IEventCallback callback)
-    {
-        return createFileObserver(new File(path), callback);
     }
 }

@@ -10,7 +10,7 @@ material = "1.13.0"
 desugar_jdk_libs = "2.1.5"
 hiltAndroid = "2.57.2"
 hiltVersion ="2.57.2"
-roomRuntime = "2.8.1"
+roomRuntime = "2.8.2"
 orgCsystemUtilDatetime = "8.0.0"
 
 [libraries]
@@ -30,7 +30,7 @@ org-csystem-util-datetime = { module = "org.csystem:org-csystem-util-datetime", 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.2.20" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
 

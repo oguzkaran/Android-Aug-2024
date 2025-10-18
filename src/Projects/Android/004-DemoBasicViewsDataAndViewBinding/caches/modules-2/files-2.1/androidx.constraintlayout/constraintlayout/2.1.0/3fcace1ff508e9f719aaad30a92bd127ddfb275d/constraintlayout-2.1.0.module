@@ -1,0 +1,82 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.constraintlayout",
+    "module": "constraintlayout",
+    "version": "2.1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.3",
+      "buildId": "6ndmrw67qrfdhpzk5zjzr3pg3y"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "constraintlayout-2.1.0.aar",
+          "url": "constraintlayout-2.1.0.aar",
+          "size": 470611,
+          "sha512": "0452f8a0f48770df7e4747dbd9928008693ea6cb032883d5a60cdb0fe870a416db8e2000d3c5170c88562e2596da8c09f46d2347daf580d0a6eb9bbc8426b365",
+          "sha256": "a458a7562363bd59c209a7dea847326a0e2b26b37a883dc3e29065a79a1c788b",
+          "sha1": "d93baa11c2bf6ab9104f8698cd4ce7a03f0c37cd",
+          "md5": "250ab162bd84e0f3fabfb73cbdd95377"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.3.2"
+          }
+        },
+        {
+          "group": "androidx.constraintlayout",
+          "module": "constraintlayout-core",
+          "version": {
+            "requires": "1.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "constraintlayout-2.1.0.aar",
+          "url": "constraintlayout-2.1.0.aar",
+          "size": 470611,
+          "sha512": "0452f8a0f48770df7e4747dbd9928008693ea6cb032883d5a60cdb0fe870a416db8e2000d3c5170c88562e2596da8c09f46d2347daf580d0a6eb9bbc8426b365",
+          "sha256": "a458a7562363bd59c209a7dea847326a0e2b26b37a883dc3e29065a79a1c788b",
+          "sha1": "d93baa11c2bf6ab9104f8698cd4ce7a03f0c37cd",
+          "md5": "250ab162bd84e0f3fabfb73cbdd95377"
+        }
+      ]
+    }
+  ]
+}

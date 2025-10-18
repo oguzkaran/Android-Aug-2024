@@ -26,11 +26,42 @@ class Server(private val mApplicationContext: ApplicationContext,
     @Value("\${app.text.length.max}")
     private var mTextMaxLength = 0
 
+    @Value("\${app.backup.endpoint}")
+    private var backupEndpoint: String = ""
+
     private fun sendTestCallback(socket: Socket, min: Int, max: Int) {
         val now = mApplicationContext.getBean(LocalDateTime::class.java)
         val textInfo = "${Random.randomTextEN(Random.nextInt(min, max + 1))}@${mDateTimeFormatter.format(now)}"
 
         TcpUtil.sendStringViaLength(socket, textInfo)
+    }
+
+    private fun doRandomGenerator(socket: Socket) {
+        val count = TcpUtil.receiveLong(socket)
+        val min = TcpUtil.receiveInt(socket)
+        val max = TcpUtil.receiveInt(socket)
+
+        if (max - min > mTextMaxLength) {
+            TcpUtil.sendInt(socket, MAX_LENGTH_ERROR)
+            return
+        }
+
+        if (max < min) {
+            TcpUtil.sendInt(socket, MAX_MIN_ERROR)
+            return
+        }
+
+        if (count <= 0) {
+            TcpUtil.sendInt(socket, COUNT_NOT_POSITIVE_ERROR)
+            return
+        }
+
+        TcpUtil.sendInt(socket, SUCCESS)
+        generateSequence(0) {it + 1}.takeWhile { it < count }.forEach { _ -> sendTestCallback(socket, min, max) }
+    }
+
+    private fun doBackupEndPoint(socket: Socket) {
+        TcpUtil.sendStringViaLength(socket, backupEndpoint)
     }
 
     private fun handleClient(socket: Socket) {
@@ -39,27 +70,12 @@ class Server(private val mApplicationContext: ApplicationContext,
                 s.soTimeout = SOCKET_TIMEOUT
                 val now = mApplicationContext.getBean(LocalDateTime::class.java)
                 mLogger.info("{}:{} connected at {}: ", socket.inetAddress.hostAddress, socket.port, mDateTimeFormatter.format(now))
-                val count = TcpUtil.receiveLong(s)
-                val min = TcpUtil.receiveInt(s)
-                val max = TcpUtil.receiveInt(s)
+                val option = TcpUtil.receiveInt(s)
 
-                if (max - min > mTextMaxLength) {
-                    TcpUtil.sendInt(s, MAX_LENGTH_ERROR)
-                    return
+                when (option) {
+                    RANDOM_GENERATOR_CODE -> doRandomGenerator(socket)
+                    BACKUP_ENDPOINT_CODE -> doBackupEndPoint(socket)
                 }
-
-                if (max < min) {
-                    TcpUtil.sendInt(s, MAX_MIN_ERROR)
-                    return
-                }
-
-                if (count <= 0) {
-                    TcpUtil.sendInt(s, COUNT_NOT_POSITIVE_ERROR)
-                    return
-                }
-
-                TcpUtil.sendInt(s, SUCCESS)
-                generateSequence(0) {it + 1}.takeWhile { it < count }.forEach { _ -> sendTestCallback(socket, min, max) }
             } catch (e: Exception) {
                 mLogger.error("Client disconnected:{}", e.message)
             }

@@ -1,0 +1,539 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../room-common/2.8.2/room-common-2.8.2.module",
+    "group": "androidx.room",
+    "module": "room-common",
+    "version": "2.8.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.0.0",
+      "buildId:": "14169401"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.9.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "room-common-jvm-2.8.2.jar",
+          "url": "room-common-jvm-2.8.2.jar",
+          "size": 62722,
+          "sha512": "fe3d2a96868de614694690bc9118627a3abd502950a050d8a4320daa54ac2d80598db4329618adee3d7bedd5fdb69f287938d43465a13cdf3eb77bb12e2c1192",
+          "sha256": "dc7b4e1a75a790f29c97afd5516b8bf8002d9b6e83e295bc569b33566f3b1ec0",
+          "sha1": "3aeefef6615720bec8c860dd0786b48552ef3300",
+          "md5": "5ee5be9053cc7fa3d06ed94db878e317"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.9.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "room-common-jvm-2.8.2.jar",
+          "url": "room-common-jvm-2.8.2.jar",
+          "size": 62722,
+          "sha512": "fe3d2a96868de614694690bc9118627a3abd502950a050d8a4320daa54ac2d80598db4329618adee3d7bedd5fdb69f287938d43465a13cdf3eb77bb12e2c1192",
+          "sha256": "dc7b4e1a75a790f29c97afd5516b8bf8002d9b6e83e295bc569b33566f3b1ec0",
+          "sha1": "3aeefef6615720bec8c860dd0786b48552ef3300",
+          "md5": "5ee5be9053cc7fa3d06ed94db878e317"
+        }
+      ]
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencyConstraints": [
+        {
+          "group": "androidx.room",
+          "module": "room-compiler",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-compiler-processing-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-external-antlr",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-gradle-plugin",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-guava",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-paging-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava2",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-rxjava3",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-sqlite-wrapper",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-testing",
+          "version": {
+            "requires": "2.8.2"
+          },
+          "reason": "room-common is in atomic group androidx.room"
+        }
+      ],
+      "files": [
+        {
+          "name": "room-common-jvm-2.8.2-sources.jar",
+          "url": "room-common-jvm-2.8.2-sources.jar",
+          "size": 72388,
+          "sha512": "c57c8adabe3eac85681a5f275f26b512c385b6250d5bc40007789618a9dfea4882d610581ee8e1172137c055a2ef3f204cddbb71058c3c1af4607b850aac21ac",
+          "sha256": "0fb9ee608cd868370402f0a055e593f5710509fb2cb5ee6a47bd9faf314c244b",
+          "sha1": "01363ad592f5c61560ec8bc87e4ea00614924168",
+          "md5": "f0eb7e33a83ccdd9bfa9e3b3c8a2020b"
+        }
+      ]
+    }
+  ]
+}
