@@ -36,28 +36,35 @@ class Server(private val mApplicationContext: ApplicationContext,
         TcpUtil.sendStringViaLength(socket, textInfo)
     }
 
-    private fun doRandomGenerator(socket: Socket) {
-        val count = TcpUtil.receiveLong(socket)
-        val min = TcpUtil.receiveInt(socket)
-        val max = TcpUtil.receiveInt(socket)
-
-        if (max - min > mTextMaxLength) {
+    private fun validateParameters(socket: Socket, count:Long, minLength: Int, maxLength: Int): Boolean {
+        if (maxLength - minLength > mTextMaxLength) {
             TcpUtil.sendInt(socket, MAX_LENGTH_ERROR)
-            return
+            return false
         }
 
-        if (max < min) {
+        if (maxLength < minLength) {
             TcpUtil.sendInt(socket, MAX_MIN_ERROR)
-            return
+            return false
         }
 
         if (count <= 0) {
             TcpUtil.sendInt(socket, COUNT_NOT_POSITIVE_ERROR)
-            return
+            return false
         }
 
+        return true
+    }
+
+    private fun doRandomGenerator(socket: Socket) {
+        val count = TcpUtil.receiveLong(socket)
+        val minLength = TcpUtil.receiveInt(socket)
+        val maxLength = TcpUtil.receiveInt(socket)
+
+        if (!validateParameters(socket, count, minLength, maxLength))
+            return
+
         TcpUtil.sendInt(socket, SUCCESS)
-        generateSequence(0) {it + 1}.takeWhile { it < count }.forEach { _ -> sendTestCallback(socket, min, max) }
+        generateSequence(0) {it + 1}.takeWhile { it < count }.forEach { _ -> sendTestCallback(socket, minLength, maxLength) }
     }
 
     private fun doBackupEndPoint(socket: Socket) {
