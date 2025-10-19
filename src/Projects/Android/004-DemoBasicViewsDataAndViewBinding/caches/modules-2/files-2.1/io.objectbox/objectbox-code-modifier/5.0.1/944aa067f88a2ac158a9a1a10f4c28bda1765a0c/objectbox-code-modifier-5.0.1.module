@@ -1,0 +1,124 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.objectbox",
+    "module": "objectbox-code-modifier",
+    "version": "5.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "objectbox-code-modifier-5.0.1.jar",
+          "url": "objectbox-code-modifier-5.0.1.jar",
+          "size": 69370,
+          "sha512": "5b34cd83e72f5d264c6c0f2d524c16081e8ce6011529214636d7c71b3f9ec3735367b8e78c49d3223e22a37e91221c9eaae46c26d3f7306924d742db83f7eb27",
+          "sha256": "201467527640fa8aa2afc1f8f16e0fca18edf01790e39bf8e2ac1ac8f8779a51",
+          "sha1": "ea037cc34f1e90aa47777a887fc0a2ae45c565de",
+          "md5": "8636932647c54e45329412d8e810e61a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.greenrobot",
+          "module": "essentials",
+          "version": {
+            "requires": "3.1.0"
+          }
+        },
+        {
+          "group": "org.javassist",
+          "module": "javassist",
+          "version": {
+            "requires": "3.29.2-GA"
+          }
+        },
+        {
+          "group": "com.squareup.moshi",
+          "module": "moshi",
+          "version": {
+            "requires": "1.15.0"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "2.10.0"
+          }
+        },
+        {
+          "group": "com.google.crypto.tink",
+          "module": "tink",
+          "version": {
+            "requires": "1.12.0"
+          }
+        },
+        {
+          "group": "io.objectbox",
+          "module": "objectbox-java",
+          "version": {
+            "requires": "5.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "objectbox-code-modifier-5.0.1.jar",
+          "url": "objectbox-code-modifier-5.0.1.jar",
+          "size": 69370,
+          "sha512": "5b34cd83e72f5d264c6c0f2d524c16081e8ce6011529214636d7c71b3f9ec3735367b8e78c49d3223e22a37e91221c9eaae46c26d3f7306924d742db83f7eb27",
+          "sha256": "201467527640fa8aa2afc1f8f16e0fca18edf01790e39bf8e2ac1ac8f8779a51",
+          "sha1": "ea037cc34f1e90aa47777a887fc0a2ae45c565de",
+          "md5": "8636932647c54e45329412d8e810e61a"
+        }
+      ]
+    }
+  ]
+}

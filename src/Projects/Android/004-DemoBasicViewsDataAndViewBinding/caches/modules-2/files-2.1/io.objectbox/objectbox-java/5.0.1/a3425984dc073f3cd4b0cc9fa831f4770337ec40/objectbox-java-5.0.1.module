@@ -1,0 +1,99 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.objectbox",
+    "module": "objectbox-java",
+    "version": "5.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.objectbox",
+          "module": "objectbox-java-api",
+          "version": {
+            "requires": "5.0.1"
+          }
+        },
+        {
+          "group": "com.google.code.findbugs",
+          "module": "jsr305",
+          "version": {
+            "requires": "3.0.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "objectbox-java-5.0.1.jar",
+          "url": "objectbox-java-5.0.1.jar",
+          "size": 357006,
+          "sha512": "888d8cfb306493bc492085dcc5dd00db870f68de35f7e830201f3af588a5e5a1b4977df999b86bdb79b8baaa4a2fd62c0bdbc93ac7b549ceba41d3d389f63d71",
+          "sha256": "a3d07c2806b2790da47f612cbb90784cf078ee39a2e6a1ed355f29320581ebc5",
+          "sha1": "09a631f8c65ec3295e57d032315c665a0bd974af",
+          "md5": "9fed6be4678baa12bc30717b761c01cd"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.greenrobot",
+          "module": "essentials",
+          "version": {
+            "requires": "3.1.0"
+          }
+        },
+        {
+          "group": "io.objectbox",
+          "module": "objectbox-java-api",
+          "version": {
+            "requires": "5.0.1"
+          }
+        },
+        {
+          "group": "com.google.code.findbugs",
+          "module": "jsr305",
+          "version": {
+            "requires": "3.0.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "objectbox-java-5.0.1.jar",
+          "url": "objectbox-java-5.0.1.jar",
+          "size": 357006,
+          "sha512": "888d8cfb306493bc492085dcc5dd00db870f68de35f7e830201f3af588a5e5a1b4977df999b86bdb79b8baaa4a2fd62c0bdbc93ac7b549ceba41d3d389f63d71",
+          "sha256": "a3d07c2806b2790da47f612cbb90784cf078ee39a2e6a1ed355f29320581ebc5",
+          "sha1": "09a631f8c65ec3295e57d032315c665a0bd974af",
+          "md5": "9fed6be4678baa12bc30717b761c01cd"
+        }
+      ]
+    }
+  ]
+}

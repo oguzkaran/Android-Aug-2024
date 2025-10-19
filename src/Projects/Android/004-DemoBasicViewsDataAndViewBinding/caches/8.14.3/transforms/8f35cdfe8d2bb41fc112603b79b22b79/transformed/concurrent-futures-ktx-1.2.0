@@ -1,0 +1,7 @@
+androidx.concurrent.futures.ListenableFutureKt
+androidx.concurrent.futures.ListenableFutureKt$await$2$1
+androidx.concurrent.futures.SuspendToFutureAdapter
+androidx.concurrent.futures.SuspendToFutureAdapter$DeferredFuture
+androidx.concurrent.futures.SuspendToFutureAdapter$GlobalListenableFutureScope$1
+androidx.concurrent.futures.SuspendToFutureAdapter$launchFuture$1$1
+androidx.concurrent.futures.ToContinuation

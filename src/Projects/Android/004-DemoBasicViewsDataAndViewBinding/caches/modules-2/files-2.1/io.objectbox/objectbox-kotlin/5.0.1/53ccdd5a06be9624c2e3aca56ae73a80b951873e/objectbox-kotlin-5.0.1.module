@@ -1,0 +1,96 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.objectbox",
+    "module": "objectbox-kotlin",
+    "version": "5.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.objectbox",
+          "module": "objectbox-java",
+          "version": {
+            "requires": "5.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "objectbox-kotlin-5.0.1.jar",
+          "url": "objectbox-kotlin-5.0.1.jar",
+          "size": 15911,
+          "sha512": "88aa3e49346b0862ddde4827bb953499e81d9bbcd3a422ecf15e11c7851762b148d6d0ecebabaa7289bcf328e0594af0045ab52b7ac49f4bec2593f9078a3c21",
+          "sha256": "d225a405a56f6d03205b4f70f2aee0ac3e2f95593dd243e6725d24aca287d14b",
+          "sha1": "b09a14a73feed3f8f821d645bca763a8c3c8ac7d",
+          "md5": "63530b7cde935201fb120e0ab45833f9"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.objectbox",
+          "module": "objectbox-java",
+          "version": {
+            "requires": "5.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "objectbox-kotlin-5.0.1.jar",
+          "url": "objectbox-kotlin-5.0.1.jar",
+          "size": 15911,
+          "sha512": "88aa3e49346b0862ddde4827bb953499e81d9bbcd3a422ecf15e11c7851762b148d6d0ecebabaa7289bcf328e0594af0045ab52b7ac49f4bec2593f9078a3c21",
+          "sha256": "d225a405a56f6d03205b4f70f2aee0ac3e2f95593dd243e6725d24aca287d14b",
+          "sha1": "b09a14a73feed3f8f821d645bca763a8c3c8ac7d",
+          "md5": "63530b7cde935201fb120e0ab45833f9"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.objectbox",
+    "module": "agp-wrapper-3-4",
+    "version": "5.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.objectbox",
+          "module": "objectbox-code-modifier",
+          "version": {
+            "requires": "5.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "agp-wrapper-3-4-5.0.1.jar",
+          "url": "agp-wrapper-3-4-5.0.1.jar",
+          "size": 24926,
+          "sha512": "3d0414b75cddcb7e89240102a6eff2bef191bb779b59c864f4079ef91876ea043cb585619570a3b7755c669af36cfb20dff370a1532048f22279a83eb58ce4ae",
+          "sha256": "7b05ae6c96cbdfbe2082ceb3b0a2fccfece7ba29b2741205bf37648d3f3354fd",
+          "sha1": "6341fc8f45393648e8e6d3916f72903d5fc85846",
+          "md5": "b5e559ea4cd60d6f1a8e47091e29a850"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.objectbox",
+          "module": "objectbox-code-modifier",
+          "version": {
+            "requires": "5.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "agp-wrapper-3-4-5.0.1.jar",
+          "url": "agp-wrapper-3-4-5.0.1.jar",
+          "size": 24926,
+          "sha512": "3d0414b75cddcb7e89240102a6eff2bef191bb779b59c864f4079ef91876ea043cb585619570a3b7755c669af36cfb20dff370a1532048f22279a83eb58ce4ae",
+          "sha256": "7b05ae6c96cbdfbe2082ceb3b0a2fccfece7ba29b2741205bf37648d3f3354fd",
+          "sha1": "6341fc8f45393648e8e6d3916f72903d5fc85846",
+          "md5": "b5e559ea4cd60d6f1a8e47091e29a850"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "agp-wrapper-3-4-5.0.1-javadoc.jar",
+          "url": "agp-wrapper-3-4-5.0.1-javadoc.jar",
+          "size": 261,
+          "sha512": "4fa74d71740f7615af9803d4862ea695ded67350f3d9a5bc46a8b999e4c66d0b04b3372d118f0a1241b9fe717da42e110497b79b47ff4b56419cb5a13538dcac",
+          "sha256": "30e38c7e1dc3ddea8b7d9bdb2dbe753034873a470692a4701dee3d45aad75e69",
+          "sha1": "ff90112cbde2c194182b082a49303d9bb7abfb4e",
+          "md5": "c460e5ac509d9a9bfc64b1bcaeb6a283"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "agp-wrapper-3-4-5.0.1-sources.jar",
+          "url": "agp-wrapper-3-4-5.0.1-sources.jar",
+          "size": 6686,
+          "sha512": "1eca5fb1ad82665ee82a93a82be5cd7c81c2d51900155d3f07c7d7f3ddeac6c056b90d33ccb53bdd5a6482bb736368572b6a6380d34c2e7991b54e4a66a91c81",
+          "sha256": "76fdd5f2a86d4f6b7157d30c9a0b891c181a64cb4716b051774ab864b50ff1ea",
+          "sha1": "22bae005ed98c67ab5387364af027bc85c15e2b5",
+          "md5": "d92e9aaa115ff565935535b6738412a7"
+        }
+      ]
+    }
+  ]
+}

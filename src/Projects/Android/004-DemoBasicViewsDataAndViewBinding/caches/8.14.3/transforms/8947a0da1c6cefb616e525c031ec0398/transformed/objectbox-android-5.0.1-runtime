@@ -1,0 +1,7 @@
+io.objectbox.android.Admin
+io.objectbox.android.AndroidObjectBrowser
+io.objectbox.android.AndroidScheduler
+io.objectbox.android.AndroidScheduler$Runner
+io.objectbox.android.ObjectBoxDataSource
+io.objectbox.android.ObjectBoxDataSource$Factory
+io.objectbox.android.ObjectBoxLiveData

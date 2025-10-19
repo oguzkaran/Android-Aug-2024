@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/FileObserverLib" />
             <option value="$PROJECT_DIR$/IntentUtilLib" />
             <option value="$PROJECT_DIR$/MapUtilLib" />
+            <option value="$PROJECT_DIR$/ObjectBoxLib" />
           </set>
         </option>
       </GradleProjectSettings>

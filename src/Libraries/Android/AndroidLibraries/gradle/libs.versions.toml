@@ -10,6 +10,7 @@ material = "1.13.0"
 desugar_jdk_libs = "2.1.5"
 hiltAndroid = "2.57.2"
 hiltVersion ="2.57.2"
+objectboxAndroid = "5.0.1"
 roomRuntime = "2.8.2"
 orgCsystemUtilDatetime = "8.0.0"
 
@@ -26,6 +27,9 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+objectbox-android = { module = "io.objectbox:objectbox-android", version.ref = "objectboxAndroid" }
+objectbox-java = { module = "io.objectbox:objectbox-java", version.ref = "objectboxAndroid" }
+objectbox-processor = { module = "io.objectbox:objectbox-processor", version.ref = "objectboxAndroid" }
 org-csystem-util-datetime = { module = "org.csystem:org-csystem-util-datetime", version.ref = "orgCsystemUtilDatetime" }
 
 [plugins]
