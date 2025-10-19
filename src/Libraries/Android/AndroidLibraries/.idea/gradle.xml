@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/DateTimeUtilLib" />
             <option value="$PROJECT_DIR$/FileObserverLib" />
+            <option value="$PROJECT_DIR$/IntentUtilLib" />
             <option value="$PROJECT_DIR$/MapUtilLib" />
           </set>
         </option>

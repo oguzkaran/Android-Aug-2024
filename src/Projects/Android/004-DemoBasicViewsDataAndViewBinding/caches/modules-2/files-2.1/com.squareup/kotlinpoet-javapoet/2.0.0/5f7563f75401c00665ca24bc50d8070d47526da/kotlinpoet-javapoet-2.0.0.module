@@ -1,0 +1,130 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.squareup",
+    "module": "kotlinpoet-javapoet",
+    "version": "2.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.10.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup",
+          "module": "kotlinpoet",
+          "version": {
+            "requires": "2.0.0"
+          }
+        },
+        {
+          "group": "com.squareup",
+          "module": "javapoet",
+          "version": {
+            "requires": "1.13.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.0.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlinpoet-javapoet-2.0.0.jar",
+          "url": "kotlinpoet-javapoet-2.0.0.jar",
+          "size": 13957,
+          "sha512": "f77846b69d2c8dfb22c457f2724685984b1887a556a9d8c0e4b480eab42dff14cf83cee654d3a5c1bbc6415039b53509a2257a07a55b6902917d194e030900b7",
+          "sha256": "2929f3b9a8d739d0aea40bf3c7bd01fad3a7cd2d0fb56f2de248ebb9b46774a4",
+          "sha1": "eb3650dfa363f1f8c42c3a332e1b009e94d52d7f",
+          "md5": "d5eeec34d211b243f0cd940ea003d03f"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup",
+          "module": "kotlinpoet",
+          "version": {
+            "requires": "2.0.0"
+          }
+        },
+        {
+          "group": "com.squareup",
+          "module": "javapoet",
+          "version": {
+            "requires": "1.13.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.0.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "kotlinpoet-javapoet-2.0.0.jar",
+          "url": "kotlinpoet-javapoet-2.0.0.jar",
+          "size": 13957,
+          "sha512": "f77846b69d2c8dfb22c457f2724685984b1887a556a9d8c0e4b480eab42dff14cf83cee654d3a5c1bbc6415039b53509a2257a07a55b6902917d194e030900b7",
+          "sha256": "2929f3b9a8d739d0aea40bf3c7bd01fad3a7cd2d0fb56f2de248ebb9b46774a4",
+          "sha1": "eb3650dfa363f1f8c42c3a332e1b009e94d52d7f",
+          "md5": "d5eeec34d211b243f0cd940ea003d03f"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "kotlinpoet-javapoet-2.0.0-sources.jar",
+          "url": "kotlinpoet-javapoet-2.0.0-sources.jar",
+          "size": 6265,
+          "sha512": "f0fb4e12ab9c40cfb96798ec5720e44c4ad5b8f10cff3b6a9866e31f813e0737282bf8f792930df8335931dec6943b9369094ea1c4f069d87161d75b74554b52",
+          "sha256": "29659760c68ea5a082a62f5368d95e83a001ddd7bd3f8a1d7f9105fcd0e3a9c1",
+          "sha1": "b14f18fb3bf2688c21e75a43b8d62c304c49519f",
+          "md5": "f2f2a5418218a9a3b5ae4474de953b79"
+        }
+      ]
+    }
+  ]
+}
