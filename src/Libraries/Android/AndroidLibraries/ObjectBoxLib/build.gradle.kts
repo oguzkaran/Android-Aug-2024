@@ -55,10 +55,14 @@ dependencies {
     implementation(libs.objectbox.android)
     kapt(libs.objectbox.processor)
     annotationProcessor(libs.objectbox.processor)
+    androidTestImplementation(libs.objectbox.android)
+    kaptAndroidTest(libs.objectbox.processor)
+    androidTestAnnotationProcessor(libs.objectbox.processor)
+
+
     implementation(libs.hilt.android)
     annotationProcessor(libs.hilt.android.compiler)
     kapt(libs.hilt.android.compiler)
-
 }
 
 kapt {

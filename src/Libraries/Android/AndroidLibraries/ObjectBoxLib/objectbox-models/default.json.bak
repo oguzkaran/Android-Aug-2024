@@ -1,0 +1,72 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "4:8777688055887729665",
+      "lastPropertyId": "4:7905837746861971251",
+      "name": "Sensor",
+      "properties": [
+        {
+          "id": "1:5014744102130022279",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3126522276751466824",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:7038664786846887739",
+          "name": "host",
+          "type": 9
+        },
+        {
+          "id": "4:7905837746861971251",
+          "name": "port",
+          "type": 5
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:7238472188393397231",
+      "lastPropertyId": "1:6963869534413397569",
+      "name": "EntityBase",
+      "properties": [
+        {
+          "id": "1:6963869534413397569",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "5:7238472188393397231",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    5437133882872297215,
+    8076858151706935948,
+    7492211572683299850
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    2203758099795403970,
+    835426443196912234,
+    6024120204220955066,
+    513037703291571890,
+    1380830259520129422,
+    3297702643238651306
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

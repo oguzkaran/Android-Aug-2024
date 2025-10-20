@@ -7,4 +7,12 @@ import io.objectbox.annotation.Id;
 public class EntityBase {
     @Id
     public long id;
+
+    public EntityBase()
+    {
+    }
+    public EntityBase(long id)
+    {
+        this.id = id;
+    }
 }
