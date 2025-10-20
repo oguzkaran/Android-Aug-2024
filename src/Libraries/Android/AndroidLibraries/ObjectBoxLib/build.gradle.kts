@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    //kotlin("android") // When used in an Android project
     kotlin("kapt")
+    id("com.google.dagger.hilt.android")
     id("io.objectbox") // Add after other plugins
 }
 
@@ -55,6 +55,9 @@ dependencies {
     implementation(libs.objectbox.android)
     kapt(libs.objectbox.processor)
     annotationProcessor(libs.objectbox.processor)
+    implementation(libs.hilt.android)
+    annotationProcessor(libs.hilt.android.compiler)
+    kapt(libs.hilt.android.compiler)
 
 }
 
