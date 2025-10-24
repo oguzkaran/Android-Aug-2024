@@ -7,6 +7,7 @@ mvn install:install-file -DgroupId=org.csystem.android -DartifactId=org-csystem-
 mvn install:install-file -DgroupId=org.csystem.android -DartifactId=org-csystem-android-util-datetime -Dversion=13.0.0 -Dfile=../jars/org-csystem-android-util-datetime-13.0.0.aar -Dpackaging=aar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
 mvn install:install-file -DgroupId=org.csystem.android -DartifactId=org-csystem-android-util-map -Dversion=8.2.0 -Dfile=../jars/org-csystem-android-util-map-8.2.0.aar -Dpackaging=aar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
 mvn install:install-file -DgroupId=org.csystem.android -DartifactId=org-csystem-android-util-fileobserver -Dversion=8.0.0 -Dfile=../jars/org-csystem-android-util-fileobserver-8.0.0.aar -Dpackaging=aar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
+mvn install:install-file -DgroupId=org.csystem.android -DartifactId=org-csystem-android-util-intent -Dversion=8.0.0 -Dfile=../jars/org-csystem-android-util-intent-8.0.0.aar -Dpackaging=aar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
 
 
 mvn install:install-file -DgroupId=com.karandev -DartifactId=com-karandev-data -Dversion=8.0.0 -Dfile=../jars/com-karandev-data-8.0.0.jar -Dpackaging=jar -DgeneratePom=true -DlocalRepositoryPath=. -DcreateChecksum=true
