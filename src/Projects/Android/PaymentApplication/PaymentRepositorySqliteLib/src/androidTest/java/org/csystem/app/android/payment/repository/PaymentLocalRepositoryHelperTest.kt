@@ -82,8 +82,8 @@ class PaymentLocalRepositoryHelperTest {
     fun savePaymentInfo_whenCalled() {
         try {
             insertProducts()
-            var ptp1 = PaymentToProduct(productCode = "test-1", unitPrice = 100.0, amount = 10.0)
-            var ptp2 = PaymentToProduct(productCode = "test-2", unitPrice = 300.0, amount = 5.6)
+            val ptp1 = PaymentToProduct(productCode = "test-1", unitPrice = 100.0, amount = 10.0)
+            val ptp2 = PaymentToProduct(productCode = "test-2", unitPrice = 300.0, amount = 5.6)
 
 
             mHelper.savePayment(ptp1, ptp2)
@@ -98,9 +98,9 @@ class PaymentLocalRepositoryHelperTest {
     @Test
     fun findPaymentInfoByDate_whenCalled_thenSizeSuccessful() {
         insertProducts()
-        var ptp1 = PaymentToProduct(productCode = "test-1", unitPrice = 100.0, amount = 10.0)
-        var ptp2 = PaymentToProduct(productCode = "test-2", unitPrice = 300.0, amount = 5.6)
-        var ptp3 = PaymentToProduct(productCode = "test-3", unitPrice = 300.0, amount = 5.6)
+        val ptp1 = PaymentToProduct(productCode = "test-1", unitPrice = 100.0, amount = 10.0)
+        val ptp2 = PaymentToProduct(productCode = "test-2", unitPrice = 300.0, amount = 5.6)
+        val ptp3 = PaymentToProduct(productCode = "test-3", unitPrice = 300.0, amount = 5.6)
 
         mHelper.savePayment(ptp1, ptp2, ptp3)
         val expectedSize = 3
@@ -114,9 +114,9 @@ class PaymentLocalRepositoryHelperTest {
     @Test
     fun findPaymentInfoByDate_whenCalled_thenNotFound() {
         insertProducts()
-        var ptp1 = PaymentToProduct(productCode = "test-1", unitPrice = 100.0, amount = 10.0)
-        var ptp2 = PaymentToProduct(productCode = "test-2", unitPrice = 300.0, amount = 5.6)
-        var ptp3 = PaymentToProduct(productCode = "test-3", unitPrice = 300.0, amount = 5.6)
+        val ptp1 = PaymentToProduct(productCode = "test-1", unitPrice = 100.0, amount = 10.0)
+        val ptp2 = PaymentToProduct(productCode = "test-2", unitPrice = 300.0, amount = 5.6)
+        val ptp3 = PaymentToProduct(productCode = "test-3", unitPrice = 300.0, amount = 5.6)
 
         mHelper.savePayment(LocalDateTime.of(2024, Month.SEPTEMBER, 5, 17, 13, 56), ptp1, ptp2, ptp3)
         val expectedSize = 0
