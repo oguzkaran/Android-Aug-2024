@@ -139,11 +139,9 @@ public final class DateTimeUtil {
     public static Instant instantFromNTP(int timeoutMillis)
     {
         var buffer = new byte[NTP_PACKET_SIZE];
-        // Set client mode and version in the first byte (LI = 0, VN = 3, Mode = 3 -> 0x1B)
         buffer[0] = 0x1B;
 
         try (DatagramSocket socket = new DatagramSocket()) {
-            // Prepare request and response packets
             var request = new DatagramPacket(buffer, buffer.length, InetAddress.getByName(NTP_HOST), NTP_PORT);
             var response = new DatagramPacket(new byte[NTP_PACKET_SIZE], NTP_PACKET_SIZE);
 
