@@ -46,7 +46,8 @@ public class ObjectBox {
      * @return a non-null {@link List} of {@link Box} objects; its size equals {@code entities.length}
      * @throws NullPointerException if {@code entities} is {@code null}
      */
-    public <T extends EntityBase> List<Box<T>> boxes(Context context, Class<T>...entities)
+    @SafeVarargs
+    public final <T extends EntityBase> List<Box<T>> boxes(Context context, Class<T>...entities)
     {
         var boxes = new ArrayList<Box<T>>(entities.length);
 

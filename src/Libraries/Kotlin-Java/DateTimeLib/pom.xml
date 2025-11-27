@@ -8,13 +8,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.2</version>
+        <version>3.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>org.csystem</groupId>
     <artifactId>org-csystem-util-datetime</artifactId>
-    <version>8.1.0</version>
+    <version>8.2.0</version>
 
     <properties>
         <java.version>11</java.version>
