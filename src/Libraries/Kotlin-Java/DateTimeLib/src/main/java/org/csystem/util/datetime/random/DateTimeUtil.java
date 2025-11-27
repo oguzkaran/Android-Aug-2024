@@ -24,17 +24,8 @@ public final class DateTimeUtil {
     private static Instant getInstant(DatagramPacket response)
     {
         var data = response.getData();
-
-        var seconds = ((data[40] & 0xFFL) << 24) |
-                ((data[41] & 0xFFL) << 16) |
-                ((data[42] & 0xFFL) << 8) |
-                (data[43] & 0xFFL);
-
-        var fraction = ((data[44] & 0xFFL) << 24) |
-                ((data[45] & 0xFFL) << 16) |
-                ((data[46] & 0xFFL) << 8) |
-                (data[47] & 0xFFL);
-
+        var seconds = ((data[40] & 0xFFL) << 24) | ((data[41] & 0xFFL) << 16) | ((data[42] & 0xFFL) << 8) | (data[43] & 0xFFL);
+        var fraction = ((data[44] & 0xFFL) << 24) | ((data[45] & 0xFFL) << 16) | ((data[46] & 0xFFL) << 8) | (data[47] & 0xFFL);
         var epochSeconds = seconds - SECONDS_FROM_1900_TO_1970;
         var nanos = (fraction * 1_000_000_000L) >>> 32;
 
