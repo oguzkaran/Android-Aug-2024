@@ -137,13 +137,12 @@ public final class DateTimeUtil {
             var response = new DatagramPacket(new byte[NTP_PACKET_SIZE], NTP_PACKET_SIZE);
 
             socket.setSoTimeout(timeoutMillis);
-            socket.send(request);    // send NTP request
-            socket.receive(response); // receive NTP response
+            socket.send(request);
+            socket.receive(response);
 
-            return getInstant(response); // parse and convert response to Instant
+            return getInstant(response);
         }
         catch (IOException e) {
-            // Wrap I/O exceptions in a runtime DateTimeException to unify error handling for callers
             throw new DateTimeException("dateTimeFromNTP", e);
         }
     }
